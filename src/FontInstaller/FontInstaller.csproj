@@ -13,7 +13,8 @@
     <ProduceReferenceAssembly>false</ProduceReferenceAssembly>
     <SkipCopyBuildProduct>true</SkipCopyBuildProduct>
 
-    <CopyOutputsToOutputDirectory>false</CopyOutputsToOutputDirectory>
+    <CopyOutputsToOutputDirectory>true</CopyOutputsToOutputDirectory>
+    <DisableFastUpToDateCheck>false</DisableFastUpToDateCheck>
 
     <InnoCompiler>C:\Program Files (x86)\Inno Setup 6\iscc.exe</InnoCompiler>
     <InnoProjectFile>FontInstaller.iss</InnoProjectFile>
