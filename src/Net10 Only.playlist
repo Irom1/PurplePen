@@ -1,0 +1,17 @@
+<Playlist Version="2.0">
+  <Rule Name="Includes" Match="Any">
+    <Rule Match="All">
+      <Property Name="Solution" />
+      <Rule Match="Any">
+        <Property Name="Project" Value="Graphics2D.Tests (net10.0)" />
+        <Property Name="Project" Value="Map_PDF.Tests (net10.0)" />
+        <Property Name="Project" Value="Map_Skia.Tests (net10.0)" />
+        <Property Name="Project" Value="PdfConverter.Tests (net10.0)" />
+        <Property Name="Project" Value="PurplePen_Tests (net10.0)" />
+        <Property Name="Project" Value="Test_MapModel (net10.0)" />
+        <Property Name="Project" Value="TestUtil (net10.0)" />
+        <Property Name="Project" Value="DotSpatial.Projections.Tests (net10.0)" />
+      </Rule>
+    </Rule>
+  </Rule>
+</Playlist>
