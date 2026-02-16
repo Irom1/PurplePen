@@ -1,0 +1,69 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <Configurations>Debug;Release;StorePkg</Configurations>
+    <Platforms>AnyCPU</Platforms>
+
+    <EnableDefaultItems>false</EnableDefaultItems>
+    <GenerateDefaultTargetRuntimeIntermediateAsm>false</GenerateDefaultTargetRuntimeIntermediateAsm>
+    <CopyBuildOutputToPublishDirectory>false</CopyBuildOutputToPublishDirectory>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <ProduceReferenceAssembly>false</ProduceReferenceAssembly>
+    <SkipCopyBuildProduct>true</SkipCopyBuildProduct>
+
+    <CopyOutputsToOutputDirectory>false</CopyOutputsToOutputDirectory>
+
+    <!-- Define the Inno Setup compiler executable -->
+    <InnoCompiler>C:\Program Files (x86)\Inno Setup 6\iscc.exe</InnoCompiler>
+    <!-- Define the Inno Setup project file -->
+    <InnoProjectFile>PurplePen.iss</InnoProjectFile>
+    <!-- Define the output file -->
+    <OutputFile>output\purplepen-setup.exe</OutputFile>
+    <!-- Define the log file -->
+    <LogFile>output\InnoBuild.log</LogFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Build order: Innosetup must build after PurplePen and FontInstaller -->
+    <ProjectReference Include="..\PurplePen\PurplePen.csproj">
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\FontInstaller\FontInstaller.csproj">
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\Help\Help.csproj">
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="$(InnoProjectFile)" />
+    <None Include="CodeDependencies.iss" />
+    <None Include="compile-setup.bat" />
+    <None Include="scripts\**\*.iss" Link="scripts\%(RecursiveDir)%(Filename)%(Extension)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Input files: if any of these change, the installer will be rebuilt -->
+    <InputFile Include="$(InnoProjectFile)" />
+    <InputFile Include="CodeDependencies.iss" />
+    <InputFile Include="scripts\**\*.iss" />
+  </ItemGroup>
+
+  <Target Name="RunInnoSetup" AfterTargets="Build" DependsOnTargets="PrepareOutputDirectory" Inputs="@(InputFile)" Outputs="$(OutputFile)">
+
+    <Message Importance="high" Text="Running Inno Setup; log in $(LogFile)" />
+    <Exec Command="&quot;$(InnoCompiler)&quot; &quot;$(InnoProjectFile)&quot; &gt; &quot;$(LogFile)&quot;" />
+  </Target>
+
+  <Target Name="PrepareOutputDirectory">
+    <MakeDir Directories="output" />
+  </Target>
+
+  <Target Name="CleanInno" AfterTargets="Clean">
+    <Delete Files="$(OutputFile)" />
+    <Delete Files="$(LogFile)" />
+  </Target>
+
+</Project>

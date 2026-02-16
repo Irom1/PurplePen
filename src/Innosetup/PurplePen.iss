@@ -648,7 +648,7 @@ end;
 #define MyAppPublisher "Purple Pen Software"
 #define MyAppURL "http://purple-pen.org"
 #define MyAppExeName "PurplePen.exe"
-#define BuildDir "..\PurplePen\bin\Release"
+#define BuildDir "..\PurplePen\bin\Release\net48"
 
 ; NOTE: The value of AppId uniquely identifies this application.
 ; Do not use the same AppId value in installers for other applications.
@@ -729,11 +729,10 @@ Source: "{#BuildDir}\Graphics2D.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#BuildDir}\ICSharpCode.SharpZipLib.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#BuildDir}\Map_GDIPlus.dll"; DestDir: "{app}"; Flags: ignoreversion 
 Source: "{#BuildDir}\Map_PDF.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#BuildDir}\Map_WPF.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#BuildDir}\MapModel.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#BuildDir}\Newtonsoft.Json.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#BuildDir}\PdfConverter.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#BuildDir}\..\..\..\PdfConverter\bin\Release\PdfConverter.exe.config"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#BuildDir}\PdfConverter.exe.config"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#BuildDir}\PdfiumViewer.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#BuildDir}\PdfSharp.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#BuildDir}\Purple Pen Help.chm"; DestDir: "{app}"; Flags: ignoreversion
@@ -766,33 +765,33 @@ Source: "{#BuildDir}\uk\*"; DestDir: "{app}\uk"; Flags: ignoreversion recursesub
 Source: "{#BuildDir}\zh-CN\*"; DestDir: "{app}\zh-CN"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "{#BuildDir}\zh-TW\*"; DestDir: "{app}\zh-TW"; Flags: ignoreversion recursesubdirs createallsubdirs
 
-Source: "{#BuildDir}\..\..\..\RobotoFont\Roboto-Regular.ttf"; DestDir: "{app}\fonts"; Flags: ignoreversion recursesubdirs createallsubdirs 
-Source: "{#BuildDir}\..\..\..\RobotoFont\Roboto-Bold.ttf"; DestDir: "{app}\fonts"; Flags: ignoreversion recursesubdirs createallsubdirs 
-Source: "{#BuildDir}\..\..\..\RobotoFont\Roboto-Italic.ttf"; DestDir: "{app}\fonts"; Flags: ignoreversion recursesubdirs createallsubdirs 
-Source: "{#BuildDir}\..\..\..\RobotoFont\Roboto-BoldItalic.ttf"; DestDir: "{app}\fonts"; Flags: ignoreversion recursesubdirs createallsubdirs 
-Source: "{#BuildDir}\..\..\..\RobotoFont\RobotoCondensed-Regular.ttf"; DestDir: "{app}\fonts"; Flags: ignoreversion recursesubdirs createallsubdirs 
-Source: "{#BuildDir}\..\..\..\RobotoFont\RobotoCondensed-Bold.ttf"; DestDir: "{app}\fonts"; Flags: ignoreversion recursesubdirs createallsubdirs 
-Source: "{#BuildDir}\..\..\..\RobotoFont\RobotoCondensed-Italic.ttf"; DestDir: "{app}\fonts"; Flags: ignoreversion recursesubdirs createallsubdirs 
-Source: "{#BuildDir}\..\..\..\RobotoFont\RobotoCondensed-BoldItalic.ttf"; DestDir: "{app}\fonts"; Flags: ignoreversion recursesubdirs createallsubdirs 
+Source: "{#BuildDir}\..\..\..\..\RobotoFont\Roboto-Regular.ttf"; DestDir: "{app}\fonts"; Flags: ignoreversion recursesubdirs createallsubdirs 
+Source: "{#BuildDir}\..\..\..\..\RobotoFont\Roboto-Bold.ttf"; DestDir: "{app}\fonts"; Flags: ignoreversion recursesubdirs createallsubdirs 
+Source: "{#BuildDir}\..\..\..\..\RobotoFont\Roboto-Italic.ttf"; DestDir: "{app}\fonts"; Flags: ignoreversion recursesubdirs createallsubdirs 
+Source: "{#BuildDir}\..\..\..\..\RobotoFont\Roboto-BoldItalic.ttf"; DestDir: "{app}\fonts"; Flags: ignoreversion recursesubdirs createallsubdirs 
+Source: "{#BuildDir}\..\..\..\..\RobotoFont\RobotoCondensed-Regular.ttf"; DestDir: "{app}\fonts"; Flags: ignoreversion recursesubdirs createallsubdirs 
+Source: "{#BuildDir}\..\..\..\..\RobotoFont\RobotoCondensed-Bold.ttf"; DestDir: "{app}\fonts"; Flags: ignoreversion recursesubdirs createallsubdirs 
+Source: "{#BuildDir}\..\..\..\..\RobotoFont\RobotoCondensed-Italic.ttf"; DestDir: "{app}\fonts"; Flags: ignoreversion recursesubdirs createallsubdirs 
+Source: "{#BuildDir}\..\..\..\..\RobotoFont\RobotoCondensed-BoldItalic.ttf"; DestDir: "{app}\fonts"; Flags: ignoreversion recursesubdirs createallsubdirs 
 
-Source: "{#BuildDir}\..\..\..\RobotoFont\Roboto-Regular.ttf"; DestDir: "{commonfonts}"; FontInstall: "Roboto"; Flags: onlyifdoesntexist uninsneveruninstall 
-Source: "{#BuildDir}\..\..\..\RobotoFont\Roboto-Bold.ttf"; DestDir: "{commonfonts}"; FontInstall: "Roboto Bold"; Flags: onlyifdoesntexist uninsneveruninstall 
-Source: "{#BuildDir}\..\..\..\RobotoFont\Roboto-Italic.ttf"; DestDir: "{commonfonts}"; FontInstall: "Roboto Italic"; Flags: onlyifdoesntexist uninsneveruninstall 
-Source: "{#BuildDir}\..\..\..\RobotoFont\Roboto-BoldItalic.ttf"; DestDir: "{commonfonts}"; FontInstall: "Roboto Bold Italic"; Flags: onlyifdoesntexist uninsneveruninstall 
-Source: "{#BuildDir}\..\..\..\RobotoFont\Roboto-Black.ttf"; DestDir: "{commonfonts}"; FontInstall: "Roboto Black"; Flags: onlyifdoesntexist uninsneveruninstall 
-Source: "{#BuildDir}\..\..\..\RobotoFont\Roboto-BlackItalic.ttf"; DestDir: "{commonfonts}"; FontInstall: "Roboto Black Italic"; Flags: onlyifdoesntexist uninsneveruninstall 
-Source: "{#BuildDir}\..\..\..\RobotoFont\Roboto-Light.ttf"; DestDir: "{commonfonts}"; FontInstall: "Roboto Light"; Flags: onlyifdoesntexist uninsneveruninstall 
-Source: "{#BuildDir}\..\..\..\RobotoFont\Roboto-LightItalic.ttf"; DestDir: "{commonfonts}"; FontInstall: "Roboto Light Italic"; Flags: onlyifdoesntexist uninsneveruninstall 
-Source: "{#BuildDir}\..\..\..\RobotoFont\Roboto-Medium.ttf"; DestDir: "{commonfonts}"; FontInstall: "Roboto Medium"; Flags: onlyifdoesntexist uninsneveruninstall 
-Source: "{#BuildDir}\..\..\..\RobotoFont\Roboto-MediumItalic.ttf"; DestDir: "{commonfonts}"; FontInstall: "Roboto Medium Italic"; Flags: onlyifdoesntexist uninsneveruninstall 
-Source: "{#BuildDir}\..\..\..\RobotoFont\Roboto-Thin.ttf"; DestDir: "{commonfonts}"; FontInstall: "Roboto Thin"; Flags: onlyifdoesntexist uninsneveruninstall 
-Source: "{#BuildDir}\..\..\..\RobotoFont\Roboto-ThinItalic.ttf"; DestDir: "{commonfonts}"; FontInstall: "Roboto Thin Italic"; Flags: onlyifdoesntexist uninsneveruninstall 
-Source: "{#BuildDir}\..\..\..\RobotoFont\RobotoCondensed-Regular.ttf"; DestDir: "{commonfonts}"; FontInstall: "Roboto Condensed"; Flags: onlyifdoesntexist uninsneveruninstall 
-Source: "{#BuildDir}\..\..\..\RobotoFont\RobotoCondensed-Bold.ttf"; DestDir: "{commonfonts}"; FontInstall: "Roboto Condensed Bold"; Flags: onlyifdoesntexist uninsneveruninstall 
-Source: "{#BuildDir}\..\..\..\RobotoFont\RobotoCondensed-Italic.ttf"; DestDir: "{commonfonts}"; FontInstall: "Roboto Condensed Italic"; Flags: onlyifdoesntexist uninsneveruninstall 
-Source: "{#BuildDir}\..\..\..\RobotoFont\RobotoCondensed-BoldItalic.ttf"; DestDir: "{commonfonts}"; FontInstall: "Roboto Condensed Bold Italic"; Flags: onlyifdoesntexist uninsneveruninstall 
-Source: "{#BuildDir}\..\..\..\RobotoFont\RobotoCondensed-Light.ttf"; DestDir: "{commonfonts}"; FontInstall: "Roboto Condensed Light"; Flags: onlyifdoesntexist uninsneveruninstall 
-Source: "{#BuildDir}\..\..\..\RobotoFont\RobotoCondensed-LightItalic.ttf"; DestDir: "{commonfonts}"; FontInstall: "Roboto Condensed Light Italic"; Flags: onlyifdoesntexist uninsneveruninstall 
+Source: "{#BuildDir}\..\..\..\..\RobotoFont\Roboto-Regular.ttf"; DestDir: "{commonfonts}"; FontInstall: "Roboto"; Flags: onlyifdoesntexist uninsneveruninstall 
+Source: "{#BuildDir}\..\..\..\..\RobotoFont\Roboto-Bold.ttf"; DestDir: "{commonfonts}"; FontInstall: "Roboto Bold"; Flags: onlyifdoesntexist uninsneveruninstall 
+Source: "{#BuildDir}\..\..\..\..\RobotoFont\Roboto-Italic.ttf"; DestDir: "{commonfonts}"; FontInstall: "Roboto Italic"; Flags: onlyifdoesntexist uninsneveruninstall 
+Source: "{#BuildDir}\..\..\..\..\RobotoFont\Roboto-BoldItalic.ttf"; DestDir: "{commonfonts}"; FontInstall: "Roboto Bold Italic"; Flags: onlyifdoesntexist uninsneveruninstall 
+Source: "{#BuildDir}\..\..\..\..\RobotoFont\Roboto-Black.ttf"; DestDir: "{commonfonts}"; FontInstall: "Roboto Black"; Flags: onlyifdoesntexist uninsneveruninstall 
+Source: "{#BuildDir}\..\..\..\..\RobotoFont\Roboto-BlackItalic.ttf"; DestDir: "{commonfonts}"; FontInstall: "Roboto Black Italic"; Flags: onlyifdoesntexist uninsneveruninstall 
+Source: "{#BuildDir}\..\..\..\..\RobotoFont\Roboto-Light.ttf"; DestDir: "{commonfonts}"; FontInstall: "Roboto Light"; Flags: onlyifdoesntexist uninsneveruninstall 
+Source: "{#BuildDir}\..\..\..\..\RobotoFont\Roboto-LightItalic.ttf"; DestDir: "{commonfonts}"; FontInstall: "Roboto Light Italic"; Flags: onlyifdoesntexist uninsneveruninstall 
+Source: "{#BuildDir}\..\..\..\..\RobotoFont\Roboto-Medium.ttf"; DestDir: "{commonfonts}"; FontInstall: "Roboto Medium"; Flags: onlyifdoesntexist uninsneveruninstall 
+Source: "{#BuildDir}\..\..\..\..\RobotoFont\Roboto-MediumItalic.ttf"; DestDir: "{commonfonts}"; FontInstall: "Roboto Medium Italic"; Flags: onlyifdoesntexist uninsneveruninstall 
+Source: "{#BuildDir}\..\..\..\..\RobotoFont\Roboto-Thin.ttf"; DestDir: "{commonfonts}"; FontInstall: "Roboto Thin"; Flags: onlyifdoesntexist uninsneveruninstall 
+Source: "{#BuildDir}\..\..\..\..\RobotoFont\Roboto-ThinItalic.ttf"; DestDir: "{commonfonts}"; FontInstall: "Roboto Thin Italic"; Flags: onlyifdoesntexist uninsneveruninstall 
+Source: "{#BuildDir}\..\..\..\..\RobotoFont\RobotoCondensed-Regular.ttf"; DestDir: "{commonfonts}"; FontInstall: "Roboto Condensed"; Flags: onlyifdoesntexist uninsneveruninstall 
+Source: "{#BuildDir}\..\..\..\..\RobotoFont\RobotoCondensed-Bold.ttf"; DestDir: "{commonfonts}"; FontInstall: "Roboto Condensed Bold"; Flags: onlyifdoesntexist uninsneveruninstall 
+Source: "{#BuildDir}\..\..\..\..\RobotoFont\RobotoCondensed-Italic.ttf"; DestDir: "{commonfonts}"; FontInstall: "Roboto Condensed Italic"; Flags: onlyifdoesntexist uninsneveruninstall 
+Source: "{#BuildDir}\..\..\..\..\RobotoFont\RobotoCondensed-BoldItalic.ttf"; DestDir: "{commonfonts}"; FontInstall: "Roboto Condensed Bold Italic"; Flags: onlyifdoesntexist uninsneveruninstall 
+Source: "{#BuildDir}\..\..\..\..\RobotoFont\RobotoCondensed-Light.ttf"; DestDir: "{commonfonts}"; FontInstall: "Roboto Condensed Light"; Flags: onlyifdoesntexist uninsneveruninstall 
+Source: "{#BuildDir}\..\..\..\..\RobotoFont\RobotoCondensed-LightItalic.ttf"; DestDir: "{commonfonts}"; FontInstall: "Roboto Condensed Light Italic"; Flags: onlyifdoesntexist uninsneveruninstall 
 
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
