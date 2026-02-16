@@ -25,6 +25,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="$(HelpProjectFile)" Link="%(Filename)%(Extension)" />
+    <None Include="..\..\doc\userdocs\help\*.htm" Link="Help\%(Filename)%(Extension)" />
+    <None Include="..\..\doc\userdocs\help\*.css" Link="Help\%(Filename)%(Extension)" />
+    <None Include="..\..\doc\userdocs\help\*.png" Link="Help\%(Filename)%(Extension)" />
+    <None Include="..\..\doc\userdocs\help\*.gif" Link="Help\%(Filename)%(Extension)" />
+    <None Include="..\..\doc\userdocs\help\*.dwt" Link="Help\%(Filename)%(Extension)" />
+    <None Include="..\..\doc\userdocs\help\*.hhc" Link="Help\%(Filename)%(Extension)" />
+  </ItemGroup>
+
+  <ItemGroup>
     <!-- Input files: if any of these change, the help file will be rebuilt -->
     <InputFile Include="$(HelpProjectFile)" />
     <InputFile Include="..\..\doc\userdocs\help\*.htm" />

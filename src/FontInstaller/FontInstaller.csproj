@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net48</TargetFramework>
@@ -13,28 +13,33 @@
     <ProduceReferenceAssembly>false</ProduceReferenceAssembly>
     <SkipCopyBuildProduct>true</SkipCopyBuildProduct>
 
-    <CopyOutputsToOutputDirectory>true</CopyOutputsToOutputDirectory>
-    <DisableFastUpToDateCheck>false</DisableFastUpToDateCheck>
+    <CopyOutputsToOutputDirectory>false</CopyOutputsToOutputDirectory>
 
+    <!-- Define the Inno Setup compiler executable -->
     <InnoCompiler>C:\Program Files (x86)\Inno Setup 6\iscc.exe</InnoCompiler>
+    <!-- Define the Inno Setup project file -->
     <InnoProjectFile>FontInstaller.iss</InnoProjectFile>
+    <!-- Define the output file -->
     <OutputFile>output\Roboto Font Installer.exe</OutputFile>
+    <!-- Define the log file -->
     <LogFile>output\InnoBuild.log</LogFile>
   </PropertyGroup>
 
   <ItemGroup>
     <None Include="$(InnoProjectFile)" />
     <None Include="..\RobotoFont\*.ttf" Link="Fonts\%(Filename)%(Extension)" />
-    <UpToDateCheckInput Include="$(InnoProjectFile);..\RobotoFont\*.ttf" />
-    <UpToDateCheckOutput Include="$(OutputFile)" />
+  </ItemGroup>
 
-    <InnoInputs Include="$(InnoProjectFile);..\RobotoFont\*.ttf" />
+  <ItemGroup>
+    <!-- Input files: if any of these change, the installer will be rebuilt -->
+    <InputFile Include="$(InnoProjectFile)" />
+    <InputFile Include="..\RobotoFont\*.ttf" />
   </ItemGroup>
 
   <Target Name="RunInnoSetup"
           AfterTargets="Build"
           DependsOnTargets="PrepareOutputDirectory"
-          Inputs="@(InnoInputs)"
+          Inputs="@(InputFile)"
           Outputs="$(OutputFile)">
 
     <Message Importance="high" Text="Running Inno Setup; log in $(LogFile)" />
@@ -47,7 +52,7 @@
 
   <Target Name="CleanInno" AfterTargets="Clean">
     <Delete Files="$(OutputFile)" />
-    <RemoveDir Directories="output;bin;obj" />
+    <Delete Files="$(LogFile)" />
   </Target>
 
 </Project>
