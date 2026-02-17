@@ -46,6 +46,7 @@ using System.IO;
 
 namespace PurplePen.MapModel
 {
+    using Map_SkiaStd;
     using PurplePen.Graphics2D;
     using SkiaSharp;
     using SkiaSharp.HarfBuzz;
@@ -447,7 +448,6 @@ namespace PurplePen.MapModel
             using (SKPaint paint = new SKPaint()) {
                 paint.Color = brushPaint.Color;
                 paint.Shader = brushPaint.Shader;
-                paint.Typeface = font.Typeface;
                 paint.TextSize = font.EmHeight;
                 paint.TextAlign = SKTextAlign.Left;
                 paint.IsAntialias = antiAlias;
@@ -455,9 +455,8 @@ namespace PurplePen.MapModel
                 paint.SubpixelText = false;
 
                 // paint.UnderlineText = font.Underline;  // TODO: Underline not yet supported.
-                canvas.DrawShapedText(font.Shaper, text, upperLeft.X, upperLeft.Y + font.Ascent, paint);
+                font.EnhancedTypeface.DrawText(canvas, text, new SKPoint(upperLeft.X, upperLeft.Y), font.EmHeight, paint);
             }
-            float emHeight = font.EmHeight;
         }
 
         // Draw text outline with upper-left corner of text at the given locations.
@@ -467,7 +466,6 @@ namespace PurplePen.MapModel
             SKPaint penPaint = GetPenPaint(penKey);
             
             using (SKPaint paint = new SKPaint()) {
-                paint.Typeface = font.Typeface;
                 paint.TextSize = font.EmHeight;
                 paint.TextAlign = SKTextAlign.Left;
                 paint.IsAntialias = antiAlias;
@@ -478,7 +476,8 @@ namespace PurplePen.MapModel
                 paint.StrokeJoin = penPaint.StrokeJoin;
                 paint.StrokeCap = penPaint.StrokeCap;
                 paint.StrokeMiter = penPaint.StrokeMiter;
-                canvas.DrawShapedText(font.Shaper, text, upperLeft.X, upperLeft.Y + font.Ascent, paint);
+
+                font.EnhancedTypeface.DrawText(canvas, text, new SKPoint(upperLeft.X, upperLeft.Y), font.EmHeight, paint);
             }
         }
 
@@ -685,15 +684,18 @@ namespace PurplePen.MapModel
 
     public class SkiaFont: ITextFaceMetrics
     {
-		private SKTypeface typeface;
-        private SKShaper shaper;
+        //private SKTypeface typeface;
+        //private SKShaper shaper;
+        private ShapedTypeface shapedTypeface;
+        private EnhancedTypeface enhancedTypeface;
 		private float emHeight;
         private SKFontMetrics fontMetrics;
         private bool fontMetricsObtained;
         private bool underline;
         private float spaceWidth = -1, capHeight = -1;
 
-		public SkiaFont(string familyName, float emHeight, TextEffects effects)
+#if false
+        public SkiaFont(string familyName, float emHeight, TextEffects effects)
 		{
 			this.emHeight = emHeight;
             if (familyName == "Arial Narrow") {
@@ -715,8 +717,26 @@ namespace PurplePen.MapModel
         public SKShaper Shaper {
             get { return shaper; }
         }
+#endif
+        public SkiaFont(string familyName, float emHeight, TextEffects effects)
+        {
+            this.emHeight = emHeight;
+            if (familyName == "Arial Narrow") {
+                // Special case for Arial Narrow. Use "Arial" with a condensed style instead.
+                this.shapedTypeface = new ShapedTypeface("Arial", GetSKFontStyleWeight(effects), SKFontStyleWidth.Condensed, GetSKFontStyleSlant(effects));
+            }
+            else {
+                this.shapedTypeface = new ShapedTypeface(familyName, GetSKFontStyleWeight(effects), SKFontStyleWidth.Normal, GetSKFontStyleSlant(effects));
+            }
+            this.enhancedTypeface = new EnhancedTypeface(this.shapedTypeface, new ShapedTypeface[0], new Dictionary<string, int>());
+            this.underline = ((effects & TextEffects.Underline) != 0);
+        }
 
-		public float EmHeight
+        public EnhancedTypeface EnhancedTypeface { 
+            get { return enhancedTypeface; } 
+        }
+
+        public float EmHeight
 		{
 			get { return emHeight; }
 		}
@@ -760,7 +780,7 @@ namespace PurplePen.MapModel
                 if (capHeight < 0) {
                     using (SKPaint paint = new SKPaint()) {
                         paint.IsAntialias = true;
-                        paint.Typeface = typeface;
+                        paint.Typeface = shapedTypeface.Typeface;
                         paint.TextSize = emHeight * 100;
                         using (SKPath path = paint.GetTextPath("W", 0, 0)) {
                             SKRect rect = path.TightBounds;
@@ -787,13 +807,9 @@ namespace PurplePen.MapModel
 
         public void Dispose()
 		{
-            if (typeface != null) {
-                typeface.Dispose();
-                typeface = null; 
-            }
-            if (shaper != null) {
-                shaper.Dispose();
-                shaper = null;
+            if (shapedTypeface != null) {
+                shapedTypeface.Dispose();
+                shapedTypeface = null; 
             }
 		}
 
@@ -823,32 +839,19 @@ namespace PurplePen.MapModel
 
         public float GetTextWidth(string text)
         {
-            using (SKPaint paint = new SKPaint()) {
-                paint.IsAntialias = true;
-                paint.Typeface = typeface;
-                paint.TextSize = emHeight;
-                paint.TextEncoding = SKTextEncoding.Utf16;
+            // We need to use the shaper, to take kerning into account.
+            float width = enhancedTypeface.MeasureTextAdvanceWidth(text, emHeight * 100);
 
-                // We need to use the shaper, to take kerning into account.
-
-                SKShaper.Result shapeResult = shaper.Shape(text, paint);
-                return shapeResult.Width;
-            }
+            return width / 100;
         }
 
         public SizeF GetTextSize(string text)
         {
-            SKRect rect = new SKRect();
+            // We need to use the shaper, to take kerning into account.
+            float width = enhancedTypeface.MeasureTextAdvanceWidth(text, emHeight * 100);
+            SKRect bounds = enhancedTypeface.MeasureTextBounds(text, emHeight * 100);
 
-            using (SKPaint paint = new SKPaint()) {
-                paint.IsAntialias = true;
-                paint.Typeface = typeface;
-                paint.TextSize = emHeight * 100;
-                paint.TextEncoding = SKTextEncoding.Utf16;
-                paint.MeasureText(text, ref rect);
-                float width = GetTextWidth(text);
-                return new SizeF(width, Math.Max((rect.Bottom - rect.Top) / 100, Ascent + Descent));
-            }
+            return new SizeF(width / 100, Math.Max((bounds.Bottom - bounds.Top) / 100, Ascent + Descent));
         }
 
         void LoadFontMetrics()
@@ -856,7 +859,7 @@ namespace PurplePen.MapModel
             if (!fontMetricsObtained) {
                 using (SKPaint paint = new SKPaint()) {
                     paint.IsAntialias = true;
-                    paint.Typeface = typeface;
+                    paint.Typeface = shapedTypeface.Typeface;
                     paint.TextSize = emHeight;
                     fontMetrics = paint.FontMetrics;
                 }

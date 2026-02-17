@@ -763,21 +763,103 @@ namespace Map_Skia.Tests
         {
             CheckTest("differentnewlinetypes.txt", false, false, 7, 7);
         }
-#endif
 
-/*
-[Test]
-public void Overprinting()
-{
-    CheckTestOverprinting("ocad11overprinting.txt", true, true, 6, 12);
-}
-*/
+        [Test]
+        public void Overprinting()
+        {
+            CheckTestOverprinting("ocad11overprinting.txt", true, true, 6, 12);
+        }
+#endif
 
         [Test]
         public void KernTextOutline()
         {
             CheckTest("kern_text_outline.txt", false, true, 7, 12);
         }
+
+#if false
+        [Test]
+        public void MultiSymOnDash()
+        {
+            CheckTest("multisymonedash.txt", false, true, 12, 12);
+        }
+
+        [Test]
+        public void DashMin()
+        {
+            CheckTest("dashmin.txt", false, true, 8, 12);
+        }
+
+        [Test]
+        public void WholeStructure1()
+        {
+            CheckTest("wholestructure.txt", false, true, 12, 12);
+        }
+
+
+        [Test]
+        public void WholeStructure2()
+        {
+            CheckTest("wholestructure2.txt", false, true, 12, 12);
+        }
+        
+        [Test]
+        public void WholeStructure3()
+        {
+            CheckTest("wholestructure3.txt", false, true, 12, 12);
+        }
+
+
+        [Test]
+        public void WholeStructure4()
+        {
+            CheckTest("wholestructure4.txt", false, true, 12, 12);
+        }
+        
+        [Test]
+        public void Irregular1()
+        {
+            CheckTest("irregular1.txt", false, true, 12, 12);
+        }
+
+        [Test]
+        public void Irregular2()
+        {
+            CheckTest("irregular2.txt", false, true, 12, 12);
+        }
+
+
+        [Test]
+        public void Irregular3()
+        {
+            CheckTest("irregular3.txt", false, true, 12, 12);
+        }
+
+
+        [Test]
+        public void Irregular4()
+        {
+            CheckTest("irregular4.txt", false, true, 12, 12);
+        }
+
+        [Test]
+        public void Roboto()
+        {
+            CheckTest("RobotoTest.txt", false, false, 9, 12);
+        }
+
+        [Test]
+        public void Marymoor11LowerLayers()
+        {
+            CheckTestLayers("marymoor11_lowerlayers.txt", null, 7, false, false, 11, 12);
+        }
+
+        [Test]
+        public void Marymoor11UpperLayers()
+        {
+            CheckTestLayers("marymoor11_upperlayers.txt", 7, null, false, false, 11, 12);
+        }
+#endif
     }
 
 }
