@@ -692,7 +692,17 @@ namespace PurplePen.MapModel
         private SKFontMetrics fontMetrics;
         private bool fontMetricsObtained;
         private bool underline;
-        private float spaceWidth = -1, capHeight = -1;
+        private float spaceWidth = -1, capHeight = -1;  
+
+        // These properties mostly duplicates how OCAD renders text.
+        private readonly Dictionary<string, int> harfBuzzProperties = new Dictionary<string, int>() {
+            { "kern", 1 },  // enable kerning
+            { "liga", 0 },  // disable standard ligatures
+            { "clig", 0 },  // disable contextual ligatures
+            { "dlig", 0 },  // disable discretionary ligatures
+            { "hlig", 0 },  // disable optional ligatures
+            { "calt", 0 },  // disable contextual alternates
+        };
 
 #if false
         public SkiaFont(string familyName, float emHeight, TextEffects effects)
@@ -723,12 +733,12 @@ namespace PurplePen.MapModel
             this.emHeight = emHeight;
             if (familyName == "Arial Narrow") {
                 // Special case for Arial Narrow. Use "Arial" with a condensed style instead.
-                this.shapedTypeface = new ShapedTypeface("Arial", GetSKFontStyleWeight(effects), SKFontStyleWidth.Condensed, GetSKFontStyleSlant(effects));
+                this.shapedTypeface = ShapedTypeface.Get("Arial", GetSKFontStyleWeight(effects), SKFontStyleWidth.Condensed, GetSKFontStyleSlant(effects));
             }
             else {
-                this.shapedTypeface = new ShapedTypeface(familyName, GetSKFontStyleWeight(effects), SKFontStyleWidth.Normal, GetSKFontStyleSlant(effects));
+                this.shapedTypeface = ShapedTypeface.Get(familyName, GetSKFontStyleWeight(effects), SKFontStyleWidth.Normal, GetSKFontStyleSlant(effects));
             }
-            this.enhancedTypeface = new EnhancedTypeface(this.shapedTypeface, new ShapedTypeface[0], new Dictionary<string, int>());
+            this.enhancedTypeface = new EnhancedTypeface(this.shapedTypeface, new ShapedTypeface[0], harfBuzzProperties);
             this.underline = ((effects & TextEffects.Underline) != 0);
         }
 

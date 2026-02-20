@@ -11,7 +11,7 @@ namespace Map_Skia.Tests
     [TestFixture, Parallelizable(ParallelScope.Children)]
     public class RenderingTests
     {
-        private const int MAX_PIXEL_DIFF = 25;
+        private const int MAX_PIXEL_DIFF = 0;
 
         void CheckTest(string filename, bool testLightenedColor, bool roundtripToOcad, int minOcadVersion, int maxOcadVersion)
         {
@@ -703,13 +703,13 @@ namespace Map_Skia.Tests
             CheckTest("templatehide.txt", true, false, 9, 12);
         }
 
-        [Test]
+        [Test, NonParallelizable]
         public void TemplateFraction1()
         {
             CheckTest("template_fraction1.txt", false, true, 9, 12);
         }
 
-        [Test]
+        [Test, NonParallelizable]
         public void TemplateFraction2()
         {
             CheckTest("template_fraction2.txt", false, true, 9, 12);

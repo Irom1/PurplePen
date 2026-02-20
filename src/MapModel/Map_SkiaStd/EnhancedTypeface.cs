@@ -1,7 +1,9 @@
 using SkiaSharp;
 using SkiaSharp.HarfBuzz;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace Map_SkiaStd
 {
@@ -11,8 +13,13 @@ namespace Map_SkiaStd
     // The HarfBuzz pipeline is: SKTypeface -> SKStreamAsset -> Blob -> Face -> Font.
     // These objects are created together and must be disposed together.
     //
-    // This class owns the SKTypeface and disposes it. Construct via family name
-    // and style parameters; the SKTypeface is created internally.
+    // Instances obtained via Get() are cached by font family/style and reference-counted.
+    // Dispose() decrements the reference count but does not release resources; cached
+    // entries remain available for reuse. Call ClearCache() to dispose entries whose
+    // reference count has reached zero.
+    //
+    // Instances obtained via FromTypeface() are not cached and dispose normally when
+    // their reference count reaches zero.
     public class ShapedTypeface : IDisposable
     {
         public readonly SKTypeface Typeface;
@@ -20,19 +27,28 @@ namespace Map_SkiaStd
         public readonly HarfBuzzSharp.Blob HBBlob;
         public readonly HarfBuzzSharp.Face HBFace;
         public readonly HarfBuzzSharp.Font HBFont;
+        private readonly SKStreamAsset fontStream;  // Must stay alive; HBBlob references its memory
 
-        // Creates a ShapedTypeface by looking up the font by family name and style,
-        // then building the full HarfBuzz font pipeline.
+        // Cache key: family name (upper-cased for case-insensitive comparison), weight, width, slant.
+        private static readonly ConcurrentDictionary<(string, SKFontStyleWeight, SKFontStyleWidth, SKFontStyleSlant), ShapedTypeface> cache
+            = new ConcurrentDictionary<(string, SKFontStyleWeight, SKFontStyleWidth, SKFontStyleSlant), ShapedTypeface>();
+
+        private int refCount;
+        private readonly bool isCached;
+
+        // Private constructor that builds the HarfBuzz pipeline from family name and style.
         //
         // Parameters:
         //   familyName - the font family name (e.g., "Segoe UI", "Arial")
         //   weight - font weight (e.g., SKFontStyleWeight.Normal, SKFontStyleWeight.Bold)
         //   width - font width/stretch (e.g., SKFontStyleWidth.Normal)
         //   slant - font slant (e.g., SKFontStyleSlant.Upright, SKFontStyleSlant.Italic)
-        public ShapedTypeface(string familyName,
+        //   cached - true if this instance is managed by the static cache
+        private ShapedTypeface(string familyName,
                               SKFontStyleWeight weight,
                               SKFontStyleWidth width,
-                              SKFontStyleSlant slant)
+                              SKFontStyleSlant slant,
+                              bool cached)
         {
             Typeface = SKTypeface.FromFamilyName(familyName, weight, width, slant);
 
@@ -42,9 +58,10 @@ namespace Map_SkiaStd
 
             // Build the HarfBuzz font from the typeface's raw font data.
             // OpenStream() gives us the raw TrueType/OpenType data as an SKStreamAsset.
-            // ToHarfBuzzBlob() (extension from SkiaSharp.HarfBuzz) copies it into a
-            // HarfBuzz Blob that owns its own memory.
-            HBBlob = Typeface.OpenStream().ToHarfBuzzBlob();
+            // ToHarfBuzzBlob() wraps the stream's memory (does not copy), so the stream
+            // must remain alive for the lifetime of this instance.
+            fontStream = Typeface.OpenStream();
+            HBBlob = fontStream.ToHarfBuzzBlob();
             HBFace = new HarfBuzzSharp.Face(HBBlob, 0);
             HBFace.UnitsPerEm = Typeface.UnitsPerEm;
             HBFont = new HarfBuzzSharp.Font(HBFace);
@@ -53,22 +70,61 @@ namespace Map_SkiaStd
             // in these units; we scale to display coordinates later using
             // (fontSize / unitsPerEm).
             HBFont.SetScale(HBFace.UnitsPerEm, HBFace.UnitsPerEm);
+
+            // Cached entries start at 0; each Get() call increments.
+            // Non-cached entries are never created through this path.
+            refCount = 0;
+            isCached = cached;
         }
 
-        // Creates a ShapedTypeface from an existing SKTypeface. This class takes
-        // ownership of the typeface and will dispose it.
-        public ShapedTypeface(SKTypeface typeface)
+        // Private constructor that builds the HarfBuzz pipeline from an existing SKTypeface.
+        // This constructor is used for the non-cached path. Takes ownership of the typeface.
+        private ShapedTypeface(SKTypeface typeface)
         {
             Typeface = typeface;
 
             CheckFont = new SKFont(Typeface);
 
-            HBBlob = Typeface.OpenStream().ToHarfBuzzBlob();
+            fontStream = Typeface.OpenStream();
+            HBBlob = fontStream.ToHarfBuzzBlob();
             HBFace = new HarfBuzzSharp.Face(HBBlob, 0);
             HBFace.UnitsPerEm = Typeface.UnitsPerEm;
             HBFont = new HarfBuzzSharp.Font(HBFace);
 
             HBFont.SetScale(HBFace.UnitsPerEm, HBFace.UnitsPerEm);
+
+            refCount = 1;
+            isCached = false;
+        }
+
+        // Returns a cached ShapedTypeface for the given family name and style. If one already
+        // exists in the cache, its reference count is incremented and the same instance is
+        // returned. Otherwise a new instance is created with reference count 1.
+        //
+        // Thread-safe: uses ConcurrentDictionary.GetOrAdd and Interlocked.Increment.
+        public static ShapedTypeface Get(string familyName,
+                                         SKFontStyleWeight weight,
+                                         SKFontStyleWidth width,
+                                         SKFontStyleSlant slant)
+        {
+            (string, SKFontStyleWeight, SKFontStyleWidth, SKFontStyleSlant) key =
+                (familyName.ToUpperInvariant(), weight, width, slant);
+
+            ShapedTypeface entry = cache.GetOrAdd(key,
+                k => new ShapedTypeface(familyName, weight, width, slant, cached: true));
+
+            // Cached entries are created with refCount=0. Each Get() caller increments,
+            // so refCount always equals the number of active callers holding a reference.
+            Interlocked.Increment(ref entry.refCount);
+            return entry;
+        }
+
+        // Creates a non-cached ShapedTypeface from an existing SKTypeface. Takes ownership
+        // of the typeface. The instance is not stored in the cache and disposes its resources
+        // normally when the reference count reaches zero.
+        public static ShapedTypeface FromTypeface(SKTypeface typeface)
+        {
+            return new ShapedTypeface(typeface);
         }
 
         // Returns true if this typeface contains a glyph for the given Unicode codepoint.
@@ -78,13 +134,51 @@ namespace Map_SkiaStd
             return CheckFont.GetGlyph(codepoint) != 0;
         }
 
+        // Decrements the reference count. For cached entries, resources are not released
+        // (the entry stays in the cache for reuse). For non-cached entries, resources are
+        // disposed when the count reaches zero.
         public void Dispose()
+        {
+            int newCount = Interlocked.Decrement(ref refCount);
+
+            if (!isCached && newCount <= 0)
+            {
+                DisposeResources();
+            }
+        }
+
+        // Releases all native resources held by this instance.
+        private void DisposeResources()
         {
             CheckFont?.Dispose();
             HBFont?.Dispose();
             HBFace?.Dispose();
             HBBlob?.Dispose();
+            fontStream?.Dispose();
             Typeface?.Dispose();
+        }
+
+        // Disposes and removes all cached entries whose reference count is zero or less
+        // (no active callers). Entries still held by callers are left untouched.
+        //
+        // Thread-safe: iterates a snapshot of cache keys and uses TryRemove. A small race
+        // window exists where an entry could be re-requested between the count check and
+        // removal, but GetOrAdd handles this by creating a new entry if needed.
+        public static void ClearCache()
+        {
+            foreach ((string, SKFontStyleWeight, SKFontStyleWidth, SKFontStyleSlant) key in cache.Keys)
+            {
+                if (cache.TryGetValue(key, out ShapedTypeface entry))
+                {
+                    if (entry.refCount <= 0)
+                    {
+                        if (cache.TryRemove(key, out ShapedTypeface removed))
+                        {
+                            removed.DisposeResources();
+                        }
+                    }
+                }
+            }
         }
     }
 
@@ -361,7 +455,7 @@ namespace Map_SkiaStd
         // relative coordinates to the desired drawing position.
         //
         // Returns null if there are no glyphs to draw.
-        private SKTextBlob BuildTextBlob(List<ShapedRunResult> runs, float fontSize, float yBaseline)
+        private SKTextBlob BuildTextBlob(List<ShapedRunResult> runs, float fontSize, float yBaseline, SKPaint paint)
         {
             using (SKTextBlobBuilder builder = new SKTextBlobBuilder())
             {
@@ -385,8 +479,17 @@ namespace Map_SkiaStd
                     }
 
                     // Each run gets its own font in the text blob, enabling mixed-typeface rendering.
+                    // All properties are explicitly set to avoid platform-dependent defaults
+                    // that can cause non-deterministic glyph rasterization.
                     using (SKFont skFont = new SKFont(run.Entry.Typeface, fontSize))
                     {
+                        skFont.Edging = paint.IsAntialias ? SKFontEdging.Antialias : SKFontEdging.Alias;
+                        skFont.Hinting = SKFontHinting.None;
+                        skFont.Subpixel = false;
+                        skFont.EmbeddedBitmaps = false;
+                        skFont.LinearMetrics = false;
+                        skFont.BaselineSnap = false;
+                        skFont.ForceAutoHinting = false;
                         SKPositionedRunBuffer runBuffer = builder.AllocatePositionedRun(skFont, run.GlyphIds.Length);
                         runBuffer.SetGlyphs(run.GlyphIds);
                         runBuffer.SetPositions(adjustedPositions);
@@ -415,21 +518,80 @@ namespace Map_SkiaStd
         // The origin is the top-left corner of the text block. Internally, the text is
         // drawn at origin.Y + ascent because Skia's text drawing functions position text
         // at the baseline, not the top.
+        //
+        // When DRAW_TEXT_AS_PATHS is defined, text is rendered by converting glyph outlines
+        // to paths and filling/stroking them. This bypasses the platform glyph rasterizer
+        // (DirectWrite on Windows) entirely, producing deterministic pixel-identical output
+        // across runs, at the cost of losing hinting optimizations.
         public void DrawText(SKCanvas canvas, string text, SKPoint origin, float fontSize, SKPaint paint)
         {
             if (string.IsNullOrEmpty(text))
                 return;
 
+#if DRAW_TEXT_AS_PATHS
+            using (SKPath textPath = GetTextPath(text, origin, fontSize))
+            {
+                if (!textPath.IsEmpty)
+                {
+                    canvas.DrawPath(textPath, paint);
+                }
+            }
+#else
             (List<ShapedRunResult> runs, float totalWidth) = ShapeText(text, fontSize);
             float ascent = GetMainAscent(fontSize);
 
-            using (SKTextBlob blob = BuildTextBlob(runs, fontSize, ascent))
+            using (SKTextBlob blob = BuildTextBlob(runs, fontSize, ascent, paint))
             {
                 if (blob != null)
                 {
                     canvas.DrawText(blob, origin.X, origin.Y, paint);
                 }
             }
+#endif
+        }
+
+        // Shape the text using HarfBuzz and return an SKPath that outlines the text glyphs,
+        // using the main typeface and fallback typefaces as needed.
+        //
+        // The origin is the top-left corner of the text block. Internally, the ascent is
+        // added to the Y coordinate because glyph paths are relative to the baseline.
+        //
+        // Returns an empty path if the text is null or empty.
+        public SKPath GetTextPath(string text, SKPoint origin, float fontSize)
+        {
+            SKPath resultPath = new SKPath();
+
+            if (string.IsNullOrEmpty(text))
+                return resultPath;
+
+            (List<ShapedRunResult> runs, float totalWidth) = ShapeText(text, fontSize);
+            float ascent = GetMainAscent(fontSize);
+
+            foreach (ShapedRunResult run in runs)
+            {
+                if (run.GlyphIds.Length == 0)
+                    continue;
+
+                using (SKFont skFont = new SKFont(run.Entry.Typeface, fontSize))
+                {
+                    for (int i = 0; i < run.GlyphIds.Length; i++)
+                    {
+                        using (SKPath glyphPath = skFont.GetGlyphPath(run.GlyphIds[i]))
+                        {
+                            if (glyphPath != null && !glyphPath.IsEmpty)
+                            {
+                                // Translate glyph path to the correct position, including
+                                // origin offset and baseline adjustment.
+                                float x = origin.X + run.Positions[i].X;
+                                float y = origin.Y + run.Positions[i].Y + ascent;
+                                resultPath.AddPath(glyphPath, x, y);
+                            }
+                        }
+                    }
+                }
+            }
+
+            return resultPath;
         }
 
         // Returns the total advance width of the shaped text. The advance width is the
