@@ -183,5 +183,283 @@ namespace Map_Skia.Tests
             cached.Dispose();
             ShapedTypeface.ClearCache();
         }
+
+        // Helper: returns the path to a font file in the test fonts directory.
+        private static string FontPath(string fileName)
+        {
+            return System.IO.Path.Combine(
+                System.IO.Path.GetDirectoryName(typeof(BasicTests).Assembly.Location),
+                "fonts",
+                fileName);
+        }
+
+        // Helper: clears private fonts and ShapedTypeface cache before each font matching test.
+        private void ClearFontState()
+        {
+            SkiaFontManager.ClearPrivateFonts();
+            ShapedTypeface.ClearCache();
+        }
+
+        // Verifies that an exact weight/slant match returns the correct font.
+        [Test]
+        public void FontMatch_ExactMatch()
+        {
+            ClearFontState();
+
+            SkiaFontManager.AddFontFile("TestFont", SKFontStyleWeight.Normal, SKFontStyleWidth.Normal, SKFontStyleSlant.Upright, FontPath("Roboto-Regular.ttf"));
+            SkiaFontManager.AddFontFile("TestFont", SKFontStyleWeight.Bold, SKFontStyleWidth.Normal, SKFontStyleSlant.Upright, FontPath("Roboto-Bold.ttf"));
+
+            using (SKTypeface typeface = SkiaFontManager.CreateTypeface("TestFont", SKFontStyleWeight.Normal, SKFontStyleWidth.Normal, SKFontStyleSlant.Upright)) {
+                Assert.AreEqual((int)SKFontStyleWeight.Normal, typeface.FontStyle.Weight);
+            }
+
+            using (SKTypeface typeface = SkiaFontManager.CreateTypeface("TestFont", SKFontStyleWeight.Bold, SKFontStyleWidth.Normal, SKFontStyleSlant.Upright)) {
+                Assert.AreEqual((int)SKFontStyleWeight.Bold, typeface.FontStyle.Weight);
+            }
+
+            ClearFontState();
+        }
+
+        // Verifies that requesting a non-registered family name falls through to system fonts
+        // (returns a typeface but not from the private collection).
+        [Test]
+        public void FontMatch_FamilyNotFound()
+        {
+            ClearFontState();
+
+            SkiaFontManager.AddFontFile("TestFont", SKFontStyleWeight.Normal, SKFontStyleWidth.Normal, SKFontStyleSlant.Upright, FontPath("Roboto-Regular.ttf"));
+
+            // Request a family that was never registered. Should fall through to system fonts.
+            using (SKTypeface typeface = SkiaFontManager.CreateTypeface("NonExistentFamily", SKFontStyleWeight.Normal, SKFontStyleWidth.Normal, SKFontStyleSlant.Upright)) {
+                // Should get Arial (the default fallback), not Roboto.
+                Assert.AreNotEqual("Roboto", typeface.FamilyName);
+            }
+
+            ClearFontState();
+        }
+
+        // Verifies that family name matching is case-insensitive.
+        [Test]
+        public void FontMatch_CaseInsensitiveFamily()
+        {
+            ClearFontState();
+
+            SkiaFontManager.AddFontFile("TestFont", SKFontStyleWeight.Normal, SKFontStyleWidth.Normal, SKFontStyleSlant.Upright, FontPath("Roboto-Regular.ttf"));
+
+            // Request with different case — should still find the private font.
+            using (SKTypeface typeface = SkiaFontManager.CreateTypeface("testfont", SKFontStyleWeight.Normal, SKFontStyleWidth.Normal, SKFontStyleSlant.Upright)) {
+                Assert.AreEqual("Roboto", typeface.FamilyName);
+            }
+
+            using (SKTypeface typeface = SkiaFontManager.CreateTypeface("TESTFONT", SKFontStyleWeight.Normal, SKFontStyleWidth.Normal, SKFontStyleSlant.Upright)) {
+                Assert.AreEqual("Roboto", typeface.FamilyName);
+            }
+
+            ClearFontState();
+        }
+
+        // CSS spec: when weight 400 is requested but unavailable, try 500 first.
+        [Test]
+        public void FontMatch_Weight400_Tries500First()
+        {
+            ClearFontState();
+
+            SkiaFontManager.AddFontFile("TestFont", SKFontStyleWeight.Light, SKFontStyleWidth.Normal, SKFontStyleSlant.Upright, FontPath("Roboto-Light.ttf"));
+            SkiaFontManager.AddFontFile("TestFont", SKFontStyleWeight.Medium, SKFontStyleWidth.Normal, SKFontStyleSlant.Upright, FontPath("Roboto-Medium.ttf"));
+
+            using (SKTypeface typeface = SkiaFontManager.CreateTypeface("TestFont", SKFontStyleWeight.Normal, SKFontStyleWidth.Normal, SKFontStyleSlant.Upright)) {
+                Assert.AreEqual((int)SKFontStyleWeight.Medium, typeface.FontStyle.Weight);
+            }
+
+            ClearFontState();
+        }
+
+        // CSS spec: when weight 500 is requested but unavailable, try 400 first.
+        [Test]
+        public void FontMatch_Weight500_Tries400First()
+        {
+            ClearFontState();
+
+            SkiaFontManager.AddFontFile("TestFont", SKFontStyleWeight.Normal, SKFontStyleWidth.Normal, SKFontStyleSlant.Upright, FontPath("Roboto-Regular.ttf"));
+            SkiaFontManager.AddFontFile("TestFont", SKFontStyleWeight.SemiBold, SKFontStyleWidth.Normal, SKFontStyleSlant.Upright, FontPath("Roboto-Bold.ttf"));
+
+            using (SKTypeface typeface = SkiaFontManager.CreateTypeface("TestFont", SKFontStyleWeight.Medium, SKFontStyleWidth.Normal, SKFontStyleSlant.Upright)) {
+                Assert.AreEqual((int)SKFontStyleWeight.Normal, typeface.FontStyle.Weight);
+            }
+
+            ClearFontState();
+        }
+
+        // CSS spec: for weight < 400, try descending below first.
+        [Test]
+        public void FontMatch_WeightBelow400_DescendingFirst()
+        {
+            ClearFontState();
+
+            SkiaFontManager.AddFontFile("TestFont", SKFontStyleWeight.Thin, SKFontStyleWidth.Normal, SKFontStyleSlant.Upright, FontPath("Roboto-Thin.ttf"));
+            SkiaFontManager.AddFontFile("TestFont", SKFontStyleWeight.Light, SKFontStyleWidth.Normal, SKFontStyleSlant.Upright, FontPath("Roboto-Light.ttf"));
+
+            // Request ExtraLight (200), which is between Thin (100) and Light (300).
+            // For < 400, descending below 200 is tried first → Thin (100).
+            // Note: Roboto-Thin.ttf reports its internal weight as 250, not 100.
+            using (SKTypeface typeface = SkiaFontManager.CreateTypeface("TestFont", SKFontStyleWeight.ExtraLight, SKFontStyleWidth.Normal, SKFontStyleSlant.Upright)) {
+                Assert.AreEqual(250, typeface.FontStyle.Weight);
+            }
+
+            ClearFontState();
+        }
+
+        // CSS spec: for weight > 500, try ascending above first.
+        [Test]
+        public void FontMatch_WeightAbove500_AscendingFirst()
+        {
+            ClearFontState();
+
+            SkiaFontManager.AddFontFile("TestFont", SKFontStyleWeight.Bold, SKFontStyleWidth.Normal, SKFontStyleSlant.Upright, FontPath("Roboto-Bold.ttf"));
+            SkiaFontManager.AddFontFile("TestFont", SKFontStyleWeight.Black, SKFontStyleWidth.Normal, SKFontStyleSlant.Upright, FontPath("Roboto-Black.ttf"));
+
+            // Request ExtraBold (800), between Bold (700) and Black (900).
+            // For > 500, ascending above 800 is tried first → Black (900).
+            using (SKTypeface typeface = SkiaFontManager.CreateTypeface("TestFont", SKFontStyleWeight.ExtraBold, SKFontStyleWidth.Normal, SKFontStyleSlant.Upright)) {
+                Assert.AreEqual((int)SKFontStyleWeight.Black, typeface.FontStyle.Weight);
+            }
+
+            ClearFontState();
+        }
+
+        // CSS spec: for weight > 500, if nothing above exists, fall back to descending below.
+        [Test]
+        public void FontMatch_WeightAbove500_FallsBackDescending()
+        {
+            ClearFontState();
+
+            SkiaFontManager.AddFontFile("TestFont", SKFontStyleWeight.Normal, SKFontStyleWidth.Normal, SKFontStyleSlant.Upright, FontPath("Roboto-Regular.ttf"));
+
+            // Request Bold (700), but only Regular (400) is available.
+            // For > 500, ascending above finds nothing, then descending below → Regular (400).
+            using (SKTypeface typeface = SkiaFontManager.CreateTypeface("TestFont", SKFontStyleWeight.Bold, SKFontStyleWidth.Normal, SKFontStyleSlant.Upright)) {
+                Assert.AreEqual((int)SKFontStyleWeight.Normal, typeface.FontStyle.Weight);
+            }
+
+            ClearFontState();
+        }
+
+        // Verifies that requesting Italic when only Upright exists falls back to Upright.
+        [Test]
+        public void FontMatch_SlantItalicFallsToUpright()
+        {
+            ClearFontState();
+
+            SkiaFontManager.AddFontFile("TestFont", SKFontStyleWeight.Normal, SKFontStyleWidth.Normal, SKFontStyleSlant.Upright, FontPath("Roboto-Regular.ttf"));
+
+            using (SKTypeface typeface = SkiaFontManager.CreateTypeface("TestFont", SKFontStyleWeight.Normal, SKFontStyleWidth.Normal, SKFontStyleSlant.Italic)) {
+                Assert.AreEqual(SKFontStyleSlant.Upright, typeface.FontStyle.Slant);
+            }
+
+            ClearFontState();
+        }
+
+        // Verifies that requesting Italic matches Italic when both Upright and Italic are available.
+        [Test]
+        public void FontMatch_SlantItalicExactMatch()
+        {
+            ClearFontState();
+
+            SkiaFontManager.AddFontFile("TestFont", SKFontStyleWeight.Normal, SKFontStyleWidth.Normal, SKFontStyleSlant.Upright, FontPath("Roboto-Regular.ttf"));
+            SkiaFontManager.AddFontFile("TestFont", SKFontStyleWeight.Normal, SKFontStyleWidth.Normal, SKFontStyleSlant.Italic, FontPath("Roboto-Italic.ttf"));
+
+            using (SKTypeface typeface = SkiaFontManager.CreateTypeface("TestFont", SKFontStyleWeight.Normal, SKFontStyleWidth.Normal, SKFontStyleSlant.Italic)) {
+                Assert.AreEqual(SKFontStyleSlant.Italic, typeface.FontStyle.Slant);
+            }
+
+            ClearFontState();
+        }
+
+        // CSS spec: for normal/condensed widths, narrower widths are preferred first, then wider.
+        // We use font files with different weights (Regular=400 vs Bold=700) to distinguish which
+        // file was selected, since the loaded typeface reports its own internal width metadata
+        // regardless of the width we registered it with.
+        [Test]
+        public void FontMatch_WidthNormalPrefersNarrower()
+        {
+            ClearFontState();
+
+            // Register Regular.ttf as Condensed(3), Bold.ttf as Expanded(7), both with same weight key.
+            SkiaFontManager.AddFontFile("TestFont", SKFontStyleWeight.Normal, SKFontStyleWidth.Condensed, SKFontStyleSlant.Upright, FontPath("Roboto-Regular.ttf"));
+            SkiaFontManager.AddFontFile("TestFont", SKFontStyleWeight.Normal, SKFontStyleWidth.Expanded, SKFontStyleSlant.Upright, FontPath("Roboto-Bold.ttf"));
+
+            // Request Normal width (5). For width <= Normal, narrower first → Condensed (3).
+            // The Condensed slot maps to Roboto-Regular.ttf, which reports weight 400.
+            using (SKTypeface typeface = SkiaFontManager.CreateTypeface("TestFont", SKFontStyleWeight.Normal, SKFontStyleWidth.Normal, SKFontStyleSlant.Upright)) {
+                Assert.AreEqual(400, typeface.FontStyle.Weight, "Should select the Condensed variant (Roboto-Regular.ttf)");
+            }
+
+            ClearFontState();
+        }
+
+        // CSS spec: for expanded widths, wider widths are preferred first, then narrower.
+        [Test]
+        public void FontMatch_WidthExpandedPrefersWider()
+        {
+            ClearFontState();
+
+            // Register Regular.ttf as Condensed(3), Bold.ttf as UltraExpanded(9), both with same weight key.
+            SkiaFontManager.AddFontFile("TestFont", SKFontStyleWeight.Normal, SKFontStyleWidth.Condensed, SKFontStyleSlant.Upright, FontPath("Roboto-Regular.ttf"));
+            SkiaFontManager.AddFontFile("TestFont", SKFontStyleWeight.Normal, SKFontStyleWidth.UltraExpanded, SKFontStyleSlant.Upright, FontPath("Roboto-Bold.ttf"));
+
+            // Request SemiExpanded (6). For width > Normal, wider first → UltraExpanded (9).
+            // The UltraExpanded slot maps to Roboto-Bold.ttf, which reports weight 700.
+            using (SKTypeface typeface = SkiaFontManager.CreateTypeface("TestFont", SKFontStyleWeight.Normal, SKFontStyleWidth.SemiExpanded, SKFontStyleSlant.Upright)) {
+                Assert.AreEqual(700, typeface.FontStyle.Weight, "Should select the UltraExpanded variant (Roboto-Bold.ttf)");
+            }
+
+            ClearFontState();
+        }
+
+        // Combined test: width, slant, and weight narrowing work together correctly.
+        // Register several variants and verify three-stage narrowing picks the right one.
+        [Test]
+        public void FontMatch_CombinedMatching()
+        {
+            ClearFontState();
+
+            // Register: Regular/Upright, Regular/Italic, Bold/Upright, Bold/Italic
+            SkiaFontManager.AddFontFile("TestFont", SKFontStyleWeight.Normal, SKFontStyleWidth.Normal, SKFontStyleSlant.Upright, FontPath("Roboto-Regular.ttf"));
+            SkiaFontManager.AddFontFile("TestFont", SKFontStyleWeight.Normal, SKFontStyleWidth.Normal, SKFontStyleSlant.Italic, FontPath("Roboto-Italic.ttf"));
+            SkiaFontManager.AddFontFile("TestFont", SKFontStyleWeight.Bold, SKFontStyleWidth.Normal, SKFontStyleSlant.Upright, FontPath("Roboto-Bold.ttf"));
+            SkiaFontManager.AddFontFile("TestFont", SKFontStyleWeight.Bold, SKFontStyleWidth.Normal, SKFontStyleSlant.Italic, FontPath("Roboto-BoldItalic.ttf"));
+
+            // Request SemiBold (600) + Italic. Width matches all (Normal). Slant narrows to Italic variants.
+            // Weight: 600 > 500, ascending above → Bold (700).
+            using (SKTypeface typeface = SkiaFontManager.CreateTypeface("TestFont", SKFontStyleWeight.SemiBold, SKFontStyleWidth.Normal, SKFontStyleSlant.Italic)) {
+                Assert.AreEqual((int)SKFontStyleWeight.Bold, typeface.FontStyle.Weight);
+                Assert.AreEqual(SKFontStyleSlant.Italic, typeface.FontStyle.Slant);
+            }
+
+            // Request Medium (500) + Upright. Width matches all. Slant narrows to Upright.
+            // Weight: 500 tries 400 → Normal (400).
+            using (SKTypeface typeface = SkiaFontManager.CreateTypeface("TestFont", SKFontStyleWeight.Medium, SKFontStyleWidth.Normal, SKFontStyleSlant.Upright)) {
+                Assert.AreEqual((int)SKFontStyleWeight.Normal, typeface.FontStyle.Weight);
+                Assert.AreEqual(SKFontStyleSlant.Upright, typeface.FontStyle.Slant);
+            }
+
+            ClearFontState();
+        }
+
+        // Verifies that single-variant registration always returns that variant regardless of request.
+        [Test]
+        public void FontMatch_SingleVariant_AlwaysReturned()
+        {
+            ClearFontState();
+
+            SkiaFontManager.AddFontFile("TestFont", SKFontStyleWeight.Light, SKFontStyleWidth.Normal, SKFontStyleSlant.Upright, FontPath("Roboto-Light.ttf"));
+
+            // Request something completely different — should still get the only registered variant.
+            using (SKTypeface typeface = SkiaFontManager.CreateTypeface("TestFont", SKFontStyleWeight.Black, SKFontStyleWidth.Expanded, SKFontStyleSlant.Italic)) {
+                Assert.AreEqual((int)SKFontStyleWeight.Light, typeface.FontStyle.Weight);
+            }
+
+            ClearFontState();
+        }
     }
 }

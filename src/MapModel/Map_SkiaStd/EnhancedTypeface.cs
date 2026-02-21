@@ -757,16 +757,20 @@ namespace Map_SkiaStd
 
 
     // Manages private SKTypeFace instances, or falls back to system-installed fonts if not found. 
+    // Also handles parsing of font family name suffixes to match requested font styles to available system fonts,
+    // and provides a default font family name to use when no match is found.
     public static class SkiaFontManager
     {
         private static object lockObj = new object();
         private static Dictionary<FontKey, string> privateTypeFace = new Dictionary<FontKey, string>();
+        private static string defaultFontFamilyName = "Arial";
         private static readonly SuffixEntry[] allSuffixes = BuildSuffixTable();
 
 
-        // The default typeface for our current platform. Used as a fallback when Skia's font matching
-        // fails to find a reasonable match for the requested family name.
-        private static SKTypeface defaultTypeface = SKTypeface.FromFamilyName(null);
+        // The default typeface for our current platform. Skia uses this as a fallback when Skia's font matching
+        // fails to find a reasonable match for the requested family name, so we check it to see if Skia
+        // did a fallback. We DON'T use this as OUR default, that is set via SetDefaultFontFamilyName, and defaults to Arial if not set.
+        private static SKTypeface skiaDefaultFont = SKTypeface.FromFamilyName(null);
 
         // Add a new font file path for a font. If this familyName/fontStyle is later requested,
         // use the given font path to load the font.
@@ -786,25 +790,58 @@ namespace Map_SkiaStd
             }
         }
 
+        // Set the default font family name to use when CreateTypeface is called with a family name that doesn't match any private or system font.
+        // This defaults to "Arial" if not set. Be sure to set this to a font that is actually installed. It can be a font registered with
+        // AddFontFile.
+        public static void SetDefaultFontFamilyName(string familyName)
+        {
+            lock (lockObj) {
+                defaultFontFamilyName = familyName;
+            }
+        }
+
         // Create a typeface, using either a system font or a private font file if one was registered with AddFontFile. No caching is 
         // done at this layer (even for private font files), because that is done at the ShapedTypeface layer instead. This function
         // always creates a new SKTypeface, and ownership and responsibility for Disposing it is passed to the caller.
+        //
+        // Never returns null; if nothing is found the font registered as the default font (usually "Arial") will be returned,
+        // or if that isn't found either, then the platform default font will be returned.
         public static SKTypeface CreateTypeface(string familyName, SKFontStyleWeight weight, SKFontStyleWidth width, SKFontStyleSlant slant)
         {
-            lock (lockObj) {
-                FontKey fontKey = new FontKey(familyName, weight, width, slant);
-                if (privateTypeFace.ContainsKey(fontKey)) {
-                    return SKTypeface.FromFile(privateTypeFace[fontKey]);
-                }
-                else {
-                    SKTypeface typeface = TryGetTypefaceFromNameAndStyle(familyName, weight, width, slant);
-                    if (typeface == null) {
-                        // We default to Arial, not to the platform default font. This is how OCAD works.
-                        typeface = SKTypeface.FromFamilyName("Arial", weight, width, slant);
-                    }
+            SKTypeface typeface;
 
-                    return typeface;
+            lock (lockObj) {
+                // Try the private font collection first, using CSS Fonts Level 3 Section 5.2
+                // matching rules to find the best available variant for the requested style.
+                string privateFontPath = FindBestPrivateFontMatch(familyName, weight, width, slant);
+                if (privateFontPath != null) {
+                    typeface = SKTypeface.FromFile(privateFontPath);
+                    Debug.Assert(typeface != null, "Failed to load typeface from private font file; check that you registered your font with a valid font file");
+                    if (typeface != null)
+                        return typeface;
                 }
+
+                // No private font matched this family name. Try system fonts with suffix parsing.
+                typeface = TryGetTypefaceFromNameAndStyle(familyName, weight, width, slant);
+
+                if (typeface == null && familyName != defaultFontFamilyName) {
+                    // Still no font found in either the private collection or system fonts.
+                    // We default to the default font family name set (usually "Arial"), not to the platform default font. This is how OCAD works.
+                    // So try again with the default family name.
+                    typeface = CreateTypeface(defaultFontFamilyName, weight, width, slant);
+                }
+
+                if (typeface == null) {
+                    Debug.Fail("Default font was not found. Please configure the font manager with a valid default font family name that is installed on the system, or register a private font file for the default font family name.");
+
+                    // SKTypeface.FromFamilyName will never return null, it will just return the default font if the family name isn't found.
+                    // So if we got here, it means even the default font family name isn't found, so we just create a typeface
+                    // with the default family name and hope for the best. It will likely fall back to the platform default font,
+                    // which may not be what we want but at least something will be rendered.
+                    typeface = SKTypeface.FromFamilyName(defaultFontFamilyName, weight, width, slant);
+                }
+
+                return typeface;
             }
         }
 
@@ -812,7 +849,7 @@ namespace Map_SkiaStd
         {
             lock (lockObj) {
                 try {
-                    if (privateTypeFace.Any(pair => pair.Key.familyName == familyName)) {
+                    if (privateTypeFace.Any(pair => string.Equals(pair.Key.familyName, familyName, StringComparison.OrdinalIgnoreCase))) {
                         return true;
                     }
                     else {
@@ -968,22 +1005,23 @@ namespace Map_SkiaStd
         private static SKTypeface CreateTypefaceFromSystemOrPrivate(string familyName, SKFontStyleWeight weight, SKFontStyleWidth width, SKFontStyleSlant slant)
         {
             lock (lockObj) {
-                FontKey fontKey = new FontKey(familyName, weight, width, slant);
-                if (privateTypeFace.ContainsKey(fontKey)) {
-                    return SKTypeface.FromFile(privateTypeFace[fontKey]);
+                // Try the private font collection first, using CSS Fonts Level 3 Section 5.2
+                // matching rules to find the best available variant for the requested style.
+                string privateFontPath = FindBestPrivateFontMatch(familyName, weight, width, slant);
+                if (privateFontPath != null) {
+                    return SKTypeface.FromFile(privateFontPath);
                 }
-                else {
-                    // SKTypeface.FromFamilyName always returns something. We want to return null if it can't find a reasonable match.
-                    // so we have to apply some heuristics (encapsulated in IsGoodFamilyNameMatch to the result to determine
-                    // if it's a good match or just a fallback.
-                    SKTypeface typeface = SKTypeface.FromFamilyName(familyName, weight, width, slant);
-                    if (!IsGoodFamilyNameMatch(familyName, typeface)) {
-                        typeface.Dispose();
-                        return null;
-                    }
 
-                    return typeface;
+                // SKTypeface.FromFamilyName always returns something. We want to return null if it can't find a reasonable match,
+                // so we have to apply some heuristics (encapsulated in IsGoodFamilyNameMatch) to the result to determine
+                // if it's a good match or just a fallback.
+                SKTypeface typeface = SKTypeface.FromFamilyName(familyName, weight, width, slant);
+                if (!IsGoodFamilyNameMatch(familyName, typeface)) {
+                    typeface.Dispose();
+                    return null;
                 }
+
+                return typeface;
             }
         }
 
@@ -1005,10 +1043,252 @@ namespace Map_SkiaStd
 
             // If its the default fallback family, it's not a good match.
             // This is a heuristic to detect when Skia fails to find any reasonable match and just returns the default font.
-            return (result.FamilyName != defaultTypeface.FamilyName);
+            return (result.FamilyName != skiaDefaultFont.FamilyName);
         }
 
 
+
+        // Clears all registered private font files. Primarily for test isolation.
+        public static void ClearPrivateFonts()
+        {
+            lock (lockObj) {
+                privateTypeFace.Clear();
+            }
+        }
+
+        // Finds the best-matching font file path from the private font collection using
+        // CSS Fonts Level 3 Section 5.2 font style matching rules.
+        //
+        // The algorithm narrows candidates in order: width (font-stretch), then slant
+        // (font-style), then weight. At each stage, the candidate set is reduced to
+        // only those entries that best match the requested property.
+        //
+        // Parameters:
+        //   familyName - the requested font family name (matched case-insensitively)
+        //   weight     - the requested font weight (e.g., Normal=400, Bold=700)
+        //   width      - the requested font width/stretch (e.g., Normal=5, Condensed=3)
+        //   slant      - the requested font slant (Upright, Italic, or Oblique)
+        //
+        // Returns:
+        //   The font file path of the best-matching registered font, or null if no font
+        //   with a matching family name is registered in the private font collection.
+        //
+        // IMPORTANT: Must be called while holding lockObj.
+        private static string FindBestPrivateFontMatch(
+            string familyName,
+            SKFontStyleWeight weight,
+            SKFontStyleWidth width,
+            SKFontStyleSlant slant)
+        {
+            // Stage 1: Filter by family name (case-insensitive exact match).
+            List<KeyValuePair<FontKey, string>> candidates = new List<KeyValuePair<FontKey, string>>();
+            foreach (KeyValuePair<FontKey, string> pair in privateTypeFace) {
+                if (string.Equals(pair.Key.familyName, familyName, StringComparison.OrdinalIgnoreCase)) {
+                    candidates.Add(pair);
+                }
+            }
+
+            if (candidates.Count == 0)
+                return null;
+
+            if (candidates.Count == 1)
+                return candidates[0].Value;
+
+            // Stage 2: Narrow by width (font-stretch).
+            candidates = NarrowByWidth(candidates, (int)width);
+
+            if (candidates.Count == 1)
+                return candidates[0].Value;
+
+            // Stage 3: Narrow by slant (font-style).
+            candidates = NarrowBySlant(candidates, slant);
+
+            if (candidates.Count == 1)
+                return candidates[0].Value;
+
+            // Stage 4: Select by weight.
+            return SelectByWeight(candidates, (int)weight);
+        }
+
+        // Narrows the candidate list to those entries whose width best matches the
+        // requested width, following CSS Fonts Level 3 Section 5.2 font-stretch rules.
+        //
+        // If the requested width is normal (5) or condensed (1-4), narrower widths are
+        // preferred first, then wider. If expanded (6-9), wider widths are preferred
+        // first, then narrower.
+        private static List<KeyValuePair<FontKey, string>> NarrowByWidth(
+            List<KeyValuePair<FontKey, string>> candidates,
+            int requestedWidth)
+        {
+            // Collect distinct available widths.
+            HashSet<int> availableWidths = new HashSet<int>();
+            foreach (KeyValuePair<FontKey, string> pair in candidates) {
+                availableWidths.Add((int)pair.Key.width);
+            }
+
+            // If exact match exists, use it.
+            if (availableWidths.Contains(requestedWidth)) {
+                return FilterByWidth(candidates, requestedWidth);
+            }
+
+            int bestWidth;
+
+            if (requestedWidth <= (int)SKFontStyleWidth.Normal) {
+                // Normal or condensed: try narrower first (descending), then wider (ascending).
+                bestWidth = LargestBelow(availableWidths, requestedWidth);
+                if (bestWidth == -1)
+                    bestWidth = SmallestAbove(availableWidths, requestedWidth);
+            }
+            else {
+                // Expanded: try wider first (ascending), then narrower (descending).
+                bestWidth = SmallestAbove(availableWidths, requestedWidth);
+                if (bestWidth == -1)
+                    bestWidth = LargestBelow(availableWidths, requestedWidth);
+            }
+
+            if (bestWidth == -1)
+                return candidates;
+
+            return FilterByWidth(candidates, bestWidth);
+        }
+
+        // Filters the candidate list to only entries with the given width value.
+        private static List<KeyValuePair<FontKey, string>> FilterByWidth(
+            List<KeyValuePair<FontKey, string>> candidates,
+            int width)
+        {
+            List<KeyValuePair<FontKey, string>> result = new List<KeyValuePair<FontKey, string>>();
+            foreach (KeyValuePair<FontKey, string> pair in candidates) {
+                if ((int)pair.Key.width == width)
+                    result.Add(pair);
+            }
+            return result;
+        }
+
+        // Narrows the candidate list to those entries whose slant best matches the
+        // requested slant, following CSS Fonts Level 3 Section 5.2 font-style rules.
+        //
+        // Italic requested:  prefer Italic -> Oblique -> Upright
+        // Oblique requested: prefer Oblique -> Italic -> Upright
+        // Upright requested: prefer Upright -> Oblique -> Italic
+        private static List<KeyValuePair<FontKey, string>> NarrowBySlant(
+            List<KeyValuePair<FontKey, string>> candidates,
+            SKFontStyleSlant requestedSlant)
+        {
+            SKFontStyleSlant[] preferenceOrder;
+
+            switch (requestedSlant) {
+            case SKFontStyleSlant.Italic:
+                preferenceOrder = new[] { SKFontStyleSlant.Italic, SKFontStyleSlant.Oblique, SKFontStyleSlant.Upright };
+                break;
+            case SKFontStyleSlant.Oblique:
+                preferenceOrder = new[] { SKFontStyleSlant.Oblique, SKFontStyleSlant.Italic, SKFontStyleSlant.Upright };
+                break;
+            default:
+                preferenceOrder = new[] { SKFontStyleSlant.Upright, SKFontStyleSlant.Oblique, SKFontStyleSlant.Italic };
+                break;
+            }
+
+            foreach (SKFontStyleSlant slant in preferenceOrder) {
+                List<KeyValuePair<FontKey, string>> filtered = new List<KeyValuePair<FontKey, string>>();
+                foreach (KeyValuePair<FontKey, string> pair in candidates) {
+                    if (pair.Key.slant == slant)
+                        filtered.Add(pair);
+                }
+                if (filtered.Count > 0)
+                    return filtered;
+            }
+
+            // Should not reach here since candidates is non-empty.
+            return candidates;
+        }
+
+        // Selects the font file path from the candidates whose weight best matches
+        // the requested weight, following CSS Fonts Level 3 Section 5.2 font-weight rules.
+        //
+        // For weights below 400: try descending below the requested weight, then ascending above.
+        // For weight 400: try 500, then descending below 400, then ascending above 500.
+        // For weight 500: try 400, then descending below 400, then ascending above 500.
+        // For weights above 500: try ascending above the requested weight, then descending below.
+        private static string SelectByWeight(
+            List<KeyValuePair<FontKey, string>> candidates,
+            int requestedWeight)
+        {
+            // Build a sorted set of available weights and a map from weight to file path.
+            SortedSet<int> availableWeights = new SortedSet<int>();
+            Dictionary<int, string> weightToPath = new Dictionary<int, string>();
+            foreach (KeyValuePair<FontKey, string> pair in candidates) {
+                int w = (int)pair.Key.weight;
+                availableWeights.Add(w);
+                if (!weightToPath.ContainsKey(w))
+                    weightToPath[w] = pair.Value;
+            }
+
+            // Exact match.
+            if (weightToPath.ContainsKey(requestedWeight))
+                return weightToPath[requestedWeight];
+
+            int bestWeight;
+
+            if (requestedWeight == 400) {
+                // Try 500, then descending below 400, then ascending above 500.
+                if (weightToPath.ContainsKey(500))
+                    return weightToPath[500];
+                bestWeight = LargestBelow(availableWeights, 400);
+                if (bestWeight == -1)
+                    bestWeight = SmallestAbove(availableWeights, 500);
+            }
+            else if (requestedWeight == 500) {
+                // Try 400, then descending below 400, then ascending above 500.
+                if (weightToPath.ContainsKey(400))
+                    return weightToPath[400];
+                bestWeight = LargestBelow(availableWeights, 400);
+                if (bestWeight == -1)
+                    bestWeight = SmallestAbove(availableWeights, 500);
+            }
+            else if (requestedWeight < 400) {
+                // Descending below requested, then ascending above.
+                bestWeight = LargestBelow(availableWeights, requestedWeight);
+                if (bestWeight == -1)
+                    bestWeight = SmallestAbove(availableWeights, requestedWeight);
+            }
+            else {
+                // Above 500: ascending above requested, then descending below.
+                bestWeight = SmallestAbove(availableWeights, requestedWeight);
+                if (bestWeight == -1)
+                    bestWeight = LargestBelow(availableWeights, requestedWeight);
+            }
+
+            if (bestWeight != -1 && weightToPath.ContainsKey(bestWeight))
+                return weightToPath[bestWeight];
+
+            // Fallback: should not happen, but return first candidate.
+            return candidates[0].Value;
+        }
+
+        // Returns the largest value in the collection that is strictly less than target,
+        // or -1 if no such value exists.
+        private static int LargestBelow(IEnumerable<int> values, int target)
+        {
+            int best = -1;
+            foreach (int v in values) {
+                if (v < target && v > best)
+                    best = v;
+            }
+            return best;
+        }
+
+        // Returns the smallest value in the collection that is strictly greater than target,
+        // or -1 if no such value exists.
+        private static int SmallestAbove(IEnumerable<int> values, int target)
+        {
+            int best = -1;
+            foreach (int v in values) {
+                if (v > target && (best == -1 || v < best))
+                    best = v;
+            }
+            return best;
+        }
 
         // Class to hold a suffix entry for parsing font names. Each entry includes the suffix string,
         // the kind of suffix (weight/width/slant), and the value to apply if this suffix is present.
@@ -1028,9 +1308,6 @@ namespace Map_SkiaStd
         }
 
         private enum SuffixKind { Weight, Width, Slant }
-
-
-
 
         // Struct to hold a key for distinguishing fonts.
         private struct FontKey

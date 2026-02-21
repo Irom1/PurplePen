@@ -25,14 +25,14 @@ namespace Map_Skia.Tests
             string executablePath = Path.GetDirectoryName(uri.LocalPath);
             string fontPath = Path.Combine(executablePath, "fonts");
 
-            SkiaFontManager.AddFontFile("Roboto",           SKFontStyleWeight.Normal, SKFontStyleWidth.Normal, SKFontStyleSlant.Upright, Path.Combine(fontPath, "Roboto-Regular.ttf"));
-            SkiaFontManager.AddFontFile("Roboto",           SKFontStyleWeight.Bold,   SKFontStyleWidth.Normal, SKFontStyleSlant.Upright, Path.Combine(fontPath, "Roboto-Bold.ttf"));
-            SkiaFontManager.AddFontFile("Roboto",           SKFontStyleWeight.Normal, SKFontStyleWidth.Normal, SKFontStyleSlant.Italic,  Path.Combine(fontPath, "Roboto-Italic.ttf"));
-            SkiaFontManager.AddFontFile("Roboto",           SKFontStyleWeight.Bold,   SKFontStyleWidth.Normal, SKFontStyleSlant.Italic,  Path.Combine(fontPath, "Roboto-BoldItalic.ttf"));
-            SkiaFontManager.AddFontFile("Roboto Condensed", SKFontStyleWeight.Normal, SKFontStyleWidth.Normal, SKFontStyleSlant.Upright, Path.Combine(fontPath, "RobotoCondensed-Regular.ttf"));
-            SkiaFontManager.AddFontFile("Roboto Condensed", SKFontStyleWeight.Bold,   SKFontStyleWidth.Normal, SKFontStyleSlant.Upright, Path.Combine(fontPath, "RobotoCondensed-Bold.ttf"));
-            SkiaFontManager.AddFontFile("Roboto Condensed", SKFontStyleWeight.Normal, SKFontStyleWidth.Normal, SKFontStyleSlant.Italic,  Path.Combine(fontPath, "RobotoCondensed-Italic.ttf"));
-            SkiaFontManager.AddFontFile("Roboto Condensed", SKFontStyleWeight.Bold,   SKFontStyleWidth.Normal, SKFontStyleSlant.Italic,  Path.Combine(fontPath, "RobotoCondensed-BoldItalic.ttf"));
+            SkiaFontManager.AddFontFile("Roboto", SKFontStyleWeight.Normal, SKFontStyleWidth.Normal,    SKFontStyleSlant.Upright, Path.Combine(fontPath, "Roboto-Regular.ttf"));
+            SkiaFontManager.AddFontFile("Roboto", SKFontStyleWeight.Bold,   SKFontStyleWidth.Normal,    SKFontStyleSlant.Upright, Path.Combine(fontPath, "Roboto-Bold.ttf"));
+            SkiaFontManager.AddFontFile("Roboto", SKFontStyleWeight.Normal, SKFontStyleWidth.Normal,    SKFontStyleSlant.Italic,  Path.Combine(fontPath, "Roboto-Italic.ttf"));
+            SkiaFontManager.AddFontFile("Roboto", SKFontStyleWeight.Bold,   SKFontStyleWidth.Normal,    SKFontStyleSlant.Italic,  Path.Combine(fontPath, "Roboto-BoldItalic.ttf"));
+            SkiaFontManager.AddFontFile("Roboto", SKFontStyleWeight.Normal, SKFontStyleWidth.Condensed, SKFontStyleSlant.Upright, Path.Combine(fontPath, "RobotoCondensed-Regular.ttf"));
+            SkiaFontManager.AddFontFile("Roboto", SKFontStyleWeight.Bold,   SKFontStyleWidth.Condensed, SKFontStyleSlant.Upright, Path.Combine(fontPath, "RobotoCondensed-Bold.ttf"));
+            SkiaFontManager.AddFontFile("Roboto", SKFontStyleWeight.Normal, SKFontStyleWidth.Condensed, SKFontStyleSlant.Italic,  Path.Combine(fontPath, "RobotoCondensed-Italic.ttf"));
+            SkiaFontManager.AddFontFile("Roboto", SKFontStyleWeight.Bold,   SKFontStyleWidth.Condensed, SKFontStyleSlant.Italic,  Path.Combine(fontPath, "RobotoCondensed-BoldItalic.ttf"));
         }
 
         void CheckTest(string filename, bool testLightenedColor, bool roundtripToOcad, int minOcadVersion, int maxOcadVersion)

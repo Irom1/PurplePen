@@ -727,30 +727,6 @@ namespace PurplePen.MapModel
 
         private ConcurrentDictionary<TextEffects, ShapedTypeface[]> fallbackTypefaceCache = new ConcurrentDictionary<TextEffects, ShapedTypeface[]>();
 
-#if false
-        public SkiaFont(string familyName, float emHeight, TextEffects effects)
-		{
-			this.emHeight = emHeight;
-            if (familyName == "Arial Narrow") {
-                // Special case for Arial Narrow. Use "Arial" with a condensed style instead.
-                this.typeface = SKTypeface.FromFamilyName("Arial", GetSKFontStyleWeight(effects), SKFontStyleWidth.Condensed, GetSKFontStyleSlant(effects));
-            }
-            else {
-                this.typeface = SKTypeface.FromFamilyName(familyName, GetSKFontStyleWeight(effects), SKFontStyleWidth.Normal, GetSKFontStyleSlant(effects));
-            }
-            this.shaper = new SKShaper(typeface);
-            this.underline = ((effects & TextEffects.Underline) != 0);
-		}
-
-		public SKTypeface Typeface
-		{
-			get { return typeface; }
-		}
-
-        public SKShaper Shaper {
-            get { return shaper; }
-        }
-#endif
         public SkiaFont(string familyName, float emHeight, TextEffects effects)
         {
             ShapedTypeface[] fallbackTypefaces = fallbackTypefaceCache.GetOrAdd(effects, (te) => {

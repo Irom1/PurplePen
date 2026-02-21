@@ -41,6 +41,7 @@ src/SetupIS/SetupIS
 .bzr/
 
 **/.vs
+src/.claude/
 Thumbs.db
 *.opendb
 *.db
