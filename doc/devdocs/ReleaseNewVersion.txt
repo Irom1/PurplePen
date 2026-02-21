@@ -22,7 +22,7 @@ Releasing a new version of Purple Pen.
 
 9. Build release build.
 
-10. Copy and rename src\InnoSetup\output\purplepen-setup.exe and place in http://purplepen.golde.org/downloads
+10. Copy and rename src\InnoSetup\output\purplepen-setup.exe and place in http://purple-pen.org/downloads
 
 11. Update Home and Download sections to link to new download. (Both the Download Now button and the list of all versions).
 
@@ -30,7 +30,7 @@ Releasing a new version of Purple Pen.
 
 13. Upload a new change list document.
 
-14. Change "latest_version.txt" on web server http://purplepen.golde.org/downloads
+14. Change "latest_version.txt" on web server http://purple-pen.org/downloads
 
 15. Release new version for Windows Store:
 

@@ -1270,7 +1270,9 @@ namespace PurplePen.MapModel
             // Recursively add any files referenced by loaded templates.
             if (this.loadedTemplates != null) {
                 foreach (LoadedTemplate loadedTemplate in this.loadedTemplates) {
-                    files.UnionWith(loadedTemplate.GetReferencedFiles(templateRecursionCount));
+                    if (loadedTemplate != null) {
+                        files.UnionWith(loadedTemplate.GetReferencedFiles(templateRecursionCount));
+                    }
                 }
             }
 

@@ -16,6 +16,16 @@
 
     <h1>Purple Pen Change Summary</h1>
 
+    <h2>Changes in 3.5.5</h2>
+    <h3>Bug Fixes</h3>
+    <ul>
+        <li>
+            There was a bug with maps with missing templates. These should just silently ignore
+            the template; instead they caused an immediate crash upon load. Now fixed to work
+            like before.
+        </li>
+    </ul>
+
     <h2>Changes in 3.5.4</h2>
     <h3>New/Changed Features</h3>
     <ul>
@@ -29,7 +39,7 @@
             You can now add control descriptions to "All Parts" of of a course with a map
             exchange, and it shows up on both parts of the course in the same place. You can
             still problem descriptions in different places for each part if desired, but this
-            is faster for the common case where the description is the same on both parts. It also 
+            is faster for the common case where the description is the same on both parts. It also
             helps when some variations of a course have a map exchanges and others do not.
         </li>
         <li>
