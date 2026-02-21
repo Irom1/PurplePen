@@ -1,17 +1,19 @@
-﻿using System;
+﻿using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using NUnit.Framework;
 
 namespace Map_Skia.Tests
 {
-    using System.Diagnostics;
-    using System.Drawing;
+    using HarfBuzzSharp;
     using Map_SkiaStd;
     using PurplePen.Graphics2D;
     using PurplePen.MapModel;
+    using SkiaSharp;
+    using System.Diagnostics;
+    using System.Drawing;
 
     [TestFixture]
 	public class BasicTests
@@ -48,6 +50,23 @@ namespace Map_Skia.Tests
             Assert.AreEqual(305.93F, tnrMetrics.GetTextWidth("Hello, world  "), 0.1F);
             Assert.AreEqual(58.06F, tnrMetrics.GetTextSize("Hello, world").Height, 0.1F);
 
+        }
+
+        [Test]
+        public void IsTextFaceInstalled()
+        {
+            Skia_TextMetrics skiaMetrics = new Skia_TextMetrics();
+
+            Assert.IsTrue(skiaMetrics.TextFaceIsInstalled("Arial"));
+            Assert.IsTrue(skiaMetrics.TextFaceIsInstalled("Times New Roman"));
+            Assert.IsTrue(skiaMetrics.TextFaceIsInstalled("Arial Narrow"));
+            Assert.IsTrue(skiaMetrics.TextFaceIsInstalled("Leelawadee UI"));
+            Assert.IsTrue(skiaMetrics.TextFaceIsInstalled("Leelawadee UI Semilight"));
+            Assert.IsTrue(skiaMetrics.TextFaceIsInstalled("Bahnschrift"));
+            Assert.IsTrue(skiaMetrics.TextFaceIsInstalled("Bahnschrift SemiBold"));
+            Assert.IsFalse(skiaMetrics.TextFaceIsInstalled("Bahnschrift Bold Banana"));
+            Assert.IsFalse(skiaMetrics.TextFaceIsInstalled("Big Chicken"));
+            Assert.IsFalse(skiaMetrics.TextFaceIsInstalled("Tekton"));
         }
 
         // Verifies that two Get() calls with the same family/style return the same instance.

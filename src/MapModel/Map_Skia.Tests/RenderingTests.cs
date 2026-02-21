@@ -71,7 +71,7 @@ namespace Map_Skia.Tests
             renderOpts.colorBeginDrawExclusive = startLayer;
             renderOpts.colorEndDrawInclusive = stopLayer;
 
-            string fullname = TestUtil.GetTestFile("rendering\\" + filename);
+            string fullname = TestUtil.GetTestFile("skia_render\\" + filename);
             bool ok = RenderingUtil.VerifyTestFile(fullname, renderOpts, false, false, testLightenedColor, roundtripToOcad, false, minOcadVersion, maxOcadVersion, MAX_PIXEL_DIFF);
             Assert.IsTrue(ok, string.Format("Rendering test {0} did not compare correctly.", filename), ok);
         }

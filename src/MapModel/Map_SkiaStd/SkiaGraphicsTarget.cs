@@ -764,13 +764,7 @@ namespace PurplePen.MapModel
             });
 
             this.emHeight = emHeight;
-            if (familyName == "Arial Narrow") {
-                // Special case for Arial Narrow. Use "Arial" with a condensed style instead.
-                this.shapedTypeface = ShapedTypeface.Get("Arial", GetSKFontStyleWeight(effects), SKFontStyleWidth.Condensed, GetSKFontStyleSlant(effects));
-            }
-            else {
-                this.shapedTypeface = ShapedTypeface.Get(familyName, GetSKFontStyleWeight(effects), SKFontStyleWidth.Normal, GetSKFontStyleSlant(effects));
-            }
+            this.shapedTypeface = ShapedTypeface.Get(familyName, GetSKFontStyleWeight(effects), SKFontStyleWidth.Normal, GetSKFontStyleSlant(effects));
             this.enhancedTypeface = new EnhancedTypeface(this.shapedTypeface, fallbackTypefaces, harfBuzzProperties);
             this.underline = ((effects & TextEffects.Underline) != 0);
         }
@@ -914,27 +908,14 @@ namespace PurplePen.MapModel
 
     public class Skia_TextMetrics: ITextMetrics
     {
-        public static ITextFaceMetrics GetMetrics(string familyName, float emHeight, TextEffects effects)
-        {
-            if (!SkiaFontManager.FontFamilyIsInstalled(familyName))
-                familyName = "Arial";          // Map non-existant fonts to "Arial".
-
-            return new SkiaFont(familyName, emHeight, effects);
-        }
-
-        public static bool IsTextFaceInstalled(string familyName)
-        {
-            return SkiaFontManager.FontFamilyIsInstalled(familyName);   
-        }
-
         public ITextFaceMetrics GetTextFaceMetrics(string familyName, float emHeight, TextEffects effects)
         {
-            return GetMetrics(familyName, emHeight, effects);
+            return new SkiaFont(familyName, emHeight, effects);
         }
 
         public bool TextFaceIsInstalled(string familyName)
         {
-            return IsTextFaceInstalled(familyName);
+            return SkiaFontManager.FontFamilyIsInstalled(familyName);
         }
 
         public void Dispose()

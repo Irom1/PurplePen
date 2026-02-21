@@ -761,6 +761,12 @@ namespace Map_SkiaStd
     {
         private static object lockObj = new object();
         private static Dictionary<FontKey, string> privateTypeFace = new Dictionary<FontKey, string>();
+        private static readonly SuffixEntry[] allSuffixes = BuildSuffixTable();
+
+
+        // The default typeface for our current platform. Used as a fallback when Skia's font matching
+        // fails to find a reasonable match for the requested family name.
+        private static SKTypeface defaultTypeface = SKTypeface.FromFamilyName(null);
 
         // Add a new font file path for a font. If this familyName/fontStyle is later requested,
         // use the given font path to load the font.
@@ -780,6 +786,9 @@ namespace Map_SkiaStd
             }
         }
 
+        // Create a typeface, using either a system font or a private font file if one was registered with AddFontFile. No caching is 
+        // done at this layer (even for private font files), because that is done at the ShapedTypeface layer instead. This function
+        // always creates a new SKTypeface, and ownership and responsibility for Disposing it is passed to the caller.
         public static SKTypeface CreateTypeface(string familyName, SKFontStyleWeight weight, SKFontStyleWidth width, SKFontStyleSlant slant)
         {
             lock (lockObj) {
@@ -788,7 +797,13 @@ namespace Map_SkiaStd
                     return SKTypeface.FromFile(privateTypeFace[fontKey]);
                 }
                 else {
-                    return SKTypeface.FromFamilyName(familyName, weight, width, slant);
+                    SKTypeface typeface = TryGetTypefaceFromNameAndStyle(familyName, weight, width, slant);
+                    if (typeface == null) {
+                        // We default to Arial, not to the platform default font. This is how OCAD works.
+                        typeface = SKTypeface.FromFamilyName("Arial", weight, width, slant);
+                    }
+
+                    return typeface;
                 }
             }
         }
@@ -801,8 +816,8 @@ namespace Map_SkiaStd
                         return true;
                     }
                     else {
-                        using (SKTypeface typeface = SKTypeface.FromFamilyName(familyName)) {
-                            return (typeface != null && typeface.FamilyName == familyName);
+                        using (SKTypeface typeface = TryGetTypefaceFromNameAndStyle(familyName, SKFontStyleWeight.Normal, SKFontStyleWidth.Normal, SKFontStyleSlant.Upright)) {
+                            return typeface != null;
                         }
                     }
                 }
@@ -811,6 +826,183 @@ namespace Map_SkiaStd
                 }
             }
         }
+
+        // Is this a likely good match for the requested family name? Skia's font matching can be unpredictable,
+        // especially when the requested family name is not installed. This method applies some heuristics
+        // to determine if the returned typeface is a reasonable match or if it's likely a fallback that
+        // doesn't correspond to the requested family at all.
+        private static bool IsGoodFamilyNameMatch(string requestedFamily, SKTypeface result)
+        {
+            // Exact match (case-insensitive) — definitely good
+            if (string.Equals(requestedFamily, result.FamilyName, StringComparison.OrdinalIgnoreCase))
+                return true;
+
+            // Check if the platform even recognizes this family name
+            using (SKFontStyleSet styleSet = SKFontManager.Default.GetFontStyles(requestedFamily)) {
+                if (styleSet.Count == 0)
+                    return false;
+            }
+
+            // If its the default fallback family, it's not a good match.
+            // This is a heuristic to detect when Skia fails to find any reasonable match and just returns the default font.
+            return (result.FamilyName != defaultTypeface.FamilyName);
+        }
+
+        // These are common suffixes on font names. Skia doesn't seem to handle these font suffixes in its matching
+        // algorith, so we do it instead in TryGetTypefaceFromNameAndStyle.
+        private static SuffixEntry[] BuildSuffixTable()
+        {
+            var entries = new List<SuffixEntry>();
+
+            // Weight suffixes
+            entries.Add(new SuffixEntry("Extra Black", SuffixKind.Weight, 950));
+            entries.Add(new SuffixEntry("Ultra Black", SuffixKind.Weight, 950));
+            entries.Add(new SuffixEntry("Black", SuffixKind.Weight, 900));
+            entries.Add(new SuffixEntry("Heavy", SuffixKind.Weight, 900));
+            entries.Add(new SuffixEntry("Extra Bold", SuffixKind.Weight, 800));
+            entries.Add(new SuffixEntry("ExtraBold", SuffixKind.Weight, 800));
+            entries.Add(new SuffixEntry("Ultra Bold", SuffixKind.Weight, 800));
+            entries.Add(new SuffixEntry("UltraBold", SuffixKind.Weight, 800));
+            entries.Add(new SuffixEntry("Semi Bold", SuffixKind.Weight, 600));
+            entries.Add(new SuffixEntry("SemiBold", SuffixKind.Weight, 600));
+            entries.Add(new SuffixEntry("Semibold", SuffixKind.Weight, 600));
+            entries.Add(new SuffixEntry("Demi Bold", SuffixKind.Weight, 600));
+            entries.Add(new SuffixEntry("DemiBold", SuffixKind.Weight, 600));
+            entries.Add(new SuffixEntry("Demibold", SuffixKind.Weight, 600));
+            entries.Add(new SuffixEntry("Bold", SuffixKind.Weight, 700));
+            entries.Add(new SuffixEntry("Medium", SuffixKind.Weight, 500));
+            entries.Add(new SuffixEntry("Semi Light", SuffixKind.Weight, 350));
+            entries.Add(new SuffixEntry("SemiLight", SuffixKind.Weight, 350));
+            entries.Add(new SuffixEntry("Semilight", SuffixKind.Weight, 350));
+            entries.Add(new SuffixEntry("Extra Light", SuffixKind.Weight, 200));
+            entries.Add(new SuffixEntry("ExtraLight", SuffixKind.Weight, 200));
+            entries.Add(new SuffixEntry("Ultra Light", SuffixKind.Weight, 200));
+            entries.Add(new SuffixEntry("UltraLight", SuffixKind.Weight, 200));
+            entries.Add(new SuffixEntry("Light", SuffixKind.Weight, 300));
+            entries.Add(new SuffixEntry("Thin", SuffixKind.Weight, 100));
+            entries.Add(new SuffixEntry("Hairline", SuffixKind.Weight, 100));
+
+            // Width suffixes (values match SKFontStyleWidth enum)
+            entries.Add(new SuffixEntry("Ultra Condensed", SuffixKind.Width, 1));
+            entries.Add(new SuffixEntry("UltraCondensed", SuffixKind.Width, 1));
+            entries.Add(new SuffixEntry("Extra Condensed", SuffixKind.Width, 2));
+            entries.Add(new SuffixEntry("ExtraCondensed", SuffixKind.Width, 2));
+            entries.Add(new SuffixEntry("Semi Condensed", SuffixKind.Width, 4));
+            entries.Add(new SuffixEntry("SemiCondensed", SuffixKind.Width, 4));
+            entries.Add(new SuffixEntry("Condensed", SuffixKind.Width, 3));
+            entries.Add(new SuffixEntry("Narrow", SuffixKind.Width, 3));
+            entries.Add(new SuffixEntry("Compressed", SuffixKind.Width, 3));
+            entries.Add(new SuffixEntry("Semi Expanded", SuffixKind.Width, 6));
+            entries.Add(new SuffixEntry("SemiExpanded", SuffixKind.Width, 6));
+            entries.Add(new SuffixEntry("Extra Expanded", SuffixKind.Width, 8));
+            entries.Add(new SuffixEntry("ExtraExpanded", SuffixKind.Width, 8));
+            entries.Add(new SuffixEntry("Ultra Expanded", SuffixKind.Width, 9));
+            entries.Add(new SuffixEntry("UltraExpanded", SuffixKind.Width, 9));
+            entries.Add(new SuffixEntry("Expanded", SuffixKind.Width, 7));
+            entries.Add(new SuffixEntry("Wide", SuffixKind.Width, 7));
+
+            // Slant suffixes (values match SKFontStyleSlant enum)
+            entries.Add(new SuffixEntry("Italic", SuffixKind.Slant, (int)SKFontStyleSlant.Italic));
+            entries.Add(new SuffixEntry("Oblique", SuffixKind.Slant, (int)SKFontStyleSlant.Oblique));
+
+            // Sort longest first so "Extra Bold" is tried before "Bold"
+            return entries.OrderByDescending(e => e.Suffix.Length).ToArray();
+        }
+
+        /// <summary>
+        /// Resolves a font name and weight/width/slant to a TypeFace.
+        /// This is similar to what SKTypeface.FromFamilyName does, with two key differences:
+        /// 1) Resolves suffixes like "Segoe UI Light" or "Arial Narrow Bold Italic"). to an
+        /// Any suffixes parsed from the name override the passed in weight/width/slant.
+        /// 2) Returns null if the font cannot be resolved, instead of a platform default
+        /// like "Segoe UI".
+        /// </summary>
+        public static SKTypeface TryGetTypefaceFromNameAndStyle(
+            string familyName,
+            SKFontStyleWeight weightModifier,
+            SKFontStyleWidth widthModifier,
+            SKFontStyleSlant slantModifier)
+        {
+            // Try the full name as-is first — maybe SkiaSharp handles it directly
+            SKTypeface typeface = SKTypeface.FromFamilyName(familyName, weightModifier, widthModifier, slantModifier);
+            if (IsGoodFamilyNameMatch(familyName, typeface))
+                return typeface;
+            typeface.Dispose();
+
+            // Parse suffixes from the name
+            var baseName = familyName.Trim();
+            int? parsedWeight = null;
+            int? parsedWidth = null;
+            int? parsedSlant = null;
+
+            bool found;
+            do {
+                found = false;
+                foreach (var entry in allSuffixes) {
+                    if (!baseName.EndsWith(" " + entry.Suffix, StringComparison.OrdinalIgnoreCase))
+                        continue;
+
+                    switch (entry.Kind) {
+                    case SuffixKind.Weight:
+                        if (!parsedWeight.HasValue)
+                            parsedWeight = entry.Value;
+                        break;
+                    case SuffixKind.Width:
+                        if (!parsedWidth.HasValue)
+                            parsedWidth = entry.Value;
+                        break;
+                    case SuffixKind.Slant:
+                        if (!parsedSlant.HasValue)
+                            parsedSlant = entry.Value;
+                        break;
+                    }
+
+                    baseName = baseName.Substring(0, baseName.Length - entry.Suffix.Length - 1).TrimEnd();
+                    found = true;
+                    break; // restart the loop with the shortened name
+                }
+            } while (found && baseName.Length > 0);
+
+            if (baseName.Length == 0) {
+                // We stripped everything — the whole name was suffixes, which is wrong.
+                return null;
+            }
+
+            // Build final style: parsed suffixes override the explicit parameters
+            var finalStyle = new SKFontStyle(
+                parsedWeight ?? (int)weightModifier,
+                parsedWidth ?? (int)widthModifier,
+                parsedSlant.HasValue ? (SKFontStyleSlant)parsedSlant.Value : slantModifier);
+
+            typeface = SKTypeface.FromFamilyName(baseName, finalStyle);
+            if (IsGoodFamilyNameMatch(baseName, typeface))
+                return typeface;
+            typeface.Dispose();
+
+            return null;
+        }
+
+        // Class to hold a suffix entry for parsing font names. Each entry includes the suffix string,
+        // the kind of suffix (weight/width/slant), and the value to apply if this suffix is present.
+
+        private class SuffixEntry
+        {
+            public string Suffix { get; }
+            public SuffixKind Kind { get; }
+            public int Value { get; }
+
+            public SuffixEntry(string suffix, SuffixKind kind, int value)
+            {
+                Suffix = suffix;
+                Kind = kind;
+                Value = value;
+            }
+        }
+
+        private enum SuffixKind { Weight, Width, Slant }
+
+
+
 
         // Struct to hold a key for distinguishing fonts.
         private struct FontKey
