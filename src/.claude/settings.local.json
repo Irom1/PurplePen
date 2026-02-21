@@ -11,7 +11,9 @@
       "WebFetch(domain:deepwiki.com)",
       "WebFetch(domain:skia.org)",
       "WebFetch(domain:api.skia.org)",
-      "WebFetch(domain:raw.githubusercontent.com)"
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(find:*)",
+      "WebFetch(domain:www.w3.org)"
     ]
   }
 }

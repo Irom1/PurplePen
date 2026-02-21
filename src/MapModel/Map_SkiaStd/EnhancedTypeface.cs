@@ -827,27 +827,6 @@ namespace Map_SkiaStd
             }
         }
 
-        // Is this a likely good match for the requested family name? Skia's font matching can be unpredictable,
-        // especially when the requested family name is not installed. This method applies some heuristics
-        // to determine if the returned typeface is a reasonable match or if it's likely a fallback that
-        // doesn't correspond to the requested family at all.
-        private static bool IsGoodFamilyNameMatch(string requestedFamily, SKTypeface result)
-        {
-            // Exact match (case-insensitive) — definitely good
-            if (string.Equals(requestedFamily, result.FamilyName, StringComparison.OrdinalIgnoreCase))
-                return true;
-
-            // Check if the platform even recognizes this family name
-            using (SKFontStyleSet styleSet = SKFontManager.Default.GetFontStyles(requestedFamily)) {
-                if (styleSet.Count == 0)
-                    return false;
-            }
-
-            // If its the default fallback family, it's not a good match.
-            // This is a heuristic to detect when Skia fails to find any reasonable match and just returns the default font.
-            return (result.FamilyName != defaultTypeface.FamilyName);
-        }
-
         // These are common suffixes on font names. Skia doesn't seem to handle these font suffixes in its matching
         // algorith, so we do it instead in TryGetTypefaceFromNameAndStyle.
         private static SuffixEntry[] BuildSuffixTable()
@@ -911,11 +890,12 @@ namespace Map_SkiaStd
 
         /// <summary>
         /// Resolves a font name and weight/width/slant to a TypeFace.
-        /// This is similar to what SKTypeface.FromFamilyName does, with two key differences:
+        /// This is similar to what SKTypeface.FromFamilyName does, with key differences:
         /// 1) Resolves suffixes like "Segoe UI Light" or "Arial Narrow Bold Italic"). to an
         /// Any suffixes parsed from the name override the passed in weight/width/slant.
         /// 2) Returns null if the font cannot be resolved, instead of a platform default
         /// like "Segoe UI".
+        /// 3) Uses any typefaces registered with AddFontFile, which SKTypeface.FromFamilyName doesn't know about.
         /// </summary>
         public static SKTypeface TryGetTypefaceFromNameAndStyle(
             string familyName,
@@ -923,11 +903,10 @@ namespace Map_SkiaStd
             SKFontStyleWidth widthModifier,
             SKFontStyleSlant slantModifier)
         {
-            // Try the full name as-is first — maybe SkiaSharp handles it directly
-            SKTypeface typeface = SKTypeface.FromFamilyName(familyName, weightModifier, widthModifier, slantModifier);
-            if (IsGoodFamilyNameMatch(familyName, typeface))
+            // Try the full name as-is first — maybe SkiaSharp or our registry handles it directly
+            SKTypeface typeface = CreateTypefaceFromSystemOrPrivate(familyName, weightModifier, widthModifier, slantModifier);
+            if (typeface != null)
                 return typeface;
-            typeface.Dispose();
 
             // Parse suffixes from the name
             var baseName = familyName.Trim();
@@ -974,13 +953,62 @@ namespace Map_SkiaStd
                 parsedWidth ?? (int)widthModifier,
                 parsedSlant.HasValue ? (SKFontStyleSlant)parsedSlant.Value : slantModifier);
 
-            typeface = SKTypeface.FromFamilyName(baseName, finalStyle);
-            if (IsGoodFamilyNameMatch(baseName, typeface))
-                return typeface;
-            typeface.Dispose();
+            typeface = CreateTypefaceFromSystemOrPrivate(baseName, 
+                parsedWeight.HasValue ? (SKFontStyleWeight)parsedWeight.Value : weightModifier,
+                parsedWidth.HasValue ? (SKFontStyleWidth)parsedWidth.Value : widthModifier,
+                parsedSlant.HasValue ? (SKFontStyleSlant)parsedSlant.Value : slantModifier);
 
-            return null;
+            return typeface;
         }
+
+        // Create a typeface, using either a system font or a private font file if one was registered with AddFontFile. No caching is 
+        // done at this layer (even for private font files), because that is done at the ShapedTypeface layer instead. This function
+        // always creates a new SKTypeface, and ownership and responsibility for Disposing it is passed to the caller. Returns null
+        // (not a default typeface) if no matching typeface in the system or private registry.
+        private static SKTypeface CreateTypefaceFromSystemOrPrivate(string familyName, SKFontStyleWeight weight, SKFontStyleWidth width, SKFontStyleSlant slant)
+        {
+            lock (lockObj) {
+                FontKey fontKey = new FontKey(familyName, weight, width, slant);
+                if (privateTypeFace.ContainsKey(fontKey)) {
+                    return SKTypeface.FromFile(privateTypeFace[fontKey]);
+                }
+                else {
+                    // SKTypeface.FromFamilyName always returns something. We want to return null if it can't find a reasonable match.
+                    // so we have to apply some heuristics (encapsulated in IsGoodFamilyNameMatch to the result to determine
+                    // if it's a good match or just a fallback.
+                    SKTypeface typeface = SKTypeface.FromFamilyName(familyName, weight, width, slant);
+                    if (!IsGoodFamilyNameMatch(familyName, typeface)) {
+                        typeface.Dispose();
+                        return null;
+                    }
+
+                    return typeface;
+                }
+            }
+        }
+
+        // Is this a likely good match for the requested family name? Skia's font matching can be unpredictable,
+        // especially when the requested family name is not installed. This method applies some heuristics
+        // to determine if the returned typeface is a reasonable match or if it's likely a fallback that
+        // doesn't correspond to the requested family at all.
+        private static bool IsGoodFamilyNameMatch(string requestedFamily, SKTypeface result)
+        {
+            // Exact match (case-insensitive) — definitely good
+            if (string.Equals(requestedFamily, result.FamilyName, StringComparison.OrdinalIgnoreCase))
+                return true;
+
+            // Check if the platform even recognizes this family name
+            using (SKFontStyleSet styleSet = SKFontManager.Default.GetFontStyles(requestedFamily)) {
+                if (styleSet.Count == 0)
+                    return false;
+            }
+
+            // If its the default fallback family, it's not a good match.
+            // This is a heuristic to detect when Skia fails to find any reasonable match and just returns the default font.
+            return (result.FamilyName != defaultTypeface.FamilyName);
+        }
+
+
 
         // Class to hold a suffix entry for parsing font names. Each entry includes the suffix string,
         // the kind of suffix (weight/width/slant), and the value to apply if this suffix is present.
