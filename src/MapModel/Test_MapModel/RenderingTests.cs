@@ -1229,6 +1229,12 @@ namespace PurplePen.MapModel.Tests
         }
 
         [Test]
+        public void FontFallback()
+        {
+            CheckTest("fontfallback.txt", false, false, 9, 12);
+        }
+
+        [Test]
         public void Marymoor11LowerLayers()
         {
             CheckTestLayers("marymoor11_lowerlayers.txt", null, 7, false, false, 11, 12);
@@ -1239,6 +1245,9 @@ namespace PurplePen.MapModel.Tests
         {
             CheckTestLayers("marymoor11_upperlayers.txt", 7, null, false, false, 11, 12);
         }
+
+
+
 
     }
 

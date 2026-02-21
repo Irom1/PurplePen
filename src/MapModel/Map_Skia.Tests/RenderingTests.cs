@@ -848,6 +848,15 @@ namespace Map_Skia.Tests
             CheckTest("RobotoTest.txt", false, false, 9, 12);
         }
 
+#endif
+        [Test]
+        public void FontFallback()
+        {
+            CheckTest("fontfallback.txt", false, false, 9, 12);
+        }
+
+#if false
+
         [Test]
         public void Marymoor11LowerLayers()
         {

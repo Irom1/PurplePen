@@ -487,7 +487,7 @@ namespace Map_SkiaStd
                         skFont.Hinting = SKFontHinting.None;
                         skFont.Subpixel = false;
                         skFont.EmbeddedBitmaps = false;
-                        skFont.LinearMetrics = false;
+                        skFont.LinearMetrics = true;
                         skFont.BaselineSnap = false;
                         skFont.ForceAutoHinting = false;
                         SKPositionedRunBuffer runBuffer = builder.AllocatePositionedRun(skFont, run.GlyphIds.Length);

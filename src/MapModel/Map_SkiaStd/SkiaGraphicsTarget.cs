@@ -50,6 +50,7 @@ namespace PurplePen.MapModel
     using PurplePen.Graphics2D;
     using SkiaSharp;
     using SkiaSharp.HarfBuzz;
+    using System.Collections.Concurrent;
     using System.Drawing;
 
     // A GraphicsTarget encapsulates an SKCanvas
@@ -704,6 +705,28 @@ namespace PurplePen.MapModel
             { "calt", 0 },  // disable contextual alternates
         };
 
+        private readonly string[] fallbackFontsWindows = new string[] {
+            "Segoe UI",              // Latin, Cyrillic, Greek, Arabic, Hebrew
+            "Tahoma",                // Broad Latin/Arabic backup
+            "Nirmala UI",            // Indic scripts (Devanagari, Bengali, Tamil, Telugu, etc.)
+            "Leelawadee UI",         // Thai, Lao, Khmer
+            "Yu Gothic UI",          // Japanese
+            "Microsoft YaHei UI",    // Chinese Simplified
+            "Microsoft JhengHei UI", // Chinese Traditional
+            "Malgun Gothic",         // Korean
+            "Ebrima",                // Ethiopic, N'Ko, Tifinagh, Vai, Osmanya
+            "Gadugi",                // Cherokee, Canadian Aboriginal Syllabics
+            "Sylfaen",               // Georgian, Armenian
+            "Myanmar Text",          // Myanmar
+            "Microsoft Himalaya",    // Tibetan
+            "Mongolian Baiti",       // Mongolian
+            "Segoe UI Symbol",       // Miscellaneous symbols, math, Braille
+            "Segoe UI Emoji",        // Emoji
+            "Segoe UI Historic",     // Miscellaneous letters, like runic
+        };
+
+        private ConcurrentDictionary<TextEffects, ShapedTypeface[]> fallbackTypefaceCache = new ConcurrentDictionary<TextEffects, ShapedTypeface[]>();
+
 #if false
         public SkiaFont(string familyName, float emHeight, TextEffects effects)
 		{
@@ -730,6 +753,16 @@ namespace PurplePen.MapModel
 #endif
         public SkiaFont(string familyName, float emHeight, TextEffects effects)
         {
+            ShapedTypeface[] fallbackTypefaces = fallbackTypefaceCache.GetOrAdd(effects, (te) => {
+                List<ShapedTypeface> list = new List<ShapedTypeface>();
+                foreach (string fallbackFamily in fallbackFontsWindows) {
+                    ShapedTypeface shapedTypeface = ShapedTypeface.Get(fallbackFamily, GetSKFontStyleWeight(effects), SKFontStyleWidth.Normal, GetSKFontStyleSlant(effects));
+                    if (shapedTypeface != null)
+                        list.Add(shapedTypeface);
+                }
+                return list.ToArray();
+            });
+
             this.emHeight = emHeight;
             if (familyName == "Arial Narrow") {
                 // Special case for Arial Narrow. Use "Arial" with a condensed style instead.
@@ -738,7 +771,7 @@ namespace PurplePen.MapModel
             else {
                 this.shapedTypeface = ShapedTypeface.Get(familyName, GetSKFontStyleWeight(effects), SKFontStyleWidth.Normal, GetSKFontStyleSlant(effects));
             }
-            this.enhancedTypeface = new EnhancedTypeface(this.shapedTypeface, new ShapedTypeface[0], harfBuzzProperties);
+            this.enhancedTypeface = new EnhancedTypeface(this.shapedTypeface, fallbackTypefaces, harfBuzzProperties);
             this.underline = ((effects & TextEffects.Underline) != 0);
         }
 

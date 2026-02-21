@@ -1,0 +1,4 @@
+﻿fontfallback.omap
+fontfallback.png
+-143.3177,33.66263,145.87187,-213.98737
+1093,936

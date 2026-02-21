@@ -823,6 +823,16 @@ namespace Map_PDF.Tests
             CheckTest("RobotoTest.txt", false, false, 9, 12);
         }
 
+#if false
+        // This doesn't work yet for PDFs.
+        [Test]
+        public void FontFallback()
+        {
+            CheckTest("fontfallback.txt", false, false, 9, 12);
+        }
+#endif
+
+
     }
 
 }
