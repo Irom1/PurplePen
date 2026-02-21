@@ -1,9 +1,14 @@
-﻿using System;
+﻿using Map_SkiaStd;
+using NUnit.Framework;
+using PurplePen.MapModel;
+using SkiaSharp;
+using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using NUnit.Framework;
 using TestingUtils;
 
 namespace Map_Skia.Tests
@@ -13,28 +18,64 @@ namespace Map_Skia.Tests
     {
         private const int MAX_PIXEL_DIFF = 0;
 
+
+        static RenderingTests()
+        {
+            Uri uri = new Uri(typeof(RenderingTests).Assembly.Location);
+            string executablePath = Path.GetDirectoryName(uri.LocalPath);
+            string fontPath = Path.Combine(executablePath, "fonts");
+
+            SkiaFontManager.AddFontFile("Roboto",           SKFontStyleWeight.Normal, SKFontStyleWidth.Normal, SKFontStyleSlant.Upright, Path.Combine(fontPath, "Roboto-Regular.ttf"));
+            SkiaFontManager.AddFontFile("Roboto",           SKFontStyleWeight.Bold,   SKFontStyleWidth.Normal, SKFontStyleSlant.Upright, Path.Combine(fontPath, "Roboto-Bold.ttf"));
+            SkiaFontManager.AddFontFile("Roboto",           SKFontStyleWeight.Normal, SKFontStyleWidth.Normal, SKFontStyleSlant.Italic,  Path.Combine(fontPath, "Roboto-Italic.ttf"));
+            SkiaFontManager.AddFontFile("Roboto",           SKFontStyleWeight.Bold,   SKFontStyleWidth.Normal, SKFontStyleSlant.Italic,  Path.Combine(fontPath, "Roboto-BoldItalic.ttf"));
+            SkiaFontManager.AddFontFile("Roboto Condensed", SKFontStyleWeight.Normal, SKFontStyleWidth.Normal, SKFontStyleSlant.Upright, Path.Combine(fontPath, "RobotoCondensed-Regular.ttf"));
+            SkiaFontManager.AddFontFile("Roboto Condensed", SKFontStyleWeight.Bold,   SKFontStyleWidth.Normal, SKFontStyleSlant.Upright, Path.Combine(fontPath, "RobotoCondensed-Bold.ttf"));
+            SkiaFontManager.AddFontFile("Roboto Condensed", SKFontStyleWeight.Normal, SKFontStyleWidth.Normal, SKFontStyleSlant.Italic,  Path.Combine(fontPath, "RobotoCondensed-Italic.ttf"));
+            SkiaFontManager.AddFontFile("Roboto Condensed", SKFontStyleWeight.Bold,   SKFontStyleWidth.Normal, SKFontStyleSlant.Italic,  Path.Combine(fontPath, "RobotoCondensed-BoldItalic.ttf"));
+        }
+
         void CheckTest(string filename, bool testLightenedColor, bool roundtripToOcad, int minOcadVersion, int maxOcadVersion)
         {
             string fullname = TestUtil.GetTestFile("skia_render\\" + filename);
-            bool ok = RenderingUtil.VerifyTestFile(fullname, true, false, testLightenedColor, roundtripToOcad, false, minOcadVersion, maxOcadVersion, MAX_PIXEL_DIFF);
+            bool ok = RenderingUtil.VerifyTestFile(fullname, new RenderOptions(), true, false, testLightenedColor, roundtripToOcad, false, minOcadVersion, maxOcadVersion, MAX_PIXEL_DIFF);
             Assert.IsTrue(ok, string.Format("Rendering test {0} did not compare correctly.", filename), ok);
         }
 
         void CheckTestAntiAlias(string filename, bool testLightenedColor, bool roundtripToOcad, int minOcadVersion, int maxOcadVersion)
         {
             string fullname = TestUtil.GetTestFile("skia_render\\" + filename);
-            bool ok = RenderingUtil.VerifyTestFile(fullname, true, false, testLightenedColor, roundtripToOcad, true, minOcadVersion, maxOcadVersion, MAX_PIXEL_DIFF);
+            bool ok = RenderingUtil.VerifyTestFile(fullname, new RenderOptions(), true, false, testLightenedColor, roundtripToOcad, true, minOcadVersion, maxOcadVersion, MAX_PIXEL_DIFF);
             Assert.IsTrue(ok, string.Format("Rendering test {0} did not compare correctly.", filename), ok);
         }
 
         void CheckTestNoPatternBitmaps(string filename, bool testLightenedColor, bool roundtripToOcad, int minOcadVersion, int maxOcadVersion)
         {
             string fullname = TestUtil.GetTestFile("skia_render\\" + filename);
-            bool ok = RenderingUtil.VerifyTestFile(fullname, false, false, testLightenedColor, roundtripToOcad, false, minOcadVersion, maxOcadVersion, MAX_PIXEL_DIFF);
+            bool ok = RenderingUtil.VerifyTestFile(fullname, new RenderOptions(), false, false, testLightenedColor, roundtripToOcad, false, minOcadVersion, maxOcadVersion, MAX_PIXEL_DIFF);
             Assert.IsTrue(ok, string.Format("Rendering test {0} did not compare correctly.", filename), ok);
         }
 
-#if false
+        void CheckTestOverprinting(string filename, bool testLightenedColor, bool roundtripToOcad, int minOcadVersion, int maxOcadVersion)
+        {
+            string fullname = TestUtil.GetTestFile("skia_render\\" + filename);
+            bool ok = RenderingUtil.VerifyTestFile(fullname, new RenderOptions(), false, true, testLightenedColor, roundtripToOcad, false, minOcadVersion, maxOcadVersion, MAX_PIXEL_DIFF);
+            Assert.IsTrue(ok, string.Format("Rendering test {0} did not compare correctly.", filename), ok);
+        }
+
+        void CheckTestLayers(string filename, int? startLayer, int? stopLayer, bool testLightenedColor, bool roundtripToOcad, int minOcadVersion, int maxOcadVersion)
+        {
+            RenderOptions renderOpts = new RenderOptions();
+            renderOpts.usePatternBitmaps = true;
+            renderOpts.blendOverprintedColors = false;
+            renderOpts.colorBeginDrawExclusive = startLayer;
+            renderOpts.colorEndDrawInclusive = stopLayer;
+
+            string fullname = TestUtil.GetTestFile("rendering\\" + filename);
+            bool ok = RenderingUtil.VerifyTestFile(fullname, renderOpts, false, false, testLightenedColor, roundtripToOcad, false, minOcadVersion, maxOcadVersion, MAX_PIXEL_DIFF);
+            Assert.IsTrue(ok, string.Format("Rendering test {0} did not compare correctly.", filename), ok);
+        }
+
 
         [Test]
         public void TestWest()
@@ -47,7 +88,7 @@ namespace Map_Skia.Tests
         {
             CheckTest("teanwest11.txt", false, true, 11, 12);
         }
-#endif
+
         [Test]
         public void LineSymbols()
         {
@@ -150,7 +191,6 @@ namespace Map_Skia.Tests
             CheckTestAntiAlias("punchbox11.txt", false, false, 10, 12);
         }
 
-#if false
 
         [Test]
         public void LakeSammMap()
@@ -190,8 +230,6 @@ namespace Map_Skia.Tests
             CheckTest("lksamm12_3.txt", false, true, 6, 12);
             CheckTest("lksamm12_4.txt", false, true, 6, 12);
         }
-
-#endif
 
         [Test]
         public void DeletedItems()
@@ -616,19 +654,17 @@ namespace Map_Skia.Tests
             CheckTestAntiAlias("Clouds11.txt", false, false, 11, 12);
         }
 
-#if false
         [Test]
         public void LordHill()
         {
-            CheckTest("LordHill.txt", false, false, 6, 12);
+            CheckTestAntiAlias("LordHill.txt", false, false, 6, 12);
         }
 
         [Test]
         public void LordHill11()
         {
-            CheckTest("LordHill11.txt", false, false, 11, 12);
+            CheckTestAntiAlias("LordHill11.txt", false, false, 11, 12);
         }
-#endif
 
         [Test]
         public void MissingColor()
@@ -648,7 +684,6 @@ namespace Map_Skia.Tests
             CheckTest("oddfenceends.txt", false, false, 6, 12);
         }
 
-#if false
         [Test]
         public void Marymoor()
         {
@@ -660,7 +695,7 @@ namespace Map_Skia.Tests
         {
             CheckTest("marymoor11.txt", false, false, 11, 12);
         }
-#endif
+
         [Test]
         public void LayoutObjects()
         {
@@ -739,7 +774,6 @@ namespace Map_Skia.Tests
             CheckTest("rectanglesymbols.txt", false, true, 6, 12);
         }
 
-#if false
         [Test]
         public void PenistoneHill()
         {
@@ -769,7 +803,6 @@ namespace Map_Skia.Tests
         {
             CheckTestOverprinting("ocad11overprinting.txt", true, true, 6, 12);
         }
-#endif
 
         [Test]
         public void KernTextOutline()
@@ -777,7 +810,6 @@ namespace Map_Skia.Tests
             CheckTest("kern_text_outline.txt", false, true, 7, 12);
         }
 
-#if false
         [Test]
         public void MultiSymOnDash()
         {
@@ -815,7 +847,7 @@ namespace Map_Skia.Tests
         {
             CheckTest("wholestructure4.txt", false, true, 12, 12);
         }
-        
+
         [Test]
         public void Irregular1()
         {
@@ -842,20 +874,19 @@ namespace Map_Skia.Tests
             CheckTest("irregular4.txt", false, true, 12, 12);
         }
 
+        // Not loading the Roboto font yet.
         [Test]
         public void Roboto()
         {
-            CheckTest("RobotoTest.txt", false, false, 9, 12);
+            CheckTestAntiAlias("RobotoTest.txt", false, false, 9, 12);
         }
 
-#endif
         [Test]
         public void FontFallback()
         {
             CheckTest("fontfallback.txt", false, false, 9, 12);
         }
 
-#if false
 
         [Test]
         public void Marymoor11LowerLayers()
@@ -868,7 +899,6 @@ namespace Map_Skia.Tests
         {
             CheckTestLayers("marymoor11_upperlayers.txt", 7, null, false, false, 11, 12);
         }
-#endif
     }
 
 }

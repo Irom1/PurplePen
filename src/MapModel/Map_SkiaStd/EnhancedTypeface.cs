@@ -3,6 +3,11 @@ using SkiaSharp.HarfBuzz;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Drawing;
+using System.Drawing.Text;
+using System.IO;
+using System.Linq;
 using System.Threading;
 
 namespace Map_SkiaStd
@@ -50,7 +55,7 @@ namespace Map_SkiaStd
                               SKFontStyleSlant slant,
                               bool cached)
         {
-            Typeface = SKTypeface.FromFamilyName(familyName, weight, width, slant);
+            Typeface = SkiaFontManager.CreateTypeface(familyName, weight, width, slant);
 
             // SKFont is used solely for checking glyph availability via GetGlyph().
             // The size doesn't matter for glyph existence checks.
@@ -748,5 +753,81 @@ namespace Map_SkiaStd
         public string GlyphText;
         public SKPoint Position;
         public SKTypeface Typeface;
+    }
+
+
+    // Manages private SKTypeFace instances, or falls back to system-installed fonts if not found. 
+    public static class SkiaFontManager
+    {
+        private static object lockObj = new object();
+        private static Dictionary<FontKey, string> privateTypeFace = new Dictionary<FontKey, string>();
+
+        // Add a new font file path for a font. If this familyName/fontStyle is later requested,
+        // use the given font path to load the font.
+        public static void AddFontFile(string familyName, SKFontStyleWeight weight, SKFontStyleWidth width, SKFontStyleSlant slant, string fontFilePath)
+        {
+            lock (lockObj) {
+                fontFilePath = Path.GetFullPath(fontFilePath);
+                if (!File.Exists(fontFilePath)) {
+                    Debug.Fail("Font path doesn't exist.");
+                    return;
+                }
+
+                FontKey fontKey = new FontKey(familyName, weight, width, slant);
+                if (!privateTypeFace.ContainsKey(fontKey)) {
+                    privateTypeFace.Add(fontKey, fontFilePath);
+                }
+            }
+        }
+
+        public static SKTypeface CreateTypeface(string familyName, SKFontStyleWeight weight, SKFontStyleWidth width, SKFontStyleSlant slant)
+        {
+            lock (lockObj) {
+                FontKey fontKey = new FontKey(familyName, weight, width, slant);
+                if (privateTypeFace.ContainsKey(fontKey)) {
+                    return SKTypeface.FromFile(privateTypeFace[fontKey]);
+                }
+                else {
+                    return SKTypeface.FromFamilyName(familyName, weight, width, slant);
+                }
+            }
+        }
+
+        public static bool FontFamilyIsInstalled(string familyName)
+        {
+            lock (lockObj) {
+                try {
+                    if (privateTypeFace.Any(pair => pair.Key.familyName == familyName)) {
+                        return true;
+                    }
+                    else {
+                        using (SKTypeface typeface = SKTypeface.FromFamilyName(familyName)) {
+                            return (typeface != null && typeface.FamilyName == familyName);
+                        }
+                    }
+                }
+                catch {
+                    return false;
+                }
+            }
+        }
+
+        // Struct to hold a key for distinguishing fonts.
+        private struct FontKey
+        {
+            public string familyName;
+            public SKFontStyleWeight weight;
+            public SKFontStyleWidth width;
+            public SKFontStyleSlant slant;
+
+            public FontKey(string familyName, SKFontStyleWeight weight, SKFontStyleWidth width, SKFontStyleSlant slant)
+            {
+                this.familyName = familyName;
+                this.weight = weight;
+                this.width = width;
+                this.slant = slant;
+            }
+        }
+
     }
 }

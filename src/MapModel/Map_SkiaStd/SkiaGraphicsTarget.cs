@@ -56,7 +56,7 @@ namespace PurplePen.MapModel
     // A GraphicsTarget encapsulates an SKCanvas
     public class Skia_GraphicsTarget: IGraphicsTarget
     {
-        private SKCanvas canvas;
+        protected SKCanvas canvas;
         private SkiaColorConverter colorConverter;
         private float intensity;    // color intensity level, 1.0F is full intensity (no lightening)
         private int pushLevel;      // How many pushes have we done?
@@ -916,7 +916,7 @@ namespace PurplePen.MapModel
     {
         public static ITextFaceMetrics GetMetrics(string familyName, float emHeight, TextEffects effects)
         {
-            if (!IsTextFaceInstalled(familyName))
+            if (!SkiaFontManager.FontFamilyIsInstalled(familyName))
                 familyName = "Arial";          // Map non-existant fonts to "Arial".
 
             return new SkiaFont(familyName, emHeight, effects);
@@ -924,14 +924,7 @@ namespace PurplePen.MapModel
 
         public static bool IsTextFaceInstalled(string familyName)
         {
-            // Get the glyphTypeface to see if the font exists.
-            SKTypeface typeface = SKTypeface.FromFamilyName(familyName);
-
-            if (typeface == null)
-                return false;
-            typeface.Dispose();
-            typeface = null;
-            return true;
+            return SkiaFontManager.FontFamilyIsInstalled(familyName);   
         }
 
         public ITextFaceMetrics GetTextFaceMetrics(string familyName, float emHeight, TextEffects effects)
@@ -955,6 +948,11 @@ namespace PurplePen.MapModel
         int width, height;
         SKBitmap bitmap;
         SKSurface surface;
+
+        Stack<SKBitmap> bitmapStack = new Stack<SKBitmap>();
+        Stack<SKSurface> surfaceStack = new Stack<SKSurface>();
+        Stack<SKCanvas> canvasStack = new Stack<SKCanvas>();
+        Stack<BlendMode> blendStack = new Stack<BlendMode>();
 
         public Skia_BitmapGraphicsTarget(int pixelWidth, int pixelHeight, bool alpha, CmykColor initialColor, RectangleF rectangle, bool inverted, SkiaColorConverter colorConverter = null, float intensity = 1.0F)
             : this(GetBitmap(pixelWidth, pixelHeight, alpha), initialColor, rectangle, inverted, colorConverter, intensity)
@@ -1031,6 +1029,80 @@ namespace PurplePen.MapModel
             Skia_Bitmap skBitmap = new Skia_Bitmap(bitmap);
             bitmap = null;  // Now owned by the Skia_Bitmap.
             return skBitmap;
+        }
+
+        // Push a blending mode. For Darken mode, creates a new offscreen bitmap with a white background
+        // to draw onto. When PopBlending is called, the offscreen content is composited back using
+        // Skia's native Darken blend mode (minimum of each R, G, B component).
+        public override bool PushBlending(BlendMode blendMode)
+        {
+            blendStack.Push(blendMode);
+
+            if (blendMode == BlendMode.Darken) {
+                // Save current canvas and surface.
+                canvasStack.Push(this.canvas);
+                surfaceStack.Push(this.surface);
+                bitmapStack.Push(this.bitmap);
+
+                // Create new bitmap to hold the content to blend.
+                SKBitmap currentBitmap = this.bitmap;
+                SKBitmap newBitmap = new SKBitmap(currentBitmap.Width, currentBitmap.Height, currentBitmap.ColorType, currentBitmap.AlphaType);
+                SKSurface newSurface = GetSurface(newBitmap);
+                SKCanvas newCanvas = newSurface.Canvas;
+
+                // Copy the transform and clip from the current canvas.
+                newCanvas.SetMatrix(this.canvas.TotalMatrix);
+
+                // Clear to white -- darken blend takes the minimum of each component,
+                // so white (255,255,255) acts as the identity for undrawn areas.
+                newCanvas.Clear(SKColors.White);
+
+                this.canvas = newCanvas;
+                this.surface = newSurface;
+                this.bitmap = newBitmap;
+
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+
+        // Pop the blending mode. For Darken mode, composites the offscreen bitmap back onto the
+        // underlying bitmap using Skia's native SKBlendMode.Darken.
+        public override void PopBlending()
+        {
+            BlendMode blendMode = blendStack.Pop();
+
+            if (blendMode == BlendMode.Darken) {
+                // Get the bitmap we drew on and flush its surface.
+                SKBitmap blendFrom = this.bitmap;
+                SKSurface blendSurface = this.surface;
+                SKCanvas blendCanvas = this.canvas;
+                blendSurface.Flush();
+
+                // Restore the previous canvas, surface, and bitmap.
+                this.canvas = canvasStack.Pop();
+                this.surface = surfaceStack.Pop();
+                this.bitmap = bitmapStack.Pop();
+
+                // Draw the offscreen bitmap onto the destination using Darken blend mode.
+                // Skia's Darken blend computes: result = min(src, dst) per component.
+                using (SKPaint blendPaint = new SKPaint()) {
+                    blendPaint.BlendMode = SKBlendMode.Darken;
+
+                    // Draw in bitmap coordinates (identity transform), since both bitmaps have the same dimensions.
+                    this.canvas.Save();
+                    this.canvas.SetMatrix(SKMatrix.Identity);
+                    this.canvas.DrawBitmap(blendFrom, 0, 0, blendPaint);
+                    this.canvas.Restore();
+                }
+
+                // Dispose the offscreen resources.
+                blendCanvas.Dispose();
+                blendSurface.Dispose();
+                blendFrom.Dispose();
+            }
         }
 
         public override void Dispose()
