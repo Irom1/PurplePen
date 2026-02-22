@@ -6,12 +6,19 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 PurplePen is a desktop course setting program for orienteering races. It allows users to design orienteering courses on maps, manage control points, create course descriptions, and export materials for printing and race management.
 
+## Code and Solution file
+
+All of the code is in the "src" subdirectory. Ignore the "doc" and "loc" directories,
+which contain documentation and localization files.
+
+The PPen.slnx solution file is the solution file for building the application.
+
 ## Build and Test Commands
 
 ### Building
 ```bash
 # Build the entire solution (Visual Studio 2022 required)
-msbuild PPen.sln /p:Configuration=Release
+msbuild PPen.slnx /p:Configuration=Release
 
 # Build just the main application
 msbuild PurplePen/PurplePen.csproj /p:Configuration=Release
@@ -20,13 +27,13 @@ msbuild PurplePen/PurplePen.csproj /p:Configuration=Release
 ### Testing
 ```bash
 # Run all tests (uses MSTest framework)
-dotnet test PPen.sln
+dotnet test PPen.slnx
 
 # Run tests without UI popups (headless mode)
-dotnet test PPen.sln --settings:.runsettings
+dotnet test PPen.slnx --settings:.runsettings
 
 # Run tests with UI popups (for debugging)
-dotnet test PPen.sln --settings:ShowUi.runsettings
+dotnet test PPen.slnx --settings:ShowUi.runsettings
 
 # Run a specific test project
 dotnet test PurplePen_Tests/PurplePen_Tests.csproj
