@@ -16,6 +16,10 @@
     </Project>
     <Project Path="DotSpatialProjectionsLite/DotSpatial.Projections/DotSpatial.Projections.csproj" />
   </Folder>
+  <Folder Name="/Experiments/">
+    <Project Path="MapModel/HtmlGraphicsTarget/HtmlGraphicsTarget.csproj" />
+    <Project Path="MapModel/WpfMap/WpfMap.csproj" Id="3d9ab499-d11f-4c43-b3f0-f598091985ea" />
+  </Folder>
   <Folder Name="/Installer/">
     <Project Path="FontInstaller/FontInstaller.csproj" Id="699739ca-2c69-4b80-b69f-3e351da2ba1f" />
     <Project Path="Innosetup/Innosetup.csproj">
@@ -47,7 +51,6 @@
     </Project>
     <Project Path="MapModel/Graphics2D.Tests/Graphics2D.Tests.csproj" Id="56e11e5d-18d0-4143-b5df-ec19add9c937" />
     <Project Path="MapModel/Graphics2D/Graphics2D.csproj" Id="ef01e0b6-d7e7-4a4c-970a-29d677d59233" />
-    <Project Path="MapModel/HtmlGraphicsTarget/HtmlGraphicsTarget.csproj" />
     <Project Path="MapModel/InteractiveTestApp/InteractiveTestApp.csproj" />
     <Project Path="MapModel/MapModel/MapModel.csproj" Id="d3ac7c61-0b90-42f3-9438-05f53531c9a3">
       <BuildDependency Project="MapModel/GDIPlusNative/GDIPlusNative.vcxproj" />
@@ -63,7 +66,6 @@
     <Project Path="MapModel/ProjectionDump/ProjectionDump.csproj" Id="4dd4c72d-39bf-4e52-aef9-128adcf67218" />
     <Project Path="MapModel/Test_MapModel/Test_MapModel.csproj" Id="56183ac4-766d-4190-8641-4a3ad26456f8" />
     <Project Path="MapModel/Test_MapWPF/Test_MapWPF.csproj" Id="bbd89855-c12f-4823-aa6f-27482478e7f8" />
-    <Project Path="MapModel/WpfMap/WpfMap.csproj" Id="3d9ab499-d11f-4c43-b3f0-f598091985ea" />
   </Folder>
   <Folder Name="/PdfiumViewer/">
     <Project Path="PdfiumViewer/PdfiumViewer.Test/PdfiumViewer.Test.csproj" Id="61083268-3f14-47b7-8753-af69bb3d0891" />
@@ -87,6 +89,12 @@
       <Build Solution="Debug|x86" Project="false" />
     </Project>
   </Folder>
+  <Folder Name="/Testing/">
+    <Project Path="TestUtil/TestUtil.csproj" Id="d50b6e2b-5e20-410d-b033-debb6b695e77">
+      <Build Solution="Debug|x86" Project="false" />
+      <Build Solution="Release|x86" Project="false" />
+    </Project>
+  </Folder>
   <Folder Name="/Solution Items/">
     <File Path=".editorconfig" />
     <File Path="Directory.Packages.props" />
@@ -94,10 +102,6 @@
     <File Path="PPen1.vsmdi" />
     <File Path="ShowUi.runsettings" />
   </Folder>
-  <Project Path="TestUtil/TestUtil.csproj" Id="d50b6e2b-5e20-410d-b033-debb6b695e77">
-    <Build Solution="Debug|x86" Project="false" />
-    <Build Solution="Release|x86" Project="false" />
-  </Project>
   <Properties Name="TestCaseManagementSettings" Scope="PostLoad">
     <Property Name="CategoryFile" Value="PPen1.vsmdi" />
   </Properties>
