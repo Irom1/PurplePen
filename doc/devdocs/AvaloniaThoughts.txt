@@ -20,6 +20,9 @@ Pain points:
 		the resulting path. Hopefully there are no conics, but I don't think
 		that there should be.
 
+		This is now an official PdfSharp for .NET Core: https://github.com/empira/PDFsharp and
+		a nuget for it.
+
 		Here's pages that describes converting a quadratic Bezier to a cubic:
 
 		https://fontforge.org/docs/techref/bezier.html
@@ -37,11 +40,13 @@ Pain points:
 
    Reports use Web Browser control for rendering and printing. There is an HTML renderers
    for Avalonia which should be good enough for reports, but printing will be difficult. Maybe can print
-   by launching a browser and printing from there. This should be doable.
+   by launching a browser and printing from there. This should be doable. We can use PuppeteerSharp for printing
+   or maybe Chrome (if installed) or AppleScript for Mac. cups can also print HTML but may not handle
+   the pagination well. I think PuppeteerSharp is probably the best bet, and we can use it on Windows too.
 
    Generally printing is hard. On mac and linux print by creating a PDF and that launching a command
    line app that prints a pdf. The lp can be used. Need to figure out a way to determine which printers
-   can be used.
+   can be used. This can all be done: lpstat to get list of printers, and lpoptions to get options for each printer.
 
    Localization is somewhat tricky in Avalonia. There are resources for this.
 
