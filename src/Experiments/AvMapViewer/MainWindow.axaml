@@ -1,0 +1,21 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:app="using:AvMapViewer"
+        xmlns:utils="using:AvUtil"   
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="AvMapViewer.MainWindow"
+        Title="AvMapViewer">
+  <DockPanel>
+    <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+      <Button Content="Open File" Click="Button_Click" Margin="5,5,5,5"/>
+    </StackPanel>
+
+    <Panel Background="CadetBlue">
+      <Panel Background="Red"  Margin="10,10,10,10">
+        <utils:PanAndZoom Margin="20,20,20,20" Name="panAndZoom"/>    
+      </Panel>
+    </Panel>
+  </DockPanel>
+</Window>
