@@ -92,7 +92,7 @@ namespace AvUtil
 
             if (cachedDrawing != null) {
                 ++renderNumber;
-                Debug.WriteLine($"Beginning Render {renderNumber}");
+                //Debug.WriteLine($"Beginning Render {renderNumber}");
 
                 Stopwatch watch = new Stopwatch();
                 watch.Start();
@@ -107,7 +107,7 @@ namespace AvUtil
 
                 watch.Stop();
 
-                Debug.WriteLine($"Ending Render {renderNumber} {watch.ElapsedMilliseconds}ms");
+                //Debug.WriteLine($"Ending Render {renderNumber} {watch.ElapsedMilliseconds}ms");
 
             }
             else {
@@ -117,7 +117,7 @@ namespace AvUtil
 
         private void CachedDrawing_NewDrawingAvailable(object? sender, EventArgs e)
         {
-            Debug.WriteLine("New Drawing Available");
+            //Debug.WriteLine("New Drawing Available");
             InvalidateVisual();
         }
 

@@ -217,9 +217,11 @@ namespace AvUtil
 
         private void DebugPrint(string message)
         {
+#if SHOWDEBUGOUTPUT
             Debug.WriteLine("--------------------------------------------");
             Debug.WriteLine(message);
             Debug.WriteLine(this.ToString());
+#endif
         }
 
         public override string ToString()
