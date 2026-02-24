@@ -43,6 +43,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using PointF = System.Drawing.PointF;
@@ -472,7 +473,7 @@ namespace PurplePen.MapModel
 
             foreach (GlyphPosition glyph in glyphs) {
                 XFont xfont = XFontFromTypeface(glyph.Typeface, skiaFont.EmHeight);
-                gfx.DrawString(glyph.GlyphText, xfont, brush, new XPoint(glyph.Position.X, glyph.Position.Y), stringFormat);
+                gfx.DrawString(glyph.GlyphText, xfont, brush, new XPoint(glyph.Position.X, glyph.Position.Y - skiaFont.Ascent), stringFormat);
             }
 
         }
@@ -567,63 +568,35 @@ namespace PurplePen.MapModel
         // Draw a bitmap
         public void DrawBitmap(IGraphicsBitmap bm, RectangleF rectangle, BitmapScaling scalingMode, float minResolution)
         {
-            throw new NotSupportedException("Not yet implemented: DrawBitmap");
-#if false
-            bool dispose = false;
-            System.Drawing.Bitmap gdiBitmap = ((GDIPlus_Bitmap)bm).Bitmap;
-            if (! SupportedPixelFormat(gdiBitmap.PixelFormat)) {
-                // Reformat the bitmap into a different pixel format.
-                gdiBitmap = CloneToArgb(gdiBitmap, new SysDraw.Rectangle(0, 0, gdiBitmap.Width, gdiBitmap.Height));
-                dispose = true;
-            }
-            try {
-                XImage image = XImage.FromGdiPlusImage(gdiBitmap);
+            using (MemoryStream memStream = new MemoryStream()) {
+                if (bm.WritePngToStream(0, 0, bm.PixelWidth, bm.PixelHeight, memStream)) {
+                    using (XImage image = XImage.FromStream(memStream)) {
+                        if (scalingMode == BitmapScaling.NearestNeighbor)
+                            image.Interpolate = false;
+                        else
+                            image.Interpolate = true;
 
-                if (scalingMode == BitmapScaling.NearestNeighbor)
-                    image.Interpolate = false;
-                else
-                    image.Interpolate = true;
-
-                gfx.DrawImage(image, rectangle);
+                        gfx.DrawImage(image, ToXRect(rectangle));
+                    }
+                }
             }
-            finally {
-                if (dispose)
-                    gdiBitmap.Dispose();
-            }
-#endif
         }
 
         // Draw part of a bitmap
         public void DrawBitmapPart(IGraphicsBitmap bm, int x, int y, int width, int height, RectangleF rectangle, BitmapScaling scalingMode, float minResolution)
         {
-            throw new NotSupportedException("Not yet implemented: DrawBitmapPart");
-#if false
-            Bitmap bitmap = ((GDIPlus_Bitmap)bm).Bitmap;
+            using (MemoryStream memStream = new MemoryStream()) {
+                if (bm.WritePngToStream(x, y, width, height, memStream)) {
+                    using (XImage image = XImage.FromStream(memStream)) {
+                        if (scalingMode == BitmapScaling.NearestNeighbor)
+                            image.Interpolate = false;
+                        else
+                            image.Interpolate = true;
 
-            // Make sure we use a supported pixel format.
-            Bitmap bitmapPart;
-            SysDraw.Rectangle part = new SysDraw.Rectangle(x, y, width, height);
-            if (!SupportedPixelFormat(bitmap.PixelFormat)) {
-                bitmapPart = CloneToArgb(bitmap, part);
+                        gfx.DrawImage(image, ToXRect(rectangle));
+                    }
+                }
             }
-            else {
-                bitmapPart = bitmap.Clone(part, bitmap.PixelFormat);
-            }
-
-            try { 
-                XImage image = XImage.FromGdiPlusImage(bitmapPart);
-
-                if (scalingMode == BitmapScaling.NearestNeighbor)
-                    image.Interpolate = false;
-                else
-                    image.Interpolate = true;
-
-                gfx.DrawImage(image, rectangle);
-            }
-            finally {
-                bitmapPart.Dispose();
-            }
-#endif
         }
 
         public bool HasPath(object pathKey) {

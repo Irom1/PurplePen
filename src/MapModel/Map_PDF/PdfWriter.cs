@@ -58,7 +58,7 @@ namespace PurplePen.MapModel
         {
             // Set our font resolver so we can use our fonts in PDF output. This is tightly
             // coupled with PdfGraphicsTarget because it relies on the same font resolver to get the font data for measuring text.
-            GlobalFontSettings.FontResolver = new PdfFontResolver();
+           GlobalFontSettings.FontResolver = new PdfFontResolver();
         }
 
         // Create a PdfWriter with the given title.

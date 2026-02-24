@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 
 using PointF = System.Drawing.PointF;
@@ -57,6 +59,7 @@ namespace PurplePen.Graphics2D
         bool Disposed {get;}
         int PixelWidth { get; }
         int PixelHeight { get; }
+        bool WritePngToStream(int x, int y, int width, int height, Stream stream);
     }
 
     public interface IBitmapGraphicsTargetProvider: IDisposable

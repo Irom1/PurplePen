@@ -47,6 +47,7 @@ namespace PurplePen.MapModel
     using System.Drawing.Imaging;
     using System.IO;
     using System.Runtime.InteropServices;
+    using System.Runtime.InteropServices.ComTypes;
     using System.Threading;
 
     // A GraphicsTarget encapsulates either a Graphics (for WinForms) or a DrawingContext (for WPF)
@@ -1142,6 +1143,37 @@ namespace PurplePen.MapModel
         {
             get { return bitmap != null ? bitmap.Height : 0; }
         }
+
+        public bool WritePngToStream(int x, int y, int width, int height, Stream stream)
+        {
+            // Get the actual boundaries of the original bitmap
+            Rectangle imageBounds = new Rectangle(0, 0, bitmap.Width, bitmap.Height);
+
+            // Safely intersect to ensure the crop stays within the image bounds
+            Rectangle cropRect = Rectangle.Intersect(imageBounds, new Rectangle(x, y, width, height));
+
+            if (cropRect.IsEmpty) {
+                return false;
+            }
+
+            if (cropRect.Equals(imageBounds)) {
+                // No need to crop.
+                bitmap.Save(stream, ImageFormat.Png);
+            }
+            else {
+                // Create a new Bitmap containing only the cropped area.
+                // Note: This DOES allocate memory and copy pixels, but it is the fastest 
+                // native way GDI+ can do it. We reuse the original PixelFormat.
+                using (Bitmap croppedBitmap = bitmap.Clone(cropRect, bitmap.PixelFormat)) {
+                    // 4. Save the new bitmap directly to the file path as a PNG
+                    croppedBitmap.Save(stream, ImageFormat.Png);
+                }
+            }
+
+            return true;
+        }
+
+
 
         // Very large bitmaps can cause exceptions when drawing. This property 
         // says if the bitmap is very large.

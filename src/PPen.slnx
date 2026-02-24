@@ -68,7 +68,15 @@
     <Project Path="MapModel/Map_Skia.Tests/Map_Skia.Tests.csproj" Id="dc3b7cda-9d02-4362-aa56-8ac9419b7352" />
     <Project Path="MapModel/Map_SkiaStd/Map_SkiaStd.csproj" />
     <Project Path="MapModel/Map_WPF/Map_WPF.csproj" Id="6d375500-20e2-428a-bbcd-73bbe0f5f503" />
-    <Project Path="MapModel/PdfSharp/PdfSharp.csproj" Id="5384ce57-1f94-4d22-860d-2e9c1ac12ddf" />
+    <Project Path="MapModel/PDFsharp/src/foundation/src/PDFsharp/src/PdfSharp/PdfSharp.csproj">
+      <BuildType Solution="StorePkg|*" Project="Release" />
+    </Project>
+    <Project Path="MapModel/PDFsharp/src/foundation/src/shared/src/PdfSharp.Shared/PdfSharp.Shared.csproj">
+      <BuildType Solution="StorePkg|*" Project="Release" />
+    </Project>
+    <Project Path="MapModel/PDFsharp/src/foundation/src/shared/src/PdfSharp.System/PdfSharp.System.csproj">
+      <BuildType Solution="StorePkg|*" Project="Release" />
+    </Project>
     <Project Path="MapModel/ProjectionDump/ProjectionDump.csproj" Id="4dd4c72d-39bf-4e52-aef9-128adcf67218" />
     <Project Path="MapModel/Test_MapModel/Test_MapModel.csproj" Id="56183ac4-766d-4190-8641-4a3ad26456f8" />
     <Project Path="MapModel/Test_MapWPF/Test_MapWPF.csproj" Id="bbd89855-c12f-4823-aa6f-27482478e7f8" />

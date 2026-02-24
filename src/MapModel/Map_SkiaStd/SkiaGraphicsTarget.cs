@@ -35,12 +35,11 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-
 using System.Globalization;
+using System.IO;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
-using System.IO;
 
 
 
@@ -52,6 +51,8 @@ namespace PurplePen.MapModel
     using SkiaSharp.HarfBuzz;
     using System.Collections.Concurrent;
     using System.Drawing;
+    using static SkiaSharp.SKImageFilter;
+    using static System.Net.Mime.MediaTypeNames;
 
     // A GraphicsTarget encapsulates an SKCanvas
     public class Skia_GraphicsTarget: IGraphicsTarget
@@ -1100,6 +1101,35 @@ namespace PurplePen.MapModel
             get { return image != null ? image.Height : 0; }
         }
 
+        public bool WritePngToStream(int x, int y, int width, int height, Stream stream)
+        {
+            // Get the actual boundaries of the bitmap (0, 0, Width, Height)
+            SKRectI imageBounds = image.Info.Rect;
+
+            // Intersect the desired crop with the actual bounds.
+            // This returns a new rectangle representing only the overlapping area.
+            SKRectI cropRect = SKRectI.Intersect(imageBounds, new SKRectI(x, y, x + width, y + height));
+            if (cropRect.IsEmpty) 
+                return false;
+
+            SKPixmap pixmap = image.PeekPixels();
+
+            if (pixmap != null) {
+                using (SKPixmap subsetPixmap = pixmap.ExtractSubset(cropRect)) {
+                     subsetPixmap.Encode(stream, SKEncodedImageFormat.Png, 100);
+                }
+            }
+            else {
+                using (SKImage croppedImage = image.Subset(cropRect)) {
+                    using (SKData data = croppedImage.Encode(SKEncodedImageFormat.Png, 100)) {
+                        data.SaveTo(stream);
+                    }
+                }
+            }
+
+            return true;
+        }
+
         public void Dispose()
         {
             lock (this) {
@@ -1137,6 +1167,25 @@ namespace PurplePen.MapModel
         public int PixelHeight
         {
             get { return bitmap != null ? bitmap.Height : 0; }
+        }
+
+        public bool WritePngToStream(int x, int y, int width, int height, Stream stream)
+        {
+            // Get the actual boundaries of the bitmap (0, 0, Width, Height)
+            SKRectI imageBounds = bitmap.Info.Rect;
+
+            // Intersect the desired crop with the actual bounds.
+            // This returns a new rectangle representing only the overlapping area.
+            SKRectI cropRect = SKRectI.Intersect(imageBounds, new SKRectI(x, y, x + width, y + height));
+            if (cropRect.IsEmpty)
+                return false;
+
+            SKPixmap pixmap = bitmap.PeekPixels();
+            using (SKPixmap subsetPixmap = pixmap.ExtractSubset(cropRect)) {
+                subsetPixmap.Encode(stream, SKEncodedImageFormat.Png, 100);
+            }
+
+            return true;
         }
 
         public void Dispose()
