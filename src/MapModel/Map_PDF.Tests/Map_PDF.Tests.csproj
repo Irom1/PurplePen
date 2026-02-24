@@ -18,6 +18,7 @@
     </Reference>
     <PackageReference Include="NUnit" />
     <PackageReference Include="NUnit3TestAdapter" />
+    <PackageReference Include="PDFsharp" />
   </ItemGroup>
   <ItemGroup>
     <CodeAnalysisDependentAssemblyPaths Condition=" '$(VS100COMNTOOLS)' != '' " Include="$(VS100COMNTOOLS)..\IDE\PrivateAssemblies">
@@ -30,7 +31,6 @@
     <ProjectReference Include="..\MapModel\MapModel.csproj" />
     <ProjectReference Include="..\Map_GDIPlus\Map_GDIPlus.csproj" />
     <ProjectReference Include="..\Map_PDF\Map_PDF.csproj" />
-    <ProjectReference Include="..\PdfSharp\PdfSharp.csproj" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' != 'net48'">

@@ -32,24 +32,22 @@
  * OF SUCH DAMAGE.
  */
 
+using Map_SkiaStd;
 using PdfSharp.Drawing;
+using PdfSharp.Fonts;
+using PdfSharp.Pdf;
 using PurplePen.Graphics2D;
 using PurplePen.MapModel;
+using SkiaSharp;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.Linq;
 using System.Threading;
-using Bitmap = System.Drawing.Bitmap;
 using PointF = System.Drawing.PointF;
 using RectangleF = System.Drawing.RectangleF;
 using SizeF = System.Drawing.SizeF;
-using StringAlignment = System.Drawing.StringAlignment;
-using StringFormat = System.Drawing.StringFormat;
-using StringFormatFlags = System.Drawing.StringFormatFlags;
-using SysDraw = System.Drawing;
-
-// TODO: Needs more work to handle CMYK color space!
 
 
 namespace PurplePen.MapModel
@@ -64,11 +62,8 @@ namespace PurplePen.MapModel
         private XStringFormat stringFormat;
         private Dictionary<object, XPen> penMap = new Dictionary<object, XPen>(new IdentityComparer<object>());
         private Dictionary<object, XBrush> brushMap = new Dictionary<object, XBrush>(new IdentityComparer<object>());
-        private Dictionary<object, XFont> fontMap = new Dictionary<object, XFont>(new IdentityComparer<object>());
+        private Dictionary<object, SkiaFont> fontMap = new Dictionary<object, SkiaFont>(new IdentityComparer<object>());
         private Dictionary<object, XGraphicsPath> pathMap = new Dictionary<object, XGraphicsPath>(new IdentityComparer<object>());
-
-        // Bitmaps above this size are split when drawing.
-        private const int BITMAP_DRAW_LIMIT = 4000000;
 
         public Pdf_GraphicsTarget(XGraphics gfx, bool cmykMode)
         {
@@ -78,7 +73,6 @@ namespace PurplePen.MapModel
             stringFormat = new XStringFormat();
             stringFormat.Alignment = XStringAlignment.Near;
             stringFormat.LineAlignment = XLineAlignment.Near;
-            stringFormat.FormatFlags = XStringFormatFlags.MeasureTrailingSpaces;
         }
 
         public XGraphics XGraphics
@@ -165,36 +159,53 @@ namespace PurplePen.MapModel
             }
         }
 
+        private XPoint ToXPoint(PointF pt)
+        {
+            return new XPoint(pt.X, pt.Y);
+        }
+
+        private XRect ToXRect(RectangleF rect)
+        {
+            return new XRect(rect.X, rect.Y, rect.Width, rect.Height);
+        }
+
         private XColor ToXColor(CmykColor color)
         {
             if (cmykMode)
                 return XColor.FromCmyk(color.Alpha, color.Cyan, color.Magenta, color.Yellow, color.Black);
-            else
-                return XColor.FromArgb(ColorConverter.ToColor(color));
+            else {
+                System.Drawing.Color sysDrawColor = PurplePen.Graphics2D.ColorConverter.ToColor(color);
+                return XColor.FromArgb(sysDrawColor.A, sysDrawColor.R, sysDrawColor.G, sysDrawColor.B);
+            }
         }
-        
-        // Create font
+
+        private XFontStyleEx ToXFontStyleEx(TextEffects effects)
+        {
+            XFontStyleEx style = XFontStyleEx.Regular;
+            if ((effects & TextEffects.Bold) != 0)
+                style |= XFontStyleEx.Bold;
+            if ((effects & TextEffects.Italic) != 0)
+                style |= XFontStyleEx.Italic;
+            if ((effects & TextEffects.Underline) != 0)
+                style |= XFontStyleEx.Underline;
+            return style;
+        }
+
+        private XMatrix ToXMatrix(Matrix mat)
+        {
+            float[] elements = mat.Elements;
+            XMatrix xMatrix = new XMatrix(elements[0], elements[1], elements[2], elements[3], elements[4], elements[5]);
+            return xMatrix;
+        }
+
+        // Create font. We use the same SkiaFont class for PDF as for Skia, since it just encapsulates the font information
+        // we need. We later use the SkiaFont to determine specific font information we need to draw with.
         public void CreateFont(object fontKey, string familyName, float emHeight, TextEffects effects)
         {
             if (fontMap.ContainsKey(fontKey))
                 throw new InvalidOperationException("Key already has a font created for it");
 
-            System.Drawing.FontStyle fontStyle = System.Drawing.FontStyle.Regular;
-            if ((effects & TextEffects.Bold) != 0)
-                fontStyle |= System.Drawing.FontStyle.Bold;
-            if ((effects & TextEffects.Italic) != 0)
-                fontStyle |= System.Drawing.FontStyle.Italic;
-            if ((effects & TextEffects.Underline) != 0)
-                fontStyle |= System.Drawing.FontStyle.Underline;
-
-            if (!GdiplusFontLoader.FontFamilyIsInstalled(familyName))
-                familyName = "Arial";
-
-            // Use the GdiplusFontLoader so we get private fonts too.
-            emHeight = Math.Max(emHeight, 0.01F);            // 0 size fonts cause problems!
-            System.Drawing.Font gdiFont = GdiplusFontLoader.CreateFont(familyName, emHeight, fontStyle);
-            XFont font = new XFont(gdiFont, new XPdfFontOptions(PdfSharp.Pdf.PdfFontEncoding.Unicode, PdfSharp.Pdf.PdfFontEmbedding.Always));
-
+            SkiaFont font = new SkiaFont(familyName, emHeight, effects);
             fontMap.Add(fontKey, font);
         }
 
@@ -222,22 +233,26 @@ namespace PurplePen.MapModel
                         break;
 
                     case GraphicsPathPartKind.Lines: {
-                            PointF[] newPoints = new PointF[part.Points.Length + 1];
-                            newPoints[0] = startPoint;
-                            Array.Copy(part.Points, 0, newPoints, 1, part.Points.Length);
-                            path.AddLines(newPoints);
-                            startPoint = part.Points[part.Points.Length - 1];
-                            break;
+                        XPoint[] newPoints = new XPoint[part.Points.Length + 1];
+                        newPoints[0] = new XPoint(startPoint.X, startPoint.Y);
+                        for (int i = 0; i < part.Points.Length; ++i) {
+                            newPoints[i + 1] = new XPoint(part.Points[i].X, part.Points[i].Y);
                         }
+                        path.AddLines(newPoints);
+                        startPoint = part.Points[part.Points.Length - 1];
+                        break;
+                    }
 
                     case GraphicsPathPartKind.Beziers: {
-                            PointF[] newPoints = new PointF[part.Points.Length + 1];
-                            newPoints[0] = startPoint;
-                            Array.Copy(part.Points, 0, newPoints, 1, part.Points.Length);
-                            path.AddBeziers(newPoints);
-                            startPoint = part.Points[part.Points.Length - 1];
-                            break;
+                        XPoint[] newPoints = new XPoint[part.Points.Length + 1];
+                        newPoints[0] = new XPoint(startPoint.X, startPoint.Y);
+                        for (int i = 0; i < part.Points.Length; ++i) {
+                            newPoints[i + 1] = new XPoint(part.Points[i].X, part.Points[i].Y);
                         }
+                        path.AddBeziers(newPoints);
+                        startPoint = part.Points[part.Points.Length - 1];
+                        break;
+                    }
 
                     case GraphicsPathPartKind.Close:
                         path.CloseFigure();
@@ -252,7 +267,7 @@ namespace PurplePen.MapModel
         public void PushTransform(Matrix matrix)
         {
             stateStack.Push(gfx.Save());
-            gfx.MultiplyTransform(matrix.ToSysDrawMatrix(), XMatrixOrder.Prepend);
+            gfx.MultiplyTransform(ToXMatrix(matrix), XMatrixOrder.Prepend);
         }
 
         // Pop the transform
@@ -277,7 +292,7 @@ namespace PurplePen.MapModel
         public void PushClip(RectangleF rect)
         {
             stateStack.Push(gfx.Save());
-            gfx.IntersectClip(rect);
+            gfx.IntersectClip(ToXRect(rect));
         }
 
         public void PushClip(RectangleF[] rects)
@@ -285,7 +300,10 @@ namespace PurplePen.MapModel
             stateStack.Push(gfx.Save());
 
             XGraphicsPath path = new XGraphicsPath();
-            path.AddRectangles(rects);
+            foreach (RectangleF rect in rects) {
+                path.AddRectangle(ToXRect(rect));
+            }
+
             gfx.IntersectClip(path);
         }
 
@@ -311,6 +329,9 @@ namespace PurplePen.MapModel
         // Set blending mode.
         public virtual bool PushBlending(BlendMode blendMode)
         {
+            // NYI: Need to modify PdfSharp to support blend modes. 
+            throw new NotSupportedException("Blending modes not supported in PDF output yet");
+#if false
             bool supported = false;
             string newBlendMode = "Normal";
             if (blendMode == BlendMode.Darken) {
@@ -322,17 +343,21 @@ namespace PurplePen.MapModel
             gfx.BlendMode = newBlendMode;
 
             return supported;
+#endif
         }
         
         public virtual void PopBlending()
         {
+            throw new NotSupportedException("Blending modes not supported in PDF output yet");
+#if false
             gfx.BlendMode = blendModeStack.Pop();
+#endif
         }
 
         // Draw an line with a pen.
         public void DrawLine(object penKey, PointF start, PointF finish)
         {
-            gfx.DrawLine(GetPen(penKey), start, finish);
+            gfx.DrawLine(GetPen(penKey), ToXPoint(start), ToXPoint(finish));
         }
 
         // Draw an arc with a pen.
@@ -340,7 +365,7 @@ namespace PurplePen.MapModel
         {
             // Weirdly, using a sweepAngle of 0 causes the PDF code to generate a corrupt PDF.
             if (sweepAngle > 0) {
-                gfx.DrawArc(GetPen(penKey), new RectangleF(center.X - radius, center.Y - radius, radius * 2, radius * 2), startAngle, sweepAngle);
+                gfx.DrawArc(GetPen(penKey), new XRect(center.X - radius, center.Y - radius, radius * 2, radius * 2), startAngle, sweepAngle);
             }
         }
 
@@ -371,19 +396,33 @@ namespace PurplePen.MapModel
         // Draw a polygon with a brush
         public void DrawPolygon(object penKey, PointF[] pts)
         {
-            gfx.DrawPolygon(GetPen(penKey), pts);
+            XPoint[] xPts = new XPoint[pts.Length];
+            for (int i = 0; i < pts.Length; i++) {
+                xPts[i] = ToXPoint(pts[i]);
+            }
+
+            gfx.DrawPolygon(GetPen(penKey), xPts);
         }
 
         // Draw lines with a brush
         public void DrawPolyline(object penKey, PointF[] pts)
         {
-            gfx.DrawLines(GetPen(penKey), pts);
+            XPoint[] xPts = new XPoint[pts.Length];
+            for (int i = 0; i < pts.Length; i++) {
+                xPts[i] = ToXPoint(pts[i]);
+            }
+            gfx.DrawLines(GetPen(penKey), xPts);
         }
 
         // Fill a polygon with a brush
         public void FillPolygon(object brushKey, PointF[] pts, AreaFillMode windingMode)
         {
-            gfx.DrawPolygon(GetBrush(brushKey), pts, ToXFillMode(windingMode));
+            XPoint[] xPts = new XPoint[pts.Length];
+            for (int i = 0; i < pts.Length; i++) {
+                xPts[i] = ToXPoint(pts[i]);
+            }
+
+            gfx.DrawPolygon(GetBrush(brushKey), xPts, ToXFillMode(windingMode));
         }
 
         private XFillMode ToXFillMode(AreaFillMode windingMode)
@@ -426,147 +465,110 @@ namespace PurplePen.MapModel
         // Draw text with upper-left corner of text at the given locations.
         public void DrawText(string text, object fontKey, object brushKey, PointF upperLeft)
         {
-#if false
-            gfx.DrawString(text, GetFont(fontKey), GetBrush(brushKey), upperLeft, stringFormat);
-
-#else
-            XFont font = GetFont(fontKey);
+            SkiaFont skiaFont = GetFont(fontKey);
             XBrush brush = GetBrush(brushKey);
 
-            List<StringGlyph> glyphs = GetGlyphs(text);
+            GlyphPosition[] glyphs = skiaFont.EnhancedTypeface.GetGlyphPositions(text, new SKPoint(upperLeft.X, upperLeft.Y), (float)skiaFont.EmHeight);
 
-            SysDraw.FontStyle fs = default(SysDraw.FontStyle);
-            if ((font.Style & XFontStyle.Bold) != 0)
-                fs |= SysDraw.FontStyle.Bold;
-            if ((font.Style & XFontStyle.Italic) != 0)
-                fs |= SysDraw.FontStyle.Italic;
-            SysDraw.Font sdFont = GdiplusFontLoader.CreateFont(font.Name, (float)font.Size, fs);
-
-            List<RectangleF> rects = MeasureAllCharacterRanges(text, glyphs, sdFont, upperLeft);
-
-            for (int i = 0; i < glyphs.Count; ++i) {
-                gfx.DrawString(glyphs[i].Text, font, brush, rects[i].Location, stringFormat);
-            }
-#endif
-        }
-
-        // Work around for MeasureCharacterRanges only handles 32 ranges at once.
-        private List<RectangleF> MeasureAllCharacterRanges(string text, List<StringGlyph> glyphs, SysDraw.Font font, PointF upperLeft)
-        {
-            const int MAXRANGES = 32;
-            List<RectangleF> rects = new List<RectangleF>();
-
-            RectangleF formatRectangle = new RectangleF(upperLeft, new SizeF(1E9F, 1E9F));
-            
-            StringFormat sf = new StringFormat(StringFormat.GenericTypographic);
-            sf.Alignment = StringAlignment.Near;
-            sf.LineAlignment = StringAlignment.Near;
-            sf.FormatFlags |= StringFormatFlags.NoClip;
-            sf.FormatFlags |= StringFormatFlags.MeasureTrailingSpaces;
-
-            SysDraw.CharacterRange[] ranges = (from gl in glyphs select new SysDraw.CharacterRange(gl.Index, gl.Length)).ToArray();
-            SysDraw.Graphics gr = GetHiresGraphics();
-
-            for (int i = 0; i < glyphs.Count; i += MAXRANGES) {
-                int l = Math.Min(MAXRANGES, glyphs.Count - i);
-                sf.SetMeasurableCharacterRanges(ranges.Skip(i).Take(l).ToArray());
-                SysDraw.Region[] regions = gr.MeasureCharacterRanges(text, font, formatRectangle, sf);
-                foreach (SysDraw.Region r in regions) {
-                    rects.Add(r.GetBounds(gr));
-                    r.Dispose();
-                }
-            }
-            
-            return rects;
-        }
-
-        private List<StringGlyph> GetGlyphs(string text)
-        {
-            List<StringGlyph> glyphs = new List<StringGlyph>();
-
-            if (!string.IsNullOrEmpty(text)) {
-                System.Globalization.TextElementEnumerator enumerator = System.Globalization.StringInfo.GetTextElementEnumerator(text);
-                while (enumerator.MoveNext()) {
-                    string grapheme = enumerator.GetTextElement();
-                    glyphs.Add(new StringGlyph(enumerator.ElementIndex, grapheme.Length, grapheme));
-                }
+            foreach (GlyphPosition glyph in glyphs) {
+                XFont xfont = XFontFromTypeface(glyph.Typeface, skiaFont.EmHeight);
+                gfx.DrawString(glyph.GlyphText, xfont, brush, new XPoint(glyph.Position.X, glyph.Position.Y), stringFormat);
             }
 
-            return glyphs;
         }
 
-        private static ThreadLocal<System.Drawing.Graphics> hiresGraphics = new ThreadLocal<System.Drawing.Graphics>(() => {
-            System.Drawing.Graphics g = System.Drawing.Graphics.FromHwnd(IntPtr.Zero);
-            g.ScaleTransform(50F, -50F);
-            return g;
-        });
 
-        // Returns a graphics scaled with negative Y and hi-resolution (50 units/pixel or so).
-        // Instances are per-thread, so that tests that use this can run in parallel.
-        public static System.Drawing.Graphics GetHiresGraphics()
-        {
-            return hiresGraphics.Value;
-        }
 
         // Draw text outline with upper-left corner of text at the given locations.
         public void DrawTextOutline(string text, object fontKey, object penKey, PointF upperLeft)
         {
-            XFont xFont = GetFont(fontKey);
+            SkiaFont skiaFont = GetFont(fontKey);
+
+            GlyphPosition[] glyphs = skiaFont.EnhancedTypeface.GetGlyphPositions(text, new SKPoint(upperLeft.X, upperLeft.Y), (float)skiaFont.EmHeight);
+
             XGraphicsPath grPath = new XGraphicsPath();
             grPath.FillMode = XFillMode.Winding;
 
-            grPath.AddString(text, xFont.FontFamily, xFont.Style, xFont.Size, upperLeft, stringFormat);
+            foreach (GlyphPosition glyph in glyphs) {
+                AddTextOutlineToPath(grPath, glyph.GlyphText, glyph.Typeface, skiaFont.EmHeight, glyph.Position.X, glyph.Position.Y);
+            }
+
             gfx.DrawPath(GetPen(penKey), grPath);
         }
 
-        struct StringGlyph
+        // Given a Skia typeface and height, create an XFont that we can use to draw with. We encode the Skia typeface information into the family name,
+        // and then use our PdfFontResolver to get the font data when needed.
+        private XFont XFontFromTypeface(SKTypeface typeFace, float height)
         {
-            public int Index;
-            public int Length;
-            public string Text;
-            public StringGlyph(int index, int length, string text)
-            {
-                this.Index = index; this.Length = length; this.Text = text;
-            }
+            string encodedFamilyName = PdfFontResolver.GetEncodedFamilyName(typeFace.FamilyName, (SKFontStyleWeight) typeFace.FontWeight, (SKFontStyleWidth) typeFace.FontWidth, typeFace.FontSlant);
+            return new XFont(encodedFamilyName, height, XFontStyleEx.Regular, new XPdfFontOptions(PdfFontEncoding.Unicode, PdfFontEmbedding.TryComputeSubset));
         }
 
-        // PDF Sharp only supposrts bitmaps in some pixel formats.
-        private bool SupportedPixelFormat(SysDraw.Imaging.PixelFormat pixelFormat)
+        private static void AddTextOutlineToPath(XGraphicsPath pdfPath, string text, SKTypeface typeFace, float fontSize, float x, float y)
         {
-            switch (pixelFormat) {
-                case SysDraw.Imaging.PixelFormat.Format24bppRgb:
-                case SysDraw.Imaging.PixelFormat.Format32bppRgb:
-                case SysDraw.Imaging.PixelFormat.Format32bppArgb:
-                case SysDraw.Imaging.PixelFormat.Format32bppPArgb:
-                case SysDraw.Imaging.PixelFormat.Format8bppIndexed:
-                case SysDraw.Imaging.PixelFormat.Format4bppIndexed:
-                case SysDraw.Imaging.PixelFormat.Format1bppIndexed:
-                    return true;
+            // 1. Iterate of the path of the text.
+            using (SKFont font = new SKFont(typeFace, fontSize))
+            using (SKPaint paint = new SKPaint {
+                        Typeface = typeFace,
+                        TextSize = fontSize,
+                        IsAntialias = true
+                    })
+            using (SKPath skPath = paint.GetTextPath(text, x, y))
+            using (SKPath.Iterator iterator = skPath.CreateIterator(false)) {
 
-                default:
-                    return false;
-            }
-        }
+                // 3. Map each SKPath verb to the corresponding PDF path command.
+                SKPathVerb verb;
+                SKPoint[] pts = new SKPoint[4];
 
-        // Bitmap.Clone doesn't work with all source pixel formats. Use this instead.
-        private SysDraw.Bitmap CloneToArgb(SysDraw.Bitmap bmSrc, SysDraw.Rectangle rect)
-        {
-            SysDraw.Bitmap bmDest = new SysDraw.Bitmap(rect.Width, rect.Height, SysDraw.Imaging.PixelFormat.Format32bppArgb);
-            using (SysDraw.Graphics graphics = SysDraw.Graphics.FromImage(bmDest)) {
-                graphics.DrawImage(bmSrc, new SysDraw.Rectangle(0, 0, rect.Width, rect.Height), rect, SysDraw.GraphicsUnit.Pixel);
+                while ((verb = iterator.Next(pts)) != SKPathVerb.Done) {
+                    switch (verb) {
+                    case SKPathVerb.Move:
+                        // Start a new independent figure (e.g., a new letter or a hole inside a letter)
+                        pdfPath.StartFigure();
+                        break;
+
+                    case SKPathVerb.Line:
+                        // Draw a straight line
+                        pdfPath.AddLine(pts[0].X, pts[0].Y, pts[1].X, pts[1].Y);
+                        break;
+
+                    case SKPathVerb.Cubic:
+                        // Draw a cubic bezier curve directly
+                        pdfPath.AddBezier(
+                            pts[0].X, pts[0].Y,
+                            pts[1].X, pts[1].Y,
+                            pts[2].X, pts[2].Y,
+                            pts[3].X, pts[3].Y);
+                        break;
+
+                    case SKPathVerb.Quad:
+                        // PDFsharp only supports Cubic Beziers, but TrueType fonts use Quadratic. 
+                        // We convert Quadratic to Cubic using standard math:
+                        double cp1X = pts[0].X + (2.0 / 3.0) * (pts[1].X - pts[0].X);
+                        double cp1Y = pts[0].Y + (2.0 / 3.0) * (pts[1].Y - pts[0].Y);
+                        double cp2X = pts[2].X + (2.0 / 3.0) * (pts[1].X - pts[2].X);
+                        double cp2Y = pts[2].Y + (2.0 / 3.0) * (pts[1].Y - pts[2].Y);
+
+                        pdfPath.AddBezier(
+                            pts[0].X, pts[0].Y,
+                            cp1X, cp1Y,
+                            cp2X, cp2Y,
+                            pts[2].X, pts[2].Y);
+                        break;
+
+                    case SKPathVerb.Close:
+                        pdfPath.CloseFigure();
+                        break;
+                    }
+                }
             }
-            return bmDest;
         }
 
         // Draw a bitmap
         public void DrawBitmap(IGraphicsBitmap bm, RectangleF rectangle, BitmapScaling scalingMode, float minResolution)
         {
-            if (bm.PixelHeight * bm.PixelWidth > BITMAP_DRAW_LIMIT) {
-                // Very large bitmaps can't be drawn in one piece.
-                DrawBitmapPartSplit(bm, 0, 0, bm.PixelWidth, bm.PixelHeight, rectangle, scalingMode, minResolution);
-                return;
-            }
-
+            throw new NotSupportedException("Not yet implemented: DrawBitmap");
+#if false
             bool dispose = false;
             System.Drawing.Bitmap gdiBitmap = ((GDIPlus_Bitmap)bm).Bitmap;
             if (! SupportedPixelFormat(gdiBitmap.PixelFormat)) {
@@ -588,17 +590,14 @@ namespace PurplePen.MapModel
                 if (dispose)
                     gdiBitmap.Dispose();
             }
+#endif
         }
 
         // Draw part of a bitmap
         public void DrawBitmapPart(IGraphicsBitmap bm, int x, int y, int width, int height, RectangleF rectangle, BitmapScaling scalingMode, float minResolution)
         {
-            if (width * height > BITMAP_DRAW_LIMIT) {
-                // Very large bitmaps can't be drawn in one piece.
-                DrawBitmapPartSplit(bm, x, y, width, height, rectangle, scalingMode, minResolution);
-                return;
-            }
-
+            throw new NotSupportedException("Not yet implemented: DrawBitmapPart");
+#if false
             Bitmap bitmap = ((GDIPlus_Bitmap)bm).Bitmap;
 
             // Make sure we use a supported pixel format.
@@ -624,21 +623,8 @@ namespace PurplePen.MapModel
             finally {
                 bitmapPart.Dispose();
             }
+#endif
         }
-
-        private void DrawBitmapPartSplit(IGraphicsBitmap bm, int x, int y, int width, int height, RectangleF rectangle, BitmapScaling scalingMode, float minResolution)
-        {
-            int xSrcSplit = x + width / 2, ySrcSplit = y + height / 2;
-
-            float xDestSplit = rectangle.X + rectangle.Width * (xSrcSplit - x) / width;
-            float yDestSplit = rectangle.Y + rectangle.Height * (ySrcSplit - y) / height;
-
-            DrawBitmapPart(bm, x, y, xSrcSplit - x, ySrcSplit - y, RectangleF.FromLTRB(rectangle.X, rectangle.Y, xDestSplit, yDestSplit), scalingMode, minResolution);
-            DrawBitmapPart(bm, xSrcSplit, y, x + width - xSrcSplit, ySrcSplit - y, RectangleF.FromLTRB(xDestSplit, rectangle.Y, rectangle.Right, yDestSplit), scalingMode, minResolution);
-            DrawBitmapPart(bm, x, ySrcSplit, xSrcSplit - x, y + height - ySrcSplit, RectangleF.FromLTRB(rectangle.X, yDestSplit, xDestSplit, rectangle.Bottom), scalingMode, minResolution);
-            DrawBitmapPart(bm, xSrcSplit, ySrcSplit, x + width - xSrcSplit, y + height - ySrcSplit, RectangleF.FromLTRB(xDestSplit, yDestSplit, rectangle.Right, rectangle.Bottom), scalingMode, minResolution);
-        }
-
 
         public bool HasPath(object pathKey) {
             return pathMap.ContainsKey(pathKey);
@@ -674,9 +660,9 @@ namespace PurplePen.MapModel
                 throw new ArgumentException("Given key does not have a pen created for it", "penKey");
         }
 
-        private XFont GetFont(object fontKey)
+        private SkiaFont GetFont(object fontKey)
         {
-            XFont font;
+            SkiaFont font;
             if (fontMap.TryGetValue(fontKey, out font))
                 return font;
             else
@@ -698,6 +684,41 @@ namespace PurplePen.MapModel
                 gfx.Dispose();
                 gfx = null;
             }
+        }
+    }
+
+    // This is the FontResolver that we use. Because isBold and isItalic are not enough, we want to really encode
+    // Skia information of weight, width, and slant. So we encode that information in the family name, and ignore the isBold and isItalic parameters.
+    // The familyName looks like family^weight^width^slant.
+    class PdfFontResolver : IFontResolver
+    {
+        public FontResolverInfo ResolveTypeface(string familyName, bool isBold, bool isItalic)
+        {
+            return new FontResolverInfo(familyName, false, false);
+        }
+
+        public byte[] GetFont(string faceName)
+        {
+            (string familyName, SKFontStyleWeight weight, SKFontStyleWidth width, SKFontStyleSlant slant) = DecodeFamilyName(faceName);
+            ShapedTypeface shapedTypeface = ShapedTypeface.Get(familyName, weight, width, slant);
+            return shapedTypeface.GetFontData();
+        }
+
+        public static string GetEncodedFamilyName(string familyName, SKFontStyleWeight weight, SKFontStyleWidth width, SKFontStyleSlant slant)
+        {
+            return $"{familyName}^{(int) weight}^{(int) width}^{(int) slant}";
+        }
+
+        public static (string, SKFontStyleWeight, SKFontStyleWidth, SKFontStyleSlant) DecodeFamilyName(string encodedFamilyName)
+        {
+            string[] parts = encodedFamilyName.Split('^');
+            if (parts.Length != 4)
+                throw new ArgumentException("Invalid encoded family name", "encodedFamilyName");
+            string familyName = parts[0];
+            SKFontStyleWeight weight = (SKFontStyleWeight) int.Parse(parts[1]);
+            SKFontStyleWidth width = (SKFontStyleWidth) int.Parse(parts[2]);
+            SKFontStyleSlant slant = (SKFontStyleSlant) int.Parse(parts[3]);
+            return (familyName, weight, width, slant);
         }
     }
 }

@@ -132,6 +132,15 @@ namespace Map_SkiaStd
             return new ShapedTypeface(typeface);
         }
 
+        // Get the data of the font.
+        public byte[] GetFontData()
+        {
+            fontStream.Rewind();
+            byte[] data = new byte[fontStream.Length];
+            fontStream.Read(data, fontStream.Length);
+            return data;
+        }
+
         // Returns true if this typeface contains a glyph for the given Unicode codepoint.
         // A return value of false means the font would render the .notdef glyph (tofu).
         public bool HasGlyph(int codepoint)
@@ -670,7 +679,7 @@ namespace Map_SkiaStd
         // Each GlyphPosition includes the glyph ID, the source text it represents
         // (derived from HarfBuzz cluster mapping), its absolute position on the canvas,
         // and the typeface that should be used to render it.
-        public GlyphPosition[] GetGlyphPositions(string text, SKPoint origin, float fontSize, SKPaint paint)
+        public GlyphPosition[] GetGlyphPositions(string text, SKPoint origin, float fontSize)
         {
             if (string.IsNullOrEmpty(text))
                 return new GlyphPosition[0];

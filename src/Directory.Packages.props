@@ -6,6 +6,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageVersion Include="CsvHelper" Version="2.7.1" />
+    <PackageVersion Include="PDFsharp" Version="6.2.4" />
     <PackageVersion Include="SharpZipLib" Version="1.4.2" />
     <PackageVersion Include="Microsoft.AspNetCore" Version="2.1.6" />
     <PackageVersion Include="Microsoft.AspNetCore.CookiePolicy" Version="2.1.2" />
@@ -28,13 +29,11 @@
     <PackageVersion Include="System.Text.Encoding.CodePages" Version="10.0.2" />
     <PackageVersion Include="PDFiumCore" Version="134.0.6982" />
     <PackageVersion Include="System.Configuration.ConfigurationManager" Version="10.0.3" />
-
     <PackageVersion Include="Avalonia" Version="11.3.11" />
     <PackageVersion Include="Avalonia.Desktop" Version="11.3.11" />
     <PackageVersion Include="Avalonia.Themes.Fluent" Version="11.3.11" />
     <PackageVersion Include="Avalonia.Fonts.Inter" Version="11.3.11" />
-    <PackageVersion Include="Avalonia.Diagnostics" Version="11.3.11"/>
+    <PackageVersion Include="Avalonia.Diagnostics" Version="11.3.11" />
     <PackageVersion Include="CommunityToolkit.Mvvm" Version="8.2.1" />
-
   </ItemGroup>
 </Project>
