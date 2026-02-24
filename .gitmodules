@@ -1,0 +1,3 @@
+[submodule "src/MapModel/PDFsharp"]
+	path = src/MapModel/PDFsharp
+	url = https://github.com/petergolde/PDFsharp.git
