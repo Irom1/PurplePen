@@ -326,17 +326,14 @@ namespace PurplePen.MapModel
             // not supported
         }
 
-        Stack<string> blendModeStack = new Stack<string>();
+        Stack<XBlendMode> blendModeStack = new Stack<XBlendMode>();
         // Set blending mode.
         public virtual bool PushBlending(BlendMode blendMode)
         {
-            // NYI: Need to modify PdfSharp to support blend modes. 
-            throw new NotSupportedException("Blending modes not supported in PDF output yet");
-#if false
             bool supported = false;
-            string newBlendMode = "Normal";
+            XBlendMode newBlendMode = XBlendMode.Normal;
             if (blendMode == BlendMode.Darken) {
-                newBlendMode = "Darken";
+                newBlendMode = XBlendMode.Darken;
                 supported = true;
             }
 
@@ -344,15 +341,11 @@ namespace PurplePen.MapModel
             gfx.BlendMode = newBlendMode;
 
             return supported;
-#endif
         }
         
         public virtual void PopBlending()
         {
-            throw new NotSupportedException("Blending modes not supported in PDF output yet");
-#if false
             gfx.BlendMode = blendModeStack.Pop();
-#endif
         }
 
         // Draw an line with a pen.
