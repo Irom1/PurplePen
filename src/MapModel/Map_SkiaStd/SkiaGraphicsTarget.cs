@@ -58,7 +58,7 @@ namespace PurplePen.MapModel
     public class Skia_GraphicsTarget: IGraphicsTarget
     {
         protected SKCanvas canvas;
-        private SkiaColorConverter colorConverter;
+        private IColorConverter colorConverter;
         private float intensity;    // color intensity level, 1.0F is full intensity (no lightening)
         private int pushLevel;      // How many pushes have we done?
         private Dictionary<object, SKPaint> penMap = new Dictionary<object, SKPaint>(new IdentityComparer<object>());
@@ -68,7 +68,7 @@ namespace PurplePen.MapModel
         private Stack<bool> antiAliasStack = new Stack<bool>();
         private bool antiAlias;
 
-        public Skia_GraphicsTarget(SKCanvas canvas, SkiaColorConverter colorConverter, float intensity = 1.0F)
+        public Skia_GraphicsTarget(SKCanvas canvas, IColorConverter colorConverter, float intensity = 1.0F)
         {
             this.canvas = canvas;
             pushLevel = 0;
@@ -92,7 +92,8 @@ namespace PurplePen.MapModel
                 cmykColor = CmykColor.FromCmyka(cmykColor.Cyan * intensity, cmykColor.Magenta * intensity, cmykColor.Yellow * intensity, cmykColor.Black * intensity, cmykColor.Alpha);
             }
 
-            return colorConverter.ToColor(cmykColor);
+            Color sysColor = colorConverter.ToColor(cmykColor);
+            return new SKColor(sysColor.R, sysColor.G, sysColor.B, sysColor.A);
         }
 
 
@@ -951,7 +952,8 @@ namespace PurplePen.MapModel
 
             if (initialColor != null) {
                 colorConverter = colorConverter ?? new SkiaColorConverter();
-                canvas.Clear(colorConverter.ToColor(initialColor));
+                Color sysColor = colorConverter.ToColor(initialColor);
+                canvas.Clear(new SKColor(sysColor.R, sysColor.G, sysColor.B, sysColor.A));
             }
 
             return canvas;
@@ -1209,12 +1211,11 @@ namespace PurplePen.MapModel
     }
 
 
-    public class SkiaColorConverter
+    public class SkiaColorConverter: IColorConverter
     {
-        public virtual SKColor ToColor(CmykColor cmykColor)
+        public virtual Color ToColor(CmykColor cmykColor)
         {
-            Color sysColor = PurplePen.Graphics2D.ColorConverter.ToColor(cmykColor);
-            return new SKColor(sysColor.R, sysColor.G, sysColor.B, sysColor.A);
-        }
+            return PurplePen.Graphics2D.ColorConverter.ToColor(cmykColor);
+        }    
     }
 }

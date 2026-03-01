@@ -17,7 +17,10 @@ namespace LinearColorConverter
             Console.WriteLine("Populating...");
 
             colorModel.Populate();
-            
+
+            Test(0.0F, 0.135F, 0.395F, 0.0F);
+
+
             Test(0, 0, 0, 0);
             Test(1, 1, 1, 1);
             Test(1, 0, 0, 0);
@@ -55,7 +58,7 @@ namespace LinearColorConverter
 
             Console.WriteLine("Testing...");
 
-            for (int i = 0; i < 10000; ++i) {
+            for (int i = 0; i < 100000; ++i) {
                 if (i % 1000 == 0) {
                     Console.Write($"{i}... ");
                 }
@@ -77,7 +80,8 @@ namespace LinearColorConverter
             Test(maxC, maxM, maxY, maxK);
             
 
-            colorModel.OutputSamples("CmykConverterSamples.cs");
+            colorModel.OutputSamplesCode("CmykConverterSamples.cs");
+            colorModel.OutputSamplesData("swopsamples.dat");
         }
 
         static void Test(float c, float y, float m, float k)
@@ -85,7 +89,7 @@ namespace LinearColorConverter
             RGB correct = colorModel.ConvertUsingICC(c, y, m, k);
             RGB interp = colorModel.ConvertUsingInterpolation(c, y, m, k);
 
-            Console.WriteLine($"Converting [C={c:F3},Y={y:F3},M={m:F3},K={k:F3}]: Correct is (R:{correct.R:F3},G:{correct.G:F3},B:{correct.B:F3})  Interpolated is (R:{interp.R:F3},G:{interp.G:F3},B:{interp.B:F3})");
+            Console.WriteLine($"Converting [C={c:F3},Y={y:F3},M={m:F3},K={k:F3}]: Correct is (R:{correct.R},G:{correct.G},B:{correct.B})  Interpolated is (R:{interp.R},G:{interp.G},B:{interp.B})");
         }
 
         static double Diff(RGB rgb1, RGB rgb2)
@@ -96,18 +100,43 @@ namespace LinearColorConverter
 
     struct RGB
     {
-        public float R, G, B;
-        public RGB(float r, float g, float b)
+        public byte R, G, B;
+        public RGB(byte r, byte g, byte b)
         {
             this.R = r;
             this.G = g;
             this.B = b;
         }
+
+        public RGB(RGBDbl rgb)
+        {
+            this.R = (byte)Math.Round(rgb.R * 255);
+            this.G = (byte)Math.Round(rgb.G * 255);
+            this.B = (byte)Math.Round(rgb.B * 255);
+        }
+    }
+
+    struct RGBDbl
+    {
+        public double R, G, B;
+        public RGBDbl(double r, double g, double b)
+        {
+            this.R = r;
+            this.G = g;
+            this.B = b;
+        }
+
+        public RGBDbl(RGB rgb)
+        {
+            this.R = rgb.R / 255.0;
+            this.G = rgb.G / 255.0;
+            this.B = rgb.B / 255.0;
+        }
     }
 
     class ColorModel
     {
-        public const int SAMPLESIZE = 8;  // Was 11.
+        public const int SAMPLESIZE = 12;
         public RGB[,,,] samples = new RGB[SAMPLESIZE, SAMPLESIZE, SAMPLESIZE, SAMPLESIZE];
 
         Uri SwopUri;
@@ -121,6 +150,7 @@ namespace LinearColorConverter
             for (int i = 0; i < SAMPLESIZE; ++i) {
                 float cyan = i * delta;
                 for (int j = 0; j < SAMPLESIZE; ++j) {
+                    Console.WriteLine($"{i},{j}");
                     float mag = j * delta;
                     for (int k = 0; k < SAMPLESIZE; ++k) {
                         float yel = k * delta;
@@ -137,9 +167,25 @@ namespace LinearColorConverter
         public RGB ConvertUsingICC(float c, float m, float y, float k)
         {
             float[] colorValues = { c, m, y, k };
-            Color color = Color.FromValues(colorValues, SwopUri);
-            return new RGB(color.ScR, color.ScG, color.ScB);
+            Color color;
+            if (c < 0.001F && m < 0.001F && y < 0.001F && k < 0.001F)
+                return new RGB(255, 255, 255);
+            else if (k > 0.999F)
+                return new RGB(0, 0, 0);
+            else {
+                color = Color.FromValues(colorValues, SwopUri);
+
+                return new RGB(color.R, color.G, color.B);
+            }
         }
+
+        private static RGBDbl Interp(RGBDbl rgbLow, RGBDbl rgbHigh, float frac)
+        {
+            return new RGBDbl(rgbLow.R * (1 - frac) + rgbHigh.R * frac,
+                rgbLow.G * (1 - frac) + rgbHigh.G * frac,
+                rgbLow.B * (1 - frac) + rgbHigh.B * frac);
+        }
+
 
         public RGB ConvertUsingInterpolation(float c, float m, float y, float k)
         {
@@ -158,29 +204,29 @@ namespace LinearColorConverter
             int lHigh = lLow < SAMPLESIZE - 1 ? lLow + 1 : lLow;
             float lFrac = k * (SAMPLESIZE - 1) - lLow;
 
-            RGB rgb000 = Interp(samples[iLow, jLow, kLow, lLow], samples[iHigh, jLow, kLow, lLow], iFrac);
-            RGB rgb001 = Interp(samples[iLow, jLow, kLow, lHigh], samples[iHigh, jLow, kLow, lHigh], iFrac);
-            RGB rgb010 = Interp(samples[iLow, jLow, kHigh, lLow], samples[iHigh, jLow, kHigh, lLow], iFrac);
-            RGB rgb011 = Interp(samples[iLow, jLow, kHigh, lHigh], samples[iHigh, jLow, kHigh, lHigh], iFrac);
-            RGB rgb100 = Interp(samples[iLow, jHigh, kLow, lLow], samples[iHigh, jHigh, kLow, lLow], iFrac);
-            RGB rgb101 = Interp(samples[iLow, jHigh, kLow, lHigh], samples[iHigh, jHigh, kLow, lHigh], iFrac);
-            RGB rgb110 = Interp(samples[iLow, jHigh, kHigh, lLow], samples[iHigh, jHigh, kHigh, lLow], iFrac);
-            RGB rgb111 = Interp(samples[iLow, jHigh, kHigh, lHigh], samples[iHigh, jHigh, kHigh, lHigh], iFrac);
+            RGBDbl rgb000 = Interp(new RGBDbl(samples[iLow, jLow, kLow, lLow]), new RGBDbl(samples[iHigh, jLow, kLow, lLow]), iFrac);
+            RGBDbl rgb001 = Interp(new RGBDbl(samples[iLow, jLow, kLow, lHigh]), new RGBDbl(samples[iHigh, jLow, kLow, lHigh]), iFrac);
+            RGBDbl rgb010 = Interp(new RGBDbl(samples[iLow, jLow, kHigh, lLow]), new RGBDbl(samples[iHigh, jLow, kHigh, lLow]), iFrac);
+            RGBDbl rgb011 = Interp(new RGBDbl(samples[iLow, jLow, kHigh, lHigh]), new RGBDbl(samples[iHigh, jLow, kHigh, lHigh]), iFrac);
+            RGBDbl rgb100 = Interp(new RGBDbl(samples[iLow, jHigh, kLow, lLow]), new RGBDbl(samples[iHigh, jHigh, kLow, lLow]), iFrac);
+            RGBDbl rgb101 = Interp(new RGBDbl(samples[iLow, jHigh, kLow, lHigh]), new RGBDbl(samples[iHigh, jHigh, kLow, lHigh]), iFrac);
+            RGBDbl rgb110 = Interp(new RGBDbl(samples[iLow, jHigh, kHigh, lLow]), new RGBDbl(samples[iHigh, jHigh, kHigh, lLow]), iFrac);
+            RGBDbl rgb111 = Interp(new RGBDbl(samples[iLow, jHigh, kHigh, lHigh]), new RGBDbl(samples[iHigh, jHigh, kHigh, lHigh]), iFrac);
 
-            RGB rgb00 = Interp(rgb000, rgb100, jFrac);
-            RGB rgb01 = Interp(rgb001, rgb101, jFrac);
-            RGB rgb10 = Interp(rgb010, rgb110, jFrac);
-            RGB rgb11 = Interp(rgb011, rgb111, jFrac);
+            RGBDbl rgb00 = Interp(rgb000, rgb100, jFrac);
+            RGBDbl rgb01 = Interp(rgb001, rgb101, jFrac);
+            RGBDbl rgb10 = Interp(rgb010, rgb110, jFrac);
+            RGBDbl rgb11 = Interp(rgb011, rgb111, jFrac);
 
-            RGB rgb0 = Interp(rgb00, rgb10, kFrac);
-            RGB rgb1 = Interp(rgb01, rgb11, kFrac);
+            RGBDbl rgb0 = Interp(rgb00, rgb10, kFrac);
+            RGBDbl rgb1 = Interp(rgb01, rgb11, kFrac);
 
-            RGB rgb = Interp(rgb0, rgb1, lFrac);
+            RGBDbl rgb = Interp(rgb0, rgb1, lFrac);
 
-            return rgb;
+            return new RGB(rgb);
         }
 
-        public void OutputSamples(string filename)
+        public void OutputSamplesCode(string filename)
         {
             using (TextWriter writer = new StreamWriter(filename)) {
                 writer.WriteLine("// Lookup values for linear interpolation of CMYK -> RGB conversion.");
@@ -188,7 +234,7 @@ namespace LinearColorConverter
                 writer.WriteLine();
                 writer.WriteLine("namespace PurplePen {");
                 writer.WriteLine("    partial class CmykConverter {");
-                writer.WriteLine("        private float[,,,,] samples = {");
+                writer.WriteLine("        private byte[,,,,] samples = {");
 
                 for (int i = 0; i < SAMPLESIZE; ++i) {
                     writer.WriteLine("            {");
@@ -197,7 +243,7 @@ namespace LinearColorConverter
                         for (int k = 0; k < SAMPLESIZE; ++k) {
                             writer.Write("                    {");
                             for (int l = 0; l < SAMPLESIZE; ++l) {
-                                writer.Write("{{{0:R}F,{1:R}F,{2:R}F}}, ", samples[i, j, k, l].R, samples[i, j, k, l].G, samples[i, j, k, l].B);
+                                writer.Write("{{{0},{1},{2}}}, ", samples[i, j, k, l].R, samples[i, j, k, l].G, samples[i, j, k, l].B);
                             }
                             writer.WriteLine("},");
                         }
@@ -212,11 +258,21 @@ namespace LinearColorConverter
             }
         }
 
-        private RGB Interp(RGB rgbLow, RGB rgbHigh, float frac)
+        public void OutputSamplesData(string filename)
         {
-            return new RGB(rgbLow.R * (1 - frac) + rgbHigh.R * frac,
-                rgbLow.G * (1 - frac) + rgbHigh.G * frac,
-                rgbLow.B * (1 - frac) + rgbHigh.B * frac);
+            using (FileStream fs = new FileStream(filename, FileMode.Create, FileAccess.Write)) {
+                for (int i = 0; i < SAMPLESIZE; ++i) {
+                    for (int j = 0; j < SAMPLESIZE; ++j) {
+                        for (int k = 0; k < SAMPLESIZE; ++k) {
+                            for (int l = 0; l < SAMPLESIZE; ++l) {
+                                fs.WriteByte(samples[i, j, k, l].R);
+                                fs.WriteByte(samples[i, j, k, l].G);
+                                fs.WriteByte(samples[i, j, k, l].B);
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         private string GetFileInAppDirectory(string filename)

@@ -171,4 +171,9 @@ namespace PurplePen.Graphics2D
         IGraphicsBitmap FinishBitmap();
     }
 
+    public interface IColorConverter
+    {
+        System.Drawing.Color ToColor(CmykColor cmykColor);
+    }   
+
 }

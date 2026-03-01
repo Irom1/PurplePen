@@ -1337,7 +1337,7 @@ namespace PurplePen.MapModel
         }
     }
 
-    public class GDIPlus_ColorConverter
+    public class GDIPlus_ColorConverter: IColorConverter
     {
         public virtual Color ToColor(CmykColor cmykColor)
         {
