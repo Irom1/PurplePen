@@ -110,7 +110,7 @@ namespace PurplePen
     /// by Id<typeparam name="T"></typeparam>, which also does very simply XML persistence. Use one ObjectStore
     /// for each type of object.
     /// </summary>
-    class ObjectStore<T>
+    public class ObjectStore<T>
         where T:StorableObject, new()
     {
         private Dictionary<Id<T>, T> dict = new Dictionary<Id<T>, T>();
