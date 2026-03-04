@@ -57,7 +57,7 @@ namespace PurplePen.Tests
         {
             undomgr = new UndoMgr(5);
             eventDB = new EventDB(undomgr);
-            symbolDB = new SymbolDB(Util.GetFileInAppDirectory("symbols.xml"));
+            symbolDB = new SymbolDB(WindowsUtil.GetFileInAppDirectory("symbols.xml"));
             eventDB.Load(TestUtil.GetTestFile("textifier\\sampleevent1.coursescribe"));
             eventDB.Validate();
         }

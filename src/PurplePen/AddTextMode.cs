@@ -121,7 +121,7 @@ namespace PurplePen
 
             // Begin dragging out the description block.
             startLocation = location;
-            startingObj = new BasicTextCourseObj(Id<Special>.None, displayText, new RectangleF(location, new SizeF(0.001F, 0.001F)), fontName, Util.GetFontStyle(fontBold, fontItalic), fontColor, fontHeight);
+            startingObj = new BasicTextCourseObj(Id<Special>.None, displayText, new RectangleF(location, new SizeF(0.001F, 0.001F)), fontName, WindowsUtil.GetFontStyle(fontBold, fontItalic), fontColor, fontHeight);
             handleDragging = location;
             DragTo(location);
             displayUpdateNeeded = true;
@@ -146,7 +146,7 @@ namespace PurplePen
 
             // User just clicked. Create text of a default size.
             SizeF size;
-            Graphics g = Util.GetHiresGraphics();
+            Graphics g = WindowsUtil.GetHiresGraphics();
             using (Font f = GdiplusFontLoader.CreateFont(NormalCourseAppearance.fontNameTextSpecial, NormalCourseAppearance.emHeightDefaultTextSpecial, NormalCourseAppearance.fontStyleTextSpecial))
                 size = g.MeasureString(measureText, f, new PointF(0,0), StringFormat.GenericTypographic);
 

@@ -51,7 +51,7 @@ namespace PurplePen.Tests
 
         void CheckCourse(string filename, CourseDesignator courseDesignator, bool addAllControls, string testName, RectangleF rect, CourseAppearance appearance)
         {
-            SymbolDB symbolDB = new SymbolDB(Util.GetFileInAppDirectory("symbols.xml"));
+            SymbolDB symbolDB = new SymbolDB(WindowsUtil.GetFileInAppDirectory("symbols.xml"));
             UndoMgr undomgr = new UndoMgr(5);
             EventDB eventDB = new EventDB(undomgr);
             CourseView courseView;
@@ -394,7 +394,7 @@ namespace PurplePen.Tests
         [TestMethod]
         public void RelayVariations()
         {
-            SymbolDB symbolDB = new SymbolDB(Util.GetFileInAppDirectory("symbols.xml"));
+            SymbolDB symbolDB = new SymbolDB(WindowsUtil.GetFileInAppDirectory("symbols.xml"));
             UndoMgr undomgr = new UndoMgr(5);
             EventDB eventDB = new EventDB(undomgr);
 
@@ -414,7 +414,7 @@ namespace PurplePen.Tests
         [TestMethod]
         public void HideVariationCode()
         {
-            SymbolDB symbolDB = new SymbolDB(Util.GetFileInAppDirectory("symbols.xml"));
+            SymbolDB symbolDB = new SymbolDB(WindowsUtil.GetFileInAppDirectory("symbols.xml"));
             UndoMgr undomgr = new UndoMgr(5);
             EventDB eventDB = new EventDB(undomgr);
 
@@ -435,7 +435,7 @@ namespace PurplePen.Tests
         [TestMethod]
         public void SingleVariation()
         {
-            SymbolDB symbolDB = new SymbolDB(Util.GetFileInAppDirectory("symbols.xml"));
+            SymbolDB symbolDB = new SymbolDB(WindowsUtil.GetFileInAppDirectory("symbols.xml"));
             UndoMgr undomgr = new UndoMgr(5);
             EventDB eventDB = new EventDB(undomgr);
 

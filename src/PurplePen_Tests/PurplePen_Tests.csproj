@@ -39,6 +39,7 @@
     <ProjectReference Include="..\MapModel\MapModel\MapModel.csproj" />
     <ProjectReference Include="..\MapModel\Map_GDIPlus\Map_GDIPlus.csproj" />
     <ProjectReference Include="..\PdfConverter\PdfConverter.csproj" />
+    <ProjectReference Include="..\PurplePenCore\PurplePenCore.csproj" />
     <ProjectReference Include="..\PurplePen\PurplePen.csproj" />
     <ProjectReference Include="..\TestUtil\TestUtil.csproj" />
   </ItemGroup>

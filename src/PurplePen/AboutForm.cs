@@ -47,7 +47,7 @@ namespace PurplePen
         {
             InitializeComponent();
 
-            this.versionLabel.Text = string.Format(MiscText.VersionLabel, Util.PrettyVersionString(VersionNumber.Current));
+            this.versionLabel.Text = string.Format(MiscText.VersionLabel, WindowsUtil.PrettyVersionString(VersionNumber.Current));
             this.bitnessLabel.Text = Environment.Is64BitProcess ? "64-bit" : "32-bit";
 #if MSSTORE
             this.bitnessLabel.Text += " (Windows Store)";
@@ -68,7 +68,7 @@ namespace PurplePen
 
         private void creditsButton_Click(object sender, EventArgs e)
         {
-            Util.ShowHelpTopic(this, "Credits.htm");
+            WindowsUtil.ShowHelpTopic(this, "Credits.htm");
         }
 
         private void copyrightLabel_Click(object sender, EventArgs e)

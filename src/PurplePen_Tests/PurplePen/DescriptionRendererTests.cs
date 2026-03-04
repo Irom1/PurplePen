@@ -55,7 +55,7 @@ namespace PurplePen.Tests
         // Render the given course id (0 = all controls) and kind to a bitmap, and compare it to the saved version.
         internal void CheckRenderBitmap(string filename, Id<Course> id, DescriptionKind kind, int numColumns = 1, string standard = "2004")
         {
-            SymbolDB symbolDB = new SymbolDB(Util.GetFileInAppDirectory("symbols.xml"), standard);
+            SymbolDB symbolDB = new SymbolDB(WindowsUtil.GetFileInAppDirectory("symbols.xml"), standard);
             UndoMgr undomgr = new UndoMgr(5);
             EventDB eventDB = new EventDB(undomgr);
             CourseView courseView;
@@ -110,7 +110,7 @@ namespace PurplePen.Tests
         // Render the given course id (0 = all controls) and kind to a bitmap, and compare it to the saved version.
         internal void CheckRenderBitmapPixelAtATime(Id<Course> id, DescriptionKind kind)
         {
-            SymbolDB symbolDB = new SymbolDB(Util.GetFileInAppDirectory("symbols.xml"));
+            SymbolDB symbolDB = new SymbolDB(WindowsUtil.GetFileInAppDirectory("symbols.xml"));
             UndoMgr undomgr = new UndoMgr(5);
             EventDB eventDB = new EventDB(undomgr);
             CourseView courseView;
@@ -340,7 +340,7 @@ namespace PurplePen.Tests
         // Render the given course id (0 = all controls) and kind to a map, and compare it to the saved version.
         internal void CheckRenderMap(string filename, Id<Course> id, DescriptionKind kind, int numColumns = 1, string standard = "2004")
         {
-            SymbolDB symbolDB = new SymbolDB(Util.GetFileInAppDirectory("symbols.xml"), standard);
+            SymbolDB symbolDB = new SymbolDB(WindowsUtil.GetFileInAppDirectory("symbols.xml"), standard);
             UndoMgr undomgr = new UndoMgr(5);
             EventDB eventDB = new EventDB(undomgr);
             CourseView courseView;
@@ -364,7 +364,7 @@ namespace PurplePen.Tests
         // Render the given course id (0 = all controls) and kind to a map, and compare it to the saved version.
         internal void CheckRenderMapStandardChange(string filename, Id<Course> id, DescriptionKind kind, string newDescStandard)
         {
-            SymbolDB symbolDB = new SymbolDB(Util.GetFileInAppDirectory("symbols.xml"));
+            SymbolDB symbolDB = new SymbolDB(WindowsUtil.GetFileInAppDirectory("symbols.xml"));
             UndoMgr undomgr = new UndoMgr(5);
             EventDB eventDB = new EventDB(undomgr);
             CourseView courseView;
@@ -684,7 +684,7 @@ namespace PurplePen.Tests
         [TestMethod]
         public void HitTestAllControls()
         {
-            SymbolDB symbolDB = new SymbolDB(Util.GetFileInAppDirectory("symbols.xml"));
+            SymbolDB symbolDB = new SymbolDB(WindowsUtil.GetFileInAppDirectory("symbols.xml"));
             UndoMgr undomgr = new UndoMgr(5);
             EventDB eventDB = new EventDB(undomgr);
             eventDB.Load(TestUtil.GetTestFile("descriptions\\sampleevent1.coursescribe"));
@@ -738,7 +738,7 @@ namespace PurplePen.Tests
         [TestMethod]
         public void HitTestRegular()
         {
-            SymbolDB symbolDB = new SymbolDB(Util.GetFileInAppDirectory("symbols.xml"));
+            SymbolDB symbolDB = new SymbolDB(WindowsUtil.GetFileInAppDirectory("symbols.xml"));
             UndoMgr undomgr = new UndoMgr(5);
             EventDB eventDB = new EventDB(undomgr);
             eventDB.Load(TestUtil.GetTestFile("descriptions\\sampleevent1.coursescribe"));
@@ -796,7 +796,7 @@ namespace PurplePen.Tests
         [TestMethod]
         public void HitTestScore()
         {
-            SymbolDB symbolDB = new SymbolDB(Util.GetFileInAppDirectory("symbols.xml"));
+            SymbolDB symbolDB = new SymbolDB(WindowsUtil.GetFileInAppDirectory("symbols.xml"));
             UndoMgr undomgr = new UndoMgr(5);
             EventDB eventDB = new EventDB(undomgr);
             eventDB.Load(TestUtil.GetTestFile("descriptions\\sampleevent1.coursescribe"));
@@ -850,7 +850,7 @@ namespace PurplePen.Tests
         [TestMethod]
         public void HitTestMultiLine()
         {
-            SymbolDB symbolDB = new SymbolDB(Util.GetFileInAppDirectory("symbols.xml"));
+            SymbolDB symbolDB = new SymbolDB(WindowsUtil.GetFileInAppDirectory("symbols.xml"));
             UndoMgr undomgr = new UndoMgr(5);
             EventDB eventDB = new EventDB(undomgr);
             eventDB.Load(TestUtil.GetTestFile("descriptions\\sampleevent6.coursescribe"));

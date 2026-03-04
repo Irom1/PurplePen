@@ -839,7 +839,7 @@ namespace PurplePen
             else if (control1.kind > control2.kind)
                 return 1;
 
-            int result = Util.CompareCodes(control1.code, control2.code);
+            int result = WindowsUtil.CompareCodes(control1.code, control2.code);
             if (result != 0)
                 return result;
 
@@ -1307,7 +1307,7 @@ namespace PurplePen
                 return list.ToArray();
             }
             else {
-                return (CourseDesignator[])Util.CloneArrayAndElements(special.courses);       // clone so that changes don't affect it.
+                return (CourseDesignator[])WindowsUtil.CloneArrayAndElements(special.courses);       // clone so that changes don't affect it.
             }
         }
 
@@ -1426,8 +1426,8 @@ namespace PurplePen
         {
             Event ev = eventDB.GetEvent();
 
-            customSymbolText = Util.CopyDictionary(ev.customSymbolText);
-            customSymbolKey = Util.CopyDictionary(ev.customSymbolKey);
+            customSymbolText = WindowsUtil.CopyDictionary(ev.customSymbolText);
+            customSymbolKey = WindowsUtil.CopyDictionary(ev.customSymbolKey);
         }
 
         // Get the description language.
@@ -1485,7 +1485,7 @@ namespace PurplePen
                 basename = basename + fileSuffix;
 
             // Remove bad characters.
-            basename = Util.FilterInvalidPathChars(basename);
+            basename = WindowsUtil.FilterInvalidPathChars(basename);
             basename += extension;      // add OCAD extension.
 
             return basename;

@@ -110,7 +110,7 @@ namespace PurplePen
             using (xmlWriter = XmlWriter.Create(fileName, settings)) {
                 xmlWriter.WriteStartDocument();
                 xmlWriter.WriteStartElement("gpx", gpxNamespace);
-                xmlWriter.WriteAttributeString("creator", "Purple Pen " + Util.PrettyVersionString(VersionNumber.Current));
+                xmlWriter.WriteAttributeString("creator", "Purple Pen " + WindowsUtil.PrettyVersionString(VersionNumber.Current));
                 xmlWriter.WriteAttributeString("version", "1.1");
                 xmlWriter.WriteAttributeString("xsi", "schemaLocation", xsiNamespace, gpxNamespace + " " + gpxSchema);
 

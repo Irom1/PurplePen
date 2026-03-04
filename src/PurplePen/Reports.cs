@@ -353,13 +353,13 @@ namespace PurplePen
             WriteTableCell(name);
 
             // # of normal controls
-            WriteTableCell(Util.RangeIfNeeded(courseView.MinNormalControls, courseView.MaxNormalControls));
+            WriteTableCell(WindowsUtil.RangeIfNeeded(courseView.MinNormalControls, courseView.MaxNormalControls));
 
             // Length (empty for score course)
             if (courseView.Kind == CourseView.CourseViewKind.Score)
                 WriteTableCell("");
             else
-                WriteTableCell(Util.GetLengthInKm(courseView.MinTotalLength, courseView.MaxTotalLength, 1));
+                WriteTableCell(WindowsUtil.GetLengthInKm(courseView.MinTotalLength, courseView.MaxTotalLength, 1));
 
             // Climb (empty for score course or no climb defined)
             if (courseView.Kind == CourseView.CourseViewKind.Score || courseView.TotalClimb < 0)
@@ -443,7 +443,7 @@ namespace PurplePen
                 ControlLoadInfo loadInfo = new ControlLoadInfo();
 
                 loadInfo.controlId = controlId;
-                loadInfo.controlName = Util.ControlPointName(eventDB, controlId, NameStyle.Medium);
+                loadInfo.controlName = WindowsUtil.ControlPointName(eventDB, controlId, NameStyle.Medium);
                 loadInfo.numCourses = QueryEvent.CoursesUsingControl(eventDB, controlId, false).Length;
                 loadInfo.load = QueryEvent.GetControlLoad(eventDB, controlId);
                 loadInfo.visits = QueryEvent.GetControlVisitLoad(eventDB, controlId);
@@ -462,7 +462,7 @@ namespace PurplePen
                 if (loadInfo1.numCourses < loadInfo2.numCourses) return 1;
                 else if (loadInfo1.numCourses > loadInfo2.numCourses) return -1;
 
-                int result = Util.CompareCodes(loadInfo1.controlName, loadInfo2.controlName);
+                int result = WindowsUtil.CompareCodes(loadInfo1.controlName, loadInfo2.controlName);
                 if (result != 0)
                     return result;
 
@@ -527,7 +527,7 @@ namespace PurplePen
                         LegLoadInfo loadInfo = new LegLoadInfo();
                         loadInfo.controlId1 = controlId1;
                         loadInfo.controlId2 = controlId2;
-                        loadInfo.text = string.Format("{0}\u2013{1}", Util.ControlPointName(eventDB, controlId1, NameStyle.Medium), Util.ControlPointName(eventDB, controlId2, NameStyle.Medium));
+                        loadInfo.text = string.Format("{0}\u2013{1}", WindowsUtil.ControlPointName(eventDB, controlId1, NameStyle.Medium), WindowsUtil.ControlPointName(eventDB, controlId2, NameStyle.Medium));
                         loadInfo.numCourses = QueryEvent.CoursesUsingLeg(eventDB, controlId1, controlId2, false).Length;
                         loadInfo.load = QueryEvent.GetLegLoad(eventDB, controlId1, controlId2);
 
@@ -685,7 +685,7 @@ namespace PurplePen
 
             list.Sort(delegate(Id<ControlPoint> id1, Id<ControlPoint> id2) {
                 ControlPoint control1 = eventDB.GetControl(id1), control2 = eventDB.GetControl(id2);
-                return Util.CompareCodes(control1.code, control2.code);
+                return WindowsUtil.CompareCodes(control1.code, control2.code);
             });
 
             return list.ToArray();
@@ -722,7 +722,7 @@ namespace PurplePen
                 Id<ControlPoint> firstControlId = courseView.ControlViews[firstIndex].controlId;
                 Id<ControlPoint> secondControlId = courseView.ControlViews[nextIndex].controlId;
 
-                string legText = string.Format("{0}\u2013{1}", Util.ControlPointName(eventDB, firstControlId, NameStyle.Medium), Util.ControlPointName(eventDB, secondControlId, NameStyle.Medium));
+                string legText = string.Format("{0}\u2013{1}", WindowsUtil.ControlPointName(eventDB, firstControlId, NameStyle.Medium), WindowsUtil.ControlPointName(eventDB, secondControlId, NameStyle.Medium));
                 string legNumberText = courseView.Kind == CourseView.CourseViewKind.Normal ? Convert.ToString(legNumber) : "";
                 WriteTableRow(legNumberText, legText, string.Format("{0} m", Math.Round(distance)));
 
@@ -791,9 +791,9 @@ namespace PurplePen
                 // Heading string for course
                 string headerLine;
                 if (courseView.TotalClimb < 0)
-                    headerLine = string.Format(ReportText.LegLength_CourseInfoNoClimb, courseView.CourseName, Util.RangeIfNeeded(courseView.MinNormalControls, courseView.MaxNormalControls), Util.GetLengthInKm(courseView.MinTotalLength, courseView.MaxTotalLength, 1));
+                    headerLine = string.Format(ReportText.LegLength_CourseInfoNoClimb, courseView.CourseName, WindowsUtil.RangeIfNeeded(courseView.MinNormalControls, courseView.MaxNormalControls), WindowsUtil.GetLengthInKm(courseView.MinTotalLength, courseView.MaxTotalLength, 1));
                 else
-                    headerLine = string.Format(ReportText.LegLength_CourseInfo,  courseView.CourseName, Util.RangeIfNeeded(courseView.MinNormalControls, courseView.MaxNormalControls), Util.GetLengthInKm(courseView.MinTotalLength, courseView.MaxTotalLength, 1), Math.Round(courseView.TotalClimb / 5, MidpointRounding.AwayFromZero) * 5.0);
+                    headerLine = string.Format(ReportText.LegLength_CourseInfo,  courseView.CourseName, WindowsUtil.RangeIfNeeded(courseView.MinNormalControls, courseView.MaxNormalControls), WindowsUtil.GetLengthInKm(courseView.MinTotalLength, courseView.MaxTotalLength, 1), Math.Round(courseView.TotalClimb / 5, MidpointRounding.AwayFromZero) * 5.0);
                 WriteH2(headerLine);
 
                 WriteLegLengthTable(eventDB, courseView);
@@ -1189,7 +1189,7 @@ namespace PurplePen
             for (int i = 0; i < courseList.Count; ++i) {
                 if (i != 0)
                     builder.Append(", ");
-                builder.Append(Util.CourseName(eventDB, courseList[i]));
+                builder.Append(WindowsUtil.CourseName(eventDB, courseList[i]));
             }
 
             return builder.ToString();
@@ -1234,13 +1234,13 @@ namespace PurplePen
                 foreach (RepeatControl repeatControl in repeatedControls) {
                     if (repeatControl.scoreCourse) {
                         WritePara(string.Format(ReportText.EventAudit_ScoreDuplicateControl,
-                                  Util.CourseName(eventDB, repeatControl.courseDesignator.CourseId),
-                                  Util.ControlPointName(eventDB, repeatControl.controlId, NameStyle.Medium)));
+                                  WindowsUtil.CourseName(eventDB, repeatControl.courseDesignator.CourseId),
+                                  WindowsUtil.ControlPointName(eventDB, repeatControl.controlId, NameStyle.Medium)));
                     }
                     else {
                         WritePara(string.Format(ReportText.EventAudit_RepeatControl,
-                                  Util.CourseName(eventDB, repeatControl.courseDesignator.CourseId),
-                                  Util.ControlPointName(eventDB, repeatControl.controlId, NameStyle.Medium)));
+                                  WindowsUtil.CourseName(eventDB, repeatControl.courseDesignator.CourseId),
+                                  WindowsUtil.ControlPointName(eventDB, repeatControl.controlId, NameStyle.Medium)));
                     }
                 }
             }
@@ -1266,7 +1266,7 @@ namespace PurplePen
                 foreach (NearbyControls nearby in nearbyList) {
                     string code1 = eventDB.GetControl(nearby.controlId1).code;
                     string code2 = eventDB.GetControl(nearby.controlId2).code;
-                    if (Util.CompareCodes(code1, code2) > 0) {
+                    if (WindowsUtil.CompareCodes(code1, code2) > 0) {
                         // swap code1 and code 2 so they always appear in order.
                         string temp = code1;
                         code1 = code2;
@@ -1296,14 +1296,14 @@ namespace PurplePen
                     if (!first)
                         WriteTableRow("\u00a0");
 
-                    WriteTableRow(Util.ControlPointName(eventDB, bothDirectionsLeg.courseLeg.controlId1, NameStyle.Medium) +
+                    WriteTableRow(WindowsUtil.ControlPointName(eventDB, bothDirectionsLeg.courseLeg.controlId1, NameStyle.Medium) +
                                   " \u2192 " +
-                                  Util.ControlPointName(eventDB, bothDirectionsLeg.courseLeg.controlId2, NameStyle.Medium),
+                                  WindowsUtil.ControlPointName(eventDB, bothDirectionsLeg.courseLeg.controlId2, NameStyle.Medium),
                                   CourseList(eventDB, bothDirectionsLeg.forwardCourses));
 
-                    WriteTableRow(Util.ControlPointName(eventDB, bothDirectionsLeg.courseLeg.controlId2, NameStyle.Medium) +
+                    WriteTableRow(WindowsUtil.ControlPointName(eventDB, bothDirectionsLeg.courseLeg.controlId2, NameStyle.Medium) +
                                   " \u2192 " +
-                                  Util.ControlPointName(eventDB, bothDirectionsLeg.courseLeg.controlId1, NameStyle.Medium),
+                                  WindowsUtil.ControlPointName(eventDB, bothDirectionsLeg.courseLeg.controlId1, NameStyle.Medium),
                                   CourseList(eventDB, bothDirectionsLeg.backwardCourses));
 
                     first = false;
@@ -1328,7 +1328,7 @@ namespace PurplePen
                 BeginTableBody();
                 foreach (Id<ControlPoint> controlId in unusedControls) {
                     ControlPoint control = eventDB.GetControl(controlId);
-                    WriteTableRow(Util.ControlPointName(eventDB, controlId, NameStyle.Medium), string.Format("({0}, {1})", Math.Round(control.location.X), Math.Round(control.location.Y)));
+                    WriteTableRow(WindowsUtil.ControlPointName(eventDB, controlId, NameStyle.Medium), string.Format("({0}, {1})", Math.Round(control.location.X), Math.Round(control.location.Y)));
                 }
                 EndTableBody();
 
@@ -1345,7 +1345,7 @@ namespace PurplePen
                 WriteTableHeaderRow(ReportText.ColumnHeader_Code, ReportText.ColumnHeader_Column, ReportText.ColumnHeader_Reason);
                 BeginTableBody();
                 foreach (MissingThing thing in missingBoxes) {
-                    WriteTableRow(Util.ControlPointName(eventDB, thing.controlId, NameStyle.Medium), thing.what, thing.why);
+                    WriteTableRow(WindowsUtil.ControlPointName(eventDB, thing.controlId, NameStyle.Medium), thing.what, thing.why);
                 }
                 EndTableBody();
                 EndTable();
@@ -1361,7 +1361,7 @@ namespace PurplePen
                 WriteTableHeaderRow(ReportText.ColumnHeader_Code, ReportText.ColumnHeader_Reason);
                 BeginTableBody();
                 foreach (MissingThing thing in missingPunches) {
-                    WriteTableRow(Util.ControlPointName(eventDB, thing.controlId, NameStyle.Medium), thing.what);
+                    WriteTableRow(WindowsUtil.ControlPointName(eventDB, thing.controlId, NameStyle.Medium), thing.what);
                 }
                 EndTableBody();
                 EndTable();
@@ -1377,7 +1377,7 @@ namespace PurplePen
                 WriteTableHeaderRow(ReportText.ColumnHeader_Course, ReportText.ColumnHeader_Control, ReportText.ColumnHeader_Reason);
                 BeginTableBody();
                 foreach (MissingThing thing in missingScores) {
-                    WriteTableRow(eventDB.GetCourse(thing.courseId).name, Util.ControlPointName(eventDB, thing.controlId, NameStyle.Medium), thing.what);
+                    WriteTableRow(eventDB.GetCourse(thing.courseId).name, WindowsUtil.ControlPointName(eventDB, thing.controlId, NameStyle.Medium), thing.what);
                 }
                 EndTableBody();
                 EndTable();

@@ -83,7 +83,7 @@ namespace PurplePen
             decimal increment;
             decimal maximum;
 
-            if (Util.IsCurrentCultureMetric())
+            if (WindowsUtil.IsCurrentCultureMetric())
             {
                 units = "mm";
                 decimalPlaces = 1;
@@ -110,7 +110,7 @@ namespace PurplePen
         {
             for (int i = 0; i < MapUtil.StandardPaperSizes.Length; ++i)
             {
-                comboBoxPaperSize.Items.Add(Util.GetPaperSizeText(MapUtil.StandardPaperSizes[i]));
+                comboBoxPaperSize.Items.Add(WindowsUtil.GetPaperSizeText(MapUtil.StandardPaperSizes[i]));
             }
 
             comboBoxPaperSize.Items.Add(MiscText.UserDefined);
@@ -139,9 +139,9 @@ namespace PurplePen
                 upDownWidth.Enabled = upDownHeight.Enabled = false;
             }
 
-            upDownWidth.Value = Util.GetDistanceValue(paperSize.Width);
-            upDownHeight.Value = Util.GetDistanceValue(paperSize.Height);
-            upDownMargin.Value = Util.GetDistanceValue(margin);
+            upDownWidth.Value = WindowsUtil.GetDistanceValue(paperSize.Width);
+            upDownHeight.Value = WindowsUtil.GetDistanceValue(paperSize.Height);
+            upDownMargin.Value = WindowsUtil.GetDistanceValue(margin);
 
             checkBoxLandscape.Checked = landscape;
             checkBoxPortrait.Checked = !landscape;
@@ -156,9 +156,9 @@ namespace PurplePen
             else
                 paperSizeText = comboBoxPaperSize.SelectedText;
 
-            paperSize = new PaperSize(paperSizeText, Util.GetDistanceFromValue(upDownWidth.Value), Util.GetDistanceFromValue(upDownHeight.Value));
+            paperSize = new PaperSize(paperSizeText, WindowsUtil.GetDistanceFromValue(upDownWidth.Value), WindowsUtil.GetDistanceFromValue(upDownHeight.Value));
 
-            margin = Util.GetDistanceFromValue(upDownMargin.Value);
+            margin = WindowsUtil.GetDistanceFromValue(upDownMargin.Value);
 
             landscape = checkBoxLandscape.Checked;
         }
@@ -175,8 +175,8 @@ namespace PurplePen
             {
                 upDownWidth.Enabled = upDownHeight.Enabled = false;
                 PaperSize ps = MapUtil.StandardPaperSizes[comboBoxPaperSize.SelectedIndex];
-                upDownWidth.Value = Util.GetDistanceValue(ps.Width);
-                upDownHeight.Value = Util.GetDistanceValue(ps.Height);
+                upDownWidth.Value = WindowsUtil.GetDistanceValue(ps.Width);
+                upDownHeight.Value = WindowsUtil.GetDistanceValue(ps.Height);
             }
             else
             {

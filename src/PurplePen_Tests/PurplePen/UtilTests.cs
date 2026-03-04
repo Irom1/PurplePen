@@ -60,11 +60,11 @@ namespace PurplePen.Tests
         [TestMethod]
         public void GetRelativeFileName()
         {
-            Assert.AreEqual("foo.xml", Util.GetRelativeFileName(@"c:\hello there\hi\bar.xml", @"c:\hello there\hi\foo.xml"));
-            Assert.AreEqual(@"map files\foo.xml", Util.GetRelativeFileName(@"c:\hello there\hi\bar.xml", @"c:\hello there\hi\map files\foo.xml"));
-            Assert.AreEqual(@"..\..\hello there\hi\map files\foo.xml", Util.GetRelativeFileName(@"c:\glop\hi\bar.xml", @"c:\hello there\hi\map files\foo.xml"));
-            Assert.AreEqual(@"d:\hello there\hi\map files\foo.xml", Util.GetRelativeFileName(@"c:\glop\hi\bar.xml", @"d:\hello there\hi\map files\foo.xml"));
-            Assert.AreEqual(@"map files\foo.xml", Util.GetRelativeFileName(@"c:\hello there\hi\foo.xml", @"c:\hello there\hi\map files\foo.xml"));
+            Assert.AreEqual("foo.xml", WindowsUtil.GetRelativeFileName(@"c:\hello there\hi\bar.xml", @"c:\hello there\hi\foo.xml"));
+            Assert.AreEqual(@"map files\foo.xml", WindowsUtil.GetRelativeFileName(@"c:\hello there\hi\bar.xml", @"c:\hello there\hi\map files\foo.xml"));
+            Assert.AreEqual(@"..\..\hello there\hi\map files\foo.xml", WindowsUtil.GetRelativeFileName(@"c:\glop\hi\bar.xml", @"c:\hello there\hi\map files\foo.xml"));
+            Assert.AreEqual(@"d:\hello there\hi\map files\foo.xml", WindowsUtil.GetRelativeFileName(@"c:\glop\hi\bar.xml", @"d:\hello there\hi\map files\foo.xml"));
+            Assert.AreEqual(@"map files\foo.xml", WindowsUtil.GetRelativeFileName(@"c:\hello there\hi\foo.xml", @"c:\hello there\hi\map files\foo.xml"));
         }
 
         [TestMethod]
@@ -73,17 +73,17 @@ namespace PurplePen.Tests
             string xmlName = TestUtil.GetTestFile("output_test.xml");
             XmlTextWriter writer = new XmlTextWriter(xmlName, Encoding.UTF8);
 
-            Assert.AreEqual("foo.ocad", Util.GetRelativeFileName(writer, TestUtil.GetTestFile("foo.ocad")));
-            Assert.AreEqual(@"map files\foo.ocad", Util.GetRelativeFileName(writer, TestUtil.GetTestFile(@"map files\foo.ocad")));
-            Assert.AreEqual(@"x:\hello there\hi\map files\foo.xml", Util.GetRelativeFileName(writer, @"x:\hello there\hi\map files\foo.xml"));
+            Assert.AreEqual("foo.ocad", WindowsUtil.GetRelativeFileName(writer, TestUtil.GetTestFile("foo.ocad")));
+            Assert.AreEqual(@"map files\foo.ocad", WindowsUtil.GetRelativeFileName(writer, TestUtil.GetTestFile(@"map files\foo.ocad")));
+            Assert.AreEqual(@"x:\hello there\hi\map files\foo.xml", WindowsUtil.GetRelativeFileName(writer, @"x:\hello there\hi\map files\foo.xml"));
 
             writer.Close();
 
             writer = new XmlTextWriter(new StringWriter());
 
-            Assert.AreEqual(TestUtil.GetTestFile("foo.ocad"), Util.GetRelativeFileName(writer, TestUtil.GetTestFile("foo.ocad")));
-            Assert.AreEqual(TestUtil.GetTestFile(@"map files\foo.ocad"), Util.GetRelativeFileName(writer, TestUtil.GetTestFile(@"map files\foo.ocad")));
-            Assert.AreEqual(@"x:\hello there\hi\map files\foo.xml", Util.GetRelativeFileName(writer, @"x:\hello there\hi\map files\foo.xml"));
+            Assert.AreEqual(TestUtil.GetTestFile("foo.ocad"), WindowsUtil.GetRelativeFileName(writer, TestUtil.GetTestFile("foo.ocad")));
+            Assert.AreEqual(TestUtil.GetTestFile(@"map files\foo.ocad"), WindowsUtil.GetRelativeFileName(writer, TestUtil.GetTestFile(@"map files\foo.ocad")));
+            Assert.AreEqual(@"x:\hello there\hi\map files\foo.xml", WindowsUtil.GetRelativeFileName(writer, @"x:\hello there\hi\map files\foo.xml"));
 
             writer.Close();
         }
@@ -91,14 +91,14 @@ namespace PurplePen.Tests
         [TestMethod]
         public void RemoveMeterSuffix()
         {
-            Assert.AreEqual(null, Util.RemoveMeterSuffix(null));
-            Assert.AreEqual("", Util.RemoveMeterSuffix(""));
-            Assert.AreEqual("foo", Util.RemoveMeterSuffix("foo"));
-            Assert.AreEqual("5", Util.RemoveMeterSuffix("5"));
-            Assert.AreEqual("5", Util.RemoveMeterSuffix("5m"));
-            Assert.AreEqual("5", Util.RemoveMeterSuffix("5 m"));
-            Assert.AreEqual("5", Util.RemoveMeterSuffix("5m "));
-            Assert.AreEqual("5", Util.RemoveMeterSuffix("5 m "));
+            Assert.AreEqual(null, WindowsUtil.RemoveMeterSuffix(null));
+            Assert.AreEqual("", WindowsUtil.RemoveMeterSuffix(""));
+            Assert.AreEqual("foo", WindowsUtil.RemoveMeterSuffix("foo"));
+            Assert.AreEqual("5", WindowsUtil.RemoveMeterSuffix("5"));
+            Assert.AreEqual("5", WindowsUtil.RemoveMeterSuffix("5m"));
+            Assert.AreEqual("5", WindowsUtil.RemoveMeterSuffix("5 m"));
+            Assert.AreEqual("5", WindowsUtil.RemoveMeterSuffix("5m "));
+            Assert.AreEqual("5", WindowsUtil.RemoveMeterSuffix("5 m "));
         }
 
         [TestMethod]
@@ -111,7 +111,7 @@ namespace PurplePen.Tests
             Console.WriteLine("Before: ({0},{1})-({2},{3}), wid={4}, height={5}", r.Left, r.Top, r.Right, r.Bottom, r.Width, r.Height);
             s = Rectangle.Round(r);
             Console.WriteLine("After: ({0},{1})-({2},{3}), wid={4}, height={5}", s.Left, s.Top, s.Right, s.Bottom, s.Width, s.Height);
-            t = Util.Round(r);
+            t = WindowsUtil.Round(r);
             Console.WriteLine("After: ({0},{1})-({2},{3}), wid={4}, height={5}", t.Left, t.Top, t.Right, t.Bottom, t.Width, t.Height);
             Assert.AreEqual(1, t.Left);
             Assert.AreEqual(1, t.Top);
@@ -122,36 +122,36 @@ namespace PurplePen.Tests
         [TestMethod]
         public void IsInteger()
         {
-            Assert.IsTrue(Util.IsInteger("35"));
-            Assert.IsTrue(Util.IsInteger("100"));
-            Assert.IsFalse(Util.IsInteger("-20"));
-            Assert.IsFalse(Util.IsInteger("4.5"));
-            Assert.IsFalse(Util.IsInteger("GO"));
-            Assert.IsFalse(Util.IsInteger(""));
+            Assert.IsTrue(WindowsUtil.IsInteger("35"));
+            Assert.IsTrue(WindowsUtil.IsInteger("100"));
+            Assert.IsFalse(WindowsUtil.IsInteger("-20"));
+            Assert.IsFalse(WindowsUtil.IsInteger("4.5"));
+            Assert.IsFalse(WindowsUtil.IsInteger("GO"));
+            Assert.IsFalse(WindowsUtil.IsInteger(""));
         }
 
         [TestMethod]
         public void CompareCodes()
         {
-            Assert.AreEqual(0, Util.CompareCodes(null, null));
-            Assert.AreEqual(-1, Util.CompareCodes(null, "5"));
-            Assert.AreEqual(1, Util.CompareCodes("GO", null));
-            Assert.AreEqual(-1, Util.CompareCodes("78", "135"));
-            Assert.AreEqual(0, Util.CompareCodes("78", "78"));
-            Assert.AreEqual(-1, Util.CompareCodes("135", "HI"));
-            Assert.AreEqual(1, Util.CompareCodes("0V", "23"));
-            Assert.AreEqual(-1, Util.CompareCodes("HI", "X"));
-            Assert.AreEqual(0, Util.CompareCodes("HI", "HI"));
-            Assert.AreEqual(1, Util.CompareCodes("HI", "ab"));
+            Assert.AreEqual(0, WindowsUtil.CompareCodes(null, null));
+            Assert.AreEqual(-1, WindowsUtil.CompareCodes(null, "5"));
+            Assert.AreEqual(1, WindowsUtil.CompareCodes("GO", null));
+            Assert.AreEqual(-1, WindowsUtil.CompareCodes("78", "135"));
+            Assert.AreEqual(0, WindowsUtil.CompareCodes("78", "78"));
+            Assert.AreEqual(-1, WindowsUtil.CompareCodes("135", "HI"));
+            Assert.AreEqual(1, WindowsUtil.CompareCodes("0V", "23"));
+            Assert.AreEqual(-1, WindowsUtil.CompareCodes("HI", "X"));
+            Assert.AreEqual(0, WindowsUtil.CompareCodes("HI", "HI"));
+            Assert.AreEqual(1, WindowsUtil.CompareCodes("HI", "ab"));
         }
 
         [TestMethod]
         public void AddPointToArray()
         {
             PointF[] array = { new PointF(3, 7), new PointF(11, 2), new PointF(0, -7), new PointF(-12, -3), new PointF(4, 6) };
-            array = Util.AddPointToArray(array, new PointF(-5, 5));
-            array = Util.AddPointToArray(array, new PointF(-4, -2));
-            array = Util.AddPointToArray(array, new PointF(12, -1));
+            array = WindowsUtil.AddPointToArray(array, new PointF(-5, 5));
+            array = WindowsUtil.AddPointToArray(array, new PointF(-4, -2));
+            array = WindowsUtil.AddPointToArray(array, new PointF(12, -1));
             Assert.AreEqual(8, array.Length);
             Assert.AreEqual(new PointF(3, 7), array[0]);
             Assert.AreEqual(new PointF(11, 2), array[1]);
@@ -167,9 +167,9 @@ namespace PurplePen.Tests
         public void RemovePointFromArray()
         {
             PointF[] array = { new PointF(3, 7), new PointF(11, 2), new PointF(0, -7), new PointF(-12, -3), new PointF(4, 6) };
-            array = Util.RemovePointFromArray(array, new PointF(0, -7));
-            array = Util.RemovePointFromArray(array, new PointF(3, 7));
-            array = Util.RemovePointFromArray(array, new PointF(4, 6));
+            array = WindowsUtil.RemovePointFromArray(array, new PointF(0, -7));
+            array = WindowsUtil.RemovePointFromArray(array, new PointF(3, 7));
+            array = WindowsUtil.RemovePointFromArray(array, new PointF(4, 6));
             Assert.AreEqual(2, array.Length);
             Assert.AreEqual(new PointF(11, 2), array[0]);
             Assert.AreEqual(new PointF(-12, -3), array[1]);
@@ -223,24 +223,24 @@ namespace PurplePen.Tests
         [TestMethod]
         public void CompareVersionString()
         {
-            Assert.AreEqual(1, Util.CompareVersionStrings("1.0.4.2", "1.0.3.4"));
-            Assert.AreEqual(-1, Util.CompareVersionStrings("1.4.2", "1.4.2.1"));
-            Assert.AreEqual(-1, Util.CompareVersionStrings("1.4.2", "2.1.2.1"));
-            Assert.AreEqual(-1, Util.CompareVersionStrings("0.0.4.2", "2.0"));
-            Assert.AreEqual(0, Util.CompareVersionStrings("0.0.4.2", "0.0.4.2"));
-            Assert.AreEqual(0, Util.CompareVersionStrings("0.0.3.1", "foobar"));
-            Assert.AreEqual(0, Util.CompareVersionStrings("zapf", "1.1.2.3"));
+            Assert.AreEqual(1, WindowsUtil.CompareVersionStrings("1.0.4.2", "1.0.3.4"));
+            Assert.AreEqual(-1, WindowsUtil.CompareVersionStrings("1.4.2", "1.4.2.1"));
+            Assert.AreEqual(-1, WindowsUtil.CompareVersionStrings("1.4.2", "2.1.2.1"));
+            Assert.AreEqual(-1, WindowsUtil.CompareVersionStrings("0.0.4.2", "2.0"));
+            Assert.AreEqual(0, WindowsUtil.CompareVersionStrings("0.0.4.2", "0.0.4.2"));
+            Assert.AreEqual(0, WindowsUtil.CompareVersionStrings("0.0.3.1", "foobar"));
+            Assert.AreEqual(0, WindowsUtil.CompareVersionStrings("zapf", "1.1.2.3"));
         }
 
         [TestMethod]
         public void PrettyVersionString()
         {
-            Assert.AreEqual("1.0.4", Util.PrettyVersionString("1.0.4.500"));
-            Assert.AreEqual("2.0.0", Util.PrettyVersionString("2.0.0.500"));
-            Assert.AreEqual("2.1.1 Beta 2", Util.PrettyVersionString("2.1.1.220"));
-            Assert.AreEqual("1.0.0 RC 3", Util.PrettyVersionString("1.0.0.330"));
-            Assert.AreEqual("1.0.1 Alpha 1", Util.PrettyVersionString("1.0.1.110"));
-            Assert.AreEqual("baaz", Util.PrettyVersionString("baaz"));
+            Assert.AreEqual("1.0.4", WindowsUtil.PrettyVersionString("1.0.4.500"));
+            Assert.AreEqual("2.0.0", WindowsUtil.PrettyVersionString("2.0.0.500"));
+            Assert.AreEqual("2.1.1 Beta 2", WindowsUtil.PrettyVersionString("2.1.1.220"));
+            Assert.AreEqual("1.0.0 RC 3", WindowsUtil.PrettyVersionString("1.0.0.330"));
+            Assert.AreEqual("1.0.1 Alpha 1", WindowsUtil.PrettyVersionString("1.0.1.110"));
+            Assert.AreEqual("baaz", WindowsUtil.PrettyVersionString("baaz"));
         }
 
         [TestMethod]
@@ -254,7 +254,7 @@ namespace PurplePen.Tests
             dict.Add("bar", -3);
             dict.Add("baz", 1299);
 
-            Dictionary<string, int> dict2 = Util.CopyDictionary(dict);
+            Dictionary<string, int> dict2 = WindowsUtil.CopyDictionary(dict);
             dict.Remove("goodbye");
             dict["elvis"] = 8991;
             dict.Add("bizarre", 99);
@@ -275,16 +275,16 @@ namespace PurplePen.Tests
         {
             string result;
 
-            result = Util.FilterInvalidPathChars(@"baz.txt");
+            result = WindowsUtil.FilterInvalidPathChars(@"baz.txt");
             Assert.AreEqual(@"baz.txt", result);
 
-            result = Util.FilterInvalidPathChars(@"foo&bar");
+            result = WindowsUtil.FilterInvalidPathChars(@"foo&bar");
             Assert.AreEqual(@"foo&bar", result);
 
-            result = Util.FilterInvalidPathChars(@"foo/bar\baz");
+            result = WindowsUtil.FilterInvalidPathChars(@"foo/bar\baz");
             Assert.AreEqual(@"foo_bar_baz", result);
 
-            result = Util.FilterInvalidPathChars(@"foo<bar|baz>");
+            result = WindowsUtil.FilterInvalidPathChars(@"foo<bar|baz>");
             Assert.AreEqual(@"foo_bar_baz_", result);
         }
 
@@ -293,18 +293,18 @@ namespace PurplePen.Tests
         {
             float[] result;
 
-            result = Util.PrintScaleList(7500);
+            result = WindowsUtil.PrintScaleList(7500);
             CollectionAssert.AreEqual(new float[] { 4000, 5000, 7500, 10000, 15000 }, result);
 
-            result = Util.PrintScaleList(8000);
+            result = WindowsUtil.PrintScaleList(8000);
             CollectionAssert.AreEqual(new float[] { 4000, 5000, 7500, 8000, 10000, 15000 }, result);
         }
 
         [TestMethod]
         public void RemoveHotkeyPrefix()
         {
-            Assert.AreEqual("My Report", Util.RemoveHotkeyPrefix("My &Report"));
-            Assert.AreEqual("Hello", Util.RemoveHotkeyPrefix("Hello"));
+            Assert.AreEqual("My Report", WindowsUtil.RemoveHotkeyPrefix("My &Report"));
+            Assert.AreEqual("Hello", WindowsUtil.RemoveHotkeyPrefix("Hello"));
         }
 
         /*

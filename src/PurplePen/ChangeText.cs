@@ -116,7 +116,7 @@ namespace PurplePen
         {
             get
             {
-                return Util.GetFontStyle(FontBold, FontItalic);
+                return WindowsUtil.GetFontStyle(FontBold, FontItalic);
             }
         }
 

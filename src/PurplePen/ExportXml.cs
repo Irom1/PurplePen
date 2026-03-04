@@ -263,7 +263,7 @@ namespace PurplePen
             xmlWriter.WriteAttributeString("xmlns", "http://www.orienteering.org/datastandard/3.0");
             xmlWriter.WriteAttributeString("iofVersion", "3.0");
             xmlWriter.WriteAttributeString("createTime", XmlConvert.ToString(modificationDate));
-            xmlWriter.WriteAttributeString("creator", string.Format("Purple Pen version {0}", Util.PrettyVersionString(VersionNumber.Current)));
+            xmlWriter.WriteAttributeString("creator", string.Format("Purple Pen version {0}", WindowsUtil.PrettyVersionString(VersionNumber.Current)));
 
             WriteEventInfo();
 
@@ -773,7 +773,7 @@ namespace PurplePen
             xmlWriter.WriteAttributeString("xmlns", "http://www.orienteering.org/datastandard/3.0");
             xmlWriter.WriteAttributeString("iofVersion", "3.0");
             xmlWriter.WriteAttributeString("createTime", XmlConvert.ToString(modificationDate));
-            xmlWriter.WriteAttributeString("creator", string.Format("Purple Pen version {0}", Util.PrettyVersionString(VersionNumber.Current)));
+            xmlWriter.WriteAttributeString("creator", string.Format("Purple Pen version {0}", WindowsUtil.PrettyVersionString(VersionNumber.Current)));
 
             WriteEventInfo();
 

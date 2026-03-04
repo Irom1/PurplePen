@@ -401,7 +401,7 @@ namespace PurplePen
 #endif
         static SizeF GetTextSize(string text, FontDesc font, float fontScaling)
         {
-            Graphics g = Util.GetHiresGraphics();
+            Graphics g = WindowsUtil.GetHiresGraphics();
             using (Font f = font.GetScaledFont(fontScaling)) {
                 SizeF size = g.MeasureString(text, f, new PointF(0, 0), StringFormat.GenericTypographic);
 
@@ -510,7 +510,7 @@ namespace PurplePen
             }
 
             if (text.Contains(TextMacros.CourseLength))
-                text = text.Replace(TextMacros.CourseLength, Util.GetLengthInKm(courseView.MinTotalLength, courseView.MaxTotalLength, 1, false));
+                text = text.Replace(TextMacros.CourseLength, WindowsUtil.GetLengthInKm(courseView.MinTotalLength, courseView.MaxTotalLength, 1, false));
 
             if (text.Contains(TextMacros.CourseClimb)) {
                 if (courseView.TotalClimb < 0)
@@ -590,7 +590,7 @@ namespace PurplePen
 
             case SpecialKind.Text:
                 string text = ExpandText(eventDB, courseView, special.text);
-                FontStyle fontStyle = Util.GetFontStyle(special.fontBold, special.fontItalic);
+                FontStyle fontStyle = WindowsUtil.GetFontStyle(special.fontBold, special.fontItalic);
                 RectangleF boundingRect = RectangleF.FromLTRB((float)Math.Min(special.locations[0].X, special.locations[1].X), (float)Math.Min(special.locations[0].Y, special.locations[1].Y),
                                                                                               (float)Math.Max(special.locations[0].X, special.locations[1].X), (float)Math.Max(special.locations[0].Y, special.locations[1].Y));
                 courseObj = new BasicTextCourseObj(specialId, text, boundingRect, special.fontName, fontStyle, special.color, special.fontHeight);

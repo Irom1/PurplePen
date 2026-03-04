@@ -902,7 +902,7 @@ namespace PurplePen.Tests
         // Create a description course object to use in testing.
         DescriptionCourseObj CreateDescriptionCourseObj(CourseAppearance appearance, int numColumns = 1)
         {
-            SymbolDB symbolDB = new SymbolDB(Util.GetFileInAppDirectory("symbols.xml"));
+            SymbolDB symbolDB = new SymbolDB(WindowsUtil.GetFileInAppDirectory("symbols.xml"));
             UndoMgr undomgr = new UndoMgr(5);
             EventDB eventDB = new EventDB(undomgr);
             eventDB.Load(TestUtil.GetTestFile("coursesymbols\\sampleevent1.coursescribe"));
@@ -2569,7 +2569,7 @@ namespace PurplePen.Tests
         [TestMethod]
         public void DescriptionEquals()
         {
-            SymbolDB symbolDB = new SymbolDB(Util.GetFileInAppDirectory("symbols.xml"));
+            SymbolDB symbolDB = new SymbolDB(WindowsUtil.GetFileInAppDirectory("symbols.xml"));
             UndoMgr undomgr = new UndoMgr(5);
             EventDB eventDB = new EventDB(undomgr);
             eventDB.Load(TestUtil.GetTestFile("coursesymbols\\sampleevent1.coursescribe"));
@@ -2654,7 +2654,7 @@ namespace PurplePen.Tests
             PointF[] handles = courseobj.GetHandles();
 
             for (int i = 0; i < handles.Length; ++i)
-                Assert.AreSame(Util.MoveHandleCursor, courseobj.GetHandleCursor(handles[i]));
+                Assert.AreSame(WindowsUtil.MoveHandleCursor, courseobj.GetHandleCursor(handles[i]));
         }
 	
 

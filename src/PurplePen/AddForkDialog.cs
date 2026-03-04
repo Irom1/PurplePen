@@ -52,7 +52,7 @@ namespace PurplePen
             if (Loop) {
                 labelNumberLoops.Visible = true;
                 labelNumberBranches.Visible = false;
-                labelSummary.Text = string.Format(MiscText.LoopSummary, NumberOfBranches + 1, Util.Factorial(NumberOfBranches));
+                labelSummary.Text = string.Format(MiscText.LoopSummary, NumberOfBranches + 1, WindowsUtil.Factorial(NumberOfBranches));
             }
             else {
                 labelNumberLoops.Visible = false;

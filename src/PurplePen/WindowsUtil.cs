@@ -59,7 +59,7 @@ namespace PurplePen
     /// <summary>
     /// A whole bunch of static utility functions.
     /// </summary>
-    static class Util
+    static class WindowsUtil
     {
         static class NativeMethods
         {
@@ -389,7 +389,7 @@ namespace PurplePen
             get
             {
                 if (moveHandleCursor == null) {
-                    moveHandleCursor = LoadCursorFromResource(typeof(Util).Assembly.GetManifestResourceStream("PurplePen.Images.MoveHandle.cur"));
+                    moveHandleCursor = LoadCursorFromResource(typeof(WindowsUtil).Assembly.GetManifestResourceStream("PurplePen.Images.MoveHandle.cur"));
                 }
                 return moveHandleCursor;
             }
@@ -401,7 +401,7 @@ namespace PurplePen
             get
             {
                 if (deleteHandleCursor == null) {
-                    deleteHandleCursor = LoadCursorFromResource(typeof(Util).Assembly.GetManifestResourceStream("PurplePen.Images.DeleteHandle.cur"));
+                    deleteHandleCursor = LoadCursorFromResource(typeof(WindowsUtil).Assembly.GetManifestResourceStream("PurplePen.Images.DeleteHandle.cur"));
                 }
                 return deleteHandleCursor;
             }
@@ -439,21 +439,6 @@ namespace PurplePen
             List<PointF> list = new List<PointF>(points);
 
             return list.FindAll(delegate(PointF pt) { return pt != pointToRemove; }).ToArray();
-        }
-
-        // Get a bit from a uint. The bit number is interpreted mod 32.
-        public static bool GetBit(uint u, int bitNumber)
-        {
-            return (u & (1 << (bitNumber & 0x1F))) != 0;
-        }
-
-        // Set a bit from a uint. The bit number is interpreted mod 32.
-        public static uint SetBit(uint u, int bitNumber, bool newValue)
-        {
-            if (newValue)
-                return u | (1U << (bitNumber & 0x1F));
-            else
-                return u & ~(1U << (bitNumber & 0x1F));
         }
 
         public static bool IsPrerelease(string version)
@@ -523,7 +508,7 @@ namespace PurplePen
         public static string GetDistanceText(int distance, bool addUnits = true)
         {
             string result;
-            if (Util.IsCurrentCultureMetric()) {
+            if (WindowsUtil.IsCurrentCultureMetric()) {
                 result = (distance * 25.4 / 100.0).ToString("0");
                 if (addUnits)
                     result += "mm";
@@ -540,7 +525,7 @@ namespace PurplePen
         // Get decimal for a distance.
         public static decimal GetDistanceValue(int distance)
         {
-            if (Util.IsCurrentCultureMetric()) {
+            if (WindowsUtil.IsCurrentCultureMetric()) {
                 return ((decimal) distance * 25.4M / 100.0M);
             }
             else {
@@ -551,7 +536,7 @@ namespace PurplePen
         // Get distance in hundredth of an inch from a decimal.
         public static int GetDistanceFromValue(decimal value)
         {
-            if (Util.IsCurrentCultureMetric()) {
+            if (WindowsUtil.IsCurrentCultureMetric()) {
                 return (int) Math.Round(value * 100.0M / 25.4M);
             }
             else {

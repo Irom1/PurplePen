@@ -103,7 +103,7 @@ namespace PurplePen
             decimal increment;
             decimal maximum;
             
-            if (Util.IsCurrentCultureMetric()) {
+            if (WindowsUtil.IsCurrentCultureMetric()) {
                 units = "mm";
                 decimalPlaces = 1;
                 increment = 1.0M;
@@ -132,7 +132,7 @@ namespace PurplePen
         private void InitPaperSizes()
         {
             for (int i = 0; i < standardPaperSizes.Length; ++i) {
-                comboBoxPaperSize.Items.Add(Util.GetPaperSizeText(standardPaperSizes[i]));
+                comboBoxPaperSize.Items.Add(WindowsUtil.GetPaperSizeText(standardPaperSizes[i]));
             }
 
             comboBoxPaperSize.Items.Add(MiscText.UserDefined);
@@ -157,13 +157,13 @@ namespace PurplePen
                 upDownWidth.ReadOnly = upDownHeight.ReadOnly = true;
             }
 
-            upDownWidth.Value = Util.GetDistanceValue(paperSize.Width);
-            upDownHeight.Value = Util.GetDistanceValue(paperSize.Height);
+            upDownWidth.Value = WindowsUtil.GetDistanceValue(paperSize.Width);
+            upDownHeight.Value = WindowsUtil.GetDistanceValue(paperSize.Height);
 
-            upDownLeft.Value = Util.GetDistanceValue(margins.Left);
-            upDownRight.Value = Util.GetDistanceValue(margins.Right);
-            upDownTop.Value = Util.GetDistanceValue(margins.Top);
-            upDownBottom.Value = Util.GetDistanceValue(margins.Bottom);
+            upDownLeft.Value = WindowsUtil.GetDistanceValue(margins.Left);
+            upDownRight.Value = WindowsUtil.GetDistanceValue(margins.Right);
+            upDownTop.Value = WindowsUtil.GetDistanceValue(margins.Top);
+            upDownBottom.Value = WindowsUtil.GetDistanceValue(margins.Bottom);
 
             radioButtonLandscape.Checked = landscape;
             radioButtonPortrait.Checked = !landscape;
@@ -178,12 +178,12 @@ namespace PurplePen
             else
                 paperSizeText = comboBoxPaperSize.SelectedText;
 
-            paperSize = new PaperSize(paperSizeText, Util.GetDistanceFromValue(upDownWidth.Value), Util.GetDistanceFromValue(upDownHeight.Value));
+            paperSize = new PaperSize(paperSizeText, WindowsUtil.GetDistanceFromValue(upDownWidth.Value), WindowsUtil.GetDistanceFromValue(upDownHeight.Value));
 
-            margins.Left = Util.GetDistanceFromValue(upDownLeft.Value);
-            margins.Right = Util.GetDistanceFromValue(upDownRight.Value);
-            margins.Top = Util.GetDistanceFromValue(upDownTop.Value);
-            margins.Bottom = Util.GetDistanceFromValue(upDownBottom.Value);
+            margins.Left = WindowsUtil.GetDistanceFromValue(upDownLeft.Value);
+            margins.Right = WindowsUtil.GetDistanceFromValue(upDownRight.Value);
+            margins.Top = WindowsUtil.GetDistanceFromValue(upDownTop.Value);
+            margins.Bottom = WindowsUtil.GetDistanceFromValue(upDownBottom.Value);
 
             landscape = radioButtonLandscape.Checked;
         }
@@ -193,8 +193,8 @@ namespace PurplePen
             if (comboBoxPaperSize.SelectedIndex < standardPaperSizes.Length) {
                 upDownWidth.ReadOnly = upDownHeight.ReadOnly = true;
                 PaperSize ps = standardPaperSizes[comboBoxPaperSize.SelectedIndex];
-                upDownWidth.Value = Util.GetDistanceValue(ps.Width);
-                upDownHeight.Value = Util.GetDistanceValue(ps.Height);
+                upDownWidth.Value = WindowsUtil.GetDistanceValue(ps.Width);
+                upDownHeight.Value = WindowsUtil.GetDistanceValue(ps.Height);
             }
             else {
                 upDownWidth.ReadOnly = upDownHeight.ReadOnly = false;

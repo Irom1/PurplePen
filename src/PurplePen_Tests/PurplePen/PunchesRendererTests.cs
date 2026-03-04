@@ -98,7 +98,7 @@ namespace PurplePen.Tests
         // Render the given course id (0 = all controls) and kind to a bitmap, and compare it to the saved version.
         internal void CheckRenderBitmap(string filename, Id<Course> id, PunchcardFormat format)
         {
-            SymbolDB symbolDB = new SymbolDB(Util.GetFileInAppDirectory("symbols.xml"));
+            SymbolDB symbolDB = new SymbolDB(WindowsUtil.GetFileInAppDirectory("symbols.xml"));
             UndoMgr undomgr = new UndoMgr(5);
             EventDB eventDB = new EventDB(undomgr);
             CourseView courseView;

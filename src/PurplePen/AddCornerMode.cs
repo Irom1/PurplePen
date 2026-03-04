@@ -140,7 +140,7 @@ namespace PurplePen
             PointF handleLocation;
 
             if (pane == Pane.Map && HitTestHandle(location, pixelSize, out handleLocation)) {
-                return Util.DeleteHandleCursor;
+                return WindowsUtil.DeleteHandleCursor;
             }
             else {
                 return Cursors.Arrow;

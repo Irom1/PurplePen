@@ -52,7 +52,7 @@ namespace PurplePen
             }
             set
             {
-                if (Util.EqualArrays(availableVariations, value))
+                if (WindowsUtil.EqualArrays(availableVariations, value))
                     return;
 
                 if (value == null)

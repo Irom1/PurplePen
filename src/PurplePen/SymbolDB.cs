@@ -76,7 +76,7 @@ namespace PurplePen
                     return false;
                 if (other.GenderModifiers != GenderModifiers)
                     return false;
-                if (! Util.ArrayEquals(other.Genders, Genders))
+                if (! WindowsUtil.ArrayEquals(other.Genders, Genders))
                     return false;
 
                 return true;
@@ -87,7 +87,7 @@ namespace PurplePen
 
         public override int GetHashCode()
         {
-            return Name.GetHashCode() ^ LangId.GetHashCode() ^ PluralNouns.GetHashCode() ^ PluralModifiers.GetHashCode() ^ GenderModifiers.GetHashCode() ^ Util.ArrayHashCode(Genders) ^ CaseModifiers.GetHashCode() ^ Util.ArrayHashCode(Cases);
+            return Name.GetHashCode() ^ LangId.GetHashCode() ^ PluralNouns.GetHashCode() ^ PluralModifiers.GetHashCode() ^ GenderModifiers.GetHashCode() ^ WindowsUtil.ArrayHashCode(Genders) ^ CaseModifiers.GetHashCode() ^ WindowsUtil.ArrayHashCode(Cases);
         }
 
         public override string ToString()
@@ -593,7 +593,7 @@ namespace PurplePen
 
             // Create the symdef
             PointSymDef symdef;
-            symdef = new PointSymDef("Description: " + this.GetName(Util.CurrentLangName()), symbolId, glyph, false);
+            symdef = new PointSymDef("Description: " + this.GetName(WindowsUtil.CurrentLangName()), symbolId, glyph, false);
 
             // Create the toolbox image.
             Bitmap bm = new Bitmap(24, 24);

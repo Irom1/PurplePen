@@ -99,9 +99,9 @@ namespace PurplePen
             // Output section.
             printerName.Text = printerSettings.PrinterName;
             if (printerSettings.IsValid) {
-                paperSize.Text = Util.GetPaperSizeText(pageSettings.PaperSize);
+                paperSize.Text = WindowsUtil.GetPaperSizeText(pageSettings.PaperSize);
                 orientation.Text = (pageSettings.Landscape) ? MiscText.Landscape : MiscText.Portrait;
-                margins.Text = Util.GetMarginsText(pageSettings.Margins);
+                margins.Text = WindowsUtil.GetMarginsText(pageSettings.Margins);
             }
             else {
                 paperSize.Text = orientation.Text = margins.Text = "";
@@ -200,7 +200,7 @@ namespace PurplePen
                     UpdateSettings();
                     Margins originalMargins = settings.PageSettings.Margins;
 
-                    if (Util.IsCurrentCultureMetric())     // work around bug
+                    if (WindowsUtil.IsCurrentCultureMetric())     // work around bug
                         settings.PageSettings.Margins = PrinterUnitConvert.Convert(settings.PageSettings.Margins, PrinterUnit.Display, PrinterUnit.TenthsOfAMillimeter);
 
                     pageSetupDialog.PrinterSettings = settings.PageSettings.PrinterSettings;

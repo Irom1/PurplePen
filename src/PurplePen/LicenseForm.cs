@@ -61,7 +61,7 @@ Redistribution and use in source and binary forms, with or without modification,
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Util.GoToWebPage("http://en.wikipedia.org/wiki/BSD_License");
+            WindowsUtil.GoToWebPage("http://en.wikipedia.org/wiki/BSD_License");
         }
     }
 }

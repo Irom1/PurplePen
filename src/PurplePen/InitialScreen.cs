@@ -147,7 +147,7 @@ namespace PurplePen
         // Get the file name of the sample event.
         string SampleEventFileName()
         {
-            return Util.GetFileInAppDirectory(@"Samples\Sample Event.ppen");
+            return WindowsUtil.GetFileInAppDirectory(@"Samples\Sample Event.ppen");
         }
 
         // Open sample event was selected
@@ -165,7 +165,7 @@ namespace PurplePen
             }
 
             // Set the description language to the UI language.
-            string langId = Util.CurrentLangName();
+            string langId = WindowsUtil.CurrentLangName();
             if (controller.HasDescriptionLanguage(langId)) {
                 controller.SetDescriptionLanguage(langId);
                 controller.MarkClean();
@@ -203,7 +203,7 @@ namespace PurplePen
 
         private void donationLink_Click(object sender, EventArgs e)
         {
-            Util.GoToWebPage("http://purple-pen.org/donate.htm");
+            WindowsUtil.GoToWebPage("http://purple-pen.org/donate.htm");
         }
 
         private void donationLink_Click(object sender, LinkLabelLinkClickedEventArgs e)

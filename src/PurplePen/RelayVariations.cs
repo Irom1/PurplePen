@@ -412,8 +412,8 @@ namespace PurplePen
             }
 
             // Restriction 2: the entire loop must be as different as possible.
-            int maxDups = leg / (int)Util.Factorial(fork.numBranches);
-            int dups = teamAssignment.legAssignForFork[fork].branchForLeg.Count(branch => Util.EqualArrays(branch, loop));
+            int maxDups = leg / (int)WindowsUtil.Factorial(fork.numBranches);
+            int dups = teamAssignment.legAssignForFork[fork].branchForLeg.Count(branch => WindowsUtil.EqualArrays(branch, loop));
             if (dups > maxDups)
                 return false;
 
@@ -522,7 +522,7 @@ namespace PurplePen
                     waysThroughLoops *= ScanFork(startFork.subForks[i], numLegsOnThisFork, 1);
                 }
 
-                waysThroughLoops *= (int)Util.Factorial(startFork.numBranches);
+                waysThroughLoops *= (int)WindowsUtil.Factorial(startFork.numBranches);
 
                 return ScanFork(startFork.next, numLegsOnThisFork, waysThroughLoops);
             }
@@ -605,7 +605,7 @@ namespace PurplePen
                     waysThroughLoops *= CalcMinUniquePaths(startFork.subForks[i], leg, 1);
                 }
 
-                waysThroughLoops *= (int)Util.Factorial(startFork.numBranches);
+                waysThroughLoops *= (int)WindowsUtil.Factorial(startFork.numBranches);
 
                 return CalcMinUniquePaths(startFork.next, leg, waysThroughLoops);
             }
@@ -645,7 +645,7 @@ namespace PurplePen
                     // Record information about the fork, and link it in.
                     Fork currentFork = new Fork();
                     currentFork.loop = courseCtl.loop;
-                    currentFork.controlCode = Util.ControlPointName(eventDB, courseCtl.control, NameStyle.Medium);
+                    currentFork.controlCode = WindowsUtil.ControlPointName(eventDB, courseCtl.control, NameStyle.Medium);
                     currentFork.numBranches = courseCtl.loop ? courseCtl.splitCourseControls.Length - 1 : courseCtl.splitCourseControls.Length;
                     currentFork.codes = new char[currentFork.numBranches];
                     currentFork.subForks = new Fork[currentFork.numBranches];
@@ -843,7 +843,7 @@ namespace PurplePen
                     return false;
 
                 for (int i = 0; i < branchForLeg.Count; ++i)
-                    if (!Util.ArrayEquals(other.branchForLeg[i], branchForLeg[i]))
+                    if (!WindowsUtil.ArrayEquals(other.branchForLeg[i], branchForLeg[i]))
                         return false;
 
                 return true;

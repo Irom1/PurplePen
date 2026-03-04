@@ -202,7 +202,7 @@ namespace PurplePen
 
         public void InitiateMapDragging(PointF initialPos, System.Windows.Forms.MouseButtons buttonEnd)
         {
-            mapViewer.BeginMapDragging(Util.PointFromPointF(mapViewer.WorldToPixel(initialPos)), buttonEnd);
+            mapViewer.BeginMapDragging(WindowsUtil.PointFromPointF(mapViewer.WorldToPixel(initialPos)), buttonEnd);
         }
 
         // Prompt the user for a file name to open.
@@ -1255,7 +1255,7 @@ namespace PurplePen
                 mapViewer.Cursor = controller.GetMouseCursor(Pane.Map, location, mapViewer.PixelSize);
             }
 
-            PointF pixelLocation = Util.PointFromPointF(mapViewer.WorldToPixel(location));
+            PointF pixelLocation = WindowsUtil.PointFromPointF(mapViewer.WorldToPixel(location));
             if (pixelLocation != lastTooltipLocation)
                 toolTip.Hide(mapViewer);
 
@@ -1265,7 +1265,7 @@ namespace PurplePen
 
         private void mapViewerTopology_OnPointerMove(object sender, bool inViewport, PointF location)
         {
-            PointF pixelLocation = Util.PointFromPointF(mapViewerTopology.WorldToPixel(location));
+            PointF pixelLocation = WindowsUtil.PointFromPointF(mapViewerTopology.WorldToPixel(location));
             if (pixelLocation != lastTooltipLocation)
                 toolTip.Hide(mapViewerTopology);
         }
@@ -1277,7 +1277,7 @@ namespace PurplePen
             if (showToolTips && controller.GetToolTip(Pane.Map, location, mapViewer.PixelSize, out tipText, out titleText)) {
                 toolTip.Hide(mapViewer);
                 toolTip.ToolTipTitle = titleText;
-                lastTooltipLocation = Util.PointFromPointF(mapViewer.WorldToPixel(location));
+                lastTooltipLocation = WindowsUtil.PointFromPointF(mapViewer.WorldToPixel(location));
                 toolTip.Show(tipText, mapViewer, lastTooltipLocation.X, lastTooltipLocation.Y + 24, 7000);
             }
         }
@@ -1288,7 +1288,7 @@ namespace PurplePen
             if (showToolTips && controller.GetToolTip(Pane.Topology, location, mapViewer.PixelSize, out tipText, out titleText)) {
                 toolTip.Hide(mapViewerTopology);
                 toolTip.ToolTipTitle = titleText;
-                lastTooltipLocation = Util.PointFromPointF(mapViewerTopology.WorldToPixel(location));
+                lastTooltipLocation = WindowsUtil.PointFromPointF(mapViewerTopology.WorldToPixel(location));
                 toolTip.Show(tipText, mapViewerTopology, lastTooltipLocation.X, lastTooltipLocation.Y + 24, 7000);
             }
         }
@@ -1967,7 +1967,7 @@ namespace PurplePen
         private void ShowHelp(HelpNavigator navigator, object parameter)
         {
             if (helpFileUrl == null) {
-                string helpFileName = Util.GetFileInAppDirectory(HELP_FILE_NAME);
+                string helpFileName = WindowsUtil.GetFileInAppDirectory(HELP_FILE_NAME);
                 if (File.Exists(helpFileName))
                     helpFileUrl = new Uri(helpFileName);
                 else {
@@ -1993,7 +1993,7 @@ namespace PurplePen
 
         private void helpTranslatedMenu_Click(object sender, EventArgs e)
         {
-            Util.GoToWebPage(MiscText.TranslatedHelpWebSite);
+            WindowsUtil.GoToWebPage(MiscText.TranslatedHelpWebSite);
         }
 
         private void helpIndexMenu_Click(object sender, EventArgs e)
@@ -2891,17 +2891,17 @@ namespace PurplePen
 
         private void supportWebSiteMenu_Click(object sender, EventArgs e)
         {
-            Util.GoToWebPage("http://purple-pen.org#support");
+            WindowsUtil.GoToWebPage("http://purple-pen.org#support");
         }
 
         private void mainWebSiteToolMenu_Click(object sender, EventArgs e)
         {
-            Util.GoToWebPage("http://purple-pen.org");
+            WindowsUtil.GoToWebPage("http://purple-pen.org");
         }
 
         private void donateWebSiteMenu_Click(object sender, EventArgs e)
         {
-            Util.GoToWebPage("http://purple-pen.org#donate");
+            WindowsUtil.GoToWebPage("http://purple-pen.org#donate");
         }
 
         private void courseSummaryMenu_Click(object sender, EventArgs e)
@@ -2910,7 +2910,7 @@ namespace PurplePen
 
             string testReport = reportGenerator.CreateCourseSummaryReport(controller.GetEventDB());
 
-            ReportForm reportForm = new ReportForm(Util.RemoveHotkeyPrefix(courseSummaryMenu.Text), "", testReport, "ReportsCourseSummary.htm");
+            ReportForm reportForm = new ReportForm(WindowsUtil.RemoveHotkeyPrefix(courseSummaryMenu.Text), "", testReport, "ReportsCourseSummary.htm");
             reportForm.ShowDialog(this);
             reportForm.Dispose();
         }
@@ -2921,7 +2921,7 @@ namespace PurplePen
 
             string testReport = reportGenerator.CreateCrossReferenceReport(controller.GetEventDB());
 
-            ReportForm reportForm = new ReportForm(Util.RemoveHotkeyPrefix(controlCrossrefMenu.Text), "", testReport, "ReportsControlCrossReference.htm");
+            ReportForm reportForm = new ReportForm(WindowsUtil.RemoveHotkeyPrefix(controlCrossrefMenu.Text), "", testReport, "ReportsControlCrossReference.htm");
             reportForm.ShowDialog(this);
             reportForm.Dispose();
         }
@@ -2932,7 +2932,7 @@ namespace PurplePen
 
             string testReport = reportGenerator.CreateLoadReport(controller.GetEventDB());
 
-            ReportForm reportForm = new ReportForm(Util.RemoveHotkeyPrefix(controlAndLegLoadMenu.Text), "", testReport, "ReportsControlAndLegLoad.htm");
+            ReportForm reportForm = new ReportForm(WindowsUtil.RemoveHotkeyPrefix(controlAndLegLoadMenu.Text), "", testReport, "ReportsControlAndLegLoad.htm");
             reportForm.ShowDialog(this);
             reportForm.Dispose();
         }
@@ -2943,7 +2943,7 @@ namespace PurplePen
 
             string testReport = reportGenerator.CreateLegLengthReport(controller.GetEventDB());
 
-            ReportForm reportForm = new ReportForm(Util.RemoveHotkeyPrefix(legLengthsMenu.Text), "", testReport, "ReportsLegLengths.htm");
+            ReportForm reportForm = new ReportForm(WindowsUtil.RemoveHotkeyPrefix(legLengthsMenu.Text), "", testReport, "ReportsLegLengths.htm");
             reportForm.ShowDialog(this);
             reportForm.Dispose();
         }
@@ -2954,7 +2954,7 @@ namespace PurplePen
 
             string testReport = reportGenerator.CreateEventAuditReport(controller.GetEventDB());
 
-            ReportForm reportForm = new ReportForm(Util.RemoveHotkeyPrefix(eventAuditMenu.Text), "", testReport, "ReportsEventAudit.htm");
+            ReportForm reportForm = new ReportForm(WindowsUtil.RemoveHotkeyPrefix(eventAuditMenu.Text), "", testReport, "ReportsEventAudit.htm");
             reportForm.ShowDialog(this);
             reportForm.Dispose();
         }

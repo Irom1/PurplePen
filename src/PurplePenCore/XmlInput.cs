@@ -45,7 +45,7 @@ namespace PurplePen
     /// <summary>
     /// An exception indicating that an XML file format was bad.
     /// </summary>
-    class XmlFileFormatException : ApplicationException
+    public class XmlFileFormatException : ApplicationException
     {
         public XmlFileFormatException(string filename, XmlTextReader xmlreader, string message, params object[] arguments)
             :

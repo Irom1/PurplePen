@@ -107,7 +107,7 @@ namespace PurplePen.Tests
             Assert.AreEqual(StatusBarText.DragCorner, controller.StatusText);
             // Check the cursor
             cursor = controller.GetMouseCursor(Pane.Map, new PointF(12.2F, 14.4F), 0.3F);
-            Assert.AreSame(Util.MoveHandleCursor, cursor);
+            Assert.AreSame(WindowsUtil.MoveHandleCursor, cursor);
 
             // Check the highlights
             highlights = (CourseObj[]) controller.GetHighlights(Pane.Map);
@@ -165,7 +165,7 @@ namespace PurplePen.Tests
             Assert.AreEqual(StatusBarText.DragCorner, controller.StatusText);
             // Check the cursor
             cursor = controller.GetMouseCursor(Pane.Map, new PointF(-4,7), 0.3F);
-            Assert.AreSame(Util.MoveHandleCursor, cursor);
+            Assert.AreSame(WindowsUtil.MoveHandleCursor, cursor);
 
             // Check the highlights
             highlights = (CourseObj[]) controller.GetHighlights(Pane.Map);
@@ -204,7 +204,7 @@ namespace PurplePen.Tests
             // Should have delete corner cursor
             ui.MouseMoved(3.1F, 7.2F, 0.3F);
             Cursor cursor = controller.GetMouseCursor(Pane.Map, new PointF(3.1F, 7.2F), 0.3F);
-            Assert.AreSame(Util.DeleteHandleCursor, cursor);
+            Assert.AreSame(WindowsUtil.DeleteHandleCursor, cursor);
 
             // And the deleting corner text.
             Assert.AreEqual(StatusBarText.DeletingCorner, controller.StatusText);
@@ -268,7 +268,7 @@ namespace PurplePen.Tests
             // move over an existing bend
             ui.MouseMoved(12.1F, 19.8F, 0.3F);
             cursor = controller.GetMouseCursor(Pane.Map, new PointF(12.1F, 19.8F), 0.3F);
-            Assert.AreSame(Util.DeleteHandleCursor, cursor);
+            Assert.AreSame(WindowsUtil.DeleteHandleCursor, cursor);
 
             // Click to remove the bend.
             dragAction = controller.LeftButtonDown(Pane.Map, new PointF(12.1F, 19.8F), 0.3F);

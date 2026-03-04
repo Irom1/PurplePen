@@ -183,7 +183,7 @@ namespace PurplePen
         // Make sure the given line is in view.
         public void ScrollLineIntoView(int line)
         {
-            Rectangle lineRect = Util.Round(renderer.LineBounds(line, line));
+            Rectangle lineRect = WindowsUtil.Round(renderer.LineBounds(line, line));
             Point currentScrollPosition = AutoScrollPosition;
             lineRect.Offset(currentScrollPosition);
             Rectangle client = ClientRectangle;
@@ -295,7 +295,7 @@ namespace PurplePen
 
                 if (invalidate) {
                     RectangleF bounds = renderer.LineBounds(i, i);
-                    descriptionPanel.Invalidate(Util.Round(bounds));
+                    descriptionPanel.Invalidate(WindowsUtil.Round(bounds));
                 }
             }
         }
@@ -420,7 +420,7 @@ namespace PurplePen
         void InvalidateLine(int line)
         {
             RectangleF rect = renderer.LineBounds(line, line);
-            descriptionPanel.Invalidate(Util.Round(rect));
+            descriptionPanel.Invalidate(WindowsUtil.Round(rect));
         }
 
         // Given a hit test, determine the location where the upper-left of the popup menu should be.
@@ -539,7 +539,7 @@ namespace PurplePen
                         // the length
                         string lengthText;
                         if (hasCustomLength)
-                            lengthText = Util.RemoveSuffix((string)renderer.Description[hitTest.firstLine].boxes[1], "km");
+                            lengthText = WindowsUtil.RemoveSuffix((string)renderer.Description[hitTest.firstLine].boxes[1], "km");
                         else 
                             lengthText = "";  // automatically calculated length.
 
@@ -548,7 +548,7 @@ namespace PurplePen
                     }
                     else if (hitTest.box == 2) {
                         // the climb
-                        popup.ShowPopup(8, (char) 0, (char) 0, false, MiscText.EnterClimb, Util.RemoveMeterSuffix((string) renderer.Description[hitTest.firstLine].boxes[2]), 4, descriptionPanel, location);
+                        popup.ShowPopup(8, (char) 0, (char) 0, false, MiscText.EnterClimb, WindowsUtil.RemoveMeterSuffix((string) renderer.Description[hitTest.firstLine].boxes[2]), 4, descriptionPanel, location);
                         popupKind = ChangeKind.Climb;
                     }
                     break;
@@ -571,7 +571,7 @@ namespace PurplePen
         private void DrawSelection(Graphics g, int firstLine, int lastLine, Rectangle clip)
         {
             if (firstLine >= 0 && lastLine >= 0) {
-                Rectangle selectedRect = Util.Round(renderer.LineBounds(firstLine, lastLine));
+                Rectangle selectedRect = WindowsUtil.Round(renderer.LineBounds(firstLine, lastLine));
                 if (selectedRect.IntersectsWith(clip))
                     g.FillRectangle(selectionBrush, selectedRect);
             }

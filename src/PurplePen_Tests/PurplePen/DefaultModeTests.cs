@@ -524,7 +524,7 @@ namespace PurplePen.Tests
             // Over corner should have move corner cursor
             ui.MouseMoved(2.9F, 7.2F, 0.1F);
             cursor = controller.GetMouseCursor(Pane.Map, new PointF(2.9F, 7.2F), 0.1F);
-            Assert.AreSame(Util.MoveHandleCursor, cursor);
+            Assert.AreSame(WindowsUtil.MoveHandleCursor, cursor);
 
             // And the moving corner text.
             Assert.AreEqual(StatusBarText.DragCorner, controller.StatusText);
@@ -548,7 +548,7 @@ namespace PurplePen.Tests
             Assert.AreEqual(StatusBarText.DraggingCorner, controller.StatusText);
             // Check the cursor
             cursor = controller.GetMouseCursor(Pane.Map, new PointF(7.9F, 11.2F), 0.1F);
-            Assert.AreSame(Util.MoveHandleCursor, cursor);
+            Assert.AreSame(WindowsUtil.MoveHandleCursor, cursor);
 
             
             // Finish dragging the corner point
@@ -729,7 +729,7 @@ namespace PurplePen.Tests
             // Over corner should have move corner cursor
             ui.MouseMoved(12.2F, 19.4F, 0.3F);
             Cursor cursor = controller.GetMouseCursor(Pane.Map, new PointF(12.2F, 19.4F), 0.3F);
-            Assert.AreSame(Util.MoveHandleCursor, cursor);
+            Assert.AreSame(WindowsUtil.MoveHandleCursor, cursor);
 
             // And the moving corner text.
             Assert.AreEqual(StatusBarText.DragCorner, controller.StatusText);
@@ -755,7 +755,7 @@ namespace PurplePen.Tests
             Assert.AreEqual(StatusBarText.DraggingCorner, controller.StatusText);
             // Check the cursor
             cursor = controller.GetMouseCursor(Pane.Map, new PointF(7.2F, 9.4F), 0.3F);
-            Assert.AreSame(Util.MoveHandleCursor, cursor);
+            Assert.AreSame(WindowsUtil.MoveHandleCursor, cursor);
 
             // Finish dragging the corner point
             controller.LeftButtonEndDrag(Pane.Map, new PointF(6.2F, 12.4F), new PointF(12.2F, 19.4F), 0.3F);
@@ -794,7 +794,7 @@ namespace PurplePen.Tests
             // Over leg gap should have move corner cursor
             ui.MouseMoved(72.5F, 3.5F, 0.3F);
             Cursor cursor = controller.GetMouseCursor(Pane.Map, new PointF(72.5F, 3.5F), 0.3F);
-            Assert.AreSame(Util.MoveHandleCursor, cursor);
+            Assert.AreSame(WindowsUtil.MoveHandleCursor, cursor);
 
             // And the moving corner text.
             Assert.AreEqual(StatusBarText.DragCorner, controller.StatusText);
@@ -819,7 +819,7 @@ namespace PurplePen.Tests
             Assert.AreEqual(StatusBarText.DraggingCorner, controller.StatusText);
             // Check the cursor
             cursor = controller.GetMouseCursor(Pane.Map, new PointF(73.5F, -3.0F), 0.3F);
-            Assert.AreSame(Util.MoveHandleCursor, cursor);
+            Assert.AreSame(WindowsUtil.MoveHandleCursor, cursor);
 
             // Finish dragging the corner point
             controller.LeftButtonEndDrag(Pane.Map, new PointF(76F, -5F), new PointF(72.5F, 3.5F), 0.3F);
@@ -860,7 +860,7 @@ namespace PurplePen.Tests
             // Over leg gap should have move corner cursor
             ui.MouseMoved(67, 6.6F, 0.3F);
             Cursor cursor = controller.GetMouseCursor(Pane.Map, new PointF(67, 6.6F), 0.3F);
-            Assert.AreSame(Util.MoveHandleCursor, cursor);
+            Assert.AreSame(WindowsUtil.MoveHandleCursor, cursor);
 
             // And the moving corner text.
             Assert.AreEqual(StatusBarText.DragCorner, controller.StatusText);
@@ -885,7 +885,7 @@ namespace PurplePen.Tests
             Assert.AreEqual(StatusBarText.DraggingCorner, controller.StatusText);
             // Check the cursor
             cursor = controller.GetMouseCursor(Pane.Map, new PointF(63.4F, 3.1F), 0.3F);
-            Assert.AreSame(Util.MoveHandleCursor, cursor);
+            Assert.AreSame(WindowsUtil.MoveHandleCursor, cursor);
 
             // Finish dragging the corner point
             controller.LeftButtonEndDrag(Pane.Map, new PointF(55, -8F), new PointF(67, 6.6F), 0.3F);

@@ -48,7 +48,7 @@ namespace PurplePen.Tests
     {
         void CheckCourse(string filename, CourseDesignator courseDesignator, string testName)
         {
-            SymbolDB symbolDB = new SymbolDB(Util.GetFileInAppDirectory("symbols.xml"));
+            SymbolDB symbolDB = new SymbolDB(WindowsUtil.GetFileInAppDirectory("symbols.xml"));
             UndoMgr undomgr = new UndoMgr(5);
             EventDB eventDB = new EventDB(undomgr);
             CourseView courseView, courseViewAllVariations;

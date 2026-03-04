@@ -57,7 +57,7 @@ namespace PurplePen.DebugUI
             this.symbolDB = symbolDB;
 
             foreach (Symbol sym in symbolDB.AllSymbols) {
-                listBoxSymbols.Items.Add(sym.Id + " - " + sym.GetName(Util.CurrentLangName()));
+                listBoxSymbols.Items.Add(sym.Id + " - " + sym.GetName(WindowsUtil.CurrentLangName()));
             }
        }
 

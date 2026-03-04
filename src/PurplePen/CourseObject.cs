@@ -188,7 +188,7 @@ namespace PurplePen
         // Get the cursor that should be used for a given handle.
         public virtual Cursor GetHandleCursor(PointF handlePoint)
         {
-            return Util.MoveHandleCursor;
+            return WindowsUtil.MoveHandleCursor;
         }
 
         // Draw a highlight for this course object.    
@@ -804,7 +804,7 @@ namespace PurplePen
                 case 1: case 6: return Cursors.SizeNS;
                 case 2: case 5: return Cursors.SizeNWSE;
                 case 3: case 4: return Cursors.SizeWE;
-                default: return Util.MoveHandleCursor;
+                default: return WindowsUtil.MoveHandleCursor;
             }
         }
 
@@ -906,10 +906,10 @@ namespace PurplePen
             RectangleF newRect = Geometry.RectFromPoints(left, top, right, bottom);
 
             if (left > right) {
-                Util.Swap(ref changeLeft, ref changeRight);
+                WindowsUtil.Swap(ref changeLeft, ref changeRight);
             }
             if (top > bottom) {
-                Util.Swap(ref changeTop, ref changeBottom);
+                WindowsUtil.Swap(ref changeTop, ref changeBottom);
             }
 
             // Update the rectangle.
@@ -1123,7 +1123,7 @@ namespace PurplePen
             string symbolId = map.GetFreeSymbolId(OcadIdIntegerPart);
 
             TextSymDef symdef = new TextSymDef(SymDefName, symbolId, TextSymDef.PreferredSymbolKind.NormalText, null);
-            symdef.SetFont(fontName, emHeight, Util.GetTextEffects(fontStyle), symbolColor, emHeight, 0, 0, 0, null, 0, 1F, TextSymDefHorizAlignment.Left, TextSymDefVertAlignment.TopAscent);
+            symdef.SetFont(fontName, emHeight, WindowsUtil.GetTextEffects(fontStyle), symbolColor, emHeight, 0, 0, 0, null, 0, 1F, TextSymDefHorizAlignment.Left, TextSymDefVertAlignment.TopAscent);
             if (outlineWidth > 0) {
                 TextSymDef.Framing framing = new TextSymDef.Framing() {
                     framingColor = whiteColor,
@@ -1190,7 +1190,7 @@ namespace PurplePen
             if (emHeight == 0)
                 return new SizeF(0, 0);
 
-            Graphics g = Util.GetHiresGraphics();
+            Graphics g = WindowsUtil.GetHiresGraphics();
             using (Font f = GdiplusFontLoader.CreateFont(SafeFontName, emHeight, fontStyle))
                 return g.MeasureString(text, f, topLeft, StringFormat.GenericTypographic);
         }
@@ -2942,7 +2942,7 @@ namespace PurplePen
                     return 0;
 
                 // Measure with a font size of 1, then scale appropriately.
-                Graphics g = Util.GetHiresGraphics();
+                Graphics g = WindowsUtil.GetHiresGraphics();
                 SizeF size;
                 using (Font f = GdiplusFontLoader.CreateFont(FontNameSafe(fontName), 1F, fontStyle))
                     size = g.MeasureString(text, f, new PointF(0, 0), StringFormat.GenericTypographic);
@@ -2968,7 +2968,7 @@ namespace PurplePen
             else {
                 // Fit rectangle around the text. Use the same top left corner, but that's actually bottom left
                 // in terms of RectangleF because of inverted coordinate system.
-                Graphics g = Util.GetHiresGraphics();
+                Graphics g = WindowsUtil.GetHiresGraphics();
                 SizeF size;
                 using (Font f = GdiplusFontLoader.CreateFont(SafeFontName, CalculateEmHeight(text, SafeFontName, fontStyle, fontDigitHeight, new SizeF()), fontStyle))
                     size = g.MeasureString(text, f, new PointF(0, 0), StringFormat.GenericTypographic);
@@ -3010,7 +3010,7 @@ namespace PurplePen
                 case 5: return Cursors.SizeNWSE;
                 case 3:
                 case 4: return Cursors.SizeWE;
-                default: return Util.MoveHandleCursor;
+                default: return WindowsUtil.MoveHandleCursor;
             }
         }
 

@@ -94,7 +94,7 @@ namespace PurplePen
         void FillListBox()
         {
             List<string> codes = new List<string>(patternDictionary.Keys);
-            codes.Sort(Util.CompareCodes);
+            codes.Sort(WindowsUtil.CompareCodes);
 
             codeList.Items.Clear();
             codeList.Items.AddRange(codes.ToArray());

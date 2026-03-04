@@ -136,7 +136,7 @@ namespace PurplePen
         }
 
         private void learnMoreLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
-            Util.ShowHelpTopic(this, HelpTopic);
+            WindowsUtil.ShowHelpTopic(this, HelpTopic);
         }
     }
 

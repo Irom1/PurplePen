@@ -436,7 +436,7 @@ namespace PurplePen.Tests
         [TestMethod]
         public void MultiStandard()
         {
-            SymbolDB symbolDB = new SymbolDB(Util.GetFileInAppDirectory("symbols.xml"), "2004");
+            SymbolDB symbolDB = new SymbolDB(WindowsUtil.GetFileInAppDirectory("symbols.xml"), "2004");
 
             Debug.Assert(symbolDB.SymbolExistsInStandard("1.10", "2004"));
             Debug.Assert(symbolDB.SymbolExistsInStandard("1.10", "2018"));

@@ -162,7 +162,7 @@ namespace PurplePen
         private static void AskToDownload(string versionNumber, string fileName)
         {
             // Ask to see if user wants to update.
-            string message = string.Format(MiscText.NewerVersionAvailable, Util.PrettyVersionString(versionNumber), Util.PrettyVersionString(VersionNumber.Current));
+            string message = string.Format(MiscText.NewerVersionAvailable, WindowsUtil.PrettyVersionString(versionNumber), WindowsUtil.PrettyVersionString(VersionNumber.Current));
             DialogResult answer = MessageBox.Show(message, MiscText.AppTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
             if (answer != DialogResult.Yes) {
                 return;
@@ -349,10 +349,10 @@ namespace PurplePen
                     }
                 }
 #else
-                if (results.CurrentVersion != null && Util.CompareVersionStrings(VersionNumber.Current, results.CurrentVersion) < 0) {
+                if (results.CurrentVersion != null && WindowsUtil.CompareVersionStrings(VersionNumber.Current, results.CurrentVersion) < 0) {
                     AskToDownload(results.CurrentVersion, results.CurrentFileName);
                 }
-                else if (results.PrereleaseVersion != null && Util.CompareVersionStrings(VersionNumber.Current, results.PrereleaseVersion) < 0 && Util.SameExceptRevision(VersionNumber.Current, results.PrereleaseVersion)) {
+                else if (results.PrereleaseVersion != null && WindowsUtil.CompareVersionStrings(VersionNumber.Current, results.PrereleaseVersion) < 0 && WindowsUtil.SameExceptRevision(VersionNumber.Current, results.PrereleaseVersion)) {
                     AskToDownload(results.PrereleaseVersion, results.PrereleaseFileName);
                 }
 #endif
@@ -428,7 +428,7 @@ namespace PurplePen
             }
 
             // Only check latest prerelease if this is a pre-release.
-            if (Util.IsPrerelease(VersionNumber.Current)) {
+            if (WindowsUtil.IsPrerelease(VersionNumber.Current)) {
                 try {
                     latestPrerelease = client.GetStringAsync(downloadLocation + latestPreleaseName).GetAwaiter().GetResult();
                 }

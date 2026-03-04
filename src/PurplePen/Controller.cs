@@ -91,7 +91,7 @@ namespace PurplePen
         {
             // Create the core objects needed for the application to run.
             this.ui = ui;
-            symbolDB = new SymbolDB(Util.GetFileInAppDirectory("symbols.xml"));
+            symbolDB = new SymbolDB(WindowsUtil.GetFileInAppDirectory("symbols.xml"));
 
             // Reset state
             ResetState();
@@ -1723,7 +1723,7 @@ namespace PurplePen
             // If the control is used by any courses, ask the user if he is sure.
             Id<Course>[] coursesUsingControl = QueryEvent.CoursesUsingControl(eventDB, selection.SelectedControl, true);
             if (coursesUsingControl.Length > 0) {
-                string controlName = "\"" + Util.ControlPointName(eventDB, selection.SelectedControl, NameStyle.Medium) + "\"";
+                string controlName = "\"" + WindowsUtil.ControlPointName(eventDB, selection.SelectedControl, NameStyle.Medium) + "\"";
                 string courseNames = QueryEvent.CourseList(eventDB, coursesUsingControl);
 
                 delete = ui.YesNoQuestion(string.Format(MiscText.DeleteControlFromAllControls, controlName, courseNames), false);
@@ -1783,7 +1783,7 @@ namespace PurplePen
                     orphanedControls.Add(controlId);
                     if (orphanedControlsText != "")
                         orphanedControlsText += ", ";
-                    orphanedControlsText += string.Format("\"{0}\"", Util.ControlPointName(eventDB, controlId, NameStyle.Medium));
+                    orphanedControlsText += string.Format("\"{0}\"", WindowsUtil.ControlPointName(eventDB, controlId, NameStyle.Medium));
                 }
             }
 
@@ -2673,7 +2673,7 @@ namespace PurplePen
         // Get list of controls for the remove unused controls dialog. A list of keyvaluepairs, where key is the control id, and value is the string to represent it.
         public List<KeyValuePair<Id<ControlPoint>, string>> GetUnusedControls()
         {
-            List<KeyValuePair<Id<ControlPoint>, string>> list = QueryEvent.ControlsUnusedInCourses(eventDB, true).ConvertAll(id => new KeyValuePair<Id<ControlPoint>,string>(id, Util.ControlPointName(eventDB, id, NameStyle.Medium)));
+            List<KeyValuePair<Id<ControlPoint>, string>> list = QueryEvent.ControlsUnusedInCourses(eventDB, true).ConvertAll(id => new KeyValuePair<Id<ControlPoint>,string>(id, WindowsUtil.ControlPointName(eventDB, id, NameStyle.Medium)));
 
             list.Sort((pair1, pair2) => QueryEvent.CompareControlIds(eventDB, pair1.Key, pair2.Key));
             return list;
@@ -2981,7 +2981,7 @@ namespace PurplePen
 
             // Sort in the correct order to display.
             codes.Sort(delegate(KeyValuePair<object, string> pair1, KeyValuePair<object,string> pair2) {
-                return Util.CompareCodes(pair1.Value, pair2.Value);
+                return WindowsUtil.CompareCodes(pair1.Value, pair2.Value);
             });
 
             return codes.ToArray();
@@ -3267,7 +3267,7 @@ namespace PurplePen
             }
 
             enableThisCourse = selection.SelectedCourseControl.IsNotNone;
-            objectName = Util.ControlPointName(eventDB, selection.SelectedControl, NameStyle.Long);
+            objectName = WindowsUtil.ControlPointName(eventDB, selection.SelectedControl, NameStyle.Long);
             return true;
         }
 
@@ -3485,7 +3485,7 @@ namespace PurplePen
                         newClimb = -1F;
                     }
                     else {
-                        if (!float.TryParse(Util.RemoveMeterSuffix(newStringValue), out newClimb) || newClimb < 0 || newClimb >= 10000) {
+                        if (!float.TryParse(WindowsUtil.RemoveMeterSuffix(newStringValue), out newClimb) || newClimb < 0 || newClimb >= 10000) {
                             // Invalid climb value.
                             ui.ErrorMessage(string.Format(MiscText.BadClimb, newStringValue));
                             break;
@@ -3504,7 +3504,7 @@ namespace PurplePen
                         newLength = -1;
                     }
                     else {
-                        if (!float.TryParse(Util.RemoveSuffix(newStringValue, "km"), out newLength) || newLength <= 0 || newLength >= 100) {
+                        if (!float.TryParse(WindowsUtil.RemoveSuffix(newStringValue, "km"), out newLength) || newLength <= 0 || newLength >= 100) {
                             // Invalid length value.
                             ui.ErrorMessage(string.Format(MiscText.BadLength, newStringValue));
                             break;

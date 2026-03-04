@@ -24,7 +24,7 @@ namespace PurplePen
         private void BaseDialog_HelpButtonClicked(object sender, CancelEventArgs e)
         {
             if (! string.IsNullOrEmpty(HelpTopic))
-                Util.ShowHelpTopic(this, HelpTopic);
+                WindowsUtil.ShowHelpTopic(this, HelpTopic);
             e.Cancel = true;
         }
     }

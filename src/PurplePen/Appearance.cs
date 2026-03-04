@@ -84,7 +84,7 @@ namespace PurplePen
 
         public FontStyle Style {
             get {
-                return Util.GetFontStyle(Bold, Italic);
+                return WindowsUtil.GetFontStyle(Bold, Italic);
             }
         }
 

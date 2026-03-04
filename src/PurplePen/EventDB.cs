@@ -290,7 +290,7 @@ namespace PurplePen
                 if (gaps.Count != other.gaps.Count)
                     return false;
                 foreach (int scale in gaps.Keys) {
-                    if (!other.gaps.ContainsKey(scale) || ! Util.EqualArrays(other.gaps[scale], gaps[scale]))
+                    if (!other.gaps.ContainsKey(scale) || ! WindowsUtil.EqualArrays(other.gaps[scale], gaps[scale]))
                         return false;
                 }
             }
@@ -978,8 +978,8 @@ namespace PurplePen
         {
             Course n = (Course)base.Clone();
 
-            n.partPrintAreas = Util.CloneDictionary(n.partPrintAreas);
-            n.partOptions = Util.CloneDictionary(n.partOptions);
+            n.partPrintAreas = WindowsUtil.CloneDictionary(n.partPrintAreas);
+            n.partOptions = WindowsUtil.CloneDictionary(n.partOptions);
             if (n.printArea != null)
                 n.printArea = (PrintArea) n.printArea.Clone();
             if (n.relaySettings != null)
@@ -1569,89 +1569,6 @@ namespace PurplePen
     // Kinds of a line. Note: order must match combo box order in line properties dialog.
     public enum LineKind { Single, Double, Dashed};
 
-    // Color of a special item: Black, Purple, White, or Custom.
-    public class SpecialColor
-    {
-        public enum ColorKind { Black, UpperPurple, LowerPurple, Custom }
-
-        public readonly ColorKind Kind;
-        public readonly CmykColor CustomColor;
-
-        public readonly static SpecialColor Black = new SpecialColor(ColorKind.Black);
-        public readonly static SpecialColor UpperPurple = new SpecialColor(ColorKind.UpperPurple);
-        public readonly static SpecialColor LowerPurple = new SpecialColor(ColorKind.LowerPurple);
-
-        public SpecialColor(ColorKind colorKind)
-        {
-            Debug.Assert(colorKind != ColorKind.Custom);
-            this.Kind = colorKind;
-        }
-
-        public SpecialColor(float cyan, float magenta, float yellow, float black)
-        {
-            this.Kind = ColorKind.Custom;
-            this.CustomColor = CmykColor.FromCmyk(cyan, magenta, yellow, black);
-        }
-
-        public SpecialColor(CmykColor color)
-        {
-            this.Kind = ColorKind.Custom;
-            this.CustomColor = color;
-        }
-
-        public override string ToString()
-        {
-            switch (Kind) {
-                case ColorKind.Black: return "black";
-                case ColorKind.UpperPurple: return "purple";
-                case ColorKind.LowerPurple: return "lower-purple";
-                case ColorKind.Custom: return string.Format(CultureInfo.InvariantCulture, "{0:F},{1:F},{2:F},{3:F}", CustomColor.Cyan, CustomColor.Magenta, CustomColor.Yellow, CustomColor.Black);
-                default: return base.ToString();
-            }
-        }
-
-        public static SpecialColor Parse(string s)
-        {
-            if (s == "black")
-                return SpecialColor.Black;
-            else if (s == "purple")
-                return SpecialColor.UpperPurple;
-            else if (s == "lower-purple")
-                return SpecialColor.LowerPurple;
-            else {
-                float c, m, y, k;
-                string[] colors = s.Split(',');
-                if (colors.Length != 4)
-                    throw new FormatException();
-                c = float.Parse(colors[0], CultureInfo.InvariantCulture);
-                m = float.Parse(colors[1], CultureInfo.InvariantCulture);
-                y = float.Parse(colors[2], CultureInfo.InvariantCulture);
-                k = float.Parse(colors[3], CultureInfo.InvariantCulture);
-                return new SpecialColor(c, m, y, k);
-            }
-        }
-
-        public override bool Equals(object obj)
-        {
-            SpecialColor other = obj as SpecialColor;
-            if (other == null)
-                return false;
-
-            if (Kind != ColorKind.Custom)
-                return Kind == other.Kind;
-            else
-                return (Kind == other.Kind && CustomColor.Equals(other.CustomColor));
-        }
-
-        public override int GetHashCode()
-        {
-            if (Kind != ColorKind.Custom)
-                return Kind.GetHashCode();
-            else
-                return CustomColor.GetHashCode();
-        }
-    }
-
 
 
     /// <summary>
@@ -1805,7 +1722,7 @@ namespace PurplePen
         {
             Special n = (Special) base.Clone();
             if (courses != null) {
-                n.courses = Util.CloneArrayAndElements(n.courses);
+                n.courses = WindowsUtil.CloneArrayAndElements(n.courses);
             }
 
             n.locations = (PointF[]) n.locations.Clone();
@@ -2050,7 +1967,7 @@ namespace PurplePen
 
             if (imageBitmap != null) {
                 xmloutput.WriteStartElement("image-data");
-                xmloutput.WriteAttributeString("format", Util.ImageFormatText(imageBitmap.RawFormat));
+                xmloutput.WriteAttributeString("format", WindowsUtil.ImageFormatText(imageBitmap.RawFormat));
                 MemoryStream stm = new MemoryStream();
                 imageBitmap.Save(stm, imageBitmap.RawFormat);
                 stm.Flush();
@@ -2696,7 +2613,7 @@ namespace PurplePen
                 }
             }
 
-            ev.customSymbolKey = Util.CopyDictionary(customSymbolKey);
+            ev.customSymbolKey = WindowsUtil.CopyDictionary(customSymbolKey);
             ev.punchcardFormat = (PunchcardFormat) punchcardFormat.Clone();
             ev.courseAppearance = (CourseAppearance) courseAppearance.Clone();
             if (ev.printArea != null)
@@ -2804,7 +2721,7 @@ namespace PurplePen
 
             if (mapType != MapType.None) {
                 xmloutput.WriteAttributeString("absolute-path", Path.GetFullPath(mapFileName));
-                xmloutput.WriteString(Util.GetRelativeFileName(xmloutput, mapFileName));
+                xmloutput.WriteString(WindowsUtil.GetRelativeFileName(xmloutput, mapFileName));
             }
 
             xmloutput.WriteEndElement();

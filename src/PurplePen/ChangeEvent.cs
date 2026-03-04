@@ -314,7 +314,7 @@ namespace PurplePen
             // Put the codeToControl dictionary into a list and sort it.
             List<KeyValuePair<string, Id<ControlPoint>>> codeToControlList = new List<KeyValuePair<string, Id<ControlPoint>>>(codeToControl);
             codeToControlList.Sort(delegate(KeyValuePair<string, Id<ControlPoint>> pair1, KeyValuePair<string, Id<ControlPoint>> pair2) {
-                return Util.CompareCodes(pair1.Key, pair2.Key);
+                return WindowsUtil.CompareCodes(pair1.Key, pair2.Key);
             });
 
             // Put the codes still to be assigned into a list and sort it.
@@ -322,7 +322,7 @@ namespace PurplePen
             foreach (string code in newCodes.Keys)
                 if (newCodes[code])
                     newCodeList.Add(code);
-            newCodeList.Sort(Util.CompareCodes);
+            newCodeList.Sort(WindowsUtil.CompareCodes);
 
             // Assign new codes.
             Debug.Assert(codeToControlList.Count == newCodeList.Count);
@@ -1747,7 +1747,7 @@ namespace PurplePen
             oldBendArray[oldBendArray.Length - 1] = eventDB.GetControl(controlId2).location;
 
             // Insert the new point into the array at the right place.
-            PointF[] newBendArray = Util.AddPointToArray(oldBendArray, newBend);
+            PointF[] newBendArray = WindowsUtil.AddPointToArray(oldBendArray, newBend);
 
             // Copy the new bend parts into the bends array.
             leg.bends = new PointF[newBendArray.Length - 2];
@@ -1809,7 +1809,7 @@ namespace PurplePen
             }
 
             // Remove the bend from the bend array.
-            leg.bends = Util.RemovePointFromArray(leg.bends, bendToRemove);
+            leg.bends = WindowsUtil.RemovePointFromArray(leg.bends, bendToRemove);
             if (leg.bends.Length == 0)
                 leg.bends = null;
 
@@ -1914,7 +1914,7 @@ namespace PurplePen
             }
 
             // Add the corner in the right place.
-            PointF[] newPoints = Util.AddPointToArray(oldLocations, newCorner);
+            PointF[] newPoints = WindowsUtil.AddPointToArray(oldLocations, newCorner);
 
             // If it's an area special, remove the first location from the end.
             if (isArea) {
@@ -1937,7 +1937,7 @@ namespace PurplePen
                 ((special.kind == SpecialKind.Boundary || special.kind == SpecialKind.Line) && special.locations.Length > 2));
 
             // Remove the corner
-            PointF[] newPoints = Util.RemovePointFromArray(special.locations, cornerToRemove);
+            PointF[] newPoints = WindowsUtil.RemovePointFromArray(special.locations, cornerToRemove);
 
             // Update the special.
             ChangeSpecialLocations(eventDB, specialId, newPoints);
@@ -2020,8 +2020,8 @@ namespace PurplePen
             Event e = eventDB.GetEvent();
 
             e = (Event) e.Clone();
-            e.customSymbolText = Util.CopyDictionary(customSymbolText);
-            e.customSymbolKey = Util.CopyDictionary(customSymbolKey);
+            e.customSymbolText = WindowsUtil.CopyDictionary(customSymbolText);
+            e.customSymbolKey = WindowsUtil.CopyDictionary(customSymbolKey);
 
             eventDB.ChangeEvent(e); 
         }

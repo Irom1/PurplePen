@@ -72,7 +72,7 @@ namespace PurplePen
             RectangleF rectPixel = RectangleF.FromLTRB(pts[0].X, pts[0].Y, pts[1].X, pts[1].Y);
 
             rectPixel.Inflate(penWidth / 2F, penWidth / 2F);
-            Rectangle r = Util.Round(rectPixel);
+            Rectangle r = WindowsUtil.Round(rectPixel);
             g.FillRectangle(eraseBrush, r);
         }
 

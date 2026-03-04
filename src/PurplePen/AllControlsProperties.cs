@@ -66,7 +66,7 @@ namespace PurplePen
         public void InitializePrintScales(float mapScale)
         {
             // Initialize the map scale box.
-            foreach (int scale in Util.PrintScaleList(mapScale))
+            foreach (int scale in WindowsUtil.PrintScaleList(mapScale))
                 this.scaleCombo.Items.Add(scale);
         }
 

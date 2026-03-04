@@ -896,7 +896,7 @@ namespace PurplePen.Tests
                 CultureInfo.CurrentCulture.ClearCachedData();
                 Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("de-DE");
 
-                Assert.IsTrue(Util.IsCurrentCultureMetric());
+                Assert.IsTrue(WindowsUtil.IsCurrentCultureMetric());
 
                 UndoMgr undomgr = new UndoMgr(5);
                 EventDB eventDB = new EventDB(undomgr);
