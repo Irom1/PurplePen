@@ -99,6 +99,9 @@
       <BuildDependency Project="Help/Help.csproj" />
       <Build Solution="Debug|x86" Project="false" />
     </Project>
+    <Project Path="PurplePenCore/PurplePenCore.csproj" Id="130fb09c-b6f6-45ab-b374-1f0457cfffb0">
+      <BuildType Solution="StorePkg|*" Project="Release" />
+    </Project>
     <Project Path="PurplePen_Tests/PurplePen_Tests.csproj" Id="0690d25c-7696-4b7a-9aab-fbbcafd0eef5">
       <Build Solution="Debug|x86" Project="false" />
     </Project>
