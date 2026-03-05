@@ -1,7 +1,9 @@
 {
   "permissions": {
     "allow": [
-      "Bash(xargs grep -l \"TTC\\\\|collection\")"
+      "Bash(xargs grep -l \"TTC\\\\|collection\")",
+      "Bash(dotnet build PurplePen/PurplePen.csproj -f net48 --no-restore)",
+      "Bash(dotnet build PurplePen/PurplePen.csproj -f net10.0-windows)"
     ]
   }
 }

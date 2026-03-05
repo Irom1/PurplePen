@@ -64,3 +64,9 @@ Pain points:
    Reading PDFs. Needing PdiumSharp. There are a bunch of versions on GitHub. Need to look
    them over to see which is best. Probably still package as an EXE. Use similar caching strategy as before.
    Look at PDFiumCore.
+
+   CrashReporter - need to redo this to be cross platform and use web request to a web server
+   instead of email.
+
+   Settings system - need to redo this to be cross platform. Need to see if there is something in .NET Core
+   that can work.

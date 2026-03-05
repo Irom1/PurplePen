@@ -46,6 +46,7 @@ using PurplePen.MapModel;
 using System.Runtime.InteropServices;
 using System.Linq;
 using PurplePen.Graphics2D;
+using SkiaSharp;
 
 namespace PurplePen
 {
@@ -595,22 +596,31 @@ namespace PurplePen
             PointSymDef symdef;
             symdef = new PointSymDef("Description: " + this.GetName(WindowsUtil.CurrentLangName()), symbolId, glyph, false);
 
-            // Create the toolbox image.
-            Bitmap bm = new Bitmap(24, 24);
-            using (Graphics g = Graphics.FromImage(bm)) {
-                g.Clear(Color.White);
-                g.SmoothingMode = Draw2D.SmoothingMode.AntiAlias;
+            // Create the toolbox image using Skia rendering.
+            const int iconSize = 24;
+            RectangleF iconRect = new RectangleF(0, 0, iconSize, iconSize);
+            using (Skia_BitmapGraphicsTarget skiaTarget = new Skia_BitmapGraphicsTarget(iconSize, iconSize, false, CmykColor.FromColor(Color.White), iconRect, false)) {
+                skiaTarget.PushAntiAliasing(true);
+                CmykColor black = CmykColor.FromColor(Color.Black);
                 if (kind >= 'T') {
-                    g.SetClip(new RectangleF(0, 0, bm.Width / 2, bm.Height));
-                    Draw(g, Color.Black, new RectangleF(0, bm.Height / 3F, bm.Width * 8F / 3F, bm.Height / 3F));
-                    g.SetClip(new RectangleF(bm.Width / 2, 0, bm.Width / 2, bm.Height));
-                    Draw(g, Color.Black, new RectangleF(- bm.Width * 5F / 3F, bm.Height / 3F, bm.Width * 8F / 3F, bm.Height / 3F));
+                    skiaTarget.PushClip(new RectangleF(0, 0, iconSize / 2, iconSize));
+                    Draw(skiaTarget, black, new RectangleF(0, iconSize / 3F, iconSize * 8F / 3F, iconSize / 3F));
+                    skiaTarget.PopClip();
+                    skiaTarget.PushClip(new RectangleF(iconSize / 2, 0, iconSize / 2, iconSize));
+                    Draw(skiaTarget, black, new RectangleF(-iconSize * 5F / 3F, iconSize / 3F, iconSize * 8F / 3F, iconSize / 3F));
+                    skiaTarget.PopClip();
                 }
                 else {
-                    Draw(g, Color.Black, new RectangleF(0, 0, bm.Width, bm.Height));
+                    Draw(skiaTarget, black, iconRect);
+                }
+                skiaTarget.PopAntiAliasing();
+
+                // Flush the canvas and extract the bitmap for the toolbox icon.
+                skiaTarget.Canvas.Flush();
+                using (Skia_Bitmap skiaBitmap = (Skia_Bitmap)skiaTarget.FinishBitmap()) {
+                    symdef.ToolboxImage = MapUtil.CreateToolboxIcon(skiaBitmap.Bitmap);
                 }
             }
-            symdef.ToolboxImage = MapUtil.CreateToolboxIcon(bm);
 
             // Add the symdef to the map.
             map.AddSymdef(symdef);

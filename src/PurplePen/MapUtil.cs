@@ -42,6 +42,7 @@ using ColorConverter = PurplePen.Graphics2D.ColorConverter;
 using System.Drawing.Printing;
 using System.Globalization;
 using System.Security.Cryptography.X509Certificates;
+using SkiaSharp;
 
 namespace PurplePen
 {
@@ -195,6 +196,20 @@ namespace PurplePen
             for (int x = 0; x < ToolboxIcon.WIDTH; ++x) {
                 for (int y = 0; y < ToolboxIcon.HEIGHT; ++y) {
                     icon.SetPixel(x, y, bm.GetPixel(x, y));
+                }
+            }
+
+            return icon;
+        }
+
+        // Create a ToolboxIcon from a SkiaSharp bitmap.
+        public static ToolboxIcon CreateToolboxIcon(SKBitmap bm) {
+            ToolboxIcon icon = new ToolboxIcon();
+
+            for (int x = 0; x < ToolboxIcon.WIDTH; ++x) {
+                for (int y = 0; y < ToolboxIcon.HEIGHT; ++y) {
+                    SKColor skColor = bm.GetPixel(x, y);
+                    icon.SetPixel(x, y, Color.FromArgb(skColor.Alpha, skColor.Red, skColor.Green, skColor.Blue));
                 }
             }
 
