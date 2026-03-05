@@ -202,20 +202,6 @@ namespace PurplePen
             return icon;
         }
 
-        // Create a ToolboxIcon from a SkiaSharp bitmap.
-        public static ToolboxIcon CreateToolboxIcon(SKBitmap bm) {
-            ToolboxIcon icon = new ToolboxIcon();
-
-            for (int x = 0; x < ToolboxIcon.WIDTH; ++x) {
-                for (int y = 0; y < ToolboxIcon.HEIGHT; ++y) {
-                    SKColor skColor = bm.GetPixel(x, y);
-                    icon.SetPixel(x, y, Color.FromArgb(skColor.Alpha, skColor.Red, skColor.Green, skColor.Blue));
-                }
-            }
-
-            return icon;
-        }
-
         // Given a print area rectangle, get the exact size needed to print it at the given scale ratio. Because there tend to be rounding errors
         // around the range of about 1/100 of a inch due to quantization, we check standard paper sizes to see if one is very very close.
         public static void GetExactPageSize(RectangleF printAreaRectangle, float printScaleRatio, out int pageWidth, out int pageHeight, out bool landscape)

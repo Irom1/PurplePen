@@ -32,26 +32,22 @@
  * OF SUCH DAMAGE.
  */
 
+using PdfSharp.Drawing;
+using PurplePen.Graphics2D;
+using PurplePen.MapModel;
+using SkiaSharp;
 using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
-using System.Drawing;
-using System.Drawing.Imaging;
-using Draw2D = System.Drawing.Drawing2D;
 using System.Diagnostics;
-using System.Xml;
+using System.Drawing;
 using System.IO;
-
-using PurplePen.MapModel;
-using System.Runtime.InteropServices;
 using System.Linq;
-using PurplePen.Graphics2D;
-using SkiaSharp;
+using System.Xml;
 
 namespace PurplePen
 {
     // Represents a language that symbols can be described in
-    class SymbolLanguage
+    public class SymbolLanguage
     {
         public string Name {get; private set; }
         public string LangId {get; private set; }
@@ -261,7 +257,7 @@ namespace PurplePen
     /// <summary>
     /// Represents a graphical symbol that can be drawn into a text box.
     /// </summary>
-    class Symbol
+    public class Symbol
     {
         public readonly int SortOrder;
         private readonly SymbolDB symbolDB;
@@ -514,51 +510,20 @@ namespace PurplePen
             }
         }
 
-        /// <summary>
-        /// Draw the given symbol to fill the rectange in that graphics.
-        /// </summary>
-        /// <param name="g">Graphics to draw in.</param>
-        /// <param name="color">Color to use for drawing.</param>
-        /// <param name="rect">The rectange to fill.</param>
-        public void Draw(Graphics g, Color color, RectangleF rect)
-        {
-            /* 
-            Matrix matSave = g.Transform;
 
-            g.TranslateTransform((rect.Left + rect.Right) / 2.0F, (rect.Top + rect.Bottom) / 2.0F);
-            if (kind >= 'T') {
-                // An instructional directive that spans 8 columns
-                g.ScaleTransform(rect.Width / 1600.0F, -rect.Height / 200.0F);
-            }
-            else {
-                // Regular square symbol.
-                g.ScaleTransform(rect.Width / 200.0F, -rect.Height / 200.0F);
-            }
-
-            for (int i = 0; i < strokes.Length; ++i)
-                strokes[i].Draw(g, color);
-
-            g.Transform = matSave;
-            */
-
-            Draw2D.GraphicsState state = g.Save();
-            try {
-                using (GDIPlus_GraphicsTarget grTarget = new GDIPlus_GraphicsTarget(g)) {
+/*
+           using (GDIPlus_GraphicsTarget grTarget = new GDIPlus_GraphicsTarget(g)) {
                     Draw(grTarget, CmykColor.FromColor(color), rect);
-                }
-            }
-            finally {
-                g.Restore(state);
-            }
-        }
+*/
 
-        /// <summary>
-        /// Draw the given symbol to fill the rectange in that graphics.
-        /// </summary>
-        /// <param name="g">Graphics to draw in.</param>
-        /// <param name="color">Color to use for drawing.</param>
-        /// <param name="rect">The rectange to fill.</param>
-        public void Draw(IGraphicsTarget g, CmykColor color, RectangleF rect)
+
+/// <summary>
+/// Draw the given symbol to fill the rectange in that graphics.
+/// </summary>
+/// <param name="g">Graphics to draw in.</param>
+/// <param name="color">Color to use for drawing.</param>
+/// <param name="rect">The rectange to fill.</param>
+public void Draw(IGraphicsTarget g, CmykColor color, RectangleF rect)
         {
             Matrix matNew = new Matrix();
 
@@ -594,7 +559,7 @@ namespace PurplePen
 
             // Create the symdef
             PointSymDef symdef;
-            symdef = new PointSymDef("Description: " + this.GetName(WindowsUtil.CurrentLangName()), symbolId, glyph, false);
+            symdef = new PointSymDef("Description: " + this.GetName(Util.CurrentLangName()), symbolId, glyph, false);
 
             // Create the toolbox image using Skia rendering.
             const int iconSize = 24;
@@ -618,7 +583,7 @@ namespace PurplePen
                 // Flush the canvas and extract the bitmap for the toolbox icon.
                 skiaTarget.Canvas.Flush();
                 using (Skia_Bitmap skiaBitmap = (Skia_Bitmap)skiaTarget.FinishBitmap()) {
-                    symdef.ToolboxImage = MapUtil.CreateToolboxIcon(skiaBitmap.Bitmap);
+                    symdef.ToolboxImage = CoreMapUtil.CreateToolboxIcon(skiaBitmap.Bitmap);
                 }
             }
 
@@ -958,7 +923,7 @@ namespace PurplePen
     }
 
 
-    class SymbolDB
+    public class SymbolDB
     {
         string filename;
         Dictionary<string, List<Symbol>> symbols = new Dictionary<string, List<Symbol>>();

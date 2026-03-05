@@ -83,8 +83,9 @@ namespace PurplePen.Tests
             g.Clear(Color.White);
             RectangleF rect = new RectangleF(0.0F, 0.0F, width, height);
 
-            sym.Draw(g, Color.Black, rect);
-
+            using (GDIPlus_GraphicsTarget grTarget = new GDIPlus_GraphicsTarget(g)) {
+                sym.Draw(grTarget, CmykColor.FromColor(Color.Black), rect);
+            }
             g.Dispose();
 
             return bm;
@@ -415,7 +416,9 @@ namespace PurplePen.Tests
                 // Now use normal drawing to super-impose.
                 g.Transform = saveTransform.ToSysDrawMatrix();
                 RectangleF rect = new RectangleF(0.0F, 0.0F, bm.Width, bm.Height);
-                sym.Draw(g, Color.FromArgb(50, Color.Black), rect);
+                using (GDIPlus_GraphicsTarget grTarget = new GDIPlus_GraphicsTarget(g)) {
+                    sym.Draw(grTarget, CmykColor.FromColor(Color.FromArgb(50, Color.Black)), rect);
+                }
             }
 
             return bm;

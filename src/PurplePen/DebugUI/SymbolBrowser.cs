@@ -32,6 +32,8 @@
  * OF SUCH DAMAGE.
  */
 
+using PurplePen.Graphics2D;
+using PurplePen.MapModel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -57,7 +59,7 @@ namespace PurplePen.DebugUI
             this.symbolDB = symbolDB;
 
             foreach (Symbol sym in symbolDB.AllSymbols) {
-                listBoxSymbols.Items.Add(sym.Id + " - " + sym.GetName(WindowsUtil.CurrentLangName()));
+                listBoxSymbols.Items.Add(sym.Id + " - " + sym.GetName(Util.CurrentLangName()));
             }
        }
 
@@ -88,10 +90,14 @@ namespace PurplePen.DebugUI
                     rect.Inflate(0, - rect.Height * 3.5F / 8.0F);
                     e.Graphics.DrawLine(Pens.Black, rect.Left, rect.Top, rect.Right, rect.Top);
                     e.Graphics.DrawLine(Pens.Black, rect.Left, rect.Bottom, rect.Right, rect.Bottom);
-                    sym.Draw(e.Graphics, Color.Black, rect);
+                    using (GDIPlus_GraphicsTarget grTarget = new GDIPlus_GraphicsTarget(e.Graphics)) {
+                        sym.Draw(grTarget, CmykColor.FromColor(Color.Black), rect);
+                    }
                 }
                 else {
-                    sym.Draw(e.Graphics, Color.Black, rect);
+                    using (GDIPlus_GraphicsTarget grTarget = new GDIPlus_GraphicsTarget(e.Graphics)) {
+                        sym.Draw(grTarget, CmykColor.FromColor(Color.Black), rect);
+                    }
                 }
             }
         }
@@ -103,7 +109,9 @@ namespace PurplePen.DebugUI
             g.Clear(Color.White);
             RectangleF rect = new RectangleF(0.0F, 0.0F, 256.0F, 256.0F);
 
-            sym.Draw(g, Color.Black, rect);
+            using (GDIPlus_GraphicsTarget grTarget = new GDIPlus_GraphicsTarget(g)) {
+                sym.Draw(grTarget, CmykColor.FromColor(Color.Black), rect);
+            }
 
             g.Dispose();
 
@@ -162,7 +170,9 @@ namespace PurplePen.DebugUI
 
                     Symbol sym = enumSymbol.Current;
 
-                    sym.Draw(g, Color.Black, rect);
+                    using (GDIPlus_GraphicsTarget grTarget = new GDIPlus_GraphicsTarget(g)) {
+                        sym.Draw(grTarget, CmykColor.FromColor(Color.Black), rect);
+                    }
                 }
             }
 

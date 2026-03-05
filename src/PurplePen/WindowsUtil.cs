@@ -477,12 +477,6 @@ namespace PurplePen
             }
         }
 
-        public static string CurrentLangName()
-        {
-            CultureInfo culture = System.Threading.Thread.CurrentThread.CurrentUICulture;
-            return culture.TwoLetterISOLanguageName;
-        }
-
 
         public static Point PointFromPointF(PointF pointf)
         {

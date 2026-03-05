@@ -165,7 +165,7 @@ namespace PurplePen
             }
 
             // Set the description language to the UI language.
-            string langId = WindowsUtil.CurrentLangName();
+            string langId = Util.CurrentLangName();
             if (controller.HasDescriptionLanguage(langId)) {
                 controller.SetDescriptionLanguage(langId);
                 controller.MarkClean();

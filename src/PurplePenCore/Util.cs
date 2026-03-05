@@ -256,5 +256,12 @@ namespace PurplePen
                 return n1.ToString() + "\u2013" + n2.ToString();
         }
 
+        public static string CurrentLangName()
+        {
+            CultureInfo culture = System.Threading.Thread.CurrentThread.CurrentUICulture;
+            return culture.TwoLetterISOLanguageName;
+        }
+
+
     }
 }
