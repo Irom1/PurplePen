@@ -1011,7 +1011,7 @@ namespace PurplePen
                 
                 if (courseControl1.points != courseControl2.points)
                     return courseControl1.points.CompareTo(courseControl2.points);
-                int result = WindowsUtil.CompareCodes(control1.code, control2.code);
+                int result = Util.CompareCodes(control1.code, control2.code);
                 if (result != 0)
                     return result;
 
@@ -1140,12 +1140,12 @@ namespace PurplePen
                 if (other == null)
                     return false;
 
-                return WindowsUtil.ArrayEquals(this.choices, other.choices);
+                return Util.ArrayEquals(this.choices, other.choices);
             }
 
             public override int GetHashCode()
             {
-                return WindowsUtil.ArrayHashCode(this.choices);
+                return Util.ArrayHashCode(this.choices);
             }
 
             public override string ToString()

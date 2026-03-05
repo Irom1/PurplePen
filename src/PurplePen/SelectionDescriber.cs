@@ -292,18 +292,18 @@ namespace PurplePen
                 if (!courseDesignator.AllParts) {
                     list.Add(new TextPart(TextFormat.Header, SelectionDescriptionText.Length));
                     list.Add(new TextPart(TextFormat.SameLine,
-                        WindowsUtil.GetLengthInKm(activeCourseView.PartLength, activeCourseView.PartLength, 2)));
+                        Util.GetLengthInKm(activeCourseView.PartLength, activeCourseView.PartLength, 2)));
                 }
                 else {
                     list.Add(new TextPart(TextFormat.Header, SelectionDescriptionText.Length));
                     list.Add(new TextPart(TextFormat.SameLine, 
-                        WindowsUtil.GetLengthInKm(activeCourseView.MinTotalLength, activeCourseView.MaxTotalLength, 2)));
+                        Util.GetLengthInKm(activeCourseView.MinTotalLength, activeCourseView.MaxTotalLength, 2)));
 
                     // If the user specified a length, show both that length and the calculated length.
                     if (activeCourseView.MinTotalLength != activeCourseView.MinMeasuredLength || activeCourseView.MaxTotalLength != activeCourseView.MaxMeasuredLength) {
                         list.Add(new TextPart(TextFormat.Header, SelectionDescriptionText.CalculatedLength));
                         list.Add(new TextPart(TextFormat.SameLine,
-                            WindowsUtil.GetLengthInKm(activeCourseView.MinMeasuredLength, activeCourseView.MaxMeasuredLength, 2)));
+                            Util.GetLengthInKm(activeCourseView.MinMeasuredLength, activeCourseView.MaxMeasuredLength, 2)));
                     }
                 }
 

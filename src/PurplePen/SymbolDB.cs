@@ -77,7 +77,7 @@ namespace PurplePen
                     return false;
                 if (other.GenderModifiers != GenderModifiers)
                     return false;
-                if (! WindowsUtil.ArrayEquals(other.Genders, Genders))
+                if (! Util.ArrayEquals(other.Genders, Genders))
                     return false;
 
                 return true;
@@ -88,7 +88,7 @@ namespace PurplePen
 
         public override int GetHashCode()
         {
-            return Name.GetHashCode() ^ LangId.GetHashCode() ^ PluralNouns.GetHashCode() ^ PluralModifiers.GetHashCode() ^ GenderModifiers.GetHashCode() ^ WindowsUtil.ArrayHashCode(Genders) ^ CaseModifiers.GetHashCode() ^ WindowsUtil.ArrayHashCode(Cases);
+            return Name.GetHashCode() ^ LangId.GetHashCode() ^ PluralNouns.GetHashCode() ^ PluralModifiers.GetHashCode() ^ GenderModifiers.GetHashCode() ^ Util.ArrayHashCode(Genders) ^ CaseModifiers.GetHashCode() ^ Util.ArrayHashCode(Cases);
         }
 
         public override string ToString()

@@ -202,7 +202,7 @@ namespace PurplePen
             line.kind = DescriptionLineKind.Header3Box;
             line.boxes = new object[3];
             line.boxes[0] = courseView.CourseFullName;
-            line.boxes[1] = WindowsUtil.GetLengthInKm(courseView.MinTotalLength, courseView.MaxTotalLength, 1);
+            line.boxes[1] = Util.GetLengthInKm(courseView.MinTotalLength, courseView.MaxTotalLength, 1);
 
             if (purpose == Purpose.ForMap) {
                 Id<Course> courseId = courseView.CourseDesignator.CourseId;

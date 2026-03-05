@@ -290,7 +290,7 @@ namespace PurplePen
                 if (gaps.Count != other.gaps.Count)
                     return false;
                 foreach (int scale in gaps.Keys) {
-                    if (!other.gaps.ContainsKey(scale) || ! WindowsUtil.EqualArrays(other.gaps[scale], gaps[scale]))
+                    if (!other.gaps.ContainsKey(scale) || ! Util.EqualArrays(other.gaps[scale], gaps[scale]))
                         return false;
                 }
             }
@@ -978,8 +978,8 @@ namespace PurplePen
         {
             Course n = (Course)base.Clone();
 
-            n.partPrintAreas = WindowsUtil.CloneDictionary(n.partPrintAreas);
-            n.partOptions = WindowsUtil.CloneDictionary(n.partOptions);
+            n.partPrintAreas = Util.CloneDictionary(n.partPrintAreas);
+            n.partOptions = Util.CloneDictionary(n.partOptions);
             if (n.printArea != null)
                 n.printArea = (PrintArea) n.printArea.Clone();
             if (n.relaySettings != null)
@@ -1722,7 +1722,7 @@ namespace PurplePen
         {
             Special n = (Special) base.Clone();
             if (courses != null) {
-                n.courses = WindowsUtil.CloneArrayAndElements(n.courses);
+                n.courses = Util.CloneArrayAndElements(n.courses);
             }
 
             n.locations = (PointF[]) n.locations.Clone();
@@ -2613,7 +2613,7 @@ namespace PurplePen
                 }
             }
 
-            ev.customSymbolKey = WindowsUtil.CopyDictionary(customSymbolKey);
+            ev.customSymbolKey = Util.CopyDictionary(customSymbolKey);
             ev.punchcardFormat = (PunchcardFormat) punchcardFormat.Clone();
             ev.courseAppearance = (CourseAppearance) courseAppearance.Clone();
             if (ev.printArea != null)

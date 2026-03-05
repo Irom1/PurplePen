@@ -906,10 +906,10 @@ namespace PurplePen
             RectangleF newRect = Geometry.RectFromPoints(left, top, right, bottom);
 
             if (left > right) {
-                WindowsUtil.Swap(ref changeLeft, ref changeRight);
+                Util.Swap(ref changeLeft, ref changeRight);
             }
             if (top > bottom) {
-                WindowsUtil.Swap(ref changeTop, ref changeBottom);
+                Util.Swap(ref changeTop, ref changeBottom);
             }
 
             // Update the rectangle.

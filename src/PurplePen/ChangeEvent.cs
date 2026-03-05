@@ -314,7 +314,7 @@ namespace PurplePen
             // Put the codeToControl dictionary into a list and sort it.
             List<KeyValuePair<string, Id<ControlPoint>>> codeToControlList = new List<KeyValuePair<string, Id<ControlPoint>>>(codeToControl);
             codeToControlList.Sort(delegate(KeyValuePair<string, Id<ControlPoint>> pair1, KeyValuePair<string, Id<ControlPoint>> pair2) {
-                return WindowsUtil.CompareCodes(pair1.Key, pair2.Key);
+                return Util.CompareCodes(pair1.Key, pair2.Key);
             });
 
             // Put the codes still to be assigned into a list and sort it.
@@ -322,7 +322,7 @@ namespace PurplePen
             foreach (string code in newCodes.Keys)
                 if (newCodes[code])
                     newCodeList.Add(code);
-            newCodeList.Sort(WindowsUtil.CompareCodes);
+            newCodeList.Sort(Util.CompareCodes);
 
             // Assign new codes.
             Debug.Assert(codeToControlList.Count == newCodeList.Count);
@@ -2020,8 +2020,8 @@ namespace PurplePen
             Event e = eventDB.GetEvent();
 
             e = (Event) e.Clone();
-            e.customSymbolText = WindowsUtil.CopyDictionary(customSymbolText);
-            e.customSymbolKey = WindowsUtil.CopyDictionary(customSymbolKey);
+            e.customSymbolText = Util.CopyDictionary(customSymbolText);
+            e.customSymbolKey = Util.CopyDictionary(customSymbolKey);
 
             eventDB.ChangeEvent(e); 
         }

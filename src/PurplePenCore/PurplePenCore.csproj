@@ -15,4 +15,22 @@
     <ProjectReference Include="..\MapModel\Map_SkiaStd\Map_SkiaStd.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="CoreMiscText.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>CoreMiscText.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="CoreMiscText.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>CoreMiscText.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="CoreMiscText.*.resx">
+      <DependentUpon>CoreMiscText.resx</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+
 </Project>

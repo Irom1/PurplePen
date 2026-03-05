@@ -2981,7 +2981,7 @@ namespace PurplePen
 
             // Sort in the correct order to display.
             codes.Sort(delegate(KeyValuePair<object, string> pair1, KeyValuePair<object,string> pair2) {
-                return WindowsUtil.CompareCodes(pair1.Value, pair2.Value);
+                return Util.CompareCodes(pair1.Value, pair2.Value);
             });
 
             return codes.ToArray();

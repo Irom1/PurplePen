@@ -122,27 +122,27 @@ namespace PurplePen.Tests
         [TestMethod]
         public void IsInteger()
         {
-            Assert.IsTrue(WindowsUtil.IsInteger("35"));
-            Assert.IsTrue(WindowsUtil.IsInteger("100"));
-            Assert.IsFalse(WindowsUtil.IsInteger("-20"));
-            Assert.IsFalse(WindowsUtil.IsInteger("4.5"));
-            Assert.IsFalse(WindowsUtil.IsInteger("GO"));
-            Assert.IsFalse(WindowsUtil.IsInteger(""));
+            Assert.IsTrue(Util.IsInteger("35"));
+            Assert.IsTrue(Util.IsInteger("100"));
+            Assert.IsFalse(Util.IsInteger("-20"));
+            Assert.IsFalse(Util.IsInteger("4.5"));
+            Assert.IsFalse(Util.IsInteger("GO"));
+            Assert.IsFalse(Util.IsInteger(""));
         }
 
         [TestMethod]
         public void CompareCodes()
         {
-            Assert.AreEqual(0, WindowsUtil.CompareCodes(null, null));
-            Assert.AreEqual(-1, WindowsUtil.CompareCodes(null, "5"));
-            Assert.AreEqual(1, WindowsUtil.CompareCodes("GO", null));
-            Assert.AreEqual(-1, WindowsUtil.CompareCodes("78", "135"));
-            Assert.AreEqual(0, WindowsUtil.CompareCodes("78", "78"));
-            Assert.AreEqual(-1, WindowsUtil.CompareCodes("135", "HI"));
-            Assert.AreEqual(1, WindowsUtil.CompareCodes("0V", "23"));
-            Assert.AreEqual(-1, WindowsUtil.CompareCodes("HI", "X"));
-            Assert.AreEqual(0, WindowsUtil.CompareCodes("HI", "HI"));
-            Assert.AreEqual(1, WindowsUtil.CompareCodes("HI", "ab"));
+            Assert.AreEqual(0, Util.CompareCodes(null, null));
+            Assert.AreEqual(-1, Util.CompareCodes(null, "5"));
+            Assert.AreEqual(1, Util.CompareCodes("GO", null));
+            Assert.AreEqual(-1, Util.CompareCodes("78", "135"));
+            Assert.AreEqual(0, Util.CompareCodes("78", "78"));
+            Assert.AreEqual(-1, Util.CompareCodes("135", "HI"));
+            Assert.AreEqual(1, Util.CompareCodes("0V", "23"));
+            Assert.AreEqual(-1, Util.CompareCodes("HI", "X"));
+            Assert.AreEqual(0, Util.CompareCodes("HI", "HI"));
+            Assert.AreEqual(1, Util.CompareCodes("HI", "ab"));
         }
 
         [TestMethod]
@@ -254,7 +254,7 @@ namespace PurplePen.Tests
             dict.Add("bar", -3);
             dict.Add("baz", 1299);
 
-            Dictionary<string, int> dict2 = WindowsUtil.CopyDictionary(dict);
+            Dictionary<string, int> dict2 = Util.CopyDictionary(dict);
             dict.Remove("goodbye");
             dict["elvis"] = 8991;
             dict.Add("bizarre", 99);

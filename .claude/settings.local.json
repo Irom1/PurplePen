@@ -3,7 +3,10 @@
     "allow": [
       "Bash(xargs grep -l \"TTC\\\\|collection\")",
       "Bash(dotnet build PurplePen/PurplePen.csproj -f net48 --no-restore)",
-      "Bash(dotnet build PurplePen/PurplePen.csproj -f net10.0-windows)"
+      "Bash(dotnet build PurplePen/PurplePen.csproj -f net10.0-windows)",
+      "Bash(dotnet msbuild PurplePenCore/PurplePenCore.csproj -getItem:EmbeddedResource -t:Build -f net10.0)",
+      "Bash(dotnet msbuild PurplePenCore/PurplePenCore.csproj -preprocess -f net10.0)",
+      "Bash(dotnet build PurplePenCore/PurplePenCore.csproj -f net10.0 --no-restore)"
     ]
   }
 }
