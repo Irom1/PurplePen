@@ -562,7 +562,7 @@ namespace PurplePen.MapModel
         public void DrawBitmap(IGraphicsBitmap bm, RectangleF rectangle, BitmapScaling scalingMode, float minResolution)
         {
             using (MemoryStream memStream = new MemoryStream()) {
-                if (bm.WritePngToStream(0, 0, bm.PixelWidth, bm.PixelHeight, memStream)) {
+                if (bm.WriteToStream(GraphicsBitmapFormat.PNG, memStream)) {
                     using (XImage image = XImage.FromStream(memStream)) {
                         if (scalingMode == BitmapScaling.NearestNeighbor)
                             image.Interpolate = false;
@@ -579,7 +579,8 @@ namespace PurplePen.MapModel
         public void DrawBitmapPart(IGraphicsBitmap bm, int x, int y, int width, int height, RectangleF rectangle, BitmapScaling scalingMode, float minResolution)
         {
             using (MemoryStream memStream = new MemoryStream()) {
-                if (bm.WritePngToStream(x, y, width, height, memStream)) {
+                IGraphicsBitmap croppedBitmap = bm.Crop(x, y, width, height);
+                if (croppedBitmap.WriteToStream(GraphicsBitmapFormat.PNG, memStream)) {
                     using (XImage image = XImage.FromStream(memStream)) {
                         if (scalingMode == BitmapScaling.NearestNeighbor)
                             image.Interpolate = false;

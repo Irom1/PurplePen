@@ -1144,30 +1144,45 @@ namespace PurplePen.MapModel
             get { return bitmap != null ? bitmap.Height : 0; }
         }
 
-        public bool WritePngToStream(int x, int y, int width, int height, Stream stream)
+        public GraphicsBitmapFormat GetOriginalFormat()
         {
-            // Get the actual boundaries of the original bitmap
-            Rectangle imageBounds = new Rectangle(0, 0, bitmap.Width, bitmap.Height);
+            ImageFormat format = bitmap.RawFormat;
 
-            // Safely intersect to ensure the crop stays within the image bounds
-            Rectangle cropRect = Rectangle.Intersect(imageBounds, new Rectangle(x, y, width, height));
+            if (format == null)
+                return GraphicsBitmapFormat.None;
+            else if (format.Equals(ImageFormat.Bmp))
+                return GraphicsBitmapFormat.BMP;
+            else if (format.Equals(ImageFormat.Gif))
+                return GraphicsBitmapFormat.GIF;
+            else if (format.Equals(ImageFormat.Jpeg))
+                return GraphicsBitmapFormat.JPEG;
+            else if (format.Equals(ImageFormat.Png))
+                return GraphicsBitmapFormat.PNG;
+            else if (format.Equals(ImageFormat.Tiff))
+                return GraphicsBitmapFormat.TIFF;
+            else if (format.Equals(ImageFormat.MemoryBmp))
+                return GraphicsBitmapFormat.None;
+            else
+                return GraphicsBitmapFormat.Unknown;
+        }
 
-            if (cropRect.IsEmpty) {
+        public IGraphicsBitmap Crop(int x, int y, int width, int height)
+        {
+            Bitmap croppedBitmap = bitmap.Clone(new Rectangle(x, y, width, height), bitmap.PixelFormat);
+            return new GDIPlus_Bitmap(croppedBitmap);
+        }
+
+        public bool WriteToStream(GraphicsBitmapFormat format, Stream stream)
+        {
+            ImageFormat targetFormat = ImageFormatFromGraphicsBitmapFormat(format);
+            if (bitmap == null || targetFormat == null)
                 return false;
-            }
 
-            if (cropRect.Equals(imageBounds)) {
-                // No need to crop.
-                bitmap.Save(stream, ImageFormat.Png);
+            try {
+                bitmap.Save(stream, targetFormat);
             }
-            else {
-                // Create a new Bitmap containing only the cropped area.
-                // Note: This DOES allocate memory and copy pixels, but it is the fastest 
-                // native way GDI+ can do it. We reuse the original PixelFormat.
-                using (Bitmap croppedBitmap = bitmap.Clone(cropRect, bitmap.PixelFormat)) {
-                    // 4. Save the new bitmap directly to the file path as a PNG
-                    croppedBitmap.Save(stream, ImageFormat.Png);
-                }
+            catch (Exception) {
+                return false;
             }
 
             return true;
@@ -1222,6 +1237,24 @@ namespace PurplePen.MapModel
         public bool Disposed
         {
             get { return bitmap == null; }
+        }
+
+        private ImageFormat ImageFormatFromGraphicsBitmapFormat(GraphicsBitmapFormat format)
+        {
+            switch (format) {
+            case GraphicsBitmapFormat.GIF:
+                return ImageFormat.Gif;
+            case GraphicsBitmapFormat.PNG:
+                return ImageFormat.Png;
+            case GraphicsBitmapFormat.JPEG:
+                return ImageFormat.Jpeg;
+            case GraphicsBitmapFormat.TIFF:
+                return ImageFormat.Tiff;
+            case GraphicsBitmapFormat.BMP:
+                return ImageFormat.Bmp;
+            }
+
+            return null;
         }
 
         public GDIPlus_Bitmap(Bitmap bitmap)

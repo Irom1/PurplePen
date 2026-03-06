@@ -52,6 +52,27 @@ namespace PurplePen.Graphics2D
         bool TextFaceIsInstalled(string familyName);
     }
 
+    // Represents different formats that bitmaps can be saved/loaded from.
+    // Implementations don't necessary support all of these.
+    public enum GraphicsBitmapFormat
+    {
+        None,
+        PNG,
+        JPEG,
+        GIF,
+        TIFF,
+        BMP,
+        WebP,
+        Other,
+        Unknown
+    }
+    
+    // Encapsulates the ability to read bitmap from file or stream.
+    public interface IGraphicsBitmapLoader : IDisposable
+    {
+        IGraphicsBitmap ReadBitmapFromStream(Stream stream);
+    }
+
     // If an IGraphicsBitmap is locked, it won't be disposed by another thread while locked.
     // e.g., Dispose() will take a lock.
     public interface IGraphicsBitmap : IDisposable
@@ -59,7 +80,13 @@ namespace PurplePen.Graphics2D
         bool Disposed {get;}
         int PixelWidth { get; }
         int PixelHeight { get; }
-        bool WritePngToStream(int x, int y, int width, int height, Stream stream);
+
+        // Get the format this bitmap was loaded from, if read from stream/file.
+        // Otherwise, return None. Return Other if format not in the enum, or Unknown
+        // if it was read from file but no way to know the format.
+        GraphicsBitmapFormat GetOriginalFormat();
+        IGraphicsBitmap Crop(int x, int y, int width, int height);
+        bool WriteToStream(GraphicsBitmapFormat format, Stream stream);
     }
 
     public interface IBitmapGraphicsTargetProvider: IDisposable
