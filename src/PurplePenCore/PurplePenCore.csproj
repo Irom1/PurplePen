@@ -41,6 +41,14 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>CoreMiscText.resx</DependentUpon>
     </Compile>
+    <Compile Update="ReportText.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ReportText.resx</DependentUpon>
+    </Compile>
+    <Compile Update="ReportText.*.Designer.cs">
+      <DependentUpon>ReportText.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -50,6 +58,13 @@
     </EmbeddedResource>
     <EmbeddedResource Update="CoreMiscText.*.resx">
       <DependentUpon>CoreMiscText.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="ReportText.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ReportText.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="ReportText.*.resx">
+      <DependentUpon>ReportText.resx</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
 
