@@ -24,8 +24,8 @@ namespace Map_Skia.Tests
 			GDIPlus_TextMetrics gdiMetrics = new GDIPlus_TextMetrics();
 			Skia_TextMetrics skiaMetrics = new Skia_TextMetrics();
 
-            ITextFaceMetrics gdiFontMetrics = gdiMetrics.GetTextFaceMetrics("Times New Roman", 24, TextEffects.None);
-            ITextFaceMetrics skiaFontMetrics = skiaMetrics.GetTextFaceMetrics("Times New Roman", 24, TextEffects.None);
+            ITextFaceMetrics gdiFontMetrics = gdiMetrics.GetTextFaceMetrics("Times New Roman", 24, TextEffects.Regular);
+            ITextFaceMetrics skiaFontMetrics = skiaMetrics.GetTextFaceMetrics("Times New Roman", 24, TextEffects.Regular);
 
             Assert.AreEqual(gdiFontMetrics.Ascent, skiaFontMetrics.Ascent);
             Assert.AreEqual(gdiFontMetrics.Descent, skiaFontMetrics.Descent);
@@ -40,7 +40,7 @@ namespace Map_Skia.Tests
             Assert.AreEqual(gdiSize.Width, skiaSize.Width, 0.5F);
             Assert.AreEqual(gdiSize.Height, skiaSize.Height, 0.05F);
 
-            ITextFaceMetrics tnrMetrics = skiaMetrics.GetTextFaceMetrics("Trebuchet MS", 50, TextEffects.None);
+            ITextFaceMetrics tnrMetrics = skiaMetrics.GetTextFaceMetrics("Trebuchet MS", 50, TextEffects.Regular);
             Assert.AreEqual(50.0F, tnrMetrics.EmHeight, 0.1F);
             Assert.AreEqual(46.95F, tnrMetrics.Ascent, 0.1F);
             Assert.AreEqual(11.11F, tnrMetrics.Descent, 0.1F);

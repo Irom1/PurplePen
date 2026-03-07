@@ -406,9 +406,6 @@ Użyj | aby rozdzielić linie
   <data name="CrashSend" xml:space="preserve">
     <value>Wyślij raport</value>
   </data>
-  <data name="PdfResultNotReadable" xml:space="preserve">
-    <value>Nie można przeczytać rezultatu konwersji do PDF z pliku '{0}'</value>
-  </data>
   <data name="CannotCreatePdfs" xml:space="preserve">
     <value>Nie udało się utworzyć plików PDF z następującego powodu:</value>
   </data>

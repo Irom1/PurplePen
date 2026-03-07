@@ -253,7 +253,7 @@ namespace Map_PDF.Tests
                 {
                     object fontKey = new object(), brushKey = new object();
 
-                    grTarget.CreateFont(fontKey, "Times New Roman", 90, TextEffects.None);
+                    grTarget.CreateFont(fontKey, "Times New Roman", 90, TextEffects.Regular);
                     grTarget.CreateSolidBrush(brushKey, CmykColor.FromColor(Color.BlueViolet));
                     grTarget.DrawText("Hello", fontKey, brushKey, new PointF(100, 100));
 

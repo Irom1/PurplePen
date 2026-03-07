@@ -129,4 +129,13 @@
   <data name="CannotReadMapOOM" xml:space="preserve">
     <value>Kan ikke lese kartet på grunn av: '{0}' Åpne og lagre kartet i nyeste versjon av OpenOrienteering Mapper kan fikse problemene.</value>
   </data>
+  <data name="PdfConversionFailed" xml:space="preserve">
+    <value>"Pdfium PDF" konvertering klarte ikke lese PDF filen</value>
+  </data>
+  <data name="PdfConverterNotFound" xml:space="preserve">
+    <value>"PdfConverter.exe" ikke funnet</value>
+  </data>
+  <data name="PdfResultNotReadable" xml:space="preserve">
+    <value>Kunne ikke lese resultatet av PDF konvertering fra fil '{0}'</value>
+  </data>
 </root>

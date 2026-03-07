@@ -129,4 +129,13 @@
   <data name="CannotReadMapOOM" xml:space="preserve">
     <value>Ei õnnestu avada faili järgmisel põhjusel: '{0}'. Faili avamine ja uuesti salvestamine viimase versiooni OpenOrienteering Mapper'iga võib probleemi lahendada.</value>
   </data>
+  <data name="PdfConversionFailed" xml:space="preserve">
+    <value>Pdfium PDF konverteril ebaõnnestus PDFi lugemisel</value>
+  </data>
+  <data name="PdfConverterNotFound" xml:space="preserve">
+    <value>PdfConverter.exe ei leitud</value>
+  </data>
+  <data name="PdfResultNotReadable" xml:space="preserve">
+    <value>Ei saanud konverteerida PDFi failist '{0}'</value>
+  </data>
 </root>

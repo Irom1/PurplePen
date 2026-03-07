@@ -414,15 +414,6 @@
   <data name="CrashSend" xml:space="preserve">
     <value>发送报告</value>
   </data>
-  <data name="PdfConverterNotFound" xml:space="preserve">
-    <value>pdfconverter.exe没有发现</value>
-  </data>
-  <data name="PdfConversionFailed" xml:space="preserve">
-    <value>PDFium PDF转换器无法读取PDF文件成功</value>
-  </data>
-  <data name="PdfResultNotReadable" xml:space="preserve">
-    <value>无法读取的文件“{0} PDF转换的结果”</value>
-  </data>
   <data name="CannotCreatePdfs" xml:space="preserve">
     <value>无法为以下原因创建PDF文件：</value>
   </data>

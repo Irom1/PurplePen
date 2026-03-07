@@ -129,4 +129,13 @@
   <data name="CannotReadMapOOM" xml:space="preserve">
     <value>无法读取地图，原因如下：'{0}'在最新版本的OOM中打开并重新保存地图可能会修复问题。</value>
   </data>
+  <data name="PdfConversionFailed" xml:space="preserve">
+    <value>PDFium PDF转换器无法读取PDF文件成功</value>
+  </data>
+  <data name="PdfConverterNotFound" xml:space="preserve">
+    <value>pdfconverter.exe没有发现</value>
+  </data>
+  <data name="PdfResultNotReadable" xml:space="preserve">
+    <value>无法读取的文件“{0} PDF转换的结果”</value>
+  </data>
 </root>

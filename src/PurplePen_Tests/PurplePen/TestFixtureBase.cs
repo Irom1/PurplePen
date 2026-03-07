@@ -78,6 +78,8 @@ namespace PurplePen.Tests
             Services.FontLoader = GdiplusFontLoader.Instance;
             Services.TextMetricsProvider = new GDIPlus_TextMetrics();
             Services.FileLoaderProvider = new GdiPlus_FileLoaderProvider();
+            Services.PdfLoadingUI = new PdfLoadingUI();
+            Services.BitmapLoader = new GDIPlus_GraphicsBitmapLoader();
         }
 
 

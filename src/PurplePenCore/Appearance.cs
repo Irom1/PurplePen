@@ -83,7 +83,7 @@ namespace PurplePen
 
         public TextEffects TextEffects {
             get {
-                TextEffects effects = TextEffects.None;
+                TextEffects effects = TextEffects.Regular;
                 if (Bold)
                     effects |= TextEffects.Bold;
                 if (Italic)
@@ -178,11 +178,11 @@ namespace PurplePen
             string fontPath = Path.Combine(executablePath, "fonts");
 
 #if true
-            Services.FontLoader.AddFontFile("Roboto", TextEffects.None, Path.Combine(fontPath, "Roboto-Regular.ttf"));
+            Services.FontLoader.AddFontFile("Roboto", TextEffects.Regular, Path.Combine(fontPath, "Roboto-Regular.ttf"));
             Services.FontLoader.AddFontFile("Roboto", TextEffects.Bold, Path.Combine(fontPath, "Roboto-Bold.ttf"));
             Services.FontLoader.AddFontFile("Roboto", TextEffects.Italic, Path.Combine(fontPath, "Roboto-Italic.ttf"));
             Services.FontLoader.AddFontFile("Roboto", TextEffects.Bold | TextEffects.Italic, Path.Combine(fontPath, "Roboto-BoldItalic.ttf"));
-            Services.FontLoader.AddFontFile("Roboto Condensed", TextEffects.None, Path.Combine(fontPath, "RobotoCondensed-Regular.ttf"));
+            Services.FontLoader.AddFontFile("Roboto Condensed", TextEffects.Regular, Path.Combine(fontPath, "RobotoCondensed-Regular.ttf"));
             Services.FontLoader.AddFontFile("Roboto Condensed", TextEffects.Bold, Path.Combine(fontPath, "RobotoCondensed-Bold.ttf"));
             Services.FontLoader.AddFontFile("Roboto Condensed", TextEffects.Italic, Path.Combine(fontPath, "RobotoCondensed-Italic.ttf"));
             Services.FontLoader.AddFontFile("Roboto Condensed", TextEffects.Bold | TextEffects.Italic, Path.Combine(fontPath, "RobotoCondensed-BoldItalic.ttf"));

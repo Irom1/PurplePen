@@ -95,5 +95,32 @@ namespace PurplePen {
                 return ResourceManager.GetString("CannotReadMapOOM", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pdfium PDF converter failed to read PDF file successfully.
+        /// </summary>
+        internal static string PdfConversionFailed {
+            get {
+                return ResourceManager.GetString("PdfConversionFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PdfConverter.exe not found.
+        /// </summary>
+        internal static string PdfConverterNotFound {
+            get {
+                return ResourceManager.GetString("PdfConverterNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Could not read result of PDF conversion from file &apos;{0}&apos;.
+        /// </summary>
+        internal static string PdfResultNotReadable {
+            get {
+                return ResourceManager.GetString("PdfResultNotReadable", resourceCulture);
+            }
+        }
     }
 }

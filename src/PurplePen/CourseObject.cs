@@ -713,7 +713,7 @@ namespace PurplePen
                 fillBrushKey = brushKey;
             else {
                 fillBrushKey = new object();
-                HatchBrush hatchBrush = new HatchBrush(HatchStyle.Percent25, ((SolidBrush)brush).Color, Color.Transparent);
+                HatchBrush hatchBrush = new HatchBrush(HatchStyle.Percent25, NormalCourseAppearance.highlightColor, Color.Transparent);
                 grTarget.CreateGdiPlusBrush(fillBrushKey, hatchBrush, false);
             }
 
@@ -844,7 +844,7 @@ namespace PurplePen
                 fillBrush = brush;
             }
             else {
-                fillBrush = new HatchBrush(HatchStyle.Percent25, ((SolidBrush)brush).Color, Color.Transparent);
+                fillBrush = new HatchBrush(HatchStyle.Percent25, NormalCourseAppearance.highlightColor, Color.Transparent);
             }
 
             // Draw the interior

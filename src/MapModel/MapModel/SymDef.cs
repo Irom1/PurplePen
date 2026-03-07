@@ -4424,7 +4424,7 @@ namespace PurplePen.MapModel
         // the OCAD vertical adjustment amount, for formatted or unformatted text.
         internal float GetOcadTopAdjustment(string fontName, float fontSize, bool formatted)
         {
-            using (ITextFaceMetrics textFaceMetrics = map.TextMetricsProvider.GetTextFaceMetrics(fontName, fontSize, TextEffects.None)) {
+            using (ITextFaceMetrics textFaceMetrics = map.TextMetricsProvider.GetTextFaceMetrics(fontName, fontSize, TextEffects.Regular)) {
                 if (formatted) {
                     // OCAD adds an extra internal leading (incorrectly).
                     return textFaceMetrics.EmHeight - (textFaceMetrics.Ascent + textFaceMetrics.Descent);

@@ -1426,7 +1426,7 @@ namespace PurplePen.MapModel {
 
         OcadCoord[] GetTextObjectCoords(ImageTextSymbol sym)
         {
-            using (ITextFaceMetrics textFaceMetrics = map.TextMetricsProvider.GetTextFaceMetrics(sym.FontName, sym.FontSize, TextEffects.None)) {
+            using (ITextFaceMetrics textFaceMetrics = map.TextMetricsProvider.GetTextFaceMetrics(sym.FontName, sym.FontSize, TextEffects.Regular)) {
 
                 // OCAD top align uses the W height, while we use the Font ascent. Adjust for the small difference.
                 float topAdjust = ((ImageSymDef)sym.Definition).GetOcadTopAdjustment(sym.FontName, sym.FontSize, sym.Width > 0);

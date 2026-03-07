@@ -418,7 +418,7 @@ namespace PurplePen
 
         public static TextEffects GetTextEffects(bool bold, bool italic)
         {
-            TextEffects effects = TextEffects.None;
+            TextEffects effects = TextEffects.Regular;
             if (bold)
                 effects |= TextEffects.Bold;
             if (italic)

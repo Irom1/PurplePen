@@ -129,4 +129,13 @@
   <data name="CannotReadMapOOM" xml:space="preserve">
     <value>A térkép fájl nem beolvasható az alábbi okból: '{0}' Megnyitva majd elmentve a legújabb OpenOrienteering Mapper segítségével megoldhatja a problémát.</value>
   </data>
+  <data name="PdfConversionFailed" xml:space="preserve">
+    <value>A Pdfium nem tudta sikeresen beolvasni a PDF fájlt.</value>
+  </data>
+  <data name="PdfConverterNotFound" xml:space="preserve">
+    <value>A PdfConverter.exe nem található</value>
+  </data>
+  <data name="PdfResultNotReadable" xml:space="preserve">
+    <value>Nem olvasható be a PDF fájl átalakítás eredménye a(z) '{0}' fájlból</value>
+  </data>
 </root>

@@ -1066,7 +1066,7 @@ namespace PurplePen.MapModel
 
             float recommendedLineSpacing;
 
-            TextEffects effects = TextEffects.None;
+            TextEffects effects = TextEffects.Regular;
             if (textSymbol.fontBold)
                 effects |= TextEffects.Bold;
             if (textSymbol.fontItalic)

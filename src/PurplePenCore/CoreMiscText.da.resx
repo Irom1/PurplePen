@@ -129,4 +129,13 @@
   <data name="CannotReadMapOOM" xml:space="preserve">
     <value>Kan ikke læse kort af følgende grund: '{0}' Åbning og gen-gem kortet i den seneste version af OpenOrienteering Mapper kan løse problemerne.</value>
   </data>
+  <data name="PdfConversionFailed" xml:space="preserve">
+    <value>Pdfium PDF converter mislykkedes med at læse PDF fil successfuldt</value>
+  </data>
+  <data name="PdfConverterNotFound" xml:space="preserve">
+    <value>PdfConverter.exe blev ikke fundet</value>
+  </data>
+  <data name="PdfResultNotReadable" xml:space="preserve">
+    <value>Kunne ikke læse resultatet af PDF omdannelse fra fil '{0}'</value>
+  </data>
 </root>

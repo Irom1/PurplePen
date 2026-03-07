@@ -1140,7 +1140,7 @@ namespace PurplePen.MapModel
 
             symdef = new TextSymDef(name, symbolId, TextSymDef.PreferredSymbolKind.NormalText, centerPointSymdef);
 
-            TextEffects effects = TextEffects.None;
+            TextEffects effects = TextEffects.Regular;
             if (bold)
                 effects |= TextEffects.Bold;
             if (italic)
@@ -1267,7 +1267,7 @@ namespace PurplePen.MapModel
             charSpacing = ocadSym.CharSpace / 100F;
             wordSpacing = ocadSym.WordSpace / 100F;
 
-            TextEffects effects = TextEffects.None;
+            TextEffects effects = TextEffects.Regular;
             if (bold)
                 effects |= TextEffects.Bold;
             if (italic)

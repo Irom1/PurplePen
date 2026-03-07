@@ -9,7 +9,7 @@ using System.Diagnostics;
 namespace PurplePen
 {
     // Manages a PDF map file and converting it to a bitmap.
-    class PdfMapFile : IDisposable
+    public class PdfMapFile : IDisposable
     {
         private string pdfFileName;
         private string pngFileName;
@@ -100,7 +100,7 @@ namespace PurplePen
             try {
                 string converterExe = FindPdfConverterExe();
                 if (converterExe == null) {
-                    conversionOutput = MiscText.PdfConverterNotFound;
+                    conversionOutput = CoreMiscText.PdfConverterNotFound;
                     status = ConversionStatus.Failure;
                     return status;
                 }

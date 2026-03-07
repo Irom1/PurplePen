@@ -1253,7 +1253,7 @@ namespace PurplePen.MapModel
             this.unwrappedText = text; this.location = location; this.rotation = angle; this.width = width;
             this.isVisible = isVisible; this.sortOrder = sortOrder;
 
-            using (ITextFaceMetrics textFaceMetrics = def.ContainingMap.TextMetricsProvider.GetTextFaceMetrics(fontName, fontSize, TextEffects.None)) {
+            using (ITextFaceMetrics textFaceMetrics = def.ContainingMap.TextMetricsProvider.GetTextFaceMetrics(fontName, fontSize, TextEffects.Regular)) {
                 FontAscent = textFaceMetrics.Ascent;
                 FontDescent = textFaceMetrics.Descent;
                 lineSpacing = fontSize * 1.2F;
@@ -1397,7 +1397,7 @@ namespace PurplePen.MapModel
                     g.CreateSolidBrush(this, map.TransformColor(textColor));
 
                 if (!g.HasFont(this))
-                    g.CreateFont(this, fontName, FontSize, TextEffects.None);
+                    g.CreateFont(this, fontName, FontSize, TextEffects.Regular);
 
                 try {
                     // Draw all the lines of text.
@@ -1423,7 +1423,7 @@ namespace PurplePen.MapModel
                 return null;
             }
 
-            using (ITextFaceMetrics textFaceMetrics = def.ContainingMap.TextMetricsProvider.GetTextFaceMetrics(fontName, FontSize, TextEffects.None)) {
+            using (ITextFaceMetrics textFaceMetrics = def.ContainingMap.TextMetricsProvider.GetTextFaceMetrics(fontName, FontSize, TextEffects.Regular)) {
 
                 Matrix matrix = new Matrix();
                 matrix.Translate(location.X, location.Y);

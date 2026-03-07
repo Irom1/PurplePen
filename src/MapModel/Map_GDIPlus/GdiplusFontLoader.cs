@@ -73,7 +73,7 @@ namespace PurplePen.MapModel
         public FontFamily CreateFontFamily(string familyName)
         {
             lock (lockObj) {
-                FontKey fontKey = new FontKey(familyName, TextEffects.None);
+                FontKey fontKey = new FontKey(familyName, TextEffects.Regular);
                 if (fontCollections.ContainsKey(fontKey)) {
                     return GetPrivateFontFamily(fontKey);
                 }
@@ -86,7 +86,7 @@ namespace PurplePen.MapModel
         public bool FontFamilyIsInstalled(string familyName)
         {
             lock (lockObj) {
-                FontKey fontKey = new FontKey(familyName, TextEffects.None);
+                FontKey fontKey = new FontKey(familyName, TextEffects.Regular);
 
                 try {
                     if (fontCollections.ContainsKey(fontKey)) {

@@ -129,4 +129,13 @@
   <data name="CannotReadMapOOM" xml:space="preserve">
     <value>Cannot read map for the following reason: '{0}' Opening and re-saving the map in the latest version of OpenOrienteering Mapper may fix problems.</value>
   </data>
+  <data name="PdfConversionFailed" xml:space="preserve">
+    <value>Pdfium PDF converter failed to read PDF file successfully</value>
+  </data>
+  <data name="PdfConverterNotFound" xml:space="preserve">
+    <value>PdfConverter.exe not found</value>
+  </data>
+  <data name="PdfResultNotReadable" xml:space="preserve">
+    <value>Could not read result of PDF conversion from file '{0}'</value>
+  </data>
 </root>

@@ -210,18 +210,9 @@ namespace PurplePen
             return true;
         }
 
-#if PORTING
-        public static object ValidatePdf(string pdfFileName, out float dpi, out Size bitmapSize, out string errorMessageText)
-        {
-            dpi = 600F;
-            bitmapSize = new Size();
-            errorMessageText = "PDF validation not implemented in porting version.";
-            return new object();
-        }
-#else
         public static PdfMapFile ValidatePdf(string pdfFileName, out float dpi, out Size bitmapSize, out string errorMessageText)
         {
-            IPdfLoadingStatus loadingStatus = new PdfLoadingUI();  // UNDONE: Should this be passed in instead?
+            IPdfLoadingStatus loadingStatus = Services.PdfLoadingUI;  
 
             PdfMapFile mapFile = new PdfMapFile(pdfFileName);
 
@@ -239,7 +230,7 @@ namespace PurplePen
 
             status = mapFile.Status;
             if (!ok || status == PdfMapFile.ConversionStatus.Failure) {
-                errorMessageText = MiscText.PdfConversionFailed;
+                errorMessageText = CoreMiscText.PdfConversionFailed;
                 if (!string.IsNullOrWhiteSpace(mapFile.ConversionOutput))
                     errorMessageText += ": " + mapFile.ConversionOutput;
                 dpi = 0;
@@ -249,23 +240,28 @@ namespace PurplePen
 
             // Make sure resulting image file can be read.
             try {
-                Bitmap bitmap = (Bitmap)Image.FromFile(mapFile.PngFileName);
+                IGraphicsBitmap bitmap;
+                using (Stream stream = new FileStream(mapFile.PngFileName, FileMode.Open, FileAccess.Read)) {
+                    bitmap = Services.BitmapLoader.ReadBitmapFromStream(stream);
+                }
+#if PORTING
+                dpi = 600F;
+#else
                 dpi = (float)Math.Round(bitmap.HorizontalResolution, 1); // Should be always 600, anyway, round because PNG store resolution inaccurately.
-                bitmapSize = bitmap.Size;
+#endif
+                bitmapSize = new Size(bitmap.PixelWidth, bitmap.PixelHeight);
                 bitmap.Dispose();
                 errorMessageText = "";
                 return mapFile;
             }
             catch {
                 // Couldn't read the resulting PNG
-                errorMessageText = string.Format(MiscText.PdfResultNotReadable, mapFile.PngFileName);
+                errorMessageText = string.Format(CoreMiscText.PdfResultNotReadable, mapFile.PngFileName);
                 dpi = 0;
                 bitmapSize = default(Size);
                 return null;
             }
         }
-#endif
-
     }
 
     static class CoreFindPurple
@@ -436,4 +432,12 @@ namespace PurplePen
 
 
     }
+
+    public interface IPdfLoadingStatus
+    {
+        bool ShowLoadingStatus(string fileName);
+        void LoadingComplete(bool success, string errorMessage);
+    }
+
+
 }

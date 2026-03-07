@@ -91,12 +91,6 @@ namespace PurplePen
 
     }
 
-    interface IPdfLoadingStatus
-    {
-        bool ShowLoadingStatus(string fileName);
-        void LoadingComplete(bool success, string errorMessage);
-    }
-
     static class FindPurple
     {
         // Determine if a color is actually some shade of purple.

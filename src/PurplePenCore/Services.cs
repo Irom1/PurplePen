@@ -15,6 +15,7 @@ namespace PurplePen
         public static IFontLoader FontLoader;
         public static ITextMetrics TextMetricsProvider;
         public static IFileLoaderProvider FileLoaderProvider;
+        public static IPdfLoadingStatus PdfLoadingUI;
     }
 
     public interface IFileLoaderProvider

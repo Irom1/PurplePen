@@ -415,15 +415,6 @@ Suchen Sie, nach Klicken auf "OK", nach der Kartendatei auf Ihrem Computer.</val
   <data name="CrashSend" xml:space="preserve">
     <value>Bericht senden</value>
   </data>
-  <data name="PdfConverterNotFound" xml:space="preserve">
-    <value>PdfConverter.exe nicht gefunden</value>
-  </data>
-  <data name="PdfConversionFailed" xml:space="preserve">
-    <value>PDF-Konverter "PDFium" konnte die PDF-Datei nicht lesen</value>
-  </data>
-  <data name="PdfResultNotReadable" xml:space="preserve">
-    <value>Das Ergebnis der PDF-Konvertierung aus Datei '{0}' konnte nicht gelesen werden</value>
-  </data>
   <data name="CannotCreatePdfs" xml:space="preserve">
     <value>PDFs können aus folgendem Grund nicht erzeugt werden:</value>
   </data>

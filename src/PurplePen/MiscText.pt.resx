@@ -421,15 +421,6 @@ Deseja alterar o idioma da sinalética para {1}?</value>
   <data name="CrashSend" xml:space="preserve">
     <value>Enviar Relatório</value>
   </data>
-  <data name="PdfConverterNotFound" xml:space="preserve">
-    <value>PdfConverter.exe não encontrado</value>
-  </data>
-  <data name="PdfConversionFailed" xml:space="preserve">
-    <value>O conversor de PDF Pdfium falhou ao ler o ficheiro PDF</value>
-  </data>
-  <data name="PdfResultNotReadable" xml:space="preserve">
-    <value>Não foi possível ler o resultado da conversão de PDF do ficheiro '{0}'</value>
-  </data>
   <data name="CannotCreatePdfs" xml:space="preserve">
     <value>Não é possível criar PDFs pelo seguinte motivo:</value>
   </data>

@@ -129,4 +129,13 @@
   <data name="CannotReadMapOOM" xml:space="preserve">
     <value>Не вдалося зчитати карту через наступні причини: '{0}' Відкриття і збереження карти у останній версії OpenOrienteering Mapper може виправити проблему.</value>
   </data>
+  <data name="PdfConversionFailed" xml:space="preserve">
+    <value>Pdfium PDF converter не вдалося успішно зчитати PDF файл</value>
+  </data>
+  <data name="PdfConverterNotFound" xml:space="preserve">
+    <value>PdfConverter.exe не знайдено</value>
+  </data>
+  <data name="PdfResultNotReadable" xml:space="preserve">
+    <value>Не вдалося зчитати результат конвертації у PDF файла '{0}'</value>
+  </data>
 </root>

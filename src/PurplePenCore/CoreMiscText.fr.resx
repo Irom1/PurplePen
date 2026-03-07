@@ -129,4 +129,13 @@
   <data name="CannotReadMapOOM" xml:space="preserve">
     <value>La carte ne peut pas être lue pour la raison suivante: '{0}' Ouvrir et ré-enregistrer la carte dans la dernière version d'Open Orienteering Mapper peut résoudre le problème.</value>
   </data>
+  <data name="PdfConversionFailed" xml:space="preserve">
+    <value>Pdfium PDF converter a échoué lors de la lecture du fichier PDF</value>
+  </data>
+  <data name="PdfConverterNotFound" xml:space="preserve">
+    <value>PdfConverter.exe non trouvé</value>
+  </data>
+  <data name="PdfResultNotReadable" xml:space="preserve">
+    <value>Impossible de lire le résultat de la conversion PDF depuis le fichier '{0}'</value>
+  </data>
 </root>

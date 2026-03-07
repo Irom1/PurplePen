@@ -120,4 +120,7 @@
   <data name="CannotReadImageFile" xml:space="preserve">
     <value>Nie mogę przeczytać obrazu '{0}'.</value>
   </data>
+  <data name="PdfResultNotReadable" xml:space="preserve">
+    <value>Nie można przeczytać rezultatu konwersji do PDF z pliku '{0}'</value>
+  </data>
 </root>

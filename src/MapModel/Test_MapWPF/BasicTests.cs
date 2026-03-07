@@ -21,8 +21,8 @@ namespace TestWpfMap
             GDIPlus_TextMetrics gdiMetrics = new GDIPlus_TextMetrics();
             WPF_TextMetrics wpfMetrics = new WPF_TextMetrics();
 
-            ITextFaceMetrics gdiFontMetrics = gdiMetrics.GetTextFaceMetrics("Times New Roman", 24, TextEffects.None);
-            ITextFaceMetrics wpfFontMetrics = wpfMetrics.GetTextFaceMetrics("Times New Roman", 24, TextEffects.None);
+            ITextFaceMetrics gdiFontMetrics = gdiMetrics.GetTextFaceMetrics("Times New Roman", 24, TextEffects.Regular);
+            ITextFaceMetrics wpfFontMetrics = wpfMetrics.GetTextFaceMetrics("Times New Roman", 24, TextEffects.Regular);
 
             Assert.AreEqual(gdiFontMetrics.Ascent, wpfFontMetrics.Ascent);
             Assert.AreEqual(gdiFontMetrics.Descent, wpfFontMetrics.Descent);
@@ -37,7 +37,7 @@ namespace TestWpfMap
             Assert.AreEqual(gdiSize.Width, skiaSize.Width, 0.5F);
             Assert.AreEqual(gdiSize.Height, skiaSize.Height, 1.1F);
 
-            ITextFaceMetrics tnrMetrics = wpfMetrics.GetTextFaceMetrics("Trebuchet MS", 50, TextEffects.None);
+            ITextFaceMetrics tnrMetrics = wpfMetrics.GetTextFaceMetrics("Trebuchet MS", 50, TextEffects.Regular);
             Assert.AreEqual(50.0F, tnrMetrics.EmHeight, 0.1F);
             Assert.AreEqual(46.95F, tnrMetrics.Ascent, 0.1F);
             Assert.AreEqual(11.11F, tnrMetrics.Descent, 0.1F);

@@ -415,15 +415,6 @@
   <data name="CrashSend" xml:space="preserve">
     <value>Изпрати доклад</value>
   </data>
-  <data name="PdfConverterNotFound" xml:space="preserve">
-    <value>Файлът PdfConverter.exe не е открит</value>
-  </data>
-  <data name="PdfConversionFailed" xml:space="preserve">
-    <value>PDF конверторът (Pdfium) не успя да прочете PDF файла успешно</value>
-  </data>
-  <data name="PdfResultNotReadable" xml:space="preserve">
-    <value>Не може да се прочете резултатът от конвертирането на PDF файла „{0}“</value>
-  </data>
   <data name="CannotCreatePdfs" xml:space="preserve">
     <value>Не може да се създадат PDF файлове поради следната причина:</value>
   </data>

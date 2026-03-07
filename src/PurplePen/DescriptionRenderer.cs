@@ -909,7 +909,7 @@ namespace PurplePen
 
         public object CreateFont(string fontName, float emHeight, bool bold, bool italic, StringAlignment alignment)
         {
-            TextEffects textEffects = TextEffects.None;
+            TextEffects textEffects = TextEffects.Regular;
 
             if (bold)
                 textEffects |= TextEffects.Bold;
