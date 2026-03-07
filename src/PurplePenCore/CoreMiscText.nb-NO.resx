@@ -156,6 +156,12 @@
   <data name="Finish_Short" xml:space="preserve">
     <value>F</value>
   </data>
+  <data name="GpxMustBeOcadMap" xml:space="preserve">
+    <value>Kartfilen må være en OCAD fil for å bruke GPX filer.</value>
+  </data>
+  <data name="GpxReprojectFailure" xml:space="preserve">
+    <value>Klarte ikke å plassere punkter, enten er koordinatsystemet eller lokale koordinater i Ocad kartfilen feil.</value>
+  </data>
   <data name="LegAssignedOuterBranch" xml:space="preserve">
     <value>Strekk {0} når ikke avgreining '{1}': Den ble tilordnet en annen retning i gaflingen den inngår i.</value>
   </data>
@@ -206,5 +212,14 @@
   </data>
   <data name="Start_Short" xml:space="preserve">
     <value>S</value>
+  </data>
+  <data name="Version_Alpha" xml:space="preserve">
+    <value>Alfa {0}</value>
+  </data>
+  <data name="Version_Beta" xml:space="preserve">
+    <value>Beta {0}</value>
+  </data>
+  <data name="Version_RC" xml:space="preserve">
+    <value>RC {0}</value>
   </data>
 </root>

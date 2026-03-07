@@ -7,7 +7,7 @@ using System.Diagnostics.Eventing.Reader;
 
 namespace PurplePen
 {
-    class DescriptionLocalize
+    public class DescriptionLocalize
     {
         XmlDocument xmldoc;
         XmlNode root;

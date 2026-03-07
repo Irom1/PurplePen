@@ -313,15 +313,6 @@ Tamam düğmesine bastıktan sonra, bilgisayarınızda harita dosyasının bir k
   <data name="Start_Short" xml:space="preserve">
     <value>S</value>
   </data>
-  <data name="Version_Alpha" xml:space="preserve">
-    <value>Alfa {0}</value>
-  </data>
-  <data name="Version_Beta" xml:space="preserve">
-    <value>Beta {0}</value>
-  </data>
-  <data name="Version_RC" xml:space="preserve">
-    <value>RC {0}</value>
-  </data>
   <data name="Plural" xml:space="preserve">
     <value>çoğul</value>
   </data>
@@ -469,17 +460,11 @@ Tamam düğmesine bastıktan sonra, bilgisayarınızda harita dosyasının bir k
   <data name="ChangeLineAppearanceTitle" xml:space="preserve">
     <value>Satır Görünümünü Değiştir</value>
   </data>
-  <data name="GpxMustBeOcadMap" xml:space="preserve">
-    <value>GPX dosyalarını kullanmak için harita dosyası bir OCAD dosyası olmalıdır.</value>
-  </data>
   <data name="GpxMustHaveCoordSystem" xml:space="preserve">
     <value>OCAD dosyasının GPX dosyalarını kullanmak için tanımlanmış bir koordinat sistemine sahip olması gerekir.</value>
   </data>
   <data name="GpxMustHaveRealWorldCoord" xml:space="preserve">
     <value>GPX dosyalarını kullanmak için OCAD dosyasında gerçek dünya koordinatları tanımlanmış olmalıdır.</value>
-  </data>
-  <data name="GpxReprojectFailure" xml:space="preserve">
-    <value>Noktalar yeniden projelendirilemedi; OCAD haritasındaki koordinat sistemi veya gerçek dünya koordinatları yanlış.</value>
   </data>
   <data name="GpxUnsupportedCoordSystem" xml:space="preserve">
     <value>OCAD dosyası Purple Pen tarafından desteklenmeyen bir koordinat sistemi kullanır.</value>
@@ -582,5 +567,8 @@ Tamam düğmesine bastıktan sonra, bilgisayarınızda harita dosyasının bir k
   </data>
   <data name="LowerPurple" xml:space="preserve">
     <value>Açık mor</value>
+  </data>
+  <data name="GpxMustBeOcadMap" xml:space="preserve">
+    <value>GPX dosyalarını kullanmak için harita dosyası bir OCAD dosyası olmalıdır.</value>
   </data>
 </root>

@@ -313,15 +313,6 @@ Tryck OK och försök hitta kartfilen på din dator.</value>
   <data name="Start_Short" xml:space="preserve">
     <value>S</value>
   </data>
-  <data name="Version_Alpha" xml:space="preserve">
-    <value>Alfa {0}</value>
-  </data>
-  <data name="Version_Beta" xml:space="preserve">
-    <value>Beta {0}</value>
-  </data>
-  <data name="Version_RC" xml:space="preserve">
-    <value>RC {0}</value>
-  </data>
   <data name="Plural" xml:space="preserve">
     <value>plural</value>
   </data>
@@ -469,17 +460,11 @@ Tryck OK och försök hitta kartfilen på din dator.</value>
   <data name="ChangeLineAppearanceTitle" xml:space="preserve">
     <value>Ändra linjeutseende</value>
   </data>
-  <data name="GpxMustBeOcadMap" xml:space="preserve">
-    <value>Kartfilen måste vara en OCAD-fil för att kunna använda GPX-filer.</value>
-  </data>
   <data name="GpxMustHaveCoordSystem" xml:space="preserve">
     <value>OCAD-filen måste ha ett koordinatsystem definierat för att kunna använda GPX-filer.</value>
   </data>
   <data name="GpxMustHaveRealWorldCoord" xml:space="preserve">
     <value>OCAD-filen måste ha riktiga världskoordinater definierat för att kunna använda GPX-filer.</value>
-  </data>
-  <data name="GpxReprojectFailure" xml:space="preserve">
-    <value>Kunde inte projicera om punkter; antingen är koordinatsystemet eller de riktiga världskoordinaterna i OCAD-kartan fel.</value>
   </data>
   <data name="GpxUnsupportedCoordSystem" xml:space="preserve">
     <value>OCAD-filen använder ett koordinatsystem som inte stöds av Purple Pen.</value>
@@ -585,5 +570,8 @@ Tryck OK och försök hitta kartfilen på din dator.</value>
   </data>
   <data name="GhostscriptNotInstalled" xml:space="preserve">
     <value>GPL Ghostscript är inte installerat</value>
+  </data>
+  <data name="GpxMustBeOcadMap" xml:space="preserve">
+    <value>Kartfilen måste vara en OCAD-fil för att kunna använda GPX-filer.</value>
   </data>
 </root>

@@ -391,6 +391,33 @@ namespace PurplePen
             return list.FindAll(delegate (PointF pt) { return pt != pointToRemove; }).ToArray();
         }
 
+        // Pretty-ize the version string. 
+        public static string PrettyVersionString(string verString)
+        {
+            Version v;
+
+            if (Version.TryParse(verString, out v)) {
+                string modifier;
+
+                if (v.Revision >= VersionNumber.Stable)
+                    modifier = "";
+                else if (v.Revision >= VersionNumber.RC)
+                    modifier = " " + string.Format(CoreMiscText.Version_RC, (v.Revision - VersionNumber.RC) / 10.0);
+                else if (v.Revision >= VersionNumber.Beta)
+                    modifier = " " + string.Format(CoreMiscText.Version_Beta, (v.Revision - VersionNumber.Beta) / 10.0);
+                else if (v.Revision >= VersionNumber.Alpha)
+                    modifier = " " + string.Format(CoreMiscText.Version_Alpha, (v.Revision - VersionNumber.Alpha) / 10.0);
+                else
+                    modifier = string.Format(" ({0})", v.Revision);
+
+                return string.Format("{0}.{1}.{2}{3}", v.Major, v.Minor, v.Build, modifier);
+            }
+            else {
+                return verString;
+            }
+        }
+
+
 
         // Get the text name for a control. THe Name Style controls how the control points appear:
         // Long:  "Control 32", "Start", "Finish", "Mandatory crossing point".

@@ -147,6 +147,12 @@
   <data name="Finish_Short" xml:space="preserve">
     <value>F</value>
   </data>
+  <data name="GpxMustBeOcadMap" xml:space="preserve">
+    <value>GPXファイルを使用するためには、地図ファイルがOCADファイルである必要があります。</value>
+  </data>
+  <data name="GpxReprojectFailure" xml:space="preserve">
+    <value>点を再投影できません。座標系またはOCADマップのリアルワールド座標に誤りがあります。</value>
+  </data>
   <data name="MandCrossing_Long" xml:space="preserve">
     <value>必須の横断地点</value>
   </data>
@@ -179,5 +185,14 @@
   </data>
   <data name="Start_Short" xml:space="preserve">
     <value>S</value>
+  </data>
+  <data name="Version_Alpha" xml:space="preserve">
+    <value>Alpha {0}</value>
+  </data>
+  <data name="Version_Beta" xml:space="preserve">
+    <value>Beta {0}</value>
+  </data>
+  <data name="Version_RC" xml:space="preserve">
+    <value>RC {0}</value>
   </data>
 </root>

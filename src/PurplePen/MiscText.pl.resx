@@ -304,15 +304,6 @@ Użyj | aby rozdzielić linie
   <data name="Start_Short" xml:space="preserve">
     <value>S</value>
   </data>
-  <data name="Version_Alpha" xml:space="preserve">
-    <value>Alfa {0}</value>
-  </data>
-  <data name="Version_Beta" xml:space="preserve">
-    <value>Beta {0}</value>
-  </data>
-  <data name="Version_RC" xml:space="preserve">
-    <value>RC {0}</value>
-  </data>
   <data name="Plural" xml:space="preserve">
     <value>liczba mnoga</value>
   </data>
@@ -460,9 +451,6 @@ Użyj | aby rozdzielić linie
   <data name="ChangeLineAppearanceTitle" xml:space="preserve">
     <value>Zmień wygląd linii</value>
   </data>
-  <data name="GpxMustBeOcadMap" xml:space="preserve">
-    <value>Plik mapy musi być plikiem OCAD aby można było używać plików GPX.</value>
-  </data>
   <data name="GpxMustHaveCoordSystem" xml:space="preserve">
     <value>Plik OCAD musi mieć zdefiniowany układ współrzędnych geograficznych (odniesienia) aby możliwe było użycie plików GPX.</value>
   </data>
@@ -492,5 +480,8 @@ Użyj | aby rozdzielić linie
   </data>
   <data name="GhostscriptNotInstalled" xml:space="preserve">
     <value>GPL Ghostscript nie jest zainstalowany</value>
+  </data>
+  <data name="GpxMustBeOcadMap" xml:space="preserve">
+    <value>Plik mapy musi być plikiem OCAD aby można było używać plików GPX.</value>
   </data>
 </root>

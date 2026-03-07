@@ -126,7 +126,7 @@ namespace PurplePen
     /// The description formatter takes a CourseView, and transforms it into a generic
     /// description sheet -- an array of DescriptionLine objects.
     /// </summary>
-    class DescriptionFormatter
+    public class DescriptionFormatter
     {
         // The purpose for this description formatter
         public enum Purpose
@@ -244,7 +244,7 @@ namespace PurplePen
 
             line.kind = DescriptionLineKind.Header2Box;
             line.boxes = new object[2];
-            line.boxes[0] = MiscText.AllVariations;
+            line.boxes[0] = CoreMiscText.AllVariations;
             line.boxes[1] = string.Format(symbolDB["number_controls"].GetText(language), courseView.TotalNormalControls);
             line.textual = (string)line.boxes[1];
 

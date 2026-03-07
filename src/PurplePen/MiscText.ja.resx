@@ -313,15 +313,6 @@ OKを押し、コンピュータ上で地図ファイルのコピーを探して
   <data name="Start_Short" xml:space="preserve">
     <value>S</value>
   </data>
-  <data name="Version_Alpha" xml:space="preserve">
-    <value>Alpha {0}</value>
-  </data>
-  <data name="Version_Beta" xml:space="preserve">
-    <value>Beta {0}</value>
-  </data>
-  <data name="Version_RC" xml:space="preserve">
-    <value>RC {0}</value>
-  </data>
   <data name="Plural" xml:space="preserve">
     <value>複数形</value>
   </data>
@@ -469,17 +460,11 @@ OKを押し、コンピュータ上で地図ファイルのコピーを探して
   <data name="ChangeLineAppearanceTitle" xml:space="preserve">
     <value>線の外観を変更</value>
   </data>
-  <data name="GpxMustBeOcadMap" xml:space="preserve">
-    <value>GPXファイルを使用するためには、地図ファイルがOCADファイルである必要があります。</value>
-  </data>
   <data name="GpxMustHaveCoordSystem" xml:space="preserve">
     <value>OCADファイルにはGPXファイル用に定義された座標系が必要です。</value>
   </data>
   <data name="GpxMustHaveRealWorldCoord" xml:space="preserve">
     <value>OCADファイルにはGPXファイル用に定義されたリアルワールド座標が必要です。</value>
-  </data>
-  <data name="GpxReprojectFailure" xml:space="preserve">
-    <value>点を再投影できません。座標系またはOCADマップのリアルワールド座標に誤りがあります。</value>
   </data>
   <data name="GpxUnsupportedCoordSystem" xml:space="preserve">
     <value>このOCADファイルはPurple Pen でサポートされていない座標系を使用しています。</value>
@@ -546,5 +531,8 @@ OKを押し、コンピュータ上で地図ファイルのコピーを探して
   </data>
   <data name="GhostscriptNotInstalled" xml:space="preserve">
     <value>GPL Ghostscript がインストールされていません</value>
+  </data>
+  <data name="GpxMustBeOcadMap" xml:space="preserve">
+    <value>GPXファイルを使用するためには、地図ファイルがOCADファイルである必要があります。</value>
   </data>
 </root>

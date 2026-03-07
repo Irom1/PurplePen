@@ -156,6 +156,12 @@
   <data name="Finish_Short" xml:space="preserve">
     <value>F</value>
   </data>
+  <data name="GpxMustBeOcadMap" xml:space="preserve">
+    <value>GPX dosyalarını kullanmak için harita dosyası bir OCAD dosyası olmalıdır.</value>
+  </data>
+  <data name="GpxReprojectFailure" xml:space="preserve">
+    <value>Noktalar yeniden projelendirilemedi; OCAD haritasındaki koordinat sistemi veya gerçek dünya koordinatları yanlış.</value>
+  </data>
   <data name="LegAssignedOuterBranch" xml:space="preserve">
     <value>Yarış ayağı {0} dal {1} e hiç ulaşmıyor. Var olan çatalda farklı bir yöne gitmesi için atanmış.</value>
   </data>
@@ -206,5 +212,14 @@
   </data>
   <data name="Start_Short" xml:space="preserve">
     <value>S</value>
+  </data>
+  <data name="Version_Alpha" xml:space="preserve">
+    <value>Alfa {0}</value>
+  </data>
+  <data name="Version_Beta" xml:space="preserve">
+    <value>Beta {0}</value>
+  </data>
+  <data name="Version_RC" xml:space="preserve">
+    <value>RC {0}</value>
   </data>
 </root>

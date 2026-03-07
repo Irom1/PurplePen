@@ -235,12 +235,12 @@ namespace PurplePen.Tests
         [TestMethod]
         public void PrettyVersionString()
         {
-            Assert.AreEqual("1.0.4", WindowsUtil.PrettyVersionString("1.0.4.500"));
-            Assert.AreEqual("2.0.0", WindowsUtil.PrettyVersionString("2.0.0.500"));
-            Assert.AreEqual("2.1.1 Beta 2", WindowsUtil.PrettyVersionString("2.1.1.220"));
-            Assert.AreEqual("1.0.0 RC 3", WindowsUtil.PrettyVersionString("1.0.0.330"));
-            Assert.AreEqual("1.0.1 Alpha 1", WindowsUtil.PrettyVersionString("1.0.1.110"));
-            Assert.AreEqual("baaz", WindowsUtil.PrettyVersionString("baaz"));
+            Assert.AreEqual("1.0.4", Util.PrettyVersionString("1.0.4.500"));
+            Assert.AreEqual("2.0.0", Util.PrettyVersionString("2.0.0.500"));
+            Assert.AreEqual("2.1.1 Beta 2", Util.PrettyVersionString("2.1.1.220"));
+            Assert.AreEqual("1.0.0 RC 3", Util.PrettyVersionString("1.0.0.330"));
+            Assert.AreEqual("1.0.1 Alpha 1", Util.PrettyVersionString("1.0.1.110"));
+            Assert.AreEqual("baaz", Util.PrettyVersionString("baaz"));
         }
 
         [TestMethod]

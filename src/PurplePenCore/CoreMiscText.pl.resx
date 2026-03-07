@@ -144,6 +144,9 @@
   <data name="Finish_Short" xml:space="preserve">
     <value>M</value>
   </data>
+  <data name="GpxMustBeOcadMap" xml:space="preserve">
+    <value>Plik mapy musi być plikiem OCAD aby można było używać plików GPX.</value>
+  </data>
   <data name="MandCrossing_Long" xml:space="preserve">
     <value>Obowiązkowy punkt przebiegu</value>
   </data>
@@ -170,5 +173,14 @@
   </data>
   <data name="Start_Short" xml:space="preserve">
     <value>S</value>
+  </data>
+  <data name="Version_Alpha" xml:space="preserve">
+    <value>Alfa {0}</value>
+  </data>
+  <data name="Version_Beta" xml:space="preserve">
+    <value>Beta {0}</value>
+  </data>
+  <data name="Version_RC" xml:space="preserve">
+    <value>RC {0}</value>
   </data>
 </root>

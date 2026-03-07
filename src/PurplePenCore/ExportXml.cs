@@ -42,7 +42,7 @@ using System.Drawing;
 
 namespace PurplePen
 {
-    abstract class ExportXmlBase
+    public abstract class ExportXmlBase
     {
         protected XmlWriter xmlWriter;
         protected EventDB eventDB;
@@ -247,7 +247,7 @@ namespace PurplePen
         protected abstract void WriteEnd();
     }
 
-    class ExportXmlVersion3 : ExportXmlBase
+    public class ExportXmlVersion3 : ExportXmlBase
     {
         // Keep a list of class assignments to write after the courses.
         private class PendingClassAssignment
@@ -263,7 +263,7 @@ namespace PurplePen
             xmlWriter.WriteAttributeString("xmlns", "http://www.orienteering.org/datastandard/3.0");
             xmlWriter.WriteAttributeString("iofVersion", "3.0");
             xmlWriter.WriteAttributeString("createTime", XmlConvert.ToString(modificationDate));
-            xmlWriter.WriteAttributeString("creator", string.Format("Purple Pen version {0}", WindowsUtil.PrettyVersionString(VersionNumber.Current)));
+            xmlWriter.WriteAttributeString("creator", string.Format("Purple Pen version {0}", Util.PrettyVersionString(PurplePen.MapModel.VersionNumber.Current)));
 
             WriteEventInfo();
 
@@ -522,7 +522,7 @@ namespace PurplePen
 
 
 
-    class ExportXmlVersion2 : ExportXmlBase
+    public class ExportXmlVersion2 : ExportXmlBase
     {
         protected override void WriteStart()
         {
@@ -718,7 +718,7 @@ namespace PurplePen
 
 
 
-    class ExportRelayVariations3
+    public class ExportRelayVariations3
     {
         private XmlWriter xmlWriter;
         private DateTimeOffset modificationDate;
@@ -773,7 +773,7 @@ namespace PurplePen
             xmlWriter.WriteAttributeString("xmlns", "http://www.orienteering.org/datastandard/3.0");
             xmlWriter.WriteAttributeString("iofVersion", "3.0");
             xmlWriter.WriteAttributeString("createTime", XmlConvert.ToString(modificationDate));
-            xmlWriter.WriteAttributeString("creator", string.Format("Purple Pen version {0}", WindowsUtil.PrettyVersionString(VersionNumber.Current)));
+            xmlWriter.WriteAttributeString("creator", string.Format("Purple Pen version {0}", Util.PrettyVersionString(PurplePen.MapModel.VersionNumber.Current)));
 
             WriteEventInfo();
 

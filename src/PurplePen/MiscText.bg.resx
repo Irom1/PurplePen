@@ -313,15 +313,6 @@
   <data name="Start_Short" xml:space="preserve">
     <value>S</value>
   </data>
-  <data name="Version_Alpha" xml:space="preserve">
-    <value>Alpha {0}</value>
-  </data>
-  <data name="Version_Beta" xml:space="preserve">
-    <value>Beta {0}</value>
-  </data>
-  <data name="Version_RC" xml:space="preserve">
-    <value>RC {0}</value>
-  </data>
   <data name="Plural" xml:space="preserve">
     <value>мн. ч.</value>
   </data>
@@ -469,17 +460,11 @@
   <data name="ChangeLineAppearanceTitle" xml:space="preserve">
     <value>Промени изгледа на линията</value>
   </data>
-  <data name="GpxMustBeOcadMap" xml:space="preserve">
-    <value>Картният файл трябва да бъде във формат OCAD, за да се използват GPX файлове.</value>
-  </data>
   <data name="GpxMustHaveCoordSystem" xml:space="preserve">
     <value>OCAD файлът трябва да има зададена координатна система, за да използва GPX файлове.</value>
   </data>
   <data name="GpxMustHaveRealWorldCoord" xml:space="preserve">
     <value>OCAD файлът трябва да има реални координати на терена, за да използва GPX файлове.</value>
-  </data>
-  <data name="GpxReprojectFailure" xml:space="preserve">
-    <value>Не може да се преобразуват координатите; координатната система или реалните географски координати в OCAD картата са некоректни.</value>
   </data>
   <data name="GpxUnsupportedCoordSystem" xml:space="preserve">
     <value>OCAD файлът използва координатна система, която не се поддържа от Purple Pen.</value>
@@ -582,5 +567,8 @@
   </data>
   <data name="LowerPurple" xml:space="preserve">
     <value>Спусни пурпурния слой</value>
+  </data>
+  <data name="GpxMustBeOcadMap" xml:space="preserve">
+    <value>Картният файл трябва да бъде във формат OCAD, за да се използват GPX файлове.</value>
   </data>
 </root>

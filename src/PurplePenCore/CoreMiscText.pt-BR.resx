@@ -157,6 +157,12 @@ Abrir e salvar novamente o mapa na versão mais recente do OpenOrienteering Mapp
   <data name="Finish_Short" xml:space="preserve">
     <value>F</value>
   </data>
+  <data name="GpxMustBeOcadMap" xml:space="preserve">
+    <value>O arquivo de mapa deve ser um arquivo OCAD para usar arquivos GPX.</value>
+  </data>
+  <data name="GpxReprojectFailure" xml:space="preserve">
+    <value>Não foi possível reprojetar pontos; ou o sistema de coordenadas ou as coordenadas do mundo real no mapa OCAD estão erradas.</value>
+  </data>
   <data name="LegAssignedOuterBranch" xml:space="preserve">
     <value>A pernada {0} nunca alcança a variante '{1}': ela foi atribuída para seguir um caminho diferente em uma dispersão de contenção.</value>
   </data>
@@ -207,5 +213,14 @@ Abrir e salvar novamente o mapa na versão mais recente do OpenOrienteering Mapp
   </data>
   <data name="Start_Short" xml:space="preserve">
     <value>S</value>
+  </data>
+  <data name="Version_Alpha" xml:space="preserve">
+    <value>Alpha {0}</value>
+  </data>
+  <data name="Version_Beta" xml:space="preserve">
+    <value>Beta {0}</value>
+  </data>
+  <data name="Version_RC" xml:space="preserve">
+    <value>RC {0}</value>
   </data>
 </root>

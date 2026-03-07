@@ -156,6 +156,12 @@
   <data name="Finish_Short" xml:space="preserve">
     <value>Ф</value>
   </data>
+  <data name="GpxMustBeOcadMap" xml:space="preserve">
+    <value>Картният файл трябва да бъде във формат OCAD, за да се използват GPX файлове.</value>
+  </data>
+  <data name="GpxReprojectFailure" xml:space="preserve">
+    <value>Не може да се преобразуват координатите; координатната система или реалните географски координати в OCAD картата са некоректни.</value>
+  </data>
   <data name="LegAssignedOuterBranch" xml:space="preserve">
     <value>Отсечката {0} никога не достига разклонение „{1}“ – тя е зададена по друг път в рамките на по-високо разклонение.</value>
   </data>
@@ -206,5 +212,14 @@
   </data>
   <data name="Start_Short" xml:space="preserve">
     <value>S</value>
+  </data>
+  <data name="Version_Alpha" xml:space="preserve">
+    <value>Alpha {0}</value>
+  </data>
+  <data name="Version_Beta" xml:space="preserve">
+    <value>Beta {0}</value>
+  </data>
+  <data name="Version_RC" xml:space="preserve">
+    <value>RC {0}</value>
   </data>
 </root>

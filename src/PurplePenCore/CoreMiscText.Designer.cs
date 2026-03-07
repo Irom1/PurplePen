@@ -178,6 +178,24 @@ namespace PurplePen {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The map file must be an OCAD file to use GPX files..
+        /// </summary>
+        internal static string GpxMustBeOcadMap {
+            get {
+                return ResourceManager.GetString("GpxMustBeOcadMap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Could not reproject points; either the coordinate system or the real world coordinates in the OCAD map are wrong..
+        /// </summary>
+        internal static string GpxReprojectFailure {
+            get {
+                return ResourceManager.GetString("GpxReprojectFailure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Leg {0} never reaches branch &apos;{1}&apos;: it was assigned to go a different way in a containing fork..
         /// </summary>
         internal static string LegAssignedOuterBranch {
@@ -327,6 +345,33 @@ namespace PurplePen {
         internal static string Start_Short {
             get {
                 return ResourceManager.GetString("Start_Short", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alpha {0}.
+        /// </summary>
+        internal static string Version_Alpha {
+            get {
+                return ResourceManager.GetString("Version_Alpha", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Beta {0}.
+        /// </summary>
+        internal static string Version_Beta {
+            get {
+                return ResourceManager.GetString("Version_Beta", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to RC {0}.
+        /// </summary>
+        internal static string Version_RC {
+            get {
+                return ResourceManager.GetString("Version_RC", resourceCulture);
             }
         }
     }

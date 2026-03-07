@@ -156,6 +156,12 @@
   <data name="Finish_Short" xml:space="preserve">
     <value>C</value>
   </data>
+  <data name="GpxMustBeOcadMap" xml:space="preserve">
+    <value>Mapový soubor musí být z OCADu pro použití GPX.</value>
+  </data>
+  <data name="GpxReprojectFailure" xml:space="preserve">
+    <value>Nebylo možné překreslit body - buď souřadnicový systém nebo skutečné světové souřadnice v OCAD jsou chybné.</value>
+  </data>
   <data name="LegAssignedOuterBranch" xml:space="preserve">
     <value>Postup {0} není ve farstě '{1}': byl již přiřazený k jinému větvení farsty</value>
   </data>
@@ -206,5 +212,14 @@
   </data>
   <data name="Start_Short" xml:space="preserve">
     <value>S</value>
+  </data>
+  <data name="Version_Alpha" xml:space="preserve">
+    <value>Alpha {0}</value>
+  </data>
+  <data name="Version_Beta" xml:space="preserve">
+    <value>Beta {0}</value>
+  </data>
+  <data name="Version_RC" xml:space="preserve">
+    <value>RC {0}</value>
   </data>
 </root>

@@ -312,15 +312,6 @@
   <data name="Start_Short" xml:space="preserve">
     <value>S</value>
   </data>
-  <data name="Version_Alpha" xml:space="preserve">
-    <value>阿尔法{0}</value>
-  </data>
-  <data name="Version_Beta" xml:space="preserve">
-    <value>β{0}</value>
-  </data>
-  <data name="Version_RC" xml:space="preserve">
-    <value>RC {0}</value>
-  </data>
   <data name="Plural" xml:space="preserve">
     <value>复数</value>
   </data>
@@ -468,17 +459,11 @@
   <data name="ChangeLineAppearanceTitle" xml:space="preserve">
     <value>改变线的外观</value>
   </data>
-  <data name="GpxMustBeOcadMap" xml:space="preserve">
-    <value>映射文件必须是一个软件包文件使用GPX文件。</value>
-  </data>
   <data name="GpxMustHaveCoordSystem" xml:space="preserve">
     <value>该软件包的文件必须有一个坐标系统定义的使用GPX文件。</value>
   </data>
   <data name="GpxMustHaveRealWorldCoord" xml:space="preserve">
     <value>该软件包文件必须真实世界坐标定义使用GPX文件。</value>
-  </data>
-  <data name="GpxReprojectFailure" xml:space="preserve">
-    <value>不能重投影点；要么是坐标系统或真实世界坐标系在OCAD地图是错的。</value>
   </data>
   <data name="GpxUnsupportedCoordSystem" xml:space="preserve">
     <value>OCAD文件中使用的坐标系不受紫笔支持。</value>
@@ -569,5 +554,8 @@
   </data>
   <data name="AddEllipseTitle" xml:space="preserve">
     <value>添加椭圆</value>
+  </data>
+  <data name="GpxMustBeOcadMap" xml:space="preserve">
+    <value>映射文件必须是一个软件包文件使用GPX文件。</value>
   </data>
 </root>

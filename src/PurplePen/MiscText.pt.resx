@@ -317,15 +317,6 @@ Após pressionar OK, tente encontrar uma cópia do ficheiro de mapa em seu compu
   <data name="Start_Short" xml:space="preserve">
     <value>S</value>
   </data>
-  <data name="Version_Alpha" xml:space="preserve">
-    <value>Alpha {0}</value>
-  </data>
-  <data name="Version_Beta" xml:space="preserve">
-    <value>Beta {0}</value>
-  </data>
-  <data name="Version_RC" xml:space="preserve">
-    <value>RC {0}</value>
-  </data>
   <data name="Plural" xml:space="preserve">
     <value>plural</value>
   </data>
@@ -477,17 +468,11 @@ Visite http://microsoft.com/net e instale a versão mais recente do framework .N
   <data name="ChangeLineAppearanceTitle" xml:space="preserve">
     <value>Alterar aparência da linha</value>
   </data>
-  <data name="GpxMustBeOcadMap" xml:space="preserve">
-    <value>O ficheiro de mapa deve ser um ficheiro OCAD para usar ficheiros GPX.</value>
-  </data>
   <data name="GpxMustHaveCoordSystem" xml:space="preserve">
     <value>O ficheiro OCAD deve ter um sistema de coordenadas definido para usar ficheiros GPX.</value>
   </data>
   <data name="GpxMustHaveRealWorldCoord" xml:space="preserve">
     <value>O ficeiro OCAD deve ter coordenadas do mundo real definidas para usar ficheiros GPX.</value>
-  </data>
-  <data name="GpxReprojectFailure" xml:space="preserve">
-    <value>Não foi possível reprojetar pontos; ou o sistema de coordenadas ou as coordenadas do mundo real no mapa OCAD estão erradas.</value>
   </data>
   <data name="GpxUnsupportedCoordSystem" xml:space="preserve">
     <value>O ficheiro OCAD usa um sistema de coordenadas que não é suportado por Purple Pen.</value>
@@ -583,5 +568,8 @@ Adicione um ponto de controlo de chegada primeiro.</value>
   </data>
   <data name="AddEllipseTitle" xml:space="preserve">
     <value>Adicionar Elipse</value>
+  </data>
+  <data name="GpxMustBeOcadMap" xml:space="preserve">
+    <value>O ficheiro de mapa deve ser um ficheiro OCAD para usar ficheiros GPX.</value>
   </data>
 </root>

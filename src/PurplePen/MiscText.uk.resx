@@ -313,15 +313,6 @@
   <data name="Start_Short" xml:space="preserve">
     <value>S</value>
   </data>
-  <data name="Version_Alpha" xml:space="preserve">
-    <value>Alpha {0}</value>
-  </data>
-  <data name="Version_Beta" xml:space="preserve">
-    <value>Beta {0}</value>
-  </data>
-  <data name="Version_RC" xml:space="preserve">
-    <value>RC {0}</value>
-  </data>
   <data name="Plural" xml:space="preserve">
     <value>множина</value>
   </data>
@@ -466,17 +457,11 @@
   <data name="ChangeLineAppearanceTitle" xml:space="preserve">
     <value>Змінити вигляд лінії</value>
   </data>
-  <data name="GpxMustBeOcadMap" xml:space="preserve">
-    <value>Файл кари має бути у форматі OCAD для використання GPX файлів.</value>
-  </data>
   <data name="GpxMustHaveCoordSystem" xml:space="preserve">
     <value>Файл OCAD повинен мати визначену систему координат для використання GPX файлів.</value>
   </data>
   <data name="GpxMustHaveRealWorldCoord" xml:space="preserve">
     <value>Файл OCAD повинен мати визначені глобальні координати для використання GPX файлів.</value>
-  </data>
-  <data name="GpxReprojectFailure" xml:space="preserve">
-    <value>Не вдалося спроектувати точки; або система координат, чи глобальні координати на карті OCAD неправильні.</value>
   </data>
   <data name="GpxUnsupportedCoordSystem" xml:space="preserve">
     <value>Файл OCAD використовує систему координат, що не підтримується Purple Pen.</value>
@@ -567,5 +552,8 @@
   </data>
   <data name="AddEllipseTitle" xml:space="preserve">
     <value>Додати еліпс</value>
+  </data>
+  <data name="GpxMustBeOcadMap" xml:space="preserve">
+    <value>Файл кари має бути у форматі OCAD для використання GPX файлів.</value>
   </data>
 </root>

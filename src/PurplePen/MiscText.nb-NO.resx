@@ -312,15 +312,6 @@ Trykk OK og forsøk å finne kartfilen på din datamaskin.</value>
   <data name="Start_Short" xml:space="preserve">
     <value>S</value>
   </data>
-  <data name="Version_Alpha" xml:space="preserve">
-    <value>Alfa {0}</value>
-  </data>
-  <data name="Version_Beta" xml:space="preserve">
-    <value>Beta {0}</value>
-  </data>
-  <data name="Version_RC" xml:space="preserve">
-    <value>RC {0}</value>
-  </data>
   <data name="Plural" xml:space="preserve">
     <value>flertall</value>
   </data>
@@ -468,17 +459,11 @@ Trykk OK og forsøk å finne kartfilen på din datamaskin.</value>
   <data name="ChangeLineAppearanceTitle" xml:space="preserve">
     <value>Endre strek utseende</value>
   </data>
-  <data name="GpxMustBeOcadMap" xml:space="preserve">
-    <value>Kartfilen må være en OCAD fil for å bruke GPX filer.</value>
-  </data>
   <data name="GpxMustHaveCoordSystem" xml:space="preserve">
     <value>OCAD filen må ha et koordinatsystem for å kunne bruke GPX filer.</value>
   </data>
   <data name="GpxMustHaveRealWorldCoord" xml:space="preserve">
     <value>OCAD filen må være georeferert for å kunne bruke GPX filer</value>
-  </data>
-  <data name="GpxReprojectFailure" xml:space="preserve">
-    <value>Klarte ikke å plassere punkter, enten er koordinatsystemet eller lokale koordinater i Ocad kartfilen feil.</value>
   </data>
   <data name="GpxUnsupportedCoordSystem" xml:space="preserve">
     <value>OCAD filen bruker et ikke koordinatsystem som ikke er støttet av Purple Pen</value>
@@ -575,5 +560,8 @@ Trykk OK og forsøk å finne kartfilen på din datamaskin.</value>
   </data>
   <data name="GhostscriptNotInstalled" xml:space="preserve">
     <value>GPL Ghostscript er ikke installert</value>
+  </data>
+  <data name="GpxMustBeOcadMap" xml:space="preserve">
+    <value>Kartfilen må være en OCAD fil for å bruke GPX filer.</value>
   </data>
 </root>

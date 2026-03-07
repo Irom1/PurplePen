@@ -311,15 +311,6 @@ Peale OK vajutamist, otsi kaardi fail arvutist..</value>
   <data name="Start_Short" xml:space="preserve">
     <value>S</value>
   </data>
-  <data name="Version_Alpha" xml:space="preserve">
-    <value>Alfa {0}</value>
-  </data>
-  <data name="Version_Beta" xml:space="preserve">
-    <value>Beeta {0}</value>
-  </data>
-  <data name="Version_RC" xml:space="preserve">
-    <value>RC {0}</value>
-  </data>
   <data name="Plural" xml:space="preserve">
     <value>mitmuses</value>
   </data>
@@ -467,17 +458,11 @@ Peale OK vajutamist, otsi kaardi fail arvutist..</value>
   <data name="ChangeLineAppearanceTitle" xml:space="preserve">
     <value>Muuda joone väljanägemist</value>
   </data>
-  <data name="GpxMustBeOcadMap" xml:space="preserve">
-    <value>GPX faili tegemiseks, peab kaardi fail olema OCADi fail</value>
-  </data>
   <data name="GpxMustHaveCoordSystem" xml:space="preserve">
     <value>GPXi jaoks on vaja OCADi faili, kus koorinaatsüsteem on määratud.</value>
   </data>
   <data name="GpxMustHaveRealWorldCoord" xml:space="preserve">
     <value>GPX faili loomiseks on vaja, et OCADi kaardifaili oleks õiges koordinaatsüsteemis.</value>
-  </data>
-  <data name="GpxReprojectFailure" xml:space="preserve">
-    <value>Ei suutnud määrate punkte; võimalik, et koordinaatsüsteem OCAD kaardifailis on vale või määramata.</value>
   </data>
   <data name="GpxUnsupportedCoordSystem" xml:space="preserve">
     <value>OCAD kaardifailis on kasutusel koordinaadid, mis ei ole toetatud Purpe Peni poolt.</value>
@@ -574,5 +559,8 @@ Peale OK vajutamist, otsi kaardi fail arvutist..</value>
   </data>
   <data name="GhostscriptNotInstalled" xml:space="preserve">
     <value>GPL Ghostscript on installeeritud</value>
+  </data>
+  <data name="GpxMustBeOcadMap" xml:space="preserve">
+    <value>GPX faili tegemiseks, peab kaardi fail olema OCADi fail</value>
   </data>
 </root>

@@ -156,6 +156,12 @@
   <data name="Finish_Short" xml:space="preserve">
     <value>F</value>
   </data>
+  <data name="GpxMustBeOcadMap" xml:space="preserve">
+    <value>Kartfilen måste vara en OCAD-fil för att kunna använda GPX-filer.</value>
+  </data>
+  <data name="GpxReprojectFailure" xml:space="preserve">
+    <value>Kunde inte projicera om punkter; antingen är koordinatsystemet eller de riktiga världskoordinaterna i OCAD-kartan fel.</value>
+  </data>
   <data name="LegAssignedOuterBranch" xml:space="preserve">
     <value>Sträcka {0} når aldrig gaffling '{1}': den är ritad att gå en annan väg i en yttre gaffling.</value>
   </data>
@@ -206,5 +212,14 @@
   </data>
   <data name="Start_Short" xml:space="preserve">
     <value>S</value>
+  </data>
+  <data name="Version_Alpha" xml:space="preserve">
+    <value>Alfa {0}</value>
+  </data>
+  <data name="Version_Beta" xml:space="preserve">
+    <value>Beta {0}</value>
+  </data>
+  <data name="Version_RC" xml:space="preserve">
+    <value>RC {0}</value>
   </data>
 </root>

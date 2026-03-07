@@ -158,6 +158,12 @@
     <value>F</value>
     <comment>Abbreviation for "Finish"</comment>
   </data>
+  <data name="GpxMustBeOcadMap" xml:space="preserve">
+    <value>The map file must be an OCAD file to use GPX files.</value>
+  </data>
+  <data name="GpxReprojectFailure" xml:space="preserve">
+    <value>Could not reproject points; either the coordinate system or the real world coordinates in the OCAD map are wrong.</value>
+  </data>
   <data name="LegAssignedOuterBranch" xml:space="preserve">
     <value>Leg {0} never reaches branch '{1}': it was assigned to go a different way in a containing fork.</value>
   </data>
@@ -212,5 +218,14 @@
   <data name="Start_Short" xml:space="preserve">
     <value>S</value>
     <comment>Abbreviation for "Start"</comment>
+  </data>
+  <data name="Version_Alpha" xml:space="preserve">
+    <value>Alpha {0}</value>
+  </data>
+  <data name="Version_Beta" xml:space="preserve">
+    <value>Beta {0}</value>
+  </data>
+  <data name="Version_RC" xml:space="preserve">
+    <value>RC {0}</value>
   </data>
 </root>

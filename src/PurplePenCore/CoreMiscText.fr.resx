@@ -153,6 +153,12 @@
   <data name="Finish_Short" xml:space="preserve">
     <value>F</value>
   </data>
+  <data name="GpxMustBeOcadMap" xml:space="preserve">
+    <value>Pour utiliser des fichier GPX, le fichier Carte doit obligatoirement être un fichier OCAD.</value>
+  </data>
+  <data name="GpxReprojectFailure" xml:space="preserve">
+    <value>Impossible de re-projeter les points. Le système de coordonnées ou les coordonnées du monde réel de la carte OCAD sont faux.</value>
+  </data>
   <data name="MandCrossing_Long" xml:space="preserve">
     <value>Point de passage obligatoire</value>
   </data>
@@ -191,5 +197,14 @@
   </data>
   <data name="Start_Short" xml:space="preserve">
     <value>S</value>
+  </data>
+  <data name="Version_Alpha" xml:space="preserve">
+    <value>Alpha {0}</value>
+  </data>
+  <data name="Version_Beta" xml:space="preserve">
+    <value>Béta {0}</value>
+  </data>
+  <data name="Version_RC" xml:space="preserve">
+    <value>RC {0}</value>
   </data>
 </root>

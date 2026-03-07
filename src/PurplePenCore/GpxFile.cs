@@ -12,7 +12,7 @@ using System.IO;
 
 namespace PurplePen
 {
-    class GpxFile
+    public class GpxFile
     {
         private EventDB eventDB;
         private GpxCreationSettings settings;
@@ -74,7 +74,7 @@ namespace PurplePen
                     if (!coordinateMapper.GetLatLong(control.location, out latitude, out longitude) ||
                         double.IsNaN(latitude) || double.IsNaN(longitude)) 
                     {
-                        throw new Exception(MiscText.GpxReprojectFailure);
+                        throw new Exception(CoreMiscText.GpxReprojectFailure);
                     }
                     // Create a waypoint.
                     Waypoint wp = new Waypoint() { Name = name, Kind = kind, Latitude = latitude, Longitude = longitude };
@@ -110,7 +110,7 @@ namespace PurplePen
             using (xmlWriter = XmlWriter.Create(fileName, settings)) {
                 xmlWriter.WriteStartDocument();
                 xmlWriter.WriteStartElement("gpx", gpxNamespace);
-                xmlWriter.WriteAttributeString("creator", "Purple Pen " + WindowsUtil.PrettyVersionString(VersionNumber.Current));
+                xmlWriter.WriteAttributeString("creator", "Purple Pen " + Util.PrettyVersionString(VersionNumber.Current));
                 xmlWriter.WriteAttributeString("version", "1.1");
                 xmlWriter.WriteAttributeString("xsi", "schemaLocation", xsiNamespace, gpxNamespace + " " + gpxSchema);
 
@@ -230,7 +230,7 @@ namespace PurplePen
                             if (!coordinateMapper.GetLatLong(bendPoint, out latitude, out longitude) ||
                                 double.IsNaN(latitude) || double.IsNaN(longitude)) 
                             {
-                                throw new Exception(MiscText.GpxReprojectFailure);
+                                throw new Exception(CoreMiscText.GpxReprojectFailure);
                             }
                             
                             WriteTrackBendPoint(latitude, longitude);
@@ -282,7 +282,7 @@ namespace PurplePen
     }
 
     // Has all the settings for creating OCAD files.
-    class GpxCreationSettings
+    public class GpxCreationSettings
     {
         public Id<Course>[] CourseIds;          // Courses to export. Course.None means all controls.
         public bool AllCourses = true;          // If true, overrides CourseIds except for all controls.
@@ -297,7 +297,7 @@ namespace PurplePen
     }
 
     // This class maps between paper coordinates, real world coordinates, and WGS84 lat/long.
-    class CoordinateMapper
+    public class CoordinateMapper
     {
         double mapScale;
         double gridScaleFactor;
@@ -309,7 +309,7 @@ namespace PurplePen
         public CoordinateMapper(Map map)
         {
             if (map == null)
-                throw new Exception(MiscText.GpxMustBeOcadMap);
+                throw new Exception(CoreMiscText.GpxMustBeOcadMap);
 
             using (map.Read()) {
                 mapScale = map.MapScale;

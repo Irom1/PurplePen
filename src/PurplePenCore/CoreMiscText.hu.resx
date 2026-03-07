@@ -156,6 +156,12 @@
   <data name="Finish_Short" xml:space="preserve">
     <value>C</value>
   </data>
+  <data name="GpxMustBeOcadMap" xml:space="preserve">
+    <value>A térképnek OCAD fájlnak kell lennie GPX fájlok használatához.</value>
+  </data>
+  <data name="GpxReprojectFailure" xml:space="preserve">
+    <value>Nem lehet újravetíteni a pontokat; valamelyik koordináta rendszer vagy a valós földi koordináták az OCAD fájlban hibásak.</value>
+  </data>
   <data name="LegAssignedOuterBranch" xml:space="preserve">
     <value>A(z) {0} ág sohasem érinti a(z) '{1}' elágazást: másként kell megadni az utakat a tatalmazó villában.</value>
   </data>
@@ -206,5 +212,14 @@
   </data>
   <data name="Start_Short" xml:space="preserve">
     <value>R</value>
+  </data>
+  <data name="Version_Alpha" xml:space="preserve">
+    <value>{0} Alfa</value>
+  </data>
+  <data name="Version_Beta" xml:space="preserve">
+    <value>{0} Béta</value>
+  </data>
+  <data name="Version_RC" xml:space="preserve">
+    <value>{0} RC</value>
   </data>
 </root>

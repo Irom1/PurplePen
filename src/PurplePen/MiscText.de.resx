@@ -313,15 +313,6 @@ Suchen Sie, nach Klicken auf "OK", nach der Kartendatei auf Ihrem Computer.</val
   <data name="Start_Short" xml:space="preserve">
     <value>S</value>
   </data>
-  <data name="Version_Alpha" xml:space="preserve">
-    <value>Alpha {0}</value>
-  </data>
-  <data name="Version_Beta" xml:space="preserve">
-    <value>Beta {0}</value>
-  </data>
-  <data name="Version_RC" xml:space="preserve">
-    <value>RC {0}</value>
-  </data>
   <data name="Plural" xml:space="preserve">
     <value>Mehrzahl</value>
   </data>
@@ -469,17 +460,11 @@ Suchen Sie, nach Klicken auf "OK", nach der Kartendatei auf Ihrem Computer.</val
   <data name="ChangeLineAppearanceTitle" xml:space="preserve">
     <value>Aussehen der Linie / Rechteck ändern</value>
   </data>
-  <data name="GpxMustBeOcadMap" xml:space="preserve">
-    <value>Um GPX-Dateien zu nutzen, muss eine OCAD-Kartendatei verwendet werden.</value>
-  </data>
   <data name="GpxMustHaveCoordSystem" xml:space="preserve">
     <value>Um GPX-Dateien nutzen zu können, muss für die OCAD-Datei ein Koordinatensystem definiert sein.</value>
   </data>
   <data name="GpxMustHaveRealWorldCoord" xml:space="preserve">
     <value>Um GPX-Dateien nutzen zu können, müssen für die OCAD-Datei Weltkoordinaten definiert sein.</value>
-  </data>
-  <data name="GpxReprojectFailure" xml:space="preserve">
-    <value>Punkte können nicht umprojiziert werden; in der OCAD-Datei sind entweder das Koordinatensystem oder die Weltkoordinaten nicht richtig.</value>
   </data>
   <data name="GpxUnsupportedCoordSystem" xml:space="preserve">
     <value>Die OCAD-Datei verwendet ein Koordinatensystem, das von Purple Pen nicht unterstützt wird.</value>
@@ -585,5 +570,8 @@ Suchen Sie, nach Klicken auf "OK", nach der Kartendatei auf Ihrem Computer.</val
   </data>
   <data name="GhostscriptNotInstalled" xml:space="preserve">
     <value>GPL Ghostscript ist nicht installiert</value>
+  </data>
+  <data name="GpxMustBeOcadMap" xml:space="preserve">
+    <value>Um GPX-Dateien zu nutzen, muss eine OCAD-Kartendatei verwendet werden.</value>
   </data>
 </root>

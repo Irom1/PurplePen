@@ -162,7 +162,7 @@ namespace PurplePen
         private static void AskToDownload(string versionNumber, string fileName)
         {
             // Ask to see if user wants to update.
-            string message = string.Format(MiscText.NewerVersionAvailable, WindowsUtil.PrettyVersionString(versionNumber), WindowsUtil.PrettyVersionString(VersionNumber.Current));
+            string message = string.Format(MiscText.NewerVersionAvailable, Util.PrettyVersionString(versionNumber), Util.PrettyVersionString(VersionNumber.Current));
             DialogResult answer = MessageBox.Show(message, MiscText.AppTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
             if (answer != DialogResult.Yes) {
                 return;

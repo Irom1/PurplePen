@@ -313,15 +313,6 @@ A Rendben lenyomása után próbálja megkeresni a térkép fájlt a számítóg
   <data name="Start_Short" xml:space="preserve">
     <value>R</value>
   </data>
-  <data name="Version_Alpha" xml:space="preserve">
-    <value>{0} Alfa</value>
-  </data>
-  <data name="Version_Beta" xml:space="preserve">
-    <value>{0} Béta</value>
-  </data>
-  <data name="Version_RC" xml:space="preserve">
-    <value>{0} RC</value>
-  </data>
   <data name="Plural" xml:space="preserve">
     <value>többes szám</value>
   </data>
@@ -469,17 +460,11 @@ A Rendben lenyomása után próbálja megkeresni a térkép fájlt a számítóg
   <data name="ChangeLineAppearanceTitle" xml:space="preserve">
     <value>Sor kinézetének módosítása</value>
   </data>
-  <data name="GpxMustBeOcadMap" xml:space="preserve">
-    <value>A térképnek OCAD fájlnak kell lennie GPX fájlok használatához.</value>
-  </data>
   <data name="GpxMustHaveCoordSystem" xml:space="preserve">
     <value>Az OCAD fájlnak definiált koordináta rendszerrel kell rendelkeznie GPX fájlok használatához.</value>
   </data>
   <data name="GpxMustHaveRealWorldCoord" xml:space="preserve">
     <value>Az OCAD fájl koordináta rendszere csak valós földi lehet GPX fájlok használatához.</value>
-  </data>
-  <data name="GpxReprojectFailure" xml:space="preserve">
-    <value>Nem lehet újravetíteni a pontokat; valamelyik koordináta rendszer vagy a valós földi koordináták az OCAD fájlban hibásak.</value>
   </data>
   <data name="GpxUnsupportedCoordSystem" xml:space="preserve">
     <value>Az OCAD fájl a Purple Pen által nem ismert koordináta rendszert használ.</value>
@@ -570,5 +555,8 @@ A Rendben lenyomása után próbálja megkeresni a térkép fájlt a számítóg
   </data>
   <data name="GhostscriptNotInstalled" xml:space="preserve">
     <value>A GPL Ghostscript nincs telepítve.</value>
+  </data>
+  <data name="GpxMustBeOcadMap" xml:space="preserve">
+    <value>A térképnek OCAD fájlnak kell lennie GPX fájlok használatához.</value>
   </data>
 </root>

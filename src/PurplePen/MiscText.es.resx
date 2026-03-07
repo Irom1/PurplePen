@@ -313,15 +313,6 @@ Presione Aceptar, e intente encontrar una copia del mapa en su ordenador.</value
   <data name="Start_Short" xml:space="preserve">
     <value>I</value>
   </data>
-  <data name="Version_Alpha" xml:space="preserve">
-    <value>Alfa {0}</value>
-  </data>
-  <data name="Version_Beta" xml:space="preserve">
-    <value>Beta {0}</value>
-  </data>
-  <data name="Version_RC" xml:space="preserve">
-    <value>RC {0}</value>
-  </data>
   <data name="Plural" xml:space="preserve">
     <value>plural</value>
   </data>
@@ -466,17 +457,11 @@ Presione Aceptar, e intente encontrar una copia del mapa en su ordenador.</value
   <data name="ChangeLineAppearanceTitle" xml:space="preserve">
     <value>Cambiar el aspecto de la línea</value>
   </data>
-  <data name="GpxMustBeOcadMap" xml:space="preserve">
-    <value>El archivo de mapa debe ser un OCAD para usar archivos GPX.</value>
-  </data>
   <data name="GpxMustHaveCoordSystem" xml:space="preserve">
     <value>El archivo OCAD debe tener un sistema de coordenadas definido para usar archivos GPX.</value>
   </data>
   <data name="GpxMustHaveRealWorldCoord" xml:space="preserve">
     <value>El archivo OCAD debe tener definidas coordenadas reales para usar archivos GPX.</value>
-  </data>
-  <data name="GpxReprojectFailure" xml:space="preserve">
-    <value>No se ha podido volver a proyectar el punto. O el sistema de coordenadas o las coordenadas reales del mapa OCAD están mal.</value>
   </data>
   <data name="GpxUnsupportedCoordSystem" xml:space="preserve">
     <value>El archivo OCAD usa un sistema de coordenadas no admitido por Purple Pen.</value>
@@ -561,5 +546,8 @@ Presione Aceptar, e intente encontrar una copia del mapa en su ordenador.</value
   </data>
   <data name="PdfFilter" xml:space="preserve">
     <value>Archivo PDF|*.pdf</value>
+  </data>
+  <data name="GpxMustBeOcadMap" xml:space="preserve">
+    <value>El archivo de mapa debe ser un OCAD para usar archivos GPX.</value>
   </data>
 </root>

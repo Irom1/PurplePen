@@ -156,6 +156,12 @@
   <data name="Finish_Short" xml:space="preserve">
     <value>F</value>
   </data>
+  <data name="GpxMustBeOcadMap" xml:space="preserve">
+    <value>El archivo de mapa debe ser un OCAD para usar archivos GPX.</value>
+  </data>
+  <data name="GpxReprojectFailure" xml:space="preserve">
+    <value>No se ha podido volver a proyectar el punto. O el sistema de coordenadas o las coordenadas reales del mapa OCAD están mal.</value>
+  </data>
   <data name="LegAssignedOuterBranch" xml:space="preserve">
     <value>El tramo {0} no alcanza la rama «{1}»: en una bifurcación que lo contiene se le ha asignado ir por otra ruta.</value>
   </data>
@@ -206,5 +212,14 @@
   </data>
   <data name="Start_Short" xml:space="preserve">
     <value>I</value>
+  </data>
+  <data name="Version_Alpha" xml:space="preserve">
+    <value>Alfa {0}</value>
+  </data>
+  <data name="Version_Beta" xml:space="preserve">
+    <value>Beta {0}</value>
+  </data>
+  <data name="Version_RC" xml:space="preserve">
+    <value>RC {0}</value>
   </data>
 </root>

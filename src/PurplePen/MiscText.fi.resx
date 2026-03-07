@@ -313,15 +313,6 @@ Paina OK ja yritä etsiä karttatiedoston kopio tietokoneeltasi.</value>
   <data name="Start_Short" xml:space="preserve">
     <value>S</value>
   </data>
-  <data name="Version_Alpha" xml:space="preserve">
-    <value>Alfa {0}</value>
-  </data>
-  <data name="Version_Beta" xml:space="preserve">
-    <value>Beta {0}</value>
-  </data>
-  <data name="Version_RC" xml:space="preserve">
-    <value>RC {0}</value>
-  </data>
   <data name="Plural" xml:space="preserve">
     <value>monikko</value>
   </data>
@@ -469,17 +460,11 @@ Paina OK ja yritä etsiä karttatiedoston kopio tietokoneeltasi.</value>
   <data name="ChangeLineAppearanceTitle" xml:space="preserve">
     <value>Muuta viivan ulkoasua</value>
   </data>
-  <data name="GpxMustBeOcadMap" xml:space="preserve">
-    <value>Karttatiedoston pitää olla OCAD-tiedosto, jotta voit käyttää GPX-tiedostoja.</value>
-  </data>
   <data name="GpxMustHaveCoordSystem" xml:space="preserve">
     <value>OCAD-tiedoston koordinaatiston täytyy olla määritelty, jotta voit käyttää GPX-tiedostoja.</value>
   </data>
   <data name="GpxMustHaveRealWorldCoord" xml:space="preserve">
     <value>OCAD-tiedoston täytyy olla geo-viitattu, jotta GPX-tiedostoja voidaan käyttää.</value>
-  </data>
-  <data name="GpxReprojectFailure" xml:space="preserve">
-    <value>Ei voitu uudelleenprojektoida pisteitä. Joko koordinaatistossa tai maastokoordinaateissa OCAD-kartalla on virhe.</value>
   </data>
   <data name="GpxUnsupportedCoordSystem" xml:space="preserve">
     <value>Purple Pen ei tue OCAD-tiedoston käyttämää koordinaatistoa.</value>
@@ -579,5 +564,8 @@ Paina OK ja yritä etsiä karttatiedoston kopio tietokoneeltasi.</value>
   </data>
   <data name="GhostscriptNotInstalled" xml:space="preserve">
     <value>GPL Ghostscriptiä ei ole asennettu</value>
+  </data>
+  <data name="GpxMustBeOcadMap" xml:space="preserve">
+    <value>Karttatiedoston pitää olla OCAD-tiedosto, jotta voit käyttää GPX-tiedostoja.</value>
   </data>
 </root>

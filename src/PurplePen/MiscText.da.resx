@@ -313,15 +313,6 @@ Efter at klikke OK, prøv at finde en kopi af kortfilen på din computer.</value
   <data name="Start_Short" xml:space="preserve">
     <value>S</value>
   </data>
-  <data name="Version_Alpha" xml:space="preserve">
-    <value>Alfa {0}</value>
-  </data>
-  <data name="Version_Beta" xml:space="preserve">
-    <value>Beta {0}</value>
-  </data>
-  <data name="Version_RC" xml:space="preserve">
-    <value>RC {0}</value>
-  </data>
   <data name="Plural" xml:space="preserve">
     <value>flertal</value>
   </data>
@@ -466,17 +457,11 @@ Efter at klikke OK, prøv at finde en kopi af kortfilen på din computer.</value
   <data name="ChangeLineAppearanceTitle" xml:space="preserve">
     <value>Ændr linjefremtræden</value>
   </data>
-  <data name="GpxMustBeOcadMap" xml:space="preserve">
-    <value>Kortfilen skal være en OCADfil for at bruge GPXfiler.</value>
-  </data>
   <data name="GpxMustHaveCoordSystem" xml:space="preserve">
     <value>OCADfilen skal have et koordinatsystem defineret for at bruge GPXfiler.</value>
   </data>
   <data name="GpxMustHaveRealWorldCoord" xml:space="preserve">
     <value>OCADfilen skal have virkelige koordinater definere for at bruge GPXfiler.</value>
-  </data>
-  <data name="GpxReprojectFailure" xml:space="preserve">
-    <value>Kunne ikke genprojekt punkter; enten er koordinaterne og de virkelige koordinater i OCAD kortet forkerte.</value>
   </data>
   <data name="GpxUnsupportedCoordSystem" xml:space="preserve">
     <value>OCADfil bruger et koordinatsystem som ikke er understøttet af Purple Pen.</value>
@@ -558,5 +543,8 @@ Efter at klikke OK, prøv at finde en kopi af kortfilen på din computer.</value
   </data>
   <data name="PdfFilter" xml:space="preserve">
     <value>PDF Fil|*.pdf</value>
+  </data>
+  <data name="GpxMustBeOcadMap" xml:space="preserve">
+    <value>Kortfilen skal være en OCADfil for at bruge GPXfiler.</value>
   </data>
 </root>

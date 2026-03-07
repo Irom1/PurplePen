@@ -156,6 +156,12 @@
   <data name="Finish_Short" xml:space="preserve">
     <value>F</value>
   </data>
+  <data name="GpxMustBeOcadMap" xml:space="preserve">
+    <value>地圖檔案必須是使用GPX檔案的OCAD檔案。</value>
+  </data>
+  <data name="GpxReprojectFailure" xml:space="preserve">
+    <value>無法重新投影點； OCAD 地圖中的坐標系統或真實世界坐標是錯誤的。</value>
+  </data>
   <data name="LegAssignedOuterBranch" xml:space="preserve">
     <value>賽段 {0} 永遠不會到達分支“{1}”：它被分配到分叉中的不同路線。</value>
   </data>
@@ -206,5 +212,14 @@
   </data>
   <data name="Start_Short" xml:space="preserve">
     <value>S</value>
+  </data>
+  <data name="Version_Alpha" xml:space="preserve">
+    <value>Alpha {0}</value>
+  </data>
+  <data name="Version_Beta" xml:space="preserve">
+    <value>Beta {0}</value>
+  </data>
+  <data name="Version_RC" xml:space="preserve">
+    <value>RC {0}</value>
   </data>
 </root>

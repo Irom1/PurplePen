@@ -156,6 +156,12 @@
   <data name="Finish_Short" xml:space="preserve">
     <value>F</value>
   </data>
+  <data name="GpxMustBeOcadMap" xml:space="preserve">
+    <value>GPX faili tegemiseks, peab kaardi fail olema OCADi fail</value>
+  </data>
+  <data name="GpxReprojectFailure" xml:space="preserve">
+    <value>Ei suutnud määrate punkte; võimalik, et koordinaatsüsteem OCAD kaardifailis on vale või määramata.</value>
+  </data>
   <data name="LegAssignedOuterBranch" xml:space="preserve">
     <value>Vahetus {0} ei jõua kunagi harusse '{1}': see on määratud teisele teele valitud hajutuses.</value>
   </data>
@@ -206,5 +212,14 @@
   </data>
   <data name="Start_Short" xml:space="preserve">
     <value>S</value>
+  </data>
+  <data name="Version_Alpha" xml:space="preserve">
+    <value>Alfa {0}</value>
+  </data>
+  <data name="Version_Beta" xml:space="preserve">
+    <value>Beeta {0}</value>
+  </data>
+  <data name="Version_RC" xml:space="preserve">
+    <value>RC {0}</value>
   </data>
 </root>

@@ -313,15 +313,6 @@ OK - zkus soubor s mapou najít.</value>
   <data name="Start_Short" xml:space="preserve">
     <value>S</value>
   </data>
-  <data name="Version_Alpha" xml:space="preserve">
-    <value>Alpha {0}</value>
-  </data>
-  <data name="Version_Beta" xml:space="preserve">
-    <value>Beta {0}</value>
-  </data>
-  <data name="Version_RC" xml:space="preserve">
-    <value>RC {0}</value>
-  </data>
   <data name="Plural" xml:space="preserve">
     <value>plurál</value>
   </data>
@@ -469,17 +460,11 @@ OK - zkus soubor s mapou najít.</value>
   <data name="ChangeLineAppearanceTitle" xml:space="preserve">
     <value>Změnit vzhled čáry</value>
   </data>
-  <data name="GpxMustBeOcadMap" xml:space="preserve">
-    <value>Mapový soubor musí být z OCADu pro použití GPX.</value>
-  </data>
   <data name="GpxMustHaveCoordSystem" xml:space="preserve">
     <value>OCAD soubor musí být georeferencovaný pro použitý GPX.</value>
   </data>
   <data name="GpxMustHaveRealWorldCoord" xml:space="preserve">
     <value>Soubor OCAD musí mít definované skutečné světové souřadnice, aby bylo možné použít soubor GPX.</value>
-  </data>
-  <data name="GpxReprojectFailure" xml:space="preserve">
-    <value>Nebylo možné překreslit body - buď souřadnicový systém nebo skutečné světové souřadnice v OCAD jsou chybné.</value>
   </data>
   <data name="GpxUnsupportedCoordSystem" xml:space="preserve">
     <value>Soubor OCAD používá souřadnicový systém, který Purple Pen nepodporuje.</value>
@@ -573,5 +558,8 @@ OK - zkus soubor s mapou najít.</value>
   </data>
   <data name="CodeUnder31" xml:space="preserve">
     <value>Kód kontroly by měl být 31 nebo vyšší.</value>
+  </data>
+  <data name="GpxMustBeOcadMap" xml:space="preserve">
+    <value>Mapový soubor musí být z OCADu pro použití GPX.</value>
   </data>
 </root>
