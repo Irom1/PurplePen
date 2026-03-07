@@ -120,4 +120,13 @@
   <data name="AllVariations" xml:space="preserve">
     <value>Alle Varianten</value>
   </data>
+  <data name="CannotReadImageFile" xml:space="preserve">
+    <value>Bilddatei '{0}' kann nicht gelesen werden.</value>
+  </data>
+  <data name="CannotReadMap" xml:space="preserve">
+    <value>Die Karte kann wegen folgendem Problem nicht geladen werden '{0}' Durch Benützen der Optimieren/Reparieren Funktion könnte das Problem behoben werden.</value>
+  </data>
+  <data name="CannotReadMapOOM" xml:space="preserve">
+    <value>Die Karte kann wegen folgendem Prpblem nicht geladen werden: '{0}' Die Karte in der neusten Version von OpenOrienteering Mapper öffnen und neu speichern, könnte das Problem beheben.</value>
+  </data>
 </root>

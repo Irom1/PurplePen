@@ -120,4 +120,14 @@
   <data name="AllVariations" xml:space="preserve">
     <value>Todas as Variações</value>
   </data>
+  <data name="CannotReadImageFile" xml:space="preserve">
+    <value>Não é possível ler o ficheiro imagem '{0}'.</value>
+  </data>
+  <data name="CannotReadMap" xml:space="preserve">
+    <value>Não é possível ler o mapa pelo seguinte motivo: '{0}' Usar Otimizar/Reparar e salvar novamente no OCAD pode resolver o problema.</value>
+  </data>
+  <data name="CannotReadMapOOM" xml:space="preserve">
+    <value>Não é possível ler o mapa pelo seguinte motivo: '{0}' 
+Abrir e salvar novamente o mapa na versão mais recente do OpenOrienteering Mapper pode corrigir problemas.</value>
+  </data>
 </root>

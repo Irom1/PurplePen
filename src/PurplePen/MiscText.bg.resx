@@ -144,9 +144,6 @@
   <data name="CannotLoadMapFile" xml:space="preserve">
     <value>Не може да се зареди картният файл '{0}' поради следната причина:</value>
   </data>
-  <data name="CannotReadImageFile" xml:space="preserve">
-    <value>Не може да се прочете файлът с изображение '{0}'.</value>
-  </data>
   <data name="CannotPrint" xml:space="preserve">
     <value>Не може да се отпечата '{0}' поради следната причина:</value>
   </data>
@@ -155,9 +152,6 @@
   </data>
   <data name="CannotCreateDirectory" xml:space="preserve">
     <value>Не може да се създаде папка '{0}' поради следната причина:</value>
-  </data>
-  <data name="CannotReadMap" xml:space="preserve">
-    <value>Не може да се прочете картата поради следната причина: '{0}'. Използването на функцията „Optimize/Repair“ и повторното записване в OCAD може да реши проблема.</value>
   </data>
   <data name="CannotCreateOcadFiles" xml:space="preserve">
     <value>Не може да се създадат файлове за OCAD поради следната причина:</value>
@@ -579,9 +573,6 @@
   </data>
   <data name="LegUsedTwice" xml:space="preserve">
     <value>Отсечката {0} е зададена както на разклонение „{1}“, така и на „{2}“</value>
-  </data>
-  <data name="CannotReadMapOOM" xml:space="preserve">
-    <value>Картата не може да бъде прочетена поради следната причина: „{0}“. Отварянето и повторното ѝ записване в последната версия на OpenOrienteering Mapper може да реши проблема.</value>
   </data>
   <data name="MapIssue_Long" xml:space="preserve">
     <value>Стартиране с време</value>

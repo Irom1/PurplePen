@@ -144,9 +144,6 @@
   <data name="CannotLoadMapFile" xml:space="preserve">
     <value>地図ファイル '{0}' を以下の理由でロードできませんでした:</value>
   </data>
-  <data name="CannotReadImageFile" xml:space="preserve">
-    <value>画像ファイル '{0}' をロードできません。</value>
-  </data>
   <data name="CannotPrint" xml:space="preserve">
     <value>'{0}' を印刷できません。以下の理由:</value>
   </data>

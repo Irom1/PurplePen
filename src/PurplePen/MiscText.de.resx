@@ -144,9 +144,6 @@
   <data name="CannotLoadMapFile" xml:space="preserve">
     <value>Kann die Karte '{0}' aus folgendem Grund nicht laden:</value>
   </data>
-  <data name="CannotReadImageFile" xml:space="preserve">
-    <value>Bilddatei '{0}' kann nicht gelesen werden.</value>
-  </data>
   <data name="CannotPrint" xml:space="preserve">
     <value>Kann '{0}' aus folgendem Grund nicht drucken:</value>
   </data>
@@ -155,9 +152,6 @@
   </data>
   <data name="CannotCreateDirectory" xml:space="preserve">
     <value>Kann den Ordner '{0}' aus folgendem Grund nicht erstellen:</value>
-  </data>
-  <data name="CannotReadMap" xml:space="preserve">
-    <value>Die Karte kann wegen folgendem Problem nicht geladen werden '{0}' Durch Benützen der Optimieren/Reparieren Funktion könnte das Problem behoben werden.</value>
   </data>
   <data name="CannotCreateOcadFiles" xml:space="preserve">
     <value>Die OCAD-Dateien können aus folgendem Grund nicht erstellt werden:</value>
@@ -579,9 +573,6 @@ Suchen Sie, nach Klicken auf "OK", nach der Kartendatei auf Ihrem Computer.</val
   </data>
   <data name="LegUsedTwice" xml:space="preserve">
     <value>Teilstrecke {0} ist Verzweigung '{1}' und Verzweigung '{2}' zugewiesen</value>
-  </data>
-  <data name="CannotReadMapOOM" xml:space="preserve">
-    <value>Die Karte kann wegen folgendem Prpblem nicht geladen werden: '{0}' Die Karte in der neusten Version von OpenOrienteering Mapper öffnen und neu speichern, könnte das Problem beheben.</value>
   </data>
   <data name="MapIssue_Long" xml:space="preserve">
     <value>Zeitgesteuerter Start</value>

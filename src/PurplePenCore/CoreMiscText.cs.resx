@@ -120,4 +120,13 @@
   <data name="AllVariations" xml:space="preserve">
     <value>Všechny varianty</value>
   </data>
+  <data name="CannotReadImageFile" xml:space="preserve">
+    <value>Nelze číst obrázkový soubor '{0}'.</value>
+  </data>
+  <data name="CannotReadMap" xml:space="preserve">
+    <value>Nelze načíst mapa z následujících důvodů: '{0}' Použití Optimalizace/Oprava a opětovné uložení v OCAD může problém vyřešit.</value>
+  </data>
+  <data name="CannotReadMapOOM" xml:space="preserve">
+    <value>Nelze otevřít mapu z následujícího důvodu: '{0}' Otevření a opětovné uložení mapy v nejnovější verzi OpenOrienteering Mapper  může vyřešit problémy.</value>
+  </data>
 </root>

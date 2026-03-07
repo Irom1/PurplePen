@@ -111,7 +111,7 @@ namespace PurplePen
                 float dpi, mapScale;
                 Size bitmapSize;
                 RectangleF mapBounds;
-                bool ok = MapUtil.ValidateMapFile(mapFile, out mapScale, out dpi, out bitmapSize, out mapBounds, out mapType, out int? _, out errorMessageText);
+                bool ok = CoreMapUtil.ValidateMapFile(mapFile, out mapScale, out dpi, out bitmapSize, out mapBounds, out mapType, out int? _, out errorMessageText);
                 if (ok) {
                     if (mapType == MapType.OCAD) {
                         panelScaleDpi.Visible = false;

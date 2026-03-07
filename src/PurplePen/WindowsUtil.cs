@@ -61,103 +61,6 @@ namespace PurplePen
     /// </summary>
     static class WindowsUtil
     {
-        static class NativeMethods
-        {
-            [DllImport("shlwapi.dll", CharSet = CharSet.Auto, BestFitMapping = false, ThrowOnUnmappableChar = true)]
-            public static extern bool PathRelativePathTo(
-                 [Out] StringBuilder pszPath,
-                 [In] string pszFrom,
-                 [In] uint dwAttrFrom,
-                 [In] string pszTo,
-                 [In] uint dwAttrTo
-            );
-            public const uint FILE_ATTRIBUTE_DIRECTORY = 0x10;
-            public const uint FILE_ATTRIBUTE_NORMAL = 0x0;
-            public const int MAX_PATH = 260;
-
-            // Windows API for loading a cursor from file. The Cursor constructor does not work
-            // correctly with .cur files that have 32-bit color with alpha transparency.
-            [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto, BestFitMapping = false, ThrowOnUnmappableChar = true)]
-            public static extern IntPtr LoadCursorFromFile(string path);
-        }
-
-        // Get the relative name, if possible, of one file relative to another.
-        public static string GetRelativeFileName(string relativeTo, string file)
-        {
-#if NET5_0_OR_GREATER
-            // Use the built-in .NET method (available in .NET 5+)
-            try {
-                string result = Path.GetRelativePath(Path.GetDirectoryName(relativeTo), file);
-                return result;
-            }
-            catch {
-                return file; // Fall back to absolute path if relative path can't be computed
-            }
-#else
-            // Use P/Invoke for .NET Framework 4.8
-            StringBuilder result = new StringBuilder(NativeMethods.MAX_PATH);
-            bool ret = NativeMethods.PathRelativePathTo(result, relativeTo, NativeMethods.FILE_ATTRIBUTE_NORMAL, file, NativeMethods.FILE_ATTRIBUTE_NORMAL);
-            if (ret == false)
-                return file;
-            else {
-                if (result.Length > 2 && result[0] == '.' && result[1] == '\\')
-                    result.Remove(0, 2);
-                return result.ToString();
-            }
-#endif
-        }
-
-        // Get the relative name, if possible, of one file relative to the output file name
-        // of an xmltextwriter.
-        public static string GetRelativeFileName(XmlTextWriter xmlwriter, string file)
-        {
-            Stream stream = xmlwriter.BaseStream;
-            if (stream == null)
-                return file;
-            FileStream filestream = stream as FileStream;
-            if (filestream == null)
-                return file;
-            string xmlFileName = filestream.Name;
-            if (xmlFileName == null)
-                return file;
-
-            return GetRelativeFileName(xmlFileName, file);
-        }
-
-        // Filters out invalid path characters in a string, replacing them with underscores.
-        public static string FilterInvalidPathChars(string path)
-        {
-            List<char> invalidChars = new List<char>();
-            invalidChars.AddRange(Path.GetInvalidFileNameChars());
-            invalidChars.AddRange(Path.GetInvalidPathChars());
-
-            StringBuilder builder = new StringBuilder();
-            foreach (char c in path) {
-                if (invalidChars.Contains(c))
-                    builder.Append('_');
-                else
-                    builder.Append(c);
-            }
-
-            return builder.ToString();
-        }
-
-
-        // Given the name of a file that resides in the .EXE directory, return the
-        // full path to that file.
-        public static string GetFileInAppDirectory(string filename)
-        {
-            // Using Application.StartupPath would be
-            // simpler and probably faster, but doesn't work with NUnit.
-            string codebase = typeof(Controller).Assembly.Location;
-            Uri uri = new Uri(codebase);
-            string appPath = Path.GetDirectoryName(uri.LocalPath);
-
-            // Create the core objects needed for the application to run.
-            return Path.Combine(appPath, filename);
-        }
-
-
         // Remove the "&" prefix in menu names
         public static string RemoveHotkeyPrefix(string s)
         {
@@ -226,7 +129,7 @@ namespace PurplePen
         // Show a given page of help.
         public static void ShowHelpTopic(Form form, string pageName)
         {
-            Help.ShowHelp(form, "file:" + GetFileInAppDirectory("Purple Pen Help.chm"), HelpNavigator.Topic, pageName);
+            Help.ShowHelp(form, "file:" + Util.GetFileInAppDirectory("Purple Pen Help.chm"), HelpNavigator.Topic, pageName);
         }
 
         private static Cursor moveHandleCursor;
@@ -401,6 +304,16 @@ namespace PurplePen
             return builder.ToString();
         }
 
+        // Get text describing a paper size.
+        public static string GetPaperSizeText(CoreMapUtil.StandardPaperSize paperSize)
+        {
+            StringBuilder builder = new StringBuilder();
+
+            builder.Append(paperSize.Name);
+            builder.AppendFormat(" ({0} x {1})", Util.GetDistanceText(paperSize.Width), Util.GetDistanceText(paperSize.Height));
+            return builder.ToString();
+        }
+
         // Get text describing margins.
         public static string GetMarginsText(Margins margins)
         {
@@ -517,6 +430,16 @@ namespace PurplePen
         {
             return GetTextEffects((fontStyle & FontStyle.Bold) != 0, (fontStyle & FontStyle.Italic) != 0);
         }
+
+        static class NativeMethods
+        {
+            // Windows API for loading a cursor from file. The Cursor constructor does not work
+            // correctly with .cur files that have 32-bit color with alpha transparency.
+            [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto, BestFitMapping = false, ThrowOnUnmappableChar = true)]
+            public static extern IntPtr LoadCursorFromFile(string path);
+        }
+
+
 
     }
 

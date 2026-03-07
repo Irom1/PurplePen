@@ -144,9 +144,6 @@
   <data name="CannotLoadMapFile" xml:space="preserve">
     <value>Ne peut pas charger la carte '{0}' pour les raisons suivantes :</value>
   </data>
-  <data name="CannotReadImageFile" xml:space="preserve">
-    <value>Ne peut pas lire le fichier image '{0}'.</value>
-  </data>
   <data name="CannotPrint" xml:space="preserve">
     <value>Ne peut pas imprimer '{0}' pour les raisons suivantes :</value>
   </data>
@@ -155,9 +152,6 @@
   </data>
   <data name="CannotCreateDirectory" xml:space="preserve">
     <value>Ne peut pas créer le dossier '{0}' pour les raisons suivantes :</value>
-  </data>
-  <data name="CannotReadMap" xml:space="preserve">
-    <value>La carte ne peut pas être lue pour la raison suivante: '{0}' Utiliser la fonction Optimiser/Réparer et sauvegarder dans OCAD peut régler le problème.</value>
   </data>
   <data name="CannotCreateOcadFiles" xml:space="preserve">
     <value>Ne peut pas créer les fichiers OCAD pour les raisons suivantes :</value>
@@ -570,9 +564,6 @@ Après avoir cliqué sur OK, essayez de trouver une copie du fichier de la carte
   </data>
   <data name="VariationNotLastControl" xml:space="preserve">
     <value>Une variation ne peut pas être ajoutée au dernier poste. Ajouter un poste Arrivée d'abord.</value>
-  </data>
-  <data name="CannotReadMapOOM" xml:space="preserve">
-    <value>La carte ne peut pas être lue pour la raison suivante: '{0}' Ouvrir et ré-enregistrer la carte dans la dernière version d'Open Orienteering Mapper peut résoudre le problème.</value>
   </data>
   <data name="MapIssue_Long" xml:space="preserve">
     <value>Départ chronométré</value>

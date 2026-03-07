@@ -54,7 +54,7 @@ namespace PurplePen.Tests
 
         void CheckCourse(string testfileName, Id<Course> courseId, CourseLayer layer, string expected)
         {
-            SymbolDB symbolDB = new SymbolDB(WindowsUtil.GetFileInAppDirectory("symbols.xml"));
+            SymbolDB symbolDB = new SymbolDB(Util.GetFileInAppDirectory("symbols.xml"));
             UndoMgr undomgr = new UndoMgr(5);
             EventDB eventDB = new EventDB(undomgr);
             CourseView courseView;
@@ -905,7 +905,7 @@ ControlNumber:  control:5  course-control:5  scale:1  text:4  top-left:(66.58,57
         [TestMethod]
         public void DisplayAllCourses()
         {
-            SymbolDB symbolDB = new SymbolDB(WindowsUtil.GetFileInAppDirectory("symbols.xml"));
+            SymbolDB symbolDB = new SymbolDB(Util.GetFileInAppDirectory("symbols.xml"));
             UndoMgr undomgr = new UndoMgr(5);
             EventDB eventDB = new EventDB(undomgr);
             CourseView courseView;
@@ -938,7 +938,7 @@ ControlNumber:  control:5  course-control:5  scale:1  text:4  top-left:(66.58,57
 
             Bitmap bm = new Bitmap(250, 250);
             using (Graphics g = Graphics.FromImage(bm))
-            using (Font font = myFont.GetFont()) {
+            using (Font font = GdiplusFontLoader.Instance.CreateFont(myFont.Name, myFont.EmHeight, myFont.TextEffects)) {
                 g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
                 g.TranslateTransform(bm.Width / 2, bm.Height / 2);
                 g.ScaleTransform((float) (bm.Width / 20.0), (float) (bm.Height / 20.0));
@@ -967,7 +967,7 @@ ControlNumber:  control:5  course-control:5  scale:1  text:4  top-left:(66.58,57
 
             Bitmap bm = new Bitmap(250, 250);
             using (Graphics g = Graphics.FromImage(bm))
-            using (Font font = myFont.GetScaledFont(1.3F)) {
+            using (Font font = GdiplusFontLoader.Instance.CreateFont(myFont.Name, myFont.EmHeight * 1.3F, myFont.TextEffects)) {
                 g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
                 g.TranslateTransform(bm.Width / 2, bm.Height / 2);
                 g.ScaleTransform((float) (bm.Width / 20.0), (float) (bm.Height / 20.0));
@@ -1052,7 +1052,7 @@ ControlNumber:  control:5  course-control:5  scale:1  text:4  top-left:(66.58,57
         [TestMethod]
         public void ExpandText()
         {
-            SymbolDB symbolDB = new SymbolDB(WindowsUtil.GetFileInAppDirectory("symbols.xml"));
+            SymbolDB symbolDB = new SymbolDB(Util.GetFileInAppDirectory("symbols.xml"));
             UndoMgr undomgr = new UndoMgr(5);
             EventDB eventDB = new EventDB(undomgr);
             CourseView courseView;
@@ -1143,7 +1143,7 @@ ControlNumber:  control:5  course-control:5  scale:1  text:4  top-left:(66.58,57
         [TestMethod]
         public void ExpandTextRelay()
         {
-            SymbolDB symbolDB = new SymbolDB(WindowsUtil.GetFileInAppDirectory("symbols.xml"));
+            SymbolDB symbolDB = new SymbolDB(Util.GetFileInAppDirectory("symbols.xml"));
             UndoMgr undomgr = new UndoMgr(5);
             EventDB eventDB = new EventDB(undomgr);
             CourseView courseView;
@@ -1192,7 +1192,7 @@ ControlNumber:  control:5  course-control:5  scale:1  text:4  top-left:(66.58,57
         [TestMethod]
         public void ExpandTextMapExchange()
         {
-            SymbolDB symbolDB = new SymbolDB(WindowsUtil.GetFileInAppDirectory("symbols.xml"));
+            SymbolDB symbolDB = new SymbolDB(Util.GetFileInAppDirectory("symbols.xml"));
             UndoMgr undomgr = new UndoMgr(5);
             EventDB eventDB = new EventDB(undomgr);
             CourseView courseView;

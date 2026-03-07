@@ -144,9 +144,6 @@
   <data name="CannotLoadMapFile" xml:space="preserve">
     <value>'{0}' térkép fájl nem betölthető a következő okból:</value>
   </data>
-  <data name="CannotReadImageFile" xml:space="preserve">
-    <value>'{0}' kép fájl nem betölthető a következő okból:</value>
-  </data>
   <data name="CannotPrint" xml:space="preserve">
     <value>'{0}' nem nyomtatható a következő okból:</value>
   </data>
@@ -155,9 +152,6 @@
   </data>
   <data name="CannotCreateDirectory" xml:space="preserve">
     <value>'{0}' könyvtár nem hozható létre a következő okból:</value>
-  </data>
-  <data name="CannotReadMap" xml:space="preserve">
-    <value>A térkép fájl nem olvasható az alábbi okból: '{0}' Használja az Optimize/Repair parancsot az OCAD programban, ami megoldhatja a problémát!</value>
   </data>
   <data name="CannotCreateOcadFiles" xml:space="preserve">
     <value>OCAD fájl nem létrehozható az alábbi okból:</value>
@@ -579,9 +573,6 @@ A Rendben lenyomása után próbálja megkeresni a térkép fájlt a számítóg
   </data>
   <data name="LegUsedTwice" xml:space="preserve">
     <value>A(z) {0} ág hozzá van rendelve a(z) '{1}' és a(z) '{2}' elágazáshoz is.</value>
-  </data>
-  <data name="CannotReadMapOOM" xml:space="preserve">
-    <value>A térkép fájl nem beolvasható az alábbi okból: '{0}' Megnyitva majd elmentve a legújabb OpenOrienteering Mapper segítségével megoldhatja a problémát.</value>
   </data>
   <data name="MapIssue_Long" xml:space="preserve">
     <value>Időzített indítás</value>

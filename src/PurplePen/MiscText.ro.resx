@@ -144,9 +144,6 @@
   <data name="CannotLoadMapFile" xml:space="preserve">
     <value>Nu se poate încărca fișierul hartă '{0}' deoarece:</value>
   </data>
-  <data name="CannotReadImageFile" xml:space="preserve">
-    <value>Nu se poate citi fișierul de imagine '{0}'.</value>
-  </data>
   <data name="CannotPrint" xml:space="preserve">
     <value>Nu se poate tipări '{0}' deoarece:</value>
   </data>

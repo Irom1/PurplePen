@@ -43,6 +43,7 @@ using TestingUtils;
 using PurplePen.Graphics2D;
 using PurplePen.MapModel;
 
+
 namespace Map_PDF.Tests
 {
     [TestFixture, Parallelizable(ParallelScope.Children)]
@@ -55,15 +56,6 @@ namespace Map_PDF.Tests
             Uri uri = new Uri(typeof(Rendering).Assembly.Location);
             string executablePath = Path.GetDirectoryName(uri.LocalPath);
             string fontPath = Path.Combine(executablePath, "fonts");
-
-            GdiplusFontLoader.AddFontFile("Roboto", FontStyle.Regular, Path.Combine(fontPath, "Roboto-Regular.ttf"));
-            GdiplusFontLoader.AddFontFile("Roboto", FontStyle.Bold, Path.Combine(fontPath, "Roboto-Bold.ttf"));
-            GdiplusFontLoader.AddFontFile("Roboto", FontStyle.Italic, Path.Combine(fontPath, "Roboto-Italic.ttf"));
-            GdiplusFontLoader.AddFontFile("Roboto", FontStyle.Bold | FontStyle.Italic, Path.Combine(fontPath, "Roboto-BoldItalic.ttf"));
-            GdiplusFontLoader.AddFontFile("Roboto Condensed", FontStyle.Regular, Path.Combine(fontPath, "RobotoCondensed-Regular.ttf"));
-            GdiplusFontLoader.AddFontFile("Roboto Condensed", FontStyle.Bold, Path.Combine(fontPath, "RobotoCondensed-Bold.ttf"));
-            GdiplusFontLoader.AddFontFile("Roboto Condensed", FontStyle.Italic, Path.Combine(fontPath, "RobotoCondensed-Italic.ttf"));
-            GdiplusFontLoader.AddFontFile("Roboto Condensed", FontStyle.Bold | FontStyle.Italic, Path.Combine(fontPath, "RobotoCondensed-BoldItalic.ttf"));
         }
 
 

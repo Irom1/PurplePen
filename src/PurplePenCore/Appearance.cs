@@ -37,7 +37,6 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Text;
 using System.Drawing.Drawing2D;
-using System.Windows.Forms;
 
 namespace PurplePen
 {
@@ -82,12 +81,6 @@ namespace PurplePen
             }
         }
 
-        public FontStyle Style {
-            get {
-                return WindowsUtil.GetFontStyle(Bold, Italic);
-            }
-        }
-
         public TextEffects TextEffects {
             get {
                 TextEffects effects = TextEffects.None;
@@ -99,15 +92,15 @@ namespace PurplePen
             }
         }
 
-        public Font GetFont()
-        {
-            return GdiplusFontLoader.CreateFont(Name, EmHeight, Style);
-        }
+        //public Font GetFont()
+        //{
+        //    return GdiplusFontLoader.CreateFont(Name, EmHeight, Style);
+        //}
 
-        public Font GetScaledFont(float scaleRatio)
-        {
-            return GdiplusFontLoader.CreateFont(Name, EmHeight * scaleRatio, Style);
-        }
+        //public Font GetScaledFont(float scaleRatio)
+        //{
+        //    return GdiplusFontLoader.CreateFont(Name, EmHeight * scaleRatio, Style);
+        //}
 
         private static bool checkedArialNarrow = false;
         private static bool installedArialNarrow;
@@ -118,7 +111,7 @@ namespace PurplePen
 
         private static bool IsInstalled(string fontName)
         {
-            return GdiplusFontLoader.FontFamilyIsInstalled(fontName);
+            return Services.FontLoader.FontFamilyIsInstalled(fontName);
         }
 
 
@@ -185,14 +178,14 @@ namespace PurplePen
             string fontPath = Path.Combine(executablePath, "fonts");
 
 #if true
-            GdiplusFontLoader.AddFontFile("Roboto", FontStyle.Regular, Path.Combine(fontPath, "Roboto-Regular.ttf"));
-            GdiplusFontLoader.AddFontFile("Roboto", FontStyle.Bold, Path.Combine(fontPath, "Roboto-Bold.ttf"));
-            GdiplusFontLoader.AddFontFile("Roboto", FontStyle.Italic, Path.Combine(fontPath, "Roboto-Italic.ttf"));
-            GdiplusFontLoader.AddFontFile("Roboto", FontStyle.Bold | FontStyle.Italic, Path.Combine(fontPath, "Roboto-BoldItalic.ttf"));
-            GdiplusFontLoader.AddFontFile("Roboto Condensed", FontStyle.Regular, Path.Combine(fontPath, "RobotoCondensed-Regular.ttf"));
-            GdiplusFontLoader.AddFontFile("Roboto Condensed", FontStyle.Bold, Path.Combine(fontPath, "RobotoCondensed-Bold.ttf"));
-            GdiplusFontLoader.AddFontFile("Roboto Condensed", FontStyle.Italic, Path.Combine(fontPath, "RobotoCondensed-Italic.ttf"));
-            GdiplusFontLoader.AddFontFile("Roboto Condensed", FontStyle.Bold | FontStyle.Italic, Path.Combine(fontPath, "RobotoCondensed-BoldItalic.ttf"));
+            Services.FontLoader.AddFontFile("Roboto", TextEffects.None, Path.Combine(fontPath, "Roboto-Regular.ttf"));
+            Services.FontLoader.AddFontFile("Roboto", TextEffects.Bold, Path.Combine(fontPath, "Roboto-Bold.ttf"));
+            Services.FontLoader.AddFontFile("Roboto", TextEffects.Italic, Path.Combine(fontPath, "Roboto-Italic.ttf"));
+            Services.FontLoader.AddFontFile("Roboto", TextEffects.Bold | TextEffects.Italic, Path.Combine(fontPath, "Roboto-BoldItalic.ttf"));
+            Services.FontLoader.AddFontFile("Roboto Condensed", TextEffects.None, Path.Combine(fontPath, "RobotoCondensed-Regular.ttf"));
+            Services.FontLoader.AddFontFile("Roboto Condensed", TextEffects.Bold, Path.Combine(fontPath, "RobotoCondensed-Bold.ttf"));
+            Services.FontLoader.AddFontFile("Roboto Condensed", TextEffects.Italic, Path.Combine(fontPath, "RobotoCondensed-Italic.ttf"));
+            Services.FontLoader.AddFontFile("Roboto Condensed", TextEffects.Bold | TextEffects.Italic, Path.Combine(fontPath, "RobotoCondensed-BoldItalic.ttf"));
             // GdiplusFontLoader.AddFontFile(Path.Combine(fontPath, "Roboto-Black.ttf"));
             // GdiplusFontLoader.AddFontFile(Path.Combine(fontPath, "Roboto-BlackItalic.ttf"));
             // GdiplusFontLoader.AddFontFile(Path.Combine(fontPath, "Roboto-Medium.ttf"));
@@ -208,7 +201,7 @@ namespace PurplePen
     }
 
     // Class with constants that describe how a description should appear.
-    static class DescriptionAppearance
+    public static class DescriptionAppearance
     {
         // Holds the dimensions of various objects in the desciptions. All units are relative to the box size, 
         // where the box size is 100 units on a side.
@@ -248,7 +241,7 @@ namespace PurplePen
 
     // Describes the normal default course appearance. Most items can be customized via a CourseAppearance object,
     // so use this directly with care.
-    static class NormalCourseAppearance
+    public static class NormalCourseAppearance
     {
         // The dimensions of objects in the course display. The units are in map units (which is always mm).
         // Other coordinates are directly in CourseObj class which has the details of what various symbols look like.
@@ -338,12 +331,9 @@ namespace PurplePen
         // The color used to for the selected item in the map display.
         public static readonly Color highlightColor = Color.FromArgb(255, 70, 0);
 
-        // Brush to use to highlight areas.
-        public static readonly Brush areaHighlight = new HatchBrush(HatchStyle.Percent25, NormalCourseAppearance.highlightColor, Color.Transparent);
-
         // The font used for text specials.
         public static string fontNameTextSpecial = "Roboto";
-        public static FontStyle fontStyleTextSpecial = FontStyle.Bold;
+        public static TextEffects fontEffectsTextSpecial = TextEffects.Bold;
         public static SpecialColor fontColorTextSpecial = SpecialColor.UpperPurple;
         public static float emHeightDefaultTextSpecial = 6F;    // default size when click instead of drag.
 
@@ -356,7 +346,7 @@ namespace PurplePen
     }
 
     // Class with constants that describe how a punch card should appear.
-    static class PunchcardAppearance
+    public static class PunchcardAppearance
     {
         // Holds the dimensions of various objects in the desciptions. All units are relative to the box size, 
         // where the box size is 100 units on a side.

@@ -13,7 +13,7 @@ namespace PurplePen.Graphics2D
     public enum BlendMode { Darken }
 
     [Flags]
-    public enum TextEffects { None = 0, Bold = 0x1, Italic = 0x2, Underline = 0x4}
+    public enum TextEffects { Regular = 0, None = 0, Bold = 0x1, Italic = 0x2, Underline = 0x4}
 
     public enum GraphicsPathPartKind { 
         Start,    // 1 point
@@ -202,5 +202,12 @@ namespace PurplePen.Graphics2D
     {
         System.Drawing.Color ToColor(CmykColor cmykColor);
     }   
+
+    public interface IFontLoader
+    {
+        bool FontFamilyIsInstalled(string familyName);
+        void AddFontFile(string familyName, TextEffects textEffects, string fontFilePath);
+    }
+
 
 }

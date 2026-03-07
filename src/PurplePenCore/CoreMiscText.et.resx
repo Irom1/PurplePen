@@ -120,4 +120,13 @@
   <data name="AllVariations" xml:space="preserve">
     <value>Kõik variandid</value>
   </data>
+  <data name="CannotReadImageFile" xml:space="preserve">
+    <value>Ei saa lugeda pildi faili '{0}'.</value>
+  </data>
+  <data name="CannotReadMap" xml:space="preserve">
+    <value>Kaardi faili ei saanud avada järgmisel põhjusel: '{0}' Kasuta Optimeeri/paranda funktsiooni ja OCADi uuesti salvestamine võib vea parandada.</value>
+  </data>
+  <data name="CannotReadMapOOM" xml:space="preserve">
+    <value>Ei õnnestu avada faili järgmisel põhjusel: '{0}'. Faili avamine ja uuesti salvestamine viimase versiooni OpenOrienteering Mapper'iga võib probleemi lahendada.</value>
+  </data>
 </root>

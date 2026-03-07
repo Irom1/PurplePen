@@ -62,7 +62,7 @@ namespace PurplePen
         // Given the name of the event, convert to a file name.
         internal string GetEventFileName()
         {
-            return WindowsUtil.FilterInvalidPathChars(titleText.Text) + ".ppen";
+            return Util.FilterInvalidPathChars(titleText.Text) + ".ppen";
         }
     }
 }

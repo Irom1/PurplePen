@@ -120,4 +120,13 @@
   <data name="AllVariations" xml:space="preserve">
     <value>所有的分支</value>
   </data>
+  <data name="CannotReadImageFile" xml:space="preserve">
+    <value>无法读取图像文件“{0}”。</value>
+  </data>
+  <data name="CannotReadMap" xml:space="preserve">
+    <value>无法读取地图的原因如下：“{0}使用优化/修复产品可以解决的问题。</value>
+  </data>
+  <data name="CannotReadMapOOM" xml:space="preserve">
+    <value>无法读取地图，原因如下：'{0}'在最新版本的OOM中打开并重新保存地图可能会修复问题。</value>
+  </data>
 </root>

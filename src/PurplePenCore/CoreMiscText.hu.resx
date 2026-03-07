@@ -120,4 +120,13 @@
   <data name="AllVariations" xml:space="preserve">
     <value>Minden variáció</value>
   </data>
+  <data name="CannotReadImageFile" xml:space="preserve">
+    <value>'{0}' kép fájl nem betölthető a következő okból:</value>
+  </data>
+  <data name="CannotReadMap" xml:space="preserve">
+    <value>A térkép fájl nem olvasható az alábbi okból: '{0}' Használja az Optimize/Repair parancsot az OCAD programban, ami megoldhatja a problémát!</value>
+  </data>
+  <data name="CannotReadMapOOM" xml:space="preserve">
+    <value>A térkép fájl nem beolvasható az alábbi okból: '{0}' Megnyitva majd elmentve a legújabb OpenOrienteering Mapper segítségével megoldhatja a problémát.</value>
+  </data>
 </root>

@@ -32,10 +32,11 @@
  * OF SUCH DAMAGE.
  */
 
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using PurplePen.MapModel;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace PurplePen.Tests
 {
@@ -56,6 +57,30 @@ namespace PurplePen.Tests
             get { return testContextInstance; }
             set { testContextInstance = value; }
         }
+
+        private static bool _isInitialized = false;
+        private static readonly object _lock = new object();
+
+        [TestInitialize]
+        public void InheritedInit()
+        {
+            lock (_lock) {
+                if (!_isInitialized) {
+                    // Put your "once per class" logic here
+                    ClassSetup();
+                    _isInitialized = true;
+                }
+            }
+        }
+
+        private void ClassSetup()
+        {
+            Services.FontLoader = GdiplusFontLoader.Instance;
+            Services.TextMetricsProvider = new GDIPlus_TextMetrics();
+            Services.FileLoaderProvider = new GdiPlus_FileLoaderProvider();
+        }
+
+
 
         internal CourseDesignator Designator(int id)
         {

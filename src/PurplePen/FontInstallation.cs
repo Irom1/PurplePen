@@ -59,7 +59,7 @@ namespace PurplePen
         // tell if the user installed it).
         public static bool RunRobotoFontInstaller()
         {
-            string pathnameInAppDir = WindowsUtil.GetFileInAppDirectory("Roboto Font Installer.exe");
+            string pathnameInAppDir = Util.GetFileInAppDirectory("Roboto Font Installer.exe");
             if (!File.Exists(pathnameInAppDir)) {
                 return false;
             }

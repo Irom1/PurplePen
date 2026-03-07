@@ -120,4 +120,13 @@
   <data name="AllVariations" xml:space="preserve">
     <value>Kaikki hajonnat</value>
   </data>
+  <data name="CannotReadImageFile" xml:space="preserve">
+    <value>Kuvatiedostoa '{0}' ei voida lukea.</value>
+  </data>
+  <data name="CannotReadMap" xml:space="preserve">
+    <value>Karttaa ei voi lukea seuraavasta syystä: '{0}' Tiedoston optimointi ja uudelleen tallentaminen OCADissa voi korjata ongelmia.</value>
+  </data>
+  <data name="CannotReadMapOOM" xml:space="preserve">
+    <value>Karttaa ei voi lukea seuraavasta syystä: '{0}' Kartan avaaminen ja tallentaminen uudelleen OpenOrienteering Mapperin viimeisimmässä versiossa voi korjata ongelmia.</value>
+  </data>
 </root>

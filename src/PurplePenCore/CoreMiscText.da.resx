@@ -120,4 +120,13 @@
   <data name="AllVariations" xml:space="preserve">
     <value>Alle variationer</value>
   </data>
+  <data name="CannotReadImageFile" xml:space="preserve">
+    <value>Kan ikke læse billedfil '(0)'</value>
+  </data>
+  <data name="CannotReadMap" xml:space="preserve">
+    <value>Kan ikke læse kort af den følgende grund: '(0)' Optimer/Reparer og gen-gem i OCAD kan klare problemerne.</value>
+  </data>
+  <data name="CannotReadMapOOM" xml:space="preserve">
+    <value>Kan ikke læse kort af følgende grund: '{0}' Åbning og gen-gem kortet i den seneste version af OpenOrienteering Mapper kan løse problemerne.</value>
+  </data>
 </root>

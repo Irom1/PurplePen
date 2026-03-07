@@ -43,6 +43,7 @@ using PurplePen.MapModel;
 
 using TestingUtils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using PurplePen.Graphics2D;
 
 namespace PurplePen.Tests
 {
@@ -1330,7 +1331,7 @@ namespace PurplePen.Tests
             Assert.AreEqual(12F, obj.GetHighlightBounds().Top, 0.01F);
             Assert.AreEqual("Course: Course 3", obj.text);
             Assert.AreEqual("Arial", obj.fontName);
-            Assert.AreEqual(FontStyle.Bold, obj.fontStyle);
+            Assert.AreEqual(TextEffects.Bold, obj.textEffects);
 
             // Finish the drag.
             controller.LeftButtonEndDrag(Pane.Map, new PointF(76, 11), new PointF(23, 37), 0.1F);

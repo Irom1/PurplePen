@@ -50,145 +50,7 @@ namespace PurplePen
     {
         public static ITextMetrics TextMetricsProvider = new GDIPlus_TextMetrics();
 
-        public static PaperSize[] StandardPaperSizes = {
-            new PaperSize("A2", 1654, 2339),
-            new PaperSize("A3", 1169, 1654),
-            new PaperSize("A4", 827, 1169),
-            new PaperSize("A5", 583, 827),
-            new PaperSize("A6", 413, 583),
-            new PaperSize("Letter", 850, 1100),
-            new PaperSize("Legal", 850, 1400),
-            new PaperSize("Tabloid", 1100, 1700)
-        };
 
-        public const int FirstEnglishPaperSizeIndex = 5;
-        public const int DefaultEnglighPaperSizeIndex = 5;
-        public const int DefaultMetricPaperSizeindex = 2;
-
-        public const int DefaultEnglishMargin = 25;  // 1/4 of a inch.
-        public const int DefaultMetricMargin = 28; // 7mm
-
-
-
-        // Validate the map file to make sure it is readable. If OK, return true and set the scale.
-        // If not OK, return false and set the error message. 
-        public static bool ValidateMapFile(string mapFileName, out float scale, out float dpi, out Size bitmapSize, out RectangleF mapBounds, out MapType mapType, out int? lowerPurpleLayer, out string errorMessageText)
-        {
-            scale = 0; dpi = 0;
-            mapType = MapType.None;
-            lowerPurpleLayer = null;
-            bitmapSize = new Size();
-            string fileExtension = Path.GetExtension(mapFileName);
-
-            if (string.Compare(fileExtension, ".pdf", StringComparison.InvariantCultureIgnoreCase) == 0) {
-                if (ValidatePdf(mapFileName, out dpi, out bitmapSize, out errorMessageText) != null) {
-                    mapType = MapType.PDF;
-                    mapBounds = new RectangleF(0, 0, (float)bitmapSize.Width / dpi * 25.4F, (float) bitmapSize.Height / dpi * 25.4F);
-                    return true;
-                }
-                else {
-                    mapBounds = new RectangleF();
-                    return false;
-                }
-            }
-
-            Map map = new Map(TextMetricsProvider, new GDIPlus_FileLoader(Path.GetDirectoryName(mapFileName)));
-
-            try {
-                InputOutput.ReadFile(mapFileName, map);
-            }
-            catch (Exception e) {
-                // Didn't load as an OCAD file. If it has a non-OCD/OpenMapper extension, try loading as an image.
-                if ((string.Compare(fileExtension, ".ocd", StringComparison.InvariantCultureIgnoreCase) != 0) && 
-                    (string.Compare(fileExtension, ".omap", StringComparison.InvariantCultureIgnoreCase) != 0) &&
-                    (string.Compare(fileExtension, ".xmap", StringComparison.InvariantCultureIgnoreCase) != 0)) 
-                {
-                    try {
-                        Bitmap bitmap = (Bitmap) Image.FromFile(mapFileName);
-                        bitmapSize = bitmap.Size;
-                        dpi = (float) Math.Round(bitmap.HorizontalResolution, 1);  // Round to 1 decimal place, because images don't store DPI exactly, but close to a standard round number, so fix.
-                        bitmap.Dispose();
-                        mapType = MapType.Bitmap;
-                        mapBounds = new RectangleF(0, 0, (float)bitmapSize.Width / dpi * 25.4F, (float)bitmapSize.Height / dpi * 25.4F);
-                        errorMessageText = "";
-                        return true;
-                    }
-                    catch {
-                        // Wasn't an bitmap file either.
-                        errorMessageText = string.Format(MiscText.CannotReadImageFile, mapFileName);
-                        mapBounds = new RectangleF();
-                        return false;
-                    }
-                }
-
-                if (string.Compare(fileExtension, ".ocd", StringComparison.InvariantCultureIgnoreCase) == 0) {
-                    errorMessageText = string.Format(MiscText.CannotReadMap, e.Message);
-                }
-                else {
-                    errorMessageText = string.Format(MiscText.CannotReadMapOOM, e.Message);
-                }
-
-                mapBounds = new RectangleF();
-                return false;
-            }
-
-            using (map.Read())
-            {
-                scale = map.MapScale;
-                mapBounds = map.Bounds;
-                lowerPurpleLayer = FindPurple.FindLowerPurpleIfPresent(new List<SymColor>(map.AllColors));
-            }
-
-            errorMessageText = "";
-            mapType = MapType.OCAD;
-            return true;
-        }
-
-        public static PdfMapFile ValidatePdf(string pdfFileName, out float dpi, out Size bitmapSize, out string errorMessageText)
-        {
-            IPdfLoadingStatus loadingStatus = new PdfLoadingUI();  // UNDONE: Should this be passed in instead?
-
-            PdfMapFile mapFile = new PdfMapFile(pdfFileName);
-
-            bool ok = true;
-            PdfMapFile.ConversionStatus status = mapFile.BeginConversion();
-            if (status == PdfMapFile.ConversionStatus.Working) {
-                // Put up a modal dialog until loading is complete.
-                mapFile.ConversionCompleted += delegate { 
-                    loadingStatus.LoadingComplete(mapFile.Status == PdfMapFile.ConversionStatus.Success, mapFile.ConversionOutput);
-                };
-                if (status == PdfMapFile.ConversionStatus.Working) {
-                    ok = loadingStatus.ShowLoadingStatus(pdfFileName);
-                }
-            }
-
-            status = mapFile.Status;
-            if (!ok || status == PdfMapFile.ConversionStatus.Failure) {
-                errorMessageText = MiscText.PdfConversionFailed;
-                if (!string.IsNullOrWhiteSpace(mapFile.ConversionOutput))
-                    errorMessageText += ": " + mapFile.ConversionOutput;
-                dpi = 0;
-                bitmapSize = default(Size);
-                return null;
-            }
-
-            // Make sure resulting image file can be read.
-            try {
-                Bitmap bitmap = (Bitmap)Image.FromFile(mapFile.PngFileName);
-                dpi = (float) Math.Round(bitmap.HorizontalResolution, 1); // Should be always 600, anyway, round because PNG store resolution inaccurately.
-                bitmapSize = bitmap.Size;
-                bitmap.Dispose();
-                errorMessageText = "";
-                return mapFile;
-            }
-            catch {
-                // Couldn't read the resulting PNG
-                errorMessageText = string.Format(MiscText.PdfResultNotReadable, mapFile.PngFileName);
-                dpi = 0;
-                bitmapSize = default(Size);
-                return null;
-            }
-        }
 
         public static ToolboxIcon CreateToolboxIcon(Bitmap bm) {
             ToolboxIcon icon = new ToolboxIcon();
@@ -214,7 +76,7 @@ namespace PurplePen
             float printAreaHeight = (landscape ? printAreaRectangle.Width : printAreaRectangle.Height) / printScaleRatio * 100 / 25.4F;
 
             // See if we are very close to a standard paper size.
-            foreach (PaperSize paperSize in StandardPaperSizes) {
+            foreach (CoreMapUtil.StandardPaperSize paperSize in CoreMapUtil.StandardPaperSizes) {
                 if (Math.Abs(paperSize.Width - printAreaWidth) < standardSizeTolerance && Math.Abs(paperSize.Height - printAreaHeight) < standardSizeTolerance) {
                     pageWidth = paperSize.Width;
                     pageHeight = paperSize.Height;
@@ -227,73 +89,6 @@ namespace PurplePen
             pageHeight = (int) Math.Round(printAreaHeight);
         }
 
-        // Given a print area rectangle, find the best default page size that encloses it, using either the default
-        // metric or english paper sizes. If the rectangle is empty, return default page.
-        public static void GetDefaultPageSize(RectangleF printAreaRectangle, float printScaleRatio, out int pageWidth, out int pageHeight, out int pageMargin, out bool landscape)
-        {
-            bool metric = Util.IsCurrentCultureMetric();
-
-            if (printAreaRectangle.IsEmpty) {
-                PaperSize paperSize = StandardPaperSizes[metric ? DefaultMetricPaperSizeindex : DefaultEnglighPaperSizeIndex];
-                pageWidth = paperSize.Width;
-                pageHeight = paperSize.Height;
-                pageMargin = 0;
-                landscape = false;
-            }
-            else {
-                landscape = printAreaRectangle.Width > printAreaRectangle.Height;
-                // Get needed page width and height in 1/100 of inch.
-                float printAreaWidth = (landscape ? printAreaRectangle.Height : printAreaRectangle.Width) / printScaleRatio * 100 / 25.4F;
-                float printAreaHeight = (landscape ? printAreaRectangle.Width : printAreaRectangle.Height) / printScaleRatio * 100 / 25.4F;
-
-                int firstIndex = metric ? 0 : FirstEnglishPaperSizeIndex;
-                int endIndex = metric ? FirstEnglishPaperSizeIndex : StandardPaperSizes.Length;
-                int bestIndex = -1;
-
-                // Scan through all paper indexes to find the smallest paper that fits the area.
-                // The -1 in the comparisons allows for minor (0.01 inch) rounding errors.
-                for (int i = firstIndex; i < endIndex; ++i) {
-                    if (StandardPaperSizes[i].Width >= printAreaWidth - 1 && StandardPaperSizes[i].Height >= printAreaHeight - 1 &&
-                                            (bestIndex == -1 || StandardPaperSizes[i].Width < StandardPaperSizes[bestIndex].Width))
-                        bestIndex = i;
-                }
-                if (bestIndex < 0)
-                    bestIndex = metric ? DefaultMetricPaperSizeindex : DefaultEnglighPaperSizeIndex;
-
-                pageWidth = StandardPaperSizes[bestIndex].Width;
-                pageHeight = StandardPaperSizes[bestIndex].Height;
-
-                // Use the default margin if it can fit, otherwise 0 margin.
-                int defaultMargin = metric ? DefaultMetricMargin : DefaultEnglishMargin;
-                if (pageWidth - printAreaWidth > defaultMargin * 2 &&
-                    pageHeight - printAreaHeight > defaultMargin * 2) {
-                    pageMargin = defaultMargin;
-                }
-                else {
-                    pageMargin = 0;
-                }
-            }
-        }
-
-        // Give a map file name, get the default print area.
-        public static PrintArea GetDefaultPrintArea(string mapFileName, float printScaleRatio)
-        {
-            float scale, dpi;
-            Size bitmapSize;
-            RectangleF mapBounds;
-            MapType mapType;
-            string errorMessageText;
-
-            // If this failes, mapBounds will be empty rectangle, which is what we want to pass to GetDefaultPageSize;
-            ValidateMapFile(mapFileName, out scale, out dpi, out bitmapSize, out mapBounds, out mapType, out int? _, out errorMessageText);
-
-            PrintArea printArea = new PrintArea();
-            printArea.autoPrintArea = true;
-            printArea.restrictToPageSize = true;
-            GetDefaultPageSize(mapBounds, printScaleRatio, out printArea.pageWidth, out printArea.pageHeight, out printArea.pageMargins, out printArea.pageLandscape);
-            return printArea;
-
-        }
     }
 
     interface IPdfLoadingStatus

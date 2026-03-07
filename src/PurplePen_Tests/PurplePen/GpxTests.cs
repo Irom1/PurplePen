@@ -51,7 +51,7 @@ using TestingUtils;
 namespace PurplePen.Tests
 {
     [TestClass]
-    public class GpxTests
+    public class GpxTests: TestFixtureBase
     {
         TestUI ui;
         Controller controller;

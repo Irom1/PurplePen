@@ -144,9 +144,6 @@
   <data name="CannotLoadMapFile" xml:space="preserve">
     <value>Не вдалося відкрити файл карти '{0}' з наступних причин:</value>
   </data>
-  <data name="CannotReadImageFile" xml:space="preserve">
-    <value>Не вдалося зчитати файл зображення '{0}'.</value>
-  </data>
   <data name="CannotPrint" xml:space="preserve">
     <value>Не вдалося роздрукувати '{0}' з наступних причин:</value>
   </data>
@@ -155,9 +152,6 @@
   </data>
   <data name="CannotCreateDirectory" xml:space="preserve">
     <value>Не вдалося створити '{0}' з наступних причин:</value>
-  </data>
-  <data name="CannotReadMap" xml:space="preserve">
-    <value>Не вдалося зчитати файл карти з наступних причин: '{0}' Скористайтеся функцією Optimize/Repair у OCAD і збережіть файл. Це може усунути проблему.</value>
   </data>
   <data name="CannotCreateOcadFiles" xml:space="preserve">
     <value>Не вдалося створити файли OCAD з наступних причин:</value>
@@ -576,9 +570,6 @@
   </data>
   <data name="LegUsedTwice" xml:space="preserve">
     <value>Етап {0} призначено як на гілку '{1}' так і на гілку '{2}'</value>
-  </data>
-  <data name="CannotReadMapOOM" xml:space="preserve">
-    <value>Не вдалося зчитати карту через наступні причини: '{0}' Відкриття і збереження карти у останній версії OpenOrienteering Mapper може виправити проблему.</value>
   </data>
   <data name="MapIssue_Long" xml:space="preserve">
     <value>Виносний старт</value>

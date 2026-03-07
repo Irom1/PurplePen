@@ -108,9 +108,9 @@ namespace PurplePen
 
         private void InitPaperSizes()
         {
-            for (int i = 0; i < MapUtil.StandardPaperSizes.Length; ++i)
+            for (int i = 0; i < CoreMapUtil.StandardPaperSizes.Length; ++i)
             {
-                comboBoxPaperSize.Items.Add(WindowsUtil.GetPaperSizeText(MapUtil.StandardPaperSizes[i]));
+                comboBoxPaperSize.Items.Add(WindowsUtil.GetPaperSizeText(CoreMapUtil.StandardPaperSizes[i]));
             }
 
             comboBoxPaperSize.Items.Add(MiscText.UserDefined);
@@ -119,10 +119,10 @@ namespace PurplePen
         private void UpdateDialog()
         {
             bool foundStandardSize = false;
-            for (int i = 0; i < MapUtil.StandardPaperSizes.Length; ++i)
+            for (int i = 0; i < CoreMapUtil.StandardPaperSizes.Length; ++i)
             {
-                if (MapUtil.StandardPaperSizes[i].Width == paperSize.Width &&
-                    MapUtil.StandardPaperSizes[i].Height == paperSize.Height)
+                if (CoreMapUtil.StandardPaperSizes[i].Width == paperSize.Width &&
+                    CoreMapUtil.StandardPaperSizes[i].Height == paperSize.Height)
                 {
                     comboBoxPaperSize.SelectedIndex = i;
                     foundStandardSize = true;
@@ -131,7 +131,7 @@ namespace PurplePen
 
             if (!foundStandardSize)
             {
-                comboBoxPaperSize.SelectedIndex = MapUtil.StandardPaperSizes.Length;
+                comboBoxPaperSize.SelectedIndex = CoreMapUtil.StandardPaperSizes.Length;
                 upDownWidth.Enabled = upDownHeight.Enabled = true;
             }
             else
@@ -151,8 +151,8 @@ namespace PurplePen
         {
             string paperSizeText;
 
-            if (comboBoxPaperSize.SelectedIndex < MapUtil.StandardPaperSizes.Length && comboBoxPaperSize.SelectedIndex >= 0)
-                paperSizeText = MapUtil.StandardPaperSizes[comboBoxPaperSize.SelectedIndex].PaperName;
+            if (comboBoxPaperSize.SelectedIndex < CoreMapUtil.StandardPaperSizes.Length && comboBoxPaperSize.SelectedIndex >= 0)
+                paperSizeText = CoreMapUtil.StandardPaperSizes[comboBoxPaperSize.SelectedIndex].Name;
             else
                 paperSizeText = comboBoxPaperSize.SelectedText;
 
@@ -171,10 +171,10 @@ namespace PurplePen
 
         private void comboBoxPaperSize_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBoxPaperSize.SelectedIndex < MapUtil.StandardPaperSizes.Length)
+            if (comboBoxPaperSize.SelectedIndex < CoreMapUtil.StandardPaperSizes.Length)
             {
                 upDownWidth.Enabled = upDownHeight.Enabled = false;
-                PaperSize ps = MapUtil.StandardPaperSizes[comboBoxPaperSize.SelectedIndex];
+                CoreMapUtil.StandardPaperSize ps = CoreMapUtil.StandardPaperSizes[comboBoxPaperSize.SelectedIndex];
                 upDownWidth.Value = Util.GetDistanceValue(ps.Width);
                 upDownHeight.Value = Util.GetDistanceValue(ps.Height);
             }

@@ -1485,7 +1485,7 @@ namespace PurplePen
                 basename = basename + fileSuffix;
 
             // Remove bad characters.
-            basename = WindowsUtil.FilterInvalidPathChars(basename);
+            basename = Util.FilterInvalidPathChars(basename);
             basename += extension;      // add OCAD extension.
 
             return basename;

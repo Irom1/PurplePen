@@ -58,14 +58,14 @@ namespace PurplePen.MapModel.Tests
             string executablePath = Path.GetDirectoryName(uri.LocalPath);
             string fontPath = Path.Combine(executablePath, "fonts");
 
-            GdiplusFontLoader.AddFontFile("Roboto", FontStyle.Regular, Path.Combine(fontPath, "Roboto-Regular.ttf"));
-            GdiplusFontLoader.AddFontFile("Roboto", FontStyle.Bold, Path.Combine(fontPath, "Roboto-Bold.ttf"));
-            GdiplusFontLoader.AddFontFile("Roboto", FontStyle.Italic, Path.Combine(fontPath, "Roboto-Italic.ttf"));
-            GdiplusFontLoader.AddFontFile("Roboto", FontStyle.Bold | FontStyle.Italic, Path.Combine(fontPath, "Roboto-BoldItalic.ttf"));
-            GdiplusFontLoader.AddFontFile("Roboto Condensed", FontStyle.Regular, Path.Combine(fontPath, "RobotoCondensed-Regular.ttf"));
-            GdiplusFontLoader.AddFontFile("Roboto Condensed", FontStyle.Bold, Path.Combine(fontPath, "RobotoCondensed-Bold.ttf"));
-            GdiplusFontLoader.AddFontFile("Roboto Condensed", FontStyle.Italic, Path.Combine(fontPath, "RobotoCondensed-Italic.ttf"));
-            GdiplusFontLoader.AddFontFile("Roboto Condensed", FontStyle.Bold | FontStyle.Italic, Path.Combine(fontPath, "RobotoCondensed-BoldItalic.ttf"));
+            GdiplusFontLoader.Instance.AddFontFile("Roboto", TextEffects.None, Path.Combine(fontPath, "Roboto-Regular.ttf"));
+            GdiplusFontLoader.Instance.AddFontFile("Roboto", TextEffects.Bold, Path.Combine(fontPath, "Roboto-Bold.ttf"));
+            GdiplusFontLoader.Instance.AddFontFile("Roboto", TextEffects.Italic, Path.Combine(fontPath, "Roboto-Italic.ttf"));
+            GdiplusFontLoader.Instance.AddFontFile("Roboto", TextEffects.Bold | TextEffects.Italic, Path.Combine(fontPath, "Roboto-BoldItalic.ttf"));
+            GdiplusFontLoader.Instance.AddFontFile("Roboto Condensed", TextEffects.None, Path.Combine(fontPath, "RobotoCondensed-Regular.ttf"));
+            GdiplusFontLoader.Instance.AddFontFile("Roboto Condensed", TextEffects.Bold, Path.Combine(fontPath, "RobotoCondensed-Bold.ttf"));
+            GdiplusFontLoader.Instance.AddFontFile("Roboto Condensed", TextEffects.Italic, Path.Combine(fontPath, "RobotoCondensed-Italic.ttf"));
+            GdiplusFontLoader.Instance.AddFontFile("Roboto Condensed", TextEffects.Bold | TextEffects.Italic, Path.Combine(fontPath, "RobotoCondensed-BoldItalic.ttf"));
         }
 
         // Write a bitmap to a PNG.

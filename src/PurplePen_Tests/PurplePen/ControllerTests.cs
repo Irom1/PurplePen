@@ -172,7 +172,7 @@ Invalid control point kind 'norfmal''
             info.descriptionLangId = "de";
             info.descriptionStandard = "2018";
             info.mapStandard = "2017";
-            info.printArea = MapUtil.GetDefaultPrintArea(info.mapFileName, info.allControlsPrintScale / info.scale);
+            info.printArea = CoreMapUtil.GetDefaultPrintArea(info.mapFileName, info.allControlsPrintScale / info.scale);
             info.blend = PurpleColorBlend.Blend;
             info.lowerPurpleLayer = null;
 
@@ -235,7 +235,7 @@ Invalid control point kind 'norfmal''
             info.descriptionLangId = "en";
             info.descriptionStandard = "2018";
             info.mapStandard = "2017";
-            info.printArea = MapUtil.GetDefaultPrintArea(info.mapFileName, info.allControlsPrintScale / info.scale);
+            info.printArea = CoreMapUtil.GetDefaultPrintArea(info.mapFileName, info.allControlsPrintScale / info.scale);
             info.blend = PurpleColorBlend.Blend;
             info.lowerPurpleLayer = null;
 
@@ -295,7 +295,7 @@ Invalid control point kind 'norfmal''
             info.descriptionLangId = "en";
             info.descriptionStandard = "2018";
             info.mapStandard = "2017";
-            info.printArea = MapUtil.GetDefaultPrintArea(info.mapFileName, info.allControlsPrintScale / info.scale);
+            info.printArea = CoreMapUtil.GetDefaultPrintArea(info.mapFileName, info.allControlsPrintScale / info.scale);
             info.blend = PurpleColorBlend.Blend;
             info.lowerPurpleLayer = null;
 

@@ -120,4 +120,7 @@
   <data name="AllVariations" xml:space="preserve">
     <value>すべてのバリエーション</value>
   </data>
+  <data name="CannotReadImageFile" xml:space="preserve">
+    <value>画像ファイル '{0}' をロードできません。</value>
+  </data>
 </root>

@@ -120,4 +120,13 @@
   <data name="AllVariations" xml:space="preserve">
     <value>Tüm Varyasyonlar</value>
   </data>
+  <data name="CannotReadImageFile" xml:space="preserve">
+    <value>'{0}' resim dosyası okunamıyor.</value>
+  </data>
+  <data name="CannotReadMap" xml:space="preserve">
+    <value>Harita şu nedenden dolayı okunamıyor: '{0}' Optimize/Onar'ı kullanmak ve OCAD'de yeniden kaydetmek sorunları çözebilir.</value>
+  </data>
+  <data name="CannotReadMapOOM" xml:space="preserve">
+    <value>Aşağıdaki sebep yüzünden haritayı okuyamıyor. '{0}' OpenOrienteering Mapper'ın son versiyonunda açmak ve tekrar kaydetmek sorunu çöze bilir.</value>
+  </data>
 </root>

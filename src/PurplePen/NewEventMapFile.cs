@@ -76,7 +76,7 @@ namespace PurplePen
                 int? lowerPurpleMapLayer;
                 Size bitmapSize;
                 RectangleF mapBounds;
-                if (MapUtil.ValidateMapFile(containingWizard.MapFileName, out mapScale, out dpi, out bitmapSize, out mapBounds, out mapType, out lowerPurpleMapLayer, out errorMessageText)) 
+                if (CoreMapUtil.ValidateMapFile(containingWizard.MapFileName, out mapScale, out dpi, out bitmapSize, out mapBounds, out mapType, out lowerPurpleMapLayer, out errorMessageText)) 
                 {
                     // map file is OK.
                     containingWizard.MapScale = mapScale;

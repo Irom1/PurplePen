@@ -144,9 +144,6 @@
   <data name="CannotLoadMapFile" xml:space="preserve">
     <value>Ei saa lugeda kaardi faili '{0}' põhjusel:</value>
   </data>
-  <data name="CannotReadImageFile" xml:space="preserve">
-    <value>Ei saa lugeda pildi faili '{0}'.</value>
-  </data>
   <data name="CannotPrint" xml:space="preserve">
     <value>Ei saa trükkida '{0}' , põhjusel:</value>
   </data>
@@ -155,9 +152,6 @@
   </data>
   <data name="CannotCreateDirectory" xml:space="preserve">
     <value>Ei saa luua kausta '{0}' põhjusel:</value>
-  </data>
-  <data name="CannotReadMap" xml:space="preserve">
-    <value>Kaardi faili ei saanud avada järgmisel põhjusel: '{0}' Kasuta Optimeeri/paranda funktsiooni ja OCADi uuesti salvestamine võib vea parandada.</value>
   </data>
   <data name="CannotCreateOcadFiles" xml:space="preserve">
     <value>Ei saa luua OCAD faili põhjusel:</value>
@@ -577,9 +571,6 @@ Peale OK vajutamist, otsi kaardi fail arvutist..</value>
   </data>
   <data name="LegUsedTwice" xml:space="preserve">
     <value>Vahetus {0} on määratud harule  '{1}' ja harule  '{2}'</value>
-  </data>
-  <data name="CannotReadMapOOM" xml:space="preserve">
-    <value>Ei õnnestu avada faili järgmisel põhjusel: '{0}'. Faili avamine ja uuesti salvestamine viimase versiooni OpenOrienteering Mapper'iga võib probleemi lahendada.</value>
   </data>
   <data name="MapIssue_Long" xml:space="preserve">
     <value>Stardijoon</value>

@@ -1,8 +1,11 @@
-﻿using PurplePen.MapModel;
+﻿using PurplePen.Graphics2D;
+using PurplePen.MapModel;
 using SkiaSharp;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Printing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +14,40 @@ namespace PurplePen
 {
     public class CoreMapUtil
     {
+        public class StandardPaperSize
+        {
+            public string Name { get; private set; }
+            public int Width { get; private set; }  // in 1/100 of inch.
+            public int Height { get; private set; } // in 1/100 of inch.
+
+            public StandardPaperSize(string name, int width, int height)
+            {
+                Name = name;
+                Width = width;
+                Height = height;
+            }
+        }
+
+        public static StandardPaperSize[] StandardPaperSizes = {
+            new StandardPaperSize("A2", 1654, 2339),
+            new StandardPaperSize("A3", 1169, 1654),
+            new StandardPaperSize("A4", 827, 1169),
+            new StandardPaperSize("A5", 583, 827),
+            new StandardPaperSize("A6", 413, 583),
+            new StandardPaperSize("Letter", 850, 1100),
+            new StandardPaperSize("Legal", 850, 1400),
+            new StandardPaperSize("Tabloid", 1100, 1700)
+        };
+
+        public const int FirstEnglishPaperSizeIndex = 5;
+        public const int DefaultEnglighPaperSizeIndex = 5;
+        public const int DefaultMetricPaperSizeindex = 2;
+
+        public const int DefaultEnglishMargin = 25;  // 1/4 of a inch.
+        public const int DefaultMetricMargin = 28; // 7mm
+
+
+
         // Create a ToolboxIcon from a SkiaSharp bitmap.
         public static ToolboxIcon CreateToolboxIcon(SKBitmap bm)
         {
@@ -25,6 +62,377 @@ namespace PurplePen
 
             return icon;
         }
+
+        // Given a print area rectangle, find the best default page size that encloses it, using either the default
+        // metric or english paper sizes. If the rectangle is empty, return default page.
+        public static void GetDefaultPageSize(RectangleF printAreaRectangle, float printScaleRatio, out int pageWidth, out int pageHeight, out int pageMargin, out bool landscape)
+        {
+            bool metric = Util.IsCurrentCultureMetric();
+
+            if (printAreaRectangle.IsEmpty) {
+                StandardPaperSize paperSize = StandardPaperSizes[metric ? DefaultMetricPaperSizeindex : DefaultEnglighPaperSizeIndex];
+                pageWidth = paperSize.Width;
+                pageHeight = paperSize.Height;
+                pageMargin = 0;
+                landscape = false;
+            }
+            else {
+                landscape = printAreaRectangle.Width > printAreaRectangle.Height;
+                // Get needed page width and height in 1/100 of inch.
+                float printAreaWidth = (landscape ? printAreaRectangle.Height : printAreaRectangle.Width) / printScaleRatio * 100 / 25.4F;
+                float printAreaHeight = (landscape ? printAreaRectangle.Width : printAreaRectangle.Height) / printScaleRatio * 100 / 25.4F;
+
+                int firstIndex = metric ? 0 : FirstEnglishPaperSizeIndex;
+                int endIndex = metric ? FirstEnglishPaperSizeIndex : StandardPaperSizes.Length;
+                int bestIndex = -1;
+
+                // Scan through all paper indexes to find the smallest paper that fits the area.
+                // The -1 in the comparisons allows for minor (0.01 inch) rounding errors.
+                for (int i = firstIndex; i < endIndex; ++i) {
+                    if (StandardPaperSizes[i].Width >= printAreaWidth - 1 && StandardPaperSizes[i].Height >= printAreaHeight - 1 &&
+                                            (bestIndex == -1 || StandardPaperSizes[i].Width < StandardPaperSizes[bestIndex].Width))
+                        bestIndex = i;
+                }
+                if (bestIndex < 0)
+                    bestIndex = metric ? DefaultMetricPaperSizeindex : DefaultEnglighPaperSizeIndex;
+
+                pageWidth = StandardPaperSizes[bestIndex].Width;
+                pageHeight = StandardPaperSizes[bestIndex].Height;
+
+                // Use the default margin if it can fit, otherwise 0 margin.
+                int defaultMargin = metric ? DefaultMetricMargin : DefaultEnglishMargin;
+                if (pageWidth - printAreaWidth > defaultMargin * 2 &&
+                    pageHeight - printAreaHeight > defaultMargin * 2) {
+                    pageMargin = defaultMargin;
+                }
+                else {
+                    pageMargin = 0;
+                }
+            }
+        }
+
+        // Give a map file name, get the default print area.
+        public static PrintArea GetDefaultPrintArea(string mapFileName, float printScaleRatio)
+        {
+            float scale, dpi;
+            Size bitmapSize;
+            RectangleF mapBounds;
+            MapType mapType;
+            string errorMessageText;
+
+            // If this failes, mapBounds will be empty rectangle, which is what we want to pass to GetDefaultPageSize;
+            ValidateMapFile(mapFileName, out scale, out dpi, out bitmapSize, out mapBounds, out mapType, out int? _, out errorMessageText);
+
+            PrintArea printArea = new PrintArea();
+            printArea.autoPrintArea = true;
+            printArea.restrictToPageSize = true;
+            GetDefaultPageSize(mapBounds, printScaleRatio, out printArea.pageWidth, out printArea.pageHeight, out printArea.pageMargins, out printArea.pageLandscape);
+            return printArea;
+
+        }
+
+        // Validate the map file to make sure it is readable. If OK, return true and set the scale.
+        // If not OK, return false and set the error message. 
+        public static bool ValidateMapFile(string mapFileName, out float scale, out float dpi, out Size bitmapSize, out RectangleF mapBounds, out MapType mapType, out int? lowerPurpleLayer, out string errorMessageText)
+        {
+            scale = 0; dpi = 0;
+            mapType = MapType.None;
+            lowerPurpleLayer = null;
+            bitmapSize = new Size();
+            string fileExtension = Path.GetExtension(mapFileName);
+
+            if (string.Compare(fileExtension, ".pdf", StringComparison.InvariantCultureIgnoreCase) == 0) {
+                if (ValidatePdf(mapFileName, out dpi, out bitmapSize, out errorMessageText) != null) {
+                    mapType = MapType.PDF;
+                    mapBounds = new RectangleF(0, 0, (float)bitmapSize.Width / dpi * 25.4F, (float)bitmapSize.Height / dpi * 25.4F);
+                    return true;
+                }
+                else {
+                    mapBounds = new RectangleF();
+                    return false;
+                }
+            }
+
+            Map map = new Map(Services.TextMetricsProvider, Services.FileLoaderProvider.GetFileLoaderForDirectory(Path.GetDirectoryName(mapFileName)));
+
+            try {
+                InputOutput.ReadFile(mapFileName, map);
+            }
+            catch (Exception e) {
+                // Didn't load as an OCAD file. If it has a non-OCD/OpenMapper extension, try loading as an image.
+                if ((string.Compare(fileExtension, ".ocd", StringComparison.InvariantCultureIgnoreCase) != 0) &&
+                    (string.Compare(fileExtension, ".omap", StringComparison.InvariantCultureIgnoreCase) != 0) &&
+                    (string.Compare(fileExtension, ".xmap", StringComparison.InvariantCultureIgnoreCase) != 0)) {
+                    try {
+                        IGraphicsBitmap bitmap;
+                        using (Stream stream = new FileStream(mapFileName, FileMode.Open, FileAccess.Read)) {
+                            bitmap = Services.BitmapLoader.ReadBitmapFromStream(stream);
+                        }
+                        bitmapSize = new Size(bitmap.PixelWidth, bitmap.PixelHeight);
+#if PORTING
+                        dpi = 600F;
+#else
+                        dpi = (float)Math.Round(bitmap.HorizontalResolution, 1);  // Round to 1 decimal place, because images don't store DPI exactly, but close to a standard round number, so fix.
+#endif
+                        bitmap.Dispose();
+                        mapType = MapType.Bitmap;
+                        mapBounds = new RectangleF(0, 0, (float)bitmapSize.Width / dpi * 25.4F, (float)bitmapSize.Height / dpi * 25.4F);
+                        errorMessageText = "";
+                        return true;
+                    }
+                    catch {
+                        // Wasn't an bitmap file either.
+                        errorMessageText = string.Format(CoreMiscText.CannotReadImageFile, mapFileName);
+                        mapBounds = new RectangleF();
+                        return false;
+                    }
+                }
+
+                if (string.Compare(fileExtension, ".ocd", StringComparison.InvariantCultureIgnoreCase) == 0) {
+                    errorMessageText = string.Format(CoreMiscText.CannotReadMap, e.Message);
+                }
+                else {
+                    errorMessageText = string.Format(CoreMiscText.CannotReadMapOOM, e.Message);
+                }
+
+                mapBounds = new RectangleF();
+                return false;
+            }
+
+            using (map.Read()) {
+                scale = map.MapScale;
+                mapBounds = map.Bounds;
+                lowerPurpleLayer = CoreFindPurple.FindLowerPurpleIfPresent(new List<SymColor>(map.AllColors));
+            }
+
+            errorMessageText = "";
+            mapType = MapType.OCAD;
+            return true;
+        }
+
+#if PORTING
+        public static object ValidatePdf(string pdfFileName, out float dpi, out Size bitmapSize, out string errorMessageText)
+        {
+            dpi = 600F;
+            bitmapSize = new Size();
+            errorMessageText = "PDF validation not implemented in porting version.";
+            return new object();
+        }
+#else
+        public static PdfMapFile ValidatePdf(string pdfFileName, out float dpi, out Size bitmapSize, out string errorMessageText)
+        {
+            IPdfLoadingStatus loadingStatus = new PdfLoadingUI();  // UNDONE: Should this be passed in instead?
+
+            PdfMapFile mapFile = new PdfMapFile(pdfFileName);
+
+            bool ok = true;
+            PdfMapFile.ConversionStatus status = mapFile.BeginConversion();
+            if (status == PdfMapFile.ConversionStatus.Working) {
+                // Put up a modal dialog until loading is complete.
+                mapFile.ConversionCompleted += delegate {
+                    loadingStatus.LoadingComplete(mapFile.Status == PdfMapFile.ConversionStatus.Success, mapFile.ConversionOutput);
+                };
+                if (status == PdfMapFile.ConversionStatus.Working) {
+                    ok = loadingStatus.ShowLoadingStatus(pdfFileName);
+                }
+            }
+
+            status = mapFile.Status;
+            if (!ok || status == PdfMapFile.ConversionStatus.Failure) {
+                errorMessageText = MiscText.PdfConversionFailed;
+                if (!string.IsNullOrWhiteSpace(mapFile.ConversionOutput))
+                    errorMessageText += ": " + mapFile.ConversionOutput;
+                dpi = 0;
+                bitmapSize = default(Size);
+                return null;
+            }
+
+            // Make sure resulting image file can be read.
+            try {
+                Bitmap bitmap = (Bitmap)Image.FromFile(mapFile.PngFileName);
+                dpi = (float)Math.Round(bitmap.HorizontalResolution, 1); // Should be always 600, anyway, round because PNG store resolution inaccurately.
+                bitmapSize = bitmap.Size;
+                bitmap.Dispose();
+                errorMessageText = "";
+                return mapFile;
+            }
+            catch {
+                // Couldn't read the resulting PNG
+                errorMessageText = string.Format(MiscText.PdfResultNotReadable, mapFile.PngFileName);
+                dpi = 0;
+                bitmapSize = default(Size);
+                return null;
+            }
+        }
+#endif
+
+    }
+
+    static class CoreFindPurple
+    {
+        // Determine if a color is actually some shade of purple.
+        public static bool IsPurple(float cyan, float magenta, float yellow, float black)
+        {
+            float h, s, v;
+            PurplePen.Graphics2D.ColorConverter.CmykToHsv(cyan, magenta, yellow, black, out h, out s, out v);
+            return (h >= 0.70 && h <= 0.95 && s >= 0.5 && v >= 0.50);
+        }
+
+        // Determine if a color is actually close to 100% green.
+        public static bool IsSolidGreen(float cyan, float magenta, float yellow, float black)
+        {
+            float h, s, v;
+            PurplePen.Graphics2D.ColorConverter.CmykToHsv(cyan, magenta, yellow, black, out h, out s, out v);
+            return (h >= 0.20 && h <= 0.45 && s >= 0.7 && v >= 0.50);
+        }
+
+
+        // Determine if a color is black. Not all 4 colors, but only black.
+        public static bool IsBlack(float cyan, float magenta, float yellow, float black)
+        {
+            return (black > 0.95f && cyan < 0.05F && yellow < 0.05F && cyan < 0.05F);
+        }
+
+        // Search all colors for one that is closest to the IO purple color.
+        public static SymColor FindClosestToIofPurple(List<SymColor> colors)
+        {
+            float c, m, y, k;
+            float cIOF = NormalCourseAppearance.courseColorC, mIOF = NormalCourseAppearance.courseColorM, yIOF = NormalCourseAppearance.courseColorY, kIOF = NormalCourseAppearance.courseColorK;
+            double distance, minDistance = 1000;
+            SymColor bestColor = null;
+
+            foreach (SymColor color in colors) {
+                color.GetCMYK(out c, out m, out y, out k);
+                if (IsPurple(c, m, y, k)) {
+                    distance = ((c - cIOF) * (c - cIOF)) + ((m - mIOF) * (m - mIOF)) + ((y - yIOF) * (y - yIOF)) + ((k - kIOF) * (k - kIOF));
+                    if (distance < minDistance) {
+                        minDistance = distance;
+                        bestColor = color;
+                    }
+                }
+            }
+
+            return bestColor;
+        }
+
+        // Find the best purple color.
+        public static bool FindPurpleColor(List<SymColor> colors, out short ocadId, out float cyan, out float magenta, out float yellow, out float black)
+        {
+            float c, m, y, k;
+
+            // Search all colors for one that is closest to IOF definition of purple.
+            SymColor bestColor = FindClosestToIofPurple(colors);
+
+            if (bestColor != null) {
+                bestColor.GetCMYK(out c, out m, out y, out k);
+                ocadId = bestColor.OcadId;
+                cyan = c; magenta = m; yellow = y; black = k;
+                return true;
+            }
+
+            // Did not find purple. 
+            ocadId = -1;
+            cyan = 0; magenta = 0; yellow = 0; black = 0;
+            return false;
+        }
+
+        // Return the ocadId of the best lower purple color. We choose
+        // the next purple color below the top-most black color. If there isn't one,
+        // we return the color below the top-most solid green/black.
+        //
+        // Returns the best OCAD ID, and a bool indicating whether the color is a lower purple
+        // we found as expected.
+        public static (int, bool) FindLowerPurpleHelper(List<SymColor> colors)
+        {
+            bool foundPurple;
+            float cPurple, mPurple, yPurple, kPurple;
+
+            // Get the best purple in the colors.
+            foundPurple = FindPurpleColor(colors, out short _, out cPurple, out mPurple, out yPurple, out kPurple);
+
+            if (foundPurple) {
+                // Start at half way up the color chart, and find the lowest color that exactly matches the given purple.
+                for (int i = colors.Count / 2; i < colors.Count; ++i) {
+                    float c, m, y, k;
+                    colors[i].GetCMYK(out c, out m, out y, out k);
+                    if (c == cPurple && m == mPurple && y == yPurple && k == kPurple) {
+                        // There must be a black, then another purple above this.
+                        for (int j = i + 1; j < colors.Count; ++j) {
+                            float c2, m2, y2, k2;
+                            colors[j].GetCMYK(out c2, out m2, out y2, out k2);
+                            if (IsBlack(c2, m2, y2, k2)) {
+                                for (int l = j + 1; l < colors.Count; ++l) {
+                                    float c3, m3, y3, k3;
+                                    colors[l].GetCMYK(out c3, out m3, out y3, out k3);
+                                    if (c3 == cPurple && m3 == mPurple && y3 == yPurple && k3 == kPurple) {
+                                        return (colors[i].OcadId, true); // Return first purple found.
+                                    }
+                                }
+                            }
+                        }
+
+                        break;
+                    }
+                }
+            }
+
+            // If that didn't work, we start at the top and find the top-most black, then solid green.
+            int topGreenIndex = -1;
+            int topBlackIndex = -1;
+
+            for (int i = colors.Count - 1; i >= 0; --i) {
+                float c, m, y, k;
+                colors[i].GetCMYK(out c, out m, out y, out k);
+                if (IsBlack(c, m, y, k)) {
+                    topBlackIndex = i;
+                    break;
+                }
+            }
+
+            if (topBlackIndex > 0) {
+                for (int i = topBlackIndex - 1; i >= 0; --i) {
+                    float c, m, y, k;
+                    colors[i].GetCMYK(out c, out m, out y, out k);
+                    if (IsSolidGreen(c, m, y, k)) {
+                        topGreenIndex = i;
+                        break;
+                    }
+                }
+            }
+
+            // Return the color just below that green.
+            if (topGreenIndex > 0)
+                return (colors[topGreenIndex - 1].OcadId, false);
+
+            // Otherwise, just return top color.
+            return (colors[colors.Count - 1].OcadId, false);
+        }
+
+        // Retur the OCAD ID of the best place to put lower purple than can be found. She always
+        // be comfirmed by the user, because in some cases it might not be great.
+        public static int FindBestLowerPurpleLayer(List<SymColor> colors)
+        {
+            int ocadID;
+            (ocadID, _) = FindLowerPurpleHelper(colors);
+            return ocadID;
+        }
+
+        // Find the lower purple layer if it exists, otherwise returns NULL. Will always
+        // be a purple color.
+        public static int? FindLowerPurpleIfPresent(List<SymColor> colors)
+        {
+            int ocadID;
+            bool goodPurple;
+            (ocadID, goodPurple) = FindLowerPurpleHelper(colors);
+
+            if (goodPurple) {
+                return ocadID;
+            }
+            else {
+                return null;
+            }
+        }
+
 
 
     }

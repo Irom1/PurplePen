@@ -112,11 +112,11 @@ namespace PurplePen
             }
         }
 
-        public FontStyle FontStyle
+        public TextEffects TextEffects
         {
             get
             {
-                return WindowsUtil.GetFontStyle(FontBold, FontItalic);
+                return WindowsUtil.GetTextEffects(FontBold, FontItalic);
             }
         }
 
@@ -228,21 +228,21 @@ namespace PurplePen
             Color textColor = SwopColorConverter.CmykToRgbColor(colorChooser.CmykColor);
 
             if (!checkBoxAutoFontSize.Checked) {
-                emHeight = GetEmHeight(e.Graphics, this.FontName, this.FontStyle, (float)upDownFontSize.Value);
+                emHeight = GetEmHeight(e.Graphics, this.FontName, this.TextEffects, (float)upDownFontSize.Value);
             }
 
             StringFormat stringFormat = new StringFormat(StringFormat.GenericDefault);
             stringFormat.LineAlignment = StringAlignment.Center;
             stringFormat.FormatFlags |= StringFormatFlags.NoWrap;
-            using (Font font = GdiplusFontLoader.CreateFont(this.FontName, emHeight, this.FontStyle)) 
+            using (Font font = ((GdiplusFontLoader)Services.FontLoader).CreateFont(this.FontName, emHeight, this.TextEffects)) 
             using (Brush brush = new SolidBrush(textColor)) {
                 e.Graphics.DrawString(expandedText, font, brush, pictureBoxPreview.ClientRectangle, stringFormat);
             }
         }
 
-        private float GetEmHeight(Graphics graphics, string fontName, FontStyle fontStyle, float desiredDigitHeight)
+        private float GetEmHeight(Graphics graphics, string fontName, TextEffects textEffects, float desiredDigitHeight)
         {
-            return ((float)pictureBoxPreview.Height / 10) * desiredDigitHeight * BasicTextCourseObj.EmHeightToDigitHeightRatio(fontName, fontStyle);
+            return ((float)pictureBoxPreview.Height / 10) * desiredDigitHeight * BasicTextCourseObj.EmHeightToDigitHeightRatio(fontName, textEffects);
         }
 
         private void listBoxFonts_SelectedIndexChanged(object sender, EventArgs e)

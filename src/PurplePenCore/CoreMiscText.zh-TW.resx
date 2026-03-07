@@ -120,4 +120,13 @@
   <data name="AllVariations" xml:space="preserve">
     <value>所有的分散變化</value>
   </data>
+  <data name="CannotReadImageFile" xml:space="preserve">
+    <value>無法讀取地圖檔案 '{0}'.</value>
+  </data>
+  <data name="CannotReadMap" xml:space="preserve">
+    <value>無法讀取地圖由於下列原因: '{0}' 採用優化/修復並且在 OCAD再儲存可能修復的問題。</value>
+  </data>
+  <data name="CannotReadMapOOM" xml:space="preserve">
+    <value>由於下列原因無法讀取地圖：“{0}”在最新版本的 OpenOrienteering Mapper 中開啟並重新儲存地圖，可能會解決問題。</value>
+  </data>
 </root>

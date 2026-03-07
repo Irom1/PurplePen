@@ -70,3 +70,5 @@ Pain points:
 
    Settings system - need to redo this to be cross platform. Need to see if there is something in .NET Core
    that can work.
+
+   Be sure to visit all #if PORTING.

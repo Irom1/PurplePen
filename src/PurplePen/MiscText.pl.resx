@@ -144,9 +144,6 @@
   <data name="CannotLoadMapFile" xml:space="preserve">
     <value>Nie mogę załadować pliku mapy '{0}' z następującego powodu:</value>
   </data>
-  <data name="CannotReadImageFile" xml:space="preserve">
-    <value>Nie mogę przeczytać obrazu '{0}'.</value>
-  </data>
   <data name="CannotPrint" xml:space="preserve">
     <value>Nie mogę wydrukować '{0}' z następującego powodu:</value>
   </data>

@@ -516,7 +516,11 @@ namespace PurplePen
                 map = null;
                 mapVersion = new MapFileFormat(MapFileFormatKind.None, 0);
                 Size bitmapSize;
-                pdfMapFile = MapUtil.ValidatePdf(newFilename, out bitmapDpi, out bitmapSize, out errorText);
+#if PORTING
+                pdfMapFile = (PdfMapFile) CoreMapUtil.ValidatePdf(newFilename, out bitmapDpi, out bitmapSize, out errorText);
+#else
+                pdfMapFile = CoreMapUtil.ValidatePdf(newFilename, out bitmapDpi, out bitmapSize, out errorText);
+#endif
                 if (pdfMapFile == null) {
                     this.mapType = MapType.None;
                     bitmap = null;

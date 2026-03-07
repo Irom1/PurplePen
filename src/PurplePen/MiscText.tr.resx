@@ -144,9 +144,6 @@
   <data name="CannotLoadMapFile" xml:space="preserve">
     <value>Aşağıdaki nedenden dolayı '{0}' harita dosyası yüklenemiyor:</value>
   </data>
-  <data name="CannotReadImageFile" xml:space="preserve">
-    <value>'{0}' resim dosyası okunamıyor.</value>
-  </data>
   <data name="CannotPrint" xml:space="preserve">
     <value>Aşağıdaki nedenden dolayı '{0}' harita dosyası yüklenmiyor:</value>
   </data>
@@ -155,9 +152,6 @@
   </data>
   <data name="CannotCreateDirectory" xml:space="preserve">
     <value>Aşağıdaki nedenden dolayı '{0}' klasörü oluşturulamıyor:</value>
-  </data>
-  <data name="CannotReadMap" xml:space="preserve">
-    <value>Harita şu nedenden dolayı okunamıyor: '{0}' Optimize/Onar'ı kullanmak ve OCAD'de yeniden kaydetmek sorunları çözebilir.</value>
   </data>
   <data name="CannotCreateOcadFiles" xml:space="preserve">
     <value>Aşağıdaki nedenden dolayı OCAD dosyaları oluşturulamıyor:</value>
@@ -579,9 +573,6 @@ Tamam düğmesine bastıktan sonra, bilgisayarınızda harita dosyasının bir k
   </data>
   <data name="LegUsedTwice" xml:space="preserve">
     <value>Yarış ayağı {0} parkur dallarından hem {1} e hem de {2} ye atanmalı</value>
-  </data>
-  <data name="CannotReadMapOOM" xml:space="preserve">
-    <value>Aşağıdaki sebep yüzünden haritayı okuyamıyor. '{0}' OpenOrienteering Mapper'ın son versiyonunda açmak ve tekrar kaydetmek sorunu çöze bilir.</value>
   </data>
   <data name="MapIssue_Long" xml:space="preserve">
     <value>Zamanlayıcı Başlatma</value>

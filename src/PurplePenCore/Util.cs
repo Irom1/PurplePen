@@ -3,10 +3,13 @@ using System;
 using System.Collections.Generic;
 using System.Drawing.Imaging;
 using System.Globalization;
+using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace PurplePen
 {
@@ -274,6 +277,98 @@ namespace PurplePen
             return "unknown";
         }
 
+        // Get the relative name, if possible, of one file relative to the output file name
+        // of an xmltextwriter.
+        public static string GetRelativeFileName(XmlTextWriter xmlwriter, string file)
+        {
+            Stream stream = xmlwriter.BaseStream;
+            if (stream == null)
+                return file;
+            FileStream filestream = stream as FileStream;
+            if (filestream == null)
+                return file;
+            string xmlFileName = filestream.Name;
+            if (xmlFileName == null)
+                return file;
+
+            return GetRelativeFileName(xmlFileName, file);
+        }
+
+
+        // Get the relative name, if possible, of one file relative to another.
+        public static string GetRelativeFileName(string relativeTo, string file)
+        {
+#if NET5_0_OR_GREATER
+            // Use the built-in .NET method (available in .NET 5+)
+            try {
+                string result = Path.GetRelativePath(Path.GetDirectoryName(relativeTo), file);
+                return result;
+            }
+            catch {
+                return file; // Fall back to absolute path if relative path can't be computed
+            }
+#else
+            // Use P/Invoke for .NET Framework 4.8
+            StringBuilder result = new StringBuilder(NativeMethods.MAX_PATH);
+            bool ret = NativeMethods.PathRelativePathTo(result, relativeTo, NativeMethods.FILE_ATTRIBUTE_NORMAL, file, NativeMethods.FILE_ATTRIBUTE_NORMAL);
+            if (ret == false)
+                return file;
+            else {
+                if (result.Length > 2 && result[0] == '.' && result[1] == '\\')
+                    result.Remove(0, 2);
+                return result.ToString();
+            }
+#endif
+        }
+
+        // Filters out invalid path characters in a string, replacing them with underscores.
+        public static string FilterInvalidPathChars(string path)
+        {
+            List<char> invalidChars = new List<char>();
+            invalidChars.AddRange(Path.GetInvalidFileNameChars());
+            invalidChars.AddRange(Path.GetInvalidPathChars());
+
+            StringBuilder builder = new StringBuilder();
+            foreach (char c in path) {
+                if (invalidChars.Contains(c))
+                    builder.Append('_');
+                else
+                    builder.Append(c);
+            }
+
+            return builder.ToString();
+        }
+
+
+        // Given the name of a file that resides in the .EXE directory, return the
+        // full path to that file.
+        public static string GetFileInAppDirectory(string filename)
+        {
+            // Using Application.StartupPath would be
+            // simpler and probably faster, but doesn't work with NUnit.
+            string codebase = typeof(Util).Assembly.Location;
+            Uri uri = new Uri(codebase);
+            string appPath = Path.GetDirectoryName(uri.LocalPath);
+
+            // Create the core objects needed for the application to run.
+            return Path.Combine(appPath, filename);
+        }
+
+
+        static class NativeMethods
+        {
+            [DllImport("shlwapi.dll", CharSet = CharSet.Auto, BestFitMapping = false, ThrowOnUnmappableChar = true)]
+            public static extern bool PathRelativePathTo(
+                 [Out] StringBuilder pszPath,
+                 [In] string pszFrom,
+                 [In] uint dwAttrFrom,
+                 [In] string pszTo,
+                 [In] uint dwAttrTo
+            );
+            public const uint FILE_ATTRIBUTE_DIRECTORY = 0x10;
+            public const uint FILE_ATTRIBUTE_NORMAL = 0x0;
+            public const int MAX_PATH = 260;
+        }
 
     }
 }

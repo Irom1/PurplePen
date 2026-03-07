@@ -91,7 +91,7 @@ namespace PurplePen
         {
             // Create the core objects needed for the application to run.
             this.ui = ui;
-            symbolDB = new SymbolDB(WindowsUtil.GetFileInAppDirectory("symbols.xml"));
+            symbolDB = new SymbolDB(Util.GetFileInAppDirectory("symbols.xml"));
 
             // Reset state
             ResetState();
@@ -2893,8 +2893,8 @@ namespace PurplePen
             else {
                 // No text specials. Use defaults.
                 fontName = NormalCourseAppearance.fontNameTextSpecial;
-                fontBold = (NormalCourseAppearance.fontStyleTextSpecial & FontStyle.Bold) != 0;
-                fontItalic = (NormalCourseAppearance.fontStyleTextSpecial & FontStyle.Italic) != 0;
+                fontBold = (NormalCourseAppearance.fontEffectsTextSpecial & TextEffects.Bold) != 0;
+                fontItalic = (NormalCourseAppearance.fontEffectsTextSpecial & TextEffects.Italic) != 0;
                 fontColor = NormalCourseAppearance.fontColorTextSpecial;
                 fontAutoSize = true;
                 fontHeight = 5.0F;

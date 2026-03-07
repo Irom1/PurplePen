@@ -60,11 +60,11 @@ namespace PurplePen.Tests
         [TestMethod]
         public void GetRelativeFileName()
         {
-            Assert.AreEqual("foo.xml", WindowsUtil.GetRelativeFileName(@"c:\hello there\hi\bar.xml", @"c:\hello there\hi\foo.xml"));
-            Assert.AreEqual(@"map files\foo.xml", WindowsUtil.GetRelativeFileName(@"c:\hello there\hi\bar.xml", @"c:\hello there\hi\map files\foo.xml"));
-            Assert.AreEqual(@"..\..\hello there\hi\map files\foo.xml", WindowsUtil.GetRelativeFileName(@"c:\glop\hi\bar.xml", @"c:\hello there\hi\map files\foo.xml"));
-            Assert.AreEqual(@"d:\hello there\hi\map files\foo.xml", WindowsUtil.GetRelativeFileName(@"c:\glop\hi\bar.xml", @"d:\hello there\hi\map files\foo.xml"));
-            Assert.AreEqual(@"map files\foo.xml", WindowsUtil.GetRelativeFileName(@"c:\hello there\hi\foo.xml", @"c:\hello there\hi\map files\foo.xml"));
+            Assert.AreEqual("foo.xml", Util.GetRelativeFileName(@"c:\hello there\hi\bar.xml", @"c:\hello there\hi\foo.xml"));
+            Assert.AreEqual(@"map files\foo.xml", Util.GetRelativeFileName(@"c:\hello there\hi\bar.xml", @"c:\hello there\hi\map files\foo.xml"));
+            Assert.AreEqual(@"..\..\hello there\hi\map files\foo.xml", Util.GetRelativeFileName(@"c:\glop\hi\bar.xml", @"c:\hello there\hi\map files\foo.xml"));
+            Assert.AreEqual(@"d:\hello there\hi\map files\foo.xml", Util.GetRelativeFileName(@"c:\glop\hi\bar.xml", @"d:\hello there\hi\map files\foo.xml"));
+            Assert.AreEqual(@"map files\foo.xml", Util.GetRelativeFileName(@"c:\hello there\hi\foo.xml", @"c:\hello there\hi\map files\foo.xml"));
         }
 
         [TestMethod]
@@ -73,17 +73,17 @@ namespace PurplePen.Tests
             string xmlName = TestUtil.GetTestFile("output_test.xml");
             XmlTextWriter writer = new XmlTextWriter(xmlName, Encoding.UTF8);
 
-            Assert.AreEqual("foo.ocad", WindowsUtil.GetRelativeFileName(writer, TestUtil.GetTestFile("foo.ocad")));
-            Assert.AreEqual(@"map files\foo.ocad", WindowsUtil.GetRelativeFileName(writer, TestUtil.GetTestFile(@"map files\foo.ocad")));
-            Assert.AreEqual(@"x:\hello there\hi\map files\foo.xml", WindowsUtil.GetRelativeFileName(writer, @"x:\hello there\hi\map files\foo.xml"));
+            Assert.AreEqual("foo.ocad", Util.GetRelativeFileName(writer, TestUtil.GetTestFile("foo.ocad")));
+            Assert.AreEqual(@"map files\foo.ocad", Util.GetRelativeFileName(writer, TestUtil.GetTestFile(@"map files\foo.ocad")));
+            Assert.AreEqual(@"x:\hello there\hi\map files\foo.xml", Util.GetRelativeFileName(writer, @"x:\hello there\hi\map files\foo.xml"));
 
             writer.Close();
 
             writer = new XmlTextWriter(new StringWriter());
 
-            Assert.AreEqual(TestUtil.GetTestFile("foo.ocad"), WindowsUtil.GetRelativeFileName(writer, TestUtil.GetTestFile("foo.ocad")));
-            Assert.AreEqual(TestUtil.GetTestFile(@"map files\foo.ocad"), WindowsUtil.GetRelativeFileName(writer, TestUtil.GetTestFile(@"map files\foo.ocad")));
-            Assert.AreEqual(@"x:\hello there\hi\map files\foo.xml", WindowsUtil.GetRelativeFileName(writer, @"x:\hello there\hi\map files\foo.xml"));
+            Assert.AreEqual(TestUtil.GetTestFile("foo.ocad"), Util.GetRelativeFileName(writer, TestUtil.GetTestFile("foo.ocad")));
+            Assert.AreEqual(TestUtil.GetTestFile(@"map files\foo.ocad"), Util.GetRelativeFileName(writer, TestUtil.GetTestFile(@"map files\foo.ocad")));
+            Assert.AreEqual(@"x:\hello there\hi\map files\foo.xml", Util.GetRelativeFileName(writer, @"x:\hello there\hi\map files\foo.xml"));
 
             writer.Close();
         }
@@ -275,16 +275,16 @@ namespace PurplePen.Tests
         {
             string result;
 
-            result = WindowsUtil.FilterInvalidPathChars(@"baz.txt");
+            result = Util.FilterInvalidPathChars(@"baz.txt");
             Assert.AreEqual(@"baz.txt", result);
 
-            result = WindowsUtil.FilterInvalidPathChars(@"foo&bar");
+            result = Util.FilterInvalidPathChars(@"foo&bar");
             Assert.AreEqual(@"foo&bar", result);
 
-            result = WindowsUtil.FilterInvalidPathChars(@"foo/bar\baz");
+            result = Util.FilterInvalidPathChars(@"foo/bar\baz");
             Assert.AreEqual(@"foo_bar_baz", result);
 
-            result = WindowsUtil.FilterInvalidPathChars(@"foo<bar|baz>");
+            result = Util.FilterInvalidPathChars(@"foo<bar|baz>");
             Assert.AreEqual(@"foo_bar_baz_", result);
         }
 

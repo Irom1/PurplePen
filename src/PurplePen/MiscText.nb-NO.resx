@@ -144,9 +144,6 @@
   <data name="CannotLoadMapFile" xml:space="preserve">
     <value>Kan ikke lese kartfil '{0}' på grunn av:</value>
   </data>
-  <data name="CannotReadImageFile" xml:space="preserve">
-    <value>Kan ikke lese bildefil '{0}'.</value>
-  </data>
   <data name="CannotPrint" xml:space="preserve">
     <value>Kan ikke skrive ut '{0}' på grunn av:</value>
   </data>
@@ -155,9 +152,6 @@
   </data>
   <data name="CannotCreateDirectory" xml:space="preserve">
     <value>Kan ikke opprette mappe '{0}' på grunn av:</value>
-  </data>
-  <data name="CannotReadMap" xml:space="preserve">
-    <value>Kart kan ikke leses pga: '{0}' Bruk Optimize/Repair og lagre på nytt i  OCAD kan fikse problemet.</value>
   </data>
   <data name="CannotCreateOcadFiles" xml:space="preserve">
     <value>Kan ikke lage OCAD filer på grunn av:</value>
@@ -578,9 +572,6 @@ Trykk OK og forsøk å finne kartfilen på din datamaskin.</value>
   </data>
   <data name="LegUsedTwice" xml:space="preserve">
     <value>Strekk {0} er tilordnet til både avgreining '{1}' og '{2}'</value>
-  </data>
-  <data name="CannotReadMapOOM" xml:space="preserve">
-    <value>Kan ikke lese kartet på grunn av: '{0}' Åpne og lagre kartet i nyeste versjon av OpenOrienteering Mapper kan fikse problemene.</value>
   </data>
   <data name="MapIssue_Long" xml:space="preserve">
     <value>Tidsstart</value>

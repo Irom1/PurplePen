@@ -53,7 +53,7 @@ namespace PurplePen
             }
             else {
                 // Set the default page setting from the map size and print scale.
-                MapUtil.GetDefaultPageSize(printArea, printScaleRatio, out pageWidth, out pageHeight, out pageMargin, out landscape);
+                CoreMapUtil.GetDefaultPageSize(printArea, printScaleRatio, out pageWidth, out pageHeight, out pageMargin, out landscape);
             }
 
             paperSizeControl.PaperSize = new System.Drawing.Printing.PaperSize("", pageWidth, pageHeight);

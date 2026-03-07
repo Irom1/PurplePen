@@ -144,9 +144,6 @@
   <data name="CannotLoadMapFile" xml:space="preserve">
     <value>Z následujícího důvodu nelze načíst mapový soubor '{0}':</value>
   </data>
-  <data name="CannotReadImageFile" xml:space="preserve">
-    <value>Nelze číst obrázkový soubor '{0}'.</value>
-  </data>
   <data name="CannotPrint" xml:space="preserve">
     <value>Z následujícího důvodu nelze vytisknout '{0}' :</value>
   </data>
@@ -155,9 +152,6 @@
   </data>
   <data name="CannotCreateDirectory" xml:space="preserve">
     <value>Z následujícího důvodu nelze vytvořit složku '{0}' :</value>
-  </data>
-  <data name="CannotReadMap" xml:space="preserve">
-    <value>Nelze načíst mapa z následujících důvodů: '{0}' Použití Optimalizace/Oprava a opětovné uložení v OCAD může problém vyřešit.</value>
   </data>
   <data name="CannotCreateOcadFiles" xml:space="preserve">
     <value>Z následujícího důvodu nelze vytvořit soubory OCADu:</value>
@@ -579,9 +573,6 @@ OK - zkus soubor s mapou najít.</value>
   </data>
   <data name="LegUsedTwice" xml:space="preserve">
     <value>Postup {0} je přiřazený k farstám '{1}' i '{2}'</value>
-  </data>
-  <data name="CannotReadMapOOM" xml:space="preserve">
-    <value>Nelze otevřít mapu z následujícího důvodu: '{0}' Otevření a opětovné uložení mapy v nejnovější verzi OpenOrienteering Mapper  může vyřešit problémy.</value>
   </data>
   <data name="MapIssue_Long" xml:space="preserve">
     <value>Intervalový start</value>

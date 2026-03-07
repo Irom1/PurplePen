@@ -120,4 +120,13 @@
   <data name="AllVariations" xml:space="preserve">
     <value>Всі варіанти розсіювання</value>
   </data>
+  <data name="CannotReadImageFile" xml:space="preserve">
+    <value>Не вдалося зчитати файл зображення '{0}'.</value>
+  </data>
+  <data name="CannotReadMap" xml:space="preserve">
+    <value>Не вдалося зчитати файл карти з наступних причин: '{0}' Скористайтеся функцією Optimize/Repair у OCAD і збережіть файл. Це може усунути проблему.</value>
+  </data>
+  <data name="CannotReadMapOOM" xml:space="preserve">
+    <value>Не вдалося зчитати карту через наступні причини: '{0}' Відкриття і збереження карти у останній версії OpenOrienteering Mapper може виправити проблему.</value>
+  </data>
 </root>

@@ -147,7 +147,7 @@ namespace PurplePen
         // Get the file name of the sample event.
         string SampleEventFileName()
         {
-            return WindowsUtil.GetFileInAppDirectory(@"Samples\Sample Event.ppen");
+            return Util.GetFileInAppDirectory(@"Samples\Sample Event.ppen");
         }
 
         // Open sample event was selected

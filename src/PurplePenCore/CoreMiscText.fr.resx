@@ -120,4 +120,13 @@
   <data name="AllVariations" xml:space="preserve">
     <value>Toutes les variations</value>
   </data>
+  <data name="CannotReadImageFile" xml:space="preserve">
+    <value>Ne peut pas lire le fichier image '{0}'.</value>
+  </data>
+  <data name="CannotReadMap" xml:space="preserve">
+    <value>La carte ne peut pas être lue pour la raison suivante: '{0}' Utiliser la fonction Optimiser/Réparer et sauvegarder dans OCAD peut régler le problème.</value>
+  </data>
+  <data name="CannotReadMapOOM" xml:space="preserve">
+    <value>La carte ne peut pas être lue pour la raison suivante: '{0}' Ouvrir et ré-enregistrer la carte dans la dernière version d'Open Orienteering Mapper peut résoudre le problème.</value>
+  </data>
 </root>

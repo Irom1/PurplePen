@@ -40,6 +40,7 @@ using System.Windows.Forms;
 using PurplePen.MapView;
 using PurplePen.MapModel;
 using System.Diagnostics;
+using PurplePen.Graphics2D;
 
 namespace PurplePen
 {
@@ -121,7 +122,7 @@ namespace PurplePen
 
             // Begin dragging out the description block.
             startLocation = location;
-            startingObj = new BasicTextCourseObj(Id<Special>.None, displayText, new RectangleF(location, new SizeF(0.001F, 0.001F)), fontName, WindowsUtil.GetFontStyle(fontBold, fontItalic), fontColor, fontHeight);
+            startingObj = new BasicTextCourseObj(Id<Special>.None, displayText, new RectangleF(location, new SizeF(0.001F, 0.001F)), fontName, WindowsUtil.GetTextEffects(fontBold, fontItalic), fontColor, fontHeight);
             handleDragging = location;
             DragTo(location);
             displayUpdateNeeded = true;
@@ -147,7 +148,7 @@ namespace PurplePen
             // User just clicked. Create text of a default size.
             SizeF size;
             Graphics g = WindowsUtil.GetHiresGraphics();
-            using (Font f = GdiplusFontLoader.CreateFont(NormalCourseAppearance.fontNameTextSpecial, NormalCourseAppearance.emHeightDefaultTextSpecial, NormalCourseAppearance.fontStyleTextSpecial))
+            using (Font f = ((GdiplusFontLoader)Services.FontLoader).CreateFont(NormalCourseAppearance.fontNameTextSpecial, NormalCourseAppearance.emHeightDefaultTextSpecial, NormalCourseAppearance.fontEffectsTextSpecial))
                 size = g.MeasureString(measureText, f, new PointF(0,0), StringFormat.GenericTypographic);
 
             RectangleF boundingRect = new RectangleF(new PointF(location.X, location.Y - size.Height), size);
@@ -178,7 +179,7 @@ namespace PurplePen
         {
             undoMgr.BeginCommand(1551, CommandNameText.AddObject);
 
-            Id<Special> specialId = ChangeEvent.AddTextSpecial(eventDB, boundingRect, text, currentObj.fontName, (currentObj.fontStyle & FontStyle.Bold) != 0, (currentObj.fontStyle & FontStyle.Italic) != 0, currentObj.fontColor, currentObj.fontDigitHeight);
+            Id<Special> specialId = ChangeEvent.AddTextSpecial(eventDB, boundingRect, text, currentObj.fontName, (currentObj.textEffects & TextEffects.Bold) != 0, (currentObj.textEffects & TextEffects.Italic) != 0, currentObj.fontColor, currentObj.fontDigitHeight);
             undoMgr.EndCommand(1551);
 
             selectionMgr.SelectSpecial(specialId);

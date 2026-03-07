@@ -61,7 +61,7 @@ namespace PurplePen.Tests
             int? lowerPurpleLayer;
             bool result;
 
-            result = MapUtil.ValidateMapFile(TestUtil.GetTestFile("mapdisplay\\SampleEvent.ocd"), out scale, out dpi, out bitmapSize, out mapBounds, out mapType, out lowerPurpleLayer, out errorMessageText);
+            result = CoreMapUtil.ValidateMapFile(TestUtil.GetTestFile("mapdisplay\\SampleEvent.ocd"), out scale, out dpi, out bitmapSize, out mapBounds, out mapType, out lowerPurpleLayer, out errorMessageText);
             Assert.IsTrue(result);
             Assert.AreEqual(MapType.OCAD, mapType);
             Assert.AreEqual(15000, scale);
@@ -71,7 +71,7 @@ namespace PurplePen.Tests
             Assert.AreEqual(267.79F, mapBounds.Height, 0.01F);
             Assert.IsNull(lowerPurpleLayer);
 
-            result = MapUtil.ValidateMapFile(TestUtil.GetTestFile("mapdisplay\\overprint.ocd"), out scale, out dpi, out bitmapSize, out mapBounds, out mapType, out lowerPurpleLayer, out errorMessageText);
+            result = CoreMapUtil.ValidateMapFile(TestUtil.GetTestFile("mapdisplay\\overprint.ocd"), out scale, out dpi, out bitmapSize, out mapBounds, out mapType, out lowerPurpleLayer, out errorMessageText);
             Assert.IsTrue(result);
             Assert.AreEqual(MapType.OCAD, mapType);
             Assert.AreEqual(10000, scale);
@@ -81,7 +81,7 @@ namespace PurplePen.Tests
             Assert.AreEqual(214.96F, mapBounds.Bottom, 0.01F);
             Assert.IsNull(lowerPurpleLayer);
 
-            result = MapUtil.ValidateMapFile(TestUtil.GetTestFile("courseprinting\\LordHill_ver16_2024Jan_scaled.omap"), out scale, out dpi, out bitmapSize, out mapBounds, out mapType, out lowerPurpleLayer, out errorMessageText);
+            result = CoreMapUtil.ValidateMapFile(TestUtil.GetTestFile("courseprinting\\LordHill_ver16_2024Jan_scaled.omap"), out scale, out dpi, out bitmapSize, out mapBounds, out mapType, out lowerPurpleLayer, out errorMessageText);
             Assert.IsTrue(result);
             Assert.AreEqual(MapType.OCAD, mapType);
             Assert.AreEqual(10000, scale);
@@ -104,7 +104,7 @@ namespace PurplePen.Tests
             int? lowerPurpleLayer;
             bool result;
 
-            result = MapUtil.ValidateMapFile(TestUtil.GetTestFile("mapdisplay\\SampleEvent.jpg"), out scale, out dpi, out bitmapSize, out mapBounds, out mapType, out lowerPurpleLayer, out errorMessageText);
+            result = CoreMapUtil.ValidateMapFile(TestUtil.GetTestFile("mapdisplay\\SampleEvent.jpg"), out scale, out dpi, out bitmapSize, out mapBounds, out mapType, out lowerPurpleLayer, out errorMessageText);
             Assert.IsTrue(result);
             Assert.AreEqual(MapType.Bitmap, mapType);
             Assert.AreEqual(96, dpi, 0.1F);
@@ -127,7 +127,7 @@ namespace PurplePen.Tests
             int? lowerPurpleLayer;
             bool result;
 
-            result = MapUtil.ValidateMapFile(TestUtil.GetTestFile("pdfmaps\\Potholes.pdf"), out scale, out dpi, out bitmapSize, out mapBounds, out mapType, out lowerPurpleLayer, out errorMessageText);
+            result = CoreMapUtil.ValidateMapFile(TestUtil.GetTestFile("pdfmaps\\Potholes.pdf"), out scale, out dpi, out bitmapSize, out mapBounds, out mapType, out lowerPurpleLayer, out errorMessageText);
             Assert.IsTrue(result);
             Assert.AreEqual(MapType.PDF, mapType);
             Assert.AreEqual(600, dpi, 0.1F);
@@ -152,31 +152,31 @@ namespace PurplePen.Tests
 
                 Assert.IsTrue(Util.IsCurrentCultureMetric());
 
-                MapUtil.GetDefaultPageSize(new RectangleF(30, 50, 350, 210), 1.0F, out pageWidth, out pageHeight, out pageMargins, out landscape);
+                CoreMapUtil.GetDefaultPageSize(new RectangleF(30, 50, 350, 210), 1.0F, out pageWidth, out pageHeight, out pageMargins, out landscape);
                 Assert.AreEqual(1169, pageWidth);
                 Assert.AreEqual(1654, pageHeight);
                 Assert.AreEqual(28, pageMargins);
                 Assert.IsTrue(landscape);
 
-                MapUtil.GetDefaultPageSize(new RectangleF(30, 50, 290, 210), 1.0F, out pageWidth, out pageHeight, out pageMargins, out landscape);
+                CoreMapUtil.GetDefaultPageSize(new RectangleF(30, 50, 290, 210), 1.0F, out pageWidth, out pageHeight, out pageMargins, out landscape);
                 Assert.AreEqual(827, pageWidth);
                 Assert.AreEqual(1169, pageHeight);
                 Assert.AreEqual(0, pageMargins);
                 Assert.IsTrue(landscape);
 
-                MapUtil.GetDefaultPageSize(new RectangleF(30, 50, 190, 270), 1.0F, out pageWidth, out pageHeight, out pageMargins, out landscape);
+                CoreMapUtil.GetDefaultPageSize(new RectangleF(30, 50, 190, 270), 1.0F, out pageWidth, out pageHeight, out pageMargins, out landscape);
                 Assert.AreEqual(827, pageWidth);
                 Assert.AreEqual(1169, pageHeight);
                 Assert.AreEqual(28, pageMargins);
                 Assert.IsFalse(landscape);
 
-                MapUtil.GetDefaultPageSize(new RectangleF(30, 50, 1350, 2210), 1.0F, out pageWidth, out pageHeight, out pageMargins, out landscape);
+                CoreMapUtil.GetDefaultPageSize(new RectangleF(30, 50, 1350, 2210), 1.0F, out pageWidth, out pageHeight, out pageMargins, out landscape);
                 Assert.AreEqual(827, pageWidth);
                 Assert.AreEqual(1169, pageHeight);
                 Assert.AreEqual(0, pageMargins);
                 Assert.IsFalse(landscape);
 
-                MapUtil.GetDefaultPageSize(new RectangleF(30, 50, 210, 296), 0.5F, out pageWidth, out pageHeight, out pageMargins, out landscape);
+                CoreMapUtil.GetDefaultPageSize(new RectangleF(30, 50, 210, 296), 0.5F, out pageWidth, out pageHeight, out pageMargins, out landscape);
                 Assert.AreEqual(1654, pageWidth);
                 Assert.AreEqual(2339, pageHeight);
                 Assert.AreEqual(0, pageMargins);
@@ -204,31 +204,31 @@ namespace PurplePen.Tests
                 Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
                 Assert.IsFalse(Util.IsCurrentCultureMetric());
 
-                MapUtil.GetDefaultPageSize(new RectangleF(30, 50, 350, 210), 1.0F, out pageWidth, out pageHeight, out pageMargins, out landscape);
+                CoreMapUtil.GetDefaultPageSize(new RectangleF(30, 50, 350, 210), 1.0F, out pageWidth, out pageHeight, out pageMargins, out landscape);
                 Assert.AreEqual(850, pageWidth);
                 Assert.AreEqual(1400, pageHeight);
                 Assert.AreEqual(0, pageMargins);
                 Assert.IsTrue(landscape);
 
-                MapUtil.GetDefaultPageSize(new RectangleF(30, 50, 260, 190), 1.0F, out pageWidth, out pageHeight, out pageMargins, out landscape);
+                CoreMapUtil.GetDefaultPageSize(new RectangleF(30, 50, 260, 190), 1.0F, out pageWidth, out pageHeight, out pageMargins, out landscape);
                 Assert.AreEqual(850, pageWidth);
                 Assert.AreEqual(1100, pageHeight);
                 Assert.AreEqual(25, pageMargins);
                 Assert.IsTrue(landscape);
 
-                MapUtil.GetDefaultPageSize(new RectangleF(30, 50, 200, 270), 1.0F, out pageWidth, out pageHeight, out pageMargins, out landscape);
+                CoreMapUtil.GetDefaultPageSize(new RectangleF(30, 50, 200, 270), 1.0F, out pageWidth, out pageHeight, out pageMargins, out landscape);
                 Assert.AreEqual(850, pageWidth);
                 Assert.AreEqual(1100, pageHeight);
                 Assert.AreEqual(0, pageMargins);
                 Assert.IsFalse(landscape);
 
-                MapUtil.GetDefaultPageSize(new RectangleF(30, 50, 1350, 2210), 1.0F, out pageWidth, out pageHeight, out pageMargins, out landscape);
+                CoreMapUtil.GetDefaultPageSize(new RectangleF(30, 50, 1350, 2210), 1.0F, out pageWidth, out pageHeight, out pageMargins, out landscape);
                 Assert.AreEqual(850, pageWidth);
                 Assert.AreEqual(1100, pageHeight);
                 Assert.AreEqual(0, pageMargins);
                 Assert.IsFalse(landscape);
 
-                MapUtil.GetDefaultPageSize(new RectangleF(30, 50, 125, 200), 0.5F, out pageWidth, out pageHeight, out pageMargins, out landscape);
+                CoreMapUtil.GetDefaultPageSize(new RectangleF(30, 50, 125, 200), 0.5F, out pageWidth, out pageHeight, out pageMargins, out landscape);
                 Assert.AreEqual(1100, pageWidth);
                 Assert.AreEqual(1700, pageHeight);
                 Assert.AreEqual(25, pageMargins);

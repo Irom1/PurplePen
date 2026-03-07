@@ -99,7 +99,7 @@ namespace PurplePen.Tests
         {
             UndoMgr undomgr = new UndoMgr(5);
             EventDB eventDB = new EventDB(undomgr);
-            SymbolDB symbolDB = new SymbolDB(WindowsUtil.GetFileInAppDirectory("symbols.xml"));
+            SymbolDB symbolDB = new SymbolDB(Util.GetFileInAppDirectory("symbols.xml"));
 
             eventDB.Load(TestUtil.GetTestFile("courseview\\sampleevent1.coursescribe"));
             eventDB.Validate();
@@ -125,7 +125,7 @@ namespace PurplePen.Tests
         {
             UndoMgr undomgr = new UndoMgr(5);
             EventDB eventDB = new EventDB(undomgr);
-            SymbolDB symbolDB = new SymbolDB(WindowsUtil.GetFileInAppDirectory("symbols.xml"));
+            SymbolDB symbolDB = new SymbolDB(Util.GetFileInAppDirectory("symbols.xml"));
             StringWriter writer = new StringWriter();
             string actual, expected;
 
@@ -168,7 +168,7 @@ Description 6 (Course 4)
         {
             UndoMgr undomgr = new UndoMgr(5);
             EventDB eventDB = new EventDB(undomgr);
-            SymbolDB symbolDB = new SymbolDB(WindowsUtil.GetFileInAppDirectory("symbols.xml"));
+            SymbolDB symbolDB = new SymbolDB(Util.GetFileInAppDirectory("symbols.xml"));
             StringWriter writer = new StringWriter();
             string actual, expected;
 
@@ -210,7 +210,7 @@ Description 6 (Course 4)
         {
             UndoMgr undomgr = new UndoMgr(5);
             EventDB eventDB = new EventDB(undomgr);
-            SymbolDB symbolDB = new SymbolDB(WindowsUtil.GetFileInAppDirectory("symbols.xml"));
+            SymbolDB symbolDB = new SymbolDB(Util.GetFileInAppDirectory("symbols.xml"));
             StringWriter writer = new StringWriter();
             string actual, expected;
 
@@ -250,7 +250,7 @@ Description 6 (Course 4)
         {
             UndoMgr undomgr = new UndoMgr(5);
             EventDB eventDB = new EventDB(undomgr);
-            SymbolDB symbolDB = new SymbolDB(WindowsUtil.GetFileInAppDirectory("symbols.xml"));
+            SymbolDB symbolDB = new SymbolDB(Util.GetFileInAppDirectory("symbols.xml"));
             StringWriter writer = new StringWriter();
             string actual, expected;
 
@@ -294,7 +294,7 @@ Special 4 (OOB)
         public void ScoreCourseViewWithOrdinals() {
             UndoMgr undomgr = new UndoMgr(5);
             EventDB eventDB = new EventDB(undomgr);
-            SymbolDB symbolDB = new SymbolDB(WindowsUtil.GetFileInAppDirectory("symbols.xml"));
+            SymbolDB symbolDB = new SymbolDB(Util.GetFileInAppDirectory("symbols.xml"));
             StringWriter writer = new StringWriter();
             string actual, expected;
 
@@ -335,7 +335,7 @@ Special 4 (OOB)
         {
             UndoMgr undomgr = new UndoMgr(5);
             EventDB eventDB = new EventDB(undomgr);
-            SymbolDB symbolDB = new SymbolDB(WindowsUtil.GetFileInAppDirectory("symbols.xml"));
+            SymbolDB symbolDB = new SymbolDB(Util.GetFileInAppDirectory("symbols.xml"));
             StringWriter writer = new StringWriter();
             string actual, expected;
 
@@ -376,7 +376,7 @@ Special 4 (OOB)
         {
             UndoMgr undomgr = new UndoMgr(5);
             EventDB eventDB = new EventDB(undomgr);
-            SymbolDB symbolDB = new SymbolDB(WindowsUtil.GetFileInAppDirectory("symbols.xml"));
+            SymbolDB symbolDB = new SymbolDB(Util.GetFileInAppDirectory("symbols.xml"));
             StringWriter writer = new StringWriter();
             string actual, expected;
 
@@ -418,7 +418,7 @@ Special 4 (OOB)
         {
             UndoMgr undomgr = new UndoMgr(5);
             EventDB eventDB = new EventDB(undomgr);
-            SymbolDB symbolDB = new SymbolDB(WindowsUtil.GetFileInAppDirectory("symbols.xml"));
+            SymbolDB symbolDB = new SymbolDB(Util.GetFileInAppDirectory("symbols.xml"));
             StringWriter writer = new StringWriter();
             string actual, expected;
 
@@ -456,7 +456,7 @@ Total Length=0  Part Length=0  Total Climb=-1  ScoreColumn=0  Total Score=155  T
         {
             UndoMgr undomgr = new UndoMgr(5);
             EventDB eventDB = new EventDB(undomgr);
-            SymbolDB symbolDB = new SymbolDB(WindowsUtil.GetFileInAppDirectory("symbols.xml"));
+            SymbolDB symbolDB = new SymbolDB(Util.GetFileInAppDirectory("symbols.xml"));
             StringWriter writer = new StringWriter();
             string actual, expected;
 
@@ -505,7 +505,7 @@ Special 4 (OOB)
         {
             UndoMgr undomgr = new UndoMgr(5);
             EventDB eventDB = new EventDB(undomgr);
-            SymbolDB symbolDB = new SymbolDB(WindowsUtil.GetFileInAppDirectory("symbols.xml"));
+            SymbolDB symbolDB = new SymbolDB(Util.GetFileInAppDirectory("symbols.xml"));
             StringWriter writer = new StringWriter();
             string actual, expected;
 
@@ -541,7 +541,7 @@ Total Length=0  Part Length=0  Total Climb=-1  ScoreColumn=-1  Total Score=0  To
         {
             UndoMgr undomgr = new UndoMgr(5);
             EventDB eventDB = new EventDB(undomgr);
-            SymbolDB symbolDB = new SymbolDB(WindowsUtil.GetFileInAppDirectory("symbols.xml"));
+            SymbolDB symbolDB = new SymbolDB(Util.GetFileInAppDirectory("symbols.xml"));
             StringWriter writer = new StringWriter();
             string actual, expected;
 
@@ -574,7 +574,7 @@ Total Length=2242.8  Part Length=2242.8  Total Climb=-1  ScoreColumn=-1  Total S
         {
             UndoMgr undomgr = new UndoMgr(5);
             EventDB eventDB = new EventDB(undomgr);
-            SymbolDB symbolDB = new SymbolDB(WindowsUtil.GetFileInAppDirectory("symbols.xml"));
+            SymbolDB symbolDB = new SymbolDB(Util.GetFileInAppDirectory("symbols.xml"));
             StringWriter writer = new StringWriter();
             string actual, expected;
             CourseView courseView;
@@ -670,7 +670,7 @@ Total Length=5002.4  Part Length=761.76  Total Climb=-1  ScoreColumn=-1  Total S
         {
             UndoMgr undomgr = new UndoMgr(5);
             EventDB eventDB = new EventDB(undomgr);
-            SymbolDB symbolDB = new SymbolDB(WindowsUtil.GetFileInAppDirectory("symbols.xml"));
+            SymbolDB symbolDB = new SymbolDB(Util.GetFileInAppDirectory("symbols.xml"));
 
             eventDB.Load(TestUtil.GetTestFile("courseview\\sampleevent1.coursescribe"));
             eventDB.Validate();
@@ -752,7 +752,7 @@ Total Length=5002.4  Part Length=761.76  Total Climb=-1  ScoreColumn=-1  Total S
         {
             UndoMgr undomgr = new UndoMgr(5);
             EventDB eventDB = new EventDB(undomgr);
-            SymbolDB symbolDB = new SymbolDB(WindowsUtil.GetFileInAppDirectory("symbols.xml"));
+            SymbolDB symbolDB = new SymbolDB(Util.GetFileInAppDirectory("symbols.xml"));
             StringWriter writer = new StringWriter();
             string actual, expected;
 

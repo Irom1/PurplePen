@@ -207,19 +207,11 @@ namespace PurplePen.MapModel
             if (fontMap.ContainsKey(fontKey))
                 throw new InvalidOperationException("Key already has a font created for it");
 
-            FontStyle fontStyle = FontStyle.Regular;
-            if ((effects & TextEffects.Bold) != 0)
-                fontStyle |= FontStyle.Bold;
-            if ((effects & TextEffects.Italic) != 0)
-                fontStyle |= FontStyle.Italic;
-            if ((effects & TextEffects.Underline) != 0)
-                fontStyle |= FontStyle.Underline;
-
             if (!GDIPlus_TextMetrics.FontFamilyIsInstalled(familyName))
                 familyName = "Arial";
 
             emHeight = Math.Max(emHeight, 0.01F);            // 0 size fonts cause exception!
-            Font font = GdiplusFontLoader.CreateFont(familyName, emHeight, fontStyle);
+            Font font = GdiplusFontLoader.Instance.CreateFont(familyName, emHeight, effects);
 
             fontMap.Add(fontKey, font);
         }
@@ -969,7 +961,7 @@ namespace PurplePen.MapModel
 
         public static bool FontFamilyIsInstalled(string familyName)
         {
-            return GdiplusFontLoader.FontFamilyIsInstalled(familyName);
+            return GdiplusFontLoader.Instance.FontFamilyIsInstalled(familyName);
         }
 
         public void Dispose()
@@ -981,24 +973,17 @@ namespace PurplePen.MapModel
     {
         private Font font;
         private FontFamily fontFamily;
-        private FontStyle fontStyle;
+        private TextEffects textEffects;
         private StringFormat stringFormat;
         private float emHeight;
 
         public GDIPlus_TextFaceMetrics(string familyName, float emHeight, TextEffects effects)
         {
-            fontStyle = FontStyle.Regular;
-            if ((effects & TextEffects.Bold) != 0)
-                fontStyle |= FontStyle.Bold;
-            if ((effects & TextEffects.Italic) != 0)
-                fontStyle |= FontStyle.Italic;
-            if ((effects & TextEffects.Underline) != 0)
-                fontStyle |= FontStyle.Underline;
-
             float nominalFontSize = Math.Max(emHeight, 0.01F);            // 0 size fonts cause exception!
             this.emHeight = nominalFontSize;
+            this.textEffects = effects;
 
-            font = GdiplusFontLoader.CreateFont(familyName, nominalFontSize, fontStyle);
+            font = GdiplusFontLoader.Instance.CreateFont(familyName, nominalFontSize, effects);
             fontFamily = font.FontFamily;
 
             stringFormat = new StringFormat(StringFormat.GenericTypographic);
@@ -1020,8 +1005,8 @@ namespace PurplePen.MapModel
             get
             {
                 if (recommendedLineSpacing < 0) {
-                    int nominalEmHeight = fontFamily.GetEmHeight(fontStyle);
-                    int nominalLineSpacing = fontFamily.GetLineSpacing(fontStyle);
+                    int nominalEmHeight = fontFamily.GetEmHeight(GdiplusFontLoader.FontStyleFromTextEffects(textEffects));
+                    int nominalLineSpacing = fontFamily.GetLineSpacing(GdiplusFontLoader.FontStyleFromTextEffects(textEffects));
                     recommendedLineSpacing = (nominalLineSpacing * emHeight) / nominalEmHeight;
                 }
 
@@ -1035,8 +1020,8 @@ namespace PurplePen.MapModel
         {
             get {
                 if (ascent < 0) {
-                    int nominalEmHeight = fontFamily.GetEmHeight(fontStyle);
-                    int nominalAscent = fontFamily.GetCellAscent(fontStyle);
+                    int nominalEmHeight = fontFamily.GetEmHeight(GdiplusFontLoader.FontStyleFromTextEffects(textEffects));
+                    int nominalAscent = fontFamily.GetCellAscent(GdiplusFontLoader.FontStyleFromTextEffects(textEffects));
                     ascent = (nominalAscent * emHeight) / nominalEmHeight;
                 }
                 return ascent;
@@ -1048,8 +1033,8 @@ namespace PurplePen.MapModel
         {
             get {
                 if (descent < 0) {
-                    int nominalEmHeight = fontFamily.GetEmHeight(fontStyle);
-                    int nominalDescent = fontFamily.GetCellDescent(fontStyle);
+                    int nominalEmHeight = fontFamily.GetEmHeight(GdiplusFontLoader.FontStyleFromTextEffects(textEffects));
+                    int nominalDescent = fontFamily.GetCellDescent(GdiplusFontLoader.FontStyleFromTextEffects(textEffects));
                     descent = (nominalDescent * emHeight) / nominalEmHeight;
                 }
                 return descent;
@@ -1062,7 +1047,7 @@ namespace PurplePen.MapModel
             get {
                 if (capHeight < 0) {
                     GraphicsPath path = new GraphicsPath();
-                    path.AddString("W", fontFamily, (int)fontStyle, font.Size, new PointF(0, 0), stringFormat);
+                    path.AddString("W", fontFamily, (int)GdiplusFontLoader.FontStyleFromTextEffects(textEffects), font.Size, new PointF(0, 0), stringFormat);
                     capHeight = path.GetBounds().Height;
                 }
                 return capHeight;

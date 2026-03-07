@@ -144,9 +144,6 @@
   <data name="CannotLoadMapFile" xml:space="preserve">
     <value>Kan ikke indlæse kortfil '(0)' af følgende grund:</value>
   </data>
-  <data name="CannotReadImageFile" xml:space="preserve">
-    <value>Kan ikke læse billedfil '(0)'</value>
-  </data>
   <data name="CannotPrint" xml:space="preserve">
     <value>Kan ikke udskrive '(0)' af følgende grund:</value>
   </data>
@@ -155,9 +152,6 @@
   </data>
   <data name="CannotCreateDirectory" xml:space="preserve">
     <value>Kan ikke oprette mappe '(0)' af følgende grund:</value>
-  </data>
-  <data name="CannotReadMap" xml:space="preserve">
-    <value>Kan ikke læse kort af den følgende grund: '(0)' Optimer/Reparer og gen-gem i OCAD kan klare problemerne.</value>
   </data>
   <data name="CannotCreateOcadFiles" xml:space="preserve">
     <value>Kan ikke oprette OCAD filer af følgende grund:</value>
@@ -576,9 +570,6 @@ Efter at klikke OK, prøv at finde en kopi af kortfilen på din computer.</value
   </data>
   <data name="LegUsedTwice" xml:space="preserve">
     <value>Ben {0} er tildelt begge grene '{1}' og gren '{2}'</value>
-  </data>
-  <data name="CannotReadMapOOM" xml:space="preserve">
-    <value>Kan ikke læse kort af følgende grund: '{0}' Åbning og gen-gem kortet i den seneste version af OpenOrienteering Mapper kan løse problemerne.</value>
   </data>
   <data name="MapIssue_Long" xml:space="preserve">
     <value>Timet start</value>

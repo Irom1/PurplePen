@@ -1967,7 +1967,7 @@ namespace PurplePen
         private void ShowHelp(HelpNavigator navigator, object parameter)
         {
             if (helpFileUrl == null) {
-                string helpFileName = WindowsUtil.GetFileInAppDirectory(HELP_FILE_NAME);
+                string helpFileName = Util.GetFileInAppDirectory(HELP_FILE_NAME);
                 if (File.Exists(helpFileName))
                     helpFileUrl = new Uri(helpFileName);
                 else {

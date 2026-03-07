@@ -55,7 +55,7 @@ namespace PurplePen.Tests
         {
             UndoMgr undomgr = new UndoMgr(5);
             EventDB eventDB = new EventDB(undomgr);
-            SymbolDB symbolDB = new SymbolDB(WindowsUtil.GetFileInAppDirectory("symbols.xml"));
+            SymbolDB symbolDB = new SymbolDB(Util.GetFileInAppDirectory("symbols.xml"));
             CourseView courseView;
             DescriptionFormatter descFormatter;
             DescriptionLine[] description;
@@ -96,7 +96,7 @@ namespace PurplePen.Tests
         {
             UndoMgr undomgr = new UndoMgr(5);
             EventDB eventDB = new EventDB(undomgr);
-            SymbolDB symbolDB = new SymbolDB(WindowsUtil.GetFileInAppDirectory("symbols.xml"));
+            SymbolDB symbolDB = new SymbolDB(Util.GetFileInAppDirectory("symbols.xml"));
             StringWriter writer = new StringWriter();
             string actual;
 
@@ -173,7 +173,7 @@ namespace PurplePen.Tests
         public void ScoreCourseFormatterColumnB() {
             UndoMgr undomgr = new UndoMgr(5);
             EventDB eventDB = new EventDB(undomgr);
-            SymbolDB symbolDB = new SymbolDB(WindowsUtil.GetFileInAppDirectory("symbols.xml"));
+            SymbolDB symbolDB = new SymbolDB(Util.GetFileInAppDirectory("symbols.xml"));
             StringWriter writer = new StringWriter();
             string actual, expected;
 
@@ -209,7 +209,7 @@ namespace PurplePen.Tests
         public void ScoreCourseFormatterColumnH() {
             UndoMgr undomgr = new UndoMgr(5);
             EventDB eventDB = new EventDB(undomgr);
-            SymbolDB symbolDB = new SymbolDB(WindowsUtil.GetFileInAppDirectory("symbols.xml"));
+            SymbolDB symbolDB = new SymbolDB(Util.GetFileInAppDirectory("symbols.xml"));
             StringWriter writer = new StringWriter();
             string actual, expected;
 
@@ -246,7 +246,7 @@ namespace PurplePen.Tests
         public void ScoreCourseFormatterNoScore() {
             UndoMgr undomgr = new UndoMgr(5);
             EventDB eventDB = new EventDB(undomgr);
-            SymbolDB symbolDB = new SymbolDB(WindowsUtil.GetFileInAppDirectory("symbols.xml"));
+            SymbolDB symbolDB = new SymbolDB(Util.GetFileInAppDirectory("symbols.xml"));
             StringWriter writer = new StringWriter();
             string actual, expected;
 
@@ -361,7 +361,7 @@ namespace PurplePen.Tests
         {
             UndoMgr undomgr = new UndoMgr(5);
             EventDB eventDB = new EventDB(undomgr);
-            SymbolDB symbolDB = new SymbolDB(WindowsUtil.GetFileInAppDirectory("symbols.xml"));
+            SymbolDB symbolDB = new SymbolDB(Util.GetFileInAppDirectory("symbols.xml"));
             StringWriter writer = new StringWriter();
             string actual, expected;
 
