@@ -1,5 +1,7 @@
-﻿using System;
+﻿using PurplePen.Graphics2D;
+using System;
 using System.Collections.Generic;
+using System.Drawing.Imaging;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -260,6 +262,16 @@ namespace PurplePen
         {
             CultureInfo culture = System.Threading.Thread.CurrentThread.CurrentUICulture;
             return culture.TwoLetterISOLanguageName;
+        }
+
+        public static string ImageFormatText(GraphicsBitmapFormat imageFormat)
+        {
+            if (imageFormat == GraphicsBitmapFormat.BMP) return "bmp";
+            if (imageFormat == GraphicsBitmapFormat.GIF) return "gif";
+            if (imageFormat == GraphicsBitmapFormat.JPEG) return "jpeg";
+            if (imageFormat == GraphicsBitmapFormat.PNG) return "png";
+            if (imageFormat == GraphicsBitmapFormat.TIFF) return "tiff";
+            return "unknown";
         }
 
 

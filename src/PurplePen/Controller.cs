@@ -3854,11 +3854,13 @@ namespace PurplePen
 
             if (success) {
                 string imageName = QueryEvent.UniqueImageName(eventDB, Path.GetFileName(fileName));
+                IGraphicsBitmap graphicsBitmap = new GDIPlus_Bitmap(imageBitmap);
+
                 SetCommandMode(new AddRectangleMode(this, undoMgr, selectionMgr, eventDB, (float) imageBitmap.Height / (float) imageBitmap.Width,
                     rect => new ImageCourseObj(Id<Special>.None, 1.0F, GetCourseAppearance(),
                                              new PointF[] { rect.Location, new PointF(rect.Right, rect.Bottom) },
-                                             imageName, imageBitmap),
-                    rect => ChangeEvent.AddImageSpecial(eventDB, rect, imageBitmap, imageName)
+                                             imageName, graphicsBitmap),
+                    rect => ChangeEvent.AddImageSpecial(eventDB, rect, graphicsBitmap, imageName)
                     ));
             }
         }

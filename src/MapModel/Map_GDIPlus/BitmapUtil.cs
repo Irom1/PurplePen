@@ -8,13 +8,15 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.Drawing.Drawing2D;
 using System.Runtime.InteropServices;
+using PurplePen.Graphics2D;
+using System.IO;
 
-namespace PurplePen
+namespace PurplePen.MapModel
 {
-    static class BitmapUtil
+    public static class BitmapUtil
     {
         // Save a JPEG with the given quality level.
-        public static void SaveJpeg(Bitmap bitmap, string fileName, int quality)
+        public static void SaveJpeg(Bitmap bitmap, Stream stream, int quality)
         {
             ImageCodecInfo jgpEncoder = GetEncoder(ImageFormat.Jpeg);
 
@@ -30,22 +32,22 @@ namespace PurplePen
 
             EncoderParameter encoderParameter = new EncoderParameter(encoder, (long)quality);
             encoderParameters.Param[0] = encoderParameter;
-            bitmap.Save(fileName, jgpEncoder, encoderParameters);
+            bitmap.Save(stream, jgpEncoder, encoderParameters);
         }
 
         // Save a GIF, using OctTree pallettee.
-        public static void SaveGif(Bitmap bitmap, string fileName)
+        public static void SaveGif(Bitmap bitmap, Stream stream)
         {
             OctreeQuantizer quantizer = new OctreeQuantizer(255, 8);
 
             using (Bitmap quantized = quantizer.Quantize(bitmap)) {
-                quantized.Save(fileName, ImageFormat.Gif);
+                quantized.Save(stream, ImageFormat.Gif);
                 quantized.Dispose();
             }
         }
 
         // Save a TIFF, using RLE encoding.
-        public static void SaveTIFF(Bitmap bitmap, string fileName)
+        public static void SaveTIFF(Bitmap bitmap, Stream stream)
         {
             ImageCodecInfo tiffEncoder = GetEncoder(ImageFormat.Tiff);
 
@@ -61,22 +63,37 @@ namespace PurplePen
 
             EncoderParameter encoderParameter = new EncoderParameter(encoder, (long)EncoderValue.CompressionRle);
             encoderParameters.Param[0] = encoderParameter;
-            bitmap.Save(fileName, tiffEncoder, encoderParameters);
+            bitmap.Save(stream, tiffEncoder, encoderParameters);
         }
 
         public static void SaveBitmap(Bitmap bitmap, string fileName, ImageFormat imageFormat)
         {
+            using (Stream stream = new FileStream(fileName, FileMode.OpenOrCreate, FileAccess.Write)) {
+                SaveBitmap(bitmap, stream, imageFormat);
+            }
+        }
+
+
+        public static void SaveBitmap(Bitmap bitmap, Stream stream, ImageFormat imageFormat)
+        {
             if (imageFormat.Equals(ImageFormat.Gif)) {
-                SaveGif(bitmap, fileName);
+                SaveGif(bitmap, stream);
             }
             else if (imageFormat.Equals(ImageFormat.Tiff)) {
-                SaveTIFF(bitmap, fileName);
+                SaveTIFF(bitmap, stream);
             }
             else if (imageFormat.Equals(ImageFormat.Jpeg)) {
-                SaveJpeg(bitmap, fileName, 80);
+                SaveJpeg(bitmap, stream, 80);
             }
             else {
-                bitmap.Save(fileName, imageFormat);
+                bitmap.Save(stream, imageFormat);
+            }
+        }
+
+        public static void SaveBitmap(IGraphicsBitmap bitmap, string fileName, GraphicsBitmapFormat imageFormat)
+        {
+            using (Stream stream = new FileStream(fileName, FileMode.OpenOrCreate, FileAccess.Write)) {
+                bitmap.WriteToStream(imageFormat, stream);
             }
         }
 

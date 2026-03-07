@@ -640,7 +640,7 @@ namespace PurplePen
             dpi = this.bitmapDpi;
             Bitmap bmp = ((GDIPlus_Bitmap)bitmap).Bitmap;
             
-            BitmapUtil.SaveBitmap(bmp, fileName, format);
+            PurplePen.MapModel.BitmapUtil.SaveBitmap(bmp, fileName, format);
         }
 
         // Draw the map and course onto a bitmap of the given size. The given rectangle is mapped onto the whole bitmap, then

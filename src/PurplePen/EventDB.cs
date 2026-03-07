@@ -1594,7 +1594,7 @@ namespace PurplePen
         public bool fontBold, fontItalic;   // for text objects, the font style
         public float fontHeight = -1;       // for text objects, the font height (digit height, not em height), or -1 for auto (old style).
         public int numColumns = 1;          // for description objects, the number of columns.
-        public Bitmap imageBitmap;          // for image objects, the bitmap.
+        public IGraphicsBitmap imageBitmap; // for image objects, the bitmap.
 
         public Special()
         {
@@ -1842,7 +1842,8 @@ namespace PurplePen
                     // We ignore the format, since Image.FromStream auto-detects.
                     MemoryStream stm = xmlinput.GetContentBase64();
                     try {
-                        imageBitmap = (Bitmap) Image.FromStream(stm);
+                        stm.Seek(0, SeekOrigin.Begin);
+                        imageBitmap = Services.BitmapLoader.ReadBitmapFromStream(stm);
                     }
                     catch (ArgumentException) {
                         xmlinput.BadXml("Image data could not be loaded");
@@ -1966,10 +1967,14 @@ namespace PurplePen
             }
 
             if (imageBitmap != null) {
+                GraphicsBitmapFormat imageFormat = imageBitmap.GetOriginalFormat();
+                if (imageFormat == GraphicsBitmapFormat.None || imageFormat == GraphicsBitmapFormat.Unknown || imageFormat == GraphicsBitmapFormat.Other)
+                    imageFormat = GraphicsBitmapFormat.PNG;
+
                 xmloutput.WriteStartElement("image-data");
-                xmloutput.WriteAttributeString("format", WindowsUtil.ImageFormatText(imageBitmap.RawFormat));
+                xmloutput.WriteAttributeString("format", Util.ImageFormatText(imageFormat));
                 MemoryStream stm = new MemoryStream();
-                imageBitmap.Save(stm, imageBitmap.RawFormat);
+                imageBitmap.WriteToStream(imageFormat, stm);
                 stm.Flush();
                 byte[] bytes = stm.ToArray();
                 xmloutput.WriteBase64(bytes, 0, bytes.Length);

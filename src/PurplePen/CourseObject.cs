@@ -3277,10 +3277,10 @@ namespace PurplePen
     class ImageCourseObj : AspectPreservingRectCourseObj
     {
         public readonly string imageName;
-        public readonly Bitmap imageBitmap;
+        public readonly IGraphicsBitmap imageBitmap;
         private ImageLoader imageLoader;
 
-        public ImageCourseObj(Id<Special> specialId, float courseObjRatio, CourseAppearance appearance, PointF[] locations, string imageName, Bitmap imageBitmap)
+        public ImageCourseObj(Id<Special> specialId, float courseObjRatio, CourseAppearance appearance, PointF[] locations, string imageName, IGraphicsBitmap imageBitmap)
             : base(Id<ControlPoint>.None, Id<CourseControl>.None, specialId, courseObjRatio, appearance, Geometry.RectFromPoints(locations[0].X, locations[0].Y, locations[1].X, locations[1].Y))
         {
             this.imageName = imageName;
@@ -3294,7 +3294,7 @@ namespace PurplePen
                 IList<TemplateInfo> currentTemplates = map.Templates;
 
                 PointF center = Geometry.RectCenter(rect);
-                float dpi = (25.4F * imageBitmap.Width) / rect.Width;
+                float dpi = (25.4F * imageBitmap.PixelWidth) / rect.Width;
                 TemplateInfo newTemplate = new TemplateInfo(imageName, center, dpi, 0, 1.0F, 1.0F, 0, true, null, true);
 
                 List<TemplateInfo> newTemplates = new List<TemplateInfo>(currentTemplates.Count + 1);
@@ -3311,7 +3311,7 @@ namespace PurplePen
                 ImageSymDef layoutSymDef = (ImageSymDef)dict[CourseLayout.KeyLayout];
 
                 PointF center = Geometry.RectCenter(rect);
-                ImageBitmapSymbol symbol = new ImageBitmapSymbol(layoutSymDef, imageName, center, rect.Width / imageBitmap.Width, rect.Height / imageBitmap.Height, null, true, specialId.id, imageLoader);
+                ImageBitmapSymbol symbol = new ImageBitmapSymbol(layoutSymDef, imageName, center, rect.Width / imageBitmap.PixelWidth, rect.Height / imageBitmap.PixelHeight, null, true, specialId.id, imageLoader);
                 map.AddSymbol(symbol);
             }
         }
@@ -3355,9 +3355,9 @@ namespace PurplePen
         private class ImageLoader : IFileLoader
         {
             private string imageName;
-            private Bitmap imageBitmap;
+            private IGraphicsBitmap imageBitmap;
 
-            public ImageLoader(string imageName, Bitmap imageBitmap)
+            public ImageLoader(string imageName, IGraphicsBitmap imageBitmap)
             {
                 this.imageName = imageName;
                 this.imageBitmap = imageBitmap;
@@ -3374,7 +3374,7 @@ namespace PurplePen
             public IGraphicsBitmap LoadBitmap(string path, bool isTemplate)
             {
                 if (string.Equals(path, imageName, StringComparison.InvariantCultureIgnoreCase))
-                    return new GDIPlus_Bitmap(imageBitmap);
+                    return imageBitmap;
                 else
                     return null;
             }

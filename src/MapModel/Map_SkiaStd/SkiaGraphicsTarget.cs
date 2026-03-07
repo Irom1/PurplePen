@@ -1260,6 +1260,24 @@ namespace PurplePen.MapModel
             return null;
         }
 
+        internal static GraphicsBitmapFormat GraphicsBitmapFormatFromImageFormat(SKEncodedImageFormat skFormat)
+        {
+            switch (skFormat) {
+            case SKEncodedImageFormat.Gif:
+                return GraphicsBitmapFormat.GIF;
+            case SKEncodedImageFormat.Png:
+                return GraphicsBitmapFormat.PNG;
+            case SKEncodedImageFormat.Jpeg:
+                return GraphicsBitmapFormat.JPEG;
+            case SKEncodedImageFormat.Webp:
+                return GraphicsBitmapFormat.WebP;
+            case SKEncodedImageFormat.Bmp:
+                return GraphicsBitmapFormat.BMP;
+            }
+
+            return GraphicsBitmapFormat.Other;
+        }
+
 
         public Skia_Bitmap(SKBitmap bitmap)
         {
@@ -1342,5 +1360,24 @@ namespace PurplePen.MapModel
         {
             return PurplePen.Graphics2D.ColorConverter.ToColor(cmykColor);
         }    
+    }
+
+    public class SkiaBitmapGraphicsLoader : IGraphicsBitmapLoader
+    {
+        public void Dispose()
+        {
+        }
+
+        public IGraphicsBitmap ReadBitmapFromStream(Stream stream)
+        {
+            // 1. Load the data from the file
+            using (SKData data = SKData.Create(stream))
+            using (SKCodec codec = SKCodec.Create(data)) {
+                SKEncodedImageFormat skFormat = codec.EncodedFormat;
+                GraphicsBitmapFormat format = Skia_Bitmap.GraphicsBitmapFormatFromImageFormat(skFormat);
+                SKBitmap bitmap = SKBitmap.Decode(codec);
+                return new Skia_Bitmap(bitmap, format);
+            }
+        }
     }
 }

@@ -50,10 +50,18 @@ namespace PurplePen.Tests
     using System.Threading;
     using PurplePen.Graphics2D;
     using PurplePen.MapModel;
+    using PurplePen_Tests.PurplePen;
 
     [TestClass, DoNotParallelize]
     public class EventDBTests: TestFixtureBase
     {
+        [ClassInitialize]
+        public static void Setup(TestContext context)
+        {
+            Services.BitmapLoader = new GDIPlus_GraphicsBitmapLoader();
+        }
+
+
         [TestMethod]
         public void RoundTripControlPoints()
         {
@@ -656,7 +664,7 @@ namespace PurplePen.Tests
             sp7.color = SpecialColor.UpperPurple;
             sp8 = new Special(SpecialKind.WhiteOut, new PointF[4] { new PointF(13, 17), new PointF(21, 12), new PointF(10, -1), new PointF(-2, 7) });
             sp9 = new Special(SpecialKind.Image, new PointF[2] { new PointF(18, 17), new PointF(28, 15) });
-            sp9.imageBitmap = (Bitmap)Image.FromFile(TestUtil.GetTestFile("eventDB\\testimage.jpg"));
+            sp9.imageBitmap = PurplePenTestUtils.LoadBitmap(TestUtil.GetTestFile("eventDB\\testimage.jpg"));
             sp9.text = "testimage.jpg";
             sp10 = new Special(SpecialKind.Line, new PointF[3] { new PointF(8, 7), new PointF(1, 2), new PointF(5, 12) });
             sp10.color = SpecialColor.Black;
@@ -711,9 +719,9 @@ namespace PurplePen.Tests
             // The loaded image won't compare equal. Check the image is the same, then force equal.
             Special loadedSp9 = eventDB.GetSpecial(SpecialId(9));
             Assert.IsNotNull(loadedSp9.imageBitmap);
-            Assert.AreEqual(loadedSp9.imageBitmap.Width, sp9.imageBitmap.Width);
-            Assert.AreEqual(loadedSp9.imageBitmap.Height, sp9.imageBitmap.Height);
-            Assert.AreEqual(loadedSp9.imageBitmap.RawFormat, sp9.imageBitmap.RawFormat);
+            Assert.AreEqual(loadedSp9.imageBitmap.PixelWidth, sp9.imageBitmap.PixelWidth);
+            Assert.AreEqual(loadedSp9.imageBitmap.PixelHeight, sp9.imageBitmap.PixelHeight);
+            Assert.AreEqual(loadedSp9.imageBitmap.GetOriginalFormat(), sp9.imageBitmap.GetOriginalFormat());
             loadedSp9.imageBitmap = sp9.imageBitmap;  
 
             TestUtil.TestEnumerableAnyOrder(eventDB.AllSpecialPairs,

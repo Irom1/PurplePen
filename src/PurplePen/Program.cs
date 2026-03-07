@@ -39,6 +39,7 @@ using System.Globalization;
 using CrashReporterDotNET;
 using System.Configuration;
 using System.IO;
+using PurplePen.MapModel;
 
 namespace PurplePen
 {
@@ -54,6 +55,8 @@ namespace PurplePen
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+            Services.BitmapLoader = new GDIPlus_GraphicsBitmapLoader();
 
             // Make sure that settings aren't corrupted, and fix them.
             try {

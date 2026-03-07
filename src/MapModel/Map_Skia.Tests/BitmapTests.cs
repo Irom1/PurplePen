@@ -313,6 +313,29 @@ namespace Map_Skia.Tests
             TestUtil.CompareBitmapBaseline(loadedBitmap, expectedResult);
         }
 
+        [Test]
+        public void SkiaBitmapGraphicsLoader()
+        {
+            string expectedResult = TestUtil.GetTestFile("bitmaps\\SkiaBitmapLoader_baseline.png");
+
+            const string baseBitmapName = "Water lilies.jpg";
+            string baseBitmapPath = TestUtil.GetTestFile("bitmaps\\" + baseBitmapName);
+            SDBitmap baseBitmap = (SDBitmap)SDImage.FromFile(baseBitmapPath);
+            SDSize size = baseBitmap.Size;
+
+            IGraphicsBitmap skiaBitmap;
+            using (Stream stream = new FileStream(baseBitmapPath, FileMode.Open, FileAccess.Read)) {
+                skiaBitmap = new SkiaBitmapGraphicsLoader().ReadBitmapFromStream(stream);
+            }
+
+            Assert.AreEqual(GraphicsBitmapFormat.JPEG, skiaBitmap.GetOriginalFormat());
+
+            RenderingUtil.RenderingTest(size.Width, new System.Drawing.RectangleF(0, 0, size.Width, size.Height), false, expectedResult,
+                grTarget => {
+                    grTarget.DrawBitmap(skiaBitmap, new System.Drawing.RectangleF(0, 0, size.Width, size.Height), BitmapScaling.HighQuality, 0.0001F);
+                }
+            );
+        }
 
 
     }

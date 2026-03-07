@@ -1179,7 +1179,7 @@ namespace PurplePen.MapModel
                 return false;
 
             try {
-                bitmap.Save(stream, targetFormat);
+                BitmapUtil.SaveBitmap(bitmap, stream, targetFormat);
             }
             catch (Exception) {
                 return false;
@@ -1375,6 +1375,27 @@ namespace PurplePen.MapModel
         public virtual Color ToColor(CmykColor cmykColor)
         {
             return ColorConverter.ToColor(cmykColor);
+        }
+    }
+
+    public class GDIPlus_GraphicsBitmapLoader : IGraphicsBitmapLoader
+    {
+        public IGraphicsBitmap ReadBitmapFromStream(Stream stream)
+        {
+            // Create a new memory stream to hold the data, because the stream
+            // might close after this method returns, and Image.FromStream requires the stream to stay open for the
+            // lifetime of the image. By copying to a memory stream, we can avoid locking the original stream and allow
+            // it to be closed.
+            MemoryStream memStream = new MemoryStream();
+            stream.CopyTo(memStream);
+
+            // Seek back to the beginning before creating the image
+            memStream.Position = 0;
+            return new GDIPlus_Bitmap((Bitmap)Image.FromStream(memStream));
+        }
+
+        public void Dispose()
+        {
         }
     }
 }

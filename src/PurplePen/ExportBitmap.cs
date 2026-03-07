@@ -86,12 +86,14 @@ namespace PurplePen
 
             // JPEG and GIF have special code paths because the default Save method isn't
             // really good enough.
-            if (imageFormat == ImageFormat.Jpeg)
-                BitmapUtil.SaveJpeg(bitmap, fileName, 80);
-            else if (imageFormat == ImageFormat.Gif)
-                BitmapUtil.SaveGif(bitmap, fileName);
-            else
-                bitmap.Save(fileName, imageFormat);
+            using (Stream stream = new FileStream(fileName, FileMode.OpenOrCreate, FileAccess.Write)) {
+                if (imageFormat == ImageFormat.Jpeg)
+                    BitmapUtil.SaveJpeg(bitmap, stream, 80);
+                else if (imageFormat == ImageFormat.Gif)
+                    BitmapUtil.SaveGif(bitmap, stream);
+                else
+                    bitmap.Save(stream, imageFormat);
+            }
 
             bitmap.Dispose();
 

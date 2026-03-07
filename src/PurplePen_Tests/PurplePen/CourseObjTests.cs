@@ -33,16 +33,17 @@
  */
 
 #if TEST
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using PurplePen.Graphics2D;
+using PurplePen.MapModel;
+using PurplePen_Tests.PurplePen;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Windows.Forms;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TestingUtils;
-using PurplePen.MapModel;
-using PurplePen.Graphics2D;
 
 namespace PurplePen.Tests
 {
@@ -77,6 +78,12 @@ namespace PurplePen.Tests
             specialAppearance2.autoLegGapSize = 0.0F;
             specialAppearance2.descriptionsPurple = true;
 
+        }
+
+        [ClassInitialize]
+        public static void Setup(TestContext context)
+        {
+            Services.BitmapLoader = new GDIPlus_GraphicsBitmapLoader();
         }
 
         // Draw a grid on the graphics
@@ -945,7 +952,7 @@ namespace PurplePen.Tests
 
         ImageCourseObj CreateImageCourseObj()
         {
-            Bitmap bm = (Bitmap)Image.FromFile(TestUtil.GetTestFile("coursesymbols\\mrsneeze.jpg"));
+            IGraphicsBitmap bm = PurplePenTestUtils.LoadBitmap(TestUtil.GetTestFile("coursesymbols\\mrsneeze.jpg"));
             return new ImageCourseObj(Id<Special>.None, 1.0F, defaultCourseAppearance, new PointF[] { new PointF(-0.5F, 2F), new PointF(2F, -1.859F) }, "mrsneeze.jpg", bm);
         }
 
@@ -2621,8 +2628,8 @@ namespace PurplePen.Tests
         [TestMethod]
         public void ImageBitmapEquals()
         {
-            Bitmap bm1 = (Bitmap)Image.FromFile(TestUtil.GetTestFile("coursesymbols\\mrsneeze.jpg"));
-            Bitmap bm2 = (Bitmap)Image.FromFile(TestUtil.GetTestFile("coursesymbols\\flower.png"));
+            IGraphicsBitmap bm1 = PurplePenTestUtils.LoadBitmap(TestUtil.GetTestFile("coursesymbols\\mrsneeze.jpg"));
+            IGraphicsBitmap bm2 = PurplePenTestUtils.LoadBitmap(TestUtil.GetTestFile("coursesymbols\\flower.png"));
             CourseObj courseObj1 = new ImageCourseObj(Id<Special>.None, 1.0F, defaultCourseAppearance, new PointF[] { new PointF(-0.5F, 2F), new PointF(2F, -1.859F) }, "mrsneeze.jpg", bm1);
             CourseObj courseObj2 = new ImageCourseObj(Id<Special>.None, 1.0F, defaultCourseAppearance, new PointF[] { new PointF(-0.5F, 2F), new PointF(2F, -1.859F) }, "mrsneeze.jpg", bm1);
             CourseObj courseObj3 = new ImageCourseObj(Id<Special>.None, 1.0F, defaultCourseAppearance, new PointF[] { new PointF(-0.5F, 2F), new PointF(2F, -1.859F) }, "flower.png", bm2);

@@ -1437,7 +1437,7 @@ namespace PurplePen
         }
 
         // Add a text special to the event
-        public static Id<Special> AddImageSpecial(EventDB eventDB, RectangleF boundingRectangle, Bitmap imageBitmap, string imageName)
+        public static Id<Special> AddImageSpecial(EventDB eventDB, RectangleF boundingRectangle, IGraphicsBitmap imageBitmap, string imageName)
         {
             Debug.Assert(imageBitmap != null);
             Debug.Assert(imageName != null);

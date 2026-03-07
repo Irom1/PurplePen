@@ -311,8 +311,8 @@ namespace PurplePen
         {
             public string Name;
             public string FullPath;
-            public Bitmap Bitmap;
-            public ImageFormat Format;
+            public IGraphicsBitmap Bitmap;
+            public GraphicsBitmapFormat Format;
         }
 
         // Get all the bitmaps to write, in the dictionary as fully-qualified-path, mapped to bitmap.
@@ -326,16 +326,19 @@ namespace PurplePen
                 if (special.kind == SpecialKind.Image) {
                     string name = special.text;
                     string path = Path.GetFullPath(Path.Combine(creationSettings.outputDirectory, special.text));
-                    ImageFormat format = special.imageBitmap.RawFormat;
 
-                    if (creationSettings.fileFormat.kind == MapFileFormatKind.OCAD && creationSettings.fileFormat.version <= 10 && format.Guid == ImageFormat.Png.Guid) {
+                    GraphicsBitmapFormat imageFormat = special.imageBitmap.GetOriginalFormat();
+                    if (imageFormat == GraphicsBitmapFormat.None || imageFormat == GraphicsBitmapFormat.Unknown || imageFormat == GraphicsBitmapFormat.Other)
+                        imageFormat = GraphicsBitmapFormat.PNG;
+
+                    if (creationSettings.fileFormat.kind == MapFileFormatKind.OCAD && creationSettings.fileFormat.version <= 10 && imageFormat == GraphicsBitmapFormat.PNG) {
                         // Versions prior to 10 don't handle PNG. Use gif instead.
-                        format = ImageFormat.Gif;
+                        imageFormat = GraphicsBitmapFormat.GIF;
                         path = Path.ChangeExtension(path, ".gif");
                     }
 
                     if (!bitmapsToWrite.ContainsKey(name))
-                        bitmapsToWrite.Add(name, new BitmapToWrite() { Name = name, FullPath = path, Bitmap = special.imageBitmap, Format = format });
+                        bitmapsToWrite.Add(name, new BitmapToWrite() { Name = name, FullPath = path, Bitmap = special.imageBitmap, Format = imageFormat });
                 }
             }
 

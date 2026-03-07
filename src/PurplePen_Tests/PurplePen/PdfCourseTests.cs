@@ -1,14 +1,15 @@
 ﻿#if TEST
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using PurplePen.MapModel;
 using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Diagnostics;
+using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Diagnostics;
-using System.Globalization;
-using System.Drawing;
+using System.Text;
 using System.Windows.Forms;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TestingUtils;
 
 
@@ -21,6 +22,13 @@ namespace PurplePen.Tests
         Controller controller;
 
         private const int MAX_PIXEL_DIFF = 30;
+
+        [ClassInitialize]
+        public static void Setup(TestContext context)
+        {
+            Services.BitmapLoader = new GDIPlus_GraphicsBitmapLoader();
+        }
+
 
         [TestInitialize]
         public void Setup()
