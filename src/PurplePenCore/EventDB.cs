@@ -444,6 +444,18 @@ namespace PurplePen
         public int FirstTeam, LastTeam;        // For Kind==ChosenTeams, team 1 is first team.
     }
 
+    public class VariationReportData
+    {
+        public readonly string CourseName;
+        public readonly RelayVariations RelayVariations;
+
+        public VariationReportData(string courseName, RelayVariations relayVariations)
+        {
+            CourseName = courseName;
+            RelayVariations = relayVariations;
+        }
+    }
+
 
 
     // The format of a punch card.

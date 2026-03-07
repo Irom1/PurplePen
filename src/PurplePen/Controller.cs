@@ -4382,18 +4382,6 @@ namespace PurplePen
 
     }
 
-    class VariationReportData
-    {
-        public readonly string CourseName;
-        public readonly RelayVariations RelayVariations;
-
-        public VariationReportData(string courseName, RelayVariations relayVariations)
-        {
-            CourseName = courseName;
-            RelayVariations = relayVariations;
-        }
-    }
-
 
     // Which pane are we interacting in.
     enum Pane { Map, Topology}

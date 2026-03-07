@@ -40,10 +40,11 @@ using System.IO;
 using System.Drawing;
 using System.Diagnostics;
 using System.Linq;
+using PurplePen.Graphics2D;
 
 namespace PurplePen
 {
-    class Reports : IDisposable
+    public sealed class Reports : IDisposable
     {
         StringWriter stringWriter;
         XmlTextWriter xmlTextWriter;
@@ -117,26 +118,26 @@ namespace PurplePen
             xmlTextWriter.WriteString(content);
         }
 
-        private void WriteStyledText(string content, FontStyle fontStyle)
+        private void WriteStyledText(string content, TextEffects textEffects)
         {
             int closeElements = 0;         // number of close elements needed.
 
-            if ((fontStyle & FontStyle.Bold) != 0) {
+            if ((textEffects & TextEffects.Bold) != 0) {
                 xmlTextWriter.WriteStartElement("strong");
                 ++closeElements;
             }
 
-            if ((fontStyle & FontStyle.Italic) != 0) {
+            if ((textEffects & TextEffects.Italic) != 0) {
                 xmlTextWriter.WriteStartElement("em");
                 ++closeElements;
             }
 
-            if ((fontStyle & FontStyle.Underline) != 0) {
+            if ((textEffects & TextEffects.Underline) != 0) {
                 xmlTextWriter.WriteStartElement("u");
                 ++closeElements;
             }
 
-            if ((fontStyle & FontStyle.Strikeout) != 0) {
+            if ((textEffects & TextEffects.Strikeout) != 0) {
                 xmlTextWriter.WriteStartElement("strike");
                 ++closeElements;
             }
@@ -381,7 +382,7 @@ namespace PurplePen
             if (! QueryEvent.AllCoursesHaveLoads(eventDB)) {
                 // Some or all courses don't have loads set. Warn.
                 StartPara();
-                WriteStyledText(ReportText.Load_Warning, FontStyle.Bold);
+                WriteStyledText(ReportText.Load_Warning, TextEffects.Bold);
                 WriteText(" ");
                 WriteText(ReportText.Load_MissingLoads);
                 EndPara();
@@ -390,7 +391,7 @@ namespace PurplePen
             if (QueryEvent.AnyCourseHasVariations(eventDB)) {
                 // Some courses have variations. Give note.
                 StartPara();
-                WriteStyledText(ReportText.Note, FontStyle.Bold);
+                WriteStyledText(ReportText.Note, TextEffects.Bold);
                 WriteText(" ");
                 WriteText(ReportText.Load_VariationsExist);
                 EndPara();
@@ -401,7 +402,7 @@ namespace PurplePen
             if (multiVisit) {
                 // Some courses have multi-visit controls.
                 StartPara();
-                WriteStyledText(ReportText.Note, FontStyle.Bold);
+                WriteStyledText(ReportText.Note, TextEffects.Bold);
                 WriteText(" ");
                 WriteText(ReportText.Load_ButterflyExists);
                 EndPara();
@@ -569,7 +570,7 @@ namespace PurplePen
             EndTable();
         }
 
-        internal string CreateCrossReferenceReport(EventDB eventDB)
+        public string CreateCrossReferenceReport(EventDB eventDB)
         {
             InitReport();
 
@@ -1189,7 +1190,7 @@ namespace PurplePen
             for (int i = 0; i < courseList.Count; ++i) {
                 if (i != 0)
                     builder.Append(", ");
-                builder.Append(WindowsUtil.CourseName(eventDB, courseList[i]));
+                builder.Append(Util.CourseName(eventDB, courseList[i]));
             }
 
             return builder.ToString();
@@ -1234,12 +1235,12 @@ namespace PurplePen
                 foreach (RepeatControl repeatControl in repeatedControls) {
                     if (repeatControl.scoreCourse) {
                         WritePara(string.Format(ReportText.EventAudit_ScoreDuplicateControl,
-                                  WindowsUtil.CourseName(eventDB, repeatControl.courseDesignator.CourseId),
+                                  Util.CourseName(eventDB, repeatControl.courseDesignator.CourseId),
                                   Util.ControlPointName(eventDB, repeatControl.controlId, NameStyle.Medium)));
                     }
                     else {
                         WritePara(string.Format(ReportText.EventAudit_RepeatControl,
-                                  WindowsUtil.CourseName(eventDB, repeatControl.courseDesignator.CourseId),
+                                  Util.CourseName(eventDB, repeatControl.courseDesignator.CourseId),
                                   Util.ControlPointName(eventDB, repeatControl.controlId, NameStyle.Medium)));
                     }
                 }
@@ -1464,15 +1465,15 @@ namespace PurplePen
 
             StartPara("coolclass");
             WriteText("This is the start of paragraph, with ");
-            WriteStyledText("bold", FontStyle.Bold);
+            WriteStyledText("bold", TextEffects.Bold);
             WriteText(" text and ");
-            WriteStyledText("italic", FontStyle.Italic);
+            WriteStyledText("italic", TextEffects.Italic);
             WriteText(" text and ");
-            WriteStyledText("underline", FontStyle.Underline);
+            WriteStyledText("underline", TextEffects.Underline);
             WriteText(" text and ");
-            WriteStyledText("strikeout", FontStyle.Strikeout);
+            WriteStyledText("strikeout", TextEffects.Strikeout);
             WriteText(" text and ");
-            WriteStyledText("combo", FontStyle.Bold | FontStyle.Underline);
+            WriteStyledText("combo", TextEffects.Bold | TextEffects.Underline);
             WriteText(" text. ");
             EndPara();
 

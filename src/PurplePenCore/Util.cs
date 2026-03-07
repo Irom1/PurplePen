@@ -477,6 +477,12 @@ namespace PurplePen
             }
         }
 
+        // Get the text name for a course.
+        public static string CourseName(EventDB eventDB, Id<Course> courseId)
+        {
+            return eventDB.GetCourse(courseId).name;
+        }
+
 
 
         static class NativeMethods
