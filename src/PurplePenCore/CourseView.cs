@@ -49,7 +49,7 @@ namespace PurplePen
     /// map exchanges, relay variations, the all controls view, etc. It is the basis for
     /// control descriptions and the course drawing.
     /// </summary>
-    class CourseView
+    public class CourseView
     {
         public enum CourseViewKind {
             Normal,
@@ -689,7 +689,7 @@ namespace PurplePen
         {
             CourseView courseView = new CourseView(eventDB, CourseDesignator.AllControls);
 
-            courseView.courseName = MiscText.AllControls;
+            courseView.courseName = CoreMiscText.AllControls;
             courseView.scoreColumn = -1;
 
             // Add every control to the course view, subject to the filters.
