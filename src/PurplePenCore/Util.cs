@@ -1,7 +1,9 @@
 ﻿using PurplePen.Graphics2D;
+using PurplePen.MapModel;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.Drawing.Imaging;
 using System.Globalization;
 using System.IO;
@@ -354,6 +356,41 @@ namespace PurplePen
             // Create the core objects needed for the application to run.
             return Path.Combine(appPath, filename);
         }
+
+        // Given an array of points that define a path, add a new bend into it at the "right" place where it fits.
+        // The oldPoints array may be null or empty.
+        public static PointF[] AddPointToArray(PointF[] oldPoints, PointF newPoint)
+        {
+            if (oldPoints == null || oldPoints.Length == 0) {
+                // Simple case -- no old path.
+                return new PointF[1] { newPoint };
+            }
+            else {
+                // Complex case. We need to figure out where the newPoint goes by finding the closest point
+                // on the path.
+                PointF closestPoint;
+                SymPath path = new SymPath(oldPoints);
+                path.DistanceFromPoint(newPoint, out closestPoint);
+
+                // On which segment does the closest point lie?
+                int segmentStart, segmentEnd;
+                path.FindSegmentWithPoint(closestPoint, 0.01F, out segmentStart, out segmentEnd);
+
+                // Insert the point in that segment.
+                List<PointF> list = new List<PointF>(oldPoints);
+                list.Insert(segmentEnd, newPoint);
+                return list.ToArray();
+            }
+        }
+
+        // Given an array of points and a point in it, remove the given point from the array.
+        public static PointF[] RemovePointFromArray(PointF[] points, PointF pointToRemove)
+        {
+            List<PointF> list = new List<PointF>(points);
+
+            return list.FindAll(delegate (PointF pt) { return pt != pointToRemove; }).ToArray();
+        }
+
 
         // Get the text name for a control. THe Name Style controls how the control points appear:
         // Long:  "Control 32", "Start", "Finish", "Mandatory crossing point".

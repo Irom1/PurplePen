@@ -41,7 +41,6 @@ using System.Linq;
 
 using PurplePen.MapModel;
 using PurplePen.Graphics2D;
-using PurplePen.Livelox.ApiContracts;
 
 namespace PurplePen
 {
@@ -51,7 +50,7 @@ namespace PurplePen
     /// one of these methods.
     /// You must ensure that your edit is correct and meaningful before calling these methods.
     /// </summary>
-    static class ChangeEvent
+    public static class ChangeEvent
     {
         // Change one of the symbols associated with a control. symbolNumber is a column numnber, 0=C, 1=D, etc.
         // newSymbol is the string id of the new symbol to put there. Use null as the newSymbol to indicate
@@ -921,7 +920,7 @@ namespace PurplePen
         }
 
         // Change the line properties associated with a special
-        internal static void ChangeSpecialLineAppearance(EventDB eventDB, Id<Special> specialId, SpecialColor color, LineKind lineKind, float lineWidth, float gapSize, float dashSize, float cornerRadius)
+        public static void ChangeSpecialLineAppearance(EventDB eventDB, Id<Special> specialId, SpecialColor color, LineKind lineKind, float lineWidth, float gapSize, float dashSize, float cornerRadius)
         {
             Special special = eventDB.GetSpecial(specialId);
 
@@ -1747,7 +1746,7 @@ namespace PurplePen
             oldBendArray[oldBendArray.Length - 1] = eventDB.GetControl(controlId2).location;
 
             // Insert the new point into the array at the right place.
-            PointF[] newBendArray = WindowsUtil.AddPointToArray(oldBendArray, newBend);
+            PointF[] newBendArray = Util.AddPointToArray(oldBendArray, newBend);
 
             // Copy the new bend parts into the bends array.
             leg.bends = new PointF[newBendArray.Length - 2];
@@ -1809,7 +1808,7 @@ namespace PurplePen
             }
 
             // Remove the bend from the bend array.
-            leg.bends = WindowsUtil.RemovePointFromArray(leg.bends, bendToRemove);
+            leg.bends = Util.RemovePointFromArray(leg.bends, bendToRemove);
             if (leg.bends.Length == 0)
                 leg.bends = null;
 
@@ -1914,7 +1913,7 @@ namespace PurplePen
             }
 
             // Add the corner in the right place.
-            PointF[] newPoints = WindowsUtil.AddPointToArray(oldLocations, newCorner);
+            PointF[] newPoints = Util.AddPointToArray(oldLocations, newCorner);
 
             // If it's an area special, remove the first location from the end.
             if (isArea) {
@@ -1937,7 +1936,7 @@ namespace PurplePen
                 ((special.kind == SpecialKind.Boundary || special.kind == SpecialKind.Line) && special.locations.Length > 2));
 
             // Remove the corner
-            PointF[] newPoints = WindowsUtil.RemovePointFromArray(special.locations, cornerToRemove);
+            PointF[] newPoints = Util.RemovePointFromArray(special.locations, cornerToRemove);
 
             // Update the special.
             ChangeSpecialLocations(eventDB, specialId, newPoints);
@@ -2128,7 +2127,7 @@ namespace PurplePen
     }
 
     // Different ways to change map exchange 
-    enum MapExchangeType { 
+    public enum MapExchangeType { 
         None,
         Exchange,     // Can occur at regular control or at a map exchange
         MapFlip       // Can only occur at regular control

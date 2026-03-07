@@ -149,9 +149,9 @@ namespace PurplePen.Tests
         public void AddPointToArray()
         {
             PointF[] array = { new PointF(3, 7), new PointF(11, 2), new PointF(0, -7), new PointF(-12, -3), new PointF(4, 6) };
-            array = WindowsUtil.AddPointToArray(array, new PointF(-5, 5));
-            array = WindowsUtil.AddPointToArray(array, new PointF(-4, -2));
-            array = WindowsUtil.AddPointToArray(array, new PointF(12, -1));
+            array = Util.AddPointToArray(array, new PointF(-5, 5));
+            array = Util.AddPointToArray(array, new PointF(-4, -2));
+            array = Util.AddPointToArray(array, new PointF(12, -1));
             Assert.AreEqual(8, array.Length);
             Assert.AreEqual(new PointF(3, 7), array[0]);
             Assert.AreEqual(new PointF(11, 2), array[1]);
@@ -167,9 +167,9 @@ namespace PurplePen.Tests
         public void RemovePointFromArray()
         {
             PointF[] array = { new PointF(3, 7), new PointF(11, 2), new PointF(0, -7), new PointF(-12, -3), new PointF(4, 6) };
-            array = WindowsUtil.RemovePointFromArray(array, new PointF(0, -7));
-            array = WindowsUtil.RemovePointFromArray(array, new PointF(3, 7));
-            array = WindowsUtil.RemovePointFromArray(array, new PointF(4, 6));
+            array = Util.RemovePointFromArray(array, new PointF(0, -7));
+            array = Util.RemovePointFromArray(array, new PointF(3, 7));
+            array = Util.RemovePointFromArray(array, new PointF(4, 6));
             Assert.AreEqual(2, array.Length);
             Assert.AreEqual(new PointF(11, 2), array[0]);
             Assert.AreEqual(new PointF(-12, -3), array[1]);
