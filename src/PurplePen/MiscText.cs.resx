@@ -238,18 +238,6 @@ užij | na řádky</value>
   <data name="DeleteControlFromAllControls" xml:space="preserve">
     <value>Kontrola {0} je aktuálně používána následujícími tratěmi: {1}. Přejete si i přesto smazat tuto kontrolu?</value>
   </data>
-  <data name="CodeBadLength" xml:space="preserve">
-    <value>Kód kontroly musí být jedno, dvě nebo tři písmena nebo číslice.</value>
-  </data>
-  <data name="CodeContainsSpace" xml:space="preserve">
-    <value>Kód kontroly nesmí obsahovat mezeru.</value>
-  </data>
-  <data name="CodeBeginsWithZero" xml:space="preserve">
-    <value>Kód kontroly by neměl začínat nulou.</value>
-  </data>
-  <data name="CodeCouldBeUpsideDown" xml:space="preserve">
-    <value>Kód kontroly nemá vypadat  jako jiné převrácené číslo (66 68)</value>
-  </data>
   <data name="DuplicateCode" xml:space="preserve">
     <value>Kód "{0}" je použit vícekrát než jednou.</value>
   </data>
@@ -297,9 +285,6 @@ OK - zkus soubor s mapou najít.</value>
   </data>
   <data name="NextButtonText" xml:space="preserve">
     <value>&amp;Další &gt;</value>
-  </data>
-  <data name="Control_Code" xml:space="preserve">
-    <value>Kontrola {0}</value>
   </data>
   <data name="Finish" xml:space="preserve">
     <value>Cíl</value>
@@ -556,15 +541,6 @@ OK - zkus soubor s mapou najít.</value>
   <data name="VariationNotLastControl" xml:space="preserve">
     <value>Varianta nemůže být přidána na poslední kontrolu. Nejdřív přidej cílovou kontrolu.</value>
   </data>
-  <data name="BadLegNumber" xml:space="preserve">
-    <value>'{0}' je neplatné číslo farsty '{1}'</value>
-  </data>
-  <data name="LegNotAssigned" xml:space="preserve">
-    <value>Postup {0} by měl být přiřazen k jedné z variant {1}</value>
-  </data>
-  <data name="LegUsedTwice" xml:space="preserve">
-    <value>Postup {0} je přiřazený k farstám '{1}' i '{2}'</value>
-  </data>
   <data name="MapIssue_Long" xml:space="preserve">
     <value>Intervalový start</value>
   </data>
@@ -588,9 +564,6 @@ OK - zkus soubor s mapou najít.</value>
   </data>
   <data name="PdfFilter" xml:space="preserve">
     <value>PDF soubor|*.pdf</value>
-  </data>
-  <data name="LegAssignedOuterBranch" xml:space="preserve">
-    <value>Postup {0} není ve farstě '{1}': byl již přiřazený k jinému větvení farsty</value>
   </data>
   <data name="AddEllipseExplanation" xml:space="preserve">
     <value>Nastavte vzhled elipsy. Po stisknutí tlačítka OK táhněte myší a umístěte elipsu na požadované místo.</value>

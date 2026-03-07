@@ -117,8 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AllControls" xml:space="preserve">
+    <value>Kõik KPd</value>
+  </data>
   <data name="AllVariations" xml:space="preserve">
     <value>Kõik variandid</value>
+  </data>
+  <data name="BadLegNumber" xml:space="preserve">
+    <value>'{0}' ei ole sobiv vahetuse number harule '{1}'</value>
   </data>
   <data name="CannotReadImageFile" xml:space="preserve">
     <value>Ei saa lugeda pildi faili '{0}'.</value>
@@ -129,6 +135,63 @@
   <data name="CannotReadMapOOM" xml:space="preserve">
     <value>Ei õnnestu avada faili järgmisel põhjusel: '{0}'. Faili avamine ja uuesti salvestamine viimase versiooni OpenOrienteering Mapper'iga võib probleemi lahendada.</value>
   </data>
+  <data name="CodeBadLength" xml:space="preserve">
+    <value>Tunnusnumber peab oleama üks, kaks või kolm tähte või numbrit pikk.</value>
+  </data>
+  <data name="CodeBeginsWithZero" xml:space="preserve">
+    <value>Tunnusnumber ei tohi alata nulliga.</value>
+  </data>
+  <data name="CodeContainsSpace" xml:space="preserve">
+    <value>Tunnusnumber ei tohi sisaldada tühikuid.</value>
+  </data>
+  <data name="CodeCouldBeUpsideDown" xml:space="preserve">
+    <value>Tunnusnumber ei tohi olla loetav tagurpidi teise numbrina.</value>
+  </data>
+  <data name="Control_Code" xml:space="preserve">
+    <value>KP {0}</value>
+  </data>
+  <data name="Finish" xml:space="preserve">
+    <value>Finiš</value>
+  </data>
+  <data name="Finish_Short" xml:space="preserve">
+    <value>F</value>
+  </data>
+  <data name="LegAssignedOuterBranch" xml:space="preserve">
+    <value>Vahetus {0} ei jõua kunagi harusse '{1}': see on määratud teisele teele valitud hajutuses.</value>
+  </data>
+  <data name="LegNotAssigned" xml:space="preserve">
+    <value>Vahetuse {0} peab lisama vähemalt ühele harule {1}</value>
+  </data>
+  <data name="LegUsedTwice" xml:space="preserve">
+    <value>Vahetus {0} on määratud harule  '{1}' ja harule  '{2}'</value>
+  </data>
+  <data name="MandCrossing_Long" xml:space="preserve">
+    <value>Kohustuslik läbipääsu punkt</value>
+  </data>
+  <data name="MandCrossing_Medium" xml:space="preserve">
+    <value>Ristumine</value>
+  </data>
+  <data name="MandCrossing_Short" xml:space="preserve">
+    <value>C</value>
+  </data>
+  <data name="MapExchange_Long" xml:space="preserve">
+    <value>Kaardivahetus</value>
+  </data>
+  <data name="MapExchange_Medium" xml:space="preserve">
+    <value>Vahetus</value>
+  </data>
+  <data name="MapExchange_Short" xml:space="preserve">
+    <value>KV</value>
+  </data>
+  <data name="MapIssue_Long" xml:space="preserve">
+    <value>Stardijoon</value>
+  </data>
+  <data name="MapIssue_Medium" xml:space="preserve">
+    <value>Stardijoon</value>
+  </data>
+  <data name="MapIssue_Short" xml:space="preserve">
+    <value>TS</value>
+  </data>
   <data name="PdfConversionFailed" xml:space="preserve">
     <value>Pdfium PDF konverteril ebaõnnestus PDFi lugemisel</value>
   </data>
@@ -137,5 +200,11 @@
   </data>
   <data name="PdfResultNotReadable" xml:space="preserve">
     <value>Ei saanud konverteerida PDFi failist '{0}'</value>
+  </data>
+  <data name="Start" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="Start_Short" xml:space="preserve">
+    <value>S</value>
   </data>
 </root>

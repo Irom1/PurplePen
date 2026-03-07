@@ -429,6 +429,22 @@ namespace PurplePen
 
     }
 
+    public class VariationChoices
+    {
+        public enum VariationChoicesKind
+        {
+            Combined,           // All variations combined in one printout
+            AllVariations,      // All variations separately
+            ChosenVariations,   // A selection of variations separately
+            ChosenTeams         // A set of relay teams
+        }
+
+        public VariationChoicesKind Kind = VariationChoicesKind.AllVariations;
+        public List<string> ChosenVariations;  // For Kind==ChosenVariations
+        public int FirstTeam, LastTeam;        // For Kind==ChosenTeams, team 1 is first team.
+    }
+
+
 
     // The format of a punch card.
     public class PunchcardFormat : ICloneable

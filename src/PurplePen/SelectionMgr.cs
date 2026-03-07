@@ -897,10 +897,4 @@ namespace PurplePen
         }
     }
 
-    // Possible different locations along leg to insert control, given course variations.
-    enum LegInsertionLoc {
-        Normal,         // Regular location on leg.
-        PreSplit,       // On the first part leg, before the split that starts this leg.
-        PostJoin        // On the last part of leg, after the join that ends this leg.
-    };
 }

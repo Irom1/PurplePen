@@ -237,18 +237,6 @@ Bruk | for å skille rader</value>
   <data name="DeleteControlFromAllControls" xml:space="preserve">
     <value>Post {0}brukes i følgende løyper: {1}. Vil du slette posten uansett?</value>
   </data>
-  <data name="CodeBadLength" xml:space="preserve">
-    <value>Postkoden må inneholde en, to eller tre tall eller bokstaver.</value>
-  </data>
-  <data name="CodeContainsSpace" xml:space="preserve">
-    <value>En postkode kan ikke inneholde mellomrom.</value>
-  </data>
-  <data name="CodeBeginsWithZero" xml:space="preserve">
-    <value>Postkoder skal ikke begynne med 0</value>
-  </data>
-  <data name="CodeCouldBeUpsideDown" xml:space="preserve">
-    <value>En postkode skal ikke kunne forveksles med et annet nummer om den leses opp ned.</value>
-  </data>
   <data name="DuplicateCode" xml:space="preserve">
     <value>Postkode "{0}" er i bruk mer enn en gang.</value>
   </data>
@@ -296,9 +284,6 @@ Trykk OK og forsøk å finne kartfilen på din datamaskin.</value>
   </data>
   <data name="NextButtonText" xml:space="preserve">
     <value>&amp;Neste &gt;</value>
-  </data>
-  <data name="Control_Code" xml:space="preserve">
-    <value>Post {0}</value>
   </data>
   <data name="Finish" xml:space="preserve">
     <value>Mål</value>
@@ -555,15 +540,6 @@ Trykk OK og forsøk å finne kartfilen på din datamaskin.</value>
   <data name="VariationNotLastControl" xml:space="preserve">
     <value>Kan ikke legge til variasjon fra siste post. Legg til en målpost først.</value>
   </data>
-  <data name="BadLegNumber" xml:space="preserve">
-    <value>'{0}' er ikke gyldig strekknummer for avgreining '{1}'</value>
-  </data>
-  <data name="LegNotAssigned" xml:space="preserve">
-    <value>Strekk {0} må tilordnes et av strekkene {1}</value>
-  </data>
-  <data name="LegUsedTwice" xml:space="preserve">
-    <value>Strekk {0} er tilordnet til både avgreining '{1}' og '{2}'</value>
-  </data>
   <data name="MapIssue_Long" xml:space="preserve">
     <value>Tidsstart</value>
   </data>
@@ -587,9 +563,6 @@ Trykk OK og forsøk å finne kartfilen på din datamaskin.</value>
   </data>
   <data name="PdfFilter" xml:space="preserve">
     <value>PDF-fil|*.pdf</value>
-  </data>
-  <data name="LegAssignedOuterBranch" xml:space="preserve">
-    <value>Strekk {0} når ikke avgreining '{1}': Den ble tilordnet en annen retning i gaflingen den inngår i.</value>
   </data>
   <data name="AddEllipseExplanation" xml:space="preserve">
     <value>Velg utseende til ellipsen. Dra musen for å plassere ellipsen etter å ha trykket OK.</value>

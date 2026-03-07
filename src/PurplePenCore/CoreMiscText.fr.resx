@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AllControls" xml:space="preserve">
+    <value>Tous Postes</value>
+  </data>
   <data name="AllVariations" xml:space="preserve">
     <value>Toutes les variations</value>
   </data>
@@ -129,6 +132,51 @@
   <data name="CannotReadMapOOM" xml:space="preserve">
     <value>La carte ne peut pas être lue pour la raison suivante: '{0}' Ouvrir et ré-enregistrer la carte dans la dernière version d'Open Orienteering Mapper peut résoudre le problème.</value>
   </data>
+  <data name="CodeBadLength" xml:space="preserve">
+    <value>Un numéro de poste doit correspondre à 1, 2 ou 3 lettres ou chiffres.</value>
+  </data>
+  <data name="CodeBeginsWithZero" xml:space="preserve">
+    <value>Un numéro de poste ne devrait pas commencer par zéro.</value>
+  </data>
+  <data name="CodeContainsSpace" xml:space="preserve">
+    <value>Un numéro de poste ne doit pas contenir d'espace.</value>
+  </data>
+  <data name="CodeCouldBeUpsideDown" xml:space="preserve">
+    <value>Un numéro de poste ne devrait pas ressembler à un autre quand on le lit à l'envers.</value>
+  </data>
+  <data name="Control_Code" xml:space="preserve">
+    <value>Poste n° {0}</value>
+  </data>
+  <data name="Finish" xml:space="preserve">
+    <value>Arrivée</value>
+  </data>
+  <data name="Finish_Short" xml:space="preserve">
+    <value>F</value>
+  </data>
+  <data name="MandCrossing_Long" xml:space="preserve">
+    <value>Point de passage obligatoire</value>
+  </data>
+  <data name="MandCrossing_Medium" xml:space="preserve">
+    <value>Passage</value>
+  </data>
+  <data name="MandCrossing_Short" xml:space="preserve">
+    <value>C</value>
+  </data>
+  <data name="MapExchange_Long" xml:space="preserve">
+    <value>Echange de carte</value>
+  </data>
+  <data name="MapExchange_Medium" xml:space="preserve">
+    <value>Echange</value>
+  </data>
+  <data name="MapExchange_Short" xml:space="preserve">
+    <value>MX</value>
+  </data>
+  <data name="MapIssue_Long" xml:space="preserve">
+    <value>Départ chronométré</value>
+  </data>
+  <data name="MapIssue_Medium" xml:space="preserve">
+    <value>Départ chronométré</value>
+  </data>
   <data name="PdfConversionFailed" xml:space="preserve">
     <value>Pdfium PDF converter a échoué lors de la lecture du fichier PDF</value>
   </data>
@@ -137,5 +185,11 @@
   </data>
   <data name="PdfResultNotReadable" xml:space="preserve">
     <value>Impossible de lire le résultat de la conversion PDF depuis le fichier '{0}'</value>
+  </data>
+  <data name="Start" xml:space="preserve">
+    <value>Départ</value>
+  </data>
+  <data name="Start_Short" xml:space="preserve">
+    <value>S</value>
   </data>
 </root>

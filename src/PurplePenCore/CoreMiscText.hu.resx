@@ -117,8 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AllControls" xml:space="preserve">
+    <value>Minden ellenőrzőpont</value>
+  </data>
   <data name="AllVariations" xml:space="preserve">
     <value>Minden variáció</value>
+  </data>
+  <data name="BadLegNumber" xml:space="preserve">
+    <value>'{0}' nem egy valós ág a(z)  '{1}' elágazáshoz.</value>
   </data>
   <data name="CannotReadImageFile" xml:space="preserve">
     <value>'{0}' kép fájl nem betölthető a következő okból:</value>
@@ -129,6 +135,63 @@
   <data name="CannotReadMapOOM" xml:space="preserve">
     <value>A térkép fájl nem beolvasható az alábbi okból: '{0}' Megnyitva majd elmentve a legújabb OpenOrienteering Mapper segítségével megoldhatja a problémát.</value>
   </data>
+  <data name="CodeBadLength" xml:space="preserve">
+    <value>Az ellenőrzőpont kódja egy, kettő vagy három betű vagy számjegy lehet.</value>
+  </data>
+  <data name="CodeBeginsWithZero" xml:space="preserve">
+    <value>Az ellenőrzőpont kódja nem kezdődhet nullával.</value>
+  </data>
+  <data name="CodeContainsSpace" xml:space="preserve">
+    <value>Az ellenőrzőpont kódja nem tartalmazhat szóközt.</value>
+  </data>
+  <data name="CodeCouldBeUpsideDown" xml:space="preserve">
+    <value>Az ellenőrzőpont kódja célszerű, ha nem egyezik meg egy másik pont kódjának fejjel lefelé fordított változatával.</value>
+  </data>
+  <data name="Control_Code" xml:space="preserve">
+    <value>Ellenőrzőpont {0}</value>
+  </data>
+  <data name="Finish" xml:space="preserve">
+    <value>Cél</value>
+  </data>
+  <data name="Finish_Short" xml:space="preserve">
+    <value>C</value>
+  </data>
+  <data name="LegAssignedOuterBranch" xml:space="preserve">
+    <value>A(z) {0} ág sohasem érinti a(z) '{1}' elágazást: másként kell megadni az utakat a tatalmazó villában.</value>
+  </data>
+  <data name="LegNotAssigned" xml:space="preserve">
+    <value>A(z) {0} ágat hozzá kell rendelni valamelyik elágazáshoz: {1}</value>
+  </data>
+  <data name="LegUsedTwice" xml:space="preserve">
+    <value>A(z) {0} ág hozzá van rendelve a(z) '{1}' és a(z) '{2}' elágazáshoz is.</value>
+  </data>
+  <data name="MandCrossing_Long" xml:space="preserve">
+    <value>Kötelező átkelőhely</value>
+  </data>
+  <data name="MandCrossing_Medium" xml:space="preserve">
+    <value>Kereszteződés</value>
+  </data>
+  <data name="MandCrossing_Short" xml:space="preserve">
+    <value>X</value>
+  </data>
+  <data name="MapExchange_Long" xml:space="preserve">
+    <value>Térképcsere</value>
+  </data>
+  <data name="MapExchange_Medium" xml:space="preserve">
+    <value>Csere</value>
+  </data>
+  <data name="MapExchange_Short" xml:space="preserve">
+    <value>TCs</value>
+  </data>
+  <data name="MapIssue_Long" xml:space="preserve">
+    <value>Időzített indítás</value>
+  </data>
+  <data name="MapIssue_Medium" xml:space="preserve">
+    <value>Időzített indítás</value>
+  </data>
+  <data name="MapIssue_Short" xml:space="preserve">
+    <value>TF</value>
+  </data>
   <data name="PdfConversionFailed" xml:space="preserve">
     <value>A Pdfium nem tudta sikeresen beolvasni a PDF fájlt.</value>
   </data>
@@ -137,5 +200,11 @@
   </data>
   <data name="PdfResultNotReadable" xml:space="preserve">
     <value>Nem olvasható be a PDF fájl átalakítás eredménye a(z) '{0}' fájlból</value>
+  </data>
+  <data name="Start" xml:space="preserve">
+    <value>Rajt</value>
+  </data>
+  <data name="Start_Short" xml:space="preserve">
+    <value>R</value>
   </data>
 </root>

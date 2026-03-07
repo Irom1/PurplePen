@@ -117,7 +117,46 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AllControls" xml:space="preserve">
+    <value>Toate posturile</value>
+  </data>
   <data name="CannotReadImageFile" xml:space="preserve">
     <value>Nu se poate citi fișierul de imagine '{0}'.</value>
+  </data>
+  <data name="CodeBadLength" xml:space="preserve">
+    <value>Un cod de post trebuie să conțină una, două sau trei litere sau cifre.</value>
+  </data>
+  <data name="CodeBeginsWithZero" xml:space="preserve">
+    <value>Un cod de post nu poate începe cu zero.</value>
+  </data>
+  <data name="CodeContainsSpace" xml:space="preserve">
+    <value>Un cod de post nu poate conține spațiu.</value>
+  </data>
+  <data name="CodeCouldBeUpsideDown" xml:space="preserve">
+    <value>Un cod de post nu trebuie să semene cu alt cod întors cu susul în jos.</value>
+  </data>
+  <data name="Control_Code" xml:space="preserve">
+    <value>Postul {0}</value>
+  </data>
+  <data name="Finish" xml:space="preserve">
+    <value>Sosire</value>
+  </data>
+  <data name="Finish_Short" xml:space="preserve">
+    <value>F</value>
+  </data>
+  <data name="MandCrossing_Long" xml:space="preserve">
+    <value>Punct de trecere obligatoriu</value>
+  </data>
+  <data name="MandCrossing_Medium" xml:space="preserve">
+    <value>Încrucișare</value>
+  </data>
+  <data name="MandCrossing_Short" xml:space="preserve">
+    <value>C</value>
+  </data>
+  <data name="Start" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="Start_Short" xml:space="preserve">
+    <value>S</value>
   </data>
 </root>

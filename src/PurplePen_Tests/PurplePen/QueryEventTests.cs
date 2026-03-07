@@ -703,15 +703,15 @@ namespace PurplePen.Tests
 
             legal = QueryEvent.IsPreferredControlCode(eventDB, "051", out reason);
             Assert.IsTrue(legal);
-            Assert.AreEqual(reason, MiscText.CodeBeginsWithZero);
+            Assert.AreEqual(reason, CoreMiscText.CodeBeginsWithZero);
 
             legal = QueryEvent.IsPreferredControlCode(eventDB, "66", out reason);
             Assert.IsTrue(legal);
-            Assert.AreEqual(reason, MiscText.CodeCouldBeUpsideDown);
+            Assert.AreEqual(reason, CoreMiscText.CodeCouldBeUpsideDown);
 
             legal = QueryEvent.IsPreferredControlCode(eventDB, "161", out reason);
             Assert.IsTrue(legal);
-            Assert.AreEqual(reason, MiscText.CodeCouldBeUpsideDown);
+            Assert.AreEqual(reason, CoreMiscText.CodeCouldBeUpsideDown);
 
             legal = QueryEvent.IsPreferredControlCode(eventDB, "Z", out reason);
             Assert.IsTrue(legal);
@@ -724,11 +724,11 @@ namespace PurplePen.Tests
 
             legal = QueryEvent.IsPreferredControlCode(eventDB, "1234", out reason);
             Assert.IsFalse(legal);
-            Assert.IsFalse(legal, MiscText.CodeBadLength);
+            Assert.IsFalse(legal, CoreMiscText.CodeBadLength);
 
             legal = QueryEvent.IsPreferredControlCode(eventDB, " X", out reason);
             Assert.IsFalse(legal);
-            Assert.AreEqual(reason, MiscText.CodeContainsSpace);
+            Assert.AreEqual(reason, CoreMiscText.CodeContainsSpace);
 
             undomgr.BeginCommand(555, "Change auto numbering");
             ChangeEvent.ChangeAutoNumbering(eventDB, 31, false);  // allow invertible codes.
@@ -782,11 +782,11 @@ namespace PurplePen.Tests
 
             legal = QueryEvent.IsLegalControlCode("1234", out reason);
             Assert.IsFalse(legal);
-            Assert.AreEqual(reason, MiscText.CodeBadLength);
+            Assert.AreEqual(reason, CoreMiscText.CodeBadLength);
 
             legal = QueryEvent.IsLegalControlCode(" X", out reason);
             Assert.IsFalse(legal);
-            Assert.AreEqual(reason, MiscText.CodeContainsSpace);
+            Assert.AreEqual(reason, CoreMiscText.CodeContainsSpace);
         }
 
 

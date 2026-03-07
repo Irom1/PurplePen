@@ -235,18 +235,6 @@ Użyj | aby rozdzielić linie
   <data name="DeleteControlFromAllControls" xml:space="preserve">
     <value>PK {0} jest obecnie używany przez następujące trasy: {1}. Czy mimo wszystko chcesz usunąć ten PK?</value>
   </data>
-  <data name="CodeBadLength" xml:space="preserve">
-    <value>Kod PK musi składać się z jednej, dwóch lub trzech liter i/lub cyfr.</value>
-  </data>
-  <data name="CodeContainsSpace" xml:space="preserve">
-    <value>Kod PK nie może zawierać spacji.</value>
-  </data>
-  <data name="CodeBeginsWithZero" xml:space="preserve">
-    <value>Kod PK nie może zaczynać się wiodącym zerem.</value>
-  </data>
-  <data name="CodeCouldBeUpsideDown" xml:space="preserve">
-    <value>Kod PK nie powinien wyglądać jak inna liczba odczytywana do góry nogami.</value>
-  </data>
   <data name="DuplicateCode" xml:space="preserve">
     <value>Kod PK "{0}" jest użyty więcej niż raz.</value>
   </data>
@@ -288,9 +276,6 @@ Użyj | aby rozdzielić linie
   </data>
   <data name="NextButtonText" xml:space="preserve">
     <value>&amp;Dalej &gt;</value>
-  </data>
-  <data name="Control_Code" xml:space="preserve">
-    <value>PK {0}</value>
   </data>
   <data name="Finish" xml:space="preserve">
     <value>Meta</value>

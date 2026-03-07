@@ -238,18 +238,6 @@
   <data name="DeleteControlFromAllControls" xml:space="preserve">
     <value>КП {0} використовується у наступних дистанціях: {1}. Ви все одно бажаєте його видалити?</value>
   </data>
-  <data name="CodeBadLength" xml:space="preserve">
-    <value>Код КП має складатись із однієї, двох чи трьох букв або цифр.</value>
-  </data>
-  <data name="CodeContainsSpace" xml:space="preserve">
-    <value>Код КП не може містити пробілів</value>
-  </data>
-  <data name="CodeBeginsWithZero" xml:space="preserve">
-    <value>Не слід використовувати нуль у якості кода КП.</value>
-  </data>
-  <data name="CodeCouldBeUpsideDown" xml:space="preserve">
-    <value>Не слід використовувати у якості кода КП цифру, що виглядає як інша перевернута цифра.</value>
-  </data>
   <data name="DuplicateCode" xml:space="preserve">
     <value>Код КП "{0}" використовується понад один раз.</value>
   </data>
@@ -297,9 +285,6 @@
   </data>
   <data name="NextButtonText" xml:space="preserve">
     <value>&amp;Далі &gt;</value>
-  </data>
-  <data name="Control_Code" xml:space="preserve">
-    <value>КП {0}</value>
   </data>
   <data name="Finish" xml:space="preserve">
     <value>Фініш</value>
@@ -553,15 +538,6 @@
   <data name="VariationNotLastControl" xml:space="preserve">
     <value>Розсіювання не може бути застосовано на останньому КП. Спершу додайте фінішний КП.</value>
   </data>
-  <data name="BadLegNumber" xml:space="preserve">
-    <value>'{0}' не є правильною кількістю етапів для гілки '{1}'</value>
-  </data>
-  <data name="LegNotAssigned" xml:space="preserve">
-    <value>Етап {0} має бути призначений для однієї з гілок {1}</value>
-  </data>
-  <data name="LegUsedTwice" xml:space="preserve">
-    <value>Етап {0} призначено як на гілку '{1}' так і на гілку '{2}'</value>
-  </data>
   <data name="MapIssue_Long" xml:space="preserve">
     <value>Виносний старт</value>
   </data>
@@ -585,9 +561,6 @@
   </data>
   <data name="PdfFilter" xml:space="preserve">
     <value>PDF файл|*.pdf</value>
-  </data>
-  <data name="LegAssignedOuterBranch" xml:space="preserve">
-    <value>Етап {0} ніколи не потрапить на гілку '{1}': для нього був призначений інший шлях у попередній розвилці.</value>
   </data>
   <data name="AddEllipseExplanation" xml:space="preserve">
     <value>Налаштуйте вигляд еліпса. Після натискання на OK потягніть мишкою щоб розмістити еліпс у бажаному місці.</value>

@@ -238,18 +238,6 @@
   <data name="DeleteControlFromAllControls" xml:space="preserve">
     <value>Posten {0} wird noch in folgenden Bahnen verwendet: {1}. Soll dieser Posten trotzdem gelöscht werden?</value>
   </data>
-  <data name="CodeBadLength" xml:space="preserve">
-    <value>Ein Kontrollcode muss aus 1, 2 oder 3 Buchstaben oder Zahlen bestehen.</value>
-  </data>
-  <data name="CodeContainsSpace" xml:space="preserve">
-    <value>Der Kontrollcode darf keine Leerzeichen enthalten.</value>
-  </data>
-  <data name="CodeBeginsWithZero" xml:space="preserve">
-    <value>Ein Kontrollcode darf nicht mit einer Null beginnen.</value>
-  </data>
-  <data name="CodeCouldBeUpsideDown" xml:space="preserve">
-    <value>Ein Kontrollcode darf auf den Kopf gestellt keine andere Zahl darstellen.</value>
-  </data>
   <data name="DuplicateCode" xml:space="preserve">
     <value>Der Code "{0}" wird mehr, als einmal verwendet.</value>
   </data>
@@ -297,9 +285,6 @@ Suchen Sie, nach Klicken auf "OK", nach der Kartendatei auf Ihrem Computer.</val
   </data>
   <data name="NextButtonText" xml:space="preserve">
     <value>&amp;Weiter &gt;</value>
-  </data>
-  <data name="Control_Code" xml:space="preserve">
-    <value>Posten {0}</value>
   </data>
   <data name="Finish" xml:space="preserve">
     <value>Ziel</value>
@@ -556,15 +541,6 @@ Suchen Sie, nach Klicken auf "OK", nach der Kartendatei auf Ihrem Computer.</val
   <data name="VariationNotLastControl" xml:space="preserve">
     <value>Beim letzten Posten kann keine Variante hinzugefügt werden. Zuerst muss ein Zielposten hinzugefügt werden.</value>
   </data>
-  <data name="BadLegNumber" xml:space="preserve">
-    <value>'{0}' ist keine gültige Teilstreckennummer für die Verzweigung '{1}'</value>
-  </data>
-  <data name="LegNotAssigned" xml:space="preserve">
-    <value>Teilstrecke {0} sollte einer Verzweigung {1} zugewiesen sein.</value>
-  </data>
-  <data name="LegUsedTwice" xml:space="preserve">
-    <value>Teilstrecke {0} ist Verzweigung '{1}' und Verzweigung '{2}' zugewiesen</value>
-  </data>
   <data name="MapIssue_Long" xml:space="preserve">
     <value>Zeitgesteuerter Start</value>
   </data>
@@ -588,9 +564,6 @@ Suchen Sie, nach Klicken auf "OK", nach der Kartendatei auf Ihrem Computer.</val
   </data>
   <data name="PdfFilter" xml:space="preserve">
     <value>PDF-Datei|*.pdf</value>
-  </data>
-  <data name="LegAssignedOuterBranch" xml:space="preserve">
-    <value>Teilstrecke {0} erreicht nie Verzweigung '{1}': Der Teilstrecke wurde an einer Gabelung eine andere Richtung zugewiesen.</value>
   </data>
   <data name="AddEllipseExplanation" xml:space="preserve">
     <value>Das Aussehen der Ellipse festlegen. Nach Klicken  auf "OK" die Ellipse an die gewünschte Position ziehen.</value>

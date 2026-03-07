@@ -61,11 +61,29 @@ namespace PurplePen {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to All controls.
+        /// </summary>
+        internal static string AllControls {
+            get {
+                return ResourceManager.GetString("AllControls", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to All Variations.
         /// </summary>
         internal static string AllVariations {
             get {
                 return ResourceManager.GetString("AllVariations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &apos;{0}&apos; is not a valid leg number for branch &apos;{1}&apos;.
+        /// </summary>
+        internal static string BadLegNumber {
+            get {
+                return ResourceManager.GetString("BadLegNumber", resourceCulture);
             }
         }
         
@@ -97,6 +115,177 @@ namespace PurplePen {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to A control code must be one, two, or three letters or digits..
+        /// </summary>
+        internal static string CodeBadLength {
+            get {
+                return ResourceManager.GetString("CodeBadLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A control code should not begin with zero..
+        /// </summary>
+        internal static string CodeBeginsWithZero {
+            get {
+                return ResourceManager.GetString("CodeBeginsWithZero", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A control code must not contain a space..
+        /// </summary>
+        internal static string CodeContainsSpace {
+            get {
+                return ResourceManager.GetString("CodeContainsSpace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A control code should not look like another number when upside-down..
+        /// </summary>
+        internal static string CodeCouldBeUpsideDown {
+            get {
+                return ResourceManager.GetString("CodeCouldBeUpsideDown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Control {0}.
+        /// </summary>
+        internal static string Control_Code {
+            get {
+                return ResourceManager.GetString("Control_Code", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Finish.
+        /// </summary>
+        internal static string Finish {
+            get {
+                return ResourceManager.GetString("Finish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to F.
+        /// </summary>
+        internal static string Finish_Short {
+            get {
+                return ResourceManager.GetString("Finish_Short", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Leg {0} never reaches branch &apos;{1}&apos;: it was assigned to go a different way in a containing fork..
+        /// </summary>
+        internal static string LegAssignedOuterBranch {
+            get {
+                return ResourceManager.GetString("LegAssignedOuterBranch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Leg {0} should be assigned to one of branches {1}.
+        /// </summary>
+        internal static string LegNotAssigned {
+            get {
+                return ResourceManager.GetString("LegNotAssigned", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Leg {0} is assigned to both branch &apos;{1}&apos; and branch &apos;{2}&apos;.
+        /// </summary>
+        internal static string LegUsedTwice {
+            get {
+                return ResourceManager.GetString("LegUsedTwice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mandatory crossing point.
+        /// </summary>
+        internal static string MandCrossing_Long {
+            get {
+                return ResourceManager.GetString("MandCrossing_Long", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Crossing.
+        /// </summary>
+        internal static string MandCrossing_Medium {
+            get {
+                return ResourceManager.GetString("MandCrossing_Medium", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to C.
+        /// </summary>
+        internal static string MandCrossing_Short {
+            get {
+                return ResourceManager.GetString("MandCrossing_Short", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Map exchange.
+        /// </summary>
+        internal static string MapExchange_Long {
+            get {
+                return ResourceManager.GetString("MapExchange_Long", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exchange.
+        /// </summary>
+        internal static string MapExchange_Medium {
+            get {
+                return ResourceManager.GetString("MapExchange_Medium", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MX.
+        /// </summary>
+        internal static string MapExchange_Short {
+            get {
+                return ResourceManager.GetString("MapExchange_Short", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Timed Start.
+        /// </summary>
+        internal static string MapIssue_Long {
+            get {
+                return ResourceManager.GetString("MapIssue_Long", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Timed Start.
+        /// </summary>
+        internal static string MapIssue_Medium {
+            get {
+                return ResourceManager.GetString("MapIssue_Medium", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TS.
+        /// </summary>
+        internal static string MapIssue_Short {
+            get {
+                return ResourceManager.GetString("MapIssue_Short", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Pdfium PDF converter failed to read PDF file successfully.
         /// </summary>
         internal static string PdfConversionFailed {
@@ -120,6 +309,24 @@ namespace PurplePen {
         internal static string PdfResultNotReadable {
             get {
                 return ResourceManager.GetString("PdfResultNotReadable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start.
+        /// </summary>
+        internal static string Start {
+            get {
+                return ResourceManager.GetString("Start", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to S.
+        /// </summary>
+        internal static string Start_Short {
+            get {
+                return ResourceManager.GetString("Start_Short", resourceCulture);
             }
         }
     }

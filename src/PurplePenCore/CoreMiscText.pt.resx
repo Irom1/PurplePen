@@ -117,8 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AllControls" xml:space="preserve">
+    <value>Matriz de Pontos de Controlo</value>
+  </data>
   <data name="AllVariations" xml:space="preserve">
     <value>Todas as Variações</value>
+  </data>
+  <data name="BadLegNumber" xml:space="preserve">
+    <value>'{0}' não é um número de pernada válido para a variante {1}'</value>
   </data>
   <data name="CannotReadImageFile" xml:space="preserve">
     <value>Não é possível ler o ficheiro imagem '{0}'.</value>
@@ -130,6 +136,63 @@
     <value>Não é possível ler o mapa pelo seguinte motivo: '{0}' 
 Abrir e salvar novamente o mapa na versão mais recente do OpenOrienteering Mapper pode corrigir problemas.</value>
   </data>
+  <data name="CodeBadLength" xml:space="preserve">
+    <value>Um código de ponto de controlo deve ter uma, duas ou três letras ou dígitos.</value>
+  </data>
+  <data name="CodeBeginsWithZero" xml:space="preserve">
+    <value>Um código de ponto de controlo não deve começar com zero.</value>
+  </data>
+  <data name="CodeContainsSpace" xml:space="preserve">
+    <value>Um código de ponto de controlo não deve conter um espaço.</value>
+  </data>
+  <data name="CodeCouldBeUpsideDown" xml:space="preserve">
+    <value>Um código de ponto de controlo não deve se parecer com outro número quando está de cabeça para baixo.</value>
+  </data>
+  <data name="Control_Code" xml:space="preserve">
+    <value>Ponto de Controlo {0}</value>
+  </data>
+  <data name="Finish" xml:space="preserve">
+    <value>Chegada</value>
+  </data>
+  <data name="Finish_Short" xml:space="preserve">
+    <value>C</value>
+  </data>
+  <data name="LegAssignedOuterBranch" xml:space="preserve">
+    <value>A pernada {0} nunca alcança a variante '{1}': ela foi atribuída para seguir um caminho diferente em uma dispersão de contenção.</value>
+  </data>
+  <data name="LegNotAssigned" xml:space="preserve">
+    <value>A pernada {0} deve ser atribuída a uma das variantes {1}</value>
+  </data>
+  <data name="LegUsedTwice" xml:space="preserve">
+    <value>A pernada {0} é atribuída tanto à variante '{1}' quanto à variante '{2}'</value>
+  </data>
+  <data name="MandCrossing_Long" xml:space="preserve">
+    <value>Ponto de passagem obrigatório</value>
+  </data>
+  <data name="MandCrossing_Medium" xml:space="preserve">
+    <value>Cruzamento</value>
+  </data>
+  <data name="MandCrossing_Short" xml:space="preserve">
+    <value>C</value>
+  </data>
+  <data name="MapExchange_Long" xml:space="preserve">
+    <value>Troca de Mapa</value>
+  </data>
+  <data name="MapExchange_Medium" xml:space="preserve">
+    <value>Troca</value>
+  </data>
+  <data name="MapExchange_Short" xml:space="preserve">
+    <value>MX</value>
+  </data>
+  <data name="MapIssue_Long" xml:space="preserve">
+    <value>Início cronometrado</value>
+  </data>
+  <data name="MapIssue_Medium" xml:space="preserve">
+    <value>Início cronometrado</value>
+  </data>
+  <data name="MapIssue_Short" xml:space="preserve">
+    <value>TS</value>
+  </data>
   <data name="PdfConversionFailed" xml:space="preserve">
     <value>O conversor de PDF Pdfium falhou ao ler o ficheiro PDF</value>
   </data>
@@ -138,5 +201,11 @@ Abrir e salvar novamente o mapa na versão mais recente do OpenOrienteering Mapp
   </data>
   <data name="PdfResultNotReadable" xml:space="preserve">
     <value>Não foi possível ler o resultado da conversão de PDF do ficheiro '{0}'</value>
+  </data>
+  <data name="Start" xml:space="preserve">
+    <value>Partida</value>
+  </data>
+  <data name="Start_Short" xml:space="preserve">
+    <value>S</value>
   </data>
 </root>

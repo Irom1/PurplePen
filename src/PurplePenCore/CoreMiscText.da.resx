@@ -117,8 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AllControls" xml:space="preserve">
+    <value>Tilføj kontroller</value>
+  </data>
   <data name="AllVariations" xml:space="preserve">
     <value>Alle variationer</value>
+  </data>
+  <data name="BadLegNumber" xml:space="preserve">
+    <value>'{0}' er  ikke et gyldigt bennummer til gren '{1}'</value>
   </data>
   <data name="CannotReadImageFile" xml:space="preserve">
     <value>Kan ikke læse billedfil '(0)'</value>
@@ -129,6 +135,60 @@
   <data name="CannotReadMapOOM" xml:space="preserve">
     <value>Kan ikke læse kort af følgende grund: '{0}' Åbning og gen-gem kortet i den seneste version af OpenOrienteering Mapper kan løse problemerne.</value>
   </data>
+  <data name="CodeBadLength" xml:space="preserve">
+    <value>En kontrolkode skal være en, to eller tre bogstaver eller tal.</value>
+  </data>
+  <data name="CodeBeginsWithZero" xml:space="preserve">
+    <value>En kontrolkode skulle ikke begynde med et nul.</value>
+  </data>
+  <data name="CodeContainsSpace" xml:space="preserve">
+    <value>En kontrolkode må ikke indeholde mellemrum.</value>
+  </data>
+  <data name="CodeCouldBeUpsideDown" xml:space="preserve">
+    <value>En kontrolkode skulle ikke se ud som et andet nummer ved op-ned.</value>
+  </data>
+  <data name="Control_Code" xml:space="preserve">
+    <value>Kontrol {0}</value>
+  </data>
+  <data name="Finish" xml:space="preserve">
+    <value>Afslut</value>
+  </data>
+  <data name="Finish_Short" xml:space="preserve">
+    <value>F</value>
+  </data>
+  <data name="LegAssignedOuterBranch" xml:space="preserve">
+    <value>Ben {0} når aldrig gren '{1}': det var tildelt at gå en anderledes vej i en Indeholdende fork.</value>
+  </data>
+  <data name="LegNotAssigned" xml:space="preserve">
+    <value>Ben {0} skal tildeles en sf grenene {1}</value>
+  </data>
+  <data name="LegUsedTwice" xml:space="preserve">
+    <value>Ben {0} er tildelt begge grene '{1}' og gren '{2}'</value>
+  </data>
+  <data name="MandCrossing_Long" xml:space="preserve">
+    <value>Oblikatorisk krydspunkt</value>
+  </data>
+  <data name="MandCrossing_Medium" xml:space="preserve">
+    <value>Overgang</value>
+  </data>
+  <data name="MandCrossing_Short" xml:space="preserve">
+    <value>C</value>
+  </data>
+  <data name="MapExchange_Long" xml:space="preserve">
+    <value>Kortudveksling</value>
+  </data>
+  <data name="MapExchange_Medium" xml:space="preserve">
+    <value>Udveksl</value>
+  </data>
+  <data name="MapExchange_Short" xml:space="preserve">
+    <value>MX</value>
+  </data>
+  <data name="MapIssue_Long" xml:space="preserve">
+    <value>Timet start</value>
+  </data>
+  <data name="MapIssue_Medium" xml:space="preserve">
+    <value>Timet start</value>
+  </data>
   <data name="PdfConversionFailed" xml:space="preserve">
     <value>Pdfium PDF converter mislykkedes med at læse PDF fil successfuldt</value>
   </data>
@@ -137,5 +197,11 @@
   </data>
   <data name="PdfResultNotReadable" xml:space="preserve">
     <value>Kunne ikke læse resultatet af PDF omdannelse fra fil '{0}'</value>
+  </data>
+  <data name="Start" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="Start_Short" xml:space="preserve">
+    <value>S</value>
   </data>
 </root>

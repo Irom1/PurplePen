@@ -238,18 +238,6 @@ Használja a | jelet sorelválsztóként</value>
   <data name="DeleteControlFromAllControls" xml:space="preserve">
     <value>Az ellenőrzőpont {0} használt az alábbi pályákon: {1}. Tényleg törölni akarja ennek ellenére?</value>
   </data>
-  <data name="CodeBadLength" xml:space="preserve">
-    <value>Az ellenőrzőpont kódja egy, kettő vagy három betű vagy számjegy lehet.</value>
-  </data>
-  <data name="CodeContainsSpace" xml:space="preserve">
-    <value>Az ellenőrzőpont kódja nem tartalmazhat szóközt.</value>
-  </data>
-  <data name="CodeBeginsWithZero" xml:space="preserve">
-    <value>Az ellenőrzőpont kódja nem kezdődhet nullával.</value>
-  </data>
-  <data name="CodeCouldBeUpsideDown" xml:space="preserve">
-    <value>Az ellenőrzőpont kódja célszerű, ha nem egyezik meg egy másik pont kódjának fejjel lefelé fordított változatával.</value>
-  </data>
   <data name="DuplicateCode" xml:space="preserve">
     <value>A {0} kód többszörösen van használva.</value>
   </data>
@@ -297,9 +285,6 @@ A Rendben lenyomása után próbálja megkeresni a térkép fájlt a számítóg
   </data>
   <data name="NextButtonText" xml:space="preserve">
     <value>&amp;Tovább &gt;</value>
-  </data>
-  <data name="Control_Code" xml:space="preserve">
-    <value>Ellenőrzőpont {0}</value>
   </data>
   <data name="Finish" xml:space="preserve">
     <value>Cél</value>
@@ -556,15 +541,6 @@ A Rendben lenyomása után próbálja megkeresni a térkép fájlt a számítóg
   <data name="VariationNotLastControl" xml:space="preserve">
     <value>Variációt nem lehet az utolsó ellenőrzőponthoz adni. Adja hozzá előbb a célt.</value>
   </data>
-  <data name="BadLegNumber" xml:space="preserve">
-    <value>'{0}' nem egy valós ág a(z)  '{1}' elágazáshoz.</value>
-  </data>
-  <data name="LegNotAssigned" xml:space="preserve">
-    <value>A(z) {0} ágat hozzá kell rendelni valamelyik elágazáshoz: {1}</value>
-  </data>
-  <data name="LegUsedTwice" xml:space="preserve">
-    <value>A(z) {0} ág hozzá van rendelve a(z) '{1}' és a(z) '{2}' elágazáshoz is.</value>
-  </data>
   <data name="MapIssue_Long" xml:space="preserve">
     <value>Időzített indítás</value>
   </data>
@@ -588,9 +564,6 @@ A Rendben lenyomása után próbálja megkeresni a térkép fájlt a számítóg
   </data>
   <data name="PdfFilter" xml:space="preserve">
     <value>PDF Fájl|*.pdf</value>
-  </data>
-  <data name="LegAssignedOuterBranch" xml:space="preserve">
-    <value>A(z) {0} ág sohasem érinti a(z) '{1}' elágazást: másként kell megadni az utakat a tatalmazó villában.</value>
   </data>
   <data name="DownloadGhostscript" xml:space="preserve">
     <value>A PDF fájlok betöltéséhez szükséges a GPL Ghostscript. Kívánja automatikusan letölteni és telepíteni?</value>

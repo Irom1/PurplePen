@@ -221,7 +221,7 @@ namespace PurplePen
                 return list.ToArray();
             }
 
-            list.Add(new TextPart(TextFormat.NewLine, string.Format(format, WindowsUtil.ControlPointName(eventDB, controlId, NameStyle.Long))));
+            list.Add(new TextPart(TextFormat.NewLine, string.Format(format, Util.ControlPointName(eventDB, controlId, NameStyle.Long))));
 
             return list.ToArray();
         }
@@ -236,7 +236,7 @@ namespace PurplePen
             ControlPoint control = eventDB.GetControl(controlId);
 
             // Control name/code.
-            list.Add(new TextPart(TextFormat.Title, WindowsUtil.ControlPointName(eventDB, controlId, NameStyle.Long)));
+            list.Add(new TextPart(TextFormat.Title, Util.ControlPointName(eventDB, controlId, NameStyle.Long)));
 
             // Control location.
             if (descKind == DescKind.DescPane) {
@@ -455,7 +455,7 @@ namespace PurplePen
             List<TextPart> list = new List<TextPart>();
 
             // Course name
-            list.Add(new TextPart(TextFormat.Title, string.Format("{0} \u2013 {1}", WindowsUtil.ControlPointName(eventDB, controlId1, NameStyle.Long), WindowsUtil.ControlPointName(eventDB, controlId2, NameStyle.Long))));
+            list.Add(new TextPart(TextFormat.Title, string.Format("{0} \u2013 {1}", Util.ControlPointName(eventDB, controlId1, NameStyle.Long), Util.ControlPointName(eventDB, controlId2, NameStyle.Long))));
 
             // Course length
             list.Add(new TextPart(TextFormat.Header, SelectionDescriptionText.Length));
@@ -500,7 +500,7 @@ namespace PurplePen
                 symbolId = "13.5control";
             }
 
-            list.Add(new TextPart(TextFormat.Title, string.Format(titleText, WindowsUtil.ControlPointName(eventDB, controlId, NameStyle.Long))));
+            list.Add(new TextPart(TextFormat.Title, string.Format(titleText, Util.ControlPointName(eventDB, controlId, NameStyle.Long))));
 
             // Text version of the descriptions
             if (descKind == DescKind.DescPane) {

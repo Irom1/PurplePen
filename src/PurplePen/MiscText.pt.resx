@@ -241,18 +241,6 @@ Deseja excluir este controle da coleção de pontos de controlo?</value>
     <value>O ponto de controlo {0} é usado atualmente pelos seguintes percursos: {1}.
 Deseja excluir este ponto de controlo mesmo assim?</value>
   </data>
-  <data name="CodeBadLength" xml:space="preserve">
-    <value>Um código de ponto de controlo deve ter uma, duas ou três letras ou dígitos.</value>
-  </data>
-  <data name="CodeContainsSpace" xml:space="preserve">
-    <value>Um código de ponto de controlo não deve conter um espaço.</value>
-  </data>
-  <data name="CodeBeginsWithZero" xml:space="preserve">
-    <value>Um código de ponto de controlo não deve começar com zero.</value>
-  </data>
-  <data name="CodeCouldBeUpsideDown" xml:space="preserve">
-    <value>Um código de ponto de controlo não deve se parecer com outro número quando está de cabeça para baixo.</value>
-  </data>
   <data name="DuplicateCode" xml:space="preserve">
     <value>O código "{0}" é usado mais de uma vez.</value>
   </data>
@@ -301,9 +289,6 @@ Após pressionar OK, tente encontrar uma cópia do ficheiro de mapa em seu compu
   </data>
   <data name="NextButtonText" xml:space="preserve">
     <value>Segui&amp;nte &gt;</value>
-  </data>
-  <data name="Control_Code" xml:space="preserve">
-    <value>Ponto de Controlo {0}</value>
   </data>
   <data name="Finish" xml:space="preserve">
     <value>Chegada</value>
@@ -569,15 +554,6 @@ O número de variações distintas é limitado a {0}.</value>
 
 Adicione um ponto de controlo de chegada primeiro.</value>
   </data>
-  <data name="BadLegNumber" xml:space="preserve">
-    <value>'{0}' não é um número de pernada válido para a variante {1}'</value>
-  </data>
-  <data name="LegNotAssigned" xml:space="preserve">
-    <value>A pernada {0} deve ser atribuída a uma das variantes {1}</value>
-  </data>
-  <data name="LegUsedTwice" xml:space="preserve">
-    <value>A pernada {0} é atribuída tanto à variante '{1}' quanto à variante '{2}'</value>
-  </data>
   <data name="MapIssue_Long" xml:space="preserve">
     <value>Início cronometrado</value>
   </data>
@@ -601,9 +577,6 @@ Adicione um ponto de controlo de chegada primeiro.</value>
   </data>
   <data name="PdfFilter" xml:space="preserve">
     <value>Ficheiro PDF |*.pdf</value>
-  </data>
-  <data name="LegAssignedOuterBranch" xml:space="preserve">
-    <value>A pernada {0} nunca alcança a variante '{1}': ela foi atribuída para seguir um caminho diferente em uma dispersão de contenção.</value>
   </data>
   <data name="AddEllipseExplanation" xml:space="preserve">
     <value>Defina a aparência da elipse. Após pressionar OK, arraste o mouse para posicionar a elipse no local desejado.</value>

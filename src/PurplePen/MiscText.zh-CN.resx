@@ -237,18 +237,6 @@
   <data name="DeleteControlFromAllControls" xml:space="preserve">
     <value>检查点{0}当前由以下线路使用：{1}。是否仍要删除此检查点？</value>
   </data>
-  <data name="CodeBadLength" xml:space="preserve">
-    <value>检查点编号必须是一个、两个或三个字母或数字。</value>
-  </data>
-  <data name="CodeContainsSpace" xml:space="preserve">
-    <value>检查点编号不能包含空格。</value>
-  </data>
-  <data name="CodeBeginsWithZero" xml:space="preserve">
-    <value>检查点编号不应以零开头。</value>
-  </data>
-  <data name="CodeCouldBeUpsideDown" xml:space="preserve">
-    <value>当一个检查点编号颠倒时，它不应该看起来像另一个数字。</value>
-  </data>
   <data name="DuplicateCode" xml:space="preserve">
     <value>代码“{0}”被多次使用。</value>
   </data>
@@ -296,9 +284,6 @@
   </data>
   <data name="NextButtonText" xml:space="preserve">
     <value>下一步(&amp;N) &gt;</value>
-  </data>
-  <data name="Control_Code" xml:space="preserve">
-    <value>检查点{0}</value>
   </data>
   <data name="Finish" xml:space="preserve">
     <value>结束</value>
@@ -555,15 +540,6 @@
   <data name="VariationNotLastControl" xml:space="preserve">
     <value>无法将分支添加到最后一个检查点。首先要添加一个终点。</value>
   </data>
-  <data name="BadLegNumber" xml:space="preserve">
-    <value>'{0}' 不是一个有效的路段序号对于分支 '{1}'</value>
-  </data>
-  <data name="LegNotAssigned" xml:space="preserve">
-    <value>路段 {0} 应该分配给其中一个分支 {1}</value>
-  </data>
-  <data name="LegUsedTwice" xml:space="preserve">
-    <value>路段 {0} 同时分配给分支 '{1}' 和分支 '{2}'</value>
-  </data>
   <data name="MapIssue_Long" xml:space="preserve">
     <value>计时起始位置</value>
   </data>
@@ -587,9 +563,6 @@
   </data>
   <data name="PdfFilter" xml:space="preserve">
     <value>PDF文件|*.pdf</value>
-  </data>
-  <data name="LegAssignedOuterBranch" xml:space="preserve">
-    <value>路段{0}永远不会到达分支{1}：它被分配到包含分支的另一个方向。</value>
   </data>
   <data name="AddEllipseExplanation" xml:space="preserve">
     <value>设置椭圆的参数。按“确定”后，拖动鼠标将椭圆放置在所需位置。</value>

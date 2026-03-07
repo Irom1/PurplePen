@@ -238,18 +238,6 @@
   <data name="DeleteControlFromAllControls" xml:space="preserve">
     <value>檢查點{0} 目前使用在下列賽程中 {1}. 您是否一定要刪除這個檢查點?</value>
   </data>
-  <data name="CodeBadLength" xml:space="preserve">
-    <value>檢查點編號必須是一、二、三個字母或數字。</value>
-  </data>
-  <data name="CodeContainsSpace" xml:space="preserve">
-    <value>檢查點編號必須不包含空格.</value>
-  </data>
-  <data name="CodeBeginsWithZero" xml:space="preserve">
-    <value>檢查點編號不應從零開始.</value>
-  </data>
-  <data name="CodeCouldBeUpsideDown" xml:space="preserve">
-    <value>檢查點編號在上下顛倒時不應該看起來像另一個數字。</value>
-  </data>
   <data name="DuplicateCode" xml:space="preserve">
     <value>編號 "{0}"被使用超過1次.</value>
   </data>
@@ -297,9 +285,6 @@
   </data>
   <data name="NextButtonText" xml:space="preserve">
     <value>下一步 &gt;</value>
-  </data>
-  <data name="Control_Code" xml:space="preserve">
-    <value>檢查點 {0}</value>
   </data>
   <data name="Finish" xml:space="preserve">
     <value>終點</value>
@@ -556,15 +541,6 @@
   <data name="VariationNotLastControl" xml:space="preserve">
     <value>不能將分散變化新增到最後一個檢查點。要先新增一個終點。</value>
   </data>
-  <data name="BadLegNumber" xml:space="preserve">
-    <value>“{0}”不是分支“{1}”的有效賽段編號</value>
-  </data>
-  <data name="LegNotAssigned" xml:space="preserve">
-    <value>賽段 {0} 應分配至分支 {1} 之一</value>
-  </data>
-  <data name="LegUsedTwice" xml:space="preserve">
-    <value>賽段 {0} 同時被分配給分支“{1}”和分支“{2}”</value>
-  </data>
   <data name="MapIssue_Long" xml:space="preserve">
     <value>計時起點</value>
   </data>
@@ -588,9 +564,6 @@
   </data>
   <data name="PdfFilter" xml:space="preserve">
     <value>PDF檔案|*.pdf</value>
-  </data>
-  <data name="LegAssignedOuterBranch" xml:space="preserve">
-    <value>賽段 {0} 永遠不會到達分支“{1}”：它被分配到分叉中的不同路線。</value>
   </data>
   <data name="AddEllipseExplanation" xml:space="preserve">
     <value>設定橢圓模式的顯示。點擊OK後，拖曳滑鼠至橢圓所在的位置。</value>

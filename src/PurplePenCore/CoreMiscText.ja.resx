@@ -117,11 +117,53 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AllControls" xml:space="preserve">
+    <value>全コントロール</value>
+  </data>
   <data name="AllVariations" xml:space="preserve">
     <value>すべてのバリエーション</value>
   </data>
   <data name="CannotReadImageFile" xml:space="preserve">
     <value>画像ファイル '{0}' をロードできません。</value>
+  </data>
+  <data name="CodeBadLength" xml:space="preserve">
+    <value>コントロールコードには1～3桁の数字または文字を設定してください。</value>
+  </data>
+  <data name="CodeBeginsWithZero" xml:space="preserve">
+    <value>コントロールコードは0から始めるべきではありません。</value>
+  </data>
+  <data name="CodeContainsSpace" xml:space="preserve">
+    <value>コントロールコードにスペースを入れないでください。</value>
+  </data>
+  <data name="CodeCouldBeUpsideDown" xml:space="preserve">
+    <value>コントロールコードには、逆さにも読める番号を使用しないことを勧めます。</value>
+  </data>
+  <data name="Control_Code" xml:space="preserve">
+    <value>コントロール {0}</value>
+  </data>
+  <data name="Finish" xml:space="preserve">
+    <value>フィニッシュ</value>
+  </data>
+  <data name="Finish_Short" xml:space="preserve">
+    <value>F</value>
+  </data>
+  <data name="MandCrossing_Long" xml:space="preserve">
+    <value>必須の横断地点</value>
+  </data>
+  <data name="MandCrossing_Medium" xml:space="preserve">
+    <value>交点</value>
+  </data>
+  <data name="MandCrossing_Short" xml:space="preserve">
+    <value>C</value>
+  </data>
+  <data name="MapExchange_Long" xml:space="preserve">
+    <value>地図交換所</value>
+  </data>
+  <data name="MapExchange_Medium" xml:space="preserve">
+    <value>交換</value>
+  </data>
+  <data name="MapExchange_Short" xml:space="preserve">
+    <value>MX</value>
   </data>
   <data name="PdfConversionFailed" xml:space="preserve">
     <value>Pdfium PDF converter がPDFファイルの正常な読み込みに失敗しました</value>
@@ -131,5 +173,11 @@
   </data>
   <data name="PdfResultNotReadable" xml:space="preserve">
     <value>ファイル '{0}' からのPDF変換の結果が読み込めませんでした</value>
+  </data>
+  <data name="Start" xml:space="preserve">
+    <value>スタート</value>
+  </data>
+  <data name="Start_Short" xml:space="preserve">
+    <value>S</value>
   </data>
 </root>

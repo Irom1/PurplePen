@@ -1,6 +1,7 @@
 ﻿using PurplePen.Graphics2D;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing.Imaging;
 using System.Globalization;
 using System.IO;
@@ -354,6 +355,65 @@ namespace PurplePen
             return Path.Combine(appPath, filename);
         }
 
+        // Get the text name for a control. THe Name Style controls how the control points appear:
+        // Long:  "Control 32", "Start", "Finish", "Mandatory crossing point".
+        // Medium: "32", "Start", "Finish", "Crossing"
+        // Short: "32", "S", "F", "C"
+        public static string ControlPointName(EventDB eventDB, Id<ControlPoint> controlId, NameStyle style)
+        {
+            ControlPoint control = eventDB.GetControl(controlId);
+
+            // Control name/code.
+            switch (control.kind) {
+            case ControlPointKind.Normal:
+                if (style == NameStyle.Long)
+                    return string.Format(CoreMiscText.Control_Code, control.code);
+                else
+                    return string.Format("{0}", control.code);
+
+            case ControlPointKind.Start:
+                if (style == NameStyle.Short)
+                    return CoreMiscText.Start_Short;
+                else
+                    return CoreMiscText.Start;
+
+            case ControlPointKind.Finish:
+                if (style == NameStyle.Short)
+                    return CoreMiscText.Finish_Short;
+                else
+                    return CoreMiscText.Finish;
+
+            case ControlPointKind.CrossingPoint:
+                if (style == NameStyle.Long)
+                    return CoreMiscText.MandCrossing_Long;
+                else if (style == NameStyle.Medium)
+                    return CoreMiscText.MandCrossing_Medium;
+                else
+                    return CoreMiscText.MandCrossing_Short;
+
+            case ControlPointKind.MapExchange:
+                if (style == NameStyle.Long)
+                    return CoreMiscText.MapExchange_Long;
+                else if (style == NameStyle.Medium)
+                    return CoreMiscText.MapExchange_Medium;
+                else
+                    return CoreMiscText.MapExchange_Short;
+
+            case ControlPointKind.MapIssue:
+                if (style == NameStyle.Long)
+                    return CoreMiscText.MapIssue_Long;
+                else if (style == NameStyle.Medium)
+                    return CoreMiscText.MapIssue_Medium;
+                else
+                    return CoreMiscText.MapIssue_Short;
+
+            default:
+                Debug.Fail("bad control kind");
+                return "";
+            }
+        }
+
+
 
         static class NativeMethods
         {
@@ -371,4 +431,9 @@ namespace PurplePen
         }
 
     }
+
+    // Name style for ControlPointName()
+    public enum NameStyle { Long, Medium, Short };
+
+
 }

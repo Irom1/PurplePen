@@ -117,8 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AllControls" xml:space="preserve">
+    <value>Tüm hedefler</value>
+  </data>
   <data name="AllVariations" xml:space="preserve">
     <value>Tüm Varyasyonlar</value>
+  </data>
+  <data name="BadLegNumber" xml:space="preserve">
+    <value>'{0}' dalı '{1}' için geçerli bir yarış ayağı değildir</value>
   </data>
   <data name="CannotReadImageFile" xml:space="preserve">
     <value>'{0}' resim dosyası okunamıyor.</value>
@@ -129,6 +135,63 @@
   <data name="CannotReadMapOOM" xml:space="preserve">
     <value>Aşağıdaki sebep yüzünden haritayı okuyamıyor. '{0}' OpenOrienteering Mapper'ın son versiyonunda açmak ve tekrar kaydetmek sorunu çöze bilir.</value>
   </data>
+  <data name="CodeBadLength" xml:space="preserve">
+    <value>Bir kontrol kodu bir, iki veya üç harf veya rakamdan oluşmalıdır.</value>
+  </data>
+  <data name="CodeBeginsWithZero" xml:space="preserve">
+    <value>Bir kontrol kodu sıfır ile başlamamalıdır.</value>
+  </data>
+  <data name="CodeContainsSpace" xml:space="preserve">
+    <value>Bir kontrol kodu boşluk içermemelidir.</value>
+  </data>
+  <data name="CodeCouldBeUpsideDown" xml:space="preserve">
+    <value>Bir kontrol kodu, ters çevrildiğinde başka bir sayı gibi görünmemelidir.</value>
+  </data>
+  <data name="Control_Code" xml:space="preserve">
+    <value>Kontrol {0}</value>
+  </data>
+  <data name="Finish" xml:space="preserve">
+    <value>Bitiş</value>
+  </data>
+  <data name="Finish_Short" xml:space="preserve">
+    <value>F</value>
+  </data>
+  <data name="LegAssignedOuterBranch" xml:space="preserve">
+    <value>Yarış ayağı {0} dal {1} e hiç ulaşmıyor. Var olan çatalda farklı bir yöne gitmesi için atanmış.</value>
+  </data>
+  <data name="LegNotAssigned" xml:space="preserve">
+    <value>Yarış ayağı {0} parkur dallarından {1} e atanmalı</value>
+  </data>
+  <data name="LegUsedTwice" xml:space="preserve">
+    <value>Yarış ayağı {0} parkur dallarından hem {1} e hem de {2} ye atanmalı</value>
+  </data>
+  <data name="MandCrossing_Long" xml:space="preserve">
+    <value>Zorunlu geçiş noktası</value>
+  </data>
+  <data name="MandCrossing_Medium" xml:space="preserve">
+    <value>Geçiş Noktası</value>
+  </data>
+  <data name="MandCrossing_Short" xml:space="preserve">
+    <value>C</value>
+  </data>
+  <data name="MapExchange_Long" xml:space="preserve">
+    <value>Harita değişimi</value>
+  </data>
+  <data name="MapExchange_Medium" xml:space="preserve">
+    <value>Değiştirme</value>
+  </data>
+  <data name="MapExchange_Short" xml:space="preserve">
+    <value>MX</value>
+  </data>
+  <data name="MapIssue_Long" xml:space="preserve">
+    <value>Zamanlayıcı Başlatma</value>
+  </data>
+  <data name="MapIssue_Medium" xml:space="preserve">
+    <value>Zamanlayıcı Başlatma</value>
+  </data>
+  <data name="MapIssue_Short" xml:space="preserve">
+    <value>TS</value>
+  </data>
   <data name="PdfConversionFailed" xml:space="preserve">
     <value>Pdfium PDF dönüştürücü, PDF dosyasını başarıyla okuyamadı</value>
   </data>
@@ -137,5 +200,11 @@
   </data>
   <data name="PdfResultNotReadable" xml:space="preserve">
     <value>'{0}' dosyasından PDF dönüştürmenin sonucu okunamadı</value>
+  </data>
+  <data name="Start" xml:space="preserve">
+    <value>Başlama</value>
+  </data>
+  <data name="Start_Short" xml:space="preserve">
+    <value>S</value>
   </data>
 </root>

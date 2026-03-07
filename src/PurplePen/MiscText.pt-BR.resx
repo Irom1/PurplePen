@@ -241,18 +241,6 @@ Deseja excluir este controle da coleção de controles?</value>
     <value>O controle {0} é usado atualmente pelos seguintes percursos: {1}.
 Deseja excluir este controle mesmo assim?</value>
   </data>
-  <data name="CodeBadLength" xml:space="preserve">
-    <value>Um código de controle deve ter uma, duas ou três letras ou dígitos.</value>
-  </data>
-  <data name="CodeContainsSpace" xml:space="preserve">
-    <value>Um código de controle  não pode conter espaço.</value>
-  </data>
-  <data name="CodeBeginsWithZero" xml:space="preserve">
-    <value>Um código de controle não pode começar com zero.</value>
-  </data>
-  <data name="CodeCouldBeUpsideDown" xml:space="preserve">
-    <value>Um código de controle não deve se parecer com outro número quando está de cabeça para baixo.</value>
-  </data>
   <data name="DuplicateCode" xml:space="preserve">
     <value>O código "{0}" é usado mais de uma vez.</value>
   </data>
@@ -301,9 +289,6 @@ Após pressionar OK, tente encontrar uma cópia do arquivo de mapa em seu comput
   </data>
   <data name="NextButtonText" xml:space="preserve">
     <value>Próxi&amp;mo &gt;</value>
-  </data>
-  <data name="Control_Code" xml:space="preserve">
-    <value>Controle {0}</value>
   </data>
   <data name="Finish" xml:space="preserve">
     <value>Chegada</value>
@@ -567,15 +552,6 @@ O número de variações distintas é limitado a {0}.</value>
     <value>Uma variação não pode ser adicionada ao último controle.
 Adicione um controle de chegada primeiro.</value>
   </data>
-  <data name="BadLegNumber" xml:space="preserve">
-    <value>'{0}' não é um número de pernada válido para a variante '{1}'</value>
-  </data>
-  <data name="LegNotAssigned" xml:space="preserve">
-    <value>A pernada {0} deve ser atribuída a uma das variantes {1}</value>
-  </data>
-  <data name="LegUsedTwice" xml:space="preserve">
-    <value>A pernada {0} é atribuída tanto à variante '{1}' quanto à variante '{2}'</value>
-  </data>
   <data name="MapIssue_Long" xml:space="preserve">
     <value>Partida Programada</value>
   </data>
@@ -599,9 +575,6 @@ Adicione um controle de chegada primeiro.</value>
   </data>
   <data name="PdfFilter" xml:space="preserve">
     <value>Arquivo PDF |*.pdf</value>
-  </data>
-  <data name="LegAssignedOuterBranch" xml:space="preserve">
-    <value>A pernada {0} nunca alcança a variante '{1}': ela foi atribuída para seguir um caminho diferente em uma dispersão de contenção.</value>
   </data>
   <data name="AddEllipseExplanation" xml:space="preserve">
     <value>Defina a aparência da elipse. Após pressionar OK, arraste o mouse para posicionar a elipse no local desejado.</value>

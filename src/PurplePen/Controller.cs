@@ -1723,7 +1723,7 @@ namespace PurplePen
             // If the control is used by any courses, ask the user if he is sure.
             Id<Course>[] coursesUsingControl = QueryEvent.CoursesUsingControl(eventDB, selection.SelectedControl, true);
             if (coursesUsingControl.Length > 0) {
-                string controlName = "\"" + WindowsUtil.ControlPointName(eventDB, selection.SelectedControl, NameStyle.Medium) + "\"";
+                string controlName = "\"" + Util.ControlPointName(eventDB, selection.SelectedControl, NameStyle.Medium) + "\"";
                 string courseNames = QueryEvent.CourseList(eventDB, coursesUsingControl);
 
                 delete = ui.YesNoQuestion(string.Format(MiscText.DeleteControlFromAllControls, controlName, courseNames), false);
@@ -1783,7 +1783,7 @@ namespace PurplePen
                     orphanedControls.Add(controlId);
                     if (orphanedControlsText != "")
                         orphanedControlsText += ", ";
-                    orphanedControlsText += string.Format("\"{0}\"", WindowsUtil.ControlPointName(eventDB, controlId, NameStyle.Medium));
+                    orphanedControlsText += string.Format("\"{0}\"", Util.ControlPointName(eventDB, controlId, NameStyle.Medium));
                 }
             }
 
@@ -2673,7 +2673,7 @@ namespace PurplePen
         // Get list of controls for the remove unused controls dialog. A list of keyvaluepairs, where key is the control id, and value is the string to represent it.
         public List<KeyValuePair<Id<ControlPoint>, string>> GetUnusedControls()
         {
-            List<KeyValuePair<Id<ControlPoint>, string>> list = QueryEvent.ControlsUnusedInCourses(eventDB, true).ConvertAll(id => new KeyValuePair<Id<ControlPoint>,string>(id, WindowsUtil.ControlPointName(eventDB, id, NameStyle.Medium)));
+            List<KeyValuePair<Id<ControlPoint>, string>> list = QueryEvent.ControlsUnusedInCourses(eventDB, true).ConvertAll(id => new KeyValuePair<Id<ControlPoint>,string>(id, Util.ControlPointName(eventDB, id, NameStyle.Medium)));
 
             list.Sort((pair1, pair2) => QueryEvent.CompareControlIds(eventDB, pair1.Key, pair2.Key));
             return list;
@@ -3267,7 +3267,7 @@ namespace PurplePen
             }
 
             enableThisCourse = selection.SelectedCourseControl.IsNotNone;
-            objectName = WindowsUtil.ControlPointName(eventDB, selection.SelectedControl, NameStyle.Long);
+            objectName = Util.ControlPointName(eventDB, selection.SelectedControl, NameStyle.Long);
             return true;
         }
 

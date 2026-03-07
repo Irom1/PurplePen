@@ -238,18 +238,6 @@
   <data name="DeleteControlFromAllControls" xml:space="preserve">
     <value>現在、コントロール {0} はコース: {1} で使用されています。それでもこのコントロールを削除しますか？</value>
   </data>
-  <data name="CodeBadLength" xml:space="preserve">
-    <value>コントロールコードには1～3桁の数字または文字を設定してください。</value>
-  </data>
-  <data name="CodeContainsSpace" xml:space="preserve">
-    <value>コントロールコードにスペースを入れないでください。</value>
-  </data>
-  <data name="CodeBeginsWithZero" xml:space="preserve">
-    <value>コントロールコードは0から始めるべきではありません。</value>
-  </data>
-  <data name="CodeCouldBeUpsideDown" xml:space="preserve">
-    <value>コントロールコードには、逆さにも読める番号を使用しないことを勧めます。</value>
-  </data>
   <data name="DuplicateCode" xml:space="preserve">
     <value>コントロールコード "{0}" が複数回使われています。</value>
   </data>
@@ -297,9 +285,6 @@ OKを押し、コンピュータ上で地図ファイルのコピーを探して
   </data>
   <data name="NextButtonText" xml:space="preserve">
     <value>次へ(&amp;N) &gt;</value>
-  </data>
-  <data name="Control_Code" xml:space="preserve">
-    <value>コントロール {0}</value>
   </data>
   <data name="Finish" xml:space="preserve">
     <value>フィニッシュ</value>

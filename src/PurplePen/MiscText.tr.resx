@@ -238,18 +238,6 @@ Kullan | satırları ayırmak</value>
   <data name="DeleteControlFromAllControls" xml:space="preserve">
     <value>Kontrol {0} şu anda aşağıdaki parkurar tarafından kullanılmaktadır: {1}. Bu kontrolü yine de silmek istiyor musunuz?</value>
   </data>
-  <data name="CodeBadLength" xml:space="preserve">
-    <value>Bir kontrol kodu bir, iki veya üç harf veya rakamdan oluşmalıdır.</value>
-  </data>
-  <data name="CodeContainsSpace" xml:space="preserve">
-    <value>Bir kontrol kodu boşluk içermemelidir.</value>
-  </data>
-  <data name="CodeBeginsWithZero" xml:space="preserve">
-    <value>Bir kontrol kodu sıfır ile başlamamalıdır.</value>
-  </data>
-  <data name="CodeCouldBeUpsideDown" xml:space="preserve">
-    <value>Bir kontrol kodu, ters çevrildiğinde başka bir sayı gibi görünmemelidir.</value>
-  </data>
   <data name="DuplicateCode" xml:space="preserve">
     <value>"{0}" kodu birden fazla kez kullanılır.</value>
   </data>
@@ -297,9 +285,6 @@ Tamam düğmesine bastıktan sonra, bilgisayarınızda harita dosyasının bir k
   </data>
   <data name="NextButtonText" xml:space="preserve">
     <value>&amp;Sonraki &gt;</value>
-  </data>
-  <data name="Control_Code" xml:space="preserve">
-    <value>Kontrol {0}</value>
   </data>
   <data name="Finish" xml:space="preserve">
     <value>Bitiş</value>
@@ -556,15 +541,6 @@ Tamam düğmesine bastıktan sonra, bilgisayarınızda harita dosyasının bir k
   <data name="VariationNotLastControl" xml:space="preserve">
     <value>Önce bitiş hedefi ekleyin. Son hedefe varyasyon eklenemez.</value>
   </data>
-  <data name="BadLegNumber" xml:space="preserve">
-    <value>'{0}' dalı '{1}' için geçerli bir yarış ayağı değildir</value>
-  </data>
-  <data name="LegNotAssigned" xml:space="preserve">
-    <value>Yarış ayağı {0} parkur dallarından {1} e atanmalı</value>
-  </data>
-  <data name="LegUsedTwice" xml:space="preserve">
-    <value>Yarış ayağı {0} parkur dallarından hem {1} e hem de {2} ye atanmalı</value>
-  </data>
   <data name="MapIssue_Long" xml:space="preserve">
     <value>Zamanlayıcı Başlatma</value>
   </data>
@@ -588,9 +564,6 @@ Tamam düğmesine bastıktan sonra, bilgisayarınızda harita dosyasının bir k
   </data>
   <data name="PdfFilter" xml:space="preserve">
     <value>PDF Dosyası|*.pdf</value>
-  </data>
-  <data name="LegAssignedOuterBranch" xml:space="preserve">
-    <value>Yarış ayağı {0} dal {1} e hiç ulaşmıyor. Var olan çatalda farklı bir yöne gitmesi için atanmış.</value>
   </data>
   <data name="AddEllipseExplanation" xml:space="preserve">
     <value>Elipsin görünümünü ayarlayın. Tamam'a bastıktan sonra, elipsi istediğiniz konuma yerleştirmek için fareyi sürükleyin.</value>

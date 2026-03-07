@@ -45,7 +45,7 @@ using PurplePen.Graphics2D;
 namespace PurplePen
 {
     // The class queries the event database in useful ways.
-    static class QueryEvent
+    public static class QueryEvent
     {
         // Number of meters a control must move to get a warning.
         const float MOVE_THRESHOLD = 50;
@@ -880,15 +880,15 @@ namespace PurplePen
         public static bool IsLegalControlCode(string code, out string reason)
         {
             if (code == null || code.Length < 1) {
-                reason = MiscText.CodeBadLength;
+                reason = CoreMiscText.CodeBadLength;
                 return false;
             }
             if (code.Length > 3) {
-                reason = MiscText.CodeBadLength;
+                reason = CoreMiscText.CodeBadLength;
                 return false;
             }
             if (code.Contains(" ")) {
-                reason = MiscText.CodeContainsSpace;
+                reason = CoreMiscText.CodeContainsSpace;
                 return false;
             }
 
@@ -912,11 +912,11 @@ namespace PurplePen
 
             if (int.TryParse(code, System.Globalization.NumberStyles.None, null, out codeNumber)) {
                 if (code[0] == '0') {
-                    reason = MiscText.CodeBeginsWithZero;
+                    reason = CoreMiscText.CodeBeginsWithZero;
                     return true;  // legal but not preferred.
                 }
                 if (disallowInvertibleCodes && Array.IndexOf(badUpsideDownNumbers, codeNumber) >= 0) {
-                    reason = MiscText.CodeCouldBeUpsideDown;
+                    reason = CoreMiscText.CodeCouldBeUpsideDown;
                     return true;  // legal but not preferred.
                 }
 
@@ -1463,7 +1463,7 @@ namespace PurplePen
             if (courseDesignator == null)
                 basename = GetEventTitle(eventDB, " ");
             else if (courseDesignator.IsAllControls)
-                basename = MiscText.AllControls;
+                basename = CoreMiscText.AllControls;
             else
                 basename = eventDB.GetCourse(courseDesignator.CourseId).name;
 
@@ -1785,5 +1785,12 @@ namespace PurplePen
         }
     }
 
+    // Possible different locations along leg to insert control, given course variations.
+    public enum LegInsertionLoc
+    {
+        Normal,         // Regular location on leg.
+        PreSplit,       // On the first part leg, before the split that starts this leg.
+        PostJoin        // On the last part of leg, after the join that ends this leg.
+    }
 
 }

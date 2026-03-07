@@ -234,18 +234,6 @@ Folosiți | pentru a separa liniile</value>
   <data name="DeleteControlFromAllControls" xml:space="preserve">
     <value>Postul {0} este folosit de următoarele trasee: {1}. Doriți oricum să-l ștegeți?</value>
   </data>
-  <data name="CodeBadLength" xml:space="preserve">
-    <value>Un cod de post trebuie să conțină una, două sau trei litere sau cifre.</value>
-  </data>
-  <data name="CodeContainsSpace" xml:space="preserve">
-    <value>Un cod de post nu poate conține spațiu.</value>
-  </data>
-  <data name="CodeBeginsWithZero" xml:space="preserve">
-    <value>Un cod de post nu poate începe cu zero.</value>
-  </data>
-  <data name="CodeCouldBeUpsideDown" xml:space="preserve">
-    <value>Un cod de post nu trebuie să semene cu alt cod întors cu susul în jos.</value>
-  </data>
   <data name="DuplicateCode" xml:space="preserve">
     <value>Codul "{0}" e folosit cel puțin o dată.</value>
   </data>
@@ -288,9 +276,6 @@ După ce apăsați OK, încercați să localizați o copie a fișierului hartă 
   </data>
   <data name="NextButtonText" xml:space="preserve">
     <value>&amp;Următor &gt;</value>
-  </data>
-  <data name="Control_Code" xml:space="preserve">
-    <value>Postul {0}</value>
   </data>
   <data name="Finish" xml:space="preserve">
     <value>Sosire</value>

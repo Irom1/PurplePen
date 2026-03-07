@@ -117,8 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AllControls" xml:space="preserve">
+    <value>Alle Posten</value>
+  </data>
   <data name="AllVariations" xml:space="preserve">
     <value>Alle Varianten</value>
+  </data>
+  <data name="BadLegNumber" xml:space="preserve">
+    <value>'{0}' ist keine gültige Teilstreckennummer für die Verzweigung '{1}'</value>
   </data>
   <data name="CannotReadImageFile" xml:space="preserve">
     <value>Bilddatei '{0}' kann nicht gelesen werden.</value>
@@ -129,6 +135,63 @@
   <data name="CannotReadMapOOM" xml:space="preserve">
     <value>Die Karte kann wegen folgendem Prpblem nicht geladen werden: '{0}' Die Karte in der neusten Version von OpenOrienteering Mapper öffnen und neu speichern, könnte das Problem beheben.</value>
   </data>
+  <data name="CodeBadLength" xml:space="preserve">
+    <value>Ein Kontrollcode muss aus 1, 2 oder 3 Buchstaben oder Zahlen bestehen.</value>
+  </data>
+  <data name="CodeBeginsWithZero" xml:space="preserve">
+    <value>Ein Kontrollcode darf nicht mit einer Null beginnen.</value>
+  </data>
+  <data name="CodeContainsSpace" xml:space="preserve">
+    <value>Der Kontrollcode darf keine Leerzeichen enthalten.</value>
+  </data>
+  <data name="CodeCouldBeUpsideDown" xml:space="preserve">
+    <value>Ein Kontrollcode darf auf den Kopf gestellt keine andere Zahl darstellen.</value>
+  </data>
+  <data name="Control_Code" xml:space="preserve">
+    <value>Posten {0}</value>
+  </data>
+  <data name="Finish" xml:space="preserve">
+    <value>Ziel</value>
+  </data>
+  <data name="Finish_Short" xml:space="preserve">
+    <value>F</value>
+  </data>
+  <data name="LegAssignedOuterBranch" xml:space="preserve">
+    <value>Teilstrecke {0} erreicht nie Verzweigung '{1}': Der Teilstrecke wurde an einer Gabelung eine andere Richtung zugewiesen.</value>
+  </data>
+  <data name="LegNotAssigned" xml:space="preserve">
+    <value>Teilstrecke {0} sollte einer Verzweigung {1} zugewiesen sein.</value>
+  </data>
+  <data name="LegUsedTwice" xml:space="preserve">
+    <value>Teilstrecke {0} ist Verzweigung '{1}' und Verzweigung '{2}' zugewiesen</value>
+  </data>
+  <data name="MandCrossing_Long" xml:space="preserve">
+    <value>Pflichtquerung</value>
+  </data>
+  <data name="MandCrossing_Medium" xml:space="preserve">
+    <value>Querung</value>
+  </data>
+  <data name="MandCrossing_Short" xml:space="preserve">
+    <value>C</value>
+  </data>
+  <data name="MapExchange_Long" xml:space="preserve">
+    <value>Kartenwechsel</value>
+  </data>
+  <data name="MapExchange_Medium" xml:space="preserve">
+    <value>K-Wechsel</value>
+  </data>
+  <data name="MapExchange_Short" xml:space="preserve">
+    <value>KW</value>
+  </data>
+  <data name="MapIssue_Long" xml:space="preserve">
+    <value>Zeitgesteuerter Start</value>
+  </data>
+  <data name="MapIssue_Medium" xml:space="preserve">
+    <value>Zeitgesteuerter Start</value>
+  </data>
+  <data name="MapIssue_Short" xml:space="preserve">
+    <value>TS</value>
+  </data>
   <data name="PdfConversionFailed" xml:space="preserve">
     <value>PDF-Konverter "PDFium" konnte die PDF-Datei nicht lesen</value>
   </data>
@@ -137,5 +200,11 @@
   </data>
   <data name="PdfResultNotReadable" xml:space="preserve">
     <value>Das Ergebnis der PDF-Konvertierung aus Datei '{0}' konnte nicht gelesen werden</value>
+  </data>
+  <data name="Start" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="Start_Short" xml:space="preserve">
+    <value>S</value>
   </data>
 </root>

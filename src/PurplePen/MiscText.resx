@@ -238,18 +238,6 @@ Use | to separate lines</value>
   <data name="DeleteControlFromAllControls" xml:space="preserve">
     <value>Control {0} is currently used by the following courses: {1}. Do you want to delete this control anyway?</value>
   </data>
-  <data name="CodeBadLength" xml:space="preserve">
-    <value>A control code must be one, two, or three letters or digits.</value>
-  </data>
-  <data name="CodeContainsSpace" xml:space="preserve">
-    <value>A control code must not contain a space.</value>
-  </data>
-  <data name="CodeBeginsWithZero" xml:space="preserve">
-    <value>A control code should not begin with zero.</value>
-  </data>
-  <data name="CodeCouldBeUpsideDown" xml:space="preserve">
-    <value>A control code should not look like another number when upside-down.</value>
-  </data>
   <data name="DuplicateCode" xml:space="preserve">
     <value>The code "{0}" is used more than once.</value>
   </data>
@@ -297,10 +285,6 @@ After pressing OK, try to find a copy of the map file on your computer.</value>
   </data>
   <data name="NextButtonText" xml:space="preserve">
     <value>&amp;Next &gt;</value>
-  </data>
-  <data name="Control_Code" xml:space="preserve">
-    <value>Control {0}</value>
-    <comment>{0} is the control code</comment>
   </data>
   <data name="Finish" xml:space="preserve">
     <value>Finish</value>
@@ -561,15 +545,6 @@ After pressing OK, try to find a copy of the map file on your computer.</value>
   <data name="VariationNotLastControl" xml:space="preserve">
     <value>A variation cannot be added to the last control. Add a finish control first.</value>
   </data>
-  <data name="BadLegNumber" xml:space="preserve">
-    <value>'{0}' is not a valid leg number for branch '{1}'</value>
-  </data>
-  <data name="LegNotAssigned" xml:space="preserve">
-    <value>Leg {0} should be assigned to one of branches {1}</value>
-  </data>
-  <data name="LegUsedTwice" xml:space="preserve">
-    <value>Leg {0} is assigned to both branch '{1}' and branch '{2}'</value>
-  </data>
   <data name="MapIssue_Long" xml:space="preserve">
     <value>Timed Start</value>
   </data>
@@ -594,9 +569,6 @@ After pressing OK, try to find a copy of the map file on your computer.</value>
   </data>
   <data name="PdfFilter" xml:space="preserve">
     <value>PDF File|*.pdf</value>
-  </data>
-  <data name="LegAssignedOuterBranch" xml:space="preserve">
-    <value>Leg {0} never reaches branch '{1}': it was assigned to go a different way in a containing fork.</value>
   </data>
   <data name="AddEllipseExplanation" xml:space="preserve">
     <value>Set the appearance of the ellipse. After pressing OK, drag the mouse to place the ellipse in the desired location.</value>

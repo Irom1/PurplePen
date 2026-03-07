@@ -117,8 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AllControls" xml:space="preserve">
+    <value>Kaikki rastit</value>
+  </data>
   <data name="AllVariations" xml:space="preserve">
     <value>Kaikki hajonnat</value>
+  </data>
+  <data name="BadLegNumber" xml:space="preserve">
+    <value>'{0}' ei ole kelvollinen osuusnumero hajonnalle '{1}'</value>
   </data>
   <data name="CannotReadImageFile" xml:space="preserve">
     <value>Kuvatiedostoa '{0}' ei voida lukea.</value>
@@ -129,6 +135,63 @@
   <data name="CannotReadMapOOM" xml:space="preserve">
     <value>Karttaa ei voi lukea seuraavasta syystä: '{0}' Kartan avaaminen ja tallentaminen uudelleen OpenOrienteering Mapperin viimeisimmässä versiossa voi korjata ongelmia.</value>
   </data>
+  <data name="CodeBadLength" xml:space="preserve">
+    <value>Rastikoodin pitää olla yksi, kaksi tai kolme merkkiä tai numeroa.</value>
+  </data>
+  <data name="CodeBeginsWithZero" xml:space="preserve">
+    <value>Rastikoodi ei saa alkaa nollalla.</value>
+  </data>
+  <data name="CodeContainsSpace" xml:space="preserve">
+    <value>Rastikoodissa ei saa olla välilyöntiä.</value>
+  </data>
+  <data name="CodeCouldBeUpsideDown" xml:space="preserve">
+    <value>Rastikoodi ei saisi näyttää toiselta numerolta ollessaan ylösalaisin.</value>
+  </data>
+  <data name="Control_Code" xml:space="preserve">
+    <value>Rasti {0}</value>
+  </data>
+  <data name="Finish" xml:space="preserve">
+    <value>Maali</value>
+  </data>
+  <data name="Finish_Short" xml:space="preserve">
+    <value>F</value>
+  </data>
+  <data name="LegAssignedOuterBranch" xml:space="preserve">
+    <value>Osuus {0} ei koskaan saavuta hajontaa '{1}': Se on määrätty menemään eri tavalla ulommassa hajonnassa.</value>
+  </data>
+  <data name="LegNotAssigned" xml:space="preserve">
+    <value>Osuus {0} on määritettävä yhdelle haaroista {1}</value>
+  </data>
+  <data name="LegUsedTwice" xml:space="preserve">
+    <value>Osuus {0} on määritetty sekä hajonnalle '{1}' että hajonnalle '{2}'</value>
+  </data>
+  <data name="MandCrossing_Long" xml:space="preserve">
+    <value>Pakollinen ylitys/alituspaikka</value>
+  </data>
+  <data name="MandCrossing_Medium" xml:space="preserve">
+    <value>Ylitys/Alitus</value>
+  </data>
+  <data name="MandCrossing_Short" xml:space="preserve">
+    <value>C</value>
+  </data>
+  <data name="MapExchange_Long" xml:space="preserve">
+    <value>Kartanvaihto</value>
+  </data>
+  <data name="MapExchange_Medium" xml:space="preserve">
+    <value>K-vaihto</value>
+  </data>
+  <data name="MapExchange_Short" xml:space="preserve">
+    <value>KV</value>
+  </data>
+  <data name="MapIssue_Long" xml:space="preserve">
+    <value>Aikalähtö</value>
+  </data>
+  <data name="MapIssue_Medium" xml:space="preserve">
+    <value>Aikalähtö</value>
+  </data>
+  <data name="MapIssue_Short" xml:space="preserve">
+    <value>TS</value>
+  </data>
   <data name="PdfConversionFailed" xml:space="preserve">
     <value>Pdfium PDF-muunnin epäonnistui PDF-tiedoston lukemisessa</value>
   </data>
@@ -137,5 +200,11 @@
   </data>
   <data name="PdfResultNotReadable" xml:space="preserve">
     <value>Ei voitu lukea PDF-muuntamisen tulosta tiedostosta '{0}'</value>
+  </data>
+  <data name="Start" xml:space="preserve">
+    <value>Lähtö</value>
+  </data>
+  <data name="Start_Short" xml:space="preserve">
+    <value>S</value>
   </data>
 </root>

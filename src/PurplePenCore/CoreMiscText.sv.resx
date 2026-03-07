@@ -117,8 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AllControls" xml:space="preserve">
+    <value>Alla kontroller</value>
+  </data>
   <data name="AllVariations" xml:space="preserve">
     <value>Alla alternativ</value>
+  </data>
+  <data name="BadLegNumber" xml:space="preserve">
+    <value>'{0}' är inte ett giltigt sträcknummer för gaffling '{1}'</value>
   </data>
   <data name="CannotReadImageFile" xml:space="preserve">
     <value>Kan inte läsa bildfil '{0}'.</value>
@@ -129,6 +135,63 @@
   <data name="CannotReadMapOOM" xml:space="preserve">
     <value>Kan inte läsa kartan på grund av: '{0}' Öppna och spara om kartan i senaste versionen av OpenOrienteering Mapper så löser det kanske problemet.</value>
   </data>
+  <data name="CodeBadLength" xml:space="preserve">
+    <value>En kodsiffra måste bestå av en, två eller tre siffror (eller bokstäver).</value>
+  </data>
+  <data name="CodeBeginsWithZero" xml:space="preserve">
+    <value>En kodsiffra får inte börja med en nolla.</value>
+  </data>
+  <data name="CodeContainsSpace" xml:space="preserve">
+    <value>En kodsiffra får inte innehålla mellanslag.</value>
+  </data>
+  <data name="CodeCouldBeUpsideDown" xml:space="preserve">
+    <value>En kodsiffra ska inte kunna läsas upp-och-ner som en annan kodsiffra.</value>
+  </data>
+  <data name="Control_Code" xml:space="preserve">
+    <value>Kontroll {0}</value>
+  </data>
+  <data name="Finish" xml:space="preserve">
+    <value>Mål</value>
+  </data>
+  <data name="Finish_Short" xml:space="preserve">
+    <value>F</value>
+  </data>
+  <data name="LegAssignedOuterBranch" xml:space="preserve">
+    <value>Sträcka {0} når aldrig gaffling '{1}': den är ritad att gå en annan väg i en yttre gaffling.</value>
+  </data>
+  <data name="LegNotAssigned" xml:space="preserve">
+    <value>Sträcka {0} bör tilldelas till en av gafflingarna {1}</value>
+  </data>
+  <data name="LegUsedTwice" xml:space="preserve">
+    <value>Sträcka {0} är tilldelad till både gaffling '{1}' och '{2}'</value>
+  </data>
+  <data name="MandCrossing_Long" xml:space="preserve">
+    <value>Obligatorisk passage</value>
+  </data>
+  <data name="MandCrossing_Medium" xml:space="preserve">
+    <value>Passage</value>
+  </data>
+  <data name="MandCrossing_Short" xml:space="preserve">
+    <value>C</value>
+  </data>
+  <data name="MapExchange_Long" xml:space="preserve">
+    <value>Kartbyte</value>
+  </data>
+  <data name="MapExchange_Medium" xml:space="preserve">
+    <value>Byte</value>
+  </data>
+  <data name="MapExchange_Short" xml:space="preserve">
+    <value>KB</value>
+  </data>
+  <data name="MapIssue_Long" xml:space="preserve">
+    <value>Tidsstart</value>
+  </data>
+  <data name="MapIssue_Medium" xml:space="preserve">
+    <value>Tidsstart</value>
+  </data>
+  <data name="MapIssue_Short" xml:space="preserve">
+    <value>TS</value>
+  </data>
   <data name="PdfConversionFailed" xml:space="preserve">
     <value>Pdfium PDF konverterare misslyckades att läsa PDF-filen</value>
   </data>
@@ -137,5 +200,11 @@
   </data>
   <data name="PdfResultNotReadable" xml:space="preserve">
     <value>Kunde inte läsa resultatet av PDF-konvertering från fil '{0}</value>
+  </data>
+  <data name="Start" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="Start_Short" xml:space="preserve">
+    <value>S</value>
   </data>
 </root>

@@ -117,8 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AllControls" xml:space="preserve">
+    <value>所有檢查點</value>
+  </data>
   <data name="AllVariations" xml:space="preserve">
     <value>所有的分散變化</value>
+  </data>
+  <data name="BadLegNumber" xml:space="preserve">
+    <value>“{0}”不是分支“{1}”的有效賽段編號</value>
   </data>
   <data name="CannotReadImageFile" xml:space="preserve">
     <value>無法讀取地圖檔案 '{0}'.</value>
@@ -129,6 +135,63 @@
   <data name="CannotReadMapOOM" xml:space="preserve">
     <value>由於下列原因無法讀取地圖：“{0}”在最新版本的 OpenOrienteering Mapper 中開啟並重新儲存地圖，可能會解決問題。</value>
   </data>
+  <data name="CodeBadLength" xml:space="preserve">
+    <value>檢查點編號必須是一、二、三個字母或數字。</value>
+  </data>
+  <data name="CodeBeginsWithZero" xml:space="preserve">
+    <value>檢查點編號不應從零開始.</value>
+  </data>
+  <data name="CodeContainsSpace" xml:space="preserve">
+    <value>檢查點編號必須不包含空格.</value>
+  </data>
+  <data name="CodeCouldBeUpsideDown" xml:space="preserve">
+    <value>檢查點編號在上下顛倒時不應該看起來像另一個數字。</value>
+  </data>
+  <data name="Control_Code" xml:space="preserve">
+    <value>檢查點 {0}</value>
+  </data>
+  <data name="Finish" xml:space="preserve">
+    <value>終點</value>
+  </data>
+  <data name="Finish_Short" xml:space="preserve">
+    <value>F</value>
+  </data>
+  <data name="LegAssignedOuterBranch" xml:space="preserve">
+    <value>賽段 {0} 永遠不會到達分支“{1}”：它被分配到分叉中的不同路線。</value>
+  </data>
+  <data name="LegNotAssigned" xml:space="preserve">
+    <value>賽段 {0} 應分配至分支 {1} 之一</value>
+  </data>
+  <data name="LegUsedTwice" xml:space="preserve">
+    <value>賽段 {0} 同時被分配給分支“{1}”和分支“{2}”</value>
+  </data>
+  <data name="MandCrossing_Long" xml:space="preserve">
+    <value>強制穿越點</value>
+  </data>
+  <data name="MandCrossing_Medium" xml:space="preserve">
+    <value>穿越點</value>
+  </data>
+  <data name="MandCrossing_Short" xml:space="preserve">
+    <value>C</value>
+  </data>
+  <data name="MapExchange_Long" xml:space="preserve">
+    <value>地圖更換</value>
+  </data>
+  <data name="MapExchange_Medium" xml:space="preserve">
+    <value>更換</value>
+  </data>
+  <data name="MapExchange_Short" xml:space="preserve">
+    <value>MX</value>
+  </data>
+  <data name="MapIssue_Long" xml:space="preserve">
+    <value>計時起點</value>
+  </data>
+  <data name="MapIssue_Medium" xml:space="preserve">
+    <value>計時起點</value>
+  </data>
+  <data name="MapIssue_Short" xml:space="preserve">
+    <value>TS</value>
+  </data>
   <data name="PdfConversionFailed" xml:space="preserve">
     <value>Pdfium PDF 轉換器無法成功讀取PDF檔案</value>
   </data>
@@ -137,5 +200,11 @@
   </data>
   <data name="PdfResultNotReadable" xml:space="preserve">
     <value>無法從檔案 '{0}'讀取 PDF 轉換的結果</value>
+  </data>
+  <data name="Start" xml:space="preserve">
+    <value>起點</value>
+  </data>
+  <data name="Start_Short" xml:space="preserve">
+    <value>S</value>
   </data>
 </root>

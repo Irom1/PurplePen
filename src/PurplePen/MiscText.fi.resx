@@ -238,18 +238,6 @@ Käytä | -merkkiä erottamaan rivit</value>
   <data name="DeleteControlFromAllControls" xml:space="preserve">
     <value>Rasti {0} on käytössä seuraavilla radoilla: {1}. Haluatko silti poistaa tämän rastin?</value>
   </data>
-  <data name="CodeBadLength" xml:space="preserve">
-    <value>Rastikoodin pitää olla yksi, kaksi tai kolme merkkiä tai numeroa.</value>
-  </data>
-  <data name="CodeContainsSpace" xml:space="preserve">
-    <value>Rastikoodissa ei saa olla välilyöntiä.</value>
-  </data>
-  <data name="CodeBeginsWithZero" xml:space="preserve">
-    <value>Rastikoodi ei saa alkaa nollalla.</value>
-  </data>
-  <data name="CodeCouldBeUpsideDown" xml:space="preserve">
-    <value>Rastikoodi ei saisi näyttää toiselta numerolta ollessaan ylösalaisin.</value>
-  </data>
   <data name="DuplicateCode" xml:space="preserve">
     <value>Koodi "{0}" on käytössä useammin kuin kerran.</value>
   </data>
@@ -297,9 +285,6 @@ Paina OK ja yritä etsiä karttatiedoston kopio tietokoneeltasi.</value>
   </data>
   <data name="NextButtonText" xml:space="preserve">
     <value>&amp;Seuraava &gt;</value>
-  </data>
-  <data name="Control_Code" xml:space="preserve">
-    <value>Rasti {0}</value>
   </data>
   <data name="Finish" xml:space="preserve">
     <value>Maali</value>
@@ -556,15 +541,6 @@ Paina OK ja yritä etsiä karttatiedoston kopio tietokoneeltasi.</value>
   <data name="VariationNotLastControl" xml:space="preserve">
     <value>Hajontaa ei voi lisätä viimeiselle rastille. Lisää maali ensin.</value>
   </data>
-  <data name="BadLegNumber" xml:space="preserve">
-    <value>'{0}' ei ole kelvollinen osuusnumero hajonnalle '{1}'</value>
-  </data>
-  <data name="LegNotAssigned" xml:space="preserve">
-    <value>Osuus {0} on määritettävä yhdelle haaroista {1}</value>
-  </data>
-  <data name="LegUsedTwice" xml:space="preserve">
-    <value>Osuus {0} on määritetty sekä hajonnalle '{1}' että hajonnalle '{2}'</value>
-  </data>
   <data name="MapIssue_Long" xml:space="preserve">
     <value>Aikalähtö</value>
   </data>
@@ -588,9 +564,6 @@ Paina OK ja yritä etsiä karttatiedoston kopio tietokoneeltasi.</value>
   </data>
   <data name="PdfFilter" xml:space="preserve">
     <value>PDF-tiedosto|*.pdf</value>
-  </data>
-  <data name="LegAssignedOuterBranch" xml:space="preserve">
-    <value>Osuus {0} ei koskaan saavuta hajontaa '{1}': Se on määrätty menemään eri tavalla ulommassa hajonnassa.</value>
   </data>
   <data name="AddEllipseExplanation" xml:space="preserve">
     <value>Aseta ellipsin ulkoasu. Paina OK, minkä jälkeen paina hiiren vasen painike pohjaan ja vedä sijoittaaksesi ellipsin haluamaasi kohtaan kartalle.</value>

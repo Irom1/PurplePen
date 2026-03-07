@@ -238,18 +238,6 @@ Use | para separar líneas</value>
   <data name="DeleteControlFromAllControls" xml:space="preserve">
     <value>Los controles {0} están en uso en alguno de los siguientes recorridos: {1}. ¿Quieres borrarlos de todas maneras?</value>
   </data>
-  <data name="CodeBadLength" xml:space="preserve">
-    <value>El código del control debe tener entre una y tres letras o números.</value>
-  </data>
-  <data name="CodeContainsSpace" xml:space="preserve">
-    <value>Un código de control no puede tener espacios.</value>
-  </data>
-  <data name="CodeBeginsWithZero" xml:space="preserve">
-    <value>Un código de control no puede empezar con cero.</value>
-  </data>
-  <data name="CodeCouldBeUpsideDown" xml:space="preserve">
-    <value>El código de control no debe confundirse con otro si se ve boca abajo.</value>
-  </data>
   <data name="DuplicateCode" xml:space="preserve">
     <value>El código «{0}» se usa más de una vez.</value>
   </data>
@@ -297,9 +285,6 @@ Presione Aceptar, e intente encontrar una copia del mapa en su ordenador.</value
   </data>
   <data name="NextButtonText" xml:space="preserve">
     <value>&amp;Siguiente &gt;</value>
-  </data>
-  <data name="Control_Code" xml:space="preserve">
-    <value>Control {0}</value>
   </data>
   <data name="Finish" xml:space="preserve">
     <value>Meta</value>
@@ -553,15 +538,6 @@ Presione Aceptar, e intente encontrar una copia del mapa en su ordenador.</value
   <data name="VariationNotLastControl" xml:space="preserve">
     <value>No se puede añadir una variante al último control. Añada antes un control meta.</value>
   </data>
-  <data name="BadLegNumber" xml:space="preserve">
-    <value>«{0}» no es un número de tramo válido para la rama «{1}»</value>
-  </data>
-  <data name="LegNotAssigned" xml:space="preserve">
-    <value>El tramo {0} debería asignarse a una de las ramas {1}</value>
-  </data>
-  <data name="LegUsedTwice" xml:space="preserve">
-    <value>El tramo {0} está asignado a las ramas «{1}» y «{2}»</value>
-  </data>
   <data name="MapIssue_Long" xml:space="preserve">
     <value>Punto de inicio cronometrado</value>
   </data>
@@ -585,8 +561,5 @@ Presione Aceptar, e intente encontrar una copia del mapa en su ordenador.</value
   </data>
   <data name="PdfFilter" xml:space="preserve">
     <value>Archivo PDF|*.pdf</value>
-  </data>
-  <data name="LegAssignedOuterBranch" xml:space="preserve">
-    <value>El tramo {0} no alcanza la rama «{1}»: en una bifurcación que lo contiene se le ha asignado ir por otra ruta.</value>
   </data>
 </root>

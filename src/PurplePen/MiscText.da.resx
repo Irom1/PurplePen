@@ -238,18 +238,6 @@ Brug | for at skille linjer</value>
   <data name="DeleteControlFromAllControls" xml:space="preserve">
     <value>Kontrol {0} bruges af de følgende kurser: {1}. Ønsker du at slette denne kontrol alligevel?</value>
   </data>
-  <data name="CodeBadLength" xml:space="preserve">
-    <value>En kontrolkode skal være en, to eller tre bogstaver eller tal.</value>
-  </data>
-  <data name="CodeContainsSpace" xml:space="preserve">
-    <value>En kontrolkode må ikke indeholde mellemrum.</value>
-  </data>
-  <data name="CodeBeginsWithZero" xml:space="preserve">
-    <value>En kontrolkode skulle ikke begynde med et nul.</value>
-  </data>
-  <data name="CodeCouldBeUpsideDown" xml:space="preserve">
-    <value>En kontrolkode skulle ikke se ud som et andet nummer ved op-ned.</value>
-  </data>
   <data name="DuplicateCode" xml:space="preserve">
     <value>Koden {0} bruges mere end en gang.</value>
   </data>
@@ -297,9 +285,6 @@ Efter at klikke OK, prøv at finde en kopi af kortfilen på din computer.</value
   </data>
   <data name="NextButtonText" xml:space="preserve">
     <value>&amp;Next &gt;</value>
-  </data>
-  <data name="Control_Code" xml:space="preserve">
-    <value>Kontrol {0}</value>
   </data>
   <data name="Finish" xml:space="preserve">
     <value>Afslut</value>
@@ -553,15 +538,6 @@ Efter at klikke OK, prøv at finde en kopi af kortfilen på din computer.</value
   <data name="VariationNotLastControl" xml:space="preserve">
     <value>En variation kan ikke tilføjes den sidste kontrol. Tilføj en slutkontrol først.</value>
   </data>
-  <data name="BadLegNumber" xml:space="preserve">
-    <value>'{0}' er  ikke et gyldigt bennummer til gren '{1}'</value>
-  </data>
-  <data name="LegNotAssigned" xml:space="preserve">
-    <value>Ben {0} skal tildeles en sf grenene {1}</value>
-  </data>
-  <data name="LegUsedTwice" xml:space="preserve">
-    <value>Ben {0} er tildelt begge grene '{1}' og gren '{2}'</value>
-  </data>
   <data name="MapIssue_Long" xml:space="preserve">
     <value>Timet start</value>
   </data>
@@ -582,8 +558,5 @@ Efter at klikke OK, prøv at finde en kopi af kortfilen på din computer.</value
   </data>
   <data name="PdfFilter" xml:space="preserve">
     <value>PDF Fil|*.pdf</value>
-  </data>
-  <data name="LegAssignedOuterBranch" xml:space="preserve">
-    <value>Ben {0} når aldrig gren '{1}': det var tildelt at gå en anderledes vej i en Indeholdende fork.</value>
   </data>
 </root>

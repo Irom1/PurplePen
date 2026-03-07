@@ -117,7 +117,46 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AllControls" xml:space="preserve">
+    <value>Alle poster</value>
+  </data>
   <data name="CannotReadImageFile" xml:space="preserve">
     <value>Kan ikkje lese bildefil '{0}'.</value>
+  </data>
+  <data name="CodeBadLength" xml:space="preserve">
+    <value>Postkoden må inneholde ein, to eller tre tall eller bokstaver.</value>
+  </data>
+  <data name="CodeBeginsWithZero" xml:space="preserve">
+    <value>Postkoder skal ikkje begynne med 0</value>
+  </data>
+  <data name="CodeContainsSpace" xml:space="preserve">
+    <value>En postkode kan ikkje innehalde mellomrom.</value>
+  </data>
+  <data name="CodeCouldBeUpsideDown" xml:space="preserve">
+    <value>En postkode skal ikkje kunne forveksles med eit annet nummer om den leses opp ned.</value>
+  </data>
+  <data name="Control_Code" xml:space="preserve">
+    <value>Post {0}</value>
+  </data>
+  <data name="Finish" xml:space="preserve">
+    <value>Fullfør</value>
+  </data>
+  <data name="Finish_Short" xml:space="preserve">
+    <value>F</value>
+  </data>
+  <data name="MandCrossing_Long" xml:space="preserve">
+    <value>Obligatorisk kryssningspunkt</value>
+  </data>
+  <data name="MandCrossing_Medium" xml:space="preserve">
+    <value>Kryssning</value>
+  </data>
+  <data name="MandCrossing_Short" xml:space="preserve">
+    <value>C</value>
+  </data>
+  <data name="Start" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="Start_Short" xml:space="preserve">
+    <value>S</value>
   </data>
 </root>

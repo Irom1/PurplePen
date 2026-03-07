@@ -117,8 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AllControls" xml:space="preserve">
+    <value>Mapa maestro</value>
+  </data>
   <data name="AllVariations" xml:space="preserve">
     <value>Todas las variantes</value>
+  </data>
+  <data name="BadLegNumber" xml:space="preserve">
+    <value>«{0}» no es un número de tramo válido para la rama «{1}»</value>
   </data>
   <data name="CannotReadImageFile" xml:space="preserve">
     <value>No se puede leer el archivo de imagen «{0}».</value>
@@ -129,6 +135,63 @@
   <data name="CannotReadMapOOM" xml:space="preserve">
     <value>No se ha podido leer el mapa por el siguiente motivo: «{0}» Abrir y volver a guardar el mapa con la última versión de OpenOrienteering Mapper puede corregir problemas.</value>
   </data>
+  <data name="CodeBadLength" xml:space="preserve">
+    <value>El código del control debe tener entre una y tres letras o números.</value>
+  </data>
+  <data name="CodeBeginsWithZero" xml:space="preserve">
+    <value>Un código de control no puede empezar con cero.</value>
+  </data>
+  <data name="CodeContainsSpace" xml:space="preserve">
+    <value>Un código de control no puede tener espacios.</value>
+  </data>
+  <data name="CodeCouldBeUpsideDown" xml:space="preserve">
+    <value>El código de control no debe confundirse con otro si se ve boca abajo.</value>
+  </data>
+  <data name="Control_Code" xml:space="preserve">
+    <value>Control {0}</value>
+  </data>
+  <data name="Finish" xml:space="preserve">
+    <value>Meta</value>
+  </data>
+  <data name="Finish_Short" xml:space="preserve">
+    <value>F</value>
+  </data>
+  <data name="LegAssignedOuterBranch" xml:space="preserve">
+    <value>El tramo {0} no alcanza la rama «{1}»: en una bifurcación que lo contiene se le ha asignado ir por otra ruta.</value>
+  </data>
+  <data name="LegNotAssigned" xml:space="preserve">
+    <value>El tramo {0} debería asignarse a una de las ramas {1}</value>
+  </data>
+  <data name="LegUsedTwice" xml:space="preserve">
+    <value>El tramo {0} está asignado a las ramas «{1}» y «{2}»</value>
+  </data>
+  <data name="MandCrossing_Long" xml:space="preserve">
+    <value>Punto de paso obligatorio</value>
+  </data>
+  <data name="MandCrossing_Medium" xml:space="preserve">
+    <value>Cruce</value>
+  </data>
+  <data name="MandCrossing_Short" xml:space="preserve">
+    <value>C</value>
+  </data>
+  <data name="MapExchange_Long" xml:space="preserve">
+    <value>Intercambio de mapas</value>
+  </data>
+  <data name="MapExchange_Medium" xml:space="preserve">
+    <value>Intercambio</value>
+  </data>
+  <data name="MapExchange_Short" xml:space="preserve">
+    <value>IM</value>
+  </data>
+  <data name="MapIssue_Long" xml:space="preserve">
+    <value>Punto de inicio cronometrado</value>
+  </data>
+  <data name="MapIssue_Medium" xml:space="preserve">
+    <value>Punto de inicio cronometrado</value>
+  </data>
+  <data name="MapIssue_Short" xml:space="preserve">
+    <value>TS</value>
+  </data>
   <data name="PdfConversionFailed" xml:space="preserve">
     <value>Pdfium PDF converter no ha podido leer el archivo PDF correctamente</value>
   </data>
@@ -137,5 +200,11 @@
   </data>
   <data name="PdfResultNotReadable" xml:space="preserve">
     <value>No se ha podido leer el resultado de la conversión a PDF del archivo «{0}».</value>
+  </data>
+  <data name="Start" xml:space="preserve">
+    <value>Salida</value>
+  </data>
+  <data name="Start_Short" xml:space="preserve">
+    <value>I</value>
   </data>
 </root>

@@ -117,8 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AllControls" xml:space="preserve">
+    <value>All controls</value>
+  </data>
   <data name="AllVariations" xml:space="preserve">
     <value>All Variations</value>
+  </data>
+  <data name="BadLegNumber" xml:space="preserve">
+    <value>'{0}' is not a valid leg number for branch '{1}'</value>
   </data>
   <data name="CannotReadImageFile" xml:space="preserve">
     <value>Cannot read image file '{0}'.</value>
@@ -129,6 +135,68 @@
   <data name="CannotReadMapOOM" xml:space="preserve">
     <value>Cannot read map for the following reason: '{0}' Opening and re-saving the map in the latest version of OpenOrienteering Mapper may fix problems.</value>
   </data>
+  <data name="CodeBadLength" xml:space="preserve">
+    <value>A control code must be one, two, or three letters or digits.</value>
+  </data>
+  <data name="CodeBeginsWithZero" xml:space="preserve">
+    <value>A control code should not begin with zero.</value>
+  </data>
+  <data name="CodeContainsSpace" xml:space="preserve">
+    <value>A control code must not contain a space.</value>
+  </data>
+  <data name="CodeCouldBeUpsideDown" xml:space="preserve">
+    <value>A control code should not look like another number when upside-down.</value>
+  </data>
+  <data name="Control_Code" xml:space="preserve">
+    <value>Control {0}</value>
+    <comment>{0} is the control code</comment>
+  </data>
+  <data name="Finish" xml:space="preserve">
+    <value>Finish</value>
+  </data>
+  <data name="Finish_Short" xml:space="preserve">
+    <value>F</value>
+    <comment>Abbreviation for "Finish"</comment>
+  </data>
+  <data name="LegAssignedOuterBranch" xml:space="preserve">
+    <value>Leg {0} never reaches branch '{1}': it was assigned to go a different way in a containing fork.</value>
+  </data>
+  <data name="LegNotAssigned" xml:space="preserve">
+    <value>Leg {0} should be assigned to one of branches {1}</value>
+  </data>
+  <data name="LegUsedTwice" xml:space="preserve">
+    <value>Leg {0} is assigned to both branch '{1}' and branch '{2}'</value>
+  </data>
+  <data name="MandCrossing_Long" xml:space="preserve">
+    <value>Mandatory crossing point</value>
+  </data>
+  <data name="MandCrossing_Medium" xml:space="preserve">
+    <value>Crossing</value>
+  </data>
+  <data name="MandCrossing_Short" xml:space="preserve">
+    <value>C</value>
+    <comment>Abbreviation for "Crossing"</comment>
+  </data>
+  <data name="MapExchange_Long" xml:space="preserve">
+    <value>Map exchange</value>
+  </data>
+  <data name="MapExchange_Medium" xml:space="preserve">
+    <value>Exchange</value>
+  </data>
+  <data name="MapExchange_Short" xml:space="preserve">
+    <value>MX</value>
+    <comment>Abbreviation for "Map Exchange"</comment>
+  </data>
+  <data name="MapIssue_Long" xml:space="preserve">
+    <value>Timed Start</value>
+  </data>
+  <data name="MapIssue_Medium" xml:space="preserve">
+    <value>Timed Start</value>
+  </data>
+  <data name="MapIssue_Short" xml:space="preserve">
+    <value>TS</value>
+    <comment>Abbreviation for "Timed Start"</comment>
+  </data>
   <data name="PdfConversionFailed" xml:space="preserve">
     <value>Pdfium PDF converter failed to read PDF file successfully</value>
   </data>
@@ -137,5 +205,12 @@
   </data>
   <data name="PdfResultNotReadable" xml:space="preserve">
     <value>Could not read result of PDF conversion from file '{0}'</value>
+  </data>
+  <data name="Start" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="Start_Short" xml:space="preserve">
+    <value>S</value>
+    <comment>Abbreviation for "Start"</comment>
   </data>
 </root>
