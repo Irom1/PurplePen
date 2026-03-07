@@ -40,7 +40,7 @@ using System.Globalization;
 
 namespace PurplePen
 {
-    class Textifier
+    public class Textifier
     {
         EventDB eventDB;
         SymbolDB symbolDB;
