@@ -94,11 +94,14 @@ namespace PurplePen.Tests
 
             g.Clear(Color.White);
 
-            for (int x = 0; x < size.Width; ++x) {
-                for (int y = 0; y < size.Height; ++y) {
-                    Rectangle clip = new Rectangle(x, y, 1, 1);
-                    g.SetClip(clip);
-                    descriptionRenderer.RenderToGraphics(g, clip);
+            using (GDIPlus_GraphicsTarget graphicsTarget = new GDIPlus_GraphicsTarget(g)) {
+                for (int x = 0; x < size.Width; ++x) {
+                    for (int y = 0; y < size.Height; ++y) {
+                        Rectangle clip = new Rectangle(x, y, 1, 1);
+                        graphicsTarget.PushClip(clip);
+                        descriptionRenderer.RenderToGraphics(graphicsTarget, clip);
+                        graphicsTarget.PopClip();   
+                    }
                 }
             }
 

@@ -1084,6 +1084,13 @@ namespace PurplePen.MapModel
             return GetHiresGraphics().MeasureString(text, font, new PointF(0, 0), stringFormat);
         }
 
+        public RectangleF GetTightBoundingBox(PointF startpoint, string text)
+        {
+            GraphicsPath path = new GraphicsPath();
+            path.AddString(text, fontFamily, (int)GdiplusFontLoader.FontStyleFromTextEffects(textEffects), font.Size, startpoint, stringFormat);
+            return path.GetBounds();
+        }
+
         private static ThreadLocal<Graphics> hiresGraphics = new ThreadLocal<Graphics>(() => {
             Graphics g = Graphics.FromImage(new Bitmap(1, 1));
             g.ScaleTransform(10F, -10F);

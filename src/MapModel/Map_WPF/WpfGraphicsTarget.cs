@@ -736,6 +736,15 @@ namespace PurplePen.MapModel
             return new SizeF((float)formattedText.WidthIncludingTrailingWhitespace, (float)formattedText.Height);
         }
 
+        // The following code has never been tested.
+        public RectangleF GetTightBoundingBox(PointF startpoint, string text)
+        {
+            FormattedText formattedText = new FormattedText(text, CultureInfo.CurrentUICulture, FlowDirection.LeftToRight, typeface, emHeight, Brushes.Black, null, 1.0);
+            Geometry geometry = formattedText.BuildGeometry(new Point(startpoint.X, startpoint.Y + VerticalDisplacement));
+            Rect bounds = geometry.Bounds;
+            return new RectangleF((float)bounds.X, (float)bounds.Y, (float)bounds.Width, (float)bounds.Height);
+        }
+
         public void Dispose()
         {
         }

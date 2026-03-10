@@ -157,7 +157,7 @@ namespace PurplePen
                 if (distance / pixelSize <= 3.0) {
                     // over a handle.
                     handleLocation = handle;
-                    handleCursor = selectingCourseObj.GetHandleCursor(handle);
+                    handleCursor =  WindowsUtil.CursorFromMousePointerShape(selectingCourseObj.GetHandleCursor(handle));
                     return true;
                 }
             }

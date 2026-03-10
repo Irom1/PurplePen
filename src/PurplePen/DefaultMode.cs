@@ -273,7 +273,7 @@ namespace PurplePen
                             if (distance / pixelSize <= 3.0) {
                                 // over a handle.
                                 handleLocation = handle;
-                                handleCursor = courseObj.GetHandleCursor(handle);
+                                handleCursor = WindowsUtil.CursorFromMousePointerShape(courseObj.GetHandleCursor(handle));
                                 return courseObj;
                             }
                         }
@@ -629,7 +629,7 @@ namespace PurplePen
             this.courseObjectStart = courseObject;
             this.courseObjectDrag = (CourseObj) (courseObject.Clone());
             this.handleLocation = handleLocation;
-            this.handleCursor = courseObject.GetHandleCursor(handleLocation);
+            this.handleCursor = WindowsUtil.CursorFromMousePointerShape(courseObject.GetHandleCursor(handleLocation));
             this.startDrag = this.currentLocation = startDrag;
         }
 

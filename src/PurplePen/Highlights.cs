@@ -47,25 +47,33 @@ namespace PurplePen
         const float penWidth = 3F;
 
         RectangleF rect;
+        object redPenKey = new object();
+        object blueBrushKey = new object();
 
         public RectangleHighlight(RectangleF rect)
         {
             this.rect = rect;
         }
 
-        public void DrawHighlight(Graphics g, Matrix xformWorldToPixel)
+        public void DrawHighlight(IGraphicsTarget g, Matrix xformWorldToPixel)
         {
-            using (Pen redPen = new Pen(Color.Red, penWidth))
-            using (Brush blueBrush = new Draw2D.HatchBrush(Draw2D.HatchStyle.Percent25, Color.DarkBlue, Color.Transparent)) {
-                PointF[] pts = { new PointF(rect.Left, rect.Bottom), new PointF(rect.Right, rect.Top) };
-                xformWorldToPixel.TransformPoints(pts);
-                RectangleF rectPixel = RectangleF.FromLTRB(pts[0].X, pts[0].Y, pts[1].X, pts[1].Y);
-                g.FillRectangle(blueBrush, rectPixel.X, rectPixel.Y, rectPixel.Width, rectPixel.Height);
-                g.DrawRectangle(redPen, rectPixel.X, rectPixel.Y, rectPixel.Width, rectPixel.Height);
+            if (! g.HasPen(redPenKey)) {
+                g.CreatePen(redPenKey, CmykColor.FromColor(Color.Red), penWidth, LineCapMode.Flat, LineJoinMode.Miter, 0);
             }
+
+            if (! g.HasBrush(blueBrushKey)) {
+                g.CreateSolidBrush(blueBrushKey, CmykColor.FromColor(Color.FromArgb(64, Color.DarkBlue)));
+            }
+
+            PointF[] pts = { new PointF(rect.Left, rect.Bottom), new PointF(rect.Right, rect.Top) };
+            xformWorldToPixel.TransformPoints(pts);
+            RectangleF rectPixel = RectangleF.FromLTRB(pts[0].X, pts[0].Y, pts[1].X, pts[1].Y);
+
+            g.FillRectangle(blueBrushKey, new RectangleF(rectPixel.X, rectPixel.Y, rectPixel.Width, rectPixel.Height));
+            g.DrawRectangle(redPenKey, new RectangleF(rectPixel.X, rectPixel.Y, rectPixel.Width, rectPixel.Height));
         }
 
-        public void EraseHighlight(Graphics g, Matrix xformWorldToPixel, Brush eraseBrush)
+        public void EraseHighlight(IGraphicsTarget g, Matrix xformWorldToPixel, object eraseBrushKey)
         {
             PointF[] pts = { new PointF(rect.Left, rect.Bottom), new PointF(rect.Right, rect.Top) };
             xformWorldToPixel.TransformPoints(pts);
@@ -73,7 +81,8 @@ namespace PurplePen
 
             rectPixel.Inflate(penWidth / 2F, penWidth / 2F);
             Rectangle r = WindowsUtil.Round(rectPixel);
-            g.FillRectangle(eraseBrush, r);
+
+            g.FillRectangle(eraseBrushKey, r);
         }
 
         public RectangleF GetHighlightBounds()

@@ -879,6 +879,13 @@ namespace PurplePen.MapModel
             return new SizeF(width / 100, Math.Max((bounds.Bottom - bounds.Top) / 100, Ascent + Descent));
         }
 
+        public RectangleF GetTightBoundingBox(PointF startpoint, string text)
+        {
+            SKPath path = enhancedTypeface.GetTextPath(text, new SKPoint(startpoint.X, startpoint.Y), emHeight);
+            SKRect bounds = path.TightBounds;
+            return new RectangleF(bounds.Left, bounds.Top, bounds.Width, bounds.Height);
+        }
+
         void LoadFontMetrics()
         {
             if (!fontMetricsObtained) {

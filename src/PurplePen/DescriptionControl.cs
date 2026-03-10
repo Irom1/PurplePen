@@ -39,6 +39,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.Diagnostics;
+using PurplePen.MapModel;
 
 namespace PurplePen
 {
@@ -589,7 +590,9 @@ namespace PurplePen
                 g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
                 g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
 
-                renderer.RenderToGraphics(g, e.ClipRectangle);
+                using (GDIPlus_GraphicsTarget graphicsTarget = new GDIPlus_GraphicsTarget(g)) {
+                    renderer.RenderToGraphics(graphicsTarget, e.ClipRectangle);
+                }
             }
         }
 

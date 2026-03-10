@@ -10,6 +10,8 @@ using SizeF = System.Drawing.SizeF;
 
 namespace PurplePen.Graphics2D
 {
+    public enum TextAlignment { Left, Center, Right }
+
     public enum BlendMode { Darken }
 
     [Flags]
@@ -44,6 +46,7 @@ namespace PurplePen.Graphics2D
         float RecommendedLineSpacing { get; }
         float GetTextWidth(string text);
         SizeF GetTextSize(string text);
+        RectangleF GetTightBoundingBox(PointF startPoint, string text); // Gets a tight bounding box for the text; based on the actual character shapes. So if there are no descenders, the bounding box won't include any space for descenders. 
     }
 
     public interface ITextMetrics : IDisposable

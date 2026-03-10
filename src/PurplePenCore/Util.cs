@@ -391,6 +391,18 @@ namespace PurplePen
             return list.FindAll(delegate (PointF pt) { return pt != pointToRemove; }).ToArray();
         }
 
+        public static TextEffects GetTextEffects(bool bold, bool italic)
+        {
+            TextEffects effects = TextEffects.Regular;
+            if (bold)
+                effects |= TextEffects.Bold;
+            if (italic)
+                effects |= TextEffects.Italic;
+            return effects;
+        }
+
+
+
         // Pretty-ize the version string. 
         public static string PrettyVersionString(string verString)
         {

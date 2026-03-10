@@ -39,7 +39,7 @@ using System.Drawing;
 using PurplePen.Graphics2D;
 
 
-namespace PurplePen.MapView
+namespace PurplePen
 {
     // A highlight is as object overlayed on the current map that shows the current selection.
     // It is designed to draw/erase quickly, so it must be able to erase itself given a brush with the
@@ -55,10 +55,8 @@ namespace PurplePen.MapView
         int GetBorderPixels();
 
         // Draw onto the (pixel coordinates) graphics, using the given world-to-pixel transformation.
-        void DrawHighlight(Graphics g, Matrix xformWorldToPixel);
+        void DrawHighlight(IGraphicsTarget g, Matrix xformWorldToPixel);
 
-        // Erase the highlight, given this erase brush.
-        void EraseHighlight(Graphics g, Matrix xformWorldToPixel, Brush eraseBrush);
     }
 
 

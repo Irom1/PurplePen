@@ -41,6 +41,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Reflection;
 using System.IO;
+using PurplePen.MapModel;
 
 namespace PurplePen.DebugUI
 {
@@ -164,7 +165,9 @@ namespace PurplePen.DebugUI
             g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
 
-            descriptionRenderer.RenderToGraphics(g, e.ClipRectangle);
+            using (GDIPlus_GraphicsTarget graphicsTarget = new GDIPlus_GraphicsTarget(g)) {
+                descriptionRenderer.RenderToGraphics(graphicsTarget, e.ClipRectangle);
+            }
         }
 
         private void buttonPrint_Click(object sender, EventArgs e)
@@ -199,7 +202,9 @@ namespace PurplePen.DebugUI
 
             Graphics g = e.Graphics;
 
-            descriptionRenderer.RenderToGraphics(g, e.PageBounds);
+            using (GDIPlus_GraphicsTarget graphicsTarget = new GDIPlus_GraphicsTarget(g)) {
+                descriptionRenderer.RenderToGraphics(graphicsTarget, e.PageBounds);
+            }
         }
 
         private void buttonSaveBitmap_Click(object sender, EventArgs e)
@@ -312,7 +317,9 @@ namespace PurplePen.DebugUI
             g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
 
             g.Clear(Color.White);
-            descriptionRenderer.RenderToGraphics(g, new RectangleF(0, 0, size.Width, size.Height));
+            using (GDIPlus_GraphicsTarget graphicsTarget = new GDIPlus_GraphicsTarget(g)) {
+                descriptionRenderer.RenderToGraphics(graphicsTarget, new RectangleF(0, 0, size.Width, size.Height));
+            }
 
             g.Dispose();
 

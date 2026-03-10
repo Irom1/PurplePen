@@ -32,29 +32,26 @@
  * OF SUCH DAMAGE.
  */
 
+using Microsoft.SqlServer.Server;
+using PdfSharp.Drawing;
 using PurplePen.Graphics2D;
 using PurplePen.MapModel;
-using PurplePen.MapView;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Drawing.Text;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
-using System.Windows.Forms;
-using GraphicsPath = System.Drawing.Drawing2D.GraphicsPath;
 using Matrix = PurplePen.Graphics2D.Matrix;
 using MatrixOrder = PurplePen.Graphics2D.MatrixOrder;
 
 namespace PurplePen
 {
     // A CourseObj defines a single object on the rendered course.
-    abstract class CourseObj : IMapViewerHighlight, ICloneable
+    public abstract class CourseObj : IMapViewerHighlight, ICloneable
     {
         // NOTE: if you add new fields, update the Equals override!
         public CourseLayer layer;                            // layer in the map
@@ -66,9 +63,11 @@ namespace PurplePen
         public float courseObjRatio;                   // scale to display in (1.0 is normal scale).
         public CourseAppearance appearance;       // customize course appearance
 
-        static Brush highlightBrush;             // brush used to draw highlights.
+        static object highlightBrushKey = new object();             // brush used to draw highlights.
 
         public const int HANDLESIZE = 5;          // side of a square handle (should be odd).
+
+        private object blueBrushKey = new object();
 
         protected CourseObj(Id<ControlPoint> controlId, Id<CourseControl> courseControlId, Id<Special> specialId, float courseObjRatio, CourseAppearance appearance)
         {
@@ -160,7 +159,7 @@ namespace PurplePen
         { return 100; }
 
         // Draw or erase the highlight, given a brush.
-        public abstract void Highlight(Graphics g, Matrix xformWorldToPixel, Brush brush, bool erasing);
+        public abstract void Highlight(IGraphicsTarget g, Matrix xformWorldToPixel, object brush, bool erasing);
 
         // Offset this course object by the given amount.
         public abstract void Offset(float dx, float dy);
@@ -189,23 +188,19 @@ namespace PurplePen
         }
 
         // Get the cursor that should be used for a given handle.
-        public virtual Cursor GetHandleCursor(PointF handlePoint)
+        public virtual MousePointerShape GetHandleCursor(PointF handlePoint)
         {
-            return WindowsUtil.MoveHandleCursor;
+            return new MousePointerShape(PredefinedMousePointerShape.MoveHandle);
         }
 
         // Draw a highlight for this course object.    
-        public void DrawHighlight(Graphics g, Matrix xformWorldToPixel)
+        public void DrawHighlight(IGraphicsTarget g, Matrix xformWorldToPixel)
         {
-            if (highlightBrush == null) {
-                // Using a SolidBrush causes slight differences in drawing single pixel
-                // wide lines. This must be due to some optimizations in GDI+. So we fake it by using
-                // a single pixel texture brush.
-                Bitmap bm = new Bitmap(1, 1);
-                bm.SetPixel(0, 0, NormalCourseAppearance.highlightColor);
-                highlightBrush = new TextureBrush(bm);
+            if (! g.HasBrush(highlightBrushKey)) {
+                g.CreateSolidBrush(highlightBrushKey, CmykColor.FromColor(NormalCourseAppearance.highlightColor));
             }
-            Highlight(g, xformWorldToPixel, highlightBrush, false);
+
+            Highlight(g, xformWorldToPixel, highlightBrushKey, false);
 
             // Draw any handles we have.
             PointF[] handles = GetHandles();
@@ -216,7 +211,7 @@ namespace PurplePen
         }
 
         // Erase a highlight for this course object.
-        public void EraseHighlight(Graphics g, Matrix xformWorldToPixel, Brush eraseBrush)
+        public void EraseHighlight(IGraphicsTarget g, Matrix xformWorldToPixel, object eraseBrush)
         {
             Highlight(g, xformWorldToPixel, eraseBrush, true);
 
@@ -229,17 +224,19 @@ namespace PurplePen
         }
 
         // Draw a handle at a given location.
-        private void DrawHandle(PointF handleLocation, Graphics g, Matrix xformWorldToPixel)
+        private void DrawHandle(PointF handleLocation, IGraphicsTarget g, Matrix xformWorldToPixel)
         {
             const int HIGHLIGHTSIZE = 5;
             Point pixelLocation = Point.Round(Geometry.TransformPoint(handleLocation, xformWorldToPixel));
 
             Rectangle rect = new Rectangle(pixelLocation.X - (HIGHLIGHTSIZE - 1) / 2, pixelLocation.Y - (HIGHLIGHTSIZE - 1) / 2, HIGHLIGHTSIZE, HIGHLIGHTSIZE);
-            g.FillRectangle(Brushes.Blue, rect);
+            if (! g.HasBrush(blueBrushKey))
+                g.CreateSolidBrush(blueBrushKey, CmykColor.FromRgb(0, 0, 1));  
+            g.FillRectangle(blueBrushKey, rect);
         }
 
         // Erase a handle at a given location.
-        private void EraseHandle(PointF handleLocation, Graphics g, Matrix xformWorldToPixel, Brush eraseBrush)
+        private void EraseHandle(PointF handleLocation, IGraphicsTarget g, Matrix xformWorldToPixel, object eraseBrush)
         {
             Point pixelLocation = Point.Round(Geometry.TransformPoint(handleLocation, xformWorldToPixel));
 
@@ -291,7 +288,8 @@ namespace PurplePen
         // override object.GetHashCode
         public override int GetHashCode()
         {
-            throw new NotSupportedException("The method or operation is not supported.");
+            Debug.Fail("Shouldn't call GetHashCode on this class");
+            return 1;
         }
 
         public virtual object Clone()
@@ -300,10 +298,10 @@ namespace PurplePen
         }
     }
 
-    enum CrossHairOptions { NoCrossHair, HighlightCrossHair }
+    public enum CrossHairOptions { NoCrossHair, HighlightCrossHair }
 
     // A type of course object that exists at a single point.
-    abstract class PointCourseObj : CourseObj
+    public abstract class PointCourseObj : CourseObj
     {
         // NOTE: if new fields are added, update Equals implementation.
         public CircleGap[] gaps;                 // gaps if its a control or finish circle
@@ -312,6 +310,7 @@ namespace PurplePen
         public PointF location;                  // location of the object
         float radius;                            // radius of the object (for hit-testing) -- unscaled.
 
+        private object highlightPen = new object();
 
         protected PointCourseObj(Id<ControlPoint> controlId, Id<CourseControl> courseControlId, Id<Special> specialId, float courseObjRatio, CourseAppearance appearance, CircleGap[] gaps, float orientation, float radius, PointF location) :
            base(controlId, courseControlId, specialId, courseObjRatio, appearance)
@@ -354,7 +353,7 @@ namespace PurplePen
         }
 
         // Draw a cross-hair at the location.
-        protected void HighlightCrossHair(Graphics g, Matrix xformWorldToPixel, Brush brush)
+        protected void HighlightCrossHair(IGraphicsTarget g, Matrix xformWorldToPixel, object brush)
         {
             // Cross hair is 1.5mm in each direction.
             float crossHairLength = 1.5F * courseObjRatio;
@@ -365,10 +364,11 @@ namespace PurplePen
             xformWorldToPixel.TransformPoints(pts);
 
             // Draw the cross-hair.
-            using (Pen pen = new Pen(brush, 0)) {
-                g.DrawLine(pen, (float)Math.Round(pts[0].X), (float)Math.Round(pts[0].Y), (float)Math.Round(pts[1].X), (float)Math.Round(pts[1].Y));
-                g.DrawLine(pen, (float)Math.Round(pts[2].X), (float)Math.Round(pts[2].Y), (float)Math.Round(pts[3].X), (float)Math.Round(pts[3].Y));
-            }
+            if (! g.HasPen(highlightPen))
+                g.CreatePen(highlightPen, brush, 1, LineCapMode.Flat, LineJoinMode.Miter, 5);
+
+                g.DrawLine(highlightPen, new PointF((float)Math.Round(pts[0].X), (float)Math.Round(pts[0].Y)), new PointF((float)Math.Round(pts[1].X), (float)Math.Round(pts[1].Y)));
+                g.DrawLine(highlightPen, new PointF((float)Math.Round(pts[2].X), (float)Math.Round(pts[2].Y)), new PointF((float)Math.Round(pts[3].X), (float)Math.Round(pts[3].Y)));
         }
 
         // Get the bounds of the highlight.
@@ -417,12 +417,13 @@ namespace PurplePen
         // override object.GetHashCode
         public override int GetHashCode()
         {
-            throw new NotSupportedException("The method or operation is not supported.");
+            Debug.Fail("Shouldn't call GetHashCode on this class");
+            return 1;
         }
     }
 
     // A type of course object that is a series of line segments.
-    abstract class LineCourseObj : CourseObj
+    public abstract class LineCourseObj : CourseObj
     {
         // NOTE: if new fields are added, update Equals implementation.
         public Id<CourseControl> courseControlId2;            // Id of second associated course control (normal leg/flagged leg)
@@ -507,13 +508,8 @@ namespace PurplePen
         }
 
         // Draw the highlight. Everything must be drawn in pixel coords so fast erase works correctly.
-        public override void Highlight(Graphics g, Matrix xformWorldToPixel, Brush brush, bool erasing)
+        public override void Highlight(IGraphicsTarget grTarget, Matrix xformWorldToPixel, object brush, bool erasing)
         {
-            GDIPlus_GraphicsTarget grTarget = new GDIPlus_GraphicsTarget(g);
-
-            object brushKey = new object();
-            grTarget.CreateGdiPlusBrush(brushKey, brush, false);
-
             // Get thickness of line.
             float pixelThickness = TransformDistance(thickness * courseObjRatio, xformWorldToPixel);
 
@@ -521,7 +517,7 @@ namespace PurplePen
 
             // Draw it.
             object penKey = new object();
-            grTarget.CreatePen(penKey, brushKey, pixelThickness, LineCapMode.Flat, LineJoinMode.Miter, 5);
+            grTarget.CreatePen(penKey, brush, pixelThickness, LineCapMode.Flat, LineJoinMode.Miter, 5);
 
             try {
                 foreach (SymPath p in gappedPaths) {
@@ -628,12 +624,13 @@ namespace PurplePen
         // override object.GetHashCode
         public override int GetHashCode()
         {
-            throw new NotSupportedException("The method or operation is not supported.");
+            Debug.Fail("Shouldn't call GetHashCode on this class");
+            return 1;
         }
     }
 
     // A type of course object that spans an area.
-    abstract class AreaCourseObj : CourseObj
+    public abstract class AreaCourseObj : CourseObj
     {
         // NOTE: if new fields are added, update Equals implementation.
         protected SymPathWithHoles path;                // closed path with the area to fill
@@ -694,27 +691,22 @@ namespace PurplePen
         }
 
         // Draw the highlight. Everything must be draw in pixel coords so fast erase works correctly.
-        public override void Highlight(Graphics g, Matrix xformWorldToPixel, Brush brush, bool erasing)
+        public override void Highlight(IGraphicsTarget grTarget, Matrix xformWorldToPixel, object brush, bool erasing)
         {
-            GDIPlus_GraphicsTarget grTarget = new GDIPlus_GraphicsTarget(g);
-
-            object brushKey = new object();
-            grTarget.CreateGdiPlusBrush(brushKey, brush, false);
-
             // Draw the boundary.
             object penKey = new object();
-            grTarget.CreatePen(penKey, brushKey, 2, LineCapMode.Round, LineJoinMode.Round, 5);
+            grTarget.CreatePen(penKey, brush, 2, LineCapMode.Round, LineJoinMode.Round, 5);
             path.DrawTransformed(grTarget, penKey, xformWorldToPixel);
 
             // Get a brush to fill the interior with.
             object fillBrushKey;
 
             if (erasing)
-                fillBrushKey = brushKey;
+                fillBrushKey = brush;
             else {
+                // 25% transparent brush.
                 fillBrushKey = new object();
-                HatchBrush hatchBrush = new HatchBrush(HatchStyle.Percent25, NormalCourseAppearance.highlightColor, Color.Transparent);
-                grTarget.CreateGdiPlusBrush(fillBrushKey, hatchBrush, false);
+                grTarget.CreateSolidBrush(fillBrushKey, CmykColor.FromRgba(NormalCourseAppearance.highlightColor.R / 255F, NormalCourseAppearance.highlightColor.G / 255F, NormalCourseAppearance.highlightColor.B / 255F, 0.25F));
             }
 
             // Draw the interior
@@ -769,15 +761,18 @@ namespace PurplePen
         // override object.GetHashCode
         public override int GetHashCode()
         {
-            throw new NotSupportedException("The method or operation is not supported.");
+            Debug.Fail("Shouldn't call GetHashCode on this class");
+            return 1;
         }
     }
 
     // A type of course object that spans an rectangular area.
-    class RectCourseObj : CourseObj
+    public class RectCourseObj : CourseObj
     {
         // NOTE: if new fields are added, update Equals implementation.
         public RectangleF rect;                // rectangle with the area.
+
+        private object penKey = new object();
 
         public RectCourseObj(Id<ControlPoint> controlId, Id<CourseControl> courseControlId, Id<Special> specialId, float courseObjRatio, CourseAppearance appearance, RectangleF rect)
             :
@@ -798,17 +793,17 @@ namespace PurplePen
             return handles;
         }
 
-        public override Cursor GetHandleCursor(PointF handlePoint)
+        public override MousePointerShape GetHandleCursor(PointF handlePoint)
         {
             // Get the correct sizing cursors for each point given above. 
             int index = Array.IndexOf(GetHandles(), handlePoint);
 
             switch (index) {
-                case 0: case 7: return Cursors.SizeNESW;
-                case 1: case 6: return Cursors.SizeNS;
-                case 2: case 5: return Cursors.SizeNWSE;
-                case 3: case 4: return Cursors.SizeWE;
-                default: return WindowsUtil.MoveHandleCursor;
+                case 0: case 7: return new MousePointerShape(PredefinedMousePointerShape.SizeNESW);
+                case 1: case 6: return new MousePointerShape(PredefinedMousePointerShape.SizeNS);
+                case 2: case 5: return new MousePointerShape(PredefinedMousePointerShape.SizeNWSE);
+                case 3: case 4: return new MousePointerShape(PredefinedMousePointerShape.SizeWE);
+                default: return new MousePointerShape(PredefinedMousePointerShape.MoveHandle);
             }
         }
 
@@ -833,31 +828,34 @@ namespace PurplePen
             return result;
         }
 
-        protected static void DrawBorderedRectangle(Graphics g, Matrix xformWorldToPixel, RectangleF rectToDraw, Brush brush, bool erasing)
+        protected static void DrawBorderedRectangle(IGraphicsTarget g, Matrix xformWorldToPixel, RectangleF rectToDraw, object brush, bool erasing)
         {
             RectangleF xformedRect = Geometry.TransformRectangle(xformWorldToPixel, rectToDraw);
 
             // Get a brush to fill the interior with.
-            Brush fillBrush;
+            object fillBrush;
 
             if (erasing) {
                 fillBrush = brush;
             }
             else {
-                fillBrush = new HatchBrush(HatchStyle.Percent25, NormalCourseAppearance.highlightColor, Color.Transparent);
+                // 25% transparent brush.
+                object fillBrushKey = new object();
+                g.CreateSolidBrush(fillBrushKey, CmykColor.FromRgba(NormalCourseAppearance.highlightColor.R / 255F, NormalCourseAppearance.highlightColor.G / 255F, NormalCourseAppearance.highlightColor.B / 255F, 0.25F));
+                fillBrush = fillBrushKey;
             }
 
             // Draw the interior
             g.FillRectangle(fillBrush, xformedRect);
 
             // Draw the boundary.
-            using (Pen pen = new Pen(brush, 2)) {
-                g.DrawRectangle(pen, xformedRect.Left, xformedRect.Top, xformedRect.Width, xformedRect.Height);
-            }
+            object penKey = new object();
+            g.CreatePen(penKey, brush, 2, LineCapMode.Round, LineJoinMode.Round, 5);
+            g.DrawRectangle(penKey, new RectangleF(xformedRect.Left, xformedRect.Top, xformedRect.Width, xformedRect.Height));
         }
 
         // Draw the highlight. Everything must be draw in pixel coords so fast erase works correctly.
-        public override void Highlight(Graphics g, Matrix xformWorldToPixel, Brush brush, bool erasing)
+        public override void Highlight(IGraphicsTarget g, Matrix xformWorldToPixel, object brush, bool erasing)
         {
             DrawBorderedRectangle(g, xformWorldToPixel, rect, brush, erasing);
         }
@@ -947,7 +945,8 @@ namespace PurplePen
         // override object.GetHashCode
         public override int GetHashCode()
         {
-            throw new NotSupportedException("The method or operation is not supported.");
+            Debug.Fail("Shouldn't call GetHashCode on this class");
+            return 1;
         }
 
         protected override void AddToMap(Map map, SymDef symdef)
@@ -962,7 +961,7 @@ namespace PurplePen
     }
 
     // A rectangle that preserves aspect when resized.
-    abstract class AspectPreservingRectCourseObj : RectCourseObj
+    public abstract class AspectPreservingRectCourseObj : RectCourseObj
     {
         protected float aspect;                    // aspect to maintain: width / height
 
@@ -1037,7 +1036,7 @@ namespace PurplePen
 
 
     // A type of course object that is text.
-    abstract class TextCourseObj : CourseObj
+    public abstract class TextCourseObj : CourseObj
     {
         // NOTE: if new fields are added, update Equals implementation.
         public string text;                             // text for a Text object
@@ -1049,6 +1048,8 @@ namespace PurplePen
         private float outlineWidth;                 // width of white outline (0 for none)
 
         protected SizeF size;                       // size of the text.
+
+        private object fontKey = new object();
 
         // NOTE: scale ratio is not used for this type of object!
         public TextCourseObj(Id<ControlPoint> controlId, Id<CourseControl> courseControlId, Id<Special> specialId, string text, PointF topLeft, string fontName, TextEffects textEffects, SpecialColor fontColor, float emHeight, float outlineWidth)
@@ -1082,7 +1083,7 @@ namespace PurplePen
 
         protected static string FontNameSafe(string fontName)
         {
-            if (MapUtil.TextMetricsProvider.TextFaceIsInstalled(fontName))
+            if (Services.TextMetricsProvider.TextFaceIsInstalled(fontName))
                 return fontName;
             else
                 return "Arial";
@@ -1140,7 +1141,7 @@ namespace PurplePen
                 symdef.SetFraming(framing);
             }
 
-            symdef.ToolboxImage = MapUtil.CreateToolboxIcon(Properties.Resources.Number_OcadToolbox);
+            symdef.ToolboxImage = CoreMapUtil.CreateToolboxIcon(IconBitmaps.Number_OcadToolbox);
             map.AddSymdef(symdef);
             return symdef;
         }
@@ -1196,9 +1197,9 @@ namespace PurplePen
             if (emHeight == 0)
                 return new SizeF(0, 0);
 
-            Graphics g = WindowsUtil.GetHiresGraphics();
-            using (Font f = ((GdiplusFontLoader)Services.FontLoader).CreateFont(SafeFontName, emHeight, textEffects))
-                return g.MeasureString(text, f, topLeft, StringFormat.GenericTypographic);
+            ITextMetrics textMetrics = Services.TextMetricsProvider;
+            ITextFaceMetrics fontMetrics = textMetrics.GetTextFaceMetrics(SafeFontName, emHeight, textEffects);
+            return fontMetrics.GetTextSize(text);
         }
 
         public override string ToString()
@@ -1209,7 +1210,7 @@ namespace PurplePen
         }
 
         // Draw the highlight. Everything must be draw in pixel coords so fast erase works correctly.
-        public override void Highlight(Graphics g, Matrix xformWorldToPixel, Brush brush, bool erasing)
+        public override void Highlight(IGraphicsTarget g, Matrix xformWorldToPixel, object brush, bool erasing)
         {
             // Get height of the text.
             float pixelEmHight = TransformDistance(emHeight, xformWorldToPixel);
@@ -1219,68 +1220,30 @@ namespace PurplePen
             xformWorldToPixel.TransformPoints(topLeftPixel);
 
             // Draw it.
-            using (FontFamily fontFam = ((GdiplusFontLoader)Services.FontLoader).CreateFontFamily(SafeFontName)) {
-                StringFormat format = new StringFormat(StringFormat.GenericTypographic);
-                format.Alignment = StringAlignment.Near;
-                format.LineAlignment = StringAlignment.Near;
-                format.FormatFlags |= StringFormatFlags.NoClip;
-
-                // Alternate way of drawing text.
-                //GraphicsPath path = new GraphicsPath();
-                //path.AddString(text, fontFam, (int)fontStyle, pixelEmHight, topLeftPixel[0], format);
-                //path.CloseAllFigures();
-                //g.FillPath(brush, path);
-                //path.Dispose();
-
-                if (erasing) {
-                    // Erase a rectangle that encloses the text.
-                    using (Font font = ((GdiplusFontLoader)Services.FontLoader).CreateFont(SafeFontName, pixelEmHight, textEffects)) {
-                        SizeF textSize = g.MeasureString(text, font, topLeftPixel[0], format);
-                        Size expandedSize = new Size((int)Math.Ceiling(textSize.Width) + 4, (int)Math.Ceiling(textSize.Height) + 4);
-                        try {
-                            g.FillRectangle(brush, topLeftPixel[0].X - 2, topLeftPixel[0].Y - 2, expandedSize.Width, expandedSize.Height);
-                            g.DrawString(text, font, brush, topLeftPixel[0], format);
-                        }
-                        catch (Exception) {
-                            // Sometimes happens with very small items. Nothing to do but ignore it.
-                            // Do nothing. Very occasionally, GDI+ given an overflow exception or ExternalException or OutOfMemory exception. 
-                            // Just ignore it; there's nothing else to do. See bug #1997301.
-                        }
-                    }
-                }
-                else {
-                    TextRenderingHint saveTextRenderingHint = g.TextRenderingHint;
-                    g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
-                    using (Font font = ((GdiplusFontLoader)Services.FontLoader).CreateFont(SafeFontName, pixelEmHight, textEffects)) {
-                        // Outline in white, makes the red text pop much better.
-                        GraphicsPath path = new GraphicsPath();
-                        path.AddString(text, fontFam, (int)GdiplusFontLoader.FontStyleFromTextEffects(textEffects), pixelEmHight, topLeftPixel[0], format);
-                        path.CloseAllFigures();
-                        using (Pen pen = new Pen(Color.White, 2)) {
-                            try {
-                                g.DrawPath(pen, path);
-                            }
-                            catch (Exception) {
-                                // Sometimes happens with very small items. Nothing to do but ignore it.
-                                // Do nothing. Very occasionally, GDI+ given an overflow exception or ExternalException or OutOfMemory exception. 
-                                // Just ignore it; there's nothing else to do. See bug #1997301.
-                            }
-                        }
-                        path.Dispose();
-
-                        try {
-                            // Draw red text.
-                            g.DrawString(text, font, brush, topLeftPixel[0], format);
-                        }
-                        catch (Exception) {
-                            // Sometimes happens with very small items. Nothing to do but ignore it.
-                            // Do nothing. Very occasionally, GDI+ given an overflow exception or ExternalException or OutOfMemory exception. 
-                            // Just ignore it; there's nothing else to do. See bug #1997301.
-                        }
-                    }
-                    g.TextRenderingHint = saveTextRenderingHint;
-                }
+            if (!g.HasFont(fontKey)) {
+                g.CreateFont(fontKey, SafeFontName, pixelEmHight, textEffects);
             }
+            ITextFaceMetrics metrics = Services.TextMetricsProvider.GetTextFaceMetrics(SafeFontName, pixelEmHight, textEffects);
+
+            if (erasing) {
+                // Erase a rectangle that encloses the text.
+                SizeF textSize = metrics.GetTextSize(text);
+                Size expandedSize = new Size((int)Math.Ceiling(textSize.Width) + 4, (int)Math.Ceiling(textSize.Height) + 4);
+                g.FillRectangle(brush, new RectangleF(topLeftPixel[0].X - 2, topLeftPixel[0].Y - 2, expandedSize.Width, expandedSize.Height));
+                g.DrawText(text, fontKey, brush, topLeftPixel[0]);
+            }
+            else {
+                g.PushAntiAliasing(true);
+
+                // Outline in white, makes the red text pop much better.
+                object whitePenKey = new object();
+                g.CreatePen(whitePenKey, CmykColor.FromCmyk(0, 0, 0, 0), 2, LineCapMode.Round, LineJoinMode.Round, 5);
+                g.DrawTextOutline(text, fontKey, whitePenKey, topLeftPixel[0]);
+                g.DrawText(text, fontKey, brush, topLeftPixel[0]);
+
+                g.PopAntiAliasing();
+            }
+
         }
 
         // Get the bounds of the highlight
@@ -1315,13 +1278,16 @@ namespace PurplePen
         // override object.GetHashCode
         public override int GetHashCode()
         {
-            throw new NotSupportedException("The method or operation is not supported.");
+            Debug.Fail("Shouldn't call GetHashCode on this class");
+            return 1;
         }
     }
 
     // A control circle
-    class ControlCourseObj : PointCourseObj
+    public class ControlCourseObj : PointCourseObj
     {
+        private object penKey = new object();
+
         public ControlCourseObj(Id<ControlPoint> controlId, Id<CourseControl> courseControlId, float courseObjRatio, CourseAppearance appearance, CircleGap[] gaps, PointF location)
             : base(controlId, courseControlId, Id<Special>.None, courseObjRatio, appearance, gaps, 0,
                   (appearance.mapStandard == "2017" ? 
@@ -1355,7 +1321,7 @@ namespace PurplePen
             glyph.ConstructionComplete();
 
             PointSymDef symdef = new PointSymDef("Control point", "702", glyph, false);
-            symdef.ToolboxImage = MapUtil.CreateToolboxIcon(Properties.Resources.Control_OcadToolbox);
+            symdef.ToolboxImage = CoreMapUtil.CreateToolboxIcon(IconBitmaps.Control_OcadToolbox);
             map.AddSymdef(symdef);
             return symdef;
         }
@@ -1383,7 +1349,7 @@ namespace PurplePen
         }
 
         // Draw the highlight. Everything must be drawn in pixel coords so fast erase works correctly.
-        public override void Highlight(Graphics g, Matrix xformWorldToPixel, Brush brush, bool erasing)
+        public override void Highlight(IGraphicsTarget g, Matrix xformWorldToPixel, object brush, bool erasing)
         {
             // Transform the thickness to pixel coords.
             float thickness = TransformDistance(LineThickness, xformWorldToPixel);
@@ -1394,29 +1360,25 @@ namespace PurplePen
             xformWorldToPixel.TransformPoints(pts);
 
             // Draw the control circle.
-            using (Pen pen = new Pen(brush, thickness)) {
-                RectangleF rect = RectangleF.FromLTRB(pts[1].X, pts[2].Y, pts[2].X, pts[1].Y);
-                CircleGap[] gapsToDraw = CircleGap.SimplifyGaps(gaps);
+            if (! g.HasPen(penKey)) {
+                g.CreatePen(penKey, brush, thickness, LineCapMode.Flat, LineJoinMode.Round, 5);
+            }
 
-                try {
-                    if (gapsToDraw == null)
-                        g.DrawEllipse(pen, rect);
-                    else {
-                        float[] arcStartSweeps = CircleGap.ArcStartSweeps(gapsToDraw);
-                        for (int i = 0; i < arcStartSweeps.Length; i += 2) {
-                            float startArc = arcStartSweeps[i];
-                            float sweepArc = arcStartSweeps[i + 1];
-                            g.DrawArc(pen, rect, startArc, sweepArc);
-                        }
-                    }
+            RectangleF rect = RectangleF.FromLTRB(pts[1].X, pts[2].Y, pts[2].X, pts[1].Y);
+            CircleGap[] gapsToDraw = CircleGap.SimplifyGaps(gaps);
 
-                    // No center dot for highlighting (crosshair instead)
-                }
-                catch (Exception) {
-                    // Do nothing. Very occasionally, GDI+ given an overflow exception or ExternalException or OutOfMemory exception. 
-                    // Just ignore it; there's nothing else to do. See bug #1997301.
+            if (gapsToDraw == null)
+                g.DrawEllipse(penKey, rect.Center(), rect.Width / 2F, rect.Height / 2F);
+            else {
+                float[] arcStartSweeps = CircleGap.ArcStartSweeps(gapsToDraw);
+                for (int i = 0; i < arcStartSweeps.Length; i += 2) {
+                    float startArc = arcStartSweeps[i];
+                    float sweepArc = arcStartSweeps[i + 1];
+                    g.DrawArc(penKey, rect.Center(), rect.Width / 2F, startArc, sweepArc);
                 }
             }
+
+            // No center dot for highlighting (crosshair instead)
 
             // Draw the cross-hair.
             HighlightCrossHair(g, xformWorldToPixel, brush);
@@ -1426,8 +1388,10 @@ namespace PurplePen
     // A control circle with a triangle inside, for after map exchange/flip
     // Important note: the orientation is the orientation of the triangle, but does not affect
     // the circle gaps. We need to override the AddToMap method to counter-rotate the gaps.
-    class ExchangeStartCourseObj : ControlCourseObj
+    public class ExchangeStartCourseObj : ControlCourseObj
     {
+        private object penKey = new object();
+
         public ExchangeStartCourseObj(Id<ControlPoint> controlId, Id<CourseControl> courseControlId, float courseObjRatio, CourseAppearance appearance, CircleGap[] gaps, float orientation, PointF location)
             : base(controlId, courseControlId, courseObjRatio, appearance, gaps, location)
         {
@@ -1471,13 +1435,13 @@ namespace PurplePen
             glyph.ConstructionComplete();
 
             PointSymDef symdef = new PointSymDef("Continuing point", "716", glyph, false);
-            symdef.ToolboxImage = MapUtil.CreateToolboxIcon(Properties.Resources.ExchangeStart_OcadToolbox);
+            symdef.ToolboxImage = CoreMapUtil.CreateToolboxIcon(IconBitmaps.ExchangeStart_OcadToolbox);
             map.AddSymdef(symdef);
             return symdef;
         }
 
         // Draw the highlight. Everything must be drawn in pixel coords so fast erase works correctly.
-        public override void Highlight(Graphics g, Matrix xformWorldToPixel, Brush brush, bool erasing)
+        public override void Highlight(IGraphicsTarget g, Matrix xformWorldToPixel, object brush, bool erasing)
         {
             // Transform the thickness to pixel coords.
             float thickness = TransformDistance(LineThickness, xformWorldToPixel);
@@ -1492,35 +1456,27 @@ namespace PurplePen
             xformWorldToPixel.TransformPoints(triangleCorners);
 
             // Draw the control circle.
-            using (Pen pen = new Pen(brush, thickness))
-            using (Pen trianglePen = new Pen(brush, thickness)) {
-                RectangleF rect = RectangleF.FromLTRB(pts[1].X, pts[2].Y, pts[2].X, pts[1].Y);
-                CircleGap[] gapsToDraw = CircleGap.SimplifyGaps(gaps);
+            if (!g.HasPen(penKey)) {
+                g.CreatePen(penKey, brush, thickness, LineCapMode.Flat, LineJoinMode.Round, 5);
+            }
 
-                trianglePen.LineJoin = LineJoinMode.Round.ToSysDrawLineJoin();
+            RectangleF rect = RectangleF.FromLTRB(pts[1].X, pts[2].Y, pts[2].X, pts[1].Y);
+            CircleGap[] gapsToDraw = CircleGap.SimplifyGaps(gaps);
 
-                try {
-                    if (gapsToDraw == null)
-                        g.DrawEllipse(pen, rect);
-                    else {
-                        float[] arcStartSweeps = CircleGap.ArcStartSweeps(gapsToDraw);
-                        for (int i = 0; i < arcStartSweeps.Length; i += 2) {
-                            float startArc = arcStartSweeps[i];
-                            float sweepArc = arcStartSweeps[i + 1];
-                            g.DrawArc(pen, rect, startArc, sweepArc);
-                        }
-                    }
-
-                    // No center dot for highlighting (crosshair instead)
-
-                    // Triangle.
-                    g.DrawPolygon(trianglePen, triangleCorners);
-                }
-                catch (Exception) {
-                    // Do nothing. Very occasionally, GDI+ given an overflow exception or ExternalException or OutOfMemory exception. 
-                    // Just ignore it; there's nothing else to do. See bug #1997301.
+            if (gapsToDraw == null)
+                g.DrawEllipse(penKey, rect.Center(), rect.Width / 2F, rect.Height / 2F);
+            else {
+                float[] arcStartSweeps = CircleGap.ArcStartSweeps(gapsToDraw);
+                for (int i = 0; i < arcStartSweeps.Length; i += 2) {
+                    float startArc = arcStartSweeps[i];
+                    float sweepArc = arcStartSweeps[i + 1];
+                    g.DrawArc(penKey, rect.Center(), rect.Width / 2F, startArc, sweepArc);
                 }
             }
+
+            // Triangle.
+            g.DrawPolygon(penKey, triangleCorners);
+
 
             // Draw the cross-hair.
             HighlightCrossHair(g, xformWorldToPixel, brush);
@@ -1538,13 +1494,15 @@ namespace PurplePen
 
 
     // Start triangle
-    class StartCourseObj : PointCourseObj
+    public class StartCourseObj : PointCourseObj
     {
         // Coordinates of the triangle.
         static readonly PointF[] coords2000 = { new PointF(0F, 4.041F), new PointF(3.5F, -2.021F), new PointF(-3.5F, -2.021F), new PointF(0F, 4.041F) };
         static readonly PointF[] coords2017 = { new PointF(0F, 3.464F), new PointF(3.0F, -1.732F), new PointF(-3.0F, -1.732F), new PointF(0F, 3.464F) };
 
         CrossHairOptions crossHairOptions;
+
+        private object penKey = new object();
 
         public StartCourseObj(Id<ControlPoint> controlId, Id<CourseControl> courseControlId, float courseObjRatio,
                               CourseAppearance appearance, float orientation, PointF location, CrossHairOptions crossHairOptions)
@@ -1568,7 +1526,7 @@ namespace PurplePen
             glyph.ConstructionComplete();
 
             PointSymDef symdef = new PointSymDef("Start", "701", glyph, true);
-            symdef.ToolboxImage = MapUtil.CreateToolboxIcon(Properties.Resources.Start_OcadToolbox);
+            symdef.ToolboxImage = CoreMapUtil.CreateToolboxIcon(IconBitmaps.Start_OcadToolbox);
             map.AddSymdef(symdef);
             return symdef;
         }
@@ -1581,7 +1539,7 @@ namespace PurplePen
         }
 
         // Draw the highlight. Everything must be draw in pixel coords so fast erase works correctly.
-        public override void Highlight(Graphics g, Matrix xformWorldToPixel, Brush brush, bool erasing)
+        public override void Highlight(IGraphicsTarget g, Matrix xformWorldToPixel, object brush, bool erasing)
         {
             PointF[] coords = (appearance.mapStandard == "2017") ? coords2017 : coords2000;
 
@@ -1593,9 +1551,10 @@ namespace PurplePen
             xformWorldToPixel.TransformPoints(pts);
 
             // Draw the triangle.
-            using (Pen pen = new Pen(brush, thickness)) {
-                g.DrawPolygon(pen, pts);
+            if (!g.HasPen(penKey)) {
+                g.CreatePen(penKey, brush, thickness, LineCapMode.Flat, LineJoinMode.Miter, 10);
             }
+            g.DrawPolygon(penKey, pts);
 
             if (crossHairOptions == CrossHairOptions.HighlightCrossHair) {
                 // Draw the cross-hair.
@@ -1607,7 +1566,7 @@ namespace PurplePen
 
     // Map Issue Point.
     // Optionally show a "tail", which is useful if we aren't drawing a line from it.
-    class MapIssueCourseObj : PointCourseObj
+    public class MapIssueCourseObj : PointCourseObj
     {
         // Coordinates of the tmap issue.
         static readonly PointF[] coords = { new PointF(NormalCourseAppearance.mapIssueLength / 2.0F, 0F), new PointF(-NormalCourseAppearance.mapIssueLength / 2.0F, 0F) };
@@ -1615,6 +1574,7 @@ namespace PurplePen
 
         RenderStyle renderStyle;
         static object noRenderKey = new object(), withTailKey = new object(), withoutTailKey = new object();
+        private object penKey1 = new object(), penKey2 = new object();
 
         public MapIssueCourseObj(Id<ControlPoint> controlId, Id<CourseControl> courseControlId, float courseObjRatio,
                               CourseAppearance appearance, float orientation, PointF location, RenderStyle renderStyle)
@@ -1657,7 +1617,7 @@ namespace PurplePen
             glyph.ConstructionComplete();
 
             PointSymDef symdef = new PointSymDef("Map Issue Point", "715", glyph, true);
-            symdef.ToolboxImage = MapUtil.CreateToolboxIcon(Properties.Resources.MapIssue_OcadToolbox);
+            symdef.ToolboxImage = CoreMapUtil.CreateToolboxIcon(IconBitmaps.MapIssue_OcadToolbox);
             map.AddSymdef(symdef);
             return symdef;
         }
@@ -1670,7 +1630,7 @@ namespace PurplePen
         }
 
         // Draw the highlight. Everything must be draw in pixel coords so fast erase works correctly.
-        public override void Highlight(Graphics g, Matrix xformWorldToPixel, Brush brush, bool erasing)
+        public override void Highlight(IGraphicsTarget g, Matrix xformWorldToPixel, object brush, bool erasing)
         {
             // Transform the thickness to pixel coords.
             float thickness1 = TransformDistance(NormalCourseAppearance.mapIssueWidth * courseObjRatio * appearance.controlCircleSize, xformWorldToPixel);
@@ -1683,15 +1643,17 @@ namespace PurplePen
             xformWorldToPixel.TransformPoints(pts2);
 
             // Draw the map issue point, with tail. Even RenderStyle.None draws the highlight without tail.
-            using (Pen pen = new Pen(brush, thickness1)) {
-                g.DrawLines(pen, pts1);
+            if (! g.HasPen(penKey1)) {
+                g.CreatePen(penKey1, brush, thickness1, LineCapMode.Flat, LineJoinMode.Miter, 10);
             }
-            if (renderStyle != RenderStyle.WithoutTail) {
-                using (Pen pen = new Pen(brush, thickness2)) {
-                    g.DrawLines(pen, pts2);
-                }
-            }
+            g.DrawPolyline(penKey1, pts1);
 
+            if (renderStyle != RenderStyle.WithoutTail) {
+                if (!g.HasPen(penKey2)) {
+                    g.CreatePen(penKey2, brush, thickness2, LineCapMode.Flat, LineJoinMode.Miter, 10);
+                }
+                g.DrawPolyline(penKey2, pts2);
+            }
         }
 
         public override int SelectionPriority()
@@ -1710,9 +1672,11 @@ namespace PurplePen
     }
 
     // Finish circle
-    class FinishCourseObj : PointCourseObj
+    public class FinishCourseObj : PointCourseObj
     {
         CrossHairOptions crossHairOptions;
+
+        private object penKey = new object();
 
         public FinishCourseObj(Id<ControlPoint> controlId, Id<CourseControl> courseControlId, float courseObjRatio, CourseAppearance appearance,
             CircleGap[] gaps, PointF location, CrossHairOptions crossHairOptions)
@@ -1753,7 +1717,7 @@ namespace PurplePen
             glyph.ConstructionComplete();
 
             PointSymDef symdef = new PointSymDef("Finish", "706", glyph, false);
-            symdef.ToolboxImage = MapUtil.CreateToolboxIcon(Properties.Resources.Finish_OcadToolbox);
+            symdef.ToolboxImage = CoreMapUtil.CreateToolboxIcon(IconBitmaps.Finish_OcadToolbox);
             map.AddSymdef(symdef);
             return symdef;
         }
@@ -1766,7 +1730,7 @@ namespace PurplePen
         }
 
         // Draw the highlight. Everything must be draw in pixel coords so fast erase works correctly.
-        public override void Highlight(Graphics g, Matrix xformWorldToPixel, Brush brush, bool erasing)
+        public override void Highlight(IGraphicsTarget g, Matrix xformWorldToPixel, object brush, bool erasing)
         {
             // Transform the thickness to pixel coords.
             float thickness = TransformDistance(LineThickness, xformWorldToPixel);
@@ -1779,30 +1743,25 @@ namespace PurplePen
             xformWorldToPixel.TransformPoints(pts);
 
             // Draw the inner and outer circle.
-            using (Pen pen = new Pen(brush, thickness)) {
-                RectangleF rect1 = RectangleF.FromLTRB(pts[1].X, pts[2].Y, pts[2].X, pts[1].Y);
-                RectangleF rect2 = RectangleF.FromLTRB(pts[3].X, pts[4].Y, pts[4].X, pts[3].Y);
+            if (!g.HasPen(penKey)) {
+                g.CreatePen(penKey, brush, thickness, LineCapMode.Flat, LineJoinMode.Round, 5);
+            }
 
-                try {
-                    if (gaps == null) {
-                        g.DrawEllipse(pen, rect1);
-                        g.DrawEllipse(pen, rect2);
-                    }
-                    else {
-                        float[] arcStartSweeps = CircleGap.ArcStartSweeps(gaps);
-                        for (int i = 0; i < arcStartSweeps.Length; i += 2) {
-                            float startArc = arcStartSweeps[i];
-                            float sweepArc = arcStartSweeps[i + 1];
-                            g.DrawArc(pen, rect1, startArc, sweepArc);
-                            g.DrawArc(pen, rect2, startArc, sweepArc);
-                        }
-                    }
-                }
-                catch (Exception) {
-                    // Do nothing. Very occasionally, GDI+ given an overflow exception or ExternalException or OutOfMemory exception. 
-                    // Just ignore it; there's nothing else to do. See bug #1997301.
-                }
+            RectangleF rect1 = RectangleF.FromLTRB(pts[1].X, pts[2].Y, pts[2].X, pts[1].Y);
+            RectangleF rect2 = RectangleF.FromLTRB(pts[3].X, pts[4].Y, pts[4].X, pts[3].Y);
 
+            if (gaps == null) {
+                g.DrawEllipse(penKey, rect1.Center(), rect1.Width / 2F, rect1.Height / 2F);
+                g.DrawEllipse(penKey, rect2.Center(), rect2.Width / 2F, rect2.Height / 2F);
+            }
+            else {
+                float[] arcStartSweeps = CircleGap.ArcStartSweeps(gaps);
+                for (int i = 0; i < arcStartSweeps.Length; i += 2) {
+                    float startArc = arcStartSweeps[i];
+                    float sweepArc = arcStartSweeps[i + 1];
+                    g.DrawArc(penKey, rect1.Center(), rect1.Width / 2F, startArc, sweepArc);
+                    g.DrawArc(penKey, rect2.Center(), rect2.Width / 2F, startArc, sweepArc);
+                }
             }
 
             if (crossHairOptions == CrossHairOptions.HighlightCrossHair) {
@@ -1813,7 +1772,7 @@ namespace PurplePen
     }
 
     // A first aid point
-    class FirstAidCourseObj : PointCourseObj
+    public class FirstAidCourseObj : PointCourseObj
     {
         // outline of the first aid symbol.
         static readonly PointF[] outlineCoords2000 = {
@@ -1850,14 +1809,14 @@ namespace PurplePen
             glyph.ConstructionComplete();
 
             PointSymDef symdef = new PointSymDef("First aid post", "712", glyph, false);
-            symdef.ToolboxImage = MapUtil.CreateToolboxIcon(Properties.Resources.FirstAid_OcadToolbox);
+            symdef.ToolboxImage = CoreMapUtil.CreateToolboxIcon(IconBitmaps.FirstAid_OcadToolbox);
             map.AddSymdef(symdef);
             return symdef;
         }
 
 
         // Draw the highlight. Everything must be draw in pixel coords so fast erase works correctly.
-        public override void Highlight(Graphics g, Matrix xformWorldToPixel, Brush brush, bool erasing)
+        public override void Highlight(IGraphicsTarget g, Matrix xformWorldToPixel, object brush, bool erasing)
         {
             PointF[] outlineCoords = (appearance.mapStandard == "2000") ? outlineCoords2000 : outlineCoords2017;
 
@@ -1868,13 +1827,13 @@ namespace PurplePen
             xformWorldToPixel.TransformPoints(coords);
 
             // Draw the object.
-            g.FillPolygon(brush, coords);
+            g.FillPolygon(brush, coords, AreaFillMode.Winding);
         }
 
     }
 
     // A water point
-    class WaterCourseObj : PointCourseObj
+    public class WaterCourseObj : PointCourseObj
     {
         const float kappa = 0.5522847498F;  // constant used to create near-circle with a bezier.
 
@@ -1966,13 +1925,13 @@ namespace PurplePen
             glyph.ConstructionComplete();
 
             PointSymDef symdef = new PointSymDef("Refreshment point", "713", glyph, false);
-            symdef.ToolboxImage = MapUtil.CreateToolboxIcon(Properties.Resources.Water_OcadToolbox);
+            symdef.ToolboxImage = CoreMapUtil.CreateToolboxIcon(IconBitmaps.Water_OcadToolbox);
             map.AddSymdef(symdef);
             return symdef;
         }
 
 
-        public override void Highlight(Graphics g, Matrix xformWorldToPixel, Brush brush, bool erasing)
+        public override void Highlight(IGraphicsTarget grTarget, Matrix xformWorldToPixel, object brush, bool erasing)
         {
             SymPath path1, path2, path3, path4;
             float thickness;
@@ -1982,11 +1941,6 @@ namespace PurplePen
             PointF[] coords3 = (appearance.mapStandard == "2000") ? coords3_2000 : coords3_2017;
             PointF[] coords4 = (appearance.mapStandard == "2000") ? coords4_2000 : coords4_2017;
             float lineWidth = (appearance.mapStandard == "2000") ? NormalCourseAppearance.lineThickness * courseObjRatio * appearance.lineWidth : thickness2017 * courseObjRatio;
-
-            GDIPlus_GraphicsTarget grTarget = new GDIPlus_GraphicsTarget(g);
-
-            object brushKey = new object();
-            grTarget.CreateGdiPlusBrush(brushKey, brush, false);
 
             // Get line thickness.
             thickness = TransformDistance(lineWidth, xformWorldToPixel);
@@ -1998,7 +1952,7 @@ namespace PurplePen
             path4 = new SymPath(OffsetCoords(ScaleCoords((PointF[])coords4.Clone()), location.X, location.Y), kinds4);
 
             object penKey = new object();
-            grTarget.CreatePen(penKey, brushKey, thickness, LineCapMode.Round, LineJoinMode.Miter, 5);
+            grTarget.CreatePen(penKey, brush, thickness, LineCapMode.Round, LineJoinMode.Miter, 5);
 
             // Draw the paths
             path1.DrawTransformed(grTarget, penKey, xformWorldToPixel);
@@ -2012,7 +1966,7 @@ namespace PurplePen
     }
 
     // A crossing point (could be associated with a control or a special, depending on whether it is mandatory or optional)
-    class CrossingCourseObj : PointCourseObj
+    public class CrossingCourseObj : PointCourseObj
     {
         readonly PointF[] coords1 = { new PointF(-0.85F, -1.5F), new PointF(-0.35F, -0.65F), new PointF(-0.35F, 0.65F), new PointF(-0.85F, 1.5F) };
         readonly PointF[] coords2 = { new PointF(0.85F, -1.5F), new PointF(0.35F, -0.65F), new PointF(0.35F, 0.65F), new PointF(0.85F, 1.5F) };
@@ -2096,20 +2050,15 @@ namespace PurplePen
             glyph.ConstructionComplete();
 
             PointSymDef symdef = new PointSymDef("Crossing point", map.GetFreeSymbolId(708), glyph, true);
-            symdef.ToolboxImage = MapUtil.CreateToolboxIcon(Properties.Resources.Crossing_OcadToolbox);
+            symdef.ToolboxImage = CoreMapUtil.CreateToolboxIcon(IconBitmaps.Crossing_OcadToolbox);
             map.AddSymdef(symdef);
             return symdef;
         }
 
-        public override void Highlight(Graphics g, Matrix xformWorldToPixel, Brush brush, bool erasing)
+        public override void Highlight(IGraphicsTarget grTarget, Matrix xformWorldToPixel, object brush, bool erasing)
         {
             SymPath path1, path2;
             float thickness;
-
-            GDIPlus_GraphicsTarget grTarget = new GDIPlus_GraphicsTarget(g);
-
-            object brushKey = new object();
-            grTarget.CreateGdiPlusBrush(brushKey, brush, false);
 
             // Get line thickness.
             thickness = TransformDistance(NormalCourseAppearance.lineThickness * courseObjRatio * appearance.lineWidth, xformWorldToPixel);
@@ -2125,7 +2074,7 @@ namespace PurplePen
             path2 = path2.Transform(moveAndRotate);
 
             object penKey = new object();
-            grTarget.CreatePen(penKey, brushKey, thickness, LineCapMode.Flat, LineJoinMode.Miter, 5);
+            grTarget.CreatePen(penKey, brush, thickness, LineCapMode.Flat, LineJoinMode.Miter, 5);
 
             // Draw it.
             path1.DrawTransformed(grTarget, penKey, xformWorldToPixel);
@@ -2161,7 +2110,7 @@ namespace PurplePen
     }
 
     // A registration mark
-    class RegMarkCourseObj : PointCourseObj
+    public class RegMarkCourseObj : PointCourseObj
     {
         const float lineThickness = 0.1F;
         PointKind[] kinds1 = { PointKind.Normal, PointKind.Normal };
@@ -2189,20 +2138,15 @@ namespace PurplePen
             glyph.ConstructionComplete();
 
             PointSymDef symdef = new PointSymDef("Registration mark", "717", glyph, false);
-            symdef.ToolboxImage = MapUtil.CreateToolboxIcon(Properties.Resources.Registration_OcadToolbox);
+            symdef.ToolboxImage = CoreMapUtil.CreateToolboxIcon(IconBitmaps.Registration_OcadToolbox);
             map.AddSymdef(symdef);
             return symdef;
         }
 
-        public override void Highlight(Graphics g, Matrix xformWorldToPixel, Brush brush, bool erasing)
+        public override void Highlight(IGraphicsTarget grTarget, Matrix xformWorldToPixel, object brush, bool erasing)
         {
             SymPath path1, path2;
             float thickness;
-
-            GDIPlus_GraphicsTarget grTarget = new GDIPlus_GraphicsTarget(g);
-
-            object brushKey = new object();
-            grTarget.CreateGdiPlusBrush(brushKey, brush, false);
 
             // Get line thickness.
             thickness = TransformDistance(lineThickness * courseObjRatio * appearance.lineWidth, xformWorldToPixel);
@@ -2212,7 +2156,7 @@ namespace PurplePen
             path2 = new SymPath(OffsetCoords(ScaleCoords((PointF[])coords2.Clone()), location.X, location.Y), kinds2);
 
             object penKey = new object();
-            grTarget.CreatePen(penKey, brushKey, thickness, LineCapMode.Flat, LineJoinMode.Miter, 5);
+            grTarget.CreatePen(penKey, brush, thickness, LineCapMode.Flat, LineJoinMode.Miter, 5);
 
             // Draw the paths
             path1.DrawTransformed(grTarget, penKey, xformWorldToPixel);
@@ -2223,7 +2167,7 @@ namespace PurplePen
     }
 
     // A forbidden cross
-    class ForbiddenCourseObj : PointCourseObj
+    public class ForbiddenCourseObj : PointCourseObj
     {
         PointKind[] kinds1 = { PointKind.Normal, PointKind.Normal };
         PointF[] coords1 = { new PointF(-1.06F, -1.06F), new PointF(1.06F, 1.06F) };
@@ -2253,20 +2197,15 @@ namespace PurplePen
             glyph.ConstructionComplete();
 
             PointSymDef symdef = new PointSymDef("Forbidden route", "710", glyph, false);
-            symdef.ToolboxImage = MapUtil.CreateToolboxIcon(Properties.Resources.Forbidden_OcadToolbox);
+            symdef.ToolboxImage = CoreMapUtil.CreateToolboxIcon(IconBitmaps.Forbidden_OcadToolbox);
             map.AddSymdef(symdef);
             return symdef;
         }
 
-        public override void Highlight(Graphics g, Matrix xformWorldToPixel, Brush brush, bool erasing)
+        public override void Highlight(IGraphicsTarget grTarget, Matrix xformWorldToPixel, object brush, bool erasing)
         {
             SymPath path1, path2;
             float thickness;
-
-            GDIPlus_GraphicsTarget grTarget = new GDIPlus_GraphicsTarget(g);
-
-            object brushKey = new object();
-            grTarget.CreateGdiPlusBrush(brushKey, brush, false);
 
             // Get line thickness.
             thickness = TransformDistance(NormalCourseAppearance.lineThickness * courseObjRatio * appearance.controlCircleSize, xformWorldToPixel);
@@ -2277,7 +2216,7 @@ namespace PurplePen
 
             // Draw the paths
             object penKey = new object();
-            grTarget.CreatePen(penKey, brushKey, thickness, LineCapMode.Flat, LineJoinMode.Miter, 5);
+            grTarget.CreatePen(penKey, brush, thickness, LineCapMode.Flat, LineJoinMode.Miter, 5);
 
             path1.DrawTransformed(grTarget, penKey, xformWorldToPixel);
             path2.DrawTransformed(grTarget, penKey, xformWorldToPixel);
@@ -2287,7 +2226,7 @@ namespace PurplePen
     }
 
     // A normal leg
-    class LegCourseObj : LineCourseObj
+    public class LegCourseObj : LineCourseObj
     {
         public LegCourseObj(Id<ControlPoint> controlId, Id<CourseControl> courseControlId, Id<CourseControl> courseControlId2, float courseObjRatio, CourseAppearance appearance, SymPath path, LegGap[] gaps)
             : base(controlId, courseControlId, courseControlId2, Id<Special>.None, courseObjRatio, appearance, NormalCourseAppearance.lineThickness * appearance.lineWidth, path, gaps)
@@ -2297,7 +2236,7 @@ namespace PurplePen
         protected override SymDef CreateSymDef(Map map, SymColor symColor, SymColor lower_symColor)
         {
             LineSymDef symdef = new LineSymDef("Line", "704", lower_symColor, NormalCourseAppearance.lineThickness * courseObjRatio * appearance.lineWidth, LineJoinMode.Bevel, LineCapMode.Flat);
-            symdef.ToolboxImage = MapUtil.CreateToolboxIcon(Properties.Resources.Line_OcadToolbox);
+            symdef.ToolboxImage = CoreMapUtil.CreateToolboxIcon(IconBitmaps.Line_OcadToolbox);
             map.AddSymdef(symdef);
             return symdef;
         }
@@ -2308,7 +2247,7 @@ namespace PurplePen
     }
 
     // A flagged leg
-    class FlaggedLegCourseObj : LineCourseObj
+    public class FlaggedLegCourseObj : LineCourseObj
     {
         public FlaggedLegCourseObj(Id<ControlPoint> controlId, Id<CourseControl> courseControlId, Id<CourseControl> courseControlId2, float courseObjRatio, CourseAppearance appearance, SymPath path, LegGap[] gaps)
             : base(controlId, courseControlId, courseControlId2, Id<Special>.None, courseObjRatio, appearance, NormalCourseAppearance.lineThickness * appearance.lineWidth, path, gaps)
@@ -2327,7 +2266,7 @@ namespace PurplePen
             dashes.minGaps = 1;
             symdef.SetDashInfo(dashes);
 
-            symdef.ToolboxImage = MapUtil.CreateToolboxIcon(Properties.Resources.DashedLine_OcadToolbox);
+            symdef.ToolboxImage = CoreMapUtil.CreateToolboxIcon(IconBitmaps.DashedLine_OcadToolbox);
             map.AddSymdef(symdef);
             return symdef;
         }
@@ -2338,7 +2277,7 @@ namespace PurplePen
     }
 
     // A leg in the topology view.
-    class TopologyLegCourseObj : LineCourseObj
+    public class TopologyLegCourseObj : LineCourseObj
     {
         const float LineThickness = 0.55F;
 
@@ -2350,7 +2289,7 @@ namespace PurplePen
         protected override SymDef CreateSymDef(Map map, SymColor symColor, SymColor lower_symColor)
         {
             LineSymDef symdef = new LineSymDef("Line", "704", lower_symColor, LineThickness * courseObjRatio, LineJoinMode.Round, LineCapMode.Flat);
-            symdef.ToolboxImage = MapUtil.CreateToolboxIcon(Properties.Resources.Line_OcadToolbox);
+            symdef.ToolboxImage = CoreMapUtil.CreateToolboxIcon(IconBitmaps.Line_OcadToolbox);
             map.AddSymdef(symdef);
             return symdef;
         }
@@ -2364,7 +2303,7 @@ namespace PurplePen
 
 
     // A boundary
-    class BoundaryCourseObj : LineCourseObj
+    public class BoundaryCourseObj : LineCourseObj
     {
         public BoundaryCourseObj(Id<Special> specialId, float courseObjRatio, CourseAppearance appearance, SymPath path)
             : base(Id<ControlPoint>.None, Id<CourseControl>.None, Id<CourseControl>.None, specialId, courseObjRatio, appearance, 
@@ -2376,14 +2315,14 @@ namespace PurplePen
         protected override SymDef CreateSymDef(Map map, SymColor symColor, SymColor lower_symColor)
         {
             LineSymDef symdef = new LineSymDef("Uncrossable boundary", "707", lower_symColor, (appearance.mapStandard == "Spr2019" ? 1.0F : 0.7F) * courseObjRatio * appearance.lineWidth, LineJoinMode.Miter, LineCapMode.Flat);
-            symdef.ToolboxImage = MapUtil.CreateToolboxIcon(Properties.Resources.Line_OcadToolbox);
+            symdef.ToolboxImage = CoreMapUtil.CreateToolboxIcon(IconBitmaps.Line_OcadToolbox);
             map.AddSymdef(symdef);
             return symdef;
         }
     }
 
     // An arbitrary line.
-    class LineSpecialCourseObj : LineCourseObj
+    public class LineSpecialCourseObj : LineCourseObj
     {
         public readonly SpecialColor color;
         public readonly LineKind lineKind;
@@ -2487,7 +2426,7 @@ namespace PurplePen
                 default: throw new ApplicationException("Unexpected line kind");
             }
 
-            symdef.ToolboxImage = MapUtil.CreateToolboxIcon(Properties.Resources.LineSpecial_OcadToolbox);
+            symdef.ToolboxImage = CoreMapUtil.CreateToolboxIcon(IconBitmaps.LineSpecial_OcadToolbox);
             map.AddSymdef(symdef);
             return symdef;
         }
@@ -2507,7 +2446,7 @@ namespace PurplePen
     }
 
     // An arbitrary rectangle, rounded rectangle, or ellipse.
-    class RectSpecialCourseObj : RectCourseObj
+    public class RectSpecialCourseObj : RectCourseObj
     {
         public readonly bool isEllipse;
         public readonly SpecialColor color;
@@ -2612,18 +2551,14 @@ namespace PurplePen
             return Math.Max(0, path.DistanceFromPoint(pt, out closestPoint) - (FullWidth / 2));
         }
 
-        public override void Highlight(Graphics g, Matrix xformWorldToPixel, Brush brush, bool erasing)
+        public override void Highlight(IGraphicsTarget grTarget, Matrix xformWorldToPixel, object brush, bool erasing)
         {
-            object brushKey = new object();
             object penKey = new object();
 
-            using (GDIPlus_GraphicsTarget graphicsTarget = new GDIPlus_GraphicsTarget(g)) {
-                graphicsTarget.CreateGdiPlusBrush(brushKey, brush, false);
-                graphicsTarget.CreatePen(penKey, brushKey, Geometry.TransformDistance(FullWidth, xformWorldToPixel), LineCapMode.Flat, LineJoinMode.Miter, 10);
-                SymPath path = CreateSymPath();
-                path = path.Transform(xformWorldToPixel);
-                path.Draw(graphicsTarget, penKey);
-            }
+            grTarget.CreatePen(penKey, brush, Geometry.TransformDistance(FullWidth, xformWorldToPixel), LineCapMode.Flat, LineJoinMode.Miter, 10);
+            SymPath path = CreateSymPath();
+            path = path.Transform(xformWorldToPixel);
+            path.Draw(grTarget, penKey);
         }
 
         protected override SymDef CreateSymDef(Map map, SymColor upper_symColor, SymColor lower_symColor)
@@ -2659,7 +2594,7 @@ namespace PurplePen
     }
 
     // An out of bounds area
-    class OOBCourseObj : AreaCourseObj
+    public class OOBCourseObj : AreaCourseObj
     {
         public OOBCourseObj(Id<Special> specialId, float courseObjRatio, CourseAppearance appearance, PointF[] pts)
             : base(Id<ControlPoint>.None, Id<CourseControl>.None, specialId, courseObjRatio, appearance, pts)
@@ -2678,7 +2613,7 @@ namespace PurplePen
                 hatchInfo.hatchSpacing = 0.6F * courseObjRatio;
                 hatchInfo.hatchAngle = 90;
                 symdef.AddHatching(hatchInfo);
-                symdef.ToolboxImage = MapUtil.CreateToolboxIcon(Properties.Resources.OOB_OcadToolbox);
+                symdef.ToolboxImage = CoreMapUtil.CreateToolboxIcon(IconBitmaps.OOB_OcadToolbox);
             }
             else {
                 AreaSymDef.HatchInfo hatchInfo = new AreaSymDef.HatchInfo();
@@ -2695,7 +2630,7 @@ namespace PurplePen
                 symdef.AddHatching(hatchInfo);
                 hatchInfo.hatchAngle = 135;
                 symdef.AddHatching(hatchInfo);
-                symdef.ToolboxImage = MapUtil.CreateToolboxIcon(Properties.Resources.Dangerous_OcadToolbox);
+                symdef.ToolboxImage = CoreMapUtil.CreateToolboxIcon(IconBitmaps.Dangerous_OcadToolbox);
 
             }
             map.AddSymdef(symdef);
@@ -2704,7 +2639,7 @@ namespace PurplePen
     }
 
     // A dangerous area
-    class DangerousCourseObj : AreaCourseObj
+    public class DangerousCourseObj : AreaCourseObj
     {
         public DangerousCourseObj(Id<Special> specialId, float courseObjRatio, CourseAppearance appearance, PointF[] pts)
             : base(Id<ControlPoint>.None, Id<CourseControl>.None, specialId, courseObjRatio, appearance, pts)
@@ -2730,13 +2665,13 @@ namespace PurplePen
             symdef.AddHatching(hatchInfo);
             hatchInfo.hatchAngle = 135;
             symdef.AddHatching(hatchInfo);
-            symdef.ToolboxImage = MapUtil.CreateToolboxIcon(Properties.Resources.Dangerous_OcadToolbox);
+            symdef.ToolboxImage = CoreMapUtil.CreateToolboxIcon(IconBitmaps.Dangerous_OcadToolbox);
             map.AddSymdef(symdef);
             return symdef;
         }
     }
 
-    class TempConstructionCourseObj: AreaCourseObj
+    public class TempConstructionCourseObj: AreaCourseObj
     {
         public TempConstructionCourseObj(Id<Special> specialId, float courseObjRatio, CourseAppearance appearance, PointF[] pts)
             : base(Id<ControlPoint>.None, Id<CourseControl>.None, specialId, courseObjRatio, appearance, pts)
@@ -2750,11 +2685,11 @@ namespace PurplePen
 
             // Add 0.1mm border.
             LineSymDef symdefBorder = new LineSymDef("Temporary construction border", "714.1", symColor, 0.1F * courseObjRatio, LineJoinMode.Miter, LineCapMode.Flat);
-            symdefBorder.ToolboxImage = MapUtil.CreateToolboxIcon(Properties.Resources.ConstructionBoundary_OcadToolbox);
+            symdefBorder.ToolboxImage = CoreMapUtil.CreateToolboxIcon(IconBitmaps.ConstructionBoundary_OcadToolbox);
             map.AddSymdef(symdefBorder);
 
             AreaSymDef symdef = new AreaSymDef("Temporary construction", "714", purple50, symdefBorder);
-            symdef.ToolboxImage = MapUtil.CreateToolboxIcon(Properties.Resources.Construction_OcadToolbox);
+            symdef.ToolboxImage = CoreMapUtil.CreateToolboxIcon(IconBitmaps.Construction_OcadToolbox);
             map.AddSymdef(symdef);
             return symdef;
         }
@@ -2792,7 +2727,7 @@ namespace PurplePen
     }
 
     // A white-out area.
-    class WhiteOutCourseObj : AreaCourseObj
+    public class WhiteOutCourseObj : AreaCourseObj
     {
         public WhiteOutCourseObj(Id<Special> specialId, float courseObjRatio, CourseAppearance appearance, PointF[] pts)
             : base(Id<ControlPoint>.None, Id<CourseControl>.None, specialId, courseObjRatio, appearance, pts)
@@ -2820,7 +2755,7 @@ namespace PurplePen
     // CONSIDER: merge ControlNumberCourseObj and CodeCourseObj since they are so similar!
 
     // A control number
-    class ControlNumberCourseObj : TextCourseObj
+    public class ControlNumberCourseObj : TextCourseObj
     {
         public PointF centerPoint;
 
@@ -2862,7 +2797,7 @@ namespace PurplePen
     }
 
     // A control code
-    class CodeCourseObj : TextCourseObj
+    public class CodeCourseObj : TextCourseObj
     {
         public PointF centerPoint;
 
@@ -2886,7 +2821,7 @@ namespace PurplePen
     }
 
     // A Variation code
-    class VariationCodeCourseObj : TextCourseObj
+    public class VariationCodeCourseObj : TextCourseObj
     {
         public PointF centerPoint;
 
@@ -2909,10 +2844,12 @@ namespace PurplePen
     }
 
     // Arbitrary text, set withing a bounding rectangle. The text is sized to fit inside the bounding rectangle (automatic sizing) or of a particular height.
-    class BasicTextCourseObj : TextCourseObj
+    public class BasicTextCourseObj : TextCourseObj
     {
         private RectangleF rectBounding;
         public readonly float fontDigitHeight; // -1 for automatic.
+
+        private object penKey = new object();
 
         public BasicTextCourseObj(Id<Special> specialId, string text, RectangleF rectBounding, string fontName, TextEffects textEffects, SpecialColor color, float fontDigitHeight)
             : base(Id<ControlPoint>.None, Id<CourseControl>.None, specialId, text, new PointF(rectBounding.Left, rectBounding.Bottom), fontName, textEffects, color, CalculateEmHeight(text, fontName, textEffects, fontDigitHeight, rectBounding.Size), 0.0F)
@@ -2925,12 +2862,14 @@ namespace PurplePen
         public static float EmHeightToDigitHeightRatio(string fontName, TextEffects textEffects)
         {
             float emHeight = 100;
-            using (FontFamily family = ((GdiplusFontLoader)Services.FontLoader).CreateFontFamily(FontNameSafe(fontName))) {
-                GraphicsPath path = new GraphicsPath();
-                path.AddString("8", family, (int)GdiplusFontLoader.FontStyleFromTextEffects(textEffects), emHeight, new PointF(0, 0), StringFormat.GenericTypographic);
-                float digitHeight = path.GetBounds().Height;
-                return emHeight / digitHeight;
-            }
+
+            ITextMetrics textMetricsProvider = Services.TextMetricsProvider;
+            ITextFaceMetrics textMetrics = textMetricsProvider.GetTextFaceMetrics(FontNameSafe(fontName), emHeight, textEffects);
+
+            // Measure the digit "8".
+            RectangleF bounds = textMetrics.GetTightBoundingBox(new PointF(), "8");
+            float digitHeight = bounds.Height;
+            return emHeight / digitHeight;
         }
 
         // Given some text in a font and a bounding rectangle, figure out the correct em-height so that the text fits in the rectangle.
@@ -2947,11 +2886,11 @@ namespace PurplePen
                 if (desiredSize.Height == 0)
                     return 0;
 
-                // Measure with a font size of 1, then scale appropriately.
-                Graphics g = WindowsUtil.GetHiresGraphics();
-                SizeF size;
-                using (Font f = ((GdiplusFontLoader)Services.FontLoader).CreateFont(FontNameSafe(fontName), 1F, textEffects))
-                    size = g.MeasureString(text, f, new PointF(0, 0), StringFormat.GenericTypographic);
+                // Measure with a font size of 100, then scale appropriately.
+                ITextMetrics textMetricsProvider = Services.TextMetricsProvider;
+                ITextFaceMetrics textMetrics = textMetricsProvider.GetTextFaceMetrics(FontNameSafe(fontName), 100, textEffects);
+                SizeF size = textMetrics.GetTextSize(text); 
+                size = new SizeF(size.Width / 100F, size.Height / 100F);  // counteract the 100 EmHeight used to get the size.
 
                 if (size.Width * desiredSize.Height > size.Height * desiredSize.Width) {
                     // width is the deciding factor.
@@ -2974,10 +2913,10 @@ namespace PurplePen
             else {
                 // Fit rectangle around the text. Use the same top left corner, but that's actually bottom left
                 // in terms of RectangleF because of inverted coordinate system.
-                Graphics g = WindowsUtil.GetHiresGraphics();
-                SizeF size;
-                using (Font f = ((GdiplusFontLoader)Services.FontLoader).CreateFont(SafeFontName, CalculateEmHeight(text, SafeFontName, textEffects, fontDigitHeight, new SizeF()), textEffects))
-                    size = g.MeasureString(text, f, new PointF(0, 0), StringFormat.GenericTypographic);
+                ITextMetrics textMetricsProvider = Services.TextMetricsProvider;
+                ITextFaceMetrics textMetrics = textMetricsProvider.GetTextFaceMetrics(SafeFontName, CalculateEmHeight(text, SafeFontName, textEffects, fontDigitHeight, new SizeF()), textEffects);
+                SizeF size = textMetrics.GetTextSize(text);
+
                 return RectangleF.FromLTRB(boundingRect.Left, boundingRect.Bottom - size.Height, boundingRect.Left + size.Width, boundingRect.Bottom);
             }
         }
@@ -3002,25 +2941,25 @@ namespace PurplePen
             return handles;
         }
 
-        public override Cursor GetHandleCursor(PointF handlePoint)
+        public override MousePointerShape GetHandleCursor(PointF handlePoint)
         {
             // Get the correct sizing cursors for each point given above. 
             int index = Array.IndexOf(GetHandles(), handlePoint);
 
             switch (index) {
                 case 0:
-                case 7: return Cursors.SizeNESW;
+                case 7: return new MousePointerShape(PredefinedMousePointerShape.SizeNESW);
                 case 1:
-                case 6: return Cursors.SizeNS;
+                case 6: return new MousePointerShape(PredefinedMousePointerShape.SizeNS);
                 case 2:
-                case 5: return Cursors.SizeNWSE;
+                case 5: return new MousePointerShape(PredefinedMousePointerShape.SizeNWSE);
                 case 3:
-                case 4: return Cursors.SizeWE;
-                default: return WindowsUtil.MoveHandleCursor;
+                case 4: return new MousePointerShape(PredefinedMousePointerShape.SizeWE);
+                default: return new MousePointerShape(PredefinedMousePointerShape.MoveHandle);
             }
         }
 
-        public override void Highlight(Graphics g, Matrix xformWorldToPixel, Brush brush, bool erasing)
+        public override void Highlight(IGraphicsTarget g, Matrix xformWorldToPixel, object brush, bool erasing)
         {
             // Draw the text.
             base.Highlight(g, xformWorldToPixel, brush, erasing);
@@ -3029,9 +2968,10 @@ namespace PurplePen
             xformWorldToPixel.TransformPoints(corners);
 
             // Draw an outline.
-            using (Pen p = new Pen(brush, 0)) {
-                g.DrawRectangle(p, corners[0].X, corners[0].Y, corners[1].X - corners[0].X, corners[1].Y - corners[0].Y);
+            if (! g.HasPen(penKey)) {
+                g.CreatePen(penKey, brush, 1, LineCapMode.Flat, LineJoinMode.Miter, 10);
             }
+            g.DrawRectangle(penKey, new RectangleF(corners[0].X, corners[0].Y, corners[1].X - corners[0].X, corners[1].Y - corners[0].Y));
         }
 
         // Get the bounds of the highlight
@@ -3092,7 +3032,7 @@ namespace PurplePen
     }
 
     // This course object is a description sheet block.
-    class DescriptionCourseObj : AspectPreservingRectCourseObj
+    public class DescriptionCourseObj : AspectPreservingRectCourseObj
     {
         DescriptionRenderer renderer;        // The description renderer that holds the description.
         float[] aspectAnglesByColumns;       // array describing the angles that are closest for each number of columns.
@@ -3181,7 +3121,7 @@ namespace PurplePen
         }
 
         // Draw the highlight. Everything must be draw in pixel coords so fast erase works correctly.
-        public override void Highlight(Graphics g, Matrix xformWorldToPixel, Brush brush, bool erasing)
+        public override void Highlight(IGraphicsTarget g, Matrix xformWorldToPixel, object brush, bool erasing)
         {
             if (NumberOfColumns == 1)
                 base.Highlight(g, xformWorldToPixel, brush, erasing);
@@ -3267,7 +3207,8 @@ namespace PurplePen
         // override object.GetHashCode
         public override int GetHashCode()
         {
-            throw new NotSupportedException("The method or operation is not supported.");
+            Debug.Fail("Shouldn't call GetHashCode on this class");
+            return 1;
         }
 
         public override string ToString()
@@ -3280,7 +3221,7 @@ namespace PurplePen
     }
 
 
-    class ImageCourseObj : AspectPreservingRectCourseObj
+    public class ImageCourseObj : AspectPreservingRectCourseObj
     {
         public readonly string imageName;
         public readonly IGraphicsBitmap imageBitmap;
@@ -3408,7 +3349,7 @@ namespace PurplePen
         }
     }
 
-    class TopologyDropTargetCourseObj : PointCourseObj
+    public class TopologyDropTargetCourseObj : PointCourseObj
     {
         // outline of the arrows
         const float TIPOFFSET = 0.75F;
@@ -3480,7 +3421,7 @@ namespace PurplePen
 
 
         // Draw the highlight. Everything must be draw in pixel coords so fast erase works correctly.
-        public override void Highlight(Graphics g, Matrix xformWorldToPixel, Brush brush, bool erasing)
+        public override void Highlight(IGraphicsTarget g, Matrix xformWorldToPixel, object brush, bool erasing)
         {
             // Get the world coordinates of the object.
             PointF[] coords = OffsetCoords(ScaleCoords((PointF[])outlineCoordsLeft.Clone()), location.X, location.Y);
@@ -3489,7 +3430,7 @@ namespace PurplePen
             xformWorldToPixel.TransformPoints(coords);
 
             // Draw the object.
-            g.FillPolygon(brush, coords);
+            g.FillPolygon(brush, coords, AreaFillMode.Winding);
 
             // Get the world coordinates of the object.
             coords = OffsetCoords(ScaleCoords((PointF[])outlineCoordsRight.Clone()), location.X, location.Y);
@@ -3498,7 +3439,7 @@ namespace PurplePen
             xformWorldToPixel.TransformPoints(coords);
 
             // Draw the object.
-            g.FillPolygon(brush, coords);
+            g.FillPolygon(brush, coords, AreaFillMode.Winding);
 
         }
 

@@ -26,6 +26,30 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <Optimize>true</Optimize>
   </PropertyGroup>
+  
+  <ItemGroup>
+    <EmbeddedResource Include="..\PurplePen\Images\ConstructionBoundary_OcadToolbox.png" Link="Resources\OcadToolbox\ConstructionBoundary_OcadToolbox.png" />
+    <EmbeddedResource Include="..\PurplePen\Images\Construction_OcadToolbox.png" Link="Resources\OcadToolbox\Construction_OcadToolbox.png" />
+    <EmbeddedResource Include="..\PurplePen\Images\Control_OcadToolbox.png" Link="Resources\OcadToolbox\Control_OcadToolbox.png" />
+    <EmbeddedResource Include="..\PurplePen\Images\Crossing_OcadToolbox.png" Link="Resources\OcadToolbox\Crossing_OcadToolbox.png" />
+    <EmbeddedResource Include="..\PurplePen\Images\Dangerous_OcadToolbox.png" Link="Resources\OcadToolbox\Dangerous_OcadToolbox.png" />
+    <EmbeddedResource Include="..\PurplePen\Images\DashedLine_OcadToolbox.png" Link="Resources\OcadToolbox\DashedLine_OcadToolbox.png" />
+    <EmbeddedResource Include="..\PurplePen\Images\DescLine_OcadToolbox.png" Link="Resources\OcadToolbox\DescLine_OcadToolbox.png" />
+    <EmbeddedResource Include="..\PurplePen\Images\DescText_OcadToolbox.png" Link="Resources\OcadToolbox\DescText_OcadToolbox.png" />
+    <EmbeddedResource Include="..\PurplePen\Images\ExchangeStart_OcadToolbox.png" Link="Resources\OcadToolbox\ExchangeStart_OcadToolbox.png" />
+    <EmbeddedResource Include="..\PurplePen\Images\Finish_OcadToolbox.png" Link="Resources\OcadToolbox\Finish_OcadToolbox.png" />
+    <EmbeddedResource Include="..\PurplePen\Images\FirstAid_OcadToolbox.png" Link="Resources\OcadToolbox\FirstAid_OcadToolbox.png" />
+    <EmbeddedResource Include="..\PurplePen\Images\Forbidden_OcadToolbox.png" Link="Resources\OcadToolbox\Forbidden_OcadToolbox.png" />
+    <EmbeddedResource Include="..\PurplePen\Images\LineSpecial_OcadToolbox.png" Link="Resources\OcadToolbox\LineSpecial_OcadToolbox.png" />
+    <EmbeddedResource Include="..\PurplePen\Images\Line_OcadToolbox.png" Link="Resources\OcadToolbox\Line_OcadToolbox.png" />
+    <EmbeddedResource Include="..\PurplePen\Images\MapIssue_OcadToolbox.png" Link="Resources\OcadToolbox\MapIssue_OcadToolbox.png" />
+    <EmbeddedResource Include="..\PurplePen\Images\Number_OcadToolbox.png" Link="Resources\OcadToolbox\Number_OcadToolbox.png" />
+    <EmbeddedResource Include="..\PurplePen\Images\OOB_OcadToolbox.png" Link="Resources\OcadToolbox\OOB_OcadToolbox.png" />
+    <EmbeddedResource Include="..\PurplePen\Images\Registration_OcadToolbox.png" Link="Resources\OcadToolbox\Registration_OcadToolbox.png" />
+    <EmbeddedResource Include="..\PurplePen\Images\Start_OcadToolbox.png" Link="Resources\OcadToolbox\Start_OcadToolbox.png" />
+    <EmbeddedResource Include="..\PurplePen\Images\Water_OcadToolbox.png" Link="Resources\OcadToolbox\Water_OcadToolbox.png" />
+    <EmbeddedResource Include="..\PurplePen\Images\WhiteOut_OcadToolbox.png" Link="Resources\OcadToolbox\WhiteOut_OcadToolbox.png" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\DotSpatialProjectionsLite\DotSpatial.Projections\DotSpatial.Projections.csproj" />
@@ -66,6 +90,10 @@
     <EmbeddedResource Update="ReportText.*.resx">
       <DependentUpon>ReportText.resx</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Resources\OcadToolbox\" />
   </ItemGroup>
 
 </Project>

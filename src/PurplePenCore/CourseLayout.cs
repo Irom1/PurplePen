@@ -39,10 +39,11 @@ using System.Drawing;
 
 using PurplePen.MapModel;
 using PurplePen.Graphics2D;
+using System.Diagnostics;
 
 namespace PurplePen
 {
-    enum CourseLayer
+    public enum CourseLayer
     {
         // The lower the integer, they are on top. E.g., MainCourse is layered above AllControls.
         All = -1,                        // For filtering to all layers
@@ -58,7 +59,7 @@ namespace PurplePen
 
     // A CourseLayout should how a course is laid out on the screen. It primarily
     // encapsulates a list of CourseObj objects, as well as a color.
-    class CourseLayout: IEnumerable<CourseObj>
+    public class CourseLayout: IEnumerable<CourseObj>
     {
         List<CourseObj> objects = new List<CourseObj>();
 
@@ -147,7 +148,7 @@ namespace PurplePen
         public Map RenderToMap(MapRenderOptions mapRenderOptions)
         {
             // Create the map to render into.
-            Map map = new Map(MapUtil.TextMetricsProvider, null);
+            Map map = new Map(Services.TextMetricsProvider, null);
             if (Count == 0)
                 return map;
 
@@ -173,7 +174,7 @@ namespace PurplePen
                 // Create white color and white-out symdef.
                 SymColor white = map.AddColor("White", WHITEOUT_COLOR_OCADID, 0, 0, 0, 0, false);
                 AreaSymDef whiteArea = new AreaSymDef("White out", "890", white, null);
-                whiteArea.ToolboxImage = MapUtil.CreateToolboxIcon(Properties.Resources.WhiteOut_OcadToolbox);
+                whiteArea.ToolboxImage = CoreMapUtil.CreateToolboxIcon(IconBitmaps.WhiteOut_OcadToolbox);
                 map.AddSymdef(whiteArea);
                 dict[KeyWhiteOut] = whiteArea;
 
@@ -336,7 +337,8 @@ namespace PurplePen
         // override object.GetHashCode
         public override int GetHashCode()
         {
-            throw new NotSupportedException("The method or operation is not supported.");
+            Debug.Fail("Shouldn't call GetHashCode on this class");
+            return 1;
         }
 
         public class MapRenderOptions

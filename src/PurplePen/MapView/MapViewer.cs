@@ -619,22 +619,10 @@ namespace PurplePen.MapView
             g.RenderingOrigin = Util.PointFromPointF(origin);
             g.PixelOffsetMode = Draw2D.PixelOffsetMode.HighQuality;
 
-            foreach (IMapViewerHighlight h in highlights) {
-                h.DrawHighlight(g, xformWorldToPixel);
-            }
-        }
-
-        void EraseHighlights(Graphics g, Rectangle visRect, IMapViewerHighlight[] highlights) {
-            if (highlights == null)
-                return;
-
-            // Get brush that erases.
-            Brush eraseBrush = viewcache.GetCacheBrush(ClientSize, viewport, xformWorldToPixel);
-
-            g.PixelOffsetMode = Draw2D.PixelOffsetMode.HighQuality;
-
-            foreach (IMapViewerHighlight h in highlights) {
-                h.EraseHighlight(g, xformWorldToPixel, eraseBrush);
+            using (GDIPlus_GraphicsTarget grTarget = new GDIPlus_GraphicsTarget(g)) {
+                foreach (IMapViewerHighlight h in highlights) {
+                    h.DrawHighlight(grTarget, xformWorldToPixel);
+                }
             }
         }
 

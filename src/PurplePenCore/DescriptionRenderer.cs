@@ -46,7 +46,7 @@ using PurplePen.Graphics2D;
 namespace PurplePen
 {
     // What did we hit?
-    enum HitTestKind
+    public enum HitTestKind
     {
         None,               // didn't hit anything
         Title,              // hit a title (box always 0)
@@ -61,7 +61,7 @@ namespace PurplePen
     }
 
     // Indicates the hittest of a hit test operation.
-    struct HitTestResult
+    public struct HitTestResult
     {
         public HitTestKind kind;   // What did we hit?
         public int firstLine, lastLine;          // What line(s) of the description?
@@ -72,7 +72,7 @@ namespace PurplePen
     /// <summary>
     /// Renders a CourseView onto a Graphics.
     /// </summary>
-    class DescriptionRenderer: IPrintableRectangle, ICloneable
+    public sealed class DescriptionRenderer: IPrintableRectangle, ICloneable
     {
         private SymbolDB symbolDB;
 
@@ -90,7 +90,7 @@ namespace PurplePen
         private const float columnGap = 0.60F;  // size of gap between columns as fraction of cell size.
 
         private FontDesc[] fontDescs = new FontDesc[NUM_FONTS];
-        private StringAlignment[] fontAlignments = new StringAlignment[NUM_FONTS];
+        private TextAlignment[] fontAlignments = new TextAlignment[NUM_FONTS];
         private object[] fonts = new object[NUM_FONTS];
         private object thickPen, thinPen;
 
@@ -212,18 +212,18 @@ namespace PurplePen
             return rect;
          }
 
-         // Render the description onto the given graphics at (0,0). Only draw the parts that lie within
+         // Render the description onto the given graphics targetat (0,0). Only draw the parts that lie within
          // the clip rect.
-        public void RenderToGraphics(Graphics g, RectangleF clipRect)
+        public void RenderToGraphics(IGraphicsTarget grTarget, RectangleF clipRect)
         {
-            IRenderer renderer = new GraphicsTargetRenderer(new GDIPlus_GraphicsTarget(g), new GDIPlus_TextMetrics(), CmykColor.FromCmyk(0, 0, 0, 1));
+            IRenderer renderer = new GraphicsTargetRenderer(grTarget, Services.TextMetricsProvider, CmykColor.FromCmyk(0, 0, 0, 1));
             replaceMultiplySign = true;
             Render(renderer, clipRect, 0, description.Length);
         }
 
         void IPrintableRectangle.Draw(IGraphicsTarget grTarget, float x, float y, int startLine, int countLines)
         {
-            IRenderer renderer = new GraphicsTargetRenderer(grTarget, new GDIPlus_TextMetrics(), CmykColor.FromCmyk(0, 0, 0, 1));
+            IRenderer renderer = new GraphicsTargetRenderer(grTarget, Services.TextMetricsProvider, CmykColor.FromCmyk(0, 0, 0, 1));
 
             Matrix transform = new Matrix();
             transform.Translate(x, y);
@@ -531,15 +531,15 @@ namespace PurplePen
             thickPen = renderer.CreatePen(DescriptionAppearance.thickDescriptionLine, LineJoinMode.Miter, LineCapMode.Flat);
             thinPen = renderer.CreatePen(DescriptionAppearance.thinDescriptionLine, LineJoinMode.Miter, LineCapMode.Flat);
 
-            fontDescs[TITLE_FONT] = DescriptionAppearance.titleFont;                                        fontAlignments[TITLE_FONT] = StringAlignment.Center;
-            fontDescs[COLUMNA_FONT] = DescriptionAppearance.columnAFont;                          fontAlignments[COLUMNA_FONT] = StringAlignment.Center;
-            fontDescs[COLUMNB_FONT] = DescriptionAppearance.columnBFont;                          fontAlignments[COLUMNB_FONT] = StringAlignment.Center;
-            fontDescs[COLUMNF_FONT] = DescriptionAppearance.columnFFont;                          fontAlignments[COLUMNF_FONT] = StringAlignment.Center;
-            fontDescs[COLUMNF_DOUBLE_FONT] = DescriptionAppearance.columnFSmallFont;   fontAlignments[COLUMNF_DOUBLE_FONT] = StringAlignment.Center;
-            fontDescs[DIRECTIVE_FONT] = DescriptionAppearance.directiveFont;                        fontAlignments[DIRECTIVE_FONT] = StringAlignment.Center;
-            fontDescs[TEXT_FONT] = DescriptionAppearance.textFont;                                        fontAlignments[TEXT_FONT] = StringAlignment.Near;
-            fontDescs[KEY_FONT] = DescriptionAppearance.keyFont;                                           fontAlignments[KEY_FONT] = StringAlignment.Near;
-            fontDescs[TEXTLINE_FONT] = DescriptionAppearance.textLineFont;                          fontAlignments[TEXTLINE_FONT] = StringAlignment.Near;
+            fontDescs[TITLE_FONT] = DescriptionAppearance.titleFont;                                        fontAlignments[TITLE_FONT] = TextAlignment.Center;
+            fontDescs[COLUMNA_FONT] = DescriptionAppearance.columnAFont;                          fontAlignments[COLUMNA_FONT] = TextAlignment.Center;
+            fontDescs[COLUMNB_FONT] = DescriptionAppearance.columnBFont;                          fontAlignments[COLUMNB_FONT] = TextAlignment.Center;
+            fontDescs[COLUMNF_FONT] = DescriptionAppearance.columnFFont;                          fontAlignments[COLUMNF_FONT] = TextAlignment.Center;
+            fontDescs[COLUMNF_DOUBLE_FONT] = DescriptionAppearance.columnFSmallFont;   fontAlignments[COLUMNF_DOUBLE_FONT] = TextAlignment.Center;
+            fontDescs[DIRECTIVE_FONT] = DescriptionAppearance.directiveFont;                        fontAlignments[DIRECTIVE_FONT] = TextAlignment.Center;
+            fontDescs[TEXT_FONT] = DescriptionAppearance.textFont;                                        fontAlignments[TEXT_FONT] = TextAlignment.Left;
+            fontDescs[KEY_FONT] = DescriptionAppearance.keyFont;                                           fontAlignments[KEY_FONT] = TextAlignment.Left;
+            fontDescs[TEXTLINE_FONT] = DescriptionAppearance.textLineFont;                          fontAlignments[TEXTLINE_FONT] = TextAlignment.Left;
 
             for (int i = 0; i < NUM_FONTS; ++i)
                 fonts[i] = renderer.CreateFont(fontDescs[i].Name, fontDescs[i].EmHeight, fontDescs[i].Bold, fontDescs[i].Italic, fontAlignments[i]);
@@ -568,7 +568,7 @@ namespace PurplePen
 
         // Render some text with the given font inside the given rectangle. Either center or left flush.
         // If the rectange doesn't intersect the clip rectangle, do nothing. Render a single line of text
-        private void RenderSingleLineText(IRenderer renderer, int fontNumber, StringAlignment alignment, string s, float left, float top, float right, float bottom, RectangleF clipRect)
+        private void RenderSingleLineText(IRenderer renderer, int fontNumber, TextAlignment alignment, string s, float left, float top, float right, float bottom, RectangleF clipRect)
         {
             if (s == null || s == "")
                 return;
@@ -595,7 +595,7 @@ namespace PurplePen
 
         // Render some text with the given font inside the given rectangle. Either center or left flush.
         // If the rectange doesn't intersect the clip rectangle, do nothing. Word wrap if needed.
-        private void RenderWrappedText(IRenderer renderer, int fontIndex, StringAlignment alignment, string s, float left, float top, float right, float bottom, RectangleF clipRect)
+        private void RenderWrappedText(IRenderer renderer, int fontIndex, TextAlignment alignment, string s, float left, float top, float right, float bottom, RectangleF clipRect)
         {
             if (s == null || s == "")
                 return;
@@ -678,11 +678,11 @@ namespace PurplePen
                 if (drawDiagonalLine)
                     renderer.DrawLine(thinPen, right, top, left, bottom);
 
-                RenderSingleLineText(renderer, COLUMNF_DOUBLE_FONT, StringAlignment.Center, first, rectFirst.Left, rectFirst.Top, rectFirst.Right, rectFirst.Bottom, clipRect);
-                RenderSingleLineText(renderer, COLUMNF_DOUBLE_FONT, StringAlignment.Center, second, rectSecond.Left, rectSecond.Top, rectSecond.Right, rectSecond.Bottom, clipRect);
+                RenderSingleLineText(renderer, COLUMNF_DOUBLE_FONT, TextAlignment.Center, first, rectFirst.Left, rectFirst.Top, rectFirst.Right, rectFirst.Bottom, clipRect);
+                RenderSingleLineText(renderer, COLUMNF_DOUBLE_FONT, TextAlignment.Center, second, rectSecond.Left, rectSecond.Top, rectSecond.Right, rectSecond.Bottom, clipRect);
             }
             else {
-                RenderSingleLineText(renderer, COLUMNF_FONT, StringAlignment.Center, s, left, top, right, bottom, clipRect);
+                RenderSingleLineText(renderer, COLUMNF_FONT, TextAlignment.Center, s, left, top, right, bottom, clipRect);
             }
         }
 
@@ -718,36 +718,36 @@ namespace PurplePen
 
             switch (descriptionLine.kind) {
                 case DescriptionLineKind.Title:
-                    RenderSingleLineText(renderer, TITLE_FONT, StringAlignment.Center, (string) (descriptionLine.boxes[0]), 0, 0, fullWidth, 100, clipRect);
+                    RenderSingleLineText(renderer, TITLE_FONT, TextAlignment.Center, (string) (descriptionLine.boxes[0]), 0, 0, fullWidth, 100, clipRect);
                     break;
 
                 case DescriptionLineKind.SecondaryTitle:
-                    RenderSingleLineText(renderer, TITLE_FONT, StringAlignment.Center, (string) (descriptionLine.boxes[0]), 0, 0, fullWidth, 100, clipRect);
+                    RenderSingleLineText(renderer, TITLE_FONT, TextAlignment.Center, (string) (descriptionLine.boxes[0]), 0, 0, fullWidth, 100, clipRect);
                     break;
 
                 case DescriptionLineKind.Header2Box:
                     renderer.DrawLine(thickPen, 300, lineTop, 300, lineBottom);
-                    RenderSingleLineText(renderer, TITLE_FONT, StringAlignment.Center, (string) (descriptionLine.boxes[0]), 0, 0, 300, 100, clipRect);
-                    RenderSingleLineText(renderer, TITLE_FONT, StringAlignment.Center, (string) (descriptionLine.boxes[1]), 300, 0, 800, 100, clipRect);
+                    RenderSingleLineText(renderer, TITLE_FONT, TextAlignment.Center, (string) (descriptionLine.boxes[0]), 0, 0, 300, 100, clipRect);
+                    RenderSingleLineText(renderer, TITLE_FONT, TextAlignment.Center, (string) (descriptionLine.boxes[1]), 300, 0, 800, 100, clipRect);
                     break;
 
                 case DescriptionLineKind.Header3Box:
                     renderer.DrawLine(thickPen, 300, lineTop, 300, lineBottom);
                     renderer.DrawLine(thickPen, 600, lineTop, 600, lineBottom);
-                    RenderSingleLineText(renderer, TITLE_FONT, StringAlignment.Center, (string) (descriptionLine.boxes[0]), 0, 0, 300, 100, clipRect);
-                    RenderSingleLineText(renderer, TITLE_FONT, StringAlignment.Center, (string) (descriptionLine.boxes[1]), 300, 0, 600, 100, clipRect);
-                    RenderSingleLineText(renderer, TITLE_FONT, StringAlignment.Center, (string) (descriptionLine.boxes[2]), 600, 0, 800, 100, clipRect);
+                    RenderSingleLineText(renderer, TITLE_FONT, TextAlignment.Center, (string) (descriptionLine.boxes[0]), 0, 0, 300, 100, clipRect);
+                    RenderSingleLineText(renderer, TITLE_FONT, TextAlignment.Center, (string) (descriptionLine.boxes[1]), 300, 0, 600, 100, clipRect);
+                    RenderSingleLineText(renderer, TITLE_FONT, TextAlignment.Center, (string) (descriptionLine.boxes[2]), 600, 0, 800, 100, clipRect);
                     break;
 
                 case DescriptionLineKind.Directive:
                     if (descriptionKind == DescriptionKind.Text) {
-                        RenderWrappedText(renderer, TEXT_FONT, StringAlignment.Near, descriptionLine.textual, 15, 0, 785, 100, clipRect);
+                        RenderWrappedText(renderer, TEXT_FONT, TextAlignment.Left, descriptionLine.textual, 15, 0, 785, 100, clipRect);
                     }
                     else {
                         RenderSymbol(renderer, (Symbol)descriptionLine.boxes[0], 0, 0, 800, 100, clipRect);
-                        RenderSingleLineText(renderer, DIRECTIVE_FONT, StringAlignment.Center, (string) (descriptionLine.boxes[1]), 300, 0, 500, 100, clipRect);
+                        RenderSingleLineText(renderer, DIRECTIVE_FONT, TextAlignment.Center, (string) (descriptionLine.boxes[1]), 300, 0, 500, 100, clipRect);
                         if (descriptionKind == DescriptionKind.SymbolsAndText)
-                            RenderWrappedText(renderer, TEXT_FONT, StringAlignment.Near, descriptionLine.textual, 815, 0, 1285, 100, clipRect);
+                            RenderWrappedText(renderer, TEXT_FONT, TextAlignment.Left, descriptionLine.textual, 815, 0, 1285, 100, clipRect);
                     }
 
                     break;
@@ -761,7 +761,7 @@ namespace PurplePen
                         if (columnHScore) {
                             renderer.DrawLine(thickPen, 700, lineTop, 700, lineBottom);
                         }
-                        RenderWrappedText(renderer, TEXT_FONT, StringAlignment.Near, descriptionLine.textual, 215, 0, (columnHScore ? 685 : 785), 100, clipRect);
+                        RenderWrappedText(renderer, TEXT_FONT, TextAlignment.Left, descriptionLine.textual, 215, 0, (columnHScore ? 685 : 785), 100, clipRect);
 
                         if (columnHScore) {
                             boxesToShow = (i => (i < 2 || i == 7));
@@ -781,7 +781,7 @@ namespace PurplePen
 
                         if (descriptionKind == DescriptionKind.SymbolsAndText) {
                             renderer.DrawLine(thickPen, 1300, lineTop, 1300, lineBottom);
-                            RenderWrappedText(renderer, TEXT_FONT, StringAlignment.Near, descriptionLine.textual, 815, 0, 1285, 100, clipRect);
+                            RenderWrappedText(renderer, TEXT_FONT, TextAlignment.Left, descriptionLine.textual, 815, 0, 1285, 100, clipRect);
                         }
                     }
 
@@ -794,9 +794,9 @@ namespace PurplePen
                                 if (i == 5)
                                     RenderColumnFText(renderer, (string)descriptionLine.boxes[i], i * 100, 0, i * 100 + 100, 100, clipRect);
                                 else if (i == 0)
-                                    RenderSingleLineText(renderer, COLUMNA_FONT, StringAlignment.Center, (string)descriptionLine.boxes[i], i * 100, 0, i * 100 + 100, 100, clipRect);
+                                    RenderSingleLineText(renderer, COLUMNA_FONT, TextAlignment.Center, (string)descriptionLine.boxes[i], i * 100, 0, i * 100 + 100, 100, clipRect);
                                 else
-                                    RenderSingleLineText(renderer, COLUMNB_FONT, StringAlignment.Center, (string)descriptionLine.boxes[i], i * 100, 0, i * 100 + 100, 100, clipRect);
+                                    RenderSingleLineText(renderer, COLUMNB_FONT, TextAlignment.Center, (string)descriptionLine.boxes[i], i * 100, 0, i * 100 + 100, 100, clipRect);
                             }
                         }
                     }
@@ -805,11 +805,11 @@ namespace PurplePen
 
                 case DescriptionLineKind.Key:
                     RenderSymbol(renderer, (Symbol) descriptionLine.boxes[0], 100, 0, 200, 100, clipRect);
-                    RenderSingleLineText(renderer, KEY_FONT, StringAlignment.Near, "= " + (string) (descriptionLine.boxes[1]), 200, 0, 800, 100, clipRect);
+                    RenderSingleLineText(renderer, KEY_FONT, TextAlignment.Left, "= " + (string) (descriptionLine.boxes[1]), 200, 0, 800, 100, clipRect);
                     break;
 
                 case DescriptionLineKind.Text:
-                    RenderWrappedText(renderer, TEXTLINE_FONT, StringAlignment.Near, (string) (descriptionLine.boxes[0]), 20, 0, fullWidth, 100, clipRect);
+                    RenderWrappedText(renderer, TEXTLINE_FONT, TextAlignment.Left, (string) (descriptionLine.boxes[0]), 20, 0, fullWidth, 100, clipRect);
                     break;
 
                 default:
@@ -854,19 +854,19 @@ namespace PurplePen
         void DrawLine(object pen, float x1, float y1, float x2, float y2);
 
         // Create a font used for drawing text.
-        object CreateFont(string fontName, float emHeight, bool bold, bool italic, StringAlignment alignment);
+        object CreateFont(string fontName, float emHeight, bool bold, bool italic, TextAlignment alignment);
 
         // Draw a single line of text.
-        void DrawSingleLineText(object font, string text, RectangleF rect, StringAlignment horizAlignment);
+        void DrawSingleLineText(object font, string text, RectangleF rect, TextAlignment horizAlignment);
 
         // Measure a single line of text, return the width
-        float MeasureSingleLineText(object font, string text, RectangleF rect, StringAlignment horizAlignment);
+        float MeasureSingleLineText(object font, string text, RectangleF rect, TextAlignment horizAlignment);
 
         // Draw some text, wrapping to multiple lines
-        void DrawWrappedText(object font, string text, RectangleF rect, StringAlignment horizAlignment);
+        void DrawWrappedText(object font, string text, RectangleF rect, TextAlignment horizAlignment);
 
         // Determine if wrapped lines will fit in the rectangle.
-        bool WrappedTextFits(object font, string text, RectangleF rect, StringAlignment horizAlignment);
+        bool WrappedTextFits(object font, string text, RectangleF rect, TextAlignment horizAlignment);
 
         // Draw a symbol.
         void DrawSymbol(Symbol symbol, RectangleF rect);
@@ -907,7 +907,7 @@ namespace PurplePen
             return pen;
         }
 
-        public object CreateFont(string fontName, float emHeight, bool bold, bool italic, StringAlignment alignment)
+        public object CreateFont(string fontName, float emHeight, bool bold, bool italic, TextAlignment alignment)
         {
             TextEffects textEffects = TextEffects.Regular;
 
@@ -927,13 +927,13 @@ namespace PurplePen
             grTarget.DrawLine(pen, new PointF(x1, y1), new PointF(x2, y2));
         }
 
-        public float MeasureSingleLineText(object font, string text, RectangleF rect, StringAlignment horizAlignment)
+        public float MeasureSingleLineText(object font, string text, RectangleF rect, TextAlignment horizAlignment)
         {
             FontInfo fontInfo = (FontInfo)font;
             return fontInfo.Metrics.GetTextWidth(text);
         }
 
-        public void DrawSingleLineText(object font, string text, RectangleF rect, StringAlignment horizAlignment)
+        public void DrawSingleLineText(object font, string text, RectangleF rect, TextAlignment horizAlignment)
         {
             FontInfo fontInfo = (FontInfo)font;
             SizeF size = fontInfo.Metrics.GetTextSize(text);
@@ -941,11 +941,11 @@ namespace PurplePen
             float x, y;
             y = rect.Center().Y - (fontInfo.Metrics.Ascent + fontInfo.Metrics.Descent) / 2F;
             switch (horizAlignment) {
-                case StringAlignment.Near:
+                case TextAlignment.Left:
                     x = rect.Left; break;
-                case StringAlignment.Center:
+                case TextAlignment.Center:
                     x = rect.Center().X - (size.Width / 2F); break;
-                case StringAlignment.Far:
+                case TextAlignment.Right:
                     x = rect.Right - size.Width; break;
                 default:
                     throw new ArgumentException("unknown value for horizAlignment");
@@ -954,7 +954,7 @@ namespace PurplePen
             grTarget.DrawText(text, font, color, new PointF(x, y));
         }
 
-        public bool WrappedTextFits(object font, string text, RectangleF rect, StringAlignment horizAlignment)
+        public bool WrappedTextFits(object font, string text, RectangleF rect, TextAlignment horizAlignment)
         {
             FontInfo fontInfo = (FontInfo)font;
             List<string> wrapped = WrapText(fontInfo, text, rect.Width);
@@ -965,7 +965,7 @@ namespace PurplePen
             return height <= rect.Height;
         }
 
-        public void DrawWrappedText(object font, string text, RectangleF rect, StringAlignment horizAlignment)
+        public void DrawWrappedText(object font, string text, RectangleF rect, TextAlignment horizAlignment)
         {
             FontInfo fontInfo = (FontInfo)font;
             List<string> wrapped = WrapText(fontInfo, text, rect.Width);
@@ -1227,7 +1227,7 @@ namespace PurplePen
         public object CreatePen(float thickness, LineJoinMode lineJoin, LineCapMode lineCap)
         {
             LineSymDef symdef = new LineSymDef("Description: line", GetOcadId(), color, Geometry.TransformDistance(thickness, currentTransform), lineJoin, lineCap);
-            symdef.ToolboxImage = MapUtil.CreateToolboxIcon(Properties.Resources.DescLine_OcadToolbox);
+            symdef.ToolboxImage = CoreMapUtil.CreateToolboxIcon(IconBitmaps.DescLine_OcadToolbox);
             map.AddSymdef(symdef);
             return symdef;
         }
@@ -1242,25 +1242,25 @@ namespace PurplePen
             map.AddSymbol(symbol);
         }
 
-        public object CreateFont(string fontName, float emHeight, bool bold, bool italic, StringAlignment alignment)
+        public object CreateFont(string fontName, float emHeight, bool bold, bool italic, TextAlignment alignment)
         {
             TextSymDefHorizAlignment fontAlign;
             TextSymDef symdef = new TextSymDef("Description: text", GetOcadId(), TextSymDef.PreferredSymbolKind.NormalText, null);
 
-            if (alignment == StringAlignment.Far)
+            if (alignment == TextAlignment.Right)
                 fontAlign = TextSymDefHorizAlignment.Right;
-            else if (alignment == StringAlignment.Center)
+            else if (alignment == TextAlignment.Center)
                 fontAlign = TextSymDefHorizAlignment.Center;
             else
                 fontAlign = TextSymDefHorizAlignment.Left;
 
-            symdef.SetFont(fontName, Geometry.TransformDistance(emHeight, currentTransform), WindowsUtil.GetTextEffects(bold, italic), color, Geometry.TransformDistance(emHeight * 1.1F, currentTransform), 0, 0, 0, null, 0, 1F, fontAlign, TextSymDefVertAlignment.TopAscent);
-            symdef.ToolboxImage = MapUtil.CreateToolboxIcon(Properties.Resources.DescText_OcadToolbox);
+            symdef.SetFont(fontName, Geometry.TransformDistance(emHeight, currentTransform), Util.GetTextEffects(bold, italic), color, Geometry.TransformDistance(emHeight * 1.1F, currentTransform), 0, 0, 0, null, 0, 1F, fontAlign, TextSymDefVertAlignment.TopAscent);
+            symdef.ToolboxImage = CoreMapUtil.CreateToolboxIcon(IconBitmaps.DescText_OcadToolbox);
             map.AddSymdef(symdef);
             return symdef;
         }
 
-        public float MeasureSingleLineText(object font, string text, RectangleF rect, StringAlignment horizAlignment)
+        public float MeasureSingleLineText(object font, string text, RectangleF rect, TextAlignment horizAlignment)
         {
             TextSymDef symdef = (TextSymDef) font;
             PointF baseLocation;       // base location of the text -- top of the character.
@@ -1282,7 +1282,7 @@ namespace PurplePen
             return Geometry.TransformDistance(size.Width, inverseTransform);
         }
 
-        public void DrawSingleLineText(object font, string text, RectangleF rect, StringAlignment horizAlignment)
+        public void DrawSingleLineText(object font, string text, RectangleF rect, TextAlignment horizAlignment)
         {
             TextSymDef symdef = (TextSymDef) font;
             PointF baseLocation;       // base location of the text -- top of the character.
@@ -1293,16 +1293,16 @@ namespace PurplePen
             float width = Geometry.TransformDistance(rect.Width, currentTransform);
             baseLocation = Geometry.TransformPoint(new PointF(x, y), currentTransform);
             baseLocation.Y += (symdef.FontAscent + symdef.FontDescent) / 2;      // half the character height.
-            if (horizAlignment == StringAlignment.Center)
+            if (horizAlignment == TextAlignment.Center)
                 baseLocation.X += width / 2;
-            else if (horizAlignment == StringAlignment.Far)
+            else if (horizAlignment == TextAlignment.Right)
                 baseLocation.X += width;
 
             TextSymbol symbol = new TextSymbol(symdef, new string[1] { text }, baseLocation, 0, width, TextSymDefHorizAlignment.Default, TextSymDefVertAlignment.Default);
             map.AddSymbol(symbol);
         }
 
-        public bool WrappedTextFits(object font, string text, RectangleF rect, StringAlignment horizAlignment)
+        public bool WrappedTextFits(object font, string text, RectangleF rect, TextAlignment horizAlignment)
         {
             TextSymDef symdef = (TextSymDef) font;
 
@@ -1316,7 +1316,7 @@ namespace PurplePen
             return symbol.TextSize.Height <= Geometry.TransformDistance(rect.Height, currentTransform);
         }
 
-        public void DrawWrappedText(object font, string text, RectangleF rect, StringAlignment horizAlignment)
+        public void DrawWrappedText(object font, string text, RectangleF rect, TextAlignment horizAlignment)
         {
             TextSymDef symdef = (TextSymDef) font;
             PointF baseLocation;       // base location of the text -- top of the character.
@@ -1331,9 +1331,9 @@ namespace PurplePen
             TextSymbol symbol = new TextSymbol(symdef, new string[1] { text }, baseLocation, 0, width, TextSymDefHorizAlignment.Default, TextSymDefVertAlignment.Default);
             baseLocation.Y += symbol.TextSize.Height / 2;
 
-            if (horizAlignment == StringAlignment.Center)
+            if (horizAlignment == TextAlignment.Center)
                 baseLocation.X += width / 2;
-            else if (horizAlignment == StringAlignment.Far)
+            else if (horizAlignment == TextAlignment.Right)
                 baseLocation.X += width;
 
             symbol = new TextSymbol(symdef, new string[1] { text }, baseLocation, 0, width, TextSymDefHorizAlignment.Default, TextSymDefVertAlignment.Default);

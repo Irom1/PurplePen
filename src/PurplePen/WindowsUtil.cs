@@ -202,6 +202,46 @@ namespace PurplePen
             }
         }
 
+        public static Cursor CursorFromMousePointerShape(MousePointerShape shape)
+        {
+            switch (shape.PredefinedShape) {
+            case PredefinedMousePointerShape.Arrow:
+                return Cursors.Arrow;
+            case PredefinedMousePointerShape.Cross:
+                return Cursors.Cross;
+            case PredefinedMousePointerShape.Hand:
+                return Cursors.Hand;
+            case PredefinedMousePointerShape.Help:
+                return Cursors.Help;
+            case PredefinedMousePointerShape.IBeam:
+                return Cursors.IBeam;
+            case PredefinedMousePointerShape.No:
+                return Cursors.No;
+            case PredefinedMousePointerShape.SizeAll:
+                return Cursors.SizeAll;
+            case PredefinedMousePointerShape.SizeNESW:
+                return Cursors.SizeNESW;
+            case PredefinedMousePointerShape.SizeNS:
+                return Cursors.SizeNS;
+            case PredefinedMousePointerShape.SizeNWSE:
+                return Cursors.SizeNWSE;
+            case PredefinedMousePointerShape.SizeWE:
+                return Cursors.SizeWE;
+            case PredefinedMousePointerShape.UpArrow:
+                return Cursors.UpArrow;
+            case PredefinedMousePointerShape.Wait:
+                return Cursors.WaitCursor;
+            case PredefinedMousePointerShape.MoveHandle:
+                return WindowsUtil.MoveHandleCursor;
+            case PredefinedMousePointerShape.DeleteHandle:
+                return WindowsUtil.DeleteHandleCursor;
+            default:
+                Debug.Fail("Unexpected mouse pointer shape");
+                return Cursors.Default;
+            }
+        }
+
+
         public static bool IsPrerelease(string version)
         {
             Version v = new Version(version);

@@ -56,7 +56,12 @@ namespace PurplePen
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
+            Services.FontLoader = GdiplusFontLoader.Instance;
+            Services.TextMetricsProvider = new GDIPlus_TextMetrics();
+            Services.FileLoaderProvider = new GdiPlus_FileLoaderProvider();
+            Services.PdfLoadingUI = new PdfLoadingUI();
             Services.BitmapLoader = new GDIPlus_GraphicsBitmapLoader();
+
 
             // Make sure that settings aren't corrupted, and fix them.
             try {
