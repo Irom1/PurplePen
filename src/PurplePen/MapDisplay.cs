@@ -203,7 +203,7 @@ namespace PurplePen
             set
             {
                 bitmapDpi = value;
-                RaiseChanged(null);        // redraw everything.
+                RaiseChanged();        // redraw everything.
             }
         }
 
@@ -340,7 +340,7 @@ namespace PurplePen
                 if (MapIntensity != value) {
                     mapIntensity = value;
                     UpdateDimmedBitmap();
-                    RaiseChanged(null);
+                    RaiseChanged();
                 }
             }
         }
@@ -353,7 +353,7 @@ namespace PurplePen
             {
                 if (colorModel != value) {
                     colorModel = value;
-                    RaiseChanged(null);
+                    RaiseChanged();
                 }
             }
         }
@@ -399,7 +399,7 @@ namespace PurplePen
             {
                 if (antialiased != value) {
                     antialiased = value;
-                    RaiseChanged(null);
+                    RaiseChanged();
                 }
             }
         }
@@ -415,7 +415,7 @@ namespace PurplePen
             {
                 if (ocadOverprintEffect != value) {
                     ocadOverprintEffect = value;
-                    RaiseChanged(null);
+                    RaiseChanged();
                 }
             }
         }
@@ -428,7 +428,7 @@ namespace PurplePen
             set {
                 if (lowerPurpleMapLayer != value) {
                     lowerPurpleMapLayer = value;
-                    RaiseChanged(null);
+                    RaiseChanged();
                 }
             }
         }
@@ -448,7 +448,7 @@ namespace PurplePen
             {
                 if (showBounds != value) {
                     showBounds = value;
-                    RaiseChanged(null);
+                    RaiseChanged();
                 }
             }
         }
@@ -535,7 +535,7 @@ namespace PurplePen
             }
 
             UpdateDimmedBitmap();
-            RaiseChanged(null);        // redraw everything.
+            RaiseChanged();        // redraw everything.
         }
 
 
@@ -553,7 +553,7 @@ namespace PurplePen
                 else
                     courseMap = course.RenderToMap(renderOptions);
 
-                RaiseChanged(null);
+                RaiseChanged();
             }
         }
 
@@ -562,7 +562,7 @@ namespace PurplePen
         {
             if (!this.printArea.Equals(printArea)) {
                 this.printArea = printArea;
-                RaiseChanged(null);
+                RaiseChanged();
             }
         }
 
@@ -649,7 +649,7 @@ namespace PurplePen
 
         // Draw the map and course onto a bitmap of the given size. The given rectangle is mapped onto the whole bitmap, then
         // the given clip region is applied.
-        public void Draw(Bitmap bitmap, Matrix transform, Region clipRegion = null)
+        public void Draw(Bitmap bitmap, Matrix transform, RectangleF? clipRect = null)
         {
             Debug.Assert(colorModel == ColorModel.CMYK || colorModel == ColorModel.RGB);
             GDIPlus_ColorConverter colorConverter = (colorModel == ColorModel.CMYK) ? new SwopColorConverter() : new GDIPlus_ColorConverter();
@@ -829,10 +829,10 @@ namespace PurplePen
         public event MapDisplayChanged Changed;
 
         // Raise the changed event.
-        private void RaiseChanged(Region region)
+        private void RaiseChanged()
         {
             if (Changed != null)
-                Changed(region);
+                Changed();
         }
     }
 }

@@ -83,11 +83,9 @@ namespace PurplePen.Tests
         {
             Matrix inverse = transform.Clone();
             inverse.Invert();
-            using (Region clipRegion = new Region(clip)) {
-                clipRegion.Transform(inverse.ToSysDrawMatrix());
-                mapdisplay.Draw(bitmap, transform, clipRegion);
-            }
-        }
+            clip = Geometry.TransformRectangle(inverse, clip);
+            mapdisplay.Draw(bitmap, transform, clip);
+       }
 
         [TestMethod]
         public void OcadBoundsScale()

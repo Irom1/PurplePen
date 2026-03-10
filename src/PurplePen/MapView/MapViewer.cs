@@ -576,16 +576,8 @@ namespace PurplePen.MapView
         #endregion Property Accessors
 
         #region Change handling
-        void MapChanged(Region regionChanged) {
-            if (regionChanged != null) {
-                // Transform the changed region into pixel coordinates and invalidate it.
-                Region copy = regionChanged.Clone();
-                copy.Transform(xformWorldToPixel.ToSysDrawMatrix());
-                Invalidate(copy); 
-            }
-            else {
-                Invalidate();
-            }
+        void MapChanged() {
+            Invalidate();
 
             // Check if we need to scroll things to be within bounds again.
             PointF constrainedCenter = ConstrainCenterPoint(centerPoint, viewport.Size, GetScrollBounds());
