@@ -46,7 +46,7 @@ namespace PurplePen
     using System.Windows;
 
     // Macros used in text specials
-    static class TextMacros
+    public static class TextMacros
     {
         public const string EventTitle = "$(EventTitle)";
         public const string CourseName = "$(CourseName)";
@@ -62,7 +62,7 @@ namespace PurplePen
         public const string MapFileName = "$(MapFileName)";
     }
 
-    class CourseFormatterOptions
+    public class CourseFormatterOptions
     {
         public bool showControlNumbers = true;
         public bool showDescriptions = true;
@@ -70,7 +70,7 @@ namespace PurplePen
 
     // The course formatter transforms a CourseView into a abstract description of a course, which
     // is a CourseLayout. It does not include the description block itself.
-    static class CourseFormatter
+    public static class CourseFormatter
     {
         // Format the given CourseView into a bunch of course objects, and add it to the given course Layout
         public static void FormatCourseToLayout(SymbolDB symbolDB, CourseView courseView, CourseAppearance appearance, CourseLayout courseLayout, CourseLayer layer, CourseFormatterOptions options = null)
@@ -401,18 +401,17 @@ namespace PurplePen
 #endif
         static SizeF GetTextSize(string text, FontDesc font, float fontScaling)
         {
-            Graphics g = WindowsUtil.GetHiresGraphics();
-            using (Font f = GdiplusFontLoader.Instance.CreateFont(font.Name, font.EmHeight * fontScaling, font.TextEffects)) {
-                SizeF size = g.MeasureString(text, f, new PointF(0, 0), StringFormat.GenericTypographic);
+            ITextMetrics textMetricsProvider = Services.TextMetricsProvider;
+            ITextFaceMetrics textMetrics = textMetricsProvider.GetTextFaceMetrics(font.Name, font.EmHeight * fontScaling, font.TextEffects);
 
-                // We really want the size of just the digits/capital letters. So, reduce by the descender size from 
-                // bottom and top (no way to get offset from top of box to top of cap letters).
-                FontFamily family = f.FontFamily;
-                float descender = family.GetCellDescent(f.Style) * font.EmHeight * fontScaling / family.GetEmHeight(f.Style);
-                size.Height = size.Height - 2 * descender;
+            SizeF size = textMetrics.GetTextSize(text);
 
-                return size;
-            }
+            // We really want the size of just the digits/capital letters. So, reduce by the descender size from 
+            // bottom and top (no way to get offset from top of box to top of cap letters).
+            float descender = textMetrics.Descent;
+            size.Height = size.Height - 2 * descender;
+
+            return size;
         }
 
         // Given a center point, distance from that point, angle, and rectangle size, find the point that is the center of a 
@@ -590,7 +589,7 @@ namespace PurplePen
 
             case SpecialKind.Text:
                 string text = ExpandText(eventDB, courseView, special.text);
-                TextEffects textEffects = WindowsUtil.GetTextEffects(special.fontBold, special.fontItalic);
+                TextEffects textEffects = Util.GetTextEffects(special.fontBold, special.fontItalic);
                 RectangleF boundingRect = RectangleF.FromLTRB((float)Math.Min(special.locations[0].X, special.locations[1].X), (float)Math.Min(special.locations[0].Y, special.locations[1].Y),
                                                                                               (float)Math.Max(special.locations[0].X, special.locations[1].X), (float)Math.Max(special.locations[0].Y, special.locations[1].Y));
                 courseObj = new BasicTextCourseObj(specialId, text, boundingRect, special.fontName, textEffects, special.color, special.fontHeight);
