@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFrameworks>net48;net10.0</TargetFrameworks>
@@ -73,6 +73,14 @@
     <Compile Update="ReportText.*.Designer.cs">
       <DependentUpon>ReportText.resx</DependentUpon>
     </Compile>
+    <Compile Update="SelectionDescriptionText.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>SelectionDescriptionText.resx</DependentUpon>
+    </Compile>
+    <Compile Update="SelectionDescriptionText.*.Designer.cs">
+      <DependentUpon>SelectionDescriptionText.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -89,6 +97,13 @@
     </EmbeddedResource>
     <EmbeddedResource Update="ReportText.*.resx">
       <DependentUpon>ReportText.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="SelectionDescriptionText.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>SelectionDescriptionText.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="SelectionDescriptionText.*.resx">
+      <DependentUpon>SelectionDescriptionText.resx</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
 

@@ -411,8 +411,8 @@ namespace PurplePen.Tests
             selectionMgr.SelectLeg(CourseControlId(13), CourseControlId(14), LegInsertionLoc.Normal);
 
             CheckSelectedLines(-1, -1);
-            SelectionMgr.SelectionInfo selectionInfo = selectionMgr.Selection;
-            Assert.AreEqual(SelectionMgr.SelectionKind.Leg, selectionInfo.SelectionKind);
+            SelectionInfo selectionInfo = selectionMgr.Selection;
+            Assert.AreEqual(SelectionKind.Leg, selectionInfo.SelectionKind);
             Assert.AreEqual(22, selectionInfo.SelectedControl.id);
             Assert.AreEqual(13, selectionInfo.SelectedCourseControl.id);
             Assert.AreEqual(14, selectionInfo.SelectedCourseControl2.id);
@@ -433,8 +433,8 @@ namespace PurplePen.Tests
             selectionMgr.SelectLeg(CourseControlId(2), CourseControlId(3), LegInsertionLoc.Normal);
 
             CheckSelectedLines(4, 4);
-            SelectionMgr.SelectionInfo selectionInfo = selectionMgr.Selection;
-            Assert.AreEqual(SelectionMgr.SelectionKind.Leg, selectionInfo.SelectionKind);
+            SelectionInfo selectionInfo = selectionMgr.Selection;
+            Assert.AreEqual(SelectionKind.Leg, selectionInfo.SelectionKind);
             Assert.AreEqual(2, selectionInfo.SelectedControl.id);
             Assert.AreEqual(2, selectionInfo.SelectedCourseControl.id);
             Assert.AreEqual(3, selectionInfo.SelectedCourseControl2.id);
@@ -460,8 +460,8 @@ namespace PurplePen.Tests
                 }
             }
 
-            SelectionMgr.SelectionInfo selectionInfo = selectionMgr.Selection;
-            Assert.AreEqual(SelectionMgr.SelectionKind.Leg, selectionInfo.SelectionKind);
+            SelectionInfo selectionInfo = selectionMgr.Selection;
+            Assert.AreEqual(SelectionKind.Leg, selectionInfo.SelectionKind);
             Assert.AreEqual(22, selectionInfo.SelectedControl.id);
             Assert.AreEqual(13, selectionInfo.SelectedCourseControl.id);
             Assert.AreEqual(14, selectionInfo.SelectedCourseControl2.id);
@@ -483,8 +483,8 @@ namespace PurplePen.Tests
             selectionMgr.SelectSpecial(SpecialId(5));
 
             CheckSelectedLines(-1, -1);
-            SelectionMgr.SelectionInfo selectionInfo = selectionMgr.Selection;
-            Assert.AreEqual(SelectionMgr.SelectionKind.Special, selectionInfo.SelectionKind);
+            SelectionInfo selectionInfo = selectionMgr.Selection;
+            Assert.AreEqual(SelectionKind.Special, selectionInfo.SelectionKind);
             Assert.AreEqual(0, selectionInfo.SelectedControl.id);
             Assert.AreEqual(0, selectionInfo.SelectedCourseControl.id);
             Assert.AreEqual(5, selectionInfo.SelectedSpecial.id);
@@ -504,29 +504,29 @@ namespace PurplePen.Tests
             selectionMgr.SelectCourseView(Designator(6));
 
             selectionMgr.SelectTextLine(ControlId(18), CourseControlId(208), DescriptionLine.TextLineKind.BeforeCourseControl);            
-            SelectionMgr.SelectionInfo selectionInfo = selectionMgr.Selection;
-            Assert.AreEqual(SelectionMgr.SelectionKind.TextLine, selectionInfo.SelectionKind);
+            SelectionInfo selectionInfo = selectionMgr.Selection;
+            Assert.AreEqual(SelectionKind.TextLine, selectionInfo.SelectionKind);
             Assert.AreEqual(18, selectionInfo.SelectedControl.id);
             Assert.AreEqual(208, selectionInfo.SelectedCourseControl.id);
             Assert.AreEqual(DescriptionLine.TextLineKind.BeforeCourseControl, selectionInfo.SelectedTextLineKind);
 
             selectionMgr.SelectTextLine(ControlId(18), CourseControlId(208), DescriptionLine.TextLineKind.AfterCourseControl);
             selectionInfo = selectionMgr.Selection;
-            Assert.AreEqual(SelectionMgr.SelectionKind.TextLine, selectionInfo.SelectionKind);
+            Assert.AreEqual(SelectionKind.TextLine, selectionInfo.SelectionKind);
             Assert.AreEqual(18, selectionInfo.SelectedControl.id);
             Assert.AreEqual(208, selectionInfo.SelectedCourseControl.id);
             Assert.AreEqual(DescriptionLine.TextLineKind.AfterCourseControl, selectionInfo.SelectedTextLineKind);
 
             selectionMgr.SelectTextLine(ControlId(18), CourseControlId(208), DescriptionLine.TextLineKind.BeforeControl);
             selectionInfo = selectionMgr.Selection;
-            Assert.AreEqual(SelectionMgr.SelectionKind.TextLine, selectionInfo.SelectionKind);
+            Assert.AreEqual(SelectionKind.TextLine, selectionInfo.SelectionKind);
             Assert.AreEqual(18, selectionInfo.SelectedControl.id);
             Assert.AreEqual(208, selectionInfo.SelectedCourseControl.id);
             Assert.AreEqual(DescriptionLine.TextLineKind.BeforeControl, selectionInfo.SelectedTextLineKind);
 
             selectionMgr.SelectTextLine(ControlId(18), CourseControlId(208), DescriptionLine.TextLineKind.AfterControl);
             selectionInfo = selectionMgr.Selection;
-            Assert.AreEqual(SelectionMgr.SelectionKind.TextLine, selectionInfo.SelectionKind);
+            Assert.AreEqual(SelectionKind.TextLine, selectionInfo.SelectionKind);
             Assert.AreEqual(18, selectionInfo.SelectedControl.id);
             Assert.AreEqual(208, selectionInfo.SelectedCourseControl.id);
             Assert.AreEqual(DescriptionLine.TextLineKind.AfterControl, selectionInfo.SelectedTextLineKind);
@@ -541,14 +541,14 @@ namespace PurplePen.Tests
             selectionMgr.SelectCourseView(Designator(5));
 
             selectionMgr.SelectKeyLine(ui.symbolDB["5.6"]);            // light pole
-            SelectionMgr.SelectionInfo selectionInfo = selectionMgr.Selection;
-            Assert.AreEqual(SelectionMgr.SelectionKind.Key, selectionInfo.SelectionKind);
+            SelectionInfo selectionInfo = selectionMgr.Selection;
+            Assert.AreEqual(SelectionKind.Key, selectionInfo.SelectionKind);
             Assert.AreEqual("5.6", selectionInfo.SelectedKeySymbol.Id);
             CheckSelectedLines(16, 16);
 
             selectionMgr.SelectDescriptionLine(17);
             selectionInfo = selectionMgr.Selection;
-            Assert.AreEqual(SelectionMgr.SelectionKind.Key, selectionInfo.SelectionKind);
+            Assert.AreEqual(SelectionKind.Key, selectionInfo.SelectionKind);
             Assert.AreEqual("12.1", selectionInfo.SelectedKeySymbol.Id);
         }
 	
@@ -567,8 +567,8 @@ namespace PurplePen.Tests
             selectionMgr.SelectCourseObject(courseobject);
 
             CheckSelectedLines(-1, -1);
-            SelectionMgr.SelectionInfo selectionInfo = selectionMgr.Selection;
-            Assert.AreEqual(SelectionMgr.SelectionKind.Special, selectionInfo.SelectionKind);
+            SelectionInfo selectionInfo = selectionMgr.Selection;
+            Assert.AreEqual(SelectionKind.Special, selectionInfo.SelectionKind);
             Assert.AreEqual(0, selectionInfo.SelectedControl.id);
             Assert.AreEqual(0, selectionInfo.SelectedCourseControl.id);
             Assert.AreEqual(4, selectionInfo.SelectedSpecial.id);
@@ -586,7 +586,7 @@ namespace PurplePen.Tests
 
             CheckSelectedLines(-1, -1);
             selectionInfo = selectionMgr.Selection;
-            Assert.AreEqual(SelectionMgr.SelectionKind.Special, selectionInfo.SelectionKind);
+            Assert.AreEqual(SelectionKind.Special, selectionInfo.SelectionKind);
             Assert.AreEqual(0, selectionInfo.SelectedControl.id);
             Assert.AreEqual(0, selectionInfo.SelectedCourseControl.id);
             Assert.AreEqual(3, selectionInfo.SelectedSpecial.id);
@@ -690,7 +690,7 @@ Code:           control:9  scale:1  text:211  top-left:(36.41,-3.71)
         [TestMethod]
         public void GetSelectionInfo()
         {
-            SelectionMgr.SelectionInfo info;
+            SelectionInfo info;
 
             bool success = controller.LoadInitialFile(TestUtil.GetTestFile("selectionmgr\\sampleevent1.coursescribe"), true);
             Assert.IsTrue(success);
@@ -698,31 +698,31 @@ Code:           control:9  scale:1  text:211  top-left:(36.41,-3.71)
             selectionMgr.SelectCourseView(Designator(0));
             info = selectionMgr.Selection;
             Assert.AreEqual(0, info.ActiveCourseDesignator.CourseId.id);
-            Assert.AreEqual(SelectionMgr.SelectionKind.None, info.SelectionKind);
+            Assert.AreEqual(SelectionKind.None, info.SelectionKind);
 
             selectionMgr.SelectControl(ControlId(5));
             info = selectionMgr.Selection;
             Assert.AreEqual(0, info.ActiveCourseDesignator.CourseId.id);
-            Assert.AreEqual(SelectionMgr.SelectionKind.Control, info.SelectionKind);
+            Assert.AreEqual(SelectionKind.Control, info.SelectionKind);
             Assert.AreEqual(5, info.SelectedControl.id);
             Assert.AreEqual(0, info.SelectedCourseControl.id);
 
             selectionMgr.SelectCourseView(Designator(6));
             info = selectionMgr.Selection;
             Assert.AreEqual(6, info.ActiveCourseDesignator.CourseId.id);
-            Assert.AreEqual(SelectionMgr.SelectionKind.None, info.SelectionKind);
+            Assert.AreEqual(SelectionKind.None, info.SelectionKind);
 
             selectionMgr.SelectCourseControl(CourseControlId(204));
             info = selectionMgr.Selection;
             Assert.AreEqual(6, info.ActiveCourseDesignator.CourseId.id);
-            Assert.AreEqual(SelectionMgr.SelectionKind.Control, info.SelectionKind);
+            Assert.AreEqual(SelectionKind.Control, info.SelectionKind);
             Assert.AreEqual(8, info.SelectedControl.id);
             Assert.AreEqual(204, info.SelectedCourseControl.id);
 
             selectionMgr.SelectTitle();
             info = selectionMgr.Selection;
             Assert.AreEqual(6, info.ActiveCourseDesignator.CourseId.id);
-            Assert.AreEqual(SelectionMgr.SelectionKind.Title, info.SelectionKind);
+            Assert.AreEqual(SelectionKind.Title, info.SelectionKind);
             Assert.AreEqual(0, info.SelectedControl.id);
             Assert.AreEqual(0, info.SelectedCourseControl.id);
 
@@ -730,7 +730,7 @@ Code:           control:9  scale:1  text:211  top-left:(36.41,-3.71)
             selectionMgr.SelectSecondaryTitle();
             info = selectionMgr.Selection;
             Assert.AreEqual(5, info.ActiveCourseDesignator.CourseId.id);
-            Assert.AreEqual(SelectionMgr.SelectionKind.SecondaryTitle, info.SelectionKind);
+            Assert.AreEqual(SelectionKind.SecondaryTitle, info.SelectionKind);
             Assert.AreEqual(0, info.SelectedControl.id);
             Assert.AreEqual(0, info.SelectedCourseControl.id);
         }

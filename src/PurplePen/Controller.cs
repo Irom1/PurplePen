@@ -1614,11 +1614,11 @@ namespace PurplePen
             if (currentMode != defaultMode)
                 return false;
 
-            SelectionMgr.SelectionInfo selection = selectionMgr.Selection;
+            SelectionInfo selection = selectionMgr.Selection;
 
             // We can delete any selected control or a special or a text line
-            if (selection.SelectionKind == SelectionMgr.SelectionKind.Control || selection.SelectionKind == SelectionMgr.SelectionKind.Special || 
-                selection.SelectionKind == SelectionMgr.SelectionKind.TextLine || selection.SelectionKind == SelectionMgr.SelectionKind.MapExchangeOrFlipAtControl)
+            if (selection.SelectionKind == SelectionKind.Control || selection.SelectionKind == SelectionKind.Special || 
+                selection.SelectionKind == SelectionKind.TextLine || selection.SelectionKind == SelectionKind.MapExchangeOrFlipAtControl)
                 return true;
 
             return false;
@@ -1629,10 +1629,10 @@ namespace PurplePen
         {
             CancelMode();
 
-            SelectionMgr.SelectionInfo selection = selectionMgr.Selection;
+            SelectionInfo selection = selectionMgr.Selection;
 
             // We can delete any selected control.
-            if (selection.SelectionKind == SelectionMgr.SelectionKind.Control) {
+            if (selection.SelectionKind == SelectionKind.Control) {
                 if (selection.SelectedCourseControl.IsNone) {
                     return DeleteControlFromAllControls(selection);
                 }
@@ -1641,14 +1641,14 @@ namespace PurplePen
                     return DeleteControlFromCourse(selection.ActiveCourseDesignator.CourseId, selection.SelectedCourseControl, CommandNameText.DeleteControl);
                 }
             }
-            else if (selection.SelectionKind == SelectionMgr.SelectionKind.Special) {
+            else if (selection.SelectionKind == SelectionKind.Special) {
                 // We can delete any selected special.
                 undoMgr.BeginCommand(710, CommandNameText.DeleteObject);
                 ChangeEvent.DeleteSpecial(eventDB, selection.SelectedSpecial);
                 undoMgr.EndCommand(710);
                 return true;
             }
-            else if (selection.SelectionKind == SelectionMgr.SelectionKind.TextLine) {
+            else if (selection.SelectionKind == SelectionKind.TextLine) {
                 // We can delete any selected text line.
                 undoMgr.BeginCommand(811, CommandNameText.DeleteTextLine);
                 DescriptionLine.TextLineKind textLineKind = selection.SelectedTextLineKind;
@@ -1661,7 +1661,7 @@ namespace PurplePen
                 undoMgr.EndCommand(811);
                 return true;
             }
-            else if (selection.SelectionKind == SelectionMgr.SelectionKind.MapExchangeOrFlipAtControl) {
+            else if (selection.SelectionKind == SelectionKind.MapExchangeOrFlipAtControl) {
                 // Remove the map exchange at this course control.
                 undoMgr.BeginCommand(812, CommandNameText.DeleteMapExchangeAtControl);
                 ChangeEvent.ChangeControlExchange(eventDB, selection.SelectedCourseControl, MapExchangeType.None);
@@ -1713,7 +1713,7 @@ namespace PurplePen
             return true;
         }
 
-        private bool DeleteControlFromAllControls(SelectionMgr.SelectionInfo selection)
+        private bool DeleteControlFromAllControls(SelectionInfo selection)
         {
             bool delete = true;   // actually delete the control?
 
@@ -2149,8 +2149,8 @@ namespace PurplePen
         public void GetLineSpecialProperties(SpecialKind specialKind, bool selectedLineSpecial, out SpecialColor color, out LineKind lineKind, out float lineWidth, out float gapSize, out float dashSize, out float cornerRadius)
         {
             if (selectedLineSpecial) {
-                SelectionMgr.SelectionInfo selection = selectionMgr.Selection;
-                if (selection.SelectionKind == SelectionMgr.SelectionKind.Special) {
+                SelectionInfo selection = selectionMgr.Selection;
+                if (selection.SelectionKind == SelectionKind.Special) {
                     Special selectedSpecial = eventDB.GetSpecial(selection.SelectedSpecial);
                     if (selectedSpecial.kind == specialKind) {
                         color = selectedSpecial.color;
@@ -2282,9 +2282,9 @@ namespace PurplePen
         // Start the mode for remove a bend from a special or a leg.
         public void BeginRemoveBend()
         {
-            SelectionMgr.SelectionInfo selection = selectionMgr.Selection;
+            SelectionInfo selection = selectionMgr.Selection;
 
-            if (selection.SelectionKind == SelectionMgr.SelectionKind.Special || selection.SelectionKind == SelectionMgr.SelectionKind.Leg) {
+            if (selection.SelectionKind == SelectionKind.Special || selection.SelectionKind == SelectionKind.Leg) {
                 SetCommandMode(new DeleteCornerMode(this, selectionMgr.SelectedCourseObjects[0]));
             }
         }
@@ -2293,8 +2293,8 @@ namespace PurplePen
         // Command status for adding a bend to a leg.
         private CommandStatus CanAddLegBend()
         {
-            SelectionMgr.SelectionInfo selection = selectionMgr.Selection;
-            if (selection.SelectionKind == SelectionMgr.SelectionKind.Leg)
+            SelectionInfo selection = selectionMgr.Selection;
+            if (selection.SelectionKind == SelectionKind.Leg)
                 return CommandStatus.Enabled;    // can always add a new bend
             else
                 return CommandStatus.Disabled;
@@ -2308,9 +2308,9 @@ namespace PurplePen
 #endif
         void BeginAddLegBend()
         {
-            SelectionMgr.SelectionInfo selection = selectionMgr.Selection;
+            SelectionInfo selection = selectionMgr.Selection;
 
-            if (selection.SelectionKind == SelectionMgr.SelectionKind.Leg) {
+            if (selection.SelectionKind == SelectionKind.Leg) {
                 SetCommandMode(new AddCornerMode(this, true, selectionMgr.SelectedCourseObjects));
             }
         }
@@ -2318,8 +2318,8 @@ namespace PurplePen
         // Command status for adding a corner to a special.
         private CommandStatus CanAddSpecialCorner()
         {
-            SelectionMgr.SelectionInfo selection = selectionMgr.Selection;
-            if (selection.SelectionKind == SelectionMgr.SelectionKind.Special) {
+            SelectionInfo selection = selectionMgr.Selection;
+            if (selection.SelectionKind == SelectionKind.Special) {
                 SpecialKind kind = eventDB.GetSpecial(selection.SelectedSpecial).kind;
                 if (kind == SpecialKind.Boundary || kind == SpecialKind.Line || kind == SpecialKind.Dangerous || kind == SpecialKind.Construction || kind == SpecialKind.OOB || kind == SpecialKind.WhiteOut)
                     return CommandStatus.Enabled;    // can always add a new leg.
@@ -2338,9 +2338,9 @@ namespace PurplePen
 #endif
         void BeginAddSpecialCorner()
         {
-            SelectionMgr.SelectionInfo selection = selectionMgr.Selection;
+            SelectionInfo selection = selectionMgr.Selection;
 
-            if (selection.SelectionKind == SelectionMgr.SelectionKind.Special) {
+            if (selection.SelectionKind == SelectionKind.Special) {
                 SetCommandMode(new AddCornerMode(this, false, selectionMgr.SelectedCourseObjects));
             }
         }
@@ -2348,9 +2348,9 @@ namespace PurplePen
         // Add a bend or corner to the currently selected objects.
         public void AddCorner(PointF newCorner)
         {
-            SelectionMgr.SelectionInfo selection = selectionMgr.Selection;
+            SelectionInfo selection = selectionMgr.Selection;
 
-            if (selection.SelectionKind == SelectionMgr.SelectionKind.Leg) {
+            if (selection.SelectionKind == SelectionKind.Leg) {
                 Id<ControlPoint> controlId1 = eventDB.GetCourseControl(selection.SelectedCourseControl).control;
                 Id<ControlPoint> controlId2 = eventDB.GetCourseControl(selection.SelectedCourseControl2).control;
 
@@ -2358,7 +2358,7 @@ namespace PurplePen
                 ChangeEvent.AddLegBend(eventDB, controlId1, controlId2, newCorner);
                 undoMgr.EndCommand(878);
             }
-            else if (selection.SelectionKind == SelectionMgr.SelectionKind.Special) {
+            else if (selection.SelectionKind == SelectionKind.Special) {
                 undoMgr.BeginCommand(879, CommandNameText.AddBend);
                 ChangeEvent.AddSpecialCorner(eventDB, selection.SelectedSpecial, newCorner);
                 undoMgr.EndCommand(879);
@@ -2369,8 +2369,8 @@ namespace PurplePen
         // Command status for removing a corner from a special.
         private CommandStatus CanRemoveSpecialCorner()
         {
-            SelectionMgr.SelectionInfo selection = selectionMgr.Selection;
-            if (selection.SelectionKind == SelectionMgr.SelectionKind.Special) {
+            SelectionInfo selection = selectionMgr.Selection;
+            if (selection.SelectionKind == SelectionKind.Special) {
                 Special special = eventDB.GetSpecial(selection.SelectedSpecial);
                 SpecialKind kind = special.kind;
 
@@ -2393,8 +2393,8 @@ namespace PurplePen
         // Command status for removeing a bend from a leg.
         private CommandStatus CanRemoveLegBend()
         {
-            SelectionMgr.SelectionInfo selection = selectionMgr.Selection;
-            if (selection.SelectionKind == SelectionMgr.SelectionKind.Leg) {
+            SelectionInfo selection = selectionMgr.Selection;
+            if (selection.SelectionKind == SelectionKind.Leg) {
                 Id<Leg> legId = QueryEvent.FindLeg(eventDB, eventDB.GetCourseControl(selection.SelectedCourseControl).control, eventDB.GetCourseControl(selection.SelectedCourseControl2).control);
                 Leg leg = legId.IsNotNone ? eventDB.GetLeg(legId) : null;
 
@@ -2410,9 +2410,9 @@ namespace PurplePen
         // Delete a corner from the selected object
         public void DeleteCorner(PointF cornerLocation)
         {
-            SelectionMgr.SelectionInfo selection = selectionMgr.Selection;
+            SelectionInfo selection = selectionMgr.Selection;
 
-            if (selection.SelectionKind == SelectionMgr.SelectionKind.Special) {
+            if (selection.SelectionKind == SelectionKind.Special) {
                 undoMgr.BeginCommand(8188, CommandNameText.DeleteCorner);
                 ChangeEvent.RemoveSpecialCorner(eventDB, selection.SelectedSpecial, cornerLocation);
                 undoMgr.EndCommand(8188);
@@ -2430,16 +2430,16 @@ namespace PurplePen
         // Get the command status for adding a gap.
         public CommandStatus CanAddGap()
         {
-            SelectionMgr.SelectionInfo selection = selectionMgr.Selection;
+            SelectionInfo selection = selectionMgr.Selection;
 
-            if (selection.SelectionKind == SelectionMgr.SelectionKind.Control) {
+            if (selection.SelectionKind == SelectionKind.Control) {
                 ControlPoint control = eventDB.GetControl(selection.SelectedControl);
                 if (control.kind == ControlPointKind.Normal || control.kind == ControlPointKind.Finish)
                     return CommandStatus.Enabled;
                 else
                     return CommandStatus.Disabled;
             }
-            else if (selection.SelectionKind == SelectionMgr.SelectionKind.Leg) {
+            else if (selection.SelectionKind == SelectionKind.Leg) {
                 // Can add a gap to any leg.
                 return CommandStatus.Enabled;
             }
@@ -2450,12 +2450,12 @@ namespace PurplePen
         // Start the mode for adding a gap to a leg or control.
         public void BeginAddGap()
         {
-            SelectionMgr.SelectionInfo selection = selectionMgr.Selection;
+            SelectionInfo selection = selectionMgr.Selection;
 
-            if (selection.SelectionKind == SelectionMgr.SelectionKind.Control) {
+            if (selection.SelectionKind == SelectionKind.Control) {
                 SetCommandMode(new AddControlGapMode(this, (PointCourseObj) selectionMgr.SelectedCourseObjects[0]));
             }
-            else if (selection.SelectionKind == SelectionMgr.SelectionKind.Leg) {
+            else if (selection.SelectionKind == SelectionKind.Leg) {
                 SetCommandMode(new AddLegGapMode(this, (LegCourseObj) selectionMgr.SelectedCourseObjects[0]));
             }
         }
@@ -2463,9 +2463,9 @@ namespace PurplePen
         // Add a gap to the selection control at a given location.
         public void AddControlGap(PointF gapLocation)
         {
-            SelectionMgr.SelectionInfo selection = selectionMgr.Selection;
+            SelectionInfo selection = selectionMgr.Selection;
 
-            if (selection.SelectionKind == SelectionMgr.SelectionKind.Control) {
+            if (selection.SelectionKind == SelectionKind.Control) {
                 // Determine the angle of the new gaps
                 ControlPoint control = eventDB.GetControl(selection.SelectedControl);
                 double angleInRadians = Math.Atan2(gapLocation.Y - control.location.Y, gapLocation.X - control.location.X);
@@ -2486,9 +2486,9 @@ namespace PurplePen
         // Add a gap to the selection control at a given location.
         public void AddControlGap(PointF gapLocation1, PointF gapLocation2)
         {
-            SelectionMgr.SelectionInfo selection = selectionMgr.Selection;
+            SelectionInfo selection = selectionMgr.Selection;
 
-            if (selection.SelectionKind == SelectionMgr.SelectionKind.Control) {
+            if (selection.SelectionKind == SelectionKind.Control) {
                 // Change the gaps of the control.
                 float scaleForCircleGaps = selectionMgr.ActiveCourseView.CircleGapScale(GetCourseAppearance());
 
@@ -2511,9 +2511,9 @@ namespace PurplePen
         // Add a gap to the selected leg using two points as the end points of the gap.
         public void AddLegGap(PointF pt1, PointF pt2)
         {
-            SelectionMgr.SelectionInfo selection = selectionMgr.Selection;
+            SelectionInfo selection = selectionMgr.Selection;
 
-            if (selection.SelectionKind == SelectionMgr.SelectionKind.Leg) {
+            if (selection.SelectionKind == SelectionKind.Leg) {
                 Id<ControlPoint> controlId1 = selection.SelectedControl;
                 Id<ControlPoint> controlId2 = eventDB.GetCourseControl(selection.SelectedCourseControl2).control;
 
@@ -2532,9 +2532,9 @@ namespace PurplePen
         // Add a leg gap of 2mm around a center point.
         public void AddLegGap(PointF ptCenter)
         {
-            SelectionMgr.SelectionInfo selection = selectionMgr.Selection;
+            SelectionInfo selection = selectionMgr.Selection;
 
-            if (selection.SelectionKind == SelectionMgr.SelectionKind.Leg) {
+            if (selection.SelectionKind == SelectionKind.Leg) {
                 Id<ControlPoint> controlId1 = selection.SelectedControl;
                 Id<ControlPoint> controlId2 = eventDB.GetCourseControl(selection.SelectedCourseControl2).control;
 
@@ -2553,9 +2553,9 @@ namespace PurplePen
         // Get the command status for removing a gap.
         public CommandStatus CanRemoveGap()
         {
-            SelectionMgr.SelectionInfo selection = selectionMgr.Selection;
+            SelectionInfo selection = selectionMgr.Selection;
 
-            if (selection.SelectionKind == SelectionMgr.SelectionKind.Control) {
+            if (selection.SelectionKind == SelectionKind.Control) {
                 ControlPoint control = eventDB.GetControl(selection.SelectedControl);
                 if (control.kind == ControlPointKind.Normal || control.kind == ControlPointKind.Finish) {
                     float scaleForCircleGaps = selectionMgr.ActiveCourseView.CircleGapScale(GetCourseAppearance());
@@ -2570,7 +2570,7 @@ namespace PurplePen
                 else
                     return CommandStatus.Disabled;
             }
-            else if (selection.SelectionKind == SelectionMgr.SelectionKind.Leg) {
+            else if (selection.SelectionKind == SelectionKind.Leg) {
                 // Does the leg have gaps?
                 Id<ControlPoint> controlId1 = selection.SelectedControl;
                 Id<ControlPoint> controlId2 = eventDB.GetCourseControl(selection.SelectedCourseControl2).control;
@@ -2587,12 +2587,12 @@ namespace PurplePen
         // Start the mode for removing a gap from a leg or control.
         public void BeginRemoveGap()
         {
-            SelectionMgr.SelectionInfo selection = selectionMgr.Selection;
+            SelectionInfo selection = selectionMgr.Selection;
 
-            if (selection.SelectionKind == SelectionMgr.SelectionKind.Control) {
+            if (selection.SelectionKind == SelectionKind.Control) {
                 SetCommandMode(new RemoveControlGapMode(this, (PointCourseObj) selectionMgr.SelectedCourseObjects[0]));
             }
-            else if (selection.SelectionKind == SelectionMgr.SelectionKind.Leg) {
+            else if (selection.SelectionKind == SelectionKind.Leg) {
                 SetCommandMode(new RemoveLegGapMode(this, (LineCourseObj) selectionMgr.SelectedCourseObjects[0]));
             }
         }
@@ -2600,9 +2600,9 @@ namespace PurplePen
         // Remove a gap from the selected control at a given location.
         public void RemoveControlGap(PointF gapLocation)
         {
-            SelectionMgr.SelectionInfo selection = selectionMgr.Selection;
+            SelectionInfo selection = selectionMgr.Selection;
 
-            if (selection.SelectionKind == SelectionMgr.SelectionKind.Control) {
+            if (selection.SelectionKind == SelectionKind.Control) {
                 // Determine the angle of the gap to remove
                 ControlPoint control = eventDB.GetControl(selection.SelectedControl);
                 double angleInRadians = Math.Atan2(gapLocation.Y - control.location.Y, gapLocation.X - control.location.X);
@@ -2623,9 +2623,9 @@ namespace PurplePen
         // Remove a gap from the selected leg at a given location.
         public void RemoveLegGap(PointF gapLocation)
         {
-            SelectionMgr.SelectionInfo selection = selectionMgr.Selection;
+            SelectionInfo selection = selectionMgr.Selection;
 
-            if (selection.SelectionKind == SelectionMgr.SelectionKind.Leg) {
+            if (selection.SelectionKind == SelectionKind.Leg) {
                 Id<ControlPoint> controlId1 = selection.SelectedControl;
                 Id<ControlPoint> controlId2 = eventDB.GetCourseControl(selection.SelectedCourseControl2).control;
 
@@ -2639,10 +2639,10 @@ namespace PurplePen
         // Command status for setting the leg flagging kind.
         public CommandStatus CanSetLegFlagging(out FlaggingKind currentFlagging)
         {
-            SelectionMgr.SelectionInfo selection = selectionMgr.Selection;
+            SelectionInfo selection = selectionMgr.Selection;
 
             // Leg flagging can only be set if a leg is selected.
-            if (selection.SelectionKind == SelectionMgr.SelectionKind.Leg) {
+            if (selection.SelectionKind == SelectionKind.Leg) {
                 currentFlagging = QueryEvent.GetLegFlagging(eventDB, eventDB.GetCourseControl(selection.SelectedCourseControl).control,
                                                                                                          eventDB.GetCourseControl(selection.SelectedCourseControl2).control);
                 return CommandStatus.Enabled;
@@ -2656,9 +2656,9 @@ namespace PurplePen
         // Set the leg flagging of the currently selected leg.
         public void SetLegFlagging(FlaggingKind flagging)
         {
-            SelectionMgr.SelectionInfo selection = selectionMgr.Selection;
+            SelectionInfo selection = selectionMgr.Selection;
 
-            if (selection.SelectionKind == SelectionMgr.SelectionKind.Leg) {
+            if (selection.SelectionKind == SelectionKind.Leg) {
                 undoMgr.BeginCommand(851, CommandNameText.SetLegFlagging);
 
                 ChangeEvent.ChangeFlagging(eventDB,
@@ -2695,10 +2695,10 @@ namespace PurplePen
         // Command status for changing the set of displayed courses.
         public CommandStatus CanChangeDisplayedCourses(out CourseDesignator[] displayedCourses, out bool showAllControls)
         {
-            SelectionMgr.SelectionInfo selection = selectionMgr.Selection;
+            SelectionInfo selection = selectionMgr.Selection;
 
             // Set of displayed courses can be changed only for a special.
-            if (selection.SelectionKind == SelectionMgr.SelectionKind.Special) {
+            if (selection.SelectionKind == SelectionKind.Special) {
                 displayedCourses = QueryEvent.GetSpecialDisplayedCourses(eventDB, selection.SelectedSpecial, true);
                 showAllControls = true;
                 return CommandStatus.Enabled;
@@ -2713,10 +2713,10 @@ namespace PurplePen
         // Change the set of displayed courses for the selection.
         public void ChangeDisplayedCourses(CourseDesignator[] displayedCourses)
         {
-            SelectionMgr.SelectionInfo selection = selectionMgr.Selection;
+            SelectionInfo selection = selectionMgr.Selection;
 
             // Set of displayed courses can be changed only for a special.
-            if (selection.SelectionKind == SelectionMgr.SelectionKind.Special) {
+            if (selection.SelectionKind == SelectionKind.Special) {
                 undoMgr.BeginCommand(852, CommandNameText.ChangeDisplayedCourses);
 
                 ChangeEvent.ChangeDisplayedCourses(eventDB, selection.SelectedSpecial, displayedCourses);
@@ -2729,13 +2729,13 @@ namespace PurplePen
         // can be rotated.
         public CommandStatus CanRotate()
         {
-            SelectionMgr.SelectionInfo selection = selectionMgr.Selection;
+            SelectionInfo selection = selectionMgr.Selection;
 
             //  Only crossing points (optional or mandatory) can be rotated.
-            if (selection.SelectionKind == SelectionMgr.SelectionKind.Special && eventDB.GetSpecial(selection.SelectedSpecial).kind == SpecialKind.OptCrossing) {
+            if (selection.SelectionKind == SelectionKind.Special && eventDB.GetSpecial(selection.SelectedSpecial).kind == SpecialKind.OptCrossing) {
                 return CommandStatus.Enabled;
             }
-            else if (selection.SelectionKind == SelectionMgr.SelectionKind.Control && eventDB.GetControl(selection.SelectedControl).kind == ControlPointKind.CrossingPoint) {
+            else if (selection.SelectionKind == SelectionKind.Control && eventDB.GetControl(selection.SelectedControl).kind == ControlPointKind.CrossingPoint) {
                 return CommandStatus.Enabled;
             }
             else {
@@ -2746,11 +2746,11 @@ namespace PurplePen
         // Begin mode to rotate the selected object.
         public void BeginRotate()
         {
-            SelectionMgr.SelectionInfo selection = selectionMgr.Selection;
+            SelectionInfo selection = selectionMgr.Selection;
 
             //  Only crossing points (optional or mandatory) can be rotated.
-            if ((selection.SelectionKind == SelectionMgr.SelectionKind.Special && eventDB.GetSpecial(selection.SelectedSpecial).kind == SpecialKind.OptCrossing) ||
-                (selection.SelectionKind == SelectionMgr.SelectionKind.Control && eventDB.GetControl(selection.SelectedControl).kind == ControlPointKind.CrossingPoint)) 
+            if ((selection.SelectionKind == SelectionKind.Special && eventDB.GetSpecial(selection.SelectedSpecial).kind == SpecialKind.OptCrossing) ||
+                (selection.SelectionKind == SelectionKind.Control && eventDB.GetControl(selection.SelectedControl).kind == ControlPointKind.CrossingPoint)) 
             {
                 SetCommandMode(new RotateMode(this, (CrossingCourseObj) selectionMgr.SelectedCourseObjects[0]));
             }
@@ -2759,17 +2759,17 @@ namespace PurplePen
         // Rotate the selected object to the given new orientation.
         public void Rotate(float newOrientation)
         {
-            SelectionMgr.SelectionInfo selection = selectionMgr.Selection;
+            SelectionInfo selection = selectionMgr.Selection;
 
             //  Only crossing points (optional or mandatory) can be rotated.
-            if (selection.SelectionKind == SelectionMgr.SelectionKind.Special && eventDB.GetSpecial(selection.SelectedSpecial).kind == SpecialKind.OptCrossing) {
+            if (selection.SelectionKind == SelectionKind.Special && eventDB.GetSpecial(selection.SelectedSpecial).kind == SpecialKind.OptCrossing) {
                 Id<Special> specialId = selection.SelectedSpecial;
 
                 undoMgr.BeginCommand(8812, CommandNameText.Rotate);
                 ChangeEvent.ChangeSpecialOrientation(eventDB, specialId, newOrientation);
                 undoMgr.EndCommand(8812);
             }
-            else if (selection.SelectionKind == SelectionMgr.SelectionKind.Control && eventDB.GetControl(selection.SelectedControl).kind == ControlPointKind.CrossingPoint) {
+            else if (selection.SelectionKind == SelectionKind.Control && eventDB.GetControl(selection.SelectedControl).kind == ControlPointKind.CrossingPoint) {
                 Id<ControlPoint> controlId = selection.SelectedControl;
 
                 undoMgr.BeginCommand(8813, CommandNameText.Rotate);
@@ -2782,13 +2782,13 @@ namespace PurplePen
         // can be stretched.
         public CommandStatus CanStretch()
         {
-            SelectionMgr.SelectionInfo selection = selectionMgr.Selection;
+            SelectionInfo selection = selectionMgr.Selection;
 
             //  Only crossing points (optional or mandatory) can be rotated.
-            if (selection.SelectionKind == SelectionMgr.SelectionKind.Special && eventDB.GetSpecial(selection.SelectedSpecial).kind == SpecialKind.OptCrossing) {
+            if (selection.SelectionKind == SelectionKind.Special && eventDB.GetSpecial(selection.SelectedSpecial).kind == SpecialKind.OptCrossing) {
                 return CommandStatus.Enabled;
             }
-            else if (selection.SelectionKind == SelectionMgr.SelectionKind.Control && eventDB.GetControl(selection.SelectedControl).kind == ControlPointKind.CrossingPoint) {
+            else if (selection.SelectionKind == SelectionKind.Control && eventDB.GetControl(selection.SelectedControl).kind == ControlPointKind.CrossingPoint) {
                 return CommandStatus.Enabled;
             }
             else {
@@ -2799,11 +2799,11 @@ namespace PurplePen
         // Begin mode to stretch the selected object.
         public void BeginStretch()
         {
-            SelectionMgr.SelectionInfo selection = selectionMgr.Selection;
+            SelectionInfo selection = selectionMgr.Selection;
 
             //  Only crossing points (optional or mandatory) can be stretched.
-            if ((selection.SelectionKind == SelectionMgr.SelectionKind.Special && eventDB.GetSpecial(selection.SelectedSpecial).kind == SpecialKind.OptCrossing) ||
-                (selection.SelectionKind == SelectionMgr.SelectionKind.Control && eventDB.GetControl(selection.SelectedControl).kind == ControlPointKind.CrossingPoint)) {
+            if ((selection.SelectionKind == SelectionKind.Special && eventDB.GetSpecial(selection.SelectedSpecial).kind == SpecialKind.OptCrossing) ||
+                (selection.SelectionKind == SelectionKind.Control && eventDB.GetControl(selection.SelectedControl).kind == ControlPointKind.CrossingPoint)) {
                 SetCommandMode(new StretchMode(this, (CrossingCourseObj)selectionMgr.SelectedCourseObjects[0]));
             }
         }
@@ -2811,17 +2811,17 @@ namespace PurplePen
         // Stretch the selected object to the given new orientation.
         public void Stretch(float newStretch)
         {
-            SelectionMgr.SelectionInfo selection = selectionMgr.Selection;
+            SelectionInfo selection = selectionMgr.Selection;
 
             //  Only crossing points (optional or mandatory) can be stretched.
-            if (selection.SelectionKind == SelectionMgr.SelectionKind.Special && eventDB.GetSpecial(selection.SelectedSpecial).kind == SpecialKind.OptCrossing) {
+            if (selection.SelectionKind == SelectionKind.Special && eventDB.GetSpecial(selection.SelectedSpecial).kind == SpecialKind.OptCrossing) {
                 Id<Special> specialId = selection.SelectedSpecial;
 
                 undoMgr.BeginCommand(8812, CommandNameText.Stretch);
                 ChangeEvent.ChangeSpecialStretch(eventDB, specialId, newStretch);
                 undoMgr.EndCommand(8812);
             }
-            else if (selection.SelectionKind == SelectionMgr.SelectionKind.Control && eventDB.GetControl(selection.SelectedControl).kind == ControlPointKind.CrossingPoint) {
+            else if (selection.SelectionKind == SelectionKind.Control && eventDB.GetControl(selection.SelectedControl).kind == ControlPointKind.CrossingPoint) {
                 Id<ControlPoint> controlId = selection.SelectedControl;
 
                 undoMgr.BeginCommand(8813, CommandNameText.Rotate);
@@ -2835,10 +2835,10 @@ namespace PurplePen
         // Command status for changing the text of a given item.
         public CommandStatus CanChangeText()
         {
-            SelectionMgr.SelectionInfo selection = selectionMgr.Selection;
+            SelectionInfo selection = selectionMgr.Selection;
 
             // Only text special can have their text changed.
-            if (selection.SelectionKind == SelectionMgr.SelectionKind.Special && eventDB.GetSpecial(selection.SelectedSpecial).kind == SpecialKind.Text)
+            if (selection.SelectionKind == SelectionKind.Special && eventDB.GetSpecial(selection.SelectedSpecial).kind == SpecialKind.Text)
                 return CommandStatus.Enabled;
             else
                 return CommandStatus.Disabled;
@@ -2916,10 +2916,10 @@ namespace PurplePen
         // Command status for changing the line appearance of a given item.
         public CommandStatus CanChangeLineAppearance()
         {
-            SelectionMgr.SelectionInfo selection = selectionMgr.Selection;
+            SelectionInfo selection = selectionMgr.Selection;
 
             // Only line and rectangle special can have their line appearance changed.
-            if (selection.SelectionKind == SelectionMgr.SelectionKind.Special) {
+            if (selection.SelectionKind == SelectionKind.Special) {
                 Special special = eventDB.GetSpecial(selection.SelectedSpecial);
                 if (special.kind == SpecialKind.Line || special.kind == SpecialKind.Rectangle || special.kind == SpecialKind.Ellipse)
                     return CommandStatus.Enabled;
@@ -3144,7 +3144,7 @@ namespace PurplePen
         public CommandStatus CanAddVariation(out string reason)
         {
             reason = null;
-            SelectionMgr.SelectionInfo selection = selectionMgr.Selection;
+            SelectionInfo selection = selectionMgr.Selection;
 
             Id<CourseControl> courseControl = selection.SelectedCourseControl;
 
@@ -3171,7 +3171,7 @@ namespace PurplePen
 
         public void AddVariation(bool loop, int numberOfForks)
         {
-            SelectionMgr.SelectionInfo selection = selectionMgr.Selection;
+            SelectionInfo selection = selectionMgr.Selection;
             Id<Course> courseId = selection.ActiveCourseDesignator.CourseId;
             Id<CourseControl> selectedCourseControl = selection.SelectedCourseControl;
 
@@ -3206,20 +3206,20 @@ namespace PurplePen
 
         public CommandStatus CanDeleteFork()
         {
-            SelectionMgr.SelectionInfo selection = selectionMgr.Selection;
+            SelectionInfo selection = selectionMgr.Selection;
 
             if (selection.ActiveCourseDesignator.IsAllControls)
                 return CommandStatus.Disabled;
             Id<Course> courseId = selection.ActiveCourseDesignator.CourseId;
 
-            if (selection.SelectionKind == SelectionMgr.SelectionKind.Control || selection.SelectionKind == SelectionMgr.SelectionKind.MapExchangeOrFlipAtControl) {
+            if (selection.SelectionKind == SelectionKind.Control || selection.SelectionKind == SelectionKind.MapExchangeOrFlipAtControl) {
                 // Case 1 -- selected control.
                 Id<CourseControl> courseControlId = selection.SelectedCourseControl;
                 CourseControl courseControl = eventDB.GetCourseControl(courseControlId);
                 if (!courseControl.split && QueryEvent.GetForkStart(eventDB, courseId, courseControlId).IsNotNone)
                     return CommandStatus.Enabled;
             }
-            else if (selection.SelectionKind == SelectionMgr.SelectionKind.Leg) {
+            else if (selection.SelectionKind == SelectionKind.Leg) {
                 // Case 2 -- selected leg.
                 Id<CourseControl> courseControlId1 = selection.SelectedCourseControl;
                 if (QueryEvent.GetForkStart(eventDB, courseId, courseControlId1).IsNotNone)
@@ -3235,7 +3235,7 @@ namespace PurplePen
             if (CanDeleteFork() != CommandStatus.Enabled)
                 return;
 
-            SelectionMgr.SelectionInfo selection = selectionMgr.Selection;
+            SelectionInfo selection = selectionMgr.Selection;
             Id<Course> courseId = selection.ActiveCourseDesignator.CourseId;
 
             Id<CourseControl> forkStart = QueryEvent.GetForkStart(eventDB, courseId, selection.SelectedCourseControl);
@@ -3246,13 +3246,13 @@ namespace PurplePen
         // Can we set a text line for the selected object? If so, return default text and position, name of object, and whether to enable the "this course only" option.
         public bool CanAddTextLine(out string defaultText, out DescriptionLine.TextLineKind textLineKind, out string objectName, out bool enableThisCourse)
         {
-            SelectionMgr.SelectionInfo selection = selectionMgr.Selection;
+            SelectionInfo selection = selectionMgr.Selection;
 
-            if (selection.SelectionKind == SelectionMgr.SelectionKind.Control) {
+            if (selection.SelectionKind == SelectionKind.Control) {
                 textLineKind = DescriptionLine.TextLineKind.AfterControl;
                 defaultText = eventDB.GetControl(selection.SelectedControl).descTextAfter;
             }
-            else if (selection.SelectionKind == SelectionMgr.SelectionKind.TextLine) {
+            else if (selection.SelectionKind == SelectionKind.TextLine) {
                 int line, dummy;
                 textLineKind = selection.SelectedTextLineKind;
                 selectionMgr.GetSelectedLines(out line, out dummy);
@@ -3284,9 +3284,9 @@ namespace PurplePen
         // Set a text line for the selected object.
         public void AddTextLine(string text, DescriptionLine.TextLineKind textLineKind)
         {
-            SelectionMgr.SelectionInfo selection = selectionMgr.Selection;
+            SelectionInfo selection = selectionMgr.Selection;
 
-            if (selection.SelectionKind == SelectionMgr.SelectionKind.Control || selection.SelectionKind == SelectionMgr.SelectionKind.TextLine) {
+            if (selection.SelectionKind == SelectionKind.Control || selection.SelectionKind == SelectionKind.TextLine) {
                 undoMgr.BeginCommand(8173, CommandNameText.AddTextLine);
 
                 if (textLineKind == DescriptionLine.TextLineKind.BeforeControl || textLineKind == DescriptionLine.TextLineKind.AfterControl) 

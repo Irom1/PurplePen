@@ -119,7 +119,7 @@ namespace PurplePen.Tests
             dragAction = controller.LeftButtonDown(Pane.Map, new PointF(30, 20), 0.1F);
             Assert.AreEqual(MapViewer.DragAction.DelayedDrag, dragAction);
             controller.LeftButtonClick(Pane.Map, new PointF(30, 20), 0.3F);
-            Assert.IsTrue(controller.GetSelectionMgr().Selection.SelectionKind == SelectionMgr.SelectionKind.None);
+            Assert.IsTrue(controller.GetSelectionMgr().Selection.SelectionKind == SelectionKind.None);
         }
 
         [TestMethod]

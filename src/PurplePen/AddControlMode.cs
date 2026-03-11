@@ -221,16 +221,16 @@ namespace PurplePen
                                               out Id<CourseControl> courseControlId1, out Id<CourseControl> courseControlId2, 
                                               out LegInsertionLoc legInsertionLoc)
         {
-            SelectionMgr.SelectionInfo selection = selectionMgr.Selection;
+            SelectionInfo selection = selectionMgr.Selection;
             courseDesignator = selection.ActiveCourseDesignator;
             courseControlId1 = Id<CourseControl>.None;
             courseControlId2 = Id<CourseControl>.None;
             legInsertionLoc = LegInsertionLoc.Normal;
 
-            if (selection.SelectionKind == SelectionMgr.SelectionKind.Control && 
+            if (selection.SelectionKind == SelectionKind.Control && 
                 (courseDesignator.IsAllControls || QueryEvent.IsCourseControlInPart(eventDB, courseDesignator, selection.SelectedCourseControl)))
                 courseControlId1 = selection.SelectedCourseControl;
-            else if (selection.SelectionKind == SelectionMgr.SelectionKind.Leg) {
+            else if (selection.SelectionKind == SelectionKind.Leg) {
                 courseControlId1 = selection.SelectedCourseControl;
                 courseControlId2 = selection.SelectedCourseControl2;
                 legInsertionLoc = selection.LegInsertionLoc;

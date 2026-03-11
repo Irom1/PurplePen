@@ -65,29 +65,29 @@ namespace PurplePen
     }
 
     // The selection describer creates a description of the selection for display in the description pane.
-    class SelectionDescriber
+    public class SelectionDescriber
     {
         private enum DescKind { Tooltip, DescPane }
 
         // Describe the selection, and return an array of TextParts for display in the UI.
-        public static TextPart[] DescribeSelection(SymbolDB symbolDB, EventDB eventDB, CourseView activeCourseView, SelectionMgr.SelectionInfo selection)
+        public static TextPart[] DescribeSelection(SymbolDB symbolDB, EventDB eventDB, CourseView activeCourseView, SelectionInfo selection)
         {
-            if (selection.SelectionKind == SelectionMgr.SelectionKind.Key) {
+            if (selection.SelectionKind == SelectionKind.Key) {
                 return DescribeKey(eventDB);
             }
-            else if (selection.SelectionKind == SelectionMgr.SelectionKind.TextLine) {
+            else if (selection.SelectionKind == SelectionKind.TextLine) {
                 return DescribeTextLine(eventDB, selection.SelectedControl, selection.SelectedTextLineKind);
             }
-            else if (selection.SelectionKind == SelectionMgr.SelectionKind.Control) {
+            else if (selection.SelectionKind == SelectionKind.Control) {
                 return DescribeControlPoint(symbolDB, eventDB, selection.SelectedControl, DescKind.DescPane);
             }
-            else if (selection.SelectionKind == SelectionMgr.SelectionKind.Leg) {
+            else if (selection.SelectionKind == SelectionKind.Leg) {
                 return DescribeLeg(eventDB, selection.SelectedCourseControl, selection.SelectedCourseControl2, DescKind.DescPane);
             }
-            else if (selection.SelectionKind == SelectionMgr.SelectionKind.Special) {
+            else if (selection.SelectionKind == SelectionKind.Special) {
                 return DescribeSpecial(eventDB, selection.SelectedSpecial, activeCourseView.ScaleRatio, DescKind.DescPane);
             }
-            else if (selection.SelectionKind == SelectionMgr.SelectionKind.MapExchangeOrFlipAtControl) {
+            else if (selection.SelectionKind == SelectionKind.MapExchangeOrFlipAtControl) {
                 return DescribeMapExchangeAtControl(symbolDB, eventDB, selection.SelectedControl, selection.SelectedCourseControl, DescKind.DescPane);
             }
             else if (selection.ActiveCourseDesignator.IsNotAllControls) {
@@ -145,7 +145,7 @@ namespace PurplePen
             List<string> courseNames = new List<string>();
 
             if (courseIds.Contains(new Id<Course>(0))) {
-                courseNames.Add(MiscText.AllControls);
+                courseNames.Add(CoreMiscText.AllControls);
             }
 
             bool inAllCourses = true;

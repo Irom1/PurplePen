@@ -48,8 +48,6 @@ namespace PurplePen
         SymbolDB symbolDB;      // symbol database
         Controller controller;        // controller
 
-        public enum SelectionKind { None, Control, Special, Leg, Title, SecondaryTitle, Header, TextLine, Key, MapExchangeOrFlipAtControl };
-
         // These variables have the current active state of the application, apart from 
         // the event database. Changes to the event database could delete these ids.
         CourseDesignator activeCourseDesignator;  // Designator of active course and part, or all controls.
@@ -161,20 +159,6 @@ namespace PurplePen
         {
             UpdateState();
             return courseViewNames[index];
-        }
-
-        // A struct used to return information about the current selection.
-        public struct SelectionInfo
-        {
-            public CourseDesignator ActiveCourseDesignator;
-            public SelectionKind SelectionKind;
-            public Id<ControlPoint> SelectedControl;
-            public Id<CourseControl> SelectedCourseControl;
-            public Id<CourseControl> SelectedCourseControl2;
-            public LegInsertionLoc LegInsertionLoc;
-            public Id<Special> SelectedSpecial;
-            public Symbol SelectedKeySymbol;
-            public DescriptionLine.TextLineKind SelectedTextLineKind;
         }
 
         // Get all the information about the currently active selection.
