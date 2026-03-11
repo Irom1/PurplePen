@@ -47,7 +47,7 @@ namespace PurplePen
     using PurplePen.Graphics2D;
 
     // The topology formatter transforms a CourseView into the layout that shows the topology of the course.
-    class TopologyFormatter
+    public class TopologyFormatter
     {
         EventDB eventDB;
         SymbolDB symbolDB;

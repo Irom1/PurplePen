@@ -43,7 +43,7 @@ using System.Globalization;
 
 namespace PurplePen
 {
-    class ExportKml
+    public class ExportKml
     {
         private ExportKmlSettings settings;
         private EventDB eventDB;
@@ -213,7 +213,7 @@ namespace PurplePen
 
 
     // All the information needed to print courses.
-    class ExportKmlSettings
+    public class ExportKmlSettings
     {
         public Id<Course>[] CourseIds;          // Courses to print, None is all controls.
         public bool AllCourses = true;          // If true, overrides CourseIds except for all controls.
