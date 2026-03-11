@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace PurplePen
 {
     // Class to compute transformations for Move All.
-    internal class MoveAllComputations
+    public class MoveAllComputations
     {
         MoveAllControlsAction action;
         PointF[] points;
@@ -94,4 +94,10 @@ namespace PurplePen
             }
         }
     }
+
+    public enum MoveAllControlsAction
+    {
+        None, Move, MoveScale, MoveRotate, MoveRotateScale
+    }
+
 }
