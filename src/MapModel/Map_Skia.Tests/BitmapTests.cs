@@ -16,6 +16,21 @@ namespace Map_Skia.Tests
     [TestFixture]
     public class BitmapTests
     {
+        // Helper: creates a simple test bitmap with known content.
+        private SKBitmap CreateTestBitmap(int width, int height)
+        {
+            SKBitmap bitmap = new SKBitmap(width, height, SKImageInfo.PlatformColorType, SKAlphaType.Premul);
+            using (SKCanvas canvas = new SKCanvas(bitmap)) {
+                canvas.Clear(SKColors.Blue);
+                using (SKPaint paint = new SKPaint()) {
+                    paint.Color = SKColors.Red;
+                    canvas.DrawRect(10, 10, width / 2, height / 2, paint);
+                }
+            }
+            return bitmap;
+        }
+
+
 
         [Test]
         public void DrawSkiaBitmap()
@@ -338,24 +353,282 @@ namespace Map_Skia.Tests
         }
 
 
-    }
-
-
-    [TestFixture]
-    public class BitmapIOTests
-    {
-        // Helper: creates a simple test bitmap with known content.
-        private SKBitmap CreateTestBitmap(int width, int height)
+        [Test]
+        public void SkiaBitmapDefaultResolution()
         {
-            SKBitmap bitmap = new SKBitmap(width, height, SKImageInfo.PlatformColorType, SKAlphaType.Premul);
-            using (SKCanvas canvas = new SKCanvas(bitmap)) {
-                canvas.Clear(SKColors.Blue);
-                using (SKPaint paint = new SKPaint()) {
-                    paint.Color = SKColors.Red;
-                    canvas.DrawRect(10, 10, width / 2, height / 2, paint);
-                }
+            // A Skia_Bitmap created without explicit resolution should default to 96 DPI.
+            SKBitmap skBitmap = new SKBitmap(100, 80, SKImageInfo.PlatformColorType, SKAlphaType.Premul);
+            Skia_Bitmap skiaBitmap = new Skia_Bitmap(skBitmap);
+
+            Assert.AreEqual(96, skiaBitmap.HorizontalResolution);
+            Assert.AreEqual(96, skiaBitmap.VerticalResolution);
+
+            skiaBitmap.Dispose();
+        }
+
+        [Test]
+        public void SkiaBitmapExplicitResolution()
+        {
+            // A Skia_Bitmap created with explicit resolution should store those values.
+            SKBitmap skBitmap = new SKBitmap(100, 80, SKImageInfo.PlatformColorType, SKAlphaType.Premul);
+            Skia_Bitmap skiaBitmap = new Skia_Bitmap(skBitmap, GraphicsBitmapFormat.PNG, 300, 150);
+
+            Assert.AreEqual(300, skiaBitmap.HorizontalResolution);
+            Assert.AreEqual(150, skiaBitmap.VerticalResolution);
+
+            skiaBitmap.Dispose();
+        }
+
+        [Test]
+        public void SkiaBitmapLoaderReadsResolutionFromJpeg()
+        {
+            // Load Waterfall.jpg (230 DPI) through SkiaBitmapGraphicsLoader and verify resolution.
+            string jpegPath = TestUtil.GetTestFile("bitmaps\\Waterfall.jpg");
+
+            IGraphicsBitmap loaded;
+            using (Stream stream = new FileStream(jpegPath, FileMode.Open, FileAccess.Read)) {
+                loaded = new SkiaBitmapGraphicsLoader().ReadBitmapFromStream(stream);
             }
-            return bitmap;
+
+            Assert.AreEqual(GraphicsBitmapFormat.JPEG, loaded.GetOriginalFormat());
+            Assert.AreEqual(230, loaded.HorizontalResolution, 0.01);
+            Assert.AreEqual(230, loaded.VerticalResolution, 0.01);
+
+            loaded.Dispose();
+        }
+
+        [Test]
+        public void SkiaBitmapLoaderReadsResolutionFromPng()
+        {
+            // Load Waterfall.png (230 DPI) through SkiaBitmapGraphicsLoader and verify resolution.
+            string pngPath = TestUtil.GetTestFile("bitmaps\\Waterfall.png");
+
+            IGraphicsBitmap loaded;
+            using (Stream stream = new FileStream(pngPath, FileMode.Open, FileAccess.Read)) {
+                loaded = new SkiaBitmapGraphicsLoader().ReadBitmapFromStream(stream);
+            }
+
+            Assert.AreEqual(GraphicsBitmapFormat.PNG, loaded.GetOriginalFormat());
+            Assert.AreEqual(230, loaded.HorizontalResolution, 0.01);
+            Assert.AreEqual(230, loaded.VerticalResolution, 0.01);
+
+            loaded.Dispose();
+        }
+
+        [Test]
+        public void SkiaBitmapCropPreservesResolution()
+        {
+            // Cropping a Skia_Bitmap should preserve the original resolution.
+            string jpegPath = TestUtil.GetTestFile("bitmaps\\Waterfall.jpg");
+
+            IGraphicsBitmap loaded;
+            using (Stream stream = new FileStream(jpegPath, FileMode.Open, FileAccess.Read)) {
+                loaded = new SkiaBitmapGraphicsLoader().ReadBitmapFromStream(stream);
+            }
+
+            IGraphicsBitmap cropped = loaded.Crop(10, 10, 50, 50);
+            Assert.AreEqual(50, cropped.PixelWidth);
+            Assert.AreEqual(50, cropped.PixelHeight);
+            Assert.AreEqual(230, cropped.HorizontalResolution, 0.01);
+            Assert.AreEqual(230, cropped.VerticalResolution, 0.01);
+
+            cropped.Dispose();
+            loaded.Dispose();
+        }
+
+        [Test]
+        public void SkiaBitmapWriteToStreamPreservesResolution()
+        {
+            // Writing a Skia_Bitmap to a stream and reading it back should preserve resolution.
+            string jpegPath = TestUtil.GetTestFile("bitmaps\\Waterfall.jpg");
+
+            IGraphicsBitmap loaded;
+            using (Stream stream = new FileStream(jpegPath, FileMode.Open, FileAccess.Read)) {
+                loaded = new SkiaBitmapGraphicsLoader().ReadBitmapFromStream(stream);
+            }
+
+            // Write as PNG and read back to verify resolution is embedded.
+            MemoryStream ms = new MemoryStream();
+            loaded.WriteToStream(GraphicsBitmapFormat.PNG, ms);
+            ms.Position = 0;
+
+            BitmapWithResolution readBack = BitmapIO.ReadBitmapFromStream(ms);
+            Assert.AreEqual(230, readBack.HorizontalResolution, 0.01);
+            Assert.AreEqual(230, readBack.VerticalResolution, 0.01);
+
+            readBack.Bitmap.Dispose();
+            loaded.Dispose();
+        }
+
+        [Test]
+        public void SkiaImageDefaultResolution()
+        {
+            // A Skia_Image created without explicit resolution should default to 96 DPI.
+            SKBitmap skBitmap = new SKBitmap(100, 80, SKImageInfo.PlatformColorType, SKAlphaType.Premul);
+            SKImage skImage = SKImage.FromBitmap(skBitmap);
+            Skia_Image skiaImage = new Skia_Image(skImage);
+
+            Assert.AreEqual(96, skiaImage.HorizontalResolution);
+            Assert.AreEqual(96, skiaImage.VerticalResolution);
+
+            skiaImage.Dispose();
+            skBitmap.Dispose();
+        }
+
+        [Test]
+        public void SkiaImageExplicitResolution()
+        {
+            // A Skia_Image created with explicit resolution should store those values.
+            SKBitmap skBitmap = new SKBitmap(100, 80, SKImageInfo.PlatformColorType, SKAlphaType.Premul);
+            SKImage skImage = SKImage.FromBitmap(skBitmap);
+            Skia_Image skiaImage = new Skia_Image(skImage, 200, 300);
+
+            Assert.AreEqual(200, skiaImage.HorizontalResolution);
+            Assert.AreEqual(300, skiaImage.VerticalResolution);
+
+            skiaImage.Dispose();
+            skBitmap.Dispose();
+        }
+
+        [Test]
+        public void SkiaImageCropPreservesResolution()
+        {
+            // Cropping a Skia_Image should preserve the original resolution.
+            SKBitmap skBitmap = new SKBitmap(100, 80, SKImageInfo.PlatformColorType, SKAlphaType.Premul);
+            SKImage skImage = SKImage.FromBitmap(skBitmap);
+            Skia_Image skiaImage = new Skia_Image(skImage, 250, 175);
+
+            IGraphicsBitmap cropped = skiaImage.Crop(10, 10, 50, 40);
+            Assert.AreEqual(50, cropped.PixelWidth);
+            Assert.AreEqual(40, cropped.PixelHeight);
+            Assert.AreEqual(250, cropped.HorizontalResolution, 0.01);
+            Assert.AreEqual(175, cropped.VerticalResolution, 0.01);
+
+            cropped.Dispose();
+            skiaImage.Dispose();
+            skBitmap.Dispose();
+        }
+
+        [Test]
+        public void SkiaImageWriteToStreamPreservesResolution()
+        {
+            // Writing a Skia_Image to a stream and reading back should preserve resolution.
+            SKBitmap skBitmap = new SKBitmap(100, 80, SKImageInfo.PlatformColorType, SKAlphaType.Premul);
+            SKImage skImage = SKImage.FromBitmap(skBitmap);
+            Skia_Image skiaImage = new Skia_Image(skImage, 350, 275);
+
+            MemoryStream ms = new MemoryStream();
+            skiaImage.WriteToStream(GraphicsBitmapFormat.PNG, ms);
+            ms.Position = 0;
+
+            BitmapWithResolution readBack = BitmapIO.ReadBitmapFromStream(ms);
+            Assert.AreEqual(350, readBack.HorizontalResolution, 0.01);
+            Assert.AreEqual(275, readBack.VerticalResolution, 0.01);
+
+            readBack.Bitmap.Dispose();
+            skiaImage.Dispose();
+            skBitmap.Dispose();
+        }
+
+        [Test]
+        public void SkiaPixmapDefaultResolution()
+        {
+            // A Skia_Pixmap created without explicit resolution should default to 96 DPI.
+            SKBitmap skBitmap = new SKBitmap(100, 80, SKImageInfo.PlatformColorType, SKAlphaType.Premul);
+            SKPixmap skPixmap = skBitmap.PeekPixels();
+            Skia_Pixmap skiaPixmap = new Skia_Pixmap(skPixmap);
+
+            Assert.AreEqual(96, skiaPixmap.HorizontalResolution);
+            Assert.AreEqual(96, skiaPixmap.VerticalResolution);
+
+            skiaPixmap.Dispose();
+            skBitmap.Dispose();
+        }
+
+        [Test]
+        public void SkiaPixmapExplicitResolution()
+        {
+            // A Skia_Pixmap created with explicit resolution should store those values.
+            SKBitmap skBitmap = new SKBitmap(100, 80, SKImageInfo.PlatformColorType, SKAlphaType.Premul);
+            SKPixmap skPixmap = skBitmap.PeekPixels();
+            Skia_Pixmap skiaPixmap = new Skia_Pixmap(skPixmap, 400, 350);
+
+            Assert.AreEqual(400, skiaPixmap.HorizontalResolution);
+            Assert.AreEqual(350, skiaPixmap.VerticalResolution);
+
+            skiaPixmap.Dispose();
+            skBitmap.Dispose();
+        }
+
+        [Test]
+        public void SkiaPixmapCropPreservesResolution()
+        {
+            // Cropping a Skia_Pixmap should preserve the original resolution.
+            SKBitmap skBitmap = new SKBitmap(100, 80, SKImageInfo.PlatformColorType, SKAlphaType.Premul);
+            SKPixmap skPixmap = skBitmap.PeekPixels();
+            Skia_Pixmap skiaPixmap = new Skia_Pixmap(skPixmap, 180, 220);
+
+            IGraphicsBitmap cropped = skiaPixmap.Crop(5, 5, 60, 40);
+            Assert.AreEqual(60, cropped.PixelWidth);
+            Assert.AreEqual(40, cropped.PixelHeight);
+            Assert.AreEqual(180, cropped.HorizontalResolution, 0.01);
+            Assert.AreEqual(220, cropped.VerticalResolution, 0.01);
+
+            cropped.Dispose();
+            // Don't dispose skiaPixmap here — it shares memory with skBitmap via PeekPixels.
+            skBitmap.Dispose();
+        }
+
+        [Test]
+        public void SkiaPixmapWriteToStreamPreservesResolution()
+        {
+            // Writing a Skia_Pixmap to a stream and reading back should preserve resolution.
+            SKBitmap skBitmap = new SKBitmap(100, 80, SKImageInfo.PlatformColorType, SKAlphaType.Premul);
+            using (SKCanvas canvas = new SKCanvas(skBitmap)) {
+                canvas.Clear(SKColors.Red);
+            }
+            SKPixmap skPixmap = skBitmap.PeekPixels();
+            Skia_Pixmap skiaPixmap = new Skia_Pixmap(skPixmap, 500, 400);
+
+            MemoryStream ms = new MemoryStream();
+            skiaPixmap.WriteToStream(GraphicsBitmapFormat.PNG, ms);
+            ms.Position = 0;
+
+            BitmapWithResolution readBack = BitmapIO.ReadBitmapFromStream(ms);
+            Assert.AreEqual(500, readBack.HorizontalResolution, 0.01);
+            Assert.AreEqual(400, readBack.VerticalResolution, 0.01);
+
+            readBack.Bitmap.Dispose();
+            skiaPixmap.Dispose();
+            skBitmap.Dispose();
+        }
+
+        [Test]
+        public void SkiaBitmapCropThenWritePreservesResolution()
+        {
+            // Full round-trip: load with resolution, crop, write, read back — resolution should survive.
+            string pngPath = TestUtil.GetTestFile("bitmaps\\Waterfall.png");
+
+            IGraphicsBitmap loaded;
+            using (Stream stream = new FileStream(pngPath, FileMode.Open, FileAccess.Read)) {
+                loaded = new SkiaBitmapGraphicsLoader().ReadBitmapFromStream(stream);
+            }
+
+            IGraphicsBitmap cropped = loaded.Crop(5, 5, 30, 30);
+
+            MemoryStream ms = new MemoryStream();
+            cropped.WriteToStream(GraphicsBitmapFormat.PNG, ms);
+            ms.Position = 0;
+
+            BitmapWithResolution readBack = BitmapIO.ReadBitmapFromStream(ms);
+            Assert.AreEqual(30, readBack.Bitmap.Width);
+            Assert.AreEqual(30, readBack.Bitmap.Height);
+            Assert.AreEqual(230, readBack.HorizontalResolution, 0.01);
+            Assert.AreEqual(230, readBack.VerticalResolution, 0.01);
+
+            readBack.Bitmap.Dispose();
+            cropped.Dispose();
+            loaded.Dispose();
         }
 
         [Test]
@@ -518,8 +791,8 @@ namespace Map_Skia.Tests
             ms.Position = 0;
 
             BitmapWithResolution readBack = BitmapIO.ReadBitmapFromStream(ms);
-            Assert.AreEqual(300, readBack.HorizontalResolution, 0.5);
-            Assert.AreEqual(250, readBack.VerticalResolution, 0.5);
+            Assert.AreEqual(300, readBack.HorizontalResolution, 0.01);
+            Assert.AreEqual(250, readBack.VerticalResolution, 0.01);
 
             readBack.Bitmap.Dispose();
             bitmap.Dispose();
@@ -537,8 +810,8 @@ namespace Map_Skia.Tests
             ms.Position = 0;
 
             BitmapWithResolution readBack = BitmapIO.ReadBitmapFromStream(ms);
-            Assert.AreEqual(150, readBack.HorizontalResolution, 0.5);
-            Assert.AreEqual(200, readBack.VerticalResolution, 0.5);
+            Assert.AreEqual(150, readBack.HorizontalResolution, 0.01);
+            Assert.AreEqual(200, readBack.VerticalResolution, 0.01);
 
             readBack.Bitmap.Dispose();
             bitmap.Dispose();
@@ -560,8 +833,8 @@ namespace Map_Skia.Tests
                 Assert.AreEqual(GraphicsBitmapFormat.PNG, readBack.Format);
                 Assert.AreEqual(100, readBack.Bitmap.Width);
                 Assert.AreEqual(80, readBack.Bitmap.Height);
-                Assert.AreEqual(200, readBack.HorizontalResolution, 0.5);
-                Assert.AreEqual(200, readBack.VerticalResolution, 0.5);
+                Assert.AreEqual(200, readBack.HorizontalResolution, 0.01);
+                Assert.AreEqual(200, readBack.VerticalResolution, 0.01);
 
                 readBack.Bitmap.Dispose();
             }

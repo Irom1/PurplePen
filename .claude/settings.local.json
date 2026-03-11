@@ -10,7 +10,12 @@
       "Bash(find /d/Repos/Main/PurplePen/src/MapModel/Map_SkiaStd -name \"*.cs\" -exec grep -l \"ImageSharp\\\\|SixLabors\" {} ;)",
       "Bash(ls -la /d/Repos/Main/PurplePen/src/MapModel/Map_SkiaStd/*.cs)",
       "Bash(dotnet build MapModel/Map_SkiaStd/Map_SkiaStd.csproj)",
-      "Bash(dotnet build MapModel/Map_Skia.Tests/Map_Skia.Tests.csproj)"
+      "Bash(dotnet build MapModel/Map_Skia.Tests/Map_Skia.Tests.csproj)",
+      "Bash(ls /d/Repos/Main/PurplePen/src/*.slnx)",
+      "Bash(dotnet build PPen.slnx)",
+      "Bash(dotnet build:*)",
+      "Bash(dotnet restore:*)",
+      "Bash(dotnet list:*)"
     ]
   }
 }

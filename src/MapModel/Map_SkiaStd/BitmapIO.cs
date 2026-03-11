@@ -312,17 +312,28 @@ namespace PurplePen.MapModel
         /// <returns>The resolution in dots per inch.</returns>
         private static double ConvertToDpi(double resolution, PixelResolutionUnit units)
         {
+            double convertedResolution;
+
             switch (units) {
             case PixelResolutionUnit.PixelsPerInch:
-                return resolution;
+                convertedResolution = resolution;
+                break;
             case PixelResolutionUnit.PixelsPerCentimeter:
-                return resolution * 2.54;
+                convertedResolution = resolution * 2.54;
+                break;
             case PixelResolutionUnit.PixelsPerMeter:
-                return resolution * 0.0254;
+                convertedResolution = resolution * 0.0254;
+                break;
             default:
                 // AspectRatio or unknown: no meaningful DPI, default to 96.
-                return 96;
+                convertedResolution = 96;
+                break;
             }
+
+            // PNG resolution is often stored in a way that results in fractional DPI values;
+            // round to 1 decimal place for consistency.
+            convertedResolution = Math.Round(convertedResolution, 1); 
+            return convertedResolution;
         }
 
         /// <summary>

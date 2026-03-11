@@ -1105,11 +1105,25 @@ namespace PurplePen.MapModel
     {
         SKImage image;
         GraphicsBitmapFormat originalFormat = GraphicsBitmapFormat.None;
+        double horizontalResolution = 96;
+        double verticalResolution = 96;
 
 
         public SKImage Image
         {
             get { return image; }
+        }
+
+        /// <summary>Horizontal resolution in dots per inch.</summary>
+        public double HorizontalResolution
+        {
+            get { return horizontalResolution; }
+        }
+
+        /// <summary>Vertical resolution in dots per inch.</summary>
+        public double VerticalResolution
+        {
+            get { return verticalResolution; }
         }
 
         public int PixelWidth
@@ -1134,34 +1148,31 @@ namespace PurplePen.MapModel
 
             if (pixmap != null) {
                 SKPixmap subsetPixmap = pixmap.ExtractSubset(cropRect);
-                return new Skia_Pixmap(subsetPixmap);
+                return new Skia_Pixmap(subsetPixmap, horizontalResolution, verticalResolution);
             }
             else {
                 SKImage croppedImage = image.Subset(cropRect);
-                return new Skia_Image(croppedImage);
+                return new Skia_Image(croppedImage, horizontalResolution, verticalResolution);
             }
         }
 
         public bool WriteToStream(GraphicsBitmapFormat format, Stream stream)
         {
-            SKEncodedImageFormat? targetFormat = Skia_Bitmap.ImageFormatFromGraphicsBitmapFormat(format);
-            if (!targetFormat.HasValue)
-                return false;
-
             SKPixmap pixmap = image.PeekPixels();
             if (pixmap != null) {
-                bool success = pixmap.Encode(stream, targetFormat.Value, 100);
+                // PeekPixels available: write directly from the pixmap.
+                PixmapWithResolution pwr = new PixmapWithResolution(pixmap, format, horizontalResolution, verticalResolution);
+                BitmapIO.WritePixmapToStream(pwr, stream, 100);
                 pixmap.Dispose();
-                return success;
+                return true;
             }
             else {
-                using (SKData data = image.Encode(targetFormat.Value, 100)) {
-                    if (data == null)
-                        return false;
-                    data.SaveTo(stream);
+                // PeekPixels not available (e.g. GPU-backed image): convert to bitmap first.
+                using (SKBitmap bmp = SKBitmap.FromImage(image)) {
+                    BitmapWithResolution bwr = new BitmapWithResolution(bmp, format, horizontalResolution, verticalResolution);
+                    BitmapIO.WriteBitmapToStream(bwr, stream, 100);
+                    return true;
                 }
-
-                return true;
             }
         }
 
@@ -1185,16 +1196,37 @@ namespace PurplePen.MapModel
         {
             this.image = image;
         }
+
+        public Skia_Image(SKImage image, double horizontalResolution, double verticalResolution)
+        {
+            this.image = image;
+            this.horizontalResolution = horizontalResolution;
+            this.verticalResolution = verticalResolution;
+        }
     }
 
     public class Skia_Bitmap: IGraphicsBitmap
     {
         SKBitmap bitmap;
         GraphicsBitmapFormat originalFormat = GraphicsBitmapFormat.None;
+        double horizontalResolution = 96;
+        double verticalResolution = 96;
 
         public SKBitmap Bitmap
         {
             get { return bitmap; }
+        }
+
+        /// <summary>Horizontal resolution in dots per inch.</summary>
+        public double HorizontalResolution
+        {
+            get { return horizontalResolution; }
+        }
+
+        /// <summary>Vertical resolution in dots per inch.</summary>
+        public double VerticalResolution
+        {
+            get { return verticalResolution; }
         }
 
         public int PixelWidth
@@ -1217,20 +1249,15 @@ namespace PurplePen.MapModel
             SKRectI cropRect = new SKRectI(x, y, x + width, y + height);
             SKPixmap pixmap = bitmap.PeekPixels();
             SKPixmap subsetPixmap = pixmap.ExtractSubset(cropRect);
-            return new Skia_Pixmap(subsetPixmap);
+            return new Skia_Pixmap(subsetPixmap, horizontalResolution, verticalResolution);
         }
 
 
         public bool WriteToStream(GraphicsBitmapFormat format, Stream stream)
         {
-            SKEncodedImageFormat? targetFormat = ImageFormatFromGraphicsBitmapFormat(format);
-            if (!targetFormat.HasValue)
-                return false;
-
-            using (SKPixmap pixmap = bitmap.PeekPixels()) {
-                bool success = pixmap.Encode(stream, targetFormat.Value, 100);
-                return success;
-            }
+            BitmapWithResolution bwr = new BitmapWithResolution(bitmap, format, horizontalResolution, verticalResolution);
+            BitmapIO.WriteBitmapToStream(bwr, stream, 100);
+            return true;
         }
 
 
@@ -1297,16 +1324,36 @@ namespace PurplePen.MapModel
             this.bitmap = bitmap;
             this.originalFormat = originalFormat;
         }
+
+        public Skia_Bitmap(SKBitmap bitmap, GraphicsBitmapFormat originalFormat, double horizontalResolution, double verticalResolution)
+        {
+            this.bitmap = bitmap;
+            this.originalFormat = originalFormat;
+            this.horizontalResolution = horizontalResolution;
+            this.verticalResolution = verticalResolution;
+        }
     }
 
     public class Skia_Pixmap : IGraphicsBitmap
     {
         SKPixmap pixmap;
         GraphicsBitmapFormat originalFormat = GraphicsBitmapFormat.None;
+        double horizontalResolution = 96;
+        double verticalResolution = 96;
 
 
         public SKPixmap Pixmap {
             get { return pixmap; }
+        }
+
+        /// <summary>Horizontal resolution in dots per inch.</summary>
+        public double HorizontalResolution {
+            get { return horizontalResolution; }
+        }
+
+        /// <summary>Vertical resolution in dots per inch.</summary>
+        public double VerticalResolution {
+            get { return verticalResolution; }
         }
 
         public int PixelWidth {
@@ -1326,18 +1373,15 @@ namespace PurplePen.MapModel
         {
             SKRectI cropRect = new SKRectI(x, y, x + width, y + height);
             SKPixmap subsetPixmap = pixmap.ExtractSubset(cropRect);
-            return new Skia_Pixmap(subsetPixmap);
+            return new Skia_Pixmap(subsetPixmap, horizontalResolution, verticalResolution);
         }
 
 
         public bool WriteToStream(GraphicsBitmapFormat format, Stream stream)
         {
-            SKEncodedImageFormat? targetFormat = Skia_Bitmap.ImageFormatFromGraphicsBitmapFormat(format);
-            if (!targetFormat.HasValue)
-                return false;
-
-            bool success = pixmap.Encode(stream, targetFormat.Value, 100);
-            return success;
+            PixmapWithResolution pwr = new PixmapWithResolution(pixmap, format, horizontalResolution, verticalResolution);
+            BitmapIO.WritePixmapToStream(pwr, stream, 100);
+            return true;
         }
 
         public void Dispose()
@@ -1356,6 +1400,13 @@ namespace PurplePen.MapModel
         public Skia_Pixmap(SKPixmap pixmap)
         {
             this.pixmap = pixmap;
+        }
+
+        public Skia_Pixmap(SKPixmap pixmap, double horizontalResolution, double verticalResolution)
+        {
+            this.pixmap = pixmap;
+            this.horizontalResolution = horizontalResolution;
+            this.verticalResolution = verticalResolution;
         }
     }
 
@@ -1377,14 +1428,8 @@ namespace PurplePen.MapModel
 
         public IGraphicsBitmap ReadBitmapFromStream(Stream stream)
         {
-            // 1. Load the data from the file
-            using (SKData data = SKData.Create(stream))
-            using (SKCodec codec = SKCodec.Create(data)) {
-                SKEncodedImageFormat skFormat = codec.EncodedFormat;
-                GraphicsBitmapFormat format = Skia_Bitmap.GraphicsBitmapFormatFromImageFormat(skFormat);
-                SKBitmap bitmap = SKBitmap.Decode(codec);
-                return new Skia_Bitmap(bitmap, format);
-            }
+            BitmapWithResolution bwr = BitmapIO.ReadBitmapFromStream(stream);
+            return new Skia_Bitmap(bwr.Bitmap, bwr.Format, bwr.HorizontalResolution, bwr.VerticalResolution);
         }
     }
 }

@@ -169,11 +169,7 @@ namespace PurplePen
                             bitmap = Services.BitmapLoader.ReadBitmapFromStream(stream);
                         }
                         bitmapSize = new Size(bitmap.PixelWidth, bitmap.PixelHeight);
-#if PORTING
-                        dpi = 600F;
-#else
                         dpi = (float)Math.Round(bitmap.HorizontalResolution, 1);  // Round to 1 decimal place, because images don't store DPI exactly, but close to a standard round number, so fix.
-#endif
                         bitmap.Dispose();
                         mapType = MapType.Bitmap;
                         mapBounds = new RectangleF(0, 0, (float)bitmapSize.Width / dpi * 25.4F, (float)bitmapSize.Height / dpi * 25.4F);
@@ -244,11 +240,7 @@ namespace PurplePen
                 using (Stream stream = new FileStream(mapFile.PngFileName, FileMode.Open, FileAccess.Read)) {
                     bitmap = Services.BitmapLoader.ReadBitmapFromStream(stream);
                 }
-#if PORTING
-                dpi = 600F;
-#else
                 dpi = (float)Math.Round(bitmap.HorizontalResolution, 1); // Should be always 600, anyway, round because PNG store resolution inaccurately.
-#endif
                 bitmapSize = new Size(bitmap.PixelWidth, bitmap.PixelHeight);
                 bitmap.Dispose();
                 errorMessageText = "";

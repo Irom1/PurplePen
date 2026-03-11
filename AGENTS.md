@@ -159,6 +159,24 @@ CourseView creates static snapshots of courses for rendering. This separates the
 **MapModel/Map_[Backend]/** - Rendering implementations
 - Each implements IGraphicsTarget for its platform
 - GraphicsTarget.cs: Main implementation file
+- Each backend also has `IGraphicsBitmap` implementations (e.g., `Skia_Bitmap`, `Skia_Image`, `Skia_Pixmap`, `GDIPlus_Bitmap`)
+
+**MapModel/Map_SkiaStd/BitmapIO.cs** - Bitmap I/O using ImageSharp
+- Uses SixLabors.ImageSharp for reading/writing bitmap metadata (DPI resolution, format detection)
+- Uses SkiaSharp for pixel decoding (falls back to ImageSharp for formats Skia can't decode, e.g. TIFF)
+- Key types: `BitmapWithResolution`, `PixmapWithResolution` — hold an SKBitmap/SKPixmap plus format and DPI
+- The `SkiaBitmapGraphicsLoader` class (in SkiaGraphicsTarget.cs) uses `BitmapIO` and returns `Skia_Bitmap` instances with resolution
+
+### IGraphicsBitmap Implementations and Resolution
+The `IGraphicsBitmap` interface (in `Graphics2D/IGraphicsTarget.cs`) defines `HorizontalResolution` and `VerticalResolution` properties (DPI, default 96).
+
+**Skia backend** (`MapModel/Map_SkiaStd/SkiaGraphicsTarget.cs`):
+- `Skia_Bitmap`: Wraps `SKBitmap`. Stores resolution in fields. Has constructors with and without resolution. `Crop()` returns a `Skia_Pixmap` preserving resolution.
+- `Skia_Image`: Wraps `SKImage`. Stores resolution in fields. `Crop()` returns `Skia_Pixmap` or `Skia_Image` preserving resolution. `WriteToStream()` uses stored resolution.
+- `Skia_Pixmap`: Wraps `SKPixmap`. Stores resolution in fields. `Crop()` preserves resolution. `WriteToStream()` uses stored resolution.
+
+**GDI+ backend** (`MapModel/Map_GDIPlus/GraphicsTarget.cs`):
+- `GDIPlus_Bitmap`: Delegates resolution to `System.Drawing.Bitmap.HorizontalResolution`/`VerticalResolution`. `Bitmap.Clone()` in `Crop()` preserves resolution automatically.
 
 ## File Format Support
 
@@ -196,7 +214,8 @@ Course files are stored in Purple Pen's XML format (.ppen files).
 2. **Bitmap comparison tests use MAX_PIXEL_DIFF** - allow for minor rendering differences
 3. **Set TEST_SILENTRUN appropriately** - True for CI, False for debugging
 4. **Test files in TestFiles/** - use existing test courses and maps
-5. **Interactive tests in MapModel/InteractiveTestApp** - for visual verification
+5. **Bitmap test files in MapModel/TestFiles/bitmaps/** - includes resolution test images (e.g., `Waterfall.jpg`/`.png` at 230 DPI)
+6. **Interactive tests in MapModel/InteractiveTestApp** - for visual verification
 
 ### Writing Code
 1. **Follow existing coding style** - consistent naming, formatting

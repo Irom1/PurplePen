@@ -84,6 +84,10 @@ namespace PurplePen.Graphics2D
         int PixelWidth { get; }
         int PixelHeight { get; }
 
+        // Resolution in dots per inch. Defaults to 96 if unknown.
+        double HorizontalResolution { get; }
+        double VerticalResolution { get; }
+
         // Get the format this bitmap was loaded from, if read from stream/file.
         // Otherwise, return None. Return Other if format not in the enum, or Unknown
         // if it was read from file but no way to know the format.

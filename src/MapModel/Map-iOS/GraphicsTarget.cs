@@ -1262,6 +1262,16 @@ namespace PurplePen.MapModel
             get { return cgImage; }
         }
 
+        public double HorizontalResolution
+        {
+            get { return 96; }
+        }
+
+        public double VerticalResolution
+        {
+            get { return 96; }
+        }
+
         public int PixelWidth
         {
             get { return (int) Math.Round(uiImage.Size.Width); }
@@ -1347,6 +1357,14 @@ namespace PurplePen.MapModel
 //                sourceImage.Dispose();
 //                sourceImage = null;
 //            }
+        }
+
+        public double HorizontalResolution {
+            get { return 96; }
+        }
+
+        public double VerticalResolution {
+            get { return 96; }
         }
 
         public int PixelWidth {

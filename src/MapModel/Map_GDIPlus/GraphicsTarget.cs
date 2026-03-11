@@ -1126,6 +1126,17 @@ namespace PurplePen.MapModel
             get { return bitmap; }
         }
 
+        // Resolution in DPI, delegated to the underlying System.Drawing.Bitmap.
+        public double HorizontalResolution
+        {
+            get { return bitmap != null ? bitmap.HorizontalResolution : 96; }
+        }
+
+        public double VerticalResolution
+        {
+            get { return bitmap != null ? bitmap.VerticalResolution : 96; }
+        }
+
         public int PixelWidth
         {
             get { return bitmap != null ? bitmap.Width : 0; }
