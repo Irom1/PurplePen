@@ -6,7 +6,11 @@
       "Bash(dotnet build PurplePen/PurplePen.csproj -f net10.0-windows)",
       "Bash(dotnet msbuild PurplePenCore/PurplePenCore.csproj -getItem:EmbeddedResource -t:Build -f net10.0)",
       "Bash(dotnet msbuild PurplePenCore/PurplePenCore.csproj -preprocess -f net10.0)",
-      "Bash(dotnet build PurplePenCore/PurplePenCore.csproj -f net10.0 --no-restore)"
+      "Bash(dotnet build PurplePenCore/PurplePenCore.csproj -f net10.0 --no-restore)",
+      "Bash(find /d/Repos/Main/PurplePen/src/MapModel/Map_SkiaStd -name \"*.cs\" -exec grep -l \"ImageSharp\\\\|SixLabors\" {} ;)",
+      "Bash(ls -la /d/Repos/Main/PurplePen/src/MapModel/Map_SkiaStd/*.cs)",
+      "Bash(dotnet build MapModel/Map_SkiaStd/Map_SkiaStd.csproj)",
+      "Bash(dotnet build MapModel/Map_Skia.Tests/Map_Skia.Tests.csproj)"
     ]
   }
 }
