@@ -42,7 +42,7 @@ namespace PurplePen
     // NOTE: WHEN CHANGING THIS, YOU MUST ALSO CHANGE THE VERSION PROPERTY OF THE SETUP PROJECT 
     // (Go to solution explorer, highligh setup project, choose View/Properties Window.) Also, change the 
     // product code (you will be prompted for this -- say yes).
-    static class VersionNumber
+    public static class VersionNumber
     {
         public const string Current = "3.5.5.500";
 
