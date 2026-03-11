@@ -34,10 +34,11 @@
 
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using Color = System.Drawing.Color;
 using PointF = System.Drawing.PointF;
 using RectangleF = System.Drawing.RectangleF;
 using SizeF = System.Drawing.SizeF;
-using Color = System.Drawing.Color;
 
 namespace PurplePen.Graphics2D
 {
@@ -280,6 +281,14 @@ namespace PurplePen.Graphics2D
         {
             return new RectangleF(center.X - size.Width / 2, center.Y - size.Height / 2, size.Width, size.Height);
         }
+
+        // Round a rectangle. Returns a sane hittest of rounding each coordinate. Rectangle.Round doesn't do that!
+        public static Rectangle RoundRectangle(RectangleF rect)
+        {
+            return Rectangle.FromLTRB((int)Math.Round(rect.Left), (int)Math.Round(rect.Top), (int)Math.Round(rect.Right), (int)Math.Round(rect.Bottom));
+        }
+
+
 
         // Determine distance of a point from a rectange. If in the interior of the rectangle, distance is zero.
         public static float DistanceFromRectangle(RectangleF rect, PointF point)

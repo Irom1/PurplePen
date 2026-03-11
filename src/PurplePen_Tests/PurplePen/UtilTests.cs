@@ -111,7 +111,7 @@ namespace PurplePen.Tests
             Console.WriteLine("Before: ({0},{1})-({2},{3}), wid={4}, height={5}", r.Left, r.Top, r.Right, r.Bottom, r.Width, r.Height);
             s = Rectangle.Round(r);
             Console.WriteLine("After: ({0},{1})-({2},{3}), wid={4}, height={5}", s.Left, s.Top, s.Right, s.Bottom, s.Width, s.Height);
-            t = WindowsUtil.Round(r);
+            t = Geometry.RoundRectangle(r);
             Console.WriteLine("After: ({0},{1})-({2},{3}), wid={4}, height={5}", t.Left, t.Top, t.Right, t.Bottom, t.Width, t.Height);
             Assert.AreEqual(1, t.Left);
             Assert.AreEqual(1, t.Top);

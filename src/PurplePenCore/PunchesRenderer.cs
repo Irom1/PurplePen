@@ -42,7 +42,7 @@ namespace PurplePen
 {
     // Renders a course view into the punch card with all the punches. Also allows checking to see if
     // the punches are missing.
-    class PunchesRenderer: IPrintableRectangle, IDisposable
+    public class PunchesRenderer: IPrintableRectangle, IDisposable
     {
         private float margin = 3;           
         private float cellSize = 30;
@@ -127,7 +127,8 @@ namespace PurplePen
             thickPen = new object();
             g.CreatePen(thickPen, black, PunchcardAppearance.thickLine, LineCapMode.Flat, LineJoinMode.Miter, 5F);
 
-            textMetrics = new GDIPlus_TextMetrics();        }
+            textMetrics = Services.TextMetricsProvider;        
+        }
 
         // Dispose the pens and fonts we use.
         void DisposeObjects()
@@ -194,7 +195,7 @@ namespace PurplePen
         {
             // Draw the ordinal number, if there is one.
             if (controlView.ordinal > 0) {
-                DrawSingleLineText(g, controlView.ordinal.ToString(), PunchcardAppearance.controlNumberFont, new PointF(rect.Left + 6, rect.Top + 3), StringAlignment.Near, StringAlignment.Near);
+                DrawSingleLineText(g, controlView.ordinal.ToString(), PunchcardAppearance.controlNumberFont, new PointF(rect.Left + 6, rect.Top + 3), TextAlignment.Left, VerticalTextAlignment.Top);
             }
 
             // If it's a score course, and a score has been defined, then put the score.
@@ -204,13 +205,13 @@ namespace PurplePen
                     points = eventDB.GetCourseControl(controlView.courseControlIds[0]).points;
 
                 if (points > 0) {
-                    DrawSingleLineText(g, points.ToString(), PunchcardAppearance.scoreFont, new PointF((rect.Left + rect.Right) / 2, rect.Top + 3), StringAlignment.Center, StringAlignment.Near);
+                    DrawSingleLineText(g, points.ToString(), PunchcardAppearance.scoreFont, new PointF((rect.Left + rect.Right) / 2, rect.Top + 3), TextAlignment.Center, VerticalTextAlignment.Top);
                 }
             }
 
             // Draw the code.
             string code = string.Format("({0})", eventDB.GetControl(controlView.controlId).code);
-            DrawSingleLineText(g, code, PunchcardAppearance.codeFont, new PointF(rect.Right - 5F, rect.Top + 3), StringAlignment.Far, StringAlignment.Near);
+            DrawSingleLineText(g, code, PunchcardAppearance.codeFont, new PointF(rect.Right - 5F, rect.Top + 3), TextAlignment.Right, VerticalTextAlignment.Top);
 
             // Draw the punch pattern.
             RectangleF punchRect = RectangleF.FromLTRB(rect.Left + 20F, rect.Top + 27.5F, rect.Right - 20F, rect.Bottom - 12.5F);
@@ -266,12 +267,8 @@ namespace PurplePen
             if (line == 0) {
                 // Draw title
                 RectangleF rect = new RectangleF(0, 0, fullWidth, 100);
-                StringFormat stringFormat = new StringFormat(StringFormat.GenericDefault);
-                stringFormat.Alignment = StringAlignment.Center;
-                stringFormat.LineAlignment = StringAlignment.Center;
-                stringFormat.FormatFlags = StringFormatFlags.NoWrap;
 
-                DrawSingleLineText(g, courseView.CourseFullName, PunchcardAppearance.titleFont, rect.Center(), StringAlignment.Center, StringAlignment.Center);
+                DrawSingleLineText(g, courseView.CourseFullName, PunchcardAppearance.titleFont, rect.Center(), TextAlignment.Center, VerticalTextAlignment.Center);
             }
             else {
                 // Draw grid lines and the boxes.
@@ -299,7 +296,7 @@ namespace PurplePen
             }
         }
 
-        private void DrawSingleLineText(IGraphicsTarget g, string text, FontDesc fontDesc, PointF pt, StringAlignment horizAlignment, StringAlignment vertAlignment)
+        private void DrawSingleLineText(IGraphicsTarget g, string text, FontDesc fontDesc, PointF pt, TextAlignment horizAlignment, VerticalTextAlignment vertAlignment)
         {
             object font = new object();
             g.CreateFont(font, fontDesc.Name, fontDesc.EmHeight, fontDesc.TextEffects);
@@ -308,20 +305,20 @@ namespace PurplePen
             SizeF size = fontMetrics.GetTextSize(text);
 
             switch (horizAlignment) {
-                case StringAlignment.Near:
+                case TextAlignment.Left:
                     break;
-                case StringAlignment.Center:
+                case TextAlignment.Center:
                     pt.X = pt.X - size.Width / 2F; break;
-                case StringAlignment.Far:
+                case TextAlignment.Right:
                     pt.X = pt.X - size.Width; break;
             }
 
             switch (vertAlignment) {
-                case StringAlignment.Near:
+                case VerticalTextAlignment.Top:
                     break;
-                case StringAlignment.Center:
+                case VerticalTextAlignment.Center:
                     pt.Y = pt.Y - size.Height / 2F; break;
-                case StringAlignment.Far:
+                case VerticalTextAlignment.Bottom:
                     pt.Y = pt.Y - size.Height; break;
             }
 

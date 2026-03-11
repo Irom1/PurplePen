@@ -97,12 +97,6 @@ namespace PurplePen
         }
 
 
-        // Round a rectangle. Returns a sane hittest of rounding each coordinate. Rectangle.Round doesn't do that!
-        public static Rectangle Round(RectangleF rect)
-        {
-            return Rectangle.FromLTRB((int)Math.Round(rect.Left), (int)Math.Round(rect.Top), (int)Math.Round(rect.Right), (int)Math.Round(rect.Bottom));
-        }
-
         private static ThreadLocal<Graphics> hiresGraphics = new ThreadLocal<Graphics>(() => {
             Graphics g = Graphics.FromHwnd(IntPtr.Zero);
             g.ScaleTransform(50F, -50F);

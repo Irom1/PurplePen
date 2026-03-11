@@ -11,6 +11,7 @@ using SizeF = System.Drawing.SizeF;
 namespace PurplePen.Graphics2D
 {
     public enum TextAlignment { Left, Center, Right }
+    public enum VerticalTextAlignment { Top, Center, Bottom }
 
     public enum BlendMode { Darken }
 

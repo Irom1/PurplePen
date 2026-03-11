@@ -35,13 +35,30 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using Draw2D = System.Drawing.Drawing2D;
 
 using PurplePen.Graphics2D;
-using PurplePen.MapView;
 
 namespace PurplePen
 {
+    // A highlight is as object overlayed on the current map that shows the current selection.
+    // It is designed to draw/erase quickly, so it must be able to erase itself given a brush with the
+    // bitmap to erase with. The highlight draws in pixel coords, but it is passed a transform it can
+    // used. It has to not apply that transform to the Graphics, however, so that the textures look OK 
+    // which drawing and erasing.
+    public interface IMapViewerHighlight
+    {
+        // Get the bounding rectangle.
+        RectangleF GetHighlightBounds();
+
+        // Get extra border, in pixels, around GetHighlightBounds
+        int GetBorderPixels();
+
+        // Draw onto the (pixel coordinates) graphics, using the given world-to-pixel transformation.
+        void DrawHighlight(IGraphicsTarget g, Matrix xformWorldToPixel);
+
+    }
+
+
     public class RectangleHighlight: IMapViewerHighlight
     {
         const float penWidth = 3F;
@@ -80,7 +97,7 @@ namespace PurplePen
             RectangleF rectPixel = RectangleF.FromLTRB(pts[0].X, pts[0].Y, pts[1].X, pts[1].Y);
 
             rectPixel.Inflate(penWidth / 2F, penWidth / 2F);
-            Rectangle r = WindowsUtil.Round(rectPixel);
+            Rectangle r = Geometry.RoundRectangle(rectPixel);
 
             g.FillRectangle(eraseBrushKey, r);
         }

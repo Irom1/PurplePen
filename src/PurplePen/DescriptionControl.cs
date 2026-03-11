@@ -40,6 +40,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Diagnostics;
 using PurplePen.MapModel;
+using PurplePen.Graphics2D;
 
 namespace PurplePen
 {
@@ -184,7 +185,7 @@ namespace PurplePen
         // Make sure the given line is in view.
         public void ScrollLineIntoView(int line)
         {
-            Rectangle lineRect = WindowsUtil.Round(renderer.LineBounds(line, line));
+            Rectangle lineRect = Geometry.RoundRectangle(renderer.LineBounds(line, line));
             Point currentScrollPosition = AutoScrollPosition;
             lineRect.Offset(currentScrollPosition);
             Rectangle client = ClientRectangle;
@@ -296,7 +297,7 @@ namespace PurplePen
 
                 if (invalidate) {
                     RectangleF bounds = renderer.LineBounds(i, i);
-                    descriptionPanel.Invalidate(WindowsUtil.Round(bounds));
+                    descriptionPanel.Invalidate(Geometry.RoundRectangle(bounds));
                 }
             }
         }
@@ -421,7 +422,7 @@ namespace PurplePen
         void InvalidateLine(int line)
         {
             RectangleF rect = renderer.LineBounds(line, line);
-            descriptionPanel.Invalidate(WindowsUtil.Round(rect));
+            descriptionPanel.Invalidate(Geometry.RoundRectangle(rect));
         }
 
         // Given a hit test, determine the location where the upper-left of the popup menu should be.
@@ -572,7 +573,7 @@ namespace PurplePen
         private void DrawSelection(Graphics g, int firstLine, int lastLine, Rectangle clip)
         {
             if (firstLine >= 0 && lastLine >= 0) {
-                Rectangle selectedRect = WindowsUtil.Round(renderer.LineBounds(firstLine, lastLine));
+                Rectangle selectedRect = Geometry.RoundRectangle(renderer.LineBounds(firstLine, lastLine));
                 if (selectedRect.IntersectsWith(clip))
                     g.FillRectangle(selectionBrush, selectedRect);
             }
