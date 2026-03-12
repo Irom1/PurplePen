@@ -14,37 +14,7 @@ namespace PurplePen
 {
     public class CoreMapUtil
     {
-        public class StandardPaperSize
-        {
-            public string Name { get; private set; }
-            public int Width { get; private set; }  // in 1/100 of inch.
-            public int Height { get; private set; } // in 1/100 of inch.
 
-            public StandardPaperSize(string name, int width, int height)
-            {
-                Name = name;
-                Width = width;
-                Height = height;
-            }
-        }
-
-        public static StandardPaperSize[] StandardPaperSizes = {
-            new StandardPaperSize("A2", 1654, 2339),
-            new StandardPaperSize("A3", 1169, 1654),
-            new StandardPaperSize("A4", 827, 1169),
-            new StandardPaperSize("A5", 583, 827),
-            new StandardPaperSize("A6", 413, 583),
-            new StandardPaperSize("Letter", 850, 1100),
-            new StandardPaperSize("Legal", 850, 1400),
-            new StandardPaperSize("Tabloid", 1100, 1700)
-        };
-
-        public const int FirstEnglishPaperSizeIndex = 5;
-        public const int DefaultEnglighPaperSizeIndex = 5;
-        public const int DefaultMetricPaperSizeindex = 2;
-
-        public const int DefaultEnglishMargin = 25;  // 1/4 of a inch.
-        public const int DefaultMetricMargin = 28; // 7mm
 
 
 
@@ -70,9 +40,9 @@ namespace PurplePen
             bool metric = Util.IsCurrentCultureMetric();
 
             if (printAreaRectangle.IsEmpty) {
-                StandardPaperSize paperSize = StandardPaperSizes[metric ? DefaultMetricPaperSizeindex : DefaultEnglighPaperSizeIndex];
-                pageWidth = paperSize.Width;
-                pageHeight = paperSize.Height;
+                PrintingPaperSize paperSize = PrintingStandards.StandardPaperSizes[metric ? PrintingStandards.DefaultMetricPaperSizeindex : PrintingStandards.DefaultEnglighPaperSizeIndex];
+                pageWidth = (int) Math.Round(paperSize.SizeInHundreths.Width);
+                pageHeight = (int) Math.Round(paperSize.SizeInHundreths.Height);
                 pageMargin = 0;
                 landscape = false;
             }
@@ -82,25 +52,25 @@ namespace PurplePen
                 float printAreaWidth = (landscape ? printAreaRectangle.Height : printAreaRectangle.Width) / printScaleRatio * 100 / 25.4F;
                 float printAreaHeight = (landscape ? printAreaRectangle.Width : printAreaRectangle.Height) / printScaleRatio * 100 / 25.4F;
 
-                int firstIndex = metric ? 0 : FirstEnglishPaperSizeIndex;
-                int endIndex = metric ? FirstEnglishPaperSizeIndex : StandardPaperSizes.Length;
+                int firstIndex = metric ? 0 : PrintingStandards.FirstEnglishPaperSizeIndex;
+                int endIndex = metric ? PrintingStandards.FirstEnglishPaperSizeIndex : PrintingStandards.StandardPaperSizes.Length;
                 int bestIndex = -1;
 
                 // Scan through all paper indexes to find the smallest paper that fits the area.
                 // The -1 in the comparisons allows for minor (0.01 inch) rounding errors.
                 for (int i = firstIndex; i < endIndex; ++i) {
-                    if (StandardPaperSizes[i].Width >= printAreaWidth - 1 && StandardPaperSizes[i].Height >= printAreaHeight - 1 &&
-                                            (bestIndex == -1 || StandardPaperSizes[i].Width < StandardPaperSizes[bestIndex].Width))
+                    if (PrintingStandards.StandardPaperSizes[i].SizeInHundreths.Width >= printAreaWidth - 1 && PrintingStandards.StandardPaperSizes[i].SizeInHundreths.Height >= printAreaHeight - 1 &&
+                                            (bestIndex == -1 || PrintingStandards.StandardPaperSizes[i].SizeInHundreths.Width < PrintingStandards.StandardPaperSizes[bestIndex].SizeInHundreths.Width))
                         bestIndex = i;
                 }
                 if (bestIndex < 0)
-                    bestIndex = metric ? DefaultMetricPaperSizeindex : DefaultEnglighPaperSizeIndex;
+                    bestIndex = metric ? PrintingStandards.DefaultMetricPaperSizeindex : PrintingStandards.DefaultEnglighPaperSizeIndex;
 
-                pageWidth = StandardPaperSizes[bestIndex].Width;
-                pageHeight = StandardPaperSizes[bestIndex].Height;
+                pageWidth = (int) Math.Round(PrintingStandards.StandardPaperSizes[bestIndex].SizeInHundreths.Width);
+                pageHeight = (int) Math.Round(PrintingStandards.StandardPaperSizes[bestIndex].SizeInHundreths.Height);
 
                 // Use the default margin if it can fit, otherwise 0 margin.
-                int defaultMargin = metric ? DefaultMetricMargin : DefaultEnglishMargin;
+                int defaultMargin = metric ? PrintingStandards.DefaultMetricMarginInHundreths : PrintingStandards.DefaultEnglishMarginInHundreths;
                 if (pageWidth - printAreaWidth > defaultMargin * 2 &&
                     pageHeight - printAreaHeight > defaultMargin * 2) {
                     pageMargin = defaultMargin;

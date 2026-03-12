@@ -108,9 +108,9 @@ namespace PurplePen
 
         private void InitPaperSizes()
         {
-            for (int i = 0; i < CoreMapUtil.StandardPaperSizes.Length; ++i)
+            for (int i = 0; i < PrintingStandards.StandardPaperSizes.Length; ++i)
             {
-                comboBoxPaperSize.Items.Add(WindowsUtil.GetPaperSizeText(CoreMapUtil.StandardPaperSizes[i]));
+                comboBoxPaperSize.Items.Add(WindowsUtil.GetPaperSizeText(PrintingStandards.StandardPaperSizes[i]));
             }
 
             comboBoxPaperSize.Items.Add(MiscText.UserDefined);
@@ -119,10 +119,10 @@ namespace PurplePen
         private void UpdateDialog()
         {
             bool foundStandardSize = false;
-            for (int i = 0; i < CoreMapUtil.StandardPaperSizes.Length; ++i)
+            for (int i = 0; i < PrintingStandards.StandardPaperSizes.Length; ++i)
             {
-                if (CoreMapUtil.StandardPaperSizes[i].Width == paperSize.Width &&
-                    CoreMapUtil.StandardPaperSizes[i].Height == paperSize.Height)
+                if ((int) Math.Round(PrintingStandards.StandardPaperSizes[i].SizeInHundreths.Width) == paperSize.Width &&
+                    (int) Math.Round(PrintingStandards.StandardPaperSizes[i].SizeInHundreths.Height) == paperSize.Height)
                 {
                     comboBoxPaperSize.SelectedIndex = i;
                     foundStandardSize = true;
@@ -131,7 +131,7 @@ namespace PurplePen
 
             if (!foundStandardSize)
             {
-                comboBoxPaperSize.SelectedIndex = CoreMapUtil.StandardPaperSizes.Length;
+                comboBoxPaperSize.SelectedIndex = PrintingStandards.StandardPaperSizes.Length;
                 upDownWidth.Enabled = upDownHeight.Enabled = true;
             }
             else
@@ -151,8 +151,8 @@ namespace PurplePen
         {
             string paperSizeText;
 
-            if (comboBoxPaperSize.SelectedIndex < CoreMapUtil.StandardPaperSizes.Length && comboBoxPaperSize.SelectedIndex >= 0)
-                paperSizeText = CoreMapUtil.StandardPaperSizes[comboBoxPaperSize.SelectedIndex].Name;
+            if (comboBoxPaperSize.SelectedIndex < PrintingStandards.StandardPaperSizes.Length && comboBoxPaperSize.SelectedIndex >= 0)
+                paperSizeText = PrintingStandards.StandardPaperSizes[comboBoxPaperSize.SelectedIndex].Name;
             else
                 paperSizeText = comboBoxPaperSize.SelectedText;
 
@@ -171,12 +171,12 @@ namespace PurplePen
 
         private void comboBoxPaperSize_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBoxPaperSize.SelectedIndex < CoreMapUtil.StandardPaperSizes.Length)
+            if (comboBoxPaperSize.SelectedIndex < PrintingStandards.StandardPaperSizes.Length)
             {
                 upDownWidth.Enabled = upDownHeight.Enabled = false;
-                CoreMapUtil.StandardPaperSize ps = CoreMapUtil.StandardPaperSizes[comboBoxPaperSize.SelectedIndex];
-                upDownWidth.Value = Util.GetDistanceValue(ps.Width);
-                upDownHeight.Value = Util.GetDistanceValue(ps.Height);
+                PrintingPaperSize ps = PrintingStandards.StandardPaperSizes[comboBoxPaperSize.SelectedIndex];
+                upDownWidth.Value = Util.GetDistanceValue((int) Math.Round(ps.SizeInHundreths.Width));
+                upDownHeight.Value = Util.GetDistanceValue((int) Math.Round(ps.SizeInHundreths.Height));
             }
             else
             {

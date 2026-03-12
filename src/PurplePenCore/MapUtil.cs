@@ -64,10 +64,10 @@ namespace PurplePen
             float printAreaHeight = (landscape ? printAreaRectangle.Width : printAreaRectangle.Height) / printScaleRatio * 100 / 25.4F;
 
             // See if we are very close to a standard paper size.
-            foreach (CoreMapUtil.StandardPaperSize paperSize in CoreMapUtil.StandardPaperSizes) {
-                if (Math.Abs(paperSize.Width - printAreaWidth) < standardSizeTolerance && Math.Abs(paperSize.Height - printAreaHeight) < standardSizeTolerance) {
-                    pageWidth = paperSize.Width;
-                    pageHeight = paperSize.Height;
+            foreach (PrintingPaperSize paperSize in PrintingStandards.StandardPaperSizes) {
+                if (Math.Abs(paperSize.SizeInHundreths.Width - printAreaWidth) < standardSizeTolerance && Math.Abs(paperSize.SizeInHundreths.Height - printAreaHeight) < standardSizeTolerance) {
+                    pageWidth = (int) Math.Round(paperSize.SizeInHundreths.Width);
+                    pageHeight = (int) Math.Round(paperSize.SizeInHundreths.Height);
                     return;
                 }
             }

@@ -276,12 +276,12 @@ namespace PurplePen
         }
 
         // Get text describing a paper size.
-        public static string GetPaperSizeText(CoreMapUtil.StandardPaperSize paperSize)
+        public static string GetPaperSizeText(PrintingPaperSize paperSize)
         {
             StringBuilder builder = new StringBuilder();
 
             builder.Append(paperSize.Name);
-            builder.AppendFormat(" ({0} x {1})", Util.GetDistanceText(paperSize.Width), Util.GetDistanceText(paperSize.Height));
+            builder.AppendFormat(" ({0} x {1})", Util.GetDistanceText((int) Math.Round(paperSize.SizeInHundreths.Width)), Util.GetDistanceText((int) Math.Round(paperSize.SizeInHundreths.Height)));
             return builder.ToString();
         }
 
