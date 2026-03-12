@@ -116,3 +116,5 @@ src/MsftStoreInstaller/AppPackages/
 /src/FontInstaller/output/
 loc/po/tar/
 /src/Help/output/Purple Pen Help.log
+/src/TestFiles/controller/ocad_create12/mrsneeze.jpg
+/src/TestFiles/controller/ocad_create13/mrsneeze.jpg
