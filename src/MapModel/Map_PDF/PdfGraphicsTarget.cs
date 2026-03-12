@@ -76,6 +76,16 @@ namespace PurplePen.MapModel
             stringFormat.LineAlignment = XLineAlignment.Near;
         }
 
+        public float Intensity {
+            get { return 1.0F; }
+            set {
+                if (value != 1.0F) {
+                    throw new ArgumentException("Only intensities of 1.0 are supported", "value");
+                }
+            }
+        }
+
+
         public XGraphics XGraphics
         {
             get { return gfx; }

@@ -38,7 +38,6 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.Diagnostics;
 using PurplePen.MapModel;
-using PurplePen.MapView;
 using ColorMatrix = PurplePen.MapModel.ColorMatrix;
 using PurplePen.Graphics2D;
 using System.IO;
@@ -47,11 +46,27 @@ using System.Linq;
 
 namespace PurplePen
 {
+    // This interface encapsulates something that can be cached for drawing in the ViewCache. It
+    // needs to be able to draw itself, and also notify when it has changed. The graphics is always
+    // set up in world coordinates, as it the visible rectangle and the changedRegion.
+    public interface IMapDisplay
+    {
+        RectangleF Bounds { get; }
+        void Draw(IGraphicsBitmap bitmap, Matrix transform, RectangleF? clipRect);
+
+        event MapDisplayChanged Changed;
+    }
+
+    public delegate void MapDisplayChanged();
+
+    public enum ColorModel { OCADCompatible, RGB, CMYK };
+
+
     // The map display represents everything that is cached in the ViewCache and normally shown
     // on the map. It includes the map proper, as well as the courses and so forth drawn on top.
     // The IMapDisplay interface is the communication channel with the ViewCache and the MapViewer
     // controls -- it simply has to be able to draw itself, and notify when parts change.
-    class MapDisplay: IMapDisplay, IDisposable
+    public class MapDisplay : IMapDisplay, IDisposable
     {
         MapType mapType;    // Map type. Note that OpenMapper and OCAD files both called MapType.OCAD. See MapVersion property to distinguish.
         string filename;
@@ -358,14 +373,14 @@ namespace PurplePen
             }
         }
 
-        public ImageFormat BitmapImageFormat
+        public GraphicsBitmapFormat BitmapImageFormat
         {
             get
             {
                 if (MapType == MapType.Bitmap && bitmap != null)
-                    return ((GDIPlus_Bitmap)bitmap).Bitmap.RawFormat;
+                    return bitmap.GetOriginalFormat();
                 else
-                    return ImageFormat.MemoryBmp;
+                    return GraphicsBitmapFormat.None;
             }
         }
 
@@ -498,7 +513,7 @@ namespace PurplePen
                 pdfMapFile = null;
             }
             else if (newMapType == MapType.OCAD) {
-                map = new Map(MapUtil.TextMetricsProvider, new GDIPlus_FileLoader(Path.GetDirectoryName(newFilename)));
+                map = new Map(MapUtil.TextMetricsProvider, Services.FileLoaderProvider.GetFileLoaderForDirectory(Path.GetDirectoryName(newFilename)));
                 mapVersion = InputOutput.ReadFile(newFilename, map);
                 bitmap = null;
                 pdfMapFile = null;
@@ -506,9 +521,12 @@ namespace PurplePen
             else if (newMapType == MapType.Bitmap) {
                 map = null;
                 mapVersion = new MapFileFormat(MapFileFormatKind.None, 0);
-                Bitmap bm = (Bitmap)Image.FromFile(newFilename);
-                bitmap = new GDIPlus_Bitmap(bm);
-                bitmapDpi = bm.HorizontalResolution;
+
+                using (Stream stream = new FileStream(newFilename, FileMode.Open, FileAccess.Read)) {
+                    bitmap = Services.BitmapLoader.ReadBitmapFromStream(stream);
+                }
+
+                bitmapDpi = (float) bitmap.HorizontalResolution;
                 pdfMapFile = null;
             }
             else if (newMapType == MapType.PDF) {
@@ -516,18 +534,17 @@ namespace PurplePen
                 map = null;
                 mapVersion = new MapFileFormat(MapFileFormatKind.None, 0);
                 Size bitmapSize;
-#if PORTING
-                pdfMapFile = (PdfMapFile) CoreMapUtil.ValidatePdf(newFilename, out bitmapDpi, out bitmapSize, out errorText);
-#else
+
                 pdfMapFile = CoreMapUtil.ValidatePdf(newFilename, out bitmapDpi, out bitmapSize, out errorText);
-#endif
+
                 if (pdfMapFile == null) {
                     this.mapType = MapType.None;
                     bitmap = null;
                 }
                 else {
-                    Bitmap bm = (Bitmap)Image.FromFile(pdfMapFile.PngFileName);
-                    bitmap = new GDIPlus_Bitmap(bm);
+                    using (Stream stream = new FileStream(pdfMapFile.PngFileName, FileMode.Open, FileAccess.Read)) {
+                        bitmap = Services.BitmapLoader.ReadBitmapFromStream(stream);
+                    }
                 }
             }
             else {
@@ -575,21 +592,12 @@ namespace PurplePen
 
             // Only dim bitmap if size isn't too large. Otherwise takes too much memory.
             if ((mapType == MapType.Bitmap || mapType == MapType.PDF) && mapIntensity < 0.99F && (bitmap.PixelWidth * bitmap.PixelHeight) < 36000000) {
-                Bitmap dimmed = null;
-                try {
-                    dimmed = new Bitmap(bitmap.PixelWidth, bitmap.PixelHeight);
+                // ColorConverter doesn't actually matter since we are just drawing a bitmap.
+                using (IBitmapGraphicsTarget grTarget = Services.BitmapGraphicsTargetProvider.CreateBitmapGraphicsTarget(bitmap.PixelWidth, bitmap.PixelHeight, Services.RgbColorConverter)) {
+                    grTarget.Intensity = mapIntensity;
+                    grTarget.DrawBitmap(bitmap, new RectangleF(0, 0, bitmap.PixelWidth, bitmap.PixelHeight), BitmapScaling.NearestNeighbor, 0);
+                    dimmedBitmap = grTarget.FinishBitmap();
                 }
-                catch (Exception) {
-                    return;  // typically because not enough memory. Uses alternate dimming method.
-                }
-
-                Graphics g = Graphics.FromImage(dimmed);
-                ImageAttributes imageAttributes = new ImageAttributes();
-                imageAttributes.SetColorMatrix(ComputeColorMatrix().ToSysDrawColorMatrix());
-                g.DrawImage(((GDIPlus_Bitmap)bitmap).Bitmap, new Rectangle(0, 0, bitmap.PixelWidth, bitmap.PixelHeight), 0, 0, bitmap.PixelWidth, bitmap.PixelHeight, GraphicsUnit.Pixel, imageAttributes);
-                g.Dispose();
-
-                dimmedBitmap = new GDIPlus_Bitmap(dimmed);
             }
             else {
                 dimmedBitmap = null;
@@ -639,32 +647,12 @@ namespace PurplePen
         }
 
         // For bitmap or PDF background, write the bitmap to the given file with the given format.
-        public void WriteBitmapMap(string fileName, ImageFormat format, out float dpi)
+        public void WriteBitmapMap(string fileName, GraphicsBitmapFormat format, out float dpi)
         {
             dpi = this.bitmapDpi;
-            Bitmap bmp = ((GDIPlus_Bitmap)bitmap).Bitmap;
-            
-            PurplePen.MapModel.BitmapUtil.SaveBitmap(bmp, fileName, format);
-        }
 
-        // Draw the map and course onto a bitmap of the given size. The given rectangle is mapped onto the whole bitmap, then
-        // the given clip region is applied.
-        public void Draw(Bitmap bitmap, Matrix transform, RectangleF? clipRect = null)
-        {
-            Debug.Assert(colorModel == ColorModel.CMYK || colorModel == ColorModel.RGB);
-            GDIPlus_ColorConverter colorConverter = (colorModel == ColorModel.CMYK) ? new SwopColorConverter() : new GDIPlus_ColorConverter();
-
-            if (bitmap.Height == 0 || bitmap.Width == 0)
-                return;
-
-            // Note that courses always drawn full intensity.
-            using (var grTargetDimmed = new GDIPlus_BitmapGraphicsTarget(bitmap, CmykColor.FromCmyk(0,0,0,0), transform, colorConverter, mapIntensity))
-            using (var grTargetUndimmed = new GDIPlus_BitmapGraphicsTarget(bitmap, null, transform, colorConverter)) {
-                float minResolution = GetMinResolution(transform);
-                Matrix transformInverse = transform.Clone();
-                transformInverse.Invert();
-                RectangleF clipBounds = Geometry.TransformRectangle(transformInverse, new RectangleF(0, 0, bitmap.Width, bitmap.Height));
-                DrawHelper(grTargetDimmed, grTargetUndimmed, grTargetUndimmed, clipBounds, minResolution);
+            using (Stream stream = new FileStream(fileName, FileMode.Create, FileAccess.Write)) {
+                bitmap.WriteToStream(format, stream);
             }
         }
 
@@ -676,13 +664,6 @@ namespace PurplePen
         }
 
 
-        // Draw the map and course onto a graphics target. The color model is ignored. The intensity
-        // must be 1, and purple blending is never performed.
-        public void Draw(IGraphicsTarget grTarget, RectangleF visRect, float minResolution)
-        {
-            Debug.Assert(MapIntensity == 1.0F);
-            DrawHelper(grTarget, grTarget, grTarget, visRect, minResolution);
-        }
 
         private short? ColorIdBelow(Map map, short colorId)
         {
@@ -693,8 +674,52 @@ namespace PurplePen
             }
         }
 
+        // Draw the map and course onto a graphics target. The color model is ignored. The intensity
+        // must be 1, and purple blending is never performed.
+        public void Draw(IGraphicsTarget grTarget, RectangleF visRect, float minResolution)
+        {
+            Debug.Assert(MapIntensity == 1.0F);
+            DrawHelper(grTarget, visRect, minResolution);
+        }
+
+
+
+        // Draw the map and course onto a bitmap of the given size. The given rectangle is mapped onto the whole bitmap, then
+        // the given clip region is applied.
+        // Draw the map and course onto a bitmap of the given size. The given rectangle is mapped onto the whole bitmap, then
+        // the given clip region is applied.
+        public void Draw(IGraphicsBitmap bitmap, Matrix transform, RectangleF? clipRect = null)
+        {
+            Debug.Assert(colorModel == ColorModel.CMYK || colorModel == ColorModel.RGB);
+            IColorConverter colorConverter = (colorModel == ColorModel.CMYK) ? Services.CmykColorConverter : Services.RgbColorConverter;
+
+            if (bitmap.PixelHeight == 0 || bitmap.PixelWidth == 0)
+                return;
+
+            Debug.Assert(!bitmap.MustCopyBitsForGraphicsTarget, "Bitmap must allow non-copying graphics target");
+
+            using (IBitmapGraphicsTarget grTarget = bitmap.GetGraphicsTarget(false, colorConverter)) {
+                // Clear the bitmap with white.
+                RectangleF entireBitmapRect = RectangleF.FromLTRB(-10, -10, bitmap.PixelWidth + 10, bitmap.PixelHeight + 10);
+                object whiteBrush = new object();
+                grTarget.CreateSolidBrush(whiteBrush, CmykColor.FromCmyk(0, 0, 0, 0));
+                grTarget.FillRectangle(whiteBrush, entireBitmapRect);
+
+                grTarget.PushTransform(transform);
+                float minResolution = GetMinResolution(transform);
+                Matrix transformInverse = transform.Clone();
+                transformInverse.Invert();
+                RectangleF clipBounds = Geometry.TransformRectangle(transformInverse, new RectangleF(0, 0, bitmap.PixelWidth, bitmap.PixelHeight));
+
+                DrawHelper(grTarget, clipBounds, minResolution);
+
+                grTarget.FinishBitmap();
+            }
+        }
+
         // Draw the map and course onto a graphics. A helper for the other two draw methods.
-        private void DrawHelper(IGraphicsTarget grTargetOcadMap, IGraphicsTarget grTargetBitmapMap, IGraphicsTarget grTargetCourses, RectangleF visRect, float minResolution)
+
+        private void DrawHelper(IGraphicsTarget grTarget, RectangleF visRect, float minResolution)
         {
             RenderOptions renderOptions = new RenderOptions();
             renderOptions.minResolution = minResolution;
@@ -718,9 +743,13 @@ namespace PurplePen
             renderOptions.blendOverprintedColors = ocadOverprintEffect;
 
             // First draw the real map.
+            float saveIntensity;
+
             switch (mapType) {
             case MapType.OCAD:
-                grTargetOcadMap.PushAntiAliasing(Printing ? false : antialiased);       // don't anti-alias on printer
+                saveIntensity = grTarget.Intensity;
+                grTarget.Intensity = mapIntensity;
+                grTarget.PushAntiAliasing(Printing ? false : antialiased);       // don't anti-alias on printer
 
                 if (LowerPurpleMapLayer != null) {
                     // Only draw the part below lower purple.
@@ -728,15 +757,16 @@ namespace PurplePen
                     renderOptions.colorEndDrawInclusive = LowerPurpleMapLayer;
                 }
 
-                DrawOcadMap(grTargetOcadMap, visRect, renderOptions);
-                grTargetOcadMap.PopAntiAliasing();
+                DrawOcadMap(grTarget, visRect, renderOptions);
+                grTarget.PopAntiAliasing();
+                grTarget.Intensity = saveIntensity;
                 break;
 
             case MapType.Bitmap:
             case MapType.PDF:
-                grTargetBitmapMap.PushAntiAliasing(Printing ? false : antialiased);       // don't anti-alias on printer
-                DrawBitmapMap(grTargetBitmapMap, visRect, minResolution);
-                grTargetBitmapMap.PopAntiAliasing();
+                grTarget.PushAntiAliasing(Printing ? false : antialiased);       // don't anti-alias on printer
+                DrawBitmapMap(grTarget, visRect, minResolution);
+                grTarget.PopAntiAliasing();
                 break;
 
             case MapType.None:
@@ -750,11 +780,14 @@ namespace PurplePen
                 renderOptions.colorEndDrawInclusive = colorIdBelowWhiteOut;
             }
 
-            DrawCourseMap(grTargetCourses, visRect, renderOptions);
+            DrawCourseMap(grTarget, visRect, renderOptions);
 
             if (LowerPurpleMapLayer != null) {
                 // Draw the part of the map above the lower purple.
-                grTargetOcadMap.PushAntiAliasing(Printing ? false : antialiased);       // don't anti-alias on printer
+                saveIntensity = grTarget.Intensity;
+                grTarget.Intensity = mapIntensity;
+
+                grTarget.PushAntiAliasing(Printing ? false : antialiased);       // don't anti-alias on printer
 
                 if (LowerPurpleMapLayer != null) {
                     // Only draw the part below lower purple.
@@ -762,16 +795,17 @@ namespace PurplePen
                     renderOptions.colorEndDrawInclusive = null;
                 }
 
-                DrawOcadMap(grTargetOcadMap, visRect, renderOptions);
-                grTargetOcadMap.PopAntiAliasing();
+                DrawOcadMap(grTarget, visRect, renderOptions);
+                grTarget.PopAntiAliasing();
+                grTarget.Intensity = saveIntensity;
 
                 // Draw the rest of the course map on top.
                 renderOptions.colorBeginDrawExclusive = colorIdBelowWhiteOut;
                 renderOptions.colorEndDrawInclusive = null;
-                DrawCourseMap(grTargetCourses, visRect, renderOptions);
+                DrawCourseMap(grTarget, visRect, renderOptions);
             }
 
-            DrawPrintAreaOutline(grTargetCourses, visRect);
+            DrawPrintAreaOutline(grTarget, visRect);
         }
 
         private void DrawCourseMap(IGraphicsTarget grTargetCourses, RectangleF visRect, RenderOptions renderOptions)

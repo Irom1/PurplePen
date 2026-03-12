@@ -46,23 +46,11 @@ using SkiaSharp;
 
 namespace PurplePen
 {
-    static class MapUtil
+    public static class MapUtil
     {
-        public static ITextMetrics TextMetricsProvider = new GDIPlus_TextMetrics();
+        public static ITextMetrics TextMetricsProvider = Services.TextMetricsProvider;
 
 
-
-        public static ToolboxIcon CreateToolboxIcon(Bitmap bm) {
-            ToolboxIcon icon = new ToolboxIcon();
-
-            for (int x = 0; x < ToolboxIcon.WIDTH; ++x) {
-                for (int y = 0; y < ToolboxIcon.HEIGHT; ++y) {
-                    icon.SetPixel(x, y, bm.GetPixel(x, y));
-                }
-            }
-
-            return icon;
-        }
 
         // Given a print area rectangle, get the exact size needed to print it at the given scale ratio. Because there tend to be rounding errors
         // around the range of about 1/100 of a inch due to quantization, we check standard paper sizes to see if one is very very close.
@@ -91,7 +79,7 @@ namespace PurplePen
 
     }
 
-    static class FindPurple
+    public static class FindPurple
     {
         // Determine if a color is actually some shade of purple.
         public static bool IsPurple(float cyan, float magenta, float yellow, float black)

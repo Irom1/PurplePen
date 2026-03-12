@@ -92,6 +92,16 @@ namespace CanvasTest2.Drawing
             return outputWriter.ToString();
         }
 
+        public float Intensity {
+            get { return 1.0F; }
+            set {
+                if (value != 1.0F) {
+                    throw new ArgumentException("Only intensities of 1.0 are supported", "value");
+                }
+            }
+        }
+
+
         public bool SupportsPatternBrushes => false;
 
         public void CreateFont(object key, string familyName, float emHeight, TextEffects effects)

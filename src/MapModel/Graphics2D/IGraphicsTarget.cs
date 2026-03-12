@@ -85,6 +85,10 @@ namespace PurplePen.Graphics2D
         int PixelWidth { get; }
         int PixelHeight { get; }
 
+        // If true, you must pass true to the copyBits arguement on 
+        // GetGraphicsTarget.
+        bool MustCopyBitsForGraphicsTarget { get; }
+
         // Resolution in dots per inch. Defaults to 96 if unknown.
         double HorizontalResolution { get; }
         double VerticalResolution { get; }
@@ -95,15 +99,25 @@ namespace PurplePen.Graphics2D
         GraphicsBitmapFormat GetOriginalFormat();
         IGraphicsBitmap Crop(int x, int y, int width, int height);
         bool WriteToStream(GraphicsBitmapFormat format, Stream stream);
+
+        // If copyBits is false, the graphics target will draw directly to the existing bitmap. If copyBits is true,
+        // the existing bitmap will be copied and the graphics target will draw to the copy. The existing bitmap will
+        // not be changed, and the only way to get access to the copy is by calling FinishBitmap() on the graphics target. 
+        // If MustCopyBitsForGraphicsTarget is true, then copyBits must be true (otherwise an ArgumentException is thrown).
+        IBitmapGraphicsTarget GetGraphicsTarget(bool copyBits, IColorConverter colorConverter = null);
     }
 
     public interface IBitmapGraphicsTargetProvider: IDisposable
     {
-        IBitmapGraphicsTarget CreateBitmapGraphicsTarget(int width, int height);
+        IBitmapGraphicsTarget CreateBitmapGraphicsTarget(int width, int height, IColorConverter colorConverter);
     }
 
     public interface IGraphicsTarget : IDisposable
     {
+        // Get/set the intensity. Note that setting the intensity will cause
+        // all brushes and pens to be destroyed.
+        float Intensity { get; set; }
+
         // Prepend a transform to the graphics drawing target.
         void PushTransform(Matrix matrix);
         void PopTransform();

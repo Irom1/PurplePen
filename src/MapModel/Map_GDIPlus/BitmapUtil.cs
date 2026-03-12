@@ -68,7 +68,7 @@ namespace PurplePen.MapModel
 
         public static void SaveBitmap(Bitmap bitmap, string fileName, ImageFormat imageFormat)
         {
-            using (Stream stream = new FileStream(fileName, FileMode.OpenOrCreate, FileAccess.Write)) {
+            using (Stream stream = new FileStream(fileName, FileMode.Create, FileAccess.Write)) {
                 SaveBitmap(bitmap, stream, imageFormat);
             }
         }
@@ -92,7 +92,7 @@ namespace PurplePen.MapModel
 
         public static void SaveBitmap(IGraphicsBitmap bitmap, string fileName, GraphicsBitmapFormat imageFormat)
         {
-            using (Stream stream = new FileStream(fileName, FileMode.OpenOrCreate, FileAccess.Write)) {
+            using (Stream stream = new FileStream(fileName, FileMode.Create, FileAccess.Write)) {
                 bitmap.WriteToStream(imageFormat, stream);
             }
         }

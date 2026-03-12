@@ -32,19 +32,19 @@
  * OF SUCH DAMAGE.
  */
 
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Drawing.Imaging;
-using System.Text;
-using System.Windows.Forms;
-using System.IO;
-using System.Diagnostics;
-
 using PurplePen.Graphics2D;
 using PurplePen.MapModel;
 using PurplePen.MapView;
+using SkiaSharp;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
+using System.Text;
+using System.Windows.Forms;
 
 namespace PurplePen.DebugUI
 {
@@ -115,7 +115,7 @@ namespace PurplePen.DebugUI
             if (mapDisplay != null) {
                 mapDisplay.AntiAlias = false;
                 mapDisplay.ShowSymbolBounds = showBoundsCheckBox.Checked;
-                mapDisplay.Draw(bitmapNew, matrix);
+                mapDisplay.Draw(new GDIPlus_Bitmap(bitmapNew), matrix);
             }
 
             return bitmapNew;

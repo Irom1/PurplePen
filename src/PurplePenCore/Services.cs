@@ -14,10 +14,15 @@ namespace PurplePen
     public static class Services
     {
         public static IGraphicsBitmapLoader BitmapLoader;
+        public static IBitmapGraphicsTargetProvider BitmapGraphicsTargetProvider;
         public static IFontLoader FontLoader;
         public static ITextMetrics TextMetricsProvider;
         public static IFileLoaderProvider FileLoaderProvider;
         public static IPdfLoadingStatus PdfLoadingUI;
+#if PORTING
+        public static IColorConverter RgbColorConverter;
+        public static IColorConverter CmykColorConverter;
+#endif
     }
 
     public interface IFileLoaderProvider

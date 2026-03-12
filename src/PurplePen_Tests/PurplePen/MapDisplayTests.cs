@@ -84,7 +84,7 @@ namespace PurplePen.Tests
             Matrix inverse = transform.Clone();
             inverse.Invert();
             clip = Geometry.TransformRectangle(inverse, clip);
-            mapdisplay.Draw(bitmap, transform, clip);
+            mapdisplay.Draw(new GDIPlus_Bitmap(bitmap), transform, clip);
        }
 
         [TestMethod]

@@ -317,7 +317,7 @@ namespace PurplePen.Tests
                 // Create white color and white-out symdef.
                 SymColor white = map.AddColorBottom("White", 44, 0, 0, 0, 0, false);
                 AreaSymDef whiteArea = new AreaSymDef("White out", "890", white, null);
-                whiteArea.ToolboxImage = MapUtil.CreateToolboxIcon(Properties.Resources.WhiteOut_OcadToolbox);
+                whiteArea.ToolboxImage = CoreMapUtil.CreateToolboxIcon(IconBitmaps.WhiteOut_OcadToolbox);
                 map.AddSymdef(whiteArea);
                 dict[CourseLayout.KeyWhiteOut] = whiteArea;
 

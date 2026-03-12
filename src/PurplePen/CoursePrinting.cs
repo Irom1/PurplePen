@@ -180,7 +180,7 @@ namespace PurplePen
                 foreach (CoursePage band in bands) {
                     // Set the transform
                     Matrix transform = Geometry.CreateInvertedRectangleTransform(band.mapRectangle, new RectangleF(0, 0, bitmapWidth, bitmapHeight));
-                    mapDisplay.Draw(bitmap, transform);
+                    mapDisplay.Draw(new GDIPlus_Bitmap(bitmap), transform);
 
                     try {
                         // Draw the bitmap on the printer.

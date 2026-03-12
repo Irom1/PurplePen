@@ -82,11 +82,11 @@ namespace PurplePen
             Matrix transform = Geometry.CreateInvertedRectangleTransform(rect, new RectangleF(0, 0, bitmapWidth, bitmapHeight));
 
             // And draw.
-            mapDisplay.Draw(bitmap, transform);
+            mapDisplay.Draw(new GDIPlus_Bitmap(bitmap), transform);
 
             // JPEG and GIF have special code paths because the default Save method isn't
             // really good enough.
-            using (Stream stream = new FileStream(fileName, FileMode.OpenOrCreate, FileAccess.Write)) {
+            using (Stream stream = new FileStream(fileName, FileMode.Create, FileAccess.Write)) {
                 if (imageFormat == ImageFormat.Jpeg)
                     BitmapUtil.SaveJpeg(bitmap, stream, 80);
                 else if (imageFormat == ImageFormat.Gif)

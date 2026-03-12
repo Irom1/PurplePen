@@ -32,15 +32,16 @@
  * OF SUCH DAMAGE.
  */
 
+using PurplePen.Graphics2D;
+using PurplePen.MapModel;
+using SkiaSharp;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Drawing;
-using System.Linq;
-using PurplePen.MapModel;
-using PurplePen.Graphics2D;
-using System.Drawing.Imaging;
 using System.Diagnostics;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
+using System.Linq;
 
 namespace PurplePen
 {
@@ -104,7 +105,7 @@ namespace PurplePen
                         // Set bitmap as template.
                         PointF centerPoint = Geometry.RectCenter(controller.MapDisplay.MapBounds);
 
-                        ImageFormat imageFormat;
+                        GraphicsBitmapFormat imageFormat;
                         string mapFileName;
                         float dpi;
                         if (CreateBitmapFile()) {
@@ -191,16 +192,16 @@ namespace PurplePen
             if (controller.MapDisplay.MapType == MapType.PDF)
                 return true;
             else if (controller.MapDisplay.MapType == MapType.Bitmap) {
-                ImageFormat imageFormat = controller.MapDisplay.BitmapImageFormat;
+                GraphicsBitmapFormat imageFormat = controller.MapDisplay.BitmapImageFormat;
 
                 if (creationSettings.fileFormat.kind == MapFileFormatKind.OCAD && creationSettings.fileFormat.version <= 7) {
-                    return (imageFormat.Guid != ImageFormat.Bmp.Guid);
+                    return (imageFormat != GraphicsBitmapFormat.BMP);
                 }
                 else if (creationSettings.fileFormat.kind == MapFileFormatKind.OCAD && creationSettings.fileFormat.version <= 10) {
-                    return (imageFormat.Guid != ImageFormat.Bmp.Guid && imageFormat.Guid != ImageFormat.Tiff.Guid && imageFormat.Guid != ImageFormat.Jpeg.Guid && imageFormat.Guid != ImageFormat.Gif.Guid);
+                    return (imageFormat != GraphicsBitmapFormat.BMP && imageFormat != GraphicsBitmapFormat.TIFF && imageFormat != GraphicsBitmapFormat.JPEG && imageFormat != GraphicsBitmapFormat.GIF);
                 }
                 else {
-                    return (imageFormat.Guid != ImageFormat.Bmp.Guid && imageFormat.Guid != ImageFormat.Tiff.Guid && imageFormat.Guid != ImageFormat.Jpeg.Guid && imageFormat.Guid != ImageFormat.Gif.Guid && imageFormat.Guid != ImageFormat.Png.Guid);
+                    return (imageFormat != GraphicsBitmapFormat.BMP && imageFormat != GraphicsBitmapFormat.TIFF && imageFormat != GraphicsBitmapFormat.JPEG && imageFormat != GraphicsBitmapFormat.GIF && imageFormat != GraphicsBitmapFormat.PNG);
                 }
             }
 
@@ -209,7 +210,7 @@ namespace PurplePen
 
         // PDF files need to have a bitmap saved with the OCAD file(s). Return the file name and format of the bitmap file.
         // The format used depends on the OCAD version we are targeting.
-        string CreateBitmapFileName(out ImageFormat imageFormat)
+        string CreateBitmapFileName(out GraphicsBitmapFormat imageFormat)
         {
             string extension;
 
@@ -217,15 +218,15 @@ namespace PurplePen
 
             if (creationSettings.fileFormat.kind == MapFileFormatKind.OCAD && creationSettings.fileFormat.version <= 7) {
                 extension = ".bmp";
-                imageFormat = ImageFormat.Bmp;
+                imageFormat = GraphicsBitmapFormat.BMP;
             }
             else if (creationSettings.fileFormat.kind == MapFileFormatKind.OCAD && creationSettings.fileFormat.version <= 10) {
                 extension = ".gif";
-                imageFormat = ImageFormat.Gif;
+                imageFormat = GraphicsBitmapFormat.GIF;
             }
             else {
                 extension = ".png";
-                imageFormat = ImageFormat.Png;
+                imageFormat = GraphicsBitmapFormat.PNG;
             }
 
             string basePdfName = Path.GetFileName(controller.MapFileName);
@@ -273,7 +274,7 @@ namespace PurplePen
             }
 
             if (CreateBitmapFile()) {
-                ImageFormat imageFormat;
+                GraphicsBitmapFormat imageFormat;
                 string pdfBitmap = CreateBitmapFileName(out imageFormat);
                 if (File.Exists(pdfBitmap))
                     overwrittenFiles.Add(pdfBitmap);

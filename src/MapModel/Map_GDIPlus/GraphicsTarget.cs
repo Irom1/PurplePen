@@ -54,7 +54,7 @@ namespace PurplePen.MapModel
     public class GDIPlus_GraphicsTarget: IGraphicsTarget
     {
         public Graphics Graphics;
-        private GDIPlus_ColorConverter colorConverter;
+        private IColorConverter colorConverter;
         private float intensity;
         private ImageAttributes imageAttributes;
         private Stack<GraphicsState> stateStack;
@@ -80,7 +80,7 @@ namespace PurplePen.MapModel
         public const PixelFormat NonAlphaPixelFormat = PixelFormat.Format32bppPArgb;
 #endif
 
-        public GDIPlus_GraphicsTarget(Graphics g, GDIPlus_ColorConverter colorConverter, float intensity)
+        public GDIPlus_GraphicsTarget(Graphics g, IColorConverter colorConverter, float intensity)
         {
             this.Graphics = g;
             this.colorConverter = colorConverter ?? new GDIPlus_ColorConverter();
@@ -117,7 +117,7 @@ namespace PurplePen.MapModel
             this.Graphics = newGraphics;
         }
 
-        public GDIPlus_ColorConverter ColorConverter
+        public IColorConverter ColorConverter
         {
             get { return colorConverter; }
         }
@@ -125,6 +125,26 @@ namespace PurplePen.MapModel
         public float Intensity
         {
             get { return intensity; }
+            set {
+                // Pens and brushes have colors that were based on the intensity, so
+                // they must be destroyed.
+                foreach (Pen pen in penMap.Values)
+                    pen.Dispose();
+                penMap.Clear();
+
+                foreach (Brush brush in brushMap.Values)
+                    brush.Dispose();
+                brushMap.Clear();
+
+                intensity = value;
+                if (intensity < 1.0F) {
+                    imageAttributes = new ImageAttributes();
+                    imageAttributes.SetColorMatrix(ComputeColorMatrix(intensity).ToSysDrawColorMatrix());
+                }
+                else {
+                    imageAttributes = null;
+                }
+            }
         }
 
         private Color ConvertColor(CmykColor cmykColor)
@@ -346,7 +366,6 @@ namespace PurplePen.MapModel
         {
             // Blending not supported.
         }
-
 
         // Draw an line with a pen.
         public void DrawLine(object penKey, PointF start, PointF finish)
@@ -773,17 +792,17 @@ namespace PurplePen.MapModel
         Stack<BlendMode> blendStack = new Stack<BlendMode>();
         int width, height;
 
-        public GDIPlus_BitmapGraphicsTarget(int pixelWidth, int pixelHeight, bool alpha, CmykColor initialColor, RectangleF rectangle, bool inverted, GDIPlus_ColorConverter colorConverter = null, float intensity = 1.0F)
+        public GDIPlus_BitmapGraphicsTarget(int pixelWidth, int pixelHeight, bool alpha, CmykColor initialColor, RectangleF rectangle, bool inverted, IColorConverter colorConverter = null, float intensity = 1.0F)
             :this(GetBitmap(pixelWidth, pixelHeight, alpha), initialColor, rectangle, inverted, colorConverter, intensity)
         {
         }
 
-        public GDIPlus_BitmapGraphicsTarget(Bitmap bitmap, CmykColor initialColor, RectangleF rectangle, bool inverted, GDIPlus_ColorConverter colorConverter = null, float intensity = 1.0F)
+        public GDIPlus_BitmapGraphicsTarget(Bitmap bitmap, CmykColor initialColor, RectangleF rectangle, bool inverted, IColorConverter colorConverter = null, float intensity = 1.0F)
             :this(bitmap, initialColor, GetTransform(bitmap, rectangle, inverted), colorConverter, intensity)
         {
         }
 
-        public GDIPlus_BitmapGraphicsTarget(Bitmap bitmap, CmykColor initialColor, Matrix transform, GDIPlus_ColorConverter colorConverter = null, float intensity = 1.0F, Region clipRegion = null)
+        public GDIPlus_BitmapGraphicsTarget(Bitmap bitmap, CmykColor initialColor, Matrix transform, IColorConverter colorConverter = null, float intensity = 1.0F, Region clipRegion = null)
             : base(GetGraphics(bitmap, initialColor, transform, colorConverter, clipRegion), colorConverter, intensity)
         {
             width = bitmap.Width;
@@ -795,7 +814,7 @@ namespace PurplePen.MapModel
         public int PixelWidth { get { return width; } }
         public int PixelHeight { get { return height; } }
 
-        static Graphics GetGraphics(Bitmap bitmap, CmykColor initialColor, Matrix transform, GDIPlus_ColorConverter colorConverter, Region clipRegion)
+        static Graphics GetGraphics(Bitmap bitmap, CmykColor initialColor, Matrix transform, IColorConverter colorConverter, Region clipRegion)
         {
             Graphics graphics = Graphics.FromImage(bitmap);
             graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
@@ -1147,6 +1166,8 @@ namespace PurplePen.MapModel
             get { return bitmap != null ? bitmap.Height : 0; }
         }
 
+        public bool MustCopyBitsForGraphicsTarget => false;
+
         public GraphicsBitmapFormat GetOriginalFormat()
         {
             ImageFormat format = bitmap.RawFormat;
@@ -1191,6 +1212,18 @@ namespace PurplePen.MapModel
             return true;
         }
 
+        public IBitmapGraphicsTarget GetGraphicsTarget(bool copyBits, IColorConverter colorConverter = null)
+        {
+            Bitmap newBitmap;
+            if (copyBits) {
+                newBitmap = new Bitmap(bitmap);
+            }
+            else {
+                newBitmap = bitmap;
+            }
+
+            return new GDIPlus_BitmapGraphicsTarget(newBitmap, null, RectangleF.FromLTRB(0, 0, bitmap.Width, bitmap.Height), false, colorConverter);
+        }
 
 
         // Very large bitmaps can cause exceptions when drawing. This property 
@@ -1395,6 +1428,18 @@ namespace PurplePen.MapModel
             // Seek back to the beginning before creating the image
             memStream.Position = 0;
             return new GDIPlus_Bitmap((Bitmap)Image.FromStream(memStream));
+        }
+
+        public void Dispose()
+        {
+        }
+    }
+
+    public class GDIPlus_BitmapGraphicsTargetProvider : IBitmapGraphicsTargetProvider
+    {
+        public IBitmapGraphicsTarget CreateBitmapGraphicsTarget(int width, int height, IColorConverter colorConverter)
+        {
+            return new GDIPlus_BitmapGraphicsTarget(width, height, true, CmykColor.FromCmyk(0, 0, 0, 0), RectangleF.FromLTRB(0, 0, width, height), false, colorConverter);
         }
 
         public void Dispose()
