@@ -304,6 +304,15 @@ namespace PurplePen {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The page size is too small for any descriptions to be printed..
+        /// </summary>
+        internal static string PageTooSmall {
+            get {
+                return ResourceManager.GetString("PageTooSmall", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Pdfium PDF converter failed to read PDF file successfully.
         /// </summary>
         internal static string PdfConversionFailed {

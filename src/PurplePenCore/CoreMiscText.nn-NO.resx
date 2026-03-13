@@ -153,6 +153,9 @@
   <data name="MandCrossing_Short" xml:space="preserve">
     <value>C</value>
   </data>
+  <data name="PageTooSmall" xml:space="preserve">
+    <value>Sidestørrelsen er for liten til at postbeskrivelser kan skrives ut.</value>
+  </data>
   <data name="Start" xml:space="preserve">
     <value>Start</value>
   </data>

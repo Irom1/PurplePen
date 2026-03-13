@@ -198,6 +198,9 @@
   <data name="MapIssue_Short" xml:space="preserve">
     <value>TF</value>
   </data>
+  <data name="PageTooSmall" xml:space="preserve">
+    <value>A lapméret túl kicsi ahhoz, hogy akár egyetlen leírás is kiférjen rá.</value>
+  </data>
   <data name="PdfConversionFailed" xml:space="preserve">
     <value>A Pdfium nem tudta sikeresen beolvasni a PDF fájlt.</value>
   </data>

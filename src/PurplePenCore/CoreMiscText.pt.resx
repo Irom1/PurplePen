@@ -199,6 +199,9 @@ Abrir e salvar novamente o mapa na versão mais recente do OpenOrienteering Mapp
   <data name="MapIssue_Short" xml:space="preserve">
     <value>TS</value>
   </data>
+  <data name="PageTooSmall" xml:space="preserve">
+    <value>O tamanho da página é muito pequeno para que quaisquer descrições sejam impressas.</value>
+  </data>
   <data name="PdfConversionFailed" xml:space="preserve">
     <value>O conversor de PDF Pdfium falhou ao ler o ficheiro PDF</value>
   </data>

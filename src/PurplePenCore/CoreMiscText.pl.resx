@@ -165,6 +165,9 @@
   <data name="MapExchange_Short" xml:space="preserve">
     <value>ZM</value>
   </data>
+  <data name="PageTooSmall" xml:space="preserve">
+    <value>Rozmiar strony jest zbyt mały aby wydrukować jakiekolwiek opisy PK.</value>
+  </data>
   <data name="PdfResultNotReadable" xml:space="preserve">
     <value>Nie można przeczytać rezultatu konwersji do PDF z pliku '{0}'</value>
   </data>

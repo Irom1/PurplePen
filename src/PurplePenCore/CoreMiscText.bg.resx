@@ -198,6 +198,9 @@
   <data name="MapIssue_Short" xml:space="preserve">
     <value>Карта - вземане</value>
   </data>
+  <data name="PageTooSmall" xml:space="preserve">
+    <value>Размерът на страницата е твърде малък, за да се отпечатат описанията.</value>
+  </data>
   <data name="PdfConversionFailed" xml:space="preserve">
     <value>PDF конверторът (Pdfium) не успя да прочете PDF файла успешно</value>
   </data>

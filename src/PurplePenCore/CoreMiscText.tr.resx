@@ -198,6 +198,9 @@
   <data name="MapIssue_Short" xml:space="preserve">
     <value>TS</value>
   </data>
+  <data name="PageTooSmall" xml:space="preserve">
+    <value>Sayfa boyutu, herhangi bir açıklamanın yazdırılması için çok küçük.</value>
+  </data>
   <data name="PdfConversionFailed" xml:space="preserve">
     <value>Pdfium PDF dönüştürücü, PDF dosyasını başarıyla okuyamadı</value>
   </data>

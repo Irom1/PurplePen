@@ -153,6 +153,9 @@
   <data name="MandCrossing_Short" xml:space="preserve">
     <value>C</value>
   </data>
+  <data name="PageTooSmall" xml:space="preserve">
+    <value>Dimensiunea paginii e prea mică pentru a tipări decrierea.</value>
+  </data>
   <data name="Start" xml:space="preserve">
     <value>Start</value>
   </data>

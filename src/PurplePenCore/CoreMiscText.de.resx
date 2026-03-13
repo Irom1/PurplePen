@@ -198,6 +198,9 @@
   <data name="MapIssue_Short" xml:space="preserve">
     <value>TS</value>
   </data>
+  <data name="PageTooSmall" xml:space="preserve">
+    <value>Die Seite ist zu klein, so dass keine Postenbeschreibungen gedruckt werden können.</value>
+  </data>
   <data name="PdfConversionFailed" xml:space="preserve">
     <value>PDF-Konverter "PDFium" konnte die PDF-Datei nicht lesen</value>
   </data>

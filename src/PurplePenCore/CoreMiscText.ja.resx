@@ -171,6 +171,9 @@
   <data name="MapExchange_Short" xml:space="preserve">
     <value>MX</value>
   </data>
+  <data name="PageTooSmall" xml:space="preserve">
+    <value>ディスクリプションを印刷する用紙のサイズが小さすぎます。</value>
+  </data>
   <data name="PdfConversionFailed" xml:space="preserve">
     <value>Pdfium PDF converter がPDFファイルの正常な読み込みに失敗しました</value>
   </data>

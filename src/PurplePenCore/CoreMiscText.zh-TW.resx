@@ -198,6 +198,9 @@
   <data name="MapIssue_Short" xml:space="preserve">
     <value>TS</value>
   </data>
+  <data name="PageTooSmall" xml:space="preserve">
+    <value>紙張頁面太小，無法列印任何檢查點說明。</value>
+  </data>
   <data name="PdfConversionFailed" xml:space="preserve">
     <value>Pdfium PDF 轉換器無法成功讀取PDF檔案</value>
   </data>

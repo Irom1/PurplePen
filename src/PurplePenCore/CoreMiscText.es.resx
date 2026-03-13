@@ -198,6 +198,9 @@
   <data name="MapIssue_Short" xml:space="preserve">
     <value>TS</value>
   </data>
+  <data name="PageTooSmall" xml:space="preserve">
+    <value>El tamaño de la página es muy pequeño para imprimir una descripción.</value>
+  </data>
   <data name="PdfConversionFailed" xml:space="preserve">
     <value>Pdfium PDF converter no ha podido leer el archivo PDF correctamente</value>
   </data>

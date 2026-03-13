@@ -203,6 +203,9 @@
     <value>TS</value>
     <comment>Abbreviation for "Timed Start"</comment>
   </data>
+  <data name="PageTooSmall" xml:space="preserve">
+    <value>The page size is too small for any descriptions to be printed.</value>
+  </data>
   <data name="PdfConversionFailed" xml:space="preserve">
     <value>Pdfium PDF converter failed to read PDF file successfully</value>
   </data>

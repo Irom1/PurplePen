@@ -183,6 +183,9 @@
   <data name="MapIssue_Medium" xml:space="preserve">
     <value>Départ chronométré</value>
   </data>
+  <data name="PageTooSmall" xml:space="preserve">
+    <value>La taille de la page est trop petite pour que les définitions soient imprimées.</value>
+  </data>
   <data name="PdfConversionFailed" xml:space="preserve">
     <value>Pdfium PDF converter a échoué lors de la lecture du fichier PDF</value>
   </data>

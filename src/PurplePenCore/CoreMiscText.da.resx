@@ -195,6 +195,9 @@
   <data name="MapIssue_Medium" xml:space="preserve">
     <value>Timet start</value>
   </data>
+  <data name="PageTooSmall" xml:space="preserve">
+    <value>Sidestørrelsen er for lille til at nogen beskrivelse kan udskrives.</value>
+  </data>
   <data name="PdfConversionFailed" xml:space="preserve">
     <value>Pdfium PDF converter mislykkedes med at læse PDF fil successfuldt</value>
   </data>

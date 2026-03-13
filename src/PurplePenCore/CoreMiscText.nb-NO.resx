@@ -198,6 +198,9 @@
   <data name="MapIssue_Short" xml:space="preserve">
     <value>TS</value>
   </data>
+  <data name="PageTooSmall" xml:space="preserve">
+    <value>Sidestørrelsen er for liten til at postbeskrivelser kan skrives ut.</value>
+  </data>
   <data name="PdfConversionFailed" xml:space="preserve">
     <value>"Pdfium PDF" konvertering klarte ikke lese PDF filen</value>
   </data>

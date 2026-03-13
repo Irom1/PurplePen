@@ -101,7 +101,7 @@ namespace PurplePen
     public interface IPrintingTarget
     {
         // Called at the beginning of printing.  Number of pages to print is given.
-        void StartPrinting(int pageCount);
+        void StartPrinting(string documentTitle, int pageCount);
 
         // Called at the end of printing.
         void EndPrinting();
@@ -122,13 +122,12 @@ namespace PurplePen
         int LayoutPages(PrintingPaperSize defaultPaperSize, PrintingMarginSize defaultMarginSize, SizeF defaultPrintableAreaInInches);
 
         // Get the paper size for a particular page number. This is generally used to set the orientation to
-        // landscape or portrait. The defaultPaperSize and defaultMarginSize are the same as passed to LayoutPages.
-        // It is called before DrawPage.
-        PrintingPaperSize GetPagePaperSize(int pageNumber, PrintingPaperSize defaultPaperSize, PrintingMarginSize defaultMarginSize);
+        // landscape or portrait. 
+        PrintingPaperSize GetPagePaperSize(int pageNumber);
 
         // Draw a page onto a graphics target. The graphics target is set up so that (0,0) is the top left corner of the area to print,
         // taking into account the margins, and the units are in hundredths of an inch. It should be already cleared to white if needed.
-        int DrawPage(IGraphicsTarget grTarget, int pageNumber);
+        void DrawPage(IGraphicsTarget grTarget, int pageNumber);
 
         // Called after printing is complete or if it was cancelled.
         void PrintingComplete();
@@ -139,6 +138,7 @@ namespace PurplePen
     public static class PrintingStandards
     {
         // Standard paper sizes, in hundredths of an inch.  The first 10 are metric sizes, the last 3 are English sizes.
+        // Note that the names must match the Winforms PaperKind enumeration names.
         public static PrintingPaperSize[] StandardPaperSizes = {
             new PrintingPaperSize("A2", 1654, 2339),
             new PrintingPaperSize("A3", 1169, 1654),
