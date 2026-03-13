@@ -66,8 +66,9 @@ namespace PurplePen
 
         TextPart[] selectionDesc;         // The current selection description.
 
-        DescriptionPrintSettings descPrintSettings = new DescriptionPrintSettings();     // printing settings for the description;
-        PunchPrintSettings punchPrintSettings = new PunchPrintSettings();     // printing settings for the description;
+        DescriptionPrintSettings descPrintSettings = new DescriptionPrintSettings();     // printing settings for the description
+        CorePunchPrintSettings punchPrintSettings = new CorePunchPrintSettings();     // printing settings for the punch cards
+        PageSettings punchPrintPageSettings = new PageSettings();                     // page settings for the punch cards
         CoursePrintSettings coursePrintSettings = new CoursePrintSettings();   // printing settings for courses.
         CoursePdfSettings coursePdfSettings = null;   // PDF creation settings for courses.
         OcadCreationSettings ocadCreationSettingsPrevious = null;     // creation settings for OCAD creation, if it has been done before.
@@ -2280,13 +2281,15 @@ namespace PurplePen
             PrintPunches printPunchesDialog = new PrintPunches(controller.GetEventDB(), false);
             printPunchesDialog.controller = controller;
             printPunchesDialog.PrintSettings = punchPrintSettings;
+            printPunchesDialog.PrinterPageSettings = punchPrintPageSettings;
             printPunchesDialog.PrintSettings.Count = 1;
 
             // show the dialog, on success, print.
             if (printPunchesDialog.ShowDialog(this) == DialogResult.OK) {
                 // Save the settings for the next invocation of the dialog.
                 punchPrintSettings = printPunchesDialog.PrintSettings;
-                controller.PrintPunches(punchPrintSettings, false);
+                punchPrintPageSettings = printPunchesDialog.PrinterPageSettings;
+                controller.PrintPunches(punchPrintSettings, punchPrintPageSettings, false);
             }
 
             // And the dialog is done.
@@ -2300,6 +2303,7 @@ namespace PurplePen
             PrintPunches printPunchesDialog = new PrintPunches(controller.GetEventDB(), true);
             printPunchesDialog.controller = controller;
             printPunchesDialog.PrintSettings = punchPrintSettings;
+            printPunchesDialog.PrinterPageSettings = punchPrintPageSettings;
             printPunchesDialog.PrintSettings.Count = 1;
 
             // show the dialog, on success, print.
@@ -2315,7 +2319,8 @@ namespace PurplePen
                 if (savePdfDialog.ShowDialog(this) == DialogResult.OK) {
                     // Save the settings for the next invocation of the dialog.
                     punchPrintSettings = printPunchesDialog.PrintSettings;
-                    controller.CreatePunchesPdf(punchPrintSettings, savePdfDialog.FileName);
+                    punchPrintPageSettings = printPunchesDialog.PrinterPageSettings;
+                    controller.CreatePunchesPdf(punchPrintSettings, punchPrintPageSettings, savePdfDialog.FileName);
                 }
             }
 

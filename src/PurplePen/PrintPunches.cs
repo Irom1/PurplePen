@@ -47,12 +47,13 @@ namespace PurplePen
     // class which contains the settings.
     partial class PrintPunches: BaseDialog
     {
-        PunchPrintSettings settings;
+        CorePunchPrintSettings settings = new CorePunchPrintSettings();
+        PageSettings printerPageSettings = new PageSettings();
         internal Controller controller;
         private readonly bool isPdfCreation = false;
 
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public PunchPrintSettings PrintSettings
+        public CorePunchPrintSettings PrintSettings
         {
             get {
                 UpdateSettings();
@@ -61,6 +62,18 @@ namespace PurplePen
             set
             {
                 settings = value;
+                UpdateDialog();
+            }
+        }
+
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public PageSettings PrinterPageSettings {
+            get {
+                UpdateSettings();
+                return printerPageSettings;
+            }
+            set {
+                printerPageSettings = value;
                 UpdateDialog();
             }
         }
@@ -87,7 +100,7 @@ namespace PurplePen
         // Update the dialog with information from the settings.
         void UpdateDialog()
         {
-            PageSettings pageSettings = settings.PageSettings;
+            PageSettings pageSettings = printerPageSettings;
             PrinterSettings printerSettings = pageSettings.PrinterSettings;
 
             // Courses
@@ -135,20 +148,20 @@ namespace PurplePen
             controller.HandleExceptions(
                 delegate {
                     UpdateSettings();
-                    printDialog.PrinterSettings = settings.PageSettings.PrinterSettings;
-                    printDialog.PrinterSettings.DefaultPageSettings.Landscape = settings.PageSettings.Landscape;
-                    printDialog.PrinterSettings.DefaultPageSettings.Margins = settings.PageSettings.Margins;
-                    printDialog.PrinterSettings.DefaultPageSettings.PaperSize = settings.PageSettings.PaperSize;
-                    printDialog.PrinterSettings.DefaultPageSettings.PaperSource = settings.PageSettings.PaperSource;
+                    printDialog.PrinterSettings = printerPageSettings.PrinterSettings;
+                    printDialog.PrinterSettings.DefaultPageSettings.Landscape = printerPageSettings.Landscape;
+                    printDialog.PrinterSettings.DefaultPageSettings.Margins = printerPageSettings.Margins;
+                    printDialog.PrinterSettings.DefaultPageSettings.PaperSize = printerPageSettings.PaperSize;
+                    printDialog.PrinterSettings.DefaultPageSettings.PaperSource = printerPageSettings.PaperSource;
 
                     DialogResult result = printDialog.ShowDialog(this);
 
                     if (result == DialogResult.OK) {
-                        settings.PageSettings.Margins = printDialog.PrinterSettings.DefaultPageSettings.Margins;
-                        settings.PageSettings.PaperSize = printDialog.PrinterSettings.DefaultPageSettings.PaperSize;
-                        settings.PageSettings.PaperSource = printDialog.PrinterSettings.DefaultPageSettings.PaperSource;
-                        settings.PageSettings.PrinterSettings = printDialog.PrinterSettings;
-                        settings.PageSettings.PrinterSettings.Copies = 1; // ignore copies from the print settings dialog.
+                        printerPageSettings.Margins = printDialog.PrinterSettings.DefaultPageSettings.Margins;
+                        printerPageSettings.PaperSize = printDialog.PrinterSettings.DefaultPageSettings.PaperSize;
+                        printerPageSettings.PaperSource = printDialog.PrinterSettings.DefaultPageSettings.PaperSource;
+                        printerPageSettings.PrinterSettings = printDialog.PrinterSettings;
+                        printerPageSettings.PrinterSettings.Copies = 1; // ignore copies from the print settings dialog.
                         UpdateDialog();
                     }
                 }
@@ -160,21 +173,20 @@ namespace PurplePen
             controller.HandleExceptions(
                 delegate {
                     UpdateSettings();
-                    Margins originalMargins = settings.PageSettings.Margins;
-
+                    Margins originalMargins = printerPageSettings.Margins;
                     if (Util.IsCurrentCultureMetric())     // work around bug
-                        settings.PageSettings.Margins = PrinterUnitConvert.Convert(settings.PageSettings.Margins, PrinterUnit.Display, PrinterUnit.TenthsOfAMillimeter);
+                        printerPageSettings.Margins = PrinterUnitConvert.Convert(printerPageSettings.Margins, PrinterUnit.Display, PrinterUnit.TenthsOfAMillimeter);
 
-                    pageSetupDialog.PageSettings = settings.PageSettings;
-                    pageSetupDialog.PrinterSettings = settings.PageSettings.PrinterSettings;
+                    pageSetupDialog.PageSettings = printerPageSettings;
+                    pageSetupDialog.PrinterSettings = printerPageSettings.PrinterSettings;
 
                     DialogResult result = pageSetupDialog.ShowDialog(this);
                     if (result == DialogResult.OK) {
-                        settings.PageSettings = pageSetupDialog.PageSettings;
+                        printerPageSettings = pageSetupDialog.PageSettings;
                         UpdateDialog();
                     }
                     else {
-                        settings.PageSettings.Margins = originalMargins;
+                        printerPageSettings.Margins = originalMargins;
                     }
 
                 }
@@ -202,7 +214,7 @@ namespace PurplePen
         private void previewButton_Click(object sender, EventArgs e)
         {
             if (SomeCoursesSelected())
-                controller.PrintPunches(PrintSettings, true);
+                controller.PrintPunches(PrintSettings, PrinterPageSettings, true);
         }
 
         private void punchCardLayoutButton_Click(object sender, EventArgs e)

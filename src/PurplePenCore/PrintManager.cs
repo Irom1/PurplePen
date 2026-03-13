@@ -51,15 +51,17 @@ namespace PurplePen
             try {
                 for (int pageNumber = 1; pageNumber <= pageCount; pageNumber++) {
                     PrintingPaperSize pagePaperSize = printable.GetPagePaperSize(pageNumber);
+                    int currentPageNumber = pageNumber; // Must capture pageNumber for the closure below.
 
                     printingTarget.PrintPage(pageNumber, pagePaperSize, grTarget => {
+
                         // Translate so (0,0) is at the top-left of the printable area (inside the margins).
                         // The IPrintingTarget provides coordinates in hundredths of an inch from the page top-left.
                         Matrix translateTransform = new Matrix();
                         translateTransform.Translate(defaultMarginSize.LeftInHundreths, defaultMarginSize.TopInHundreths);
                         grTarget.PushTransform(translateTransform);
                         try {
-                            printable.DrawPage(grTarget, pageNumber);
+                            printable.DrawPage(grTarget, currentPageNumber);
                         }
                         finally {
                             grTarget.PopTransform();

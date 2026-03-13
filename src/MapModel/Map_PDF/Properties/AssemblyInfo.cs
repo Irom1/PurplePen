@@ -37,6 +37,3 @@ using System.Runtime.Versioning;
 [assembly: AssemblyFileVersion(PurplePen.MapModel.VersionNumber.Current)]
 
 
-#if NET5_0_OR_GREATER
-[assembly: SupportedOSPlatform("windows")]
-#endif

@@ -43,6 +43,7 @@ using System.Linq;
 using PurplePen.MapView;
 using PurplePen.MapModel;
 using PurplePen.Graphics2D;
+using System.Drawing.Printing;
 
 namespace PurplePen
 {
@@ -1314,9 +1315,45 @@ namespace PurplePen
             return success;
         }
 
-        // Print or print preview punch cards. Returns success or failure; any errors are already reported to the user.
-        public bool PrintPunches(PunchPrintSettings punchPrintSettings, bool preview)
+#if PORTING
+        // Convert the paper size from the PageSettings to a PrintingPaperSize. 
+        public PrintingPaperSize PrintingPaperSizeFromPageSettings(PageSettings pageSettings)
         {
+            return new PrintingPaperSize(pageSettings.PaperSize.Kind.ToString(), pageSettings.Bounds.Width, pageSettings.Bounds.Height);
+        }
+
+        public PrintingMarginSize PrintingMarginSizeFromPageSettings(PageSettings pageSettings) 
+        {
+            return new PrintingMarginSize(pageSettings.Margins.Left, pageSettings.Margins.Top, pageSettings.Margins.Right, pageSettings.Margins.Bottom);
+        }
+#endif
+
+        // Print or print preview punch cards. Returns success or failure; any errors are already reported to the user.
+        public bool PrintPunches(CorePunchPrintSettings punchPrintSettings, PageSettings pageSettings, bool preview)
+        {
+#if PORTING
+            string documentTitle = QueryEvent.GetEventTitle(eventDB, " ");
+
+            bool success = HandleExceptions(
+                delegate {
+                    CorePunchPrinting punchPrinter = new CorePunchPrinting(eventDB, punchPrintSettings);
+
+                    WinFormsPrinter winFormsPrinter = new WinFormsPrinter(this, new WinFormsPrinter.WinFormsPrinterOptions() {
+                        PageSettings = pageSettings,
+                        ColorModel = ColorModel.RGB,
+                        StopAfterEachPage = false,
+                        PrintPreview = preview,
+                        PreviewDialogSize = GetPrintPreviewSize()
+                    });
+
+                    PrintManager printManager = new PrintManager(documentTitle, winFormsPrinter, punchPrinter);
+                    printManager.SetDefaultPaperSize(PrintingPaperSizeFromPageSettings(pageSettings), PrintingMarginSizeFromPageSettings(pageSettings));
+                    printManager.DoPrinting();
+                },
+                MiscText.CannotPrint, documentTitle);
+
+            return success;
+#else
             bool success = HandleExceptions(
                 delegate {
                     PunchPrinting punchPrinter = new PunchPrinting(eventDB, this, punchPrintSettings);
@@ -1328,11 +1365,29 @@ namespace PurplePen
                 MiscText.CannotPrint, QueryEvent.GetEventTitle(eventDB, " "));
 
             return success;
+#endif
         }
 
         // Create PDF for punch cards. Returns success or failure; any errors are already reported to the user.
-        public bool CreatePunchesPdf(PunchPrintSettings punchPrintSettings, string pathName)
+        public bool CreatePunchesPdf(CorePunchPrintSettings punchPrintSettings, PageSettings pageSettings, string pathName)
         {
+#if PORTING
+            string documentTitle = QueryEvent.GetEventTitle(eventDB, " ");
+
+            bool success = HandleExceptions(
+                delegate {
+                    CorePunchPrinting punchPrinter = new CorePunchPrinting(eventDB, punchPrintSettings);
+
+                    PdfPrintTarget pdfPrintTarget = new PdfPrintTarget(pathName, cmykMode: false);
+
+                    PrintManager printManager = new PrintManager(documentTitle, pdfPrintTarget, punchPrinter);
+                    printManager.SetDefaultPaperSize(PrintingPaperSizeFromPageSettings(pageSettings), PrintingMarginSizeFromPageSettings(pageSettings));
+                    printManager.DoPrinting();
+                },
+                MiscText.CannotPrint, documentTitle);
+
+            return success;
+#else
             bool success = HandleExceptions(
                 delegate {
                     PunchPrinting punchPrinter = new PunchPrinting(eventDB, this, punchPrintSettings);
@@ -1341,6 +1396,7 @@ namespace PurplePen
                 MiscText.CannotCreatePdfs);
 
             return success;
+#endif
         }
 
         // Return true if we must rasterize before printing.

@@ -158,6 +158,7 @@ namespace PurplePen
 
             // Update page count.
             ++currentPage;
+            e.HasMorePages = (currentPage < pageCount);
         }
 
         private bool PausePrintingAfterPage(int pageNumber, out string pauseMessage)

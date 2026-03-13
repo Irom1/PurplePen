@@ -136,7 +136,7 @@ namespace PurplePen
         private struct PositionedRectangle
         {
             public IPrintableRectangle description;
-            public int pageNumber;          // page numbers start at 0
+            public int pageNumber;          // page numbers start at 1
             public PointF location;
             public int startLine;
             public int countLines;
@@ -151,10 +151,10 @@ namespace PurplePen
         private List<PositionedRectangle> positions = new List<PositionedRectangle>();
 
         // The following variable track the current position on the page.
-        private int currentPage;
-        private float currentX;              // X position of left side of current column.
+        private int currentPage = 1;     // page numbers start at 1.
+        private float currentX;          // X position of left side of current column.
         private float columnWidth;       // if currentY != 0, the width of the current column.
-        private float currentY;              // Y position of top of where next description might go.
+        private float currentY;          // Y position of top of where next description might go.
 
         // Initialize the description positioner with the size of the pages, the box size of descriptions, and the spacing
         // between descriptions. The physicaly size of the units are immaterial, but are all the same.
@@ -172,7 +172,7 @@ namespace PurplePen
                 if (positions.Count == 0)
                     return 0;
                 else
-                    return positions[positions.Count - 1].pageNumber + 1;
+                    return positions[positions.Count - 1].pageNumber;
             }
         }
 
@@ -392,7 +392,7 @@ namespace PurplePen
             } while (lineStart != 0);
 
             if (positions.Count == 0) {
-                currentPage = 0;
+                currentPage = 1;
                 currentX = 0;
                 currentY = 0;
             }
