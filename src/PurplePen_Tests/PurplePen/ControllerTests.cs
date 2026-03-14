@@ -66,12 +66,6 @@ namespace PurplePen.Tests
             undoMgr.EndCommand(197);
         }
 
-        [ClassInitialize]
-        public static void Setup(TestContext context)
-        {
-            Services.BitmapLoader = new GDIPlus_GraphicsBitmapLoader();
-        }
-
 
         [TestInitialize]
         public void Setup()

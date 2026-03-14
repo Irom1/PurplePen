@@ -55,12 +55,6 @@ namespace PurplePen.Tests
     [TestClass, DoNotParallelize]
     public class EventDBTests: TestFixtureBase
     {
-        [ClassInitialize]
-        public static void Setup(TestContext context)
-        {
-            Services.BitmapLoader = new GDIPlus_GraphicsBitmapLoader();
-        }
-
 
         [TestMethod]
         public void RoundTripControlPoints()

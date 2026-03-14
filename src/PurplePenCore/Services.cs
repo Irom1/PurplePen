@@ -1,8 +1,10 @@
-﻿using PurplePen.Graphics2D;
+﻿using Microsoft.Extensions.DependencyInjection;
+using PurplePen.Graphics2D;
 using PurplePen.MapModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,17 +14,20 @@ namespace PurplePen
     // Extreme rudimentary way of providing services.
     public static class Services
     {
-        public static IGraphicsBitmapLoader BitmapLoader;
-        public static IBitmapGraphicsTargetProvider BitmapGraphicsTargetProvider;
-        public static IFontLoader FontLoader;
-        public static ITextMetrics TextMetricsProvider;
-        public static IFileLoaderProvider FileLoaderProvider;
-        public static IPdfLoadingStatus PdfLoadingUI;
-        public static IPdfWriter PdfWriter;
-#if PORTING
-        public static IColorConverter RgbColorConverter;
-        public static IColorConverter CmykColorConverter;
-#endif
+        private static IServiceProvider serviceProvider;
+
+        public static void RegisterServiceProvider(IServiceProvider serviceProvider)
+        {
+            Services.serviceProvider = serviceProvider;
+        }
+
+        public static IGraphicsBitmapLoader BitmapLoader => serviceProvider.GetRequiredService<IGraphicsBitmapLoader>();
+        public static IBitmapGraphicsTargetProvider BitmapGraphicsTargetProvider => serviceProvider.GetRequiredService<IBitmapGraphicsTargetProvider>();
+        public static IFontLoader FontLoader => serviceProvider.GetRequiredService<IFontLoader>();
+        public static ITextMetrics TextMetricsProvider => serviceProvider.GetRequiredService<ITextMetrics>();
+        public static IFileLoaderProvider FileLoaderProvider => serviceProvider.GetRequiredService<IFileLoaderProvider>();
+        public static IPdfLoadingStatus PdfLoadingUI => serviceProvider.GetRequiredService<IPdfLoadingStatus>();
+        public static IPdfWriter PdfWriter => serviceProvider.GetRequiredService<IPdfWriter>();
     }
 
     public interface IFileLoaderProvider

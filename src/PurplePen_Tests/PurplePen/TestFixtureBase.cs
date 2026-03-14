@@ -32,7 +32,9 @@
  * OF SUCH DAMAGE.
  */
 
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using PurplePen.Graphics2D;
 using PurplePen.MapModel;
 using System;
 using System.Collections.Generic;
@@ -56,34 +58,6 @@ namespace PurplePen.Tests
         {
             get { return testContextInstance; }
             set { testContextInstance = value; }
-        }
-
-        private static bool _isInitialized = false;
-        private static readonly object _lock = new object();
-
-        [TestInitialize]
-        public void InheritedInit()
-        {
-            lock (_lock) {
-                if (!_isInitialized) {
-                    // Put your "once per class" logic here
-                    ClassSetup();
-                    _isInitialized = true;
-                }
-            }
-        }
-
-        private void ClassSetup()
-        {
-            Services.BitmapLoader = new GDIPlus_GraphicsBitmapLoader();
-            Services.BitmapGraphicsTargetProvider = new GDIPlus_BitmapGraphicsTargetProvider();
-            Services.FontLoader = GdiplusFontLoader.Instance;
-            Services.TextMetricsProvider = new GDIPlus_TextMetrics();
-            Services.FileLoaderProvider = new GdiPlus_FileLoaderProvider();
-            Services.PdfLoadingUI = new PdfLoadingUI();
-            Services.RgbColorConverter = new GDIPlus_ColorConverter();
-            Services.CmykColorConverter = new SwopColorConverter();
-            Services.PdfWriter = new PdfWriter();
         }
 
 

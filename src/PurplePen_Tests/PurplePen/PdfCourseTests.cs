@@ -23,12 +23,6 @@ namespace PurplePen.Tests
 
         private const int MAX_PIXEL_DIFF = 30;
 
-        [ClassInitialize]
-        public static void Setup(TestContext context)
-        {
-            Services.BitmapLoader = new GDIPlus_GraphicsBitmapLoader();
-        }
-
 
         [TestInitialize]
         public void Setup()

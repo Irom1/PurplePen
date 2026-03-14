@@ -593,7 +593,7 @@ namespace PurplePen
             // Only dim bitmap if size isn't too large. Otherwise takes too much memory.
             if ((mapType == MapType.Bitmap || mapType == MapType.PDF) && mapIntensity < 0.99F && (bitmap.PixelWidth * bitmap.PixelHeight) < 36000000) {
                 // ColorConverter doesn't actually matter since we are just drawing a bitmap.
-                using (IBitmapGraphicsTarget grTarget = Services.BitmapGraphicsTargetProvider.CreateBitmapGraphicsTarget(bitmap.PixelWidth, bitmap.PixelHeight, Services.RgbColorConverter)) {
+                using (IBitmapGraphicsTarget grTarget = Services.BitmapGraphicsTargetProvider.CreateBitmapGraphicsTarget(bitmap.PixelWidth, bitmap.PixelHeight, DefaultColorConverter.Instance)) {
                     grTarget.Intensity = mapIntensity;
                     grTarget.DrawBitmap(bitmap, new RectangleF(0, 0, bitmap.PixelWidth, bitmap.PixelHeight), BitmapScaling.NearestNeighbor, 0);
                     dimmedBitmap = grTarget.FinishBitmap();
@@ -691,7 +691,7 @@ namespace PurplePen
         public void Draw(IGraphicsBitmap bitmap, Matrix transform, RectangleF? clipRect = null)
         {
             Debug.Assert(colorModel == ColorModel.CMYK || colorModel == ColorModel.RGB);
-            IColorConverter colorConverter = (colorModel == ColorModel.CMYK) ? Services.CmykColorConverter : Services.RgbColorConverter;
+            IColorConverter colorConverter = (colorModel == ColorModel.CMYK) ? (IColorConverter) SwopColorConverter.Instance : (IColorConverter) DefaultColorConverter.Instance;
 
             if (bitmap.PixelHeight == 0 || bitmap.PixelWidth == 0)
                 return;

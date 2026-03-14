@@ -83,7 +83,7 @@ namespace PurplePen.MapModel
         public GDIPlus_GraphicsTarget(Graphics g, IColorConverter colorConverter, float intensity)
         {
             this.Graphics = g;
-            this.colorConverter = colorConverter ?? new GDIPlus_ColorConverter();
+            this.colorConverter = colorConverter ?? DefaultColorConverter.Instance;
             this.intensity = intensity;
             if (intensity < 1.0F) {
                 imageAttributes = new ImageAttributes();
@@ -826,7 +826,7 @@ namespace PurplePen.MapModel
             graphics.Transform = transform.ToSysDrawMatrix();
 
             if (initialColor != null) {
-                colorConverter = colorConverter ?? new GDIPlus_ColorConverter();
+                colorConverter = colorConverter ?? DefaultColorConverter.Instance;
                 graphics.Clear(colorConverter.ToColor(initialColor));
             }
 
@@ -1411,14 +1411,6 @@ namespace PurplePen.MapModel
             }
 
             return null;
-        }
-    }
-
-    public class GDIPlus_ColorConverter: IColorConverter
-    {
-        public virtual Color ToColor(CmykColor cmykColor)
-        {
-            return ColorConverter.ToColor(cmykColor);
         }
     }
 

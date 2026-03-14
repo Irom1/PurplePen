@@ -27,7 +27,7 @@ namespace PurplePen
                 purpleColor = CmykColor.FromCmyk(appearance.purpleC, appearance.purpleM, appearance.purpleY, appearance.purpleK);
             }
 
-            this.purpleColor = SwopColorConverter.CmykToRgbColor(purpleColor);
+            this.purpleColor = SwopColorConverter.Instance.ToColor(purpleColor);
             colorChooser = new SpecialColorChooser(comboBoxColor, buttonChangeColor, purpleColor);
             colorChooser.ColorChanged += colorChooser_ColorChanged;
             LineKind = PurplePen.LineKind.Single;
@@ -198,7 +198,7 @@ namespace PurplePen
             else if (lineSpecialColor.Kind == SpecialColor.ColorKind.UpperPurple || lineSpecialColor.Kind == SpecialColor.ColorKind.LowerPurple)
                 lineColor = purpleColor;
             else
-                lineColor = SwopColorConverter.CmykToRgbColor(lineSpecialColor.CustomColor);
+                lineColor = SwopColorConverter.Instance.ToColor(lineSpecialColor.CustomColor);
 
             using (Brush purpleBrush = new SolidBrush(purpleColor))
             using (Pen purplePen = new Pen(purpleColor, controlLineWidth)) 

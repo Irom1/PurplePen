@@ -307,4 +307,18 @@ namespace PurplePen.Graphics2D
             }
         }
     }
+
+    // Default color converter, which uses the default RGB <-> CMYK conversion algorithm. 
+    public class DefaultColorConverter : IColorConverter
+    {
+        public static DefaultColorConverter Instance { get { return instance; } }
+        private static DefaultColorConverter instance = new DefaultColorConverter();
+
+        public virtual Color ToColor(CmykColor cmykColor)
+        {
+            return ColorConverter.ToColor(cmykColor);
+        }
+    }
+
+
 }

@@ -11,11 +11,15 @@ namespace PurplePen
 {
     public class SwopColorConverter: IColorConverter
     {
-        const int SAMPLESIZE = 12;
-        private static Dictionary<CmykColor, SD.Color> cmykToColor = new Dictionary<CmykColor,SD.Color>();
-        private static RGB[,,,] samples = new RGB[SAMPLESIZE, SAMPLESIZE, SAMPLESIZE, SAMPLESIZE];
+        public static SwopColorConverter Instance { get { return instance; } }
+        private static SwopColorConverter instance = new SwopColorConverter();
 
-        static SwopColorConverter()
+
+        const int SAMPLESIZE = 12;
+        private Dictionary<CmykColor, SD.Color> cmykToColor = new Dictionary<CmykColor,SD.Color>();
+        private RGB[,,,] samples = new RGB[SAMPLESIZE, SAMPLESIZE, SAMPLESIZE, SAMPLESIZE];
+
+        public SwopColorConverter()
         {
             byte[] data = new byte[SAMPLESIZE * SAMPLESIZE * SAMPLESIZE * SAMPLESIZE * 3];
 
@@ -42,7 +46,7 @@ namespace PurplePen
             }
         }
 
-        private static RGBDbl Interp(RGBDbl rgbLow, RGBDbl rgbHigh, float frac)
+        private RGBDbl Interp(RGBDbl rgbLow, RGBDbl rgbHigh, float frac)
         {
             return new RGBDbl(rgbLow.R * (1 - frac) + rgbHigh.R * frac,
                 rgbLow.G * (1 - frac) + rgbHigh.G * frac,
@@ -50,7 +54,7 @@ namespace PurplePen
         }
 
 
-        private static RGB ConvertUsingInterpolation(float c, float m, float y, float k)
+        private RGB ConvertUsingInterpolation(float c, float m, float y, float k)
         {
             // https://en.wikipedia.org/wiki/Trilinear_interpolation
 
@@ -91,7 +95,7 @@ namespace PurplePen
 
 
 
-        public static SD.Color CmykToRgbColor(CmykColor cmykColor)
+        public SD.Color CmykToRgbColor(CmykColor cmykColor)
         {
             SD.Color result;
 

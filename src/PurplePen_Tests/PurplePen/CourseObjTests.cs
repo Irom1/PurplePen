@@ -80,12 +80,6 @@ namespace PurplePen.Tests
 
         }
 
-        [ClassInitialize]
-        public static void Setup(TestContext context)
-        {
-            Services.BitmapLoader = new GDIPlus_GraphicsBitmapLoader();
-        }
-
         // Draw a grid on the graphics
         void DrawGrid(Graphics g, RectangleF rect, float spacing)
         {

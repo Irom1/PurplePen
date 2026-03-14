@@ -59,8 +59,6 @@ namespace PurplePen.Tests
 
         private void Setup(string filename)
         {
-            Services.BitmapLoader = new GDIPlus_GraphicsBitmapLoader();
-
             undomgr = new UndoMgr(10);
             eventDB = new EventDB(undomgr);
 
