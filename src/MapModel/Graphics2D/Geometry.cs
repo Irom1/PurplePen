@@ -46,6 +46,12 @@ namespace PurplePen.Graphics2D
 
     public static class Geometry
     {
+        public static Point PointFromPointF(PointF pointf)
+        {
+            return new Point((int)Math.Round(pointf.X), (int)Math.Round(pointf.Y));
+        }
+
+
         // Converts an angle in radians, where 0 is to the right, to an angle in degrees, where 0 is up.
         public static double RadiansToDegrees(double radians)
         {

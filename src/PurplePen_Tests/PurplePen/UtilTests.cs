@@ -293,10 +293,10 @@ namespace PurplePen.Tests
         {
             float[] result;
 
-            result = WindowsUtil.PrintScaleList(7500);
+            result = MapUtil.PrintScaleList(7500);
             CollectionAssert.AreEqual(new float[] { 4000, 5000, 7500, 10000, 15000 }, result);
 
-            result = WindowsUtil.PrintScaleList(8000);
+            result = MapUtil.PrintScaleList(8000);
             CollectionAssert.AreEqual(new float[] { 4000, 5000, 7500, 8000, 10000, 15000 }, result);
         }
 

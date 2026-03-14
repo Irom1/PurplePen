@@ -204,7 +204,7 @@ namespace PurplePen
 
         public void InitiateMapDragging(PointF initialPos, System.Windows.Forms.MouseButtons buttonEnd)
         {
-            mapViewer.BeginMapDragging(WindowsUtil.PointFromPointF(mapViewer.WorldToPixel(initialPos)), buttonEnd);
+            mapViewer.BeginMapDragging(Geometry.PointFromPointF(mapViewer.WorldToPixel(initialPos)), buttonEnd);
         }
 
         // Prompt the user for a file name to open.
@@ -1257,7 +1257,7 @@ namespace PurplePen
                 mapViewer.Cursor = controller.GetMouseCursor(Pane.Map, location, mapViewer.PixelSize);
             }
 
-            PointF pixelLocation = WindowsUtil.PointFromPointF(mapViewer.WorldToPixel(location));
+            PointF pixelLocation = Geometry.PointFromPointF(mapViewer.WorldToPixel(location));
             if (pixelLocation != lastTooltipLocation)
                 toolTip.Hide(mapViewer);
 
@@ -1267,7 +1267,7 @@ namespace PurplePen
 
         private void mapViewerTopology_OnPointerMove(object sender, bool inViewport, PointF location)
         {
-            PointF pixelLocation = WindowsUtil.PointFromPointF(mapViewerTopology.WorldToPixel(location));
+            PointF pixelLocation = Geometry.PointFromPointF(mapViewerTopology.WorldToPixel(location));
             if (pixelLocation != lastTooltipLocation)
                 toolTip.Hide(mapViewerTopology);
         }
@@ -1279,7 +1279,7 @@ namespace PurplePen
             if (showToolTips && controller.GetToolTip(Pane.Map, location, mapViewer.PixelSize, out tipText, out titleText)) {
                 toolTip.Hide(mapViewer);
                 toolTip.ToolTipTitle = titleText;
-                lastTooltipLocation = WindowsUtil.PointFromPointF(mapViewer.WorldToPixel(location));
+                lastTooltipLocation = Geometry.PointFromPointF(mapViewer.WorldToPixel(location));
                 toolTip.Show(tipText, mapViewer, lastTooltipLocation.X, lastTooltipLocation.Y + 24, 7000);
             }
         }
@@ -1290,7 +1290,7 @@ namespace PurplePen
             if (showToolTips && controller.GetToolTip(Pane.Topology, location, mapViewer.PixelSize, out tipText, out titleText)) {
                 toolTip.Hide(mapViewerTopology);
                 toolTip.ToolTipTitle = titleText;
-                lastTooltipLocation = WindowsUtil.PointFromPointF(mapViewerTopology.WorldToPixel(location));
+                lastTooltipLocation = Geometry.PointFromPointF(mapViewerTopology.WorldToPixel(location));
                 toolTip.Show(tipText, mapViewerTopology, lastTooltipLocation.X, lastTooltipLocation.Y + 24, 7000);
             }
         }

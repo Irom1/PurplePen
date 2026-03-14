@@ -50,6 +50,18 @@ namespace PurplePen
     {
         public static ITextMetrics TextMetricsProvider = Services.TextMetricsProvider;
 
+        // Get a list of print scales from a map scale.
+        // Current algorithm: use 4000, 5000, 7500, 10000, 15000, plus the map scale itself.
+        public static float[] PrintScaleList(float mapScale)
+        {
+            List<float> result = new List<float>(new float[] { 4000, 5000, 7500, 10000, 15000 });
+            if (!result.Contains(mapScale))
+                result.Add(mapScale);
+            result.Sort();
+            return result.ToArray();
+        }
+
+
 
 
         // Given a print area rectangle, get the exact size needed to print it at the given scale ratio. Because there tend to be rounding errors

@@ -64,18 +64,6 @@ namespace PurplePen
             return s.Replace("&", "");
         }
         
-        // Get a list of print scales from a map scale.
-        // Current algorithm: use 4000, 5000, 7500, 10000, 15000, plus the map scale itself.
-        public static float[] PrintScaleList(float mapScale)
-        {
-            List<float> result = new List<float>(new float[] { 4000, 5000, 7500, 10000, 15000 });
-            if (!result.Contains(mapScale))
-                result.Add(mapScale);
-            result.Sort();
-            return result.ToArray();
-        }
-
-
         private static ThreadLocal<Graphics> hiresGraphics = new ThreadLocal<Graphics>(() => {
             Graphics g = Graphics.FromHwnd(IntPtr.Zero);
             g.ScaleTransform(50F, -50F);
@@ -237,21 +225,6 @@ namespace PurplePen
             }
         }
 
-
-        public static Point PointFromPointF(PointF pointf)
-        {
-            return new Point((int)Math.Round(pointf.X), (int)Math.Round(pointf.Y));
-        }
-
-        public static string ImageFormatText(ImageFormat imageFormat)
-        {
-            if (imageFormat.Guid == ImageFormat.Bmp.Guid) return "bmp";
-            if (imageFormat.Guid == ImageFormat.Gif.Guid) return "gif";
-            if (imageFormat.Guid == ImageFormat.Jpeg.Guid) return "jpeg";
-            if (imageFormat.Guid == ImageFormat.Png.Guid) return "png";
-            if (imageFormat.Guid == ImageFormat.Tiff.Guid) return "tiff";
-            return "unknown";
-        }
 
         static class NativeMethods
         {

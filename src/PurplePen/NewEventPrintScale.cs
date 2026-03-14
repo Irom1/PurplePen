@@ -53,7 +53,7 @@ namespace PurplePen
 
                 // print scale combo box
                 comboBoxPrintScale.Items.Clear();
-                foreach (float f in WindowsUtil.PrintScaleList(containingWizard.MapScale))
+                foreach (float f in MapUtil.PrintScaleList(containingWizard.MapScale))
                     comboBoxPrintScale.Items.Add(f);
                 comboBoxPrintScale.Text = Convert.ToString(containingWizard.DefaultPrintScale);
             }
