@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFrameworks>net48;net10.0</TargetFrameworks>
@@ -28,6 +28,10 @@
   </PropertyGroup>
   
   <ItemGroup>
+    <None Remove="swopsamples.dat" />
+  </ItemGroup>
+  
+  <ItemGroup>
     <EmbeddedResource Include="..\PurplePen\Images\ConstructionBoundary_OcadToolbox.png" Link="Resources\OcadToolbox\ConstructionBoundary_OcadToolbox.png" />
     <EmbeddedResource Include="..\PurplePen\Images\Construction_OcadToolbox.png" Link="Resources\OcadToolbox\Construction_OcadToolbox.png" />
     <EmbeddedResource Include="..\PurplePen\Images\Control_OcadToolbox.png" Link="Resources\OcadToolbox\Control_OcadToolbox.png" />
@@ -49,6 +53,7 @@
     <EmbeddedResource Include="..\PurplePen\Images\Start_OcadToolbox.png" Link="Resources\OcadToolbox\Start_OcadToolbox.png" />
     <EmbeddedResource Include="..\PurplePen\Images\Water_OcadToolbox.png" Link="Resources\OcadToolbox\Water_OcadToolbox.png" />
     <EmbeddedResource Include="..\PurplePen\Images\WhiteOut_OcadToolbox.png" Link="Resources\OcadToolbox\WhiteOut_OcadToolbox.png" />
+    <EmbeddedResource Include="swopsamples.dat" />
   </ItemGroup>
 
   <ItemGroup>

@@ -9,7 +9,7 @@ using SD = System.Drawing;
 
 namespace PurplePen
 {
-    class SwopColorConverter: GDIPlus_ColorConverter, IColorConverter
+    public class SwopColorConverter: IColorConverter
     {
         const int SAMPLESIZE = 12;
         private static Dictionary<CmykColor, SD.Color> cmykToColor = new Dictionary<CmykColor,SD.Color>();
@@ -123,17 +123,9 @@ namespace PurplePen
             return result;
         }
 
-        public override SD.Color ToColor(CmykColor cmykColor)
+        public SD.Color ToColor(CmykColor cmykColor)
         {
-            try {
-                return CmykToRgbColor(cmykColor);
-            }
-            catch (Exception) {
-                // In some cases, a weirdly installed .NET framework will cause an exception here.
-                System.Windows.Forms.MessageBox.Show(MiscText.BadDotNetFramework, MiscText.AppTitle);
-                Environment.Exit(1);
-                return new SD.Color();
-            }
+            return CmykToRgbColor(cmykColor);
         }
 
         private struct RGB

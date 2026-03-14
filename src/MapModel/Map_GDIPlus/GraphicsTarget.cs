@@ -100,7 +100,7 @@ namespace PurplePen.MapModel
             stringFormat.FormatFlags |= StringFormatFlags.MeasureTrailingSpaces;
         }
 
-        public GDIPlus_GraphicsTarget(Graphics g, GDIPlus_ColorConverter colorConverter): this(g, colorConverter, 1.0F)
+        public GDIPlus_GraphicsTarget(Graphics g, IColorConverter colorConverter): this(g, colorConverter, 1.0F)
         {
         }
 

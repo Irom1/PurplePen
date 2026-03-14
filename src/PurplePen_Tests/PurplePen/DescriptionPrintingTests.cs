@@ -389,12 +389,12 @@ Settings to access printer 'foobar' are not valid.'
             float boxSize = 10;
             float spacing = 15;
             MockDescription description = new MockDescription("desc1", writer, 8, 17);
-            RectanglePositioner positioner = new RectanglePositioner(paperSize, boxSize, spacing);
+            CoreRectanglePositioner positioner = new CoreRectanglePositioner(paperSize, boxSize, spacing);
 
             int count = positioner.LayoutOneDescriptionPage(description);
             Assert.AreEqual(1, positioner.PageCount);
             Assert.AreEqual(6, count);
-            positioner.DrawPage((IGraphicsTarget)null, 0);
+            positioner.DrawPage((IGraphicsTarget)null, 1);
             Assert.AreEqual(
 @"@ (0,0) description 'desc1'
 @ (0,185) description 'desc1'
@@ -414,12 +414,12 @@ Settings to access printer 'foobar' are not valid.'
             float boxSize = 10;
             float spacing = 15;
             MockDescription description = new MockDescription("desc1", writer, 8, 17);
-            RectanglePositioner positioner = new RectanglePositioner(paperSize, boxSize, spacing);
+            CoreRectanglePositioner positioner = new CoreRectanglePositioner(paperSize, boxSize, spacing);
 
             int count = positioner.LayoutOneDescriptionPage(description);
             Assert.AreEqual(1, positioner.PageCount);
             Assert.AreEqual(3, count);
-            positioner.DrawPage((IGraphicsTarget)null, 0);
+            positioner.DrawPage((IGraphicsTarget)null, 1);
             Assert.AreEqual(
 @"@ (0,0) description 'desc1'
 @ (95,0) description 'desc1'
@@ -436,12 +436,12 @@ Settings to access printer 'foobar' are not valid.'
             float boxSize = 10;
             float spacing = 15;
             MockDescription description = new MockDescription("desc1", writer, 8, 17);
-            RectanglePositioner positioner = new RectanglePositioner(paperSize, boxSize, spacing);
+            CoreRectanglePositioner positioner = new CoreRectanglePositioner(paperSize, boxSize, spacing);
 
             int count = positioner.LayoutOneDescriptionPage(description);
             Assert.AreEqual(1, positioner.PageCount);
             Assert.AreEqual(4, count);
-            positioner.DrawPage((IGraphicsTarget)null, 0);
+            positioner.DrawPage((IGraphicsTarget)null, 1);
             Assert.AreEqual(
 @"@ (0,0) description 'desc1'
 @ (0,185) description 'desc1'
@@ -459,13 +459,13 @@ Settings to access printer 'foobar' are not valid.'
             float boxSize = 10;
             float spacing = 15;
             MockDescription description = new MockDescription("desc1", writer, 8, 46);
-            RectanglePositioner positioner = new RectanglePositioner(paperSize, boxSize, spacing);
+            CoreRectanglePositioner positioner = new CoreRectanglePositioner(paperSize, boxSize, spacing);
 
             int count = positioner.LayoutOneDescriptionPage(description);
             Assert.AreEqual(2, positioner.PageCount);
             Assert.AreEqual(1, count);
-            positioner.DrawPage((IGraphicsTarget)null, 0);
             positioner.DrawPage((IGraphicsTarget)null, 1);
+            positioner.DrawPage((IGraphicsTarget)null, 2);
             Assert.AreEqual(
 @"@ (0,0) partial description 'desc1' [start:0 count:10]
 @ (95,0) partial description 'desc1' [start:10 count:10]
@@ -485,7 +485,7 @@ Settings to access printer 'foobar' are not valid.'
             float boxSize = 10;
             float spacing = 15;
             MockDescription description = new MockDescription("desc1", Console.Out, 8, 17);
-            RectanglePositioner positioner = new RectanglePositioner(paperSize, boxSize, spacing);
+            CoreRectanglePositioner positioner = new CoreRectanglePositioner(paperSize, boxSize, spacing);
 
             int count = positioner.LayoutOneDescriptionPage(description);
             Assert.AreEqual(1, positioner.PageCount);
@@ -505,7 +505,7 @@ Settings to access printer 'foobar' are not valid.'
             float boxSize = 10;
             float spacing = 15;
             MockDescription description = new MockDescription("desc1", Console.Out, 8, 17);
-            RectanglePositioner positioner = new RectanglePositioner(paperSize, boxSize, spacing);
+            CoreRectanglePositioner positioner = new CoreRectanglePositioner(paperSize, boxSize, spacing);
 
             try {
                 int count = positioner.LayoutOneDescriptionPage(description);
@@ -532,11 +532,11 @@ Settings to access printer 'foobar' are not valid.'
             MockDescription desc5 = new MockDescription("desc5", writer, 8, 11);
             MockDescription desc6 = new MockDescription("desc6", writer, 8, 16);
             MockDescription desc7 = new MockDescription("desc7", writer, 8, 8);
-            RectanglePositioner positioner = new RectanglePositioner(paperSize, boxSize, spacing);
+            CoreRectanglePositioner positioner = new CoreRectanglePositioner(paperSize, boxSize, spacing);
 
             positioner.LayoutMultipleDescriptions(new MockDescription[] { desc1, desc2, desc3, desc4, desc5, desc6, desc7 });
             //Assert.AreEqual(1, positioner.PageCount);
-            positioner.DrawPage((IGraphicsTarget)null, 0);
+            positioner.DrawPage((IGraphicsTarget)null, 1);
             Assert.AreEqual(
 @"@ (0,0) description 'desc4'
 @ (0,255) description 'desc3'
@@ -560,11 +560,11 @@ Settings to access printer 'foobar' are not valid.'
             MockDescription desc1 = new MockDescription("desc1", writer, 12, 22);
             MockDescription desc2 = new MockDescription("desc2", writer, 8, 36);
             MockDescription desc3 = new MockDescription("desc3", writer, 8, 6);
-            RectanglePositioner positioner = new RectanglePositioner(paperSize, boxSize, spacing);
+            CoreRectanglePositioner positioner = new CoreRectanglePositioner(paperSize, boxSize, spacing);
 
             positioner.LayoutMultipleDescriptions(new MockDescription[] { desc1, desc2, desc3 });
             //Assert.AreEqual(1, positioner.PageCount);
-            positioner.DrawPage((IGraphicsTarget)null, 0);
+            positioner.DrawPage((IGraphicsTarget)null, 1);
             Assert.AreEqual(
 @"@ (0,0) description 'desc1'
 @ (135,0) partial description 'desc2' [start:0 count:25]
