@@ -337,7 +337,7 @@ namespace PurplePen
 
         public void PrintToPdf(string pathName, bool cmykMode)
         {
-            PdfWriter pdfWriter = new PdfWriter(Path.GetFileNameWithoutExtension(pathName), cmykMode);
+            IPdfDocumentWriter pdfDocumentWriter = Services.PdfWriter.CreateDocument(pathName, Path.GetFileNameWithoutExtension(pathName), cmykMode);
 
             // Set up and position everything.
             printPreviewInProgress = false;
@@ -360,7 +360,7 @@ namespace PurplePen
                 float dpi = 1200;  // Make a PDF high resolution, although this is unlikely to matter much.
 
                 // create and print a page.
-                using (IGraphicsTarget grTarget = pdfWriter.BeginPage(paperSizeInInches)) {
+                using (IGraphicsTarget grTarget = pdfDocumentWriter.BeginPage(paperSizeInInches)) {
                     // Move the origin of the graphics to the margin boundaries.
                     Matrix translateTransform = new Matrix();
                     translateTransform.Translate(marginBounds.Left, marginBounds.Top);
@@ -378,7 +378,7 @@ namespace PurplePen
 
             EndPrint(this, printArgs);
 
-            pdfWriter.Save(pathName);
+            pdfDocumentWriter.Save();
         }
 
         #endregion

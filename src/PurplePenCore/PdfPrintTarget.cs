@@ -14,7 +14,7 @@ namespace PurplePen
         private readonly string pathName;
         private readonly bool cmykMode;
 
-        private PdfWriter pdfWriter;
+        private IPdfDocumentWriter pdfWriter;
 
         public PdfPrintTarget(string pathName, bool cmykMode)
         {
@@ -24,12 +24,12 @@ namespace PurplePen
 
         public void StartPrinting(string documentTitle, int pageCount)
         {
-            pdfWriter = new PdfWriter(documentTitle, cmykMode);
+            pdfWriter = Services.PdfWriter.CreateDocument(pathName, documentTitle, cmykMode);
         }
 
         public void EndPrinting()
         {
-            pdfWriter.Save(pathName);
+            pdfWriter.Save();
         }
 
         public void PrintPage(int pageNumber, PrintingPaperSize paperSize, Action<IGraphicsTarget> drawPage)

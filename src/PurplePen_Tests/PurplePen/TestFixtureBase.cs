@@ -83,6 +83,7 @@ namespace PurplePen.Tests
             Services.PdfLoadingUI = new PdfLoadingUI();
             Services.RgbColorConverter = new GDIPlus_ColorConverter();
             Services.CmykColorConverter = new SwopColorConverter();
+            Services.PdfWriter = new PdfWriter();
         }
 
 

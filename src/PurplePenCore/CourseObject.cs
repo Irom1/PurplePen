@@ -33,7 +33,6 @@
  */
 
 using Microsoft.SqlServer.Server;
-using PdfSharp.Drawing;
 using PurplePen.Graphics2D;
 using PurplePen.MapModel;
 using System;

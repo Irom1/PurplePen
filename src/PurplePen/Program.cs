@@ -61,6 +61,7 @@ namespace PurplePen
             Services.FontLoader = GdiplusFontLoader.Instance;
             Services.TextMetricsProvider = new GDIPlus_TextMetrics();
             Services.FileLoaderProvider = new GdiPlus_FileLoaderProvider();
+            Services.PdfWriter = new PdfWriter();
             Services.PdfLoadingUI = new PdfLoadingUI();
             Services.RgbColorConverter = new GDIPlus_ColorConverter();
             Services.CmykColorConverter = new SwopColorConverter();

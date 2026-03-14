@@ -1,5 +1,4 @@
-﻿using PdfSharp.Pdf.Advanced;
-using PurplePen.Graphics2D;
+﻿using PurplePen.Graphics2D;
 using System;
 using System.Collections.Generic;
 using System.Drawing;

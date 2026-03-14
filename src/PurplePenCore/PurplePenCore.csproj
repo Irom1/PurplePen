@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFrameworks>net48;net10.0</TargetFrameworks>
@@ -60,7 +60,6 @@
     <ProjectReference Include="..\DotSpatialProjectionsLite\DotSpatial.Projections\DotSpatial.Projections.csproj" />
     <ProjectReference Include="..\MapModel\Graphics2D\Graphics2D.csproj" />
     <ProjectReference Include="..\MapModel\MapModel\MapModel.csproj" />
-    <ProjectReference Include="..\MapModel\Map_PDF\Map_PDF.csproj" />
   </ItemGroup>
 
   <ItemGroup>

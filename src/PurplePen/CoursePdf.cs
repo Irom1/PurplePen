@@ -109,15 +109,10 @@ namespace PurplePen
         {
             List<Pair<string, IEnumerable<CourseDesignator>>> fileList = GetFilesToCreate();
 
-            // Test that we can read the page. We don't keep the page around, because there are weird
-            // bugs that occur if we do.
+            // Test that we can read the page. 
             if (IsPdfMap) {
-                PdfImporter pdfImporter = new PdfImporter(sourcePdfMapFileName);
-                try {
-                    PdfPage pdfMapPage = pdfImporter.GetPage(0);
-                }
-                catch (Exception) {
-                    // We couldn't import the page. Fall back to normal map rendering methods.
+                if (! Services.PdfWriter.CanReadPdfPage(sourcePdfMapFileName, 0)) {
+                    // We couldn't read the page. Fall back to normal map rendering methods.
                     sourcePdfMapFileName = null; // IsPdfMap will now be false.
                 }
             }
@@ -196,7 +191,7 @@ namespace PurplePen
         void CreateOnePdfFile(string fileName, IEnumerable<CourseDesignator> courseDesignators)
         {
             List<CoursePage> pages = LayoutPages(courseDesignators);
-            PdfWriter pdfWriter = new PdfWriter(Path.GetFileNameWithoutExtension(fileName), coursePdfSettings.ColorModel == ColorModel.CMYK);
+            IPdfDocumentWriter pdfDocumentWriter = Services.PdfWriter.CreateDocument(fileName, Path.GetFileNameWithoutExtension(fileName), coursePdfSettings.ColorModel == ColorModel.CMYK);
 
             foreach (CoursePage page in pages) {
                 CoursePage pageToDraw = page;
@@ -214,19 +209,16 @@ namespace PurplePen
                 }
 
                 IGraphicsTarget grTarget;
-                PdfImporter pdfImporter = null;
 
                 if (coursePdfSettings.DontPrintBaseMap) {
                     // Don't print the base map, just the course.
                     mapDisplay.SetMapFile(MapType.None, null);
-                    grTarget = pdfWriter.BeginPage(paperSize);
+                    grTarget = pdfDocumentWriter.BeginPage(paperSize);
                 }
                 else if (IsPdfMap) {
                     // Import the base map from the PDF map file, so that it is vector, not raster.
 
                     // We need to re-obtain a PdfImporter every time, or else very strange bugs start to crop up.
-
-                    pdfImporter = new PdfImporter(sourcePdfMapFileName);
 
                     float scaleRatio = CourseView.CreatePrintingCourseView(eventDB, page.courseDesignator).ScaleRatio;
                     RectangleF sourcePortionInInches = new RectangleF(
@@ -241,32 +233,27 @@ namespace PurplePen
                         Geometry.SimilarRectangles(page.mapRectangle, mapBounds, 0.01F)) 
                     {
                         // If we're doing a PDF at scale 1, no cropping, and the print area is the same as the page size, we just copy the page directly.
-                        grTarget = pdfWriter.BeginCopiedPage(pdfImporter, 0);
+                        grTarget = pdfDocumentWriter.BeginCopiedPage(sourcePdfMapFileName, 0);
                     }
                     else {
-                        grTarget = pdfWriter.BeginCopiedPartialPage(pdfImporter, 0, paperSize, sourcePortionInInches, cropRectangleInInches);
+                        grTarget = pdfDocumentWriter.BeginCopiedPartialPage(sourcePdfMapFileName, 0, paperSize, sourcePortionInInches, cropRectangleInInches);
                     }
 
                     // Don't draw the map normally, which would case the rasterized map to be drawn over the PDF map.
                     mapDisplay.SetMapFile(MapType.None, null);
                 }
                 else {
-                    grTarget = pdfWriter.BeginPage(paperSize);
+                    grTarget = pdfDocumentWriter.BeginPage(paperSize);
                 }
 
                 DrawPage(grTarget, pageToDraw);
-                pdfWriter.EndPage(grTarget);
+                pdfDocumentWriter.EndPage(grTarget);
                 grTarget.Dispose();
-
-                if (pdfImporter != null) {
-                    pdfImporter.Dispose();
-                    pdfImporter = null;
-                }
 
                 currentPage += 1;
             }
 
-            pdfWriter.Save(fileName);
+            pdfDocumentWriter.Save();
         }
 
         // Layout the pages for a set of course designators.

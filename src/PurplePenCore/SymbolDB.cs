@@ -32,10 +32,8 @@
  * OF SUCH DAMAGE.
  */
 
-using PdfSharp.Drawing;
 using PurplePen.Graphics2D;
 using PurplePen.MapModel;
-using SkiaSharp;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;

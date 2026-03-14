@@ -18,6 +18,7 @@ namespace PurplePen
         public static ITextMetrics TextMetricsProvider;
         public static IFileLoaderProvider FileLoaderProvider;
         public static IPdfLoadingStatus PdfLoadingUI;
+        public static IPdfWriter PdfWriter;
 #if PORTING
         public static IColorConverter RgbColorConverter;
         public static IColorConverter CmykColorConverter;
