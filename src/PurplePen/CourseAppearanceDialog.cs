@@ -353,7 +353,7 @@ namespace PurplePen
                 }   
 
                 object font = new object();
-                grTarget.CreateFont(font, controlNumberFontName, NormalCourseAppearance.controlNumberHeightFactor * numberHeight, WindowsUtil.GetTextEffects(bold, italic));
+                grTarget.CreateFont(font, controlNumberFontName, NormalCourseAppearance.controlNumberHeightFactor * numberHeight, Util.GetTextEffects(bold, italic));
 
                 string controlNumberText = "13";
                 PointF controlNumberLocation = new PointF(centerCircle.X + circleDiameter / 2 + NormalCourseAppearance.controlNumberCircleDistance, centerCircle.Y - numberHeight * 0.75F);

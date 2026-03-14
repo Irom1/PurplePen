@@ -110,7 +110,7 @@ namespace PurplePen
         {
             for (int i = 0; i < PrintingStandards.StandardPaperSizes.Length; ++i)
             {
-                comboBoxPaperSize.Items.Add(WindowsUtil.GetPaperSizeText(PrintingStandards.StandardPaperSizes[i]));
+                comboBoxPaperSize.Items.Add(Util.GetPaperSizeText(PrintingStandards.StandardPaperSizes[i]));
             }
 
             comboBoxPaperSize.Items.Add(MiscText.UserDefined);

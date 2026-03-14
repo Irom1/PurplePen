@@ -116,7 +116,7 @@ namespace PurplePen
         {
             get
             {
-                return WindowsUtil.GetTextEffects(FontBold, FontItalic);
+                return Util.GetTextEffects(FontBold, FontItalic);
             }
         }
 

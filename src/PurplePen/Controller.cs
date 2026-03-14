@@ -3558,7 +3558,7 @@ namespace PurplePen
                         newClimb = -1F;
                     }
                     else {
-                        if (!float.TryParse(WindowsUtil.RemoveMeterSuffix(newStringValue), out newClimb) || newClimb < 0 || newClimb >= 10000) {
+                        if (!float.TryParse(Util.RemoveMeterSuffix(newStringValue), out newClimb) || newClimb < 0 || newClimb >= 10000) {
                             // Invalid climb value.
                             ui.ErrorMessage(string.Format(MiscText.BadClimb, newStringValue));
                             break;
@@ -3577,7 +3577,7 @@ namespace PurplePen
                         newLength = -1;
                     }
                     else {
-                        if (!float.TryParse(WindowsUtil.RemoveSuffix(newStringValue, "km"), out newLength) || newLength <= 0 || newLength >= 100) {
+                        if (!float.TryParse(Util.RemoveSuffix(newStringValue, "km"), out newLength) || newLength <= 0 || newLength >= 100) {
                             // Invalid length value.
                             ui.ErrorMessage(string.Format(MiscText.BadLength, newStringValue));
                             break;

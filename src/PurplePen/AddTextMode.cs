@@ -122,7 +122,7 @@ namespace PurplePen
 
             // Begin dragging out the description block.
             startLocation = location;
-            startingObj = new BasicTextCourseObj(Id<Special>.None, displayText, new RectangleF(location, new SizeF(0.001F, 0.001F)), fontName, WindowsUtil.GetTextEffects(fontBold, fontItalic), fontColor, fontHeight);
+            startingObj = new BasicTextCourseObj(Id<Special>.None, displayText, new RectangleF(location, new SizeF(0.001F, 0.001F)), fontName, Util.GetTextEffects(fontBold, fontItalic), fontColor, fontHeight);
             handleDragging = location;
             DragTo(location);
             displayUpdateNeeded = true;

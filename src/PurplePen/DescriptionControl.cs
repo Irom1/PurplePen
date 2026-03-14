@@ -541,7 +541,7 @@ namespace PurplePen
                         // the length
                         string lengthText;
                         if (hasCustomLength)
-                            lengthText = WindowsUtil.RemoveSuffix((string)renderer.Description[hitTest.firstLine].boxes[1], "km");
+                            lengthText = Util.RemoveSuffix((string)renderer.Description[hitTest.firstLine].boxes[1], "km");
                         else 
                             lengthText = "";  // automatically calculated length.
 
@@ -550,7 +550,7 @@ namespace PurplePen
                     }
                     else if (hitTest.box == 2) {
                         // the climb
-                        popup.ShowPopup(8, (char) 0, (char) 0, false, MiscText.EnterClimb, WindowsUtil.RemoveMeterSuffix((string) renderer.Description[hitTest.firstLine].boxes[2]), 4, descriptionPanel, location);
+                        popup.ShowPopup(8, (char) 0, (char) 0, false, MiscText.EnterClimb, Util.RemoveMeterSuffix((string) renderer.Description[hitTest.firstLine].boxes[2]), 4, descriptionPanel, location);
                         popupKind = ChangeKind.Climb;
                     }
                     break;

@@ -91,14 +91,14 @@ namespace PurplePen.Tests
         [TestMethod]
         public void RemoveMeterSuffix()
         {
-            Assert.AreEqual(null, WindowsUtil.RemoveMeterSuffix(null));
-            Assert.AreEqual("", WindowsUtil.RemoveMeterSuffix(""));
-            Assert.AreEqual("foo", WindowsUtil.RemoveMeterSuffix("foo"));
-            Assert.AreEqual("5", WindowsUtil.RemoveMeterSuffix("5"));
-            Assert.AreEqual("5", WindowsUtil.RemoveMeterSuffix("5m"));
-            Assert.AreEqual("5", WindowsUtil.RemoveMeterSuffix("5 m"));
-            Assert.AreEqual("5", WindowsUtil.RemoveMeterSuffix("5m "));
-            Assert.AreEqual("5", WindowsUtil.RemoveMeterSuffix("5 m "));
+            Assert.AreEqual(null, Util.RemoveMeterSuffix(null));
+            Assert.AreEqual("", Util.RemoveMeterSuffix(""));
+            Assert.AreEqual("foo", Util.RemoveMeterSuffix("foo"));
+            Assert.AreEqual("5", Util.RemoveMeterSuffix("5"));
+            Assert.AreEqual("5", Util.RemoveMeterSuffix("5m"));
+            Assert.AreEqual("5", Util.RemoveMeterSuffix("5 m"));
+            Assert.AreEqual("5", Util.RemoveMeterSuffix("5m "));
+            Assert.AreEqual("5", Util.RemoveMeterSuffix("5 m "));
         }
 
         [TestMethod]
@@ -223,13 +223,13 @@ namespace PurplePen.Tests
         [TestMethod]
         public void CompareVersionString()
         {
-            Assert.AreEqual(1, WindowsUtil.CompareVersionStrings("1.0.4.2", "1.0.3.4"));
-            Assert.AreEqual(-1, WindowsUtil.CompareVersionStrings("1.4.2", "1.4.2.1"));
-            Assert.AreEqual(-1, WindowsUtil.CompareVersionStrings("1.4.2", "2.1.2.1"));
-            Assert.AreEqual(-1, WindowsUtil.CompareVersionStrings("0.0.4.2", "2.0"));
-            Assert.AreEqual(0, WindowsUtil.CompareVersionStrings("0.0.4.2", "0.0.4.2"));
-            Assert.AreEqual(0, WindowsUtil.CompareVersionStrings("0.0.3.1", "foobar"));
-            Assert.AreEqual(0, WindowsUtil.CompareVersionStrings("zapf", "1.1.2.3"));
+            Assert.AreEqual(1, Util.CompareVersionStrings("1.0.4.2", "1.0.3.4"));
+            Assert.AreEqual(-1, Util.CompareVersionStrings("1.4.2", "1.4.2.1"));
+            Assert.AreEqual(-1, Util.CompareVersionStrings("1.4.2", "2.1.2.1"));
+            Assert.AreEqual(-1, Util.CompareVersionStrings("0.0.4.2", "2.0"));
+            Assert.AreEqual(0, Util.CompareVersionStrings("0.0.4.2", "0.0.4.2"));
+            Assert.AreEqual(0, Util.CompareVersionStrings("0.0.3.1", "foobar"));
+            Assert.AreEqual(0, Util.CompareVersionStrings("zapf", "1.1.2.3"));
         }
 
         [TestMethod]
