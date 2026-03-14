@@ -1287,28 +1287,45 @@ namespace PurplePen
         }
 
         // Print or print preview the descriptions. Returns success or failure; any errors are already reported to the user.
-        public bool PrintDescriptions(DescriptionPrintSettings descriptionPrintSettings, bool preview)
+        public bool PrintDescriptions(DescriptionPrintSettings descriptionPrintSettings, PageSettings pageSettings, bool preview)
         {
+            string documentTitle = QueryEvent.GetEventTitle(eventDB, " ");
+
             bool success = HandleExceptions(
                 delegate {
-                    DescriptionPrinting descriptionPrinter = new DescriptionPrinting(eventDB, symbolDB, this, descriptionPrintSettings);
-                    if (preview)
-                        descriptionPrinter.PrintPreview(GetPrintPreviewSize());
-                    else
-                        descriptionPrinter.Print();
+                    DescriptionPrinting descriptionPrinter = new DescriptionPrinting(eventDB, symbolDB, descriptionPrintSettings);
+
+                    WinFormsPrinter winFormsPrinter = new WinFormsPrinter(this, new WinFormsPrinter.WinFormsPrinterOptions() {
+                        PageSettings = pageSettings,
+                        ColorModel = ColorModel.RGB,
+                        StopAfterEachPage = false,
+                        PrintPreview = preview,
+                        PreviewDialogSize = GetPrintPreviewSize()
+                    });
+
+                    PrintManager printManager = new PrintManager(documentTitle, winFormsPrinter, descriptionPrinter);
+                    printManager.SetDefaultPaperSize(PrintingPaperSizeFromPageSettings(pageSettings), PrintingMarginSizeFromPageSettings(pageSettings));
+                    printManager.DoPrinting();
                 },
-                MiscText.CannotPrint, QueryEvent.GetEventTitle(eventDB, " "));
+                MiscText.CannotPrint, documentTitle);
 
             return success;
         }
 
         // Create a PDF for descriptions. Returns success or failure; any errors are already reported to the user.
-        public bool CreateDescriptionsPdf(DescriptionPrintSettings descriptionPrintSettings, string pathName)
+        public bool CreateDescriptionsPdf(DescriptionPrintSettings descriptionPrintSettings, PageSettings pageSettings, string pathName)
         {
+            string documentTitle = QueryEvent.GetEventTitle(eventDB, " ");
+
             bool success = HandleExceptions(
                 delegate {
-                    DescriptionPrinting descriptionPrinter = new DescriptionPrinting(eventDB, symbolDB, this, descriptionPrintSettings);
-                    descriptionPrinter.PrintToPdf(pathName, false);
+                    DescriptionPrinting descriptionPrinter = new DescriptionPrinting(eventDB, symbolDB, descriptionPrintSettings);
+
+                    PdfPrintTarget pdfPrintTarget = new PdfPrintTarget(pathName, cmykMode: false);
+
+                    PrintManager printManager = new PrintManager(documentTitle, pdfPrintTarget, descriptionPrinter);
+                    printManager.SetDefaultPaperSize(PrintingPaperSizeFromPageSettings(pageSettings), PrintingMarginSizeFromPageSettings(pageSettings));
+                    printManager.DoPrinting();
                 },
                 MiscText.CannotCreatePdfs);
 
@@ -1336,7 +1353,7 @@ namespace PurplePen
 
             bool success = HandleExceptions(
                 delegate {
-                    CorePunchPrinting punchPrinter = new CorePunchPrinting(eventDB, punchPrintSettings);
+                    PunchPrinting punchPrinter = new PunchPrinting(eventDB, punchPrintSettings);
 
                     WinFormsPrinter winFormsPrinter = new WinFormsPrinter(this, new WinFormsPrinter.WinFormsPrinterOptions() {
                         PageSettings = pageSettings,
@@ -1376,7 +1393,7 @@ namespace PurplePen
 
             bool success = HandleExceptions(
                 delegate {
-                    CorePunchPrinting punchPrinter = new CorePunchPrinting(eventDB, punchPrintSettings);
+                    PunchPrinting punchPrinter = new PunchPrinting(eventDB, punchPrintSettings);
 
                     PdfPrintTarget pdfPrintTarget = new PdfPrintTarget(pathName, cmykMode: false);
 
@@ -1384,7 +1401,7 @@ namespace PurplePen
                     printManager.SetDefaultPaperSize(PrintingPaperSizeFromPageSettings(pageSettings), PrintingMarginSizeFromPageSettings(pageSettings));
                     printManager.DoPrinting();
                 },
-                MiscText.CannotPrint, documentTitle);
+                MiscText.CannotCreatePdfs);
 
             return success;
 #else

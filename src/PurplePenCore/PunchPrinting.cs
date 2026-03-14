@@ -40,12 +40,12 @@ using System.Drawing.Printing;
 namespace PurplePen
 {
     // Class to print out descriptions. Customizes the rectangle printing code to print descriptions.
-    public class CorePunchPrinting: CoreRectanglePrinting
+    public class PunchPrinting: CoreRectanglePrinting
     {
         private CorePunchPrintSettings punchPrintSettings;
         private EventDB eventDB;
 
-        public CorePunchPrinting(EventDB eventDB, CorePunchPrintSettings punchPrintSettings)
+        public PunchPrinting(EventDB eventDB, CorePunchPrintSettings punchPrintSettings)
             : base(punchPrintSettings.BoxSize, CorePrintingCountKind.CopyCount, punchPrintSettings.Count)
         {
             this.eventDB = eventDB;

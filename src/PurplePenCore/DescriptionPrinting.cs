@@ -40,21 +40,21 @@ using System.Drawing.Printing;
 namespace PurplePen
 {
     // Class to print out descriptions. Customizes the rectangle printing code to print descriptions.
-    class DescriptionPrinting: RectanglePrinting
+    public class DescriptionPrinting: CoreRectanglePrinting
     {
         private DescriptionPrintSettings descPrintSettings;
         private EventDB eventDB;
         private SymbolDB symbolDB;
 
-        public DescriptionPrinting(EventDB eventDB, SymbolDB symbolDB, Controller controller, DescriptionPrintSettings descPrintSettings)
-            : base(QueryEvent.GetEventTitle(eventDB, " "), controller, descPrintSettings.PageSettings, descPrintSettings.BoxSize, descPrintSettings.CountKind, descPrintSettings.Count)
+        public DescriptionPrinting(EventDB eventDB, SymbolDB symbolDB, DescriptionPrintSettings descPrintSettings)
+            : base(descPrintSettings.BoxSize, descPrintSettings.CountKind, descPrintSettings.Count)
         {
             this.eventDB = eventDB;
             this.symbolDB = symbolDB;
             this.descPrintSettings = descPrintSettings;
         }
 
-        protected override IPrintableRectangle[] GetDescriptionList()
+        protected override IPrintableRectangle[] GetRectangleList()
         {
             List<IPrintableRectangle> rendererList = new List<IPrintableRectangle>();
 
@@ -100,33 +100,15 @@ namespace PurplePen
 
 
     // All the information needed to print the descriptions.
-    class DescriptionPrintSettings
+    public class DescriptionPrintSettings
     {
-        private PageSettings pageSettings;
-
-        public PageSettings PageSettings
-        {
-            get
-            {
-                if (pageSettings == null) {
-                    pageSettings = new PageSettings();
-                    pageSettings.Margins = new Margins(50, 50, 50, 50);        // default to 1/2" margins.
-                }
-                return pageSettings;
-            }
-            set
-            {
-                pageSettings = value;
-            }
-        }
-
         // variation choices for courses with variations.
         public Dictionary<Id<Course>, VariationChoices> VariationChoicesPerCourse = new Dictionary<Id<Course>, VariationChoices>();
 
         public Id<Course>[] CourseIds;          // Courses to print, None is all controls.
         public bool AllCourses = true;          // If true, overrides the course ids in CourseIds except for "all controls".
 
-        public PrintingCountKind CountKind = PrintingCountKind.OneDescription;
+        public CorePrintingCountKind CountKind = CorePrintingCountKind.OneDescription;
         public int Count = 1;                         // count of descriptions
         public float BoxSize = 6F;                 // box size
         public bool UseCourseDefault = true;  // if true, use the course default description kind

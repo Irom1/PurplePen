@@ -67,8 +67,9 @@ namespace PurplePen
         TextPart[] selectionDesc;         // The current selection description.
 
         DescriptionPrintSettings descPrintSettings = new DescriptionPrintSettings();     // printing settings for the description
+        PageSettings descPrintPageSettings = new PageSettings() { Margins = new Margins(50, 50, 50, 50) };     // page settings for the descriptions, default is 1/2 inch margins.
         CorePunchPrintSettings punchPrintSettings = new CorePunchPrintSettings();     // printing settings for the punch cards
-        PageSettings punchPrintPageSettings = new PageSettings();                     // page settings for the punch cards
+        PageSettings punchPrintPageSettings = new PageSettings() { Margins = new Margins(50, 50, 50, 50) };     // page settings for the punch cards, default is 1/2 inch margins.
         CoursePrintSettings coursePrintSettings = new CoursePrintSettings();   // printing settings for courses.
         CoursePdfSettings coursePdfSettings = null;   // PDF creation settings for courses.
         OcadCreationSettings ocadCreationSettingsPrevious = null;     // creation settings for OCAD creation, if it has been done before.
@@ -2232,12 +2233,14 @@ namespace PurplePen
             PrintDescriptions printDescDialog = new PrintDescriptions(controller.GetEventDB(), false);
             printDescDialog.controller = controller;
             printDescDialog.PrintSettings = descPrintSettings;
+            printDescDialog.PrinterPageSettings = descPrintPageSettings;
 
             // show the dialog, on success, print.
             if (printDescDialog.ShowDialog(this) == DialogResult.OK) {
                 // Save the settings for the next invocation of the dialog.
                 descPrintSettings = printDescDialog.PrintSettings;
-                controller.PrintDescriptions(descPrintSettings, false);
+                descPrintPageSettings = printDescDialog.PrinterPageSettings;
+                controller.PrintDescriptions(descPrintSettings, descPrintPageSettings, false);
             }
 
             // And the dialog is done.
@@ -2251,6 +2254,7 @@ namespace PurplePen
             PrintDescriptions printDescDialog = new PrintDescriptions(controller.GetEventDB(), true);
             printDescDialog.controller = controller;
             printDescDialog.PrintSettings = descPrintSettings;
+            printDescDialog.PrinterPageSettings = descPrintPageSettings;
 
             // show the dialog, on success, print.
             if (printDescDialog.ShowDialog(this) == DialogResult.OK) {
@@ -2265,7 +2269,8 @@ namespace PurplePen
                 if (savePdfDialog.ShowDialog(this) == DialogResult.OK) {
                     // Save the settings for the next invocation of the dialog.
                     descPrintSettings = printDescDialog.PrintSettings;
-                    controller.CreateDescriptionsPdf(descPrintSettings, savePdfDialog.FileName);
+                    descPrintPageSettings = printDescDialog.PrinterPageSettings;
+                    controller.CreateDescriptionsPdf(descPrintSettings, descPrintPageSettings, savePdfDialog.FileName);
                 }
             }
 

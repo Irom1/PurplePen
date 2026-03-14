@@ -33,16 +33,17 @@
  */
 
 #if TEST
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using PurplePen.Graphics2D;
+using PurplePen_Tests.PurplePen;
 using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Printing;
-using System.Diagnostics;
 using System.IO;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Text;
 using TestingUtils;
-using PurplePen.Graphics2D;
 
 namespace PurplePen.Tests
 {
@@ -59,13 +60,20 @@ namespace PurplePen.Tests
             controller = ui.controller;
         }
 
-        private void DescriptionPrintingTest(string basename, DescriptionPrintSettings descPrintSettings)
+        private void DescriptionPrintingTest(string basename, DescriptionPrintSettings descPrintSettings, PageSettings descPrintPageSettings)
         {
             // Get the pages of the printing.
-            DescriptionPrinting descPrinter = new DescriptionPrinting(controller.GetEventDB(), ui.symbolDB, controller, descPrintSettings);
-            Bitmap[] bitmaps = descPrinter.PrintBitmaps();
+            DescriptionPrinting descPrinter = new DescriptionPrinting(controller.GetEventDB(), ui.symbolDB, descPrintSettings);
+
+            BitmapPrintingTarget bitmapPrintTarget = new BitmapPrintingTarget();
+
+            PrintManager printManager = new PrintManager("", bitmapPrintTarget, descPrinter);
+            printManager.SetDefaultPaperSize(controller.PrintingPaperSizeFromPageSettings(descPrintPageSettings), controller.PrintingMarginSizeFromPageSettings(descPrintPageSettings));
+            printManager.DoPrinting();
 
             // Check all the pages against the baseline.
+            Bitmap[] bitmaps = bitmapPrintTarget.Bitmaps;
+
             for (int page = 0; page < bitmaps.Length; ++page) {
                 Bitmap bm = bitmaps[page];
                 string baseFileName = basename + "_page" + (page + 1).ToString();
@@ -73,12 +81,18 @@ namespace PurplePen.Tests
             }
         }
 
-        private void DescriptionPdfTest(string basename, DescriptionPrintSettings descPrintSettings)
+        private void DescriptionPdfTest(string basename, DescriptionPrintSettings descPrintSettings, PageSettings descPrintPageSettings)
         {
-            // Get the pages of the printing.
-            DescriptionPrinting descPrinter = new DescriptionPrinting(controller.GetEventDB(), ui.symbolDB, controller, descPrintSettings);
             string pdfFileName = TestUtil.GetTestFile(basename + ".pdf");
-            descPrinter.PrintToPdf(pdfFileName, false);
+
+            // Get the pages of the printing.
+            DescriptionPrinting descPrinter = new DescriptionPrinting(controller.GetEventDB(), ui.symbolDB, descPrintSettings);
+            PdfPrintTarget pdfPrintTarget = new PdfPrintTarget(pdfFileName, cmykMode: false);
+
+            PrintManager printManager = new PrintManager("", pdfPrintTarget, descPrinter);
+            printManager.SetDefaultPaperSize(controller.PrintingPaperSizeFromPageSettings(descPrintPageSettings), controller.PrintingMarginSizeFromPageSettings(descPrintPageSettings));
+            printManager.DoPrinting();
+
             CheckPdfDump(pdfFileName, TestUtil.GetTestFile(basename + "_baseline_page%d.png"));
         }
 
@@ -125,19 +139,26 @@ namespace PurplePen.Tests
             DescriptionPrintSettings descPrintSettings = new DescriptionPrintSettings();
 
             descPrintSettings.CourseIds = new Id<Course>[] { CourseId(1), CourseId(2), CourseId(3) };
-            DescriptionPrintingTest("printdesc\\desc1", descPrintSettings);
+
+            PageSettings pageSettings = new PageSettings();
+            pageSettings.Margins = new Margins(50, 50, 50, 50);        // default to 1/2" margins.
+
+            DescriptionPrintingTest("printdesc\\desc1", descPrintSettings, pageSettings);
         }
 
         [TestMethod]
         public void PrintDescriptions2()
         {
             controller.LoadInitialFile(TestUtil.GetTestFile("printdesc\\marymoor.ppen"), true);
-            DescriptionPrintSettings descPrintSettings = new DescriptionPrintSettings();
-            descPrintSettings.PageSettings.Landscape = true;
-            descPrintSettings.PageSettings.Margins = new Margins(50, 50, 200, 200);
 
+            DescriptionPrintSettings descPrintSettings = new DescriptionPrintSettings();
             descPrintSettings.CourseIds = new Id<Course>[] { CourseId(0), CourseId(1), CourseId(2), CourseId(3) };
-            DescriptionPrintingTest("printdesc\\desc2", descPrintSettings);
+
+            PageSettings pageSettings = new PageSettings();
+            pageSettings.Landscape = true;
+            pageSettings.Margins = new Margins(50, 50, 200, 200);
+
+            DescriptionPrintingTest("printdesc\\desc2", descPrintSettings, pageSettings);
         }
 
         // Should be symbols and text for all controls.
@@ -145,49 +166,64 @@ namespace PurplePen.Tests
         public void PrintDescriptions3()
         {
             controller.LoadInitialFile(TestUtil.GetTestFile("printdesc\\marymoor2.ppen"), true);
-            DescriptionPrintSettings descPrintSettings = new DescriptionPrintSettings();
-            descPrintSettings.PageSettings.Landscape = true;
-            descPrintSettings.PageSettings.Margins = new Margins(50, 50, 200, 200);
 
+            DescriptionPrintSettings descPrintSettings = new DescriptionPrintSettings();
             descPrintSettings.CourseIds = new Id<Course>[] { CourseId(0) };
-            DescriptionPrintingTest("printdesc\\desc3", descPrintSettings);
+
+            PageSettings pageSettings = new PageSettings();
+            pageSettings.Landscape = true;
+            pageSettings.Margins = new Margins(50, 50, 200, 200);
+
+            DescriptionPrintingTest("printdesc\\desc3", descPrintSettings, pageSettings);
         }
 
         [TestMethod]
         public void PrintDescriptions_Relay1()
         {
             controller.LoadInitialFile(TestUtil.GetTestFile("controller\\variations.ppen"), true);
-            DescriptionPrintSettings descPrintSettings = new DescriptionPrintSettings();
 
+            DescriptionPrintSettings descPrintSettings = new DescriptionPrintSettings();
             descPrintSettings.CourseIds = new Id<Course>[] { CourseId(2), CourseId(0) };
-            DescriptionPrintingTest("printdesc\\relay_desc1", descPrintSettings);
+
+            PageSettings pageSettings = new PageSettings();
+            pageSettings.Margins = new Margins(50, 50, 50, 50);        // default to 1/2" margins.
+
+            DescriptionPrintingTest("printdesc\\relay_desc1", descPrintSettings, pageSettings);
         }
 
         [TestMethod]
         public void PrintDescriptions_Relay2()
         {
             controller.LoadInitialFile(TestUtil.GetTestFile("controller\\variations.ppen"), true);
-            DescriptionPrintSettings descPrintSettings = new DescriptionPrintSettings();
-            descPrintSettings.CountKind = PrintingCountKind.OnePage;
-            descPrintSettings.Count = 1;
 
+            DescriptionPrintSettings descPrintSettings = new DescriptionPrintSettings();
+            descPrintSettings.CountKind = CorePrintingCountKind.OnePage;
+            descPrintSettings.Count = 1;
             descPrintSettings.CourseIds = new Id<Course>[] { CourseId(2), CourseId(0) };
-            DescriptionPrintingTest("printdesc\\relay_desc2", descPrintSettings);
+
+            PageSettings pageSettings = new PageSettings();
+            pageSettings.Margins = new Margins(50, 50, 50, 50);        // default to 1/2" margins.
+
+            DescriptionPrintingTest("printdesc\\relay_desc2", descPrintSettings, pageSettings);
         }
 
         [TestMethod]
         public void PrintDescriptions_Relay3()
         {
             controller.LoadInitialFile(TestUtil.GetTestFile("controller\\variations.ppen"), true);
+
             DescriptionPrintSettings descPrintSettings = new DescriptionPrintSettings();
             descPrintSettings.VariationChoicesPerCourse[CourseId(2)] = new VariationChoices() {
                 Kind = VariationChoices.VariationChoicesKind.ChosenTeams,
                 FirstTeam = 2,
                 LastTeam = 5
             };
-
             descPrintSettings.CourseIds = new Id<Course>[] { CourseId(2) };
-            DescriptionPrintingTest("printdesc\\relay_desc3", descPrintSettings);
+
+            PageSettings pageSettings = new PageSettings();
+            pageSettings.Margins = new Margins(50, 50, 50, 50);        // default to 1/2" margins.
+
+            DescriptionPrintingTest("printdesc\\relay_desc3", descPrintSettings, pageSettings);
         }
 
         [TestMethod]
@@ -197,19 +233,26 @@ namespace PurplePen.Tests
             DescriptionPrintSettings descPrintSettings = new DescriptionPrintSettings();
 
             descPrintSettings.CourseIds = new Id<Course>[] { CourseId(1), CourseId(2), CourseId(3) };
-            DescriptionPdfTest("printdesc\\descpdf1", descPrintSettings);
+
+            PageSettings pageSettings = new PageSettings();
+            pageSettings.Margins = new Margins(50, 50, 50, 50);        // default to 1/2" margins.
+
+            DescriptionPdfTest("printdesc\\descpdf1", descPrintSettings, pageSettings);
         }
 
         [TestMethod]
         public void PrintDescriptionsPdf2()
         {
             controller.LoadInitialFile(TestUtil.GetTestFile("printdesc\\marymoor.ppen"), true);
-            DescriptionPrintSettings descPrintSettings = new DescriptionPrintSettings();
-            descPrintSettings.PageSettings.Landscape = true;
-            descPrintSettings.PageSettings.Margins = new Margins(50, 50, 200, 200);
 
+            DescriptionPrintSettings descPrintSettings = new DescriptionPrintSettings();
             descPrintSettings.CourseIds = new Id<Course>[] { CourseId(0), CourseId(1), CourseId(2), CourseId(3) };
-            DescriptionPdfTest("printdesc\\descpdf2", descPrintSettings);
+
+            PageSettings pageSettings = new PageSettings();
+            pageSettings.Landscape = true;
+            pageSettings.Margins = new Margins(50, 50, 200, 200);
+
+            DescriptionPdfTest("printdesc\\descpdf2", descPrintSettings, pageSettings);
         }
 
         // Should be symbols and text for all controls.
@@ -217,49 +260,64 @@ namespace PurplePen.Tests
         public void PrintDescriptionsPdf3()
         {
             controller.LoadInitialFile(TestUtil.GetTestFile("printdesc\\marymoor2.ppen"), true);
-            DescriptionPrintSettings descPrintSettings = new DescriptionPrintSettings();
-            descPrintSettings.PageSettings.Landscape = true;
-            descPrintSettings.PageSettings.Margins = new Margins(50, 50, 200, 200);
 
+            DescriptionPrintSettings descPrintSettings = new DescriptionPrintSettings();
             descPrintSettings.CourseIds = new Id<Course>[] { CourseId(0) };
-            DescriptionPdfTest("printdesc\\descpdf3", descPrintSettings);
+
+            PageSettings pageSettings = new PageSettings();
+            pageSettings.Landscape = true;
+            pageSettings.Margins = new Margins(50, 50, 200, 200);
+
+            DescriptionPdfTest("printdesc\\descpdf3", descPrintSettings, pageSettings);
         }
 
         [TestMethod]
         public void PrintDescriptionsPdf_Relay1()
         {
             controller.LoadInitialFile(TestUtil.GetTestFile("controller\\variations.ppen"), true);
-            DescriptionPrintSettings descPrintSettings = new DescriptionPrintSettings();
 
+            DescriptionPrintSettings descPrintSettings = new DescriptionPrintSettings();
             descPrintSettings.CourseIds = new Id<Course>[] { CourseId(2), CourseId(0) };
-            DescriptionPdfTest("printdesc\\relay_pdf_desc1", descPrintSettings);
+
+            PageSettings pageSettings = new PageSettings();
+            pageSettings.Margins = new Margins(50, 50, 50, 50);        // default to 1/2" margins.
+
+            DescriptionPdfTest("printdesc\\relay_pdf_desc1", descPrintSettings, pageSettings);
         }
 
         [TestMethod]
         public void PrintDescriptionsPdf_Relay2()
         {
             controller.LoadInitialFile(TestUtil.GetTestFile("controller\\variations.ppen"), true);
-            DescriptionPrintSettings descPrintSettings = new DescriptionPrintSettings();
-            descPrintSettings.CountKind = PrintingCountKind.OnePage;
-            descPrintSettings.Count = 1;
 
+            DescriptionPrintSettings descPrintSettings = new DescriptionPrintSettings();
+            descPrintSettings.CountKind = CorePrintingCountKind.OnePage;
+            descPrintSettings.Count = 1;
             descPrintSettings.CourseIds = new Id<Course>[] { CourseId(2), CourseId(0) };
-            DescriptionPdfTest("printdesc\\relay_pdf_desc2", descPrintSettings);
+
+            PageSettings pageSettings = new PageSettings();
+            pageSettings.Margins = new Margins(50, 50, 50, 50);        // default to 1/2" margins.
+
+            DescriptionPdfTest("printdesc\\relay_pdf_desc2", descPrintSettings, pageSettings);
         }
 
         [TestMethod]
         public void PrintDescriptionsPdf_Relay3()
         {
             controller.LoadInitialFile(TestUtil.GetTestFile("controller\\variations.ppen"), true);
+
             DescriptionPrintSettings descPrintSettings = new DescriptionPrintSettings();
             descPrintSettings.VariationChoicesPerCourse[CourseId(2)] = new VariationChoices() {
                 Kind = VariationChoices.VariationChoicesKind.ChosenTeams,
                 FirstTeam = 2,
                 LastTeam = 5
             };
-
             descPrintSettings.CourseIds = new Id<Course>[] { CourseId(2) };
-            DescriptionPdfTest("printdesc\\relay_pdf_desc3", descPrintSettings);
+
+            PageSettings pageSettings = new PageSettings();
+            pageSettings.Margins = new Margins(50, 50, 50, 50);        // default to 1/2" margins.
+
+            DescriptionPdfTest("printdesc\\relay_pdf_desc3", descPrintSettings, pageSettings);
         }
 
 
@@ -268,12 +326,15 @@ namespace PurplePen.Tests
         public void PrintingException()
         {
             controller.LoadInitialFile(TestUtil.GetTestFile("printdesc\\marymoor.ppen"), true);
+
             DescriptionPrintSettings descPrintSettings = new DescriptionPrintSettings();
-
             descPrintSettings.CourseIds = new Id<Course>[] { CourseId(1), CourseId(2), CourseId(3) };
-            descPrintSettings.PageSettings.PrinterSettings.PrinterName = "foobar";
 
-            bool success = controller.PrintDescriptions(descPrintSettings, false);
+            PageSettings pageSettings = new PageSettings();
+            pageSettings.Margins = new Margins(50, 50, 50, 50);        // default to 1/2" margins.
+            pageSettings.PrinterSettings.PrinterName = "foobar";
+
+            bool success = controller.PrintDescriptions(descPrintSettings, pageSettings, false);
 
             Assert.IsFalse(success);
             string expected =

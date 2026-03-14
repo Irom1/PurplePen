@@ -63,7 +63,7 @@ namespace PurplePen.Tests
         private void PunchPrintingTest(string basename, CorePunchPrintSettings punchPrintSettings, PageSettings punchPrintPageSettings)
         {
             // Get the pages of the printing.
-            CorePunchPrinting punchPrinting = new CorePunchPrinting(controller.GetEventDB(), punchPrintSettings);
+            PunchPrinting punchPrinting = new PunchPrinting(controller.GetEventDB(), punchPrintSettings);
 
             BitmapPrintingTarget bitmapPrintTarget = new BitmapPrintingTarget();
 
@@ -86,7 +86,7 @@ namespace PurplePen.Tests
             string pdfFileName = TestUtil.GetTestFile(basename + ".pdf");
 
             // Print to PDF file(s).
-            CorePunchPrinting punchPrinting = new CorePunchPrinting(controller.GetEventDB(), punchPrintSettings);
+            PunchPrinting punchPrinting = new PunchPrinting(controller.GetEventDB(), punchPrintSettings);
 
             PdfPrintTarget pdfPrintTarget = new PdfPrintTarget(pdfFileName, cmykMode: false);
 

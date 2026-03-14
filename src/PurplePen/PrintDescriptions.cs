@@ -47,7 +47,8 @@ namespace PurplePen
     // class which contains the settings.
     partial class PrintDescriptions: BaseDialog
     {
-        DescriptionPrintSettings settings;
+        DescriptionPrintSettings settings = new DescriptionPrintSettings();
+        PageSettings printerPageSettings = new PageSettings();
         internal Controller controller;
         readonly bool isPdfCreation = false;
 
@@ -61,6 +62,18 @@ namespace PurplePen
             set
             {
                 settings = value;
+                UpdateDialog();
+            }
+        }
+
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public PageSettings PrinterPageSettings {
+            get {
+                UpdateSettings();
+                return printerPageSettings;
+            }
+            set {
+                printerPageSettings = value;
                 UpdateDialog();
             }
         }
@@ -86,8 +99,7 @@ namespace PurplePen
         // Update the dialog with information from the settings.
         void UpdateDialog()
         {
-            PageSettings pageSettings = settings.PageSettings;
-            PrinterSettings printerSettings = pageSettings.PrinterSettings;
+            PrinterSettings printerSettings = printerPageSettings.PrinterSettings;
 
             // Courses
             if (settings.CourseIds != null)
@@ -99,16 +111,16 @@ namespace PurplePen
             // Output section.
             printerName.Text = printerSettings.PrinterName;
             if (printerSettings.IsValid) {
-                paperSize.Text = WindowsUtil.GetPaperSizeText(pageSettings.PaperSize);
-                orientation.Text = (pageSettings.Landscape) ? MiscText.Landscape : MiscText.Portrait;
-                margins.Text = WindowsUtil.GetMarginsText(pageSettings.Margins);
+                paperSize.Text = WindowsUtil.GetPaperSizeText(printerPageSettings.PaperSize);
+                orientation.Text = (printerPageSettings.Landscape) ? MiscText.Landscape : MiscText.Portrait;
+                margins.Text = WindowsUtil.GetMarginsText(printerPageSettings.Margins);
             }
             else {
                 paperSize.Text = orientation.Text = margins.Text = "";
             }
 
             // Copies section.
-            if (settings.CountKind == PrintingCountKind.DescriptionCount) {
+            if (settings.CountKind == CorePrintingCountKind.DescriptionCount) {
                 copiesCombo.SelectedIndex = 2;
                 descriptionsUpDown.Enabled = true;
                 descriptionsLabel.Enabled = true;
@@ -117,7 +129,7 @@ namespace PurplePen
             else {
                 descriptionsUpDown.Enabled = false;
                 descriptionsLabel.Enabled = false;
-                if (settings.CountKind == PrintingCountKind.OneDescription)
+                if (settings.CountKind == CorePrintingCountKind.OneDescription)
                     copiesCombo.SelectedIndex = 0;
                 else
                     copiesCombo.SelectedIndex = 1;
@@ -149,13 +161,13 @@ namespace PurplePen
 
             // Copies section.
             if (copiesCombo.SelectedIndex == 0) {
-                settings.CountKind = PrintingCountKind.OneDescription;
+                settings.CountKind = CorePrintingCountKind.OneDescription;
             }
             else if (copiesCombo.SelectedIndex == 1) {
-                settings.CountKind = PrintingCountKind.OnePage;
+                settings.CountKind = CorePrintingCountKind.OnePage;
             }
             else if (copiesCombo.SelectedIndex == 2) {
-                settings.CountKind = PrintingCountKind.DescriptionCount;
+                settings.CountKind = CorePrintingCountKind.DescriptionCount;
                 settings.Count = (int) descriptionsUpDown.Value;
             }
 
@@ -174,18 +186,18 @@ namespace PurplePen
             controller.HandleExceptions(
                 delegate {
                     UpdateSettings();
-                    printDialog.PrinterSettings = settings.PageSettings.PrinterSettings;
-                    printDialog.PrinterSettings.DefaultPageSettings.Landscape = settings.PageSettings.Landscape;
-                    printDialog.PrinterSettings.DefaultPageSettings.Margins = settings.PageSettings.Margins;
-                    printDialog.PrinterSettings.DefaultPageSettings.PaperSize = settings.PageSettings.PaperSize;
-                    printDialog.PrinterSettings.DefaultPageSettings.PaperSource = settings.PageSettings.PaperSource;
+                    printDialog.PrinterSettings = printerPageSettings.PrinterSettings;
+                    printDialog.PrinterSettings.DefaultPageSettings.Landscape = printerPageSettings.Landscape;
+                    printDialog.PrinterSettings.DefaultPageSettings.Margins = printerPageSettings.Margins;
+                    printDialog.PrinterSettings.DefaultPageSettings.PaperSize = printerPageSettings.PaperSize;
+                    printDialog.PrinterSettings.DefaultPageSettings.PaperSource = printerPageSettings.PaperSource;
                     DialogResult result = printDialog.ShowDialog(this);
                     if (result == DialogResult.OK) {
-                        settings.PageSettings.Margins = printDialog.PrinterSettings.DefaultPageSettings.Margins;
-                        settings.PageSettings.PaperSize = printDialog.PrinterSettings.DefaultPageSettings.PaperSize;
-                        settings.PageSettings.PaperSource = printDialog.PrinterSettings.DefaultPageSettings.PaperSource;
-                        settings.PageSettings.PrinterSettings = printDialog.PrinterSettings;
-                        settings.PageSettings.PrinterSettings.Copies = 1; // ignore copies from the print settings dialog.
+                        printerPageSettings.Margins = printDialog.PrinterSettings.DefaultPageSettings.Margins;
+                        printerPageSettings.PaperSize = printDialog.PrinterSettings.DefaultPageSettings.PaperSize;
+                        printerPageSettings.PaperSource = printDialog.PrinterSettings.DefaultPageSettings.PaperSource;
+                        printerPageSettings.PrinterSettings = printDialog.PrinterSettings;
+                        printerPageSettings.PrinterSettings.Copies = 1; // ignore copies from the print settings dialog.
                         UpdateDialog();
                     }
                 }
@@ -198,20 +210,20 @@ namespace PurplePen
             controller.HandleExceptions(
                 delegate {
                     UpdateSettings();
-                    Margins originalMargins = settings.PageSettings.Margins;
+                    Margins originalMargins = printerPageSettings.Margins;
 
                     if (Util.IsCurrentCultureMetric())     // work around bug
-                        settings.PageSettings.Margins = PrinterUnitConvert.Convert(settings.PageSettings.Margins, PrinterUnit.Display, PrinterUnit.TenthsOfAMillimeter);
+                        printerPageSettings.Margins = PrinterUnitConvert.Convert(printerPageSettings.Margins, PrinterUnit.Display, PrinterUnit.TenthsOfAMillimeter);
 
-                    pageSetupDialog.PrinterSettings = settings.PageSettings.PrinterSettings;
-                    pageSetupDialog.PageSettings = settings.PageSettings;
+                    pageSetupDialog.PrinterSettings = printerPageSettings.PrinterSettings;
+                    pageSetupDialog.PageSettings = printerPageSettings;
                     DialogResult result = pageSetupDialog.ShowDialog(this);
                     if (result == DialogResult.OK) {
-                        settings.PageSettings = pageSetupDialog.PageSettings;
+                        printerPageSettings = pageSetupDialog.PageSettings;
                         UpdateDialog();
                     }
                     else {
-                        settings.PageSettings.Margins = originalMargins;
+                        printerPageSettings.Margins = originalMargins;
                     }
                 }
             );
@@ -238,7 +250,7 @@ namespace PurplePen
         private void previewButton_Click(object sender, EventArgs e)
         {
             if (SomeCoursesSelected())
-                controller.PrintDescriptions(PrintSettings, true);
+                controller.PrintDescriptions(PrintSettings, PrinterPageSettings, true);
         }
 
         private void copiesCombo_SelectedIndexChanged(object sender, EventArgs e)

@@ -135,9 +135,12 @@ namespace PurplePen
         private void PrintDocument_PrintPage(object sender, PrintPageEventArgs e)
         {
             Graphics g = e.Graphics;
-#if !PORTING
+
             // Deal with the hard margin of the printer, based on printPreview or not.
-#endif
+            if (!options.PrintPreview) {
+                // When printing, we need to translate the graphics by the hard margin of the printer, since the printer's graphics context is offset by the hard margin.
+                g.TranslateTransform(-e.PageSettings.HardMarginX, -e.PageSettings.HardMarginY);
+            }
             // Get the dpi of the printer.
             float dpi = Math.Max((int)g.DpiX, (int)g.DpiY);
 
@@ -159,6 +162,9 @@ namespace PurplePen
             // Update page count.
             ++currentPage;
             e.HasMorePages = (currentPage < pageCount);
+#if PORTING
+            // Deal with pausing after each page if that option is set. 
+#endif
         }
 
         private bool PausePrintingAfterPage(int pageNumber, out string pauseMessage)
