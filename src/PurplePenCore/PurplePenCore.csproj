@@ -61,7 +61,6 @@
     <ProjectReference Include="..\MapModel\Graphics2D\Graphics2D.csproj" />
     <ProjectReference Include="..\MapModel\MapModel\MapModel.csproj" />
     <ProjectReference Include="..\MapModel\Map_PDF\Map_PDF.csproj" />
-    <ProjectReference Include="..\MapModel\Map_SkiaStd\Map_SkiaStd.csproj" />
   </ItemGroup>
 
   <ItemGroup>

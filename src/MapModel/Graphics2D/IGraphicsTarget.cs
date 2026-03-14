@@ -97,6 +97,11 @@ namespace PurplePen.Graphics2D
         // Otherwise, return None. Return Other if format not in the enum, or Unknown
         // if it was read from file but no way to know the format.
         GraphicsBitmapFormat GetOriginalFormat();
+
+        // Get a single pixel. This is probably not that fast, so don't use repeatedly
+        // too much in performance critical code.
+        System.Drawing.Color GetPixel(int x, int y);
+
         IGraphicsBitmap Crop(int x, int y, int width, int height);
         bool WriteToStream(GraphicsBitmapFormat format, Stream stream);
 

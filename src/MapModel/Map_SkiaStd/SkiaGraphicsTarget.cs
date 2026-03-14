@@ -1159,6 +1159,40 @@ namespace PurplePen.MapModel
             return originalFormat;
         }
 
+        public Color GetPixel(int x, int y)
+        {
+            SKPixmap pixmap = image.PeekPixels();
+            SKColor color;
+
+            if (pixmap != null) {
+
+                color = pixmap.GetPixelColor(x, y);
+            }
+            else {
+                // Can't get a pixmap from the image.
+                // Crop the image to a single pixel to reduce copying, then create a 
+                // bitmap if needed.
+                using (SKImage crop = image.Subset(new SKRectI(x, y, x + 1, y + 1))) {
+                    pixmap = crop.PeekPixels();
+                    if (pixmap != null) {
+                        color = pixmap.GetPixelColor(0, 0);
+                    }
+                    else {
+                        using (SKBitmap bitmap = SKBitmap.FromImage(crop)) {
+                            color = bitmap.GetPixel(0, 0);
+                        }
+                    }
+                }
+            }
+
+            if (pixmap != null)
+                pixmap.Dispose();
+
+            return Color.FromArgb(color.Alpha, color.Red, color.Green, color.Blue);
+        }
+
+
+
         public IGraphicsBitmap Crop(int x, int y, int width, int height)
         {
             SKRectI cropRect = new SKRectI(x, y, x + width, y + height);
@@ -1275,6 +1309,13 @@ namespace PurplePen.MapModel
         {
             return originalFormat;
         }
+
+        public Color GetPixel(int x, int y)
+        {
+            SKColor color = bitmap.GetPixel(x, y);
+            return Color.FromArgb(color.Alpha, color.Red, color.Green, color.Blue);
+        }
+
 
         public IGraphicsBitmap Crop(int x, int y, int width, int height)
         {
@@ -1418,6 +1459,12 @@ namespace PurplePen.MapModel
         public GraphicsBitmapFormat GetOriginalFormat()
         {
             return originalFormat;
+        }
+
+        public Color GetPixel(int x, int y)
+        {
+            SKColor color = pixmap.GetPixelColor(x, y);
+            return Color.FromArgb(color.Alpha, color.Red, color.Green, color.Blue);
         }
 
         public IGraphicsBitmap Crop(int x, int y, int width, int height)

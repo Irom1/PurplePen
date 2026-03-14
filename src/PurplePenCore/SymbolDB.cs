@@ -564,26 +564,32 @@ public void Draw(IGraphicsTarget g, CmykColor color, RectangleF rect)
             // Create the toolbox image using Skia rendering.
             const int iconSize = 24;
             RectangleF iconRect = new RectangleF(0, 0, iconSize, iconSize);
-            using (Skia_BitmapGraphicsTarget skiaTarget = new Skia_BitmapGraphicsTarget(iconSize, iconSize, false, CmykColor.FromColor(Color.White), iconRect, false)) {
-                skiaTarget.PushAntiAliasing(true);
+
+            using (IBitmapGraphicsTarget grTarget = Services.BitmapGraphicsTargetProvider.CreateBitmapGraphicsTarget(iconSize, iconSize, Services.RgbColorConverter)) {
+                CmykColor white = CmykColor.FromColor(Color.White);
+                object whiteBrush = new object();
+                grTarget.CreateSolidBrush(whiteBrush, white);
+                grTarget.FillRectangle(whiteBrush, iconRect);
+
+                grTarget.PushAntiAliasing(true);
+
                 CmykColor black = CmykColor.FromColor(Color.Black);
                 if (kind >= 'T') {
-                    skiaTarget.PushClip(new RectangleF(0, 0, iconSize / 2, iconSize));
-                    Draw(skiaTarget, black, new RectangleF(0, iconSize / 3F, iconSize * 8F / 3F, iconSize / 3F));
-                    skiaTarget.PopClip();
-                    skiaTarget.PushClip(new RectangleF(iconSize / 2, 0, iconSize / 2, iconSize));
-                    Draw(skiaTarget, black, new RectangleF(-iconSize * 5F / 3F, iconSize / 3F, iconSize * 8F / 3F, iconSize / 3F));
-                    skiaTarget.PopClip();
+                    grTarget.PushClip(new RectangleF(0, 0, iconSize / 2, iconSize));
+                    Draw(grTarget, black, new RectangleF(0, iconSize / 3F, iconSize * 8F / 3F, iconSize / 3F));
+                    grTarget.PopClip();
+                    grTarget.PushClip(new RectangleF(iconSize / 2, 0, iconSize / 2, iconSize));
+                    Draw(grTarget, black, new RectangleF(-iconSize * 5F / 3F, iconSize / 3F, iconSize * 8F / 3F, iconSize / 3F));
+                    grTarget.PopClip();
                 }
                 else {
-                    Draw(skiaTarget, black, iconRect);
+                    Draw(grTarget, black, iconRect);
                 }
-                skiaTarget.PopAntiAliasing();
 
-                // Flush the canvas and extract the bitmap for the toolbox icon.
-                skiaTarget.Canvas.Flush();
-                using (Skia_Bitmap skiaBitmap = (Skia_Bitmap)skiaTarget.FinishBitmap()) {
-                    symdef.ToolboxImage = CoreMapUtil.CreateToolboxIcon(skiaBitmap.Bitmap);
+                grTarget.PopAntiAliasing();
+
+                using (IGraphicsBitmap bitmap = grTarget.FinishBitmap()) {
+                    symdef.ToolboxImage = CoreMapUtil.CreateToolboxIcon(bitmap);
                 }
             }
 

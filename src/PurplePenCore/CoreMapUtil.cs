@@ -1,6 +1,5 @@
 ﻿using PurplePen.Graphics2D;
 using PurplePen.MapModel;
-using SkiaSharp;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -18,15 +17,15 @@ namespace PurplePen
 
 
 
-        // Create a ToolboxIcon from a SkiaSharp bitmap.
-        public static ToolboxIcon CreateToolboxIcon(SKBitmap bm)
+        // Create a ToolboxIcon from a bitmap.
+        public static ToolboxIcon CreateToolboxIcon(IGraphicsBitmap bm)
         {
             ToolboxIcon icon = new ToolboxIcon();
 
             for (int x = 0; x < ToolboxIcon.WIDTH; ++x) {
                 for (int y = 0; y < ToolboxIcon.HEIGHT; ++y) {
-                    SKColor skColor = bm.GetPixel(x, y);
-                    icon.SetPixel(x, y, Color.FromArgb(skColor.Alpha, skColor.Red, skColor.Green, skColor.Blue));
+                    Color color = bm.GetPixel(x, y);
+                    icon.SetPixel(x, y, color);
                 }
             }
 

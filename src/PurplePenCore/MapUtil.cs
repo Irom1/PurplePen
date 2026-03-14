@@ -39,10 +39,6 @@ using System.Drawing;
 using PurplePen.MapModel;
 using PurplePen.Graphics2D;
 using ColorConverter = PurplePen.Graphics2D.ColorConverter;
-using System.Drawing.Printing;
-using System.Globalization;
-using System.Security.Cryptography.X509Certificates;
-using SkiaSharp;
 
 namespace PurplePen
 {

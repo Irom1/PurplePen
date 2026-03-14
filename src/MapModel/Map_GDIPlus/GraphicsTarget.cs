@@ -1190,6 +1190,14 @@ namespace PurplePen.MapModel
                 return GraphicsBitmapFormat.Unknown;
         }
 
+        public Color GetPixel(int x, int y)
+        {
+            lock (bitmap) {
+                return bitmap.GetPixel(x, y);
+            }
+        }
+
+
         public IGraphicsBitmap Crop(int x, int y, int width, int height)
         {
             Bitmap croppedBitmap = bitmap.Clone(new Rectangle(x, y, width, height), bitmap.PixelFormat);
