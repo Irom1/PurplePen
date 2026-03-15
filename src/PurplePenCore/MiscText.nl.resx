@@ -204,4 +204,10 @@
   <data name="CantRearrangeSplitControl" xml:space="preserve">
     <value>Een post waar een afsplitsing of lus start kan niet naar een nieuwe plaats in de route worden gesleept.</value>
   </data>
+  <data name="CannotCreatePdfs" xml:space="preserve">
+    <value>Kan geen PDF's aanmaken vanwege:</value>
+  </data>
+  <data name="CannotPrint" xml:space="preserve">
+    <value>'{0}' kan niet worden afgedrukt vanwege:</value>
+  </data>
 </root>

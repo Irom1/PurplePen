@@ -558,4 +558,67 @@ Trykk OK og forsøk å finne kartfilen på din datamaskin.</value>
   <data name="GhostscriptNotInstalled" xml:space="preserve">
     <value>GPL Ghostscript er ikke installert</value>
   </data>
+  <data name="BadLegNumber" xml:space="preserve">
+    <value>'{0}' er ikke gyldig strekknummer for avgreining '{1}'</value>
+  </data>
+  <data name="CannotCreatePdfs" xml:space="preserve">
+    <value>Kan ikke lage PDF pga følgende:</value>
+  </data>
+  <data name="CannotPrint" xml:space="preserve">
+    <value>Kan ikke skrive ut '{0}' på grunn av:</value>
+  </data>
+  <data name="CannotReadImageFile" xml:space="preserve">
+    <value>Kan ikke lese bildefil '{0}'.</value>
+  </data>
+  <data name="CannotReadMap" xml:space="preserve">
+    <value>Kart kan ikke leses pga: '{0}' Bruk Optimize/Repair og lagre på nytt i  OCAD kan fikse problemet.</value>
+  </data>
+  <data name="CannotReadMapOOM" xml:space="preserve">
+    <value>Kan ikke lese kartet på grunn av: '{0}' Åpne og lagre kartet i nyeste versjon av OpenOrienteering Mapper kan fikse problemene.</value>
+  </data>
+  <data name="CodeBadLength" xml:space="preserve">
+    <value>Postkoden må inneholde en, to eller tre tall eller bokstaver.</value>
+  </data>
+  <data name="CodeBeginsWithZero" xml:space="preserve">
+    <value>Postkoder skal ikke begynne med 0</value>
+  </data>
+  <data name="CodeContainsSpace" xml:space="preserve">
+    <value>En postkode kan ikke inneholde mellomrom.</value>
+  </data>
+  <data name="CodeCouldBeUpsideDown" xml:space="preserve">
+    <value>En postkode skal ikke kunne forveksles med et annet nummer om den leses opp ned.</value>
+  </data>
+  <data name="Control_Code" xml:space="preserve">
+    <value>Post {0}</value>
+  </data>
+  <data name="GpxReprojectFailure" xml:space="preserve">
+    <value>Klarte ikke å plassere punkter, enten er koordinatsystemet eller lokale koordinater i Ocad kartfilen feil.</value>
+  </data>
+  <data name="LegAssignedOuterBranch" xml:space="preserve">
+    <value>Strekk {0} når ikke avgreining '{1}': Den ble tilordnet en annen retning i gaflingen den inngår i.</value>
+  </data>
+  <data name="LegNotAssigned" xml:space="preserve">
+    <value>Strekk {0} må tilordnes et av strekkene {1}</value>
+  </data>
+  <data name="LegUsedTwice" xml:space="preserve">
+    <value>Strekk {0} er tilordnet til både avgreining '{1}' og '{2}'</value>
+  </data>
+  <data name="PdfConversionFailed" xml:space="preserve">
+    <value>"Pdfium PDF" konvertering klarte ikke lese PDF filen</value>
+  </data>
+  <data name="PdfConverterNotFound" xml:space="preserve">
+    <value>"PdfConverter.exe" ikke funnet</value>
+  </data>
+  <data name="PdfResultNotReadable" xml:space="preserve">
+    <value>Kunne ikke lese resultatet av PDF konvertering fra fil '{0}'</value>
+  </data>
+  <data name="Version_Alpha" xml:space="preserve">
+    <value>Alfa {0}</value>
+  </data>
+  <data name="Version_Beta" xml:space="preserve">
+    <value>Beta {0}</value>
+  </data>
+  <data name="Version_RC" xml:space="preserve">
+    <value>RC {0}</value>
+  </data>
 </root>

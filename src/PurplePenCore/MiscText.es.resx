@@ -544,4 +544,67 @@ Presione Aceptar, e intente encontrar una copia del mapa en su ordenador.</value
   <data name="GpxMustBeOcadMap" xml:space="preserve">
     <value>El archivo de mapa debe ser un OCAD para usar archivos GPX.</value>
   </data>
+  <data name="BadLegNumber" xml:space="preserve">
+    <value>«{0}» no es un número de tramo válido para la rama «{1}»</value>
+  </data>
+  <data name="CannotCreatePdfs" xml:space="preserve">
+    <value>No se pueden crear PDF por el siguiente motivo:</value>
+  </data>
+  <data name="CannotPrint" xml:space="preserve">
+    <value>No se puede imprimir «{0}» por la siguiente razón:</value>
+  </data>
+  <data name="CannotReadImageFile" xml:space="preserve">
+    <value>No se puede leer el archivo de imagen «{0}».</value>
+  </data>
+  <data name="CannotReadMap" xml:space="preserve">
+    <value>No se puede leer el archivo de mapa por la siguiente razón: «{0}» Usar Optimizar/Reparar y guardando de nuevo en OCAD puede arreglar algún problema.</value>
+  </data>
+  <data name="CannotReadMapOOM" xml:space="preserve">
+    <value>No se ha podido leer el mapa por el siguiente motivo: «{0}» Abrir y volver a guardar el mapa con la última versión de OpenOrienteering Mapper puede corregir problemas.</value>
+  </data>
+  <data name="CodeBadLength" xml:space="preserve">
+    <value>El código del control debe tener entre una y tres letras o números.</value>
+  </data>
+  <data name="CodeBeginsWithZero" xml:space="preserve">
+    <value>Un código de control no puede empezar con cero.</value>
+  </data>
+  <data name="CodeContainsSpace" xml:space="preserve">
+    <value>Un código de control no puede tener espacios.</value>
+  </data>
+  <data name="CodeCouldBeUpsideDown" xml:space="preserve">
+    <value>El código de control no debe confundirse con otro si se ve boca abajo.</value>
+  </data>
+  <data name="Control_Code" xml:space="preserve">
+    <value>Control {0}</value>
+  </data>
+  <data name="GpxReprojectFailure" xml:space="preserve">
+    <value>No se ha podido volver a proyectar el punto. O el sistema de coordenadas o las coordenadas reales del mapa OCAD están mal.</value>
+  </data>
+  <data name="LegAssignedOuterBranch" xml:space="preserve">
+    <value>El tramo {0} no alcanza la rama «{1}»: en una bifurcación que lo contiene se le ha asignado ir por otra ruta.</value>
+  </data>
+  <data name="LegNotAssigned" xml:space="preserve">
+    <value>El tramo {0} debería asignarse a una de las ramas {1}</value>
+  </data>
+  <data name="LegUsedTwice" xml:space="preserve">
+    <value>El tramo {0} está asignado a las ramas «{1}» y «{2}»</value>
+  </data>
+  <data name="PdfConversionFailed" xml:space="preserve">
+    <value>Pdfium PDF converter no ha podido leer el archivo PDF correctamente</value>
+  </data>
+  <data name="PdfConverterNotFound" xml:space="preserve">
+    <value>No se ha encontrado PdfConverter.exe not</value>
+  </data>
+  <data name="PdfResultNotReadable" xml:space="preserve">
+    <value>No se ha podido leer el resultado de la conversión a PDF del archivo «{0}».</value>
+  </data>
+  <data name="Version_Alpha" xml:space="preserve">
+    <value>Alfa {0}</value>
+  </data>
+  <data name="Version_Beta" xml:space="preserve">
+    <value>Beta {0}</value>
+  </data>
+  <data name="Version_RC" xml:space="preserve">
+    <value>RC {0}</value>
+  </data>
 </root>

@@ -145,7 +145,7 @@ namespace PurplePen
             List<string> courseNames = new List<string>();
 
             if (courseIds.Contains(new Id<Course>(0))) {
-                courseNames.Add(CoreMiscText.AllControls);
+                courseNames.Add(MiscText.AllControls);
             }
 
             bool inAllCourses = true;

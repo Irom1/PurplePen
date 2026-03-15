@@ -185,7 +185,7 @@ namespace PurplePen
             int startLine = 0, countLines;
 
             if (!PageSizeBigEnough(new IPrintableRectangle[] { rectangle }))
-                throw new ApplicationException(CoreMiscText.PageTooSmall);
+                throw new ApplicationException(MiscText.PageTooSmall);
 
             StartNewPage();
             int startPage = currentPage;
@@ -236,7 +236,7 @@ namespace PurplePen
                 return;
 
             if (!PageSizeBigEnough(rectangles))
-                throw new ApplicationException(CoreMiscText.PageTooSmall);
+                throw new ApplicationException(MiscText.PageTooSmall);
 
             List<IPrintableRectangle> rectList = new List<IPrintableRectangle>(rectangles);
 

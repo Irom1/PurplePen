@@ -552,4 +552,67 @@
   <data name="GpxMustBeOcadMap" xml:space="preserve">
     <value>映射文件必须是一个软件包文件使用GPX文件。</value>
   </data>
+  <data name="BadLegNumber" xml:space="preserve">
+    <value>'{0}' 不是一个有效的路段序号对于分支 '{1}'</value>
+  </data>
+  <data name="CannotCreatePdfs" xml:space="preserve">
+    <value>无法为以下原因创建PDF文件：</value>
+  </data>
+  <data name="CannotPrint" xml:space="preserve">
+    <value>无法打印“{0}的原因如下：</value>
+  </data>
+  <data name="CannotReadImageFile" xml:space="preserve">
+    <value>无法读取图像文件“{0}”。</value>
+  </data>
+  <data name="CannotReadMap" xml:space="preserve">
+    <value>无法读取地图的原因如下：“{0}使用优化/修复产品可以解决的问题。</value>
+  </data>
+  <data name="CannotReadMapOOM" xml:space="preserve">
+    <value>无法读取地图，原因如下：'{0}'在最新版本的OOM中打开并重新保存地图可能会修复问题。</value>
+  </data>
+  <data name="CodeBadLength" xml:space="preserve">
+    <value>检查点编号必须是一个、两个或三个字母或数字。</value>
+  </data>
+  <data name="CodeBeginsWithZero" xml:space="preserve">
+    <value>检查点编号不应以零开头。</value>
+  </data>
+  <data name="CodeContainsSpace" xml:space="preserve">
+    <value>检查点编号不能包含空格。</value>
+  </data>
+  <data name="CodeCouldBeUpsideDown" xml:space="preserve">
+    <value>当一个检查点编号颠倒时，它不应该看起来像另一个数字。</value>
+  </data>
+  <data name="Control_Code" xml:space="preserve">
+    <value>检查点{0}</value>
+  </data>
+  <data name="GpxReprojectFailure" xml:space="preserve">
+    <value>不能重投影点；要么是坐标系统或真实世界坐标系在OCAD地图是错的。</value>
+  </data>
+  <data name="LegAssignedOuterBranch" xml:space="preserve">
+    <value>路段{0}永远不会到达分支{1}：它被分配到包含分支的另一个方向。</value>
+  </data>
+  <data name="LegNotAssigned" xml:space="preserve">
+    <value>路段 {0} 应该分配给其中一个分支 {1}</value>
+  </data>
+  <data name="LegUsedTwice" xml:space="preserve">
+    <value>路段 {0} 同时分配给分支 '{1}' 和分支 '{2}'</value>
+  </data>
+  <data name="PdfConversionFailed" xml:space="preserve">
+    <value>PDFium PDF转换器无法读取PDF文件成功</value>
+  </data>
+  <data name="PdfConverterNotFound" xml:space="preserve">
+    <value>pdfconverter.exe没有发现</value>
+  </data>
+  <data name="PdfResultNotReadable" xml:space="preserve">
+    <value>无法读取的文件“{0} PDF转换的结果”</value>
+  </data>
+  <data name="Version_Alpha" xml:space="preserve">
+    <value>阿尔法{0}</value>
+  </data>
+  <data name="Version_Beta" xml:space="preserve">
+    <value>β{0}</value>
+  </data>
+  <data name="Version_RC" xml:space="preserve">
+    <value>RC {0}</value>
+  </data>
 </root>

@@ -1712,7 +1712,7 @@ throw new NotImplementedException("Unported Controller method");
                     printManager.SetDefaultPaperSize(paperSizeWithMargins);
                     printManager.DoPrinting();
                 },
-                CoreMiscText.CannotPrint, documentTitle);
+                MiscText.CannotPrint, documentTitle);
 
             return success;
 #else
@@ -1746,7 +1746,7 @@ throw new NotImplementedException("Unported Controller method");
                     printManager.SetDefaultPaperSize(paperSizeWithMargins);
                     printManager.DoPrinting();
                 },
-                CoreMiscText.CannotCreatePdfs);
+                MiscText.CannotCreatePdfs);
 
             return success;
 #else

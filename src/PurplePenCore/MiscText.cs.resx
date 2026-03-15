@@ -556,4 +556,67 @@ OK - zkus soubor s mapou najít.</value>
   <data name="CodeUnder31" xml:space="preserve">
     <value>Kód kontroly by měl být 31 nebo vyšší.</value>
   </data>
+  <data name="BadLegNumber" xml:space="preserve">
+    <value>'{0}' je neplatné číslo farsty '{1}'</value>
+  </data>
+  <data name="CannotCreatePdfs" xml:space="preserve">
+    <value>Nelze vytvořit PDFko z tohoto důvodu:</value>
+  </data>
+  <data name="CannotPrint" xml:space="preserve">
+    <value>Z následujícího důvodu nelze vytisknout '{0}' :</value>
+  </data>
+  <data name="CannotReadImageFile" xml:space="preserve">
+    <value>Nelze číst obrázkový soubor '{0}'.</value>
+  </data>
+  <data name="CannotReadMap" xml:space="preserve">
+    <value>Nelze načíst mapa z následujících důvodů: '{0}' Použití Optimalizace/Oprava a opětovné uložení v OCAD může problém vyřešit.</value>
+  </data>
+  <data name="CannotReadMapOOM" xml:space="preserve">
+    <value>Nelze otevřít mapu z následujícího důvodu: '{0}' Otevření a opětovné uložení mapy v nejnovější verzi OpenOrienteering Mapper  může vyřešit problémy.</value>
+  </data>
+  <data name="CodeBadLength" xml:space="preserve">
+    <value>Kód kontroly musí být jedno, dvě nebo tři písmena nebo číslice.</value>
+  </data>
+  <data name="CodeBeginsWithZero" xml:space="preserve">
+    <value>Kód kontroly by neměl začínat nulou.</value>
+  </data>
+  <data name="CodeContainsSpace" xml:space="preserve">
+    <value>Kód kontroly nesmí obsahovat mezeru.</value>
+  </data>
+  <data name="CodeCouldBeUpsideDown" xml:space="preserve">
+    <value>Kód kontroly nemá vypadat  jako jiné převrácené číslo (66 68)</value>
+  </data>
+  <data name="Control_Code" xml:space="preserve">
+    <value>Kontrola {0}</value>
+  </data>
+  <data name="GpxReprojectFailure" xml:space="preserve">
+    <value>Nebylo možné překreslit body - buď souřadnicový systém nebo skutečné světové souřadnice v OCAD jsou chybné.</value>
+  </data>
+  <data name="LegAssignedOuterBranch" xml:space="preserve">
+    <value>Postup {0} není ve farstě '{1}': byl již přiřazený k jinému větvení farsty</value>
+  </data>
+  <data name="LegNotAssigned" xml:space="preserve">
+    <value>Postup {0} by měl být přiřazen k jedné z variant {1}</value>
+  </data>
+  <data name="LegUsedTwice" xml:space="preserve">
+    <value>Postup {0} je přiřazený k farstám '{1}' i '{2}'</value>
+  </data>
+  <data name="PdfConversionFailed" xml:space="preserve">
+    <value>Pdfium PDF converter nemůže přečíst PDF soubor.</value>
+  </data>
+  <data name="PdfConverterNotFound" xml:space="preserve">
+    <value>PdfConverter.exe nenalezen</value>
+  </data>
+  <data name="PdfResultNotReadable" xml:space="preserve">
+    <value>Nelze přečíst výsledek konverze PDFka ze souboru '{0}'</value>
+  </data>
+  <data name="Version_Alpha" xml:space="preserve">
+    <value>Alpha {0}</value>
+  </data>
+  <data name="Version_Beta" xml:space="preserve">
+    <value>Beta {0}</value>
+  </data>
+  <data name="Version_RC" xml:space="preserve">
+    <value>RC {0}</value>
+  </data>
 </root>

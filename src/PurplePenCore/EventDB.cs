@@ -356,7 +356,7 @@ namespace PurplePen
                 if (Team.HasValue && Leg.HasValue)
                     return string.Format("{0}.{1}", Team.Value, Leg.Value);
                 else if (string.IsNullOrEmpty(CodeString))
-                    return CoreMiscText.AllVariations;
+                    return MiscText.AllVariations;
                 else
                     return CodeString;
             }

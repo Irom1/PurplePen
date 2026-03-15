@@ -564,4 +564,68 @@ Adicione um controle de chegada primeiro.</value>
   <data name="GpxMustBeOcadMap" xml:space="preserve">
     <value>O arquivo de mapa deve ser um arquivo OCAD para usar arquivos GPX.</value>
   </data>
+  <data name="BadLegNumber" xml:space="preserve">
+    <value>'{0}' não é um número de pernada válido para a variante '{1}'</value>
+  </data>
+  <data name="CannotCreatePdfs" xml:space="preserve">
+    <value>Não é possível criar arquivos PDF pelo seguinte motivo:</value>
+  </data>
+  <data name="CannotPrint" xml:space="preserve">
+    <value>Não é possível imprimir '{0}' pelo seguinte motivo:</value>
+  </data>
+  <data name="CannotReadImageFile" xml:space="preserve">
+    <value>Não é possível ler o arquivo de imagem '{0}'.</value>
+  </data>
+  <data name="CannotReadMap" xml:space="preserve">
+    <value>Não é possível ler o mapa pelo seguinte motivo: '{0}' Usar Otimizar/Reparar e salvar novamente no OCAD pode corrigir problemas.</value>
+  </data>
+  <data name="CannotReadMapOOM" xml:space="preserve">
+    <value>Não é possível ler o mapa pelo seguinte motivo: '{0}' 
+Abrir e salvar novamente o mapa na versão mais recente do OpenOrienteering Mapper pode corrigir problemas.</value>
+  </data>
+  <data name="CodeBadLength" xml:space="preserve">
+    <value>Um código de controle deve ter uma, duas ou três letras ou dígitos.</value>
+  </data>
+  <data name="CodeBeginsWithZero" xml:space="preserve">
+    <value>Um código de controle não pode começar com zero.</value>
+  </data>
+  <data name="CodeContainsSpace" xml:space="preserve">
+    <value>Um código de controle  não pode conter espaço.</value>
+  </data>
+  <data name="CodeCouldBeUpsideDown" xml:space="preserve">
+    <value>Um código de controle não deve se parecer com outro número quando está de cabeça para baixo.</value>
+  </data>
+  <data name="Control_Code" xml:space="preserve">
+    <value>Controle {0}</value>
+  </data>
+  <data name="GpxReprojectFailure" xml:space="preserve">
+    <value>Não foi possível reprojetar pontos; ou o sistema de coordenadas ou as coordenadas do mundo real no mapa OCAD estão erradas.</value>
+  </data>
+  <data name="LegAssignedOuterBranch" xml:space="preserve">
+    <value>A pernada {0} nunca alcança a variante '{1}': ela foi atribuída para seguir um caminho diferente em uma dispersão de contenção.</value>
+  </data>
+  <data name="LegNotAssigned" xml:space="preserve">
+    <value>A pernada {0} deve ser atribuída a uma das variantes {1}</value>
+  </data>
+  <data name="LegUsedTwice" xml:space="preserve">
+    <value>A pernada {0} é atribuída tanto à variante '{1}' quanto à variante '{2}'</value>
+  </data>
+  <data name="PdfConversionFailed" xml:space="preserve">
+    <value>O conversor de PDF Pdfium falhou ao ler o arquivo PDF</value>
+  </data>
+  <data name="PdfConverterNotFound" xml:space="preserve">
+    <value>PdfConverter.exe não encontrado</value>
+  </data>
+  <data name="PdfResultNotReadable" xml:space="preserve">
+    <value>Não foi possível ler o resultado da conversão de PDF do arquivo '{0}'</value>
+  </data>
+  <data name="Version_Alpha" xml:space="preserve">
+    <value>Alpha {0}</value>
+  </data>
+  <data name="Version_Beta" xml:space="preserve">
+    <value>Beta {0}</value>
+  </data>
+  <data name="Version_RC" xml:space="preserve">
+    <value>RC {0}</value>
+  </data>
 </root>

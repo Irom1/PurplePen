@@ -100,7 +100,7 @@ namespace PurplePen
             try {
                 string converterExe = FindPdfConverterExe();
                 if (converterExe == null) {
-                    conversionOutput = CoreMiscText.PdfConverterNotFound;
+                    conversionOutput = MiscText.PdfConverterNotFound;
                     status = ConversionStatus.Failure;
                     return status;
                 }

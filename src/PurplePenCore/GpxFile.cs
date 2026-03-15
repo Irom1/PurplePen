@@ -74,7 +74,7 @@ namespace PurplePen
                     if (!coordinateMapper.GetLatLong(control.location, out latitude, out longitude) ||
                         double.IsNaN(latitude) || double.IsNaN(longitude)) 
                     {
-                        throw new Exception(CoreMiscText.GpxReprojectFailure);
+                        throw new Exception(MiscText.GpxReprojectFailure);
                     }
                     // Create a waypoint.
                     Waypoint wp = new Waypoint() { Name = name, Kind = kind, Latitude = latitude, Longitude = longitude };
@@ -230,7 +230,7 @@ namespace PurplePen
                             if (!coordinateMapper.GetLatLong(bendPoint, out latitude, out longitude) ||
                                 double.IsNaN(latitude) || double.IsNaN(longitude)) 
                             {
-                                throw new Exception(CoreMiscText.GpxReprojectFailure);
+                                throw new Exception(MiscText.GpxReprojectFailure);
                             }
                             
                             WriteTrackBendPoint(latitude, longitude);
@@ -309,7 +309,7 @@ namespace PurplePen
         public CoordinateMapper(Map map)
         {
             if (map == null)
-                throw new Exception(CoreMiscText.GpxMustBeOcadMap);
+                throw new Exception(MiscText.GpxMustBeOcadMap);
 
             using (map.Read()) {
                 mapScale = map.MapScale;

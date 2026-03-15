@@ -529,4 +529,49 @@ OKを押し、コンピュータ上で地図ファイルのコピーを探して
   <data name="GhostscriptNotInstalled" xml:space="preserve">
     <value>GPL Ghostscript がインストールされていません</value>
   </data>
+  <data name="CannotCreatePdfs" xml:space="preserve">
+    <value>PDF '{0}' を作成できません。以下の理由:</value>
+  </data>
+  <data name="CannotPrint" xml:space="preserve">
+    <value>'{0}' を印刷できません。以下の理由:</value>
+  </data>
+  <data name="CannotReadImageFile" xml:space="preserve">
+    <value>画像ファイル '{0}' をロードできません。</value>
+  </data>
+  <data name="CodeBadLength" xml:space="preserve">
+    <value>コントロールコードには1～3桁の数字または文字を設定してください。</value>
+  </data>
+  <data name="CodeBeginsWithZero" xml:space="preserve">
+    <value>コントロールコードは0から始めるべきではありません。</value>
+  </data>
+  <data name="CodeContainsSpace" xml:space="preserve">
+    <value>コントロールコードにスペースを入れないでください。</value>
+  </data>
+  <data name="CodeCouldBeUpsideDown" xml:space="preserve">
+    <value>コントロールコードには、逆さにも読める番号を使用しないことを勧めます。</value>
+  </data>
+  <data name="Control_Code" xml:space="preserve">
+    <value>コントロール {0}</value>
+  </data>
+  <data name="GpxReprojectFailure" xml:space="preserve">
+    <value>点を再投影できません。座標系またはOCADマップのリアルワールド座標に誤りがあります。</value>
+  </data>
+  <data name="PdfConversionFailed" xml:space="preserve">
+    <value>Pdfium PDF converter がPDFファイルの正常な読み込みに失敗しました</value>
+  </data>
+  <data name="PdfConverterNotFound" xml:space="preserve">
+    <value>PdfConverter.exe が見つかりません</value>
+  </data>
+  <data name="PdfResultNotReadable" xml:space="preserve">
+    <value>ファイル '{0}' からのPDF変換の結果が読み込めませんでした</value>
+  </data>
+  <data name="Version_Alpha" xml:space="preserve">
+    <value>Alpha {0}</value>
+  </data>
+  <data name="Version_Beta" xml:space="preserve">
+    <value>Beta {0}</value>
+  </data>
+  <data name="Version_RC" xml:space="preserve">
+    <value>RC {0}</value>
+  </data>
 </root>

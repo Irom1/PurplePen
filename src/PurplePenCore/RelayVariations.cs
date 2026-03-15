@@ -140,14 +140,14 @@ namespace PurplePen
                     if (assignments.BranchIsFixed(code)) {
                         foreach (int leg in assignments.FixedLegsForBranch(code)) {
                             if (leg < 0 || leg >= numberLegs) {
-                                errors.Add(string.Format(CoreMiscText.BadLegNumber, leg + 1, code));
+                                errors.Add(string.Format(MiscText.BadLegNumber, leg + 1, code));
                             }
                             else if (codeForLeg[leg] != 0) {
-                                errors.Add(string.Format(CoreMiscText.LegUsedTwice, leg + 1, codeForLeg[leg], code));
+                                errors.Add(string.Format(MiscText.LegUsedTwice, leg + 1, codeForLeg[leg], code));
                             }
                             else if (!legsReachingHere[leg]) {
                                 // This leg can't be assigned, because it doesn't ever reach here.
-                                errors.Add(string.Format(CoreMiscText.LegAssignedOuterBranch, leg + 1, code));
+                                errors.Add(string.Format(MiscText.LegAssignedOuterBranch, leg + 1, code));
                             }
                             else {
                                 codeForLeg[leg] = code;
@@ -167,7 +167,7 @@ namespace PurplePen
                     string allCodes = string.Join(", ", from c in fork.codes select c.ToString());
                     for (int leg = 0; leg < numberLegs; ++leg) {
                         if (legsReachingHere[leg] && codeForLeg[leg] == 0)
-                            errors.Add(string.Format(CoreMiscText.LegNotAssigned, leg + 1, allCodes));
+                            errors.Add(string.Format(MiscText.LegNotAssigned, leg + 1, allCodes));
                     }
                 }
                 else {

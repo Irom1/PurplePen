@@ -478,4 +478,40 @@ Użyj | aby rozdzielić linie
   <data name="GhostscriptNotInstalled" xml:space="preserve">
     <value>GPL Ghostscript nie jest zainstalowany</value>
   </data>
+  <data name="CannotCreatePdfs" xml:space="preserve">
+    <value>Nie udało się utworzyć plików PDF z następującego powodu:</value>
+  </data>
+  <data name="CannotPrint" xml:space="preserve">
+    <value>Nie mogę wydrukować '{0}' z następującego powodu:</value>
+  </data>
+  <data name="CannotReadImageFile" xml:space="preserve">
+    <value>Nie mogę przeczytać obrazu '{0}'.</value>
+  </data>
+  <data name="CodeBadLength" xml:space="preserve">
+    <value>Kod PK musi składać się z jednej, dwóch lub trzech liter i/lub cyfr.</value>
+  </data>
+  <data name="CodeBeginsWithZero" xml:space="preserve">
+    <value>Kod PK nie może zaczynać się wiodącym zerem.</value>
+  </data>
+  <data name="CodeContainsSpace" xml:space="preserve">
+    <value>Kod PK nie może zawierać spacji.</value>
+  </data>
+  <data name="CodeCouldBeUpsideDown" xml:space="preserve">
+    <value>Kod PK nie powinien wyglądać jak inna liczba odczytywana do góry nogami.</value>
+  </data>
+  <data name="Control_Code" xml:space="preserve">
+    <value>PK {0}</value>
+  </data>
+  <data name="PdfResultNotReadable" xml:space="preserve">
+    <value>Nie można przeczytać rezultatu konwersji do PDF z pliku '{0}'</value>
+  </data>
+  <data name="Version_Alpha" xml:space="preserve">
+    <value>Alfa {0}</value>
+  </data>
+  <data name="Version_Beta" xml:space="preserve">
+    <value>Beta {0}</value>
+  </data>
+  <data name="Version_RC" xml:space="preserve">
+    <value>RC {0}</value>
+  </data>
 </root>

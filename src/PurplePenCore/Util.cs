@@ -475,11 +475,11 @@ namespace PurplePen
                 if (v.Revision >= VersionNumber.Stable)
                     modifier = "";
                 else if (v.Revision >= VersionNumber.RC)
-                    modifier = " " + string.Format(CoreMiscText.Version_RC, (v.Revision - VersionNumber.RC) / 10.0);
+                    modifier = " " + string.Format(MiscText.Version_RC, (v.Revision - VersionNumber.RC) / 10.0);
                 else if (v.Revision >= VersionNumber.Beta)
-                    modifier = " " + string.Format(CoreMiscText.Version_Beta, (v.Revision - VersionNumber.Beta) / 10.0);
+                    modifier = " " + string.Format(MiscText.Version_Beta, (v.Revision - VersionNumber.Beta) / 10.0);
                 else if (v.Revision >= VersionNumber.Alpha)
-                    modifier = " " + string.Format(CoreMiscText.Version_Alpha, (v.Revision - VersionNumber.Alpha) / 10.0);
+                    modifier = " " + string.Format(MiscText.Version_Alpha, (v.Revision - VersionNumber.Alpha) / 10.0);
                 else
                     modifier = string.Format(" ({0})", v.Revision);
 
@@ -504,45 +504,45 @@ namespace PurplePen
             switch (control.kind) {
             case ControlPointKind.Normal:
                 if (style == NameStyle.Long)
-                    return string.Format(CoreMiscText.Control_Code, control.code);
+                    return string.Format(MiscText.Control_Code, control.code);
                 else
                     return string.Format("{0}", control.code);
 
             case ControlPointKind.Start:
                 if (style == NameStyle.Short)
-                    return CoreMiscText.Start_Short;
+                    return MiscText.Start_Short;
                 else
-                    return CoreMiscText.Start;
+                    return MiscText.Start;
 
             case ControlPointKind.Finish:
                 if (style == NameStyle.Short)
-                    return CoreMiscText.Finish_Short;
+                    return MiscText.Finish_Short;
                 else
-                    return CoreMiscText.Finish;
+                    return MiscText.Finish;
 
             case ControlPointKind.CrossingPoint:
                 if (style == NameStyle.Long)
-                    return CoreMiscText.MandCrossing_Long;
+                    return MiscText.MandCrossing_Long;
                 else if (style == NameStyle.Medium)
-                    return CoreMiscText.MandCrossing_Medium;
+                    return MiscText.MandCrossing_Medium;
                 else
-                    return CoreMiscText.MandCrossing_Short;
+                    return MiscText.MandCrossing_Short;
 
             case ControlPointKind.MapExchange:
                 if (style == NameStyle.Long)
-                    return CoreMiscText.MapExchange_Long;
+                    return MiscText.MapExchange_Long;
                 else if (style == NameStyle.Medium)
-                    return CoreMiscText.MapExchange_Medium;
+                    return MiscText.MapExchange_Medium;
                 else
-                    return CoreMiscText.MapExchange_Short;
+                    return MiscText.MapExchange_Short;
 
             case ControlPointKind.MapIssue:
                 if (style == NameStyle.Long)
-                    return CoreMiscText.MapIssue_Long;
+                    return MiscText.MapIssue_Long;
                 else if (style == NameStyle.Medium)
-                    return CoreMiscText.MapIssue_Medium;
+                    return MiscText.MapIssue_Medium;
                 else
-                    return CoreMiscText.MapIssue_Short;
+                    return MiscText.MapIssue_Short;
 
             default:
                 Debug.Fail("bad control kind");

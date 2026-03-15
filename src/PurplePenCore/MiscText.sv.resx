@@ -568,4 +568,67 @@ Tryck OK och försök hitta kartfilen på din dator.</value>
   <data name="GhostscriptNotInstalled" xml:space="preserve">
     <value>GPL Ghostscript är inte installerat</value>
   </data>
+  <data name="BadLegNumber" xml:space="preserve">
+    <value>'{0}' är inte ett giltigt sträcknummer för gaffling '{1}'</value>
+  </data>
+  <data name="CannotCreatePdfs" xml:space="preserve">
+    <value>Kan inte skapa PDF av följande orsaker:</value>
+  </data>
+  <data name="CannotPrint" xml:space="preserve">
+    <value>Kan inte skriva ut '{0}' av följande skäl:</value>
+  </data>
+  <data name="CannotReadImageFile" xml:space="preserve">
+    <value>Kan inte läsa bildfil '{0}'.</value>
+  </data>
+  <data name="CannotReadMap" xml:space="preserve">
+    <value>Kan inte läsa kartan på grund av: '{0}' Optimera/reparera och spara om som OCAD kan lösa problemet.</value>
+  </data>
+  <data name="CannotReadMapOOM" xml:space="preserve">
+    <value>Kan inte läsa kartan på grund av: '{0}' Öppna och spara om kartan i senaste versionen av OpenOrienteering Mapper så löser det kanske problemet.</value>
+  </data>
+  <data name="CodeBadLength" xml:space="preserve">
+    <value>En kodsiffra måste bestå av en, två eller tre siffror (eller bokstäver).</value>
+  </data>
+  <data name="CodeBeginsWithZero" xml:space="preserve">
+    <value>En kodsiffra får inte börja med en nolla.</value>
+  </data>
+  <data name="CodeContainsSpace" xml:space="preserve">
+    <value>En kodsiffra får inte innehålla mellanslag.</value>
+  </data>
+  <data name="CodeCouldBeUpsideDown" xml:space="preserve">
+    <value>En kodsiffra ska inte kunna läsas upp-och-ner som en annan kodsiffra.</value>
+  </data>
+  <data name="Control_Code" xml:space="preserve">
+    <value>Kontroll {0}</value>
+  </data>
+  <data name="GpxReprojectFailure" xml:space="preserve">
+    <value>Kunde inte projicera om punkter; antingen är koordinatsystemet eller de riktiga världskoordinaterna i OCAD-kartan fel.</value>
+  </data>
+  <data name="LegAssignedOuterBranch" xml:space="preserve">
+    <value>Sträcka {0} når aldrig gaffling '{1}': den är ritad att gå en annan väg i en yttre gaffling.</value>
+  </data>
+  <data name="LegNotAssigned" xml:space="preserve">
+    <value>Sträcka {0} bör tilldelas till en av gafflingarna {1}</value>
+  </data>
+  <data name="LegUsedTwice" xml:space="preserve">
+    <value>Sträcka {0} är tilldelad till både gaffling '{1}' och '{2}'</value>
+  </data>
+  <data name="PdfConversionFailed" xml:space="preserve">
+    <value>Pdfium PDF konverterare misslyckades att läsa PDF-filen</value>
+  </data>
+  <data name="PdfConverterNotFound" xml:space="preserve">
+    <value>PdfConverter.exe hittades inte</value>
+  </data>
+  <data name="PdfResultNotReadable" xml:space="preserve">
+    <value>Kunde inte läsa resultatet av PDF-konvertering från fil '{0}</value>
+  </data>
+  <data name="Version_Alpha" xml:space="preserve">
+    <value>Alfa {0}</value>
+  </data>
+  <data name="Version_Beta" xml:space="preserve">
+    <value>Beta {0}</value>
+  </data>
+  <data name="Version_RC" xml:space="preserve">
+    <value>RC {0}</value>
+  </data>
 </root>

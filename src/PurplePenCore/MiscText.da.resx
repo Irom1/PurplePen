@@ -541,4 +541,67 @@ Efter at klikke OK, prøv at finde en kopi af kortfilen på din computer.</value
   <data name="GpxMustBeOcadMap" xml:space="preserve">
     <value>Kortfilen skal være en OCADfil for at bruge GPXfiler.</value>
   </data>
+  <data name="BadLegNumber" xml:space="preserve">
+    <value>'{0}' er  ikke et gyldigt bennummer til gren '{1}'</value>
+  </data>
+  <data name="CannotCreatePdfs" xml:space="preserve">
+    <value>Kan ikke oprette PDFs af følgende grund:</value>
+  </data>
+  <data name="CannotPrint" xml:space="preserve">
+    <value>Kan ikke udskrive '(0)' af følgende grund:</value>
+  </data>
+  <data name="CannotReadImageFile" xml:space="preserve">
+    <value>Kan ikke læse billedfil '(0)'</value>
+  </data>
+  <data name="CannotReadMap" xml:space="preserve">
+    <value>Kan ikke læse kort af den følgende grund: '(0)' Optimer/Reparer og gen-gem i OCAD kan klare problemerne.</value>
+  </data>
+  <data name="CannotReadMapOOM" xml:space="preserve">
+    <value>Kan ikke læse kort af følgende grund: '{0}' Åbning og gen-gem kortet i den seneste version af OpenOrienteering Mapper kan løse problemerne.</value>
+  </data>
+  <data name="CodeBadLength" xml:space="preserve">
+    <value>En kontrolkode skal være en, to eller tre bogstaver eller tal.</value>
+  </data>
+  <data name="CodeBeginsWithZero" xml:space="preserve">
+    <value>En kontrolkode skulle ikke begynde med et nul.</value>
+  </data>
+  <data name="CodeContainsSpace" xml:space="preserve">
+    <value>En kontrolkode må ikke indeholde mellemrum.</value>
+  </data>
+  <data name="CodeCouldBeUpsideDown" xml:space="preserve">
+    <value>En kontrolkode skulle ikke se ud som et andet nummer ved op-ned.</value>
+  </data>
+  <data name="Control_Code" xml:space="preserve">
+    <value>Kontrol {0}</value>
+  </data>
+  <data name="GpxReprojectFailure" xml:space="preserve">
+    <value>Kunne ikke genprojekt punkter; enten er koordinaterne og de virkelige koordinater i OCAD kortet forkerte.</value>
+  </data>
+  <data name="LegAssignedOuterBranch" xml:space="preserve">
+    <value>Ben {0} når aldrig gren '{1}': det var tildelt at gå en anderledes vej i en Indeholdende fork.</value>
+  </data>
+  <data name="LegNotAssigned" xml:space="preserve">
+    <value>Ben {0} skal tildeles en sf grenene {1}</value>
+  </data>
+  <data name="LegUsedTwice" xml:space="preserve">
+    <value>Ben {0} er tildelt begge grene '{1}' og gren '{2}'</value>
+  </data>
+  <data name="PdfConversionFailed" xml:space="preserve">
+    <value>Pdfium PDF converter mislykkedes med at læse PDF fil successfuldt</value>
+  </data>
+  <data name="PdfConverterNotFound" xml:space="preserve">
+    <value>PdfConverter.exe blev ikke fundet</value>
+  </data>
+  <data name="PdfResultNotReadable" xml:space="preserve">
+    <value>Kunne ikke læse resultatet af PDF omdannelse fra fil '{0}'</value>
+  </data>
+  <data name="Version_Alpha" xml:space="preserve">
+    <value>Alfa {0}</value>
+  </data>
+  <data name="Version_Beta" xml:space="preserve">
+    <value>Beta {0}</value>
+  </data>
+  <data name="Version_RC" xml:space="preserve">
+    <value>RC {0}</value>
+  </data>
 </root>

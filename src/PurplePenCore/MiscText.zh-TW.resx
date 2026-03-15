@@ -553,4 +553,67 @@
   <data name="GpxMustBeOcadMap" xml:space="preserve">
     <value>地圖檔案必須是使用GPX檔案的OCAD檔案。</value>
   </data>
+  <data name="BadLegNumber" xml:space="preserve">
+    <value>“{0}”不是分支“{1}”的有效賽段編號</value>
+  </data>
+  <data name="CannotCreatePdfs" xml:space="preserve">
+    <value>由於下列原因無法建立 PDF：</value>
+  </data>
+  <data name="CannotPrint" xml:space="preserve">
+    <value>無法列印 '{0}' 由於下列原因:</value>
+  </data>
+  <data name="CannotReadImageFile" xml:space="preserve">
+    <value>無法讀取地圖檔案 '{0}'.</value>
+  </data>
+  <data name="CannotReadMap" xml:space="preserve">
+    <value>無法讀取地圖由於下列原因: '{0}' 採用優化/修復並且在 OCAD再儲存可能修復的問題。</value>
+  </data>
+  <data name="CannotReadMapOOM" xml:space="preserve">
+    <value>由於下列原因無法讀取地圖：“{0}”在最新版本的 OpenOrienteering Mapper 中開啟並重新儲存地圖，可能會解決問題。</value>
+  </data>
+  <data name="CodeBadLength" xml:space="preserve">
+    <value>檢查點編號必須是一、二、三個字母或數字。</value>
+  </data>
+  <data name="CodeBeginsWithZero" xml:space="preserve">
+    <value>檢查點編號不應從零開始.</value>
+  </data>
+  <data name="CodeContainsSpace" xml:space="preserve">
+    <value>檢查點編號必須不包含空格.</value>
+  </data>
+  <data name="CodeCouldBeUpsideDown" xml:space="preserve">
+    <value>檢查點編號在上下顛倒時不應該看起來像另一個數字。</value>
+  </data>
+  <data name="Control_Code" xml:space="preserve">
+    <value>檢查點 {0}</value>
+  </data>
+  <data name="GpxReprojectFailure" xml:space="preserve">
+    <value>無法重新投影點； OCAD 地圖中的坐標系統或真實世界坐標是錯誤的。</value>
+  </data>
+  <data name="LegAssignedOuterBranch" xml:space="preserve">
+    <value>賽段 {0} 永遠不會到達分支“{1}”：它被分配到分叉中的不同路線。</value>
+  </data>
+  <data name="LegNotAssigned" xml:space="preserve">
+    <value>賽段 {0} 應分配至分支 {1} 之一</value>
+  </data>
+  <data name="LegUsedTwice" xml:space="preserve">
+    <value>賽段 {0} 同時被分配給分支“{1}”和分支“{2}”</value>
+  </data>
+  <data name="PdfConversionFailed" xml:space="preserve">
+    <value>Pdfium PDF 轉換器無法成功讀取PDF檔案</value>
+  </data>
+  <data name="PdfConverterNotFound" xml:space="preserve">
+    <value>PdfConverter.exe 找不到</value>
+  </data>
+  <data name="PdfResultNotReadable" xml:space="preserve">
+    <value>無法從檔案 '{0}'讀取 PDF 轉換的結果</value>
+  </data>
+  <data name="Version_Alpha" xml:space="preserve">
+    <value>Alpha {0}</value>
+  </data>
+  <data name="Version_Beta" xml:space="preserve">
+    <value>Beta {0}</value>
+  </data>
+  <data name="Version_RC" xml:space="preserve">
+    <value>RC {0}</value>
+  </data>
 </root>

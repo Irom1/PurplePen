@@ -349,4 +349,34 @@ După ce apăsați OK, încercați să localizați o copie a fișierului hartă 
   <data name="CrashSave" xml:space="preserve">
     <value>Salvare</value>
   </data>
+  <data name="CannotPrint" xml:space="preserve">
+    <value>Nu se poate tipări '{0}' deoarece:</value>
+  </data>
+  <data name="CannotReadImageFile" xml:space="preserve">
+    <value>Nu se poate citi fișierul de imagine '{0}'.</value>
+  </data>
+  <data name="CodeBadLength" xml:space="preserve">
+    <value>Un cod de post trebuie să conțină una, două sau trei litere sau cifre.</value>
+  </data>
+  <data name="CodeBeginsWithZero" xml:space="preserve">
+    <value>Un cod de post nu poate începe cu zero.</value>
+  </data>
+  <data name="CodeContainsSpace" xml:space="preserve">
+    <value>Un cod de post nu poate conține spațiu.</value>
+  </data>
+  <data name="CodeCouldBeUpsideDown" xml:space="preserve">
+    <value>Un cod de post nu trebuie să semene cu alt cod întors cu susul în jos.</value>
+  </data>
+  <data name="Control_Code" xml:space="preserve">
+    <value>Postul {0}</value>
+  </data>
+  <data name="Version_Alpha" xml:space="preserve">
+    <value>Alpha {0}</value>
+  </data>
+  <data name="Version_Beta" xml:space="preserve">
+    <value>Beta {0}</value>
+  </data>
+  <data name="Version_RC" xml:space="preserve">
+    <value>RC {0}</value>
+  </data>
 </root>

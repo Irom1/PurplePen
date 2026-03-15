@@ -147,17 +147,17 @@ namespace PurplePen
                     }
                     catch {
                         // Wasn't an bitmap file either.
-                        errorMessageText = string.Format(CoreMiscText.CannotReadImageFile, mapFileName);
+                        errorMessageText = string.Format(MiscText.CannotReadImageFile, mapFileName);
                         mapBounds = new RectangleF();
                         return false;
                     }
                 }
 
                 if (string.Compare(fileExtension, ".ocd", StringComparison.InvariantCultureIgnoreCase) == 0) {
-                    errorMessageText = string.Format(CoreMiscText.CannotReadMap, e.Message);
+                    errorMessageText = string.Format(MiscText.CannotReadMap, e.Message);
                 }
                 else {
-                    errorMessageText = string.Format(CoreMiscText.CannotReadMapOOM, e.Message);
+                    errorMessageText = string.Format(MiscText.CannotReadMapOOM, e.Message);
                 }
 
                 mapBounds = new RectangleF();
@@ -195,7 +195,7 @@ namespace PurplePen
 
             status = mapFile.Status;
             if (!ok || status == PdfMapFile.ConversionStatus.Failure) {
-                errorMessageText = CoreMiscText.PdfConversionFailed;
+                errorMessageText = MiscText.PdfConversionFailed;
                 if (!string.IsNullOrWhiteSpace(mapFile.ConversionOutput))
                     errorMessageText += ": " + mapFile.ConversionOutput;
                 dpi = 0;
@@ -217,7 +217,7 @@ namespace PurplePen
             }
             catch {
                 // Couldn't read the resulting PNG
-                errorMessageText = string.Format(CoreMiscText.PdfResultNotReadable, mapFile.PngFileName);
+                errorMessageText = string.Format(MiscText.PdfResultNotReadable, mapFile.PngFileName);
                 dpi = 0;
                 bitmapSize = default(Size);
                 return null;

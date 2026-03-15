@@ -565,4 +565,67 @@
   <data name="GpxMustBeOcadMap" xml:space="preserve">
     <value>Картният файл трябва да бъде във формат OCAD, за да се използват GPX файлове.</value>
   </data>
+  <data name="BadLegNumber" xml:space="preserve">
+    <value>„{0}“ не е валиден номер на отсечка за разклонение „{1}“</value>
+  </data>
+  <data name="CannotCreatePdfs" xml:space="preserve">
+    <value>Не може да се създадат PDF файлове поради следната причина:</value>
+  </data>
+  <data name="CannotPrint" xml:space="preserve">
+    <value>Не може да се отпечата '{0}' поради следната причина:</value>
+  </data>
+  <data name="CannotReadImageFile" xml:space="preserve">
+    <value>Не може да се прочете файлът с изображение '{0}'.</value>
+  </data>
+  <data name="CannotReadMap" xml:space="preserve">
+    <value>Не може да се прочете картата поради следната причина: '{0}'. Използването на функцията „Optimize/Repair“ и повторното записване в OCAD може да реши проблема.</value>
+  </data>
+  <data name="CannotReadMapOOM" xml:space="preserve">
+    <value>Картата не може да бъде прочетена поради следната причина: „{0}“. Отварянето и повторното ѝ записване в последната версия на OpenOrienteering Mapper може да реши проблема.</value>
+  </data>
+  <data name="CodeBadLength" xml:space="preserve">
+    <value>Сигнатурата трябва да съдържа една, две или три букви или цифри.</value>
+  </data>
+  <data name="CodeBeginsWithZero" xml:space="preserve">
+    <value>Сигнатурата не трябва да започва с нула.</value>
+  </data>
+  <data name="CodeContainsSpace" xml:space="preserve">
+    <value>Сигнатурата не трябва да съдържа интервал.</value>
+  </data>
+  <data name="CodeCouldBeUpsideDown" xml:space="preserve">
+    <value>Сигнатурата не трябва да изглежда като друго число, ако се обърне наопаки.</value>
+  </data>
+  <data name="Control_Code" xml:space="preserve">
+    <value>Контролна точка {0}</value>
+  </data>
+  <data name="GpxReprojectFailure" xml:space="preserve">
+    <value>Не може да се преобразуват координатите; координатната система или реалните географски координати в OCAD картата са некоректни.</value>
+  </data>
+  <data name="LegAssignedOuterBranch" xml:space="preserve">
+    <value>Отсечката {0} никога не достига разклонение „{1}“ – тя е зададена по друг път в рамките на по-високо разклонение.</value>
+  </data>
+  <data name="LegNotAssigned" xml:space="preserve">
+    <value>Отсечката {0} трябва да бъде зададена към едно от разклоненията {1}</value>
+  </data>
+  <data name="LegUsedTwice" xml:space="preserve">
+    <value>Отсечката {0} е зададена както на разклонение „{1}“, така и на „{2}“</value>
+  </data>
+  <data name="PdfConversionFailed" xml:space="preserve">
+    <value>PDF конверторът (Pdfium) не успя да прочете PDF файла успешно</value>
+  </data>
+  <data name="PdfConverterNotFound" xml:space="preserve">
+    <value>Файлът PdfConverter.exe не е открит</value>
+  </data>
+  <data name="PdfResultNotReadable" xml:space="preserve">
+    <value>Не може да се прочете резултатът от конвертирането на PDF файла „{0}“</value>
+  </data>
+  <data name="Version_Alpha" xml:space="preserve">
+    <value>Alpha {0}</value>
+  </data>
+  <data name="Version_Beta" xml:space="preserve">
+    <value>Beta {0}</value>
+  </data>
+  <data name="Version_RC" xml:space="preserve">
+    <value>RC {0}</value>
+  </data>
 </root>

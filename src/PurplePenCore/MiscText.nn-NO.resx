@@ -349,4 +349,34 @@ Trykk OK og forsøk å finne kartfila på datamaskina di.</value>
   <data name="CrashSave" xml:space="preserve">
     <value>Lagra</value>
   </data>
+  <data name="CannotPrint" xml:space="preserve">
+    <value>Kan ikkje skrive ut '{0}' på grunn av:</value>
+  </data>
+  <data name="CannotReadImageFile" xml:space="preserve">
+    <value>Kan ikkje lese bildefil '{0}'.</value>
+  </data>
+  <data name="CodeBadLength" xml:space="preserve">
+    <value>Postkoden må inneholde ein, to eller tre tall eller bokstaver.</value>
+  </data>
+  <data name="CodeBeginsWithZero" xml:space="preserve">
+    <value>Postkoder skal ikkje begynne med 0</value>
+  </data>
+  <data name="CodeContainsSpace" xml:space="preserve">
+    <value>En postkode kan ikkje innehalde mellomrom.</value>
+  </data>
+  <data name="CodeCouldBeUpsideDown" xml:space="preserve">
+    <value>En postkode skal ikkje kunne forveksles med eit annet nummer om den leses opp ned.</value>
+  </data>
+  <data name="Control_Code" xml:space="preserve">
+    <value>Post {0}</value>
+  </data>
+  <data name="Version_Alpha" xml:space="preserve">
+    <value>Alfa {0}</value>
+  </data>
+  <data name="Version_Beta" xml:space="preserve">
+    <value>Beta {0}</value>
+  </data>
+  <data name="Version_RC" xml:space="preserve">
+    <value>RC {0}</value>
+  </data>
 </root>

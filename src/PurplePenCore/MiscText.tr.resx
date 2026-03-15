@@ -565,4 +565,67 @@ Tamam düğmesine bastıktan sonra, bilgisayarınızda harita dosyasının bir k
   <data name="GpxMustBeOcadMap" xml:space="preserve">
     <value>GPX dosyalarını kullanmak için harita dosyası bir OCAD dosyası olmalıdır.</value>
   </data>
+  <data name="BadLegNumber" xml:space="preserve">
+    <value>'{0}' dalı '{1}' için geçerli bir yarış ayağı değildir</value>
+  </data>
+  <data name="CannotCreatePdfs" xml:space="preserve">
+    <value>Aşağıdaki nedenden dolayı PDF oluşturulamıyor:</value>
+  </data>
+  <data name="CannotPrint" xml:space="preserve">
+    <value>Aşağıdaki nedenden dolayı '{0}' harita dosyası yüklenmiyor:</value>
+  </data>
+  <data name="CannotReadImageFile" xml:space="preserve">
+    <value>'{0}' resim dosyası okunamıyor.</value>
+  </data>
+  <data name="CannotReadMap" xml:space="preserve">
+    <value>Harita şu nedenden dolayı okunamıyor: '{0}' Optimize/Onar'ı kullanmak ve OCAD'de yeniden kaydetmek sorunları çözebilir.</value>
+  </data>
+  <data name="CannotReadMapOOM" xml:space="preserve">
+    <value>Aşağıdaki sebep yüzünden haritayı okuyamıyor. '{0}' OpenOrienteering Mapper'ın son versiyonunda açmak ve tekrar kaydetmek sorunu çöze bilir.</value>
+  </data>
+  <data name="CodeBadLength" xml:space="preserve">
+    <value>Bir kontrol kodu bir, iki veya üç harf veya rakamdan oluşmalıdır.</value>
+  </data>
+  <data name="CodeBeginsWithZero" xml:space="preserve">
+    <value>Bir kontrol kodu sıfır ile başlamamalıdır.</value>
+  </data>
+  <data name="CodeContainsSpace" xml:space="preserve">
+    <value>Bir kontrol kodu boşluk içermemelidir.</value>
+  </data>
+  <data name="CodeCouldBeUpsideDown" xml:space="preserve">
+    <value>Bir kontrol kodu, ters çevrildiğinde başka bir sayı gibi görünmemelidir.</value>
+  </data>
+  <data name="Control_Code" xml:space="preserve">
+    <value>Kontrol {0}</value>
+  </data>
+  <data name="GpxReprojectFailure" xml:space="preserve">
+    <value>Noktalar yeniden projelendirilemedi; OCAD haritasındaki koordinat sistemi veya gerçek dünya koordinatları yanlış.</value>
+  </data>
+  <data name="LegAssignedOuterBranch" xml:space="preserve">
+    <value>Yarış ayağı {0} dal {1} e hiç ulaşmıyor. Var olan çatalda farklı bir yöne gitmesi için atanmış.</value>
+  </data>
+  <data name="LegNotAssigned" xml:space="preserve">
+    <value>Yarış ayağı {0} parkur dallarından {1} e atanmalı</value>
+  </data>
+  <data name="LegUsedTwice" xml:space="preserve">
+    <value>Yarış ayağı {0} parkur dallarından hem {1} e hem de {2} ye atanmalı</value>
+  </data>
+  <data name="PdfConversionFailed" xml:space="preserve">
+    <value>Pdfium PDF dönüştürücü, PDF dosyasını başarıyla okuyamadı</value>
+  </data>
+  <data name="PdfConverterNotFound" xml:space="preserve">
+    <value>PdfConverter.exe bulunamadı</value>
+  </data>
+  <data name="PdfResultNotReadable" xml:space="preserve">
+    <value>'{0}' dosyasından PDF dönüştürmenin sonucu okunamadı</value>
+  </data>
+  <data name="Version_Alpha" xml:space="preserve">
+    <value>Alfa {0}</value>
+  </data>
+  <data name="Version_Beta" xml:space="preserve">
+    <value>Beta {0}</value>
+  </data>
+  <data name="Version_RC" xml:space="preserve">
+    <value>RC {0}</value>
+  </data>
 </root>

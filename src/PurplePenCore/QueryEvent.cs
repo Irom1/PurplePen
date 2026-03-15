@@ -880,15 +880,15 @@ namespace PurplePen
         public static bool IsLegalControlCode(string code, out string reason)
         {
             if (code == null || code.Length < 1) {
-                reason = CoreMiscText.CodeBadLength;
+                reason = MiscText.CodeBadLength;
                 return false;
             }
             if (code.Length > 3) {
-                reason = CoreMiscText.CodeBadLength;
+                reason = MiscText.CodeBadLength;
                 return false;
             }
             if (code.Contains(" ")) {
-                reason = CoreMiscText.CodeContainsSpace;
+                reason = MiscText.CodeContainsSpace;
                 return false;
             }
 
@@ -912,11 +912,11 @@ namespace PurplePen
 
             if (int.TryParse(code, System.Globalization.NumberStyles.None, null, out codeNumber)) {
                 if (code[0] == '0') {
-                    reason = CoreMiscText.CodeBeginsWithZero;
+                    reason = MiscText.CodeBeginsWithZero;
                     return true;  // legal but not preferred.
                 }
                 if (disallowInvertibleCodes && Array.IndexOf(badUpsideDownNumbers, codeNumber) >= 0) {
-                    reason = CoreMiscText.CodeCouldBeUpsideDown;
+                    reason = MiscText.CodeCouldBeUpsideDown;
                     return true;  // legal but not preferred.
                 }
 
@@ -1463,7 +1463,7 @@ namespace PurplePen
             if (courseDesignator == null)
                 basename = GetEventTitle(eventDB, " ");
             else if (courseDesignator.IsAllControls)
-                basename = CoreMiscText.AllControls;
+                basename = MiscText.AllControls;
             else
                 basename = eventDB.GetCourse(courseDesignator.CourseId).name;
 
