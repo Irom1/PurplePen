@@ -1310,6 +1310,14 @@ namespace PurplePen.MapModel
         }
     }
 
+    public class GdiPlus_FileLoaderProvider : IFileLoaderProvider
+    {
+        public IFileLoader GetFileLoaderForDirectory(string path)
+        {
+            return new GDIPlus_FileLoader(path);
+        }
+    }
+
     public class GDIPlus_FileLoader : IFileLoader
     {
         private string basePath;

@@ -30,10 +30,6 @@ namespace PurplePen
         public static IPdfWriter PdfWriter => serviceProvider.GetRequiredService<IPdfWriter>();
     }
 
-    public interface IFileLoaderProvider
-    {
-        IFileLoader GetFileLoaderForDirectory(string path);
-    }
 
 #if PORTING
     public static class IconBitmaps

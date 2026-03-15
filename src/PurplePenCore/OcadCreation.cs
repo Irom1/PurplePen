@@ -34,18 +34,16 @@
 
 using PurplePen.Graphics2D;
 using PurplePen.MapModel;
-using SkiaSharp;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
-using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 
 namespace PurplePen
 {
-    class OcadCreation
+    public class OcadCreation
     {
         SymbolDB symbolDB;
         EventDB eventDB;
@@ -353,7 +351,9 @@ namespace PurplePen
                 List<TemplateInfo> templates = new List<TemplateInfo>(map.Templates);
 
                 foreach (BitmapToWrite bitmapToWrite in BitmapsToWrite()) {
-                    BitmapUtil.SaveBitmap(bitmapToWrite.Bitmap, bitmapToWrite.FullPath, bitmapToWrite.Format);
+                    using (Stream stream = new FileStream(bitmapToWrite.FullPath, FileMode.Create, FileAccess.Write)) {
+                        bitmapToWrite.Bitmap.WriteToStream(bitmapToWrite.Format, stream);
+                    }
 
                     for (int i = 0; i < templates.Count; ++i) {
                         if (templates[i].absoluteFileName == bitmapToWrite.Name)

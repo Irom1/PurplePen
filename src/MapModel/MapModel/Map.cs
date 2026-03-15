@@ -818,6 +818,11 @@ namespace PurplePen.MapModel
 
     public enum FileKind { DoesntExist, NotReadable, OcadFile, OtherFile };
 
+    public interface IFileLoaderProvider
+    {
+        IFileLoader GetFileLoaderForDirectory(string path);
+    }
+
     public interface IFileLoader
     {
         // Determine file existance and kind.
