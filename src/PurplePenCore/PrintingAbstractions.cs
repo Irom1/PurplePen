@@ -132,6 +132,9 @@ namespace PurplePen
         // Called at the beginning of printing.  Number of pages to print is given.
         void StartPrinting(string documentTitle, int pageCount);
 
+        // Get the printer resolution in dots per inch.
+        float GetPrinterDpi();
+
         // Called at the end of printing.
         void EndPrinting();
 
@@ -156,7 +159,7 @@ namespace PurplePen
 
         // Draw a page onto a graphics target. The graphics target is set up so that (0,0) is the top left corner of the area to print,
         // taking into account the margins, and the units are in hundredths of an inch. It should be already cleared to white if needed.
-        void DrawPage(IGraphicsTarget grTarget, int pageNumber);
+        void DrawPage(IGraphicsTarget grTarget, int pageNumber, float dpi);
 
         // Called after printing is complete or if it was cancelled.
         void PrintingComplete();

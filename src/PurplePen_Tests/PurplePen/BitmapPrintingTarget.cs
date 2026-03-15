@@ -17,6 +17,8 @@ namespace PurplePen_Tests.PurplePen
     // A printing target that prints to a list of bitmaps, one per page, for testing purposes.
     internal class BitmapPrintingTarget : IPrintingTarget
     {
+        const float Dpi = 200F;   // using 200 dpi.
+
         int currentPage;  // pages start at 1.
         List<Bitmap> bitmaps = new List<Bitmap>();
         string documentTitle;
@@ -31,12 +33,17 @@ namespace PurplePen_Tests.PurplePen
             this.documentTitle = documentTitle;
         }
 
+        public float GetPrinterDpi()
+        {
+            return Dpi;
+        }
+
         public void PrintPage(int pageNumber, PrintingPaperSize paperSize, Action<IGraphicsTarget> drawPage)
         {
             Debug.Assert(pageNumber == currentPage, "Page numbers must start at 1 and be printed in order.");
 
             Bitmap bm = new Bitmap((int) Math.Round(paperSize.SizeInHundreths.Width * 2), (int) Math.Round(paperSize.SizeInHundreths.Height * 2), GDIPlus_GraphicsTarget.NonAlphaPixelFormat);
-            bm.SetResolution(200, 200);           // using 200 dpi.
+            bm.SetResolution(Dpi, Dpi);           
 
             using (Graphics g = Graphics.FromImage(bm)) {
                 g.Clear(Color.White);

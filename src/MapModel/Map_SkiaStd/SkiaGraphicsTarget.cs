@@ -502,13 +502,13 @@ namespace PurplePen.MapModel
         }
 
         // Draw a bitmap
-        public void DrawBitmap(IGraphicsBitmap bm, RectangleF rectangle, BitmapScaling scalingMode, float minResolution)
+        public void DrawBitmap(IGraphicsBitmap bm, RectangleF rectangle, BitmapScaling scalingMode)
         {
-            DrawBitmapPart(bm, 0, 0, bm.PixelWidth, bm.PixelHeight, rectangle, scalingMode, minResolution);
+            DrawBitmapPart(bm, 0, 0, bm.PixelWidth, bm.PixelHeight, rectangle, scalingMode);
         }
 
         // Draw part of a bitmap
-        public void DrawBitmapPart(IGraphicsBitmap bm, int x, int y, int width, int height, RectangleF rectangle, BitmapScaling scalingMode, float minResolution)
+        public void DrawBitmapPart(IGraphicsBitmap bm, int x, int y, int width, int height, RectangleF rectangle, BitmapScaling scalingMode)
         {
             using (SKPaint paint = new SKPaint()) {
                 SKFilterQuality filterQuality;
@@ -1539,6 +1539,20 @@ namespace PurplePen.MapModel
     {
         public void Dispose()
         {
+        }
+
+        public IGraphicsBitmap CreateEmptyBitmap(int width, int height, System.Drawing.Color? color)
+        {
+            SKBitmap bitmap = new SKBitmap(width, height, SKImageInfo.PlatformColorType, SKAlphaType.Premul);
+
+            if (color.HasValue) {
+                SKColor skColor = new SKColor(color.Value.R, color.Value.G, color.Value.B, color.Value.A);
+                using (SKCanvas canvas = new SKCanvas(bitmap)) {
+                    canvas.Clear(skColor);
+                }
+            }
+
+            return new Skia_Bitmap(bitmap);
         }
 
         public IGraphicsBitmap ReadBitmapFromStream(Stream stream)

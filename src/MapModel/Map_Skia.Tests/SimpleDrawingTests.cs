@@ -286,8 +286,8 @@ namespace Map_Skia.Tests
             RenderingUtil.RenderingTest(1000, RectangleF.FromLTRB(0, 0, 800, 1100), false, TestUtil.GetTestFile("skia_render\\bitmap.png"),
                 grTarget => {
                     Skia_Bitmap penguins = new Skia_Bitmap(SKBitmap.Decode(TestUtil.GetTestFile("pdfrender\\penguins.jpg")));
-                    grTarget.DrawBitmap(penguins, new RectangleF(100, 100, 600, 400), BitmapScaling.MediumQuality, 0.01F);
-                    grTarget.DrawBitmap(penguins, new RectangleF(200, 800, 150, 100), BitmapScaling.MediumQuality, 0.01F);
+                    grTarget.DrawBitmap(penguins, new RectangleF(100, 100, 600, 400), BitmapScaling.MediumQuality);
+                    grTarget.DrawBitmap(penguins, new RectangleF(200, 800, 150, 100), BitmapScaling.MediumQuality);
                 }
             );
         }
@@ -299,7 +299,7 @@ namespace Map_Skia.Tests
                 grTarget => {
                     Skia_Bitmap bitmap = new Skia_Bitmap(SKBitmap.Decode(TestUtil.GetTestFile("pdfrender\\penguins.jpg")));
                     grTarget.DrawBitmapPart(bitmap, bitmap.PixelWidth * 3 / 10, bitmap.PixelHeight * 2 / 10, bitmap.PixelWidth * 5 / 10, bitmap.PixelHeight * 4 / 10,
-                                    new RectangleF(100, 500, 600, 400), BitmapScaling.NearestNeighbor, 0.01F);
+                                    new RectangleF(100, 500, 600, 400), BitmapScaling.NearestNeighbor);
                 }
             );
         }

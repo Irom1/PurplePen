@@ -56,6 +56,21 @@ namespace PurplePen
             documentPages.Clear();
         }
 
+        public float GetPrinterDpi()
+        {
+            PrinterSettings settings = options.PageSettings.PrinterSettings;
+
+            // Always check if the printer is valid before querying
+            if (settings.IsValid) {
+                using (Graphics g = settings.CreateMeasurementGraphics()) {
+                    return Math.Max(g.DpiX, g.DpiY);
+                }
+            }
+            else {
+                return 600F;  // reasonable default, I guess.
+            }
+        }
+
         public void PrintPage(int pageNumber, PrintingPaperSize paperSize, Action<IGraphicsTarget> drawPage)
         {
             Debug.Assert(pageNumber == documentPages.Count + 1, "Pages must be printed in order, and page numbers must be sequential starting at 1.");

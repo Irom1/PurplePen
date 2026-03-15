@@ -560,7 +560,7 @@ namespace PurplePen.MapModel
         }
 
         // Draw a bitmap
-        public void DrawBitmap(IGraphicsBitmap bm, RectangleF rectangle, BitmapScaling scalingMode, float minResolution)
+        public void DrawBitmap(IGraphicsBitmap bm, RectangleF rectangle, BitmapScaling scalingMode)
         {
             // If the transformed rectangle is too large, we can run out of memory.
             RectangleF transformedBounds = Geometry.BoundsOfTransformedRectangle(rectangle, Graphics.Transform.ToGraphics2DMatrix());
@@ -569,7 +569,7 @@ namespace PurplePen.MapModel
 
             if (bm.PixelHeight * bm.PixelWidth > BITMAP_DRAW_LIMIT) {
                 // Very large bitmaps can't be drawn in one piece.
-                DrawBitmapPartSplit(bm, 0, 0, bm.PixelWidth, bm.PixelHeight, rectangle, scalingMode, minResolution);
+                DrawBitmapPartSplit(bm, 0, 0, bm.PixelWidth, bm.PixelHeight, rectangle, scalingMode);
                 return;
             }
 
@@ -597,7 +597,7 @@ namespace PurplePen.MapModel
         }
 
         // Draw part of a bitmap
-        public void DrawBitmapPart(IGraphicsBitmap bm, int x, int y, int width, int height, RectangleF rectangle, BitmapScaling scalingMode, float minResolution)
+        public void DrawBitmapPart(IGraphicsBitmap bm, int x, int y, int width, int height, RectangleF rectangle, BitmapScaling scalingMode)
         {
             // If the transformed rectangle is too large, we can run out of memory.
             RectangleF transformedBounds = Geometry.BoundsOfTransformedRectangle(rectangle, Graphics.Transform.ToGraphics2DMatrix());
@@ -606,7 +606,7 @@ namespace PurplePen.MapModel
 
             if (width * height > BITMAP_DRAW_LIMIT) {
                 // Very large bitmaps can't be drawn in one piece.
-                DrawBitmapPartSplit(bm, x, y, width, height, rectangle, scalingMode, minResolution);
+                DrawBitmapPartSplit(bm, x, y, width, height, rectangle, scalingMode);
                 return;
             }
 
@@ -633,17 +633,17 @@ namespace PurplePen.MapModel
             Graphics.InterpolationMode = oldMode;
         }
 
-        private void DrawBitmapPartSplit(IGraphicsBitmap bm, int x, int y, int width, int height, RectangleF rectangle, BitmapScaling scalingMode, float minResolution)
+        private void DrawBitmapPartSplit(IGraphicsBitmap bm, int x, int y, int width, int height, RectangleF rectangle, BitmapScaling scalingMode)
         {
             int xSrcSplit = x + width / 2, ySrcSplit = y + height / 2;
 
             float xDestSplit = rectangle.X + rectangle.Width * (xSrcSplit - x) / width;
             float yDestSplit = rectangle.Y + rectangle.Height * (ySrcSplit - y) / height;
 
-            DrawBitmapPart(bm, x, y, xSrcSplit - x, ySrcSplit - y,                                  RectangleF.FromLTRB(rectangle.X, rectangle.Y, xDestSplit, yDestSplit), scalingMode, minResolution);
-            DrawBitmapPart(bm, xSrcSplit, y, x + width - xSrcSplit, ySrcSplit - y,                  RectangleF.FromLTRB(xDestSplit, rectangle.Y, rectangle.Right, yDestSplit), scalingMode, minResolution);
-            DrawBitmapPart(bm, x, ySrcSplit, xSrcSplit - x, y + height - ySrcSplit,                 RectangleF.FromLTRB(rectangle.X, yDestSplit, xDestSplit, rectangle.Bottom), scalingMode, minResolution);
-            DrawBitmapPart(bm, xSrcSplit, ySrcSplit, x + width - xSrcSplit, y + height - ySrcSplit, RectangleF.FromLTRB(xDestSplit, yDestSplit, rectangle.Right, rectangle.Bottom), scalingMode, minResolution);
+            DrawBitmapPart(bm, x, y, xSrcSplit - x, ySrcSplit - y,                                  RectangleF.FromLTRB(rectangle.X, rectangle.Y, xDestSplit, yDestSplit), scalingMode);
+            DrawBitmapPart(bm, xSrcSplit, y, x + width - xSrcSplit, ySrcSplit - y,                  RectangleF.FromLTRB(xDestSplit, rectangle.Y, rectangle.Right, yDestSplit), scalingMode);
+            DrawBitmapPart(bm, x, ySrcSplit, xSrcSplit - x, y + height - ySrcSplit,                 RectangleF.FromLTRB(rectangle.X, yDestSplit, xDestSplit, rectangle.Bottom), scalingMode);
+            DrawBitmapPart(bm, xSrcSplit, ySrcSplit, x + width - xSrcSplit, y + height - ySrcSplit, RectangleF.FromLTRB(xDestSplit, yDestSplit, rectangle.Right, rectangle.Bottom), scalingMode);
         }
 
         private InterpolationMode GetInterpolationMode(BitmapScaling scalingMode)
@@ -1416,6 +1416,11 @@ namespace PurplePen.MapModel
 
     public class GDIPlus_GraphicsBitmapLoader : IGraphicsBitmapLoader
     {
+        public IGraphicsBitmap CreateEmptyBitmap(int width, int height, Color? initialColor = null)
+        {
+            return new GDIPlus_Bitmap(new Bitmap(width, height, GDIPlus_GraphicsTarget.AlphaPixelFormat));
+        }
+
         public IGraphicsBitmap ReadBitmapFromStream(Stream stream)
         {
             // Create a new memory stream to hold the data, because the stream

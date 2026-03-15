@@ -429,7 +429,7 @@ namespace InteractiveTestApp.MapDisplayer
                 sourceBitmap = bitmap;
 
             // Draw it.
-            grTarget.DrawBitmap(sourceBitmap, new RectangleF(0, 0, bitmap.PixelWidth, bitmap.PixelHeight), scalingMode, 0.01F);
+            grTarget.DrawBitmap(sourceBitmap, new RectangleF(0, 0, bitmap.PixelWidth, bitmap.PixelHeight), scalingMode);
 
             // Pop transform
             grTarget.PopTransform();

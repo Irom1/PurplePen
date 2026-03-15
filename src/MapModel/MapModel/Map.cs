@@ -439,16 +439,15 @@ namespace PurplePen.MapModel
                 return; // Nothing to draw.
 
             g.PushTransform(transform);
-            float transformedMinResolution = Geometry.TransformDistance(renderOpts.minResolution, inverseTransform);
 
             try {
                 if (canClip) {
                     g.DrawBitmapPart(bitmap, (int)clippedBitmap.Left, (int)clippedBitmap.Top, (int)clippedBitmap.Width, (int)clippedBitmap.Height,
-                        clippedRect, BitmapScaling.MediumQuality, transformedMinResolution);
+                        clippedRect, BitmapScaling.MediumQuality);
                 }
                 else {
                     RectangleF rectangle = new RectangleF(- size.Width / 2, -size.Height / 2, size.Width, size.Height);
-                    g.DrawBitmap(bitmap, rectangle, BitmapScaling.MediumQuality, transformedMinResolution); 
+                    g.DrawBitmap(bitmap, rectangle, BitmapScaling.MediumQuality); 
                 }
             }
             finally {

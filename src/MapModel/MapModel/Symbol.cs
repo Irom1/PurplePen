@@ -1783,7 +1783,7 @@ namespace PurplePen.MapModel
                 matrix.Translate(-location.X, -location.Y);
 
                 g.PushTransform(matrix);
-                g.DrawBitmap(bitmap, boundingBox, BitmapScaling.HighQuality, renderOpts.minResolution);  // UNDONE: should bitmap scaling mode be customizable?
+                g.DrawBitmap(bitmap, boundingBox, BitmapScaling.HighQuality);  // UNDONE: should bitmap scaling mode be customizable?
                 g.PopTransform();
             }
         }

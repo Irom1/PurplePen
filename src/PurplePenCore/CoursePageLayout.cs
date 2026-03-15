@@ -45,19 +45,19 @@ namespace PurplePen
     using PurplePen.MapModel;
 
     // Layout of a single page that is being printed. Might be all of a course or just part.
-    class CoursePage
+    public class CoursePage
     {
         public CourseDesignator courseDesignator;             // course to print
         public string description;           // description of course
         public RectangleF mapRectangle;      // rectangle to print in map coordinates
         public RectangleF printRectangle;     // rectangle to print to on page, in hundredth of inch.
         public bool landscape;                       // true if page should be printed in landscape orientation
-        public PaperSize paperSize;            // the paper size for that page.
+        public PrintingPaperSize paperSize;            // the paper size for that page.
         public bool lastPageOfCourseOrPart;    // true if last page of a course or part of course (used for pausing printing)
     }
 
     // Class to layout the printing onto pages. Used for both printing and PDF creation.
-    class CoursePageLayout
+    public class CoursePageLayout
     {
         // Encapsulate the layout of one dimension of a page layout.
 #if TEST
@@ -118,13 +118,13 @@ namespace PurplePen
         }
 
         // Return the printable page area in 1/100 of an inch, given the page size, margins, and landscape.
-        RectangleF GetPrintablePageArea(bool landscape, PaperSize paperSize, int margins)
+        RectangleF GetPrintablePageArea(bool landscape, PrintingPaperSize paperSize, int margins)
         {
             if (landscape) {
-                return new RectangleF(margins, margins, paperSize.Height - (2 * margins), paperSize.Width - (2 * margins));
+                return new RectangleF(margins, margins, paperSize.SizeInHundreths.Height - (2 * margins), paperSize.SizeInHundreths.Width - (2 * margins));
             }
             else {
-                return new RectangleF(margins, margins, paperSize.Width - (2 * margins), paperSize.Height - (2 * margins));
+                return new RectangleF(margins, margins, paperSize.SizeInHundreths.Width - (2 * margins), paperSize.SizeInHundreths.Height - (2 * margins));
             }
         }
 
@@ -136,7 +136,7 @@ namespace PurplePen
             // Get the area of the map we want to print, in map coordinates, and the ratio between print scale and map scale.
             float scaleRatio;
             bool landscape;
-            PaperSize paperSize;
+            PrintingPaperSize paperSize;
             string description;
             int margins;
             RectangleF mapArea = GetPrintAreaForCourse(courseDesignator, out landscape, out paperSize, out margins, out scaleRatio, out description);
@@ -212,7 +212,7 @@ namespace PurplePen
         // Get the area of the map we want to print, in map coordinates, and the print scale.
         // if the courseId is None, do all controls.
         // If asked for, crop to a single page size.
-        RectangleF GetPrintAreaForCourse(CourseDesignator courseDesignator, out bool landscape, out PaperSize paperSize, out int margins, out float scaleRatio, out string description)
+        RectangleF GetPrintAreaForCourse(CourseDesignator courseDesignator, out bool landscape, out PrintingPaperSize paperSize, out int margins, out float scaleRatio, out string description)
         {
             // Get the course view to get the scale ratio.
             CourseView courseView = CourseView.CreatePositioningCourseView(eventDB, courseDesignator);
@@ -222,7 +222,7 @@ namespace PurplePen
             RectangleF printRectangle = controller.GetCurrentPrintAreaRectangle(courseDesignator);
             PrintArea printArea = controller.GetCurrentPrintArea(courseDesignator);
             landscape = printArea.pageLandscape;
-            paperSize = new PaperSize("", printArea.pageWidth, printArea.pageHeight);
+            paperSize = new PrintingPaperSize("Custom", printArea.pageWidth, printArea.pageHeight);
             margins = printArea.pageMargins;
 
             if (cropLargePrintArea) {

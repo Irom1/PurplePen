@@ -169,12 +169,12 @@ namespace CanvasTest2.Drawing
 
         }
 
-        public void DrawBitmap(IGraphicsBitmap bm, RectangleF rectangle, BitmapScaling scalingMode, float minResolution)
+        public void DrawBitmap(IGraphicsBitmap bm, RectangleF rectangle, BitmapScaling scalingMode)
         {
             //throw new NotImplementedException();
         }
 
-        public void DrawBitmapPart(IGraphicsBitmap bm, int x, int y, int width, int height, RectangleF rectange, BitmapScaling scalingMode, float minResolution)
+        public void DrawBitmapPart(IGraphicsBitmap bm, int x, int y, int width, int height, RectangleF rectange, BitmapScaling scalingMode)
         {
             //throw new NotImplementedException();
         }

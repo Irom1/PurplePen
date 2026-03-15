@@ -51,7 +51,7 @@ namespace Map_Skia.Tests
 
             RenderingUtil.RenderingTest(size.Width, new System.Drawing.RectangleF(0, 0, size.Width, size.Height), false, expectedResult,
                 grTarget => {
-                    grTarget.DrawBitmap(skiaBitmap, new System.Drawing.RectangleF(0, 0, size.Width, size.Height), BitmapScaling.HighQuality, 0.0001F);
+                    grTarget.DrawBitmap(skiaBitmap, new System.Drawing.RectangleF(0, 0, size.Width, size.Height), BitmapScaling.HighQuality);
                 }
             );
         }
@@ -74,7 +74,7 @@ namespace Map_Skia.Tests
                     grTarget.DrawBitmapPart(skiaBitmap, 
                                             100, 130, 400, 200,
                                             new System.Drawing.RectangleF(20, 10, 500, 400), 
-                                            BitmapScaling.HighQuality, 0.0001F);
+                                            BitmapScaling.HighQuality);
                 }
             );
         }
@@ -100,7 +100,7 @@ namespace Map_Skia.Tests
                 grTarget => {
                     grTarget.DrawBitmap(croppedBitmap,
                                         new System.Drawing.RectangleF(0, 0, croppedBitmap.PixelWidth, croppedBitmap.PixelHeight),
-                                        BitmapScaling.HighQuality, 0.0001F);
+                                        BitmapScaling.HighQuality);
                 }
             );
         }
@@ -148,7 +148,7 @@ namespace Map_Skia.Tests
 
             RenderingUtil.RenderingTest(size.Width, new System.Drawing.RectangleF(0, 0, size.Width, size.Height), false, expectedResult,
                 grTarget => {
-                    grTarget.DrawBitmap(skiaImage, new System.Drawing.RectangleF(0, 0, size.Width, size.Height), BitmapScaling.HighQuality, 0.0001F);
+                    grTarget.DrawBitmap(skiaImage, new System.Drawing.RectangleF(0, 0, size.Width, size.Height), BitmapScaling.HighQuality);
                 }
             );
         }
@@ -173,7 +173,7 @@ namespace Map_Skia.Tests
                     grTarget.DrawBitmapPart(skiaImage,
                                             100, 130, 400, 200,
                                             new System.Drawing.RectangleF(20, 10, 500, 400),
-                                            BitmapScaling.HighQuality, 0.0001F);
+                                            BitmapScaling.HighQuality);
                 }
             );
         }
@@ -200,7 +200,7 @@ namespace Map_Skia.Tests
                 grTarget => {
                     grTarget.DrawBitmap(croppedImage,
                                         new System.Drawing.RectangleF(0, 0, croppedImage.PixelWidth, croppedImage.PixelHeight),
-                                        BitmapScaling.HighQuality, 0.0001F);
+                                        BitmapScaling.HighQuality);
                 }
             );
         }
@@ -248,7 +248,7 @@ namespace Map_Skia.Tests
 
             RenderingUtil.RenderingTest(size.Width, new System.Drawing.RectangleF(0, 0, size.Width, size.Height), false, expectedResult,
                 grTarget => {
-                    grTarget.DrawBitmap(skiaPixmap, new System.Drawing.RectangleF(0, 0, size.Width, size.Height), BitmapScaling.HighQuality, 0.0001F);
+                    grTarget.DrawBitmap(skiaPixmap, new System.Drawing.RectangleF(0, 0, size.Width, size.Height), BitmapScaling.HighQuality);
                 }
             );
         }
@@ -273,7 +273,7 @@ namespace Map_Skia.Tests
                     grTarget.DrawBitmapPart(skiaPixmap,
                                             100, 130, 400, 200,
                                             new System.Drawing.RectangleF(20, 10, 500, 400),
-                                            BitmapScaling.HighQuality, 0.0001F);
+                                            BitmapScaling.HighQuality);
                 }
             );
         }
@@ -300,7 +300,7 @@ namespace Map_Skia.Tests
                 grTarget => {
                     grTarget.DrawBitmap(croppedPixmap,
                                         new System.Drawing.RectangleF(0, 0, croppedPixmap.PixelWidth, croppedPixmap.PixelHeight),
-                                        BitmapScaling.HighQuality, 0.0001F);
+                                        BitmapScaling.HighQuality);
                 }
             );
         }
@@ -347,7 +347,7 @@ namespace Map_Skia.Tests
 
             RenderingUtil.RenderingTest(size.Width, new System.Drawing.RectangleF(0, 0, size.Width, size.Height), false, expectedResult,
                 grTarget => {
-                    grTarget.DrawBitmap(skiaBitmap, new System.Drawing.RectangleF(0, 0, size.Width, size.Height), BitmapScaling.HighQuality, 0.0001F);
+                    grTarget.DrawBitmap(skiaBitmap, new System.Drawing.RectangleF(0, 0, size.Width, size.Height), BitmapScaling.HighQuality);
                 }
             );
         }

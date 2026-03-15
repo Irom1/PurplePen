@@ -41,6 +41,7 @@ namespace PurplePen
             int pageCount = printable.LayoutPages(defaultPaperSizeWithMargins);
 
             printingTarget.StartPrinting(documentTitle, pageCount);
+            float dpi = printingTarget.GetPrinterDpi();
 
             try {
                 for (int pageNumber = 1; pageNumber <= pageCount; pageNumber++) {
@@ -55,7 +56,7 @@ namespace PurplePen
                         translateTransform.Translate(defaultPaperSizeWithMargins.MarginSize.LeftInHundreths, defaultPaperSizeWithMargins.MarginSize.TopInHundreths);
                         grTarget.PushTransform(translateTransform);
                         try {
-                            printable.DrawPage(grTarget, currentPageNumber);
+                            printable.DrawPage(grTarget, currentPageNumber, dpi);
                         }
                         finally {
                             grTarget.PopTransform();

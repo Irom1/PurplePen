@@ -33,16 +33,17 @@
  */
 
 #if TEST
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using PurplePen_Tests.PurplePen;
 using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Printing;
-using System.Diagnostics;
 using System.IO;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using TestingUtils;
+using System.Text;
 using System.Windows.Media.Imaging;
+using TestingUtils;
 
 namespace PurplePen.Tests
 {
@@ -153,9 +154,17 @@ namespace PurplePen.Tests
 
             // Get the pages of the printing.
             PageSettings pageSettings = new PageSettings() { Margins = new Margins(0, 0, 0, 0) };
-            CoursePrinting coursePrinter = new CoursePrinting(controller.GetEventDB(), ui.symbolDB, controller, mapDisplay.CloneToFullIntensity(), coursePrintSettings, pageSettings, appearance);
-            Bitmap[] bitmaps = coursePrinter.PrintBitmaps();
-            
+            CoursePrinting coursePrinter = new CoursePrinting(controller.GetEventDB(), ui.symbolDB, controller, mapDisplay.CloneToFullIntensity(), coursePrintSettings, WindowsUtil.PrintingPaperSizeWithMarginsFromPageSettings(pageSettings), appearance);
+
+            BitmapPrintingTarget bitmapPrintTarget = new BitmapPrintingTarget();
+
+            PrintManager printManager = new PrintManager("", bitmapPrintTarget, coursePrinter);
+            printManager.SetDefaultPaperSize(WindowsUtil.PrintingPaperSizeWithMarginsFromPageSettings(pageSettings));
+            printManager.DoPrinting();
+
+            // Check all the pages against the baseline.
+            Bitmap[] bitmaps = bitmapPrintTarget.Bitmaps;
+
             // Check all the pages against the baseline.
             for (int page = 0; page < bitmaps.Length; ++page) {
                 Bitmap bm = bitmaps[page];

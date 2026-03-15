@@ -40,7 +40,6 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Printing;
 using System.Drawing.Drawing2D;
-using System.Windows.Forms;
 using System.Diagnostics;
 
 
@@ -50,50 +49,46 @@ namespace PurplePen
     using PurplePen.MapModel;
 
     // Class to print out courses.
-    class CoursePrinting: BasicPrinting
+    class CoursePrinting: IPrintable
     {
         // List of all the pages, constructed during layout.
         private List<CoursePage> pages = new List<CoursePage>();
 
+        private Controller controller;
         private CoursePrintSettings coursePrintSettings;
+        private PrintingPaperSizeWithMargins paperSizeWithMargins;
         private EventDB eventDB;
         private SymbolDB symbolDB;
         private MapDisplay mapDisplay;
         private CourseAppearance appearance;
 
         // mapDisplay is a MapDisplay that contains the correct map. All other features of the map display need to be customized.
-        public CoursePrinting(EventDB eventDB, SymbolDB symbolDB, Controller controller, MapDisplay mapDisplay, CoursePrintSettings coursePrintSettings, PageSettings pageSettings, CourseAppearance appearance)
-            : base(QueryEvent.GetEventTitle(eventDB, " "), controller, pageSettings, coursePrintSettings.PrintingColorModel)
+        public CoursePrinting(EventDB eventDB, SymbolDB symbolDB, Controller controller, MapDisplay mapDisplay, CoursePrintSettings coursePrintSettings, PrintingPaperSizeWithMargins paperSizeWithMargins, CourseAppearance appearance)
         {
             this.eventDB = eventDB;
             this.symbolDB = symbolDB;
             this.controller = controller;
             this.mapDisplay = mapDisplay;
             this.coursePrintSettings = coursePrintSettings;
+            this.paperSizeWithMargins = paperSizeWithMargins;
             this.appearance = appearance;
 
             // Set default features for printing.
             mapDisplay.MapIntensity = 1.0F;
             mapDisplay.AntiAlias = false;
             mapDisplay.Printing = true;
-            mapDisplay.ColorModel = base.colorModel;
-        }
-
-        RectangleF GetPrintableArea(PageSettings pageSettings)
-        {
-            // Get the available page size on the page. Note the PrintableArea member of PageSettings does not automatically does the
-            // landscape into account.
-            RectangleF printableArea = pageSettings.PrintableArea;
-            if (pageSettings.Landscape)
-                printableArea = new RectangleF(printableArea.Top, printableArea.Left, printableArea.Height, printableArea.Width);  // reverse rectangle for landscape
-            return printableArea;
+            mapDisplay.ColorModel = coursePrintSettings.PrintingColorModel;
         }
 
         // Layout all the pages, return the total number of pages.
-        protected override int LayoutPages(PageSettings pageSettings, SizeF printArea)
+        public int LayoutPages(PrintingPaperSizeWithMargins defaultPaperSizeWithMargins) 
         {
+#if !PORTING
+            // We need to deal with Copies and Collating manually, instead of relying on the Windows print system.
             pageSettings.PrinterSettings.Copies = (short)coursePrintSettings.Count;
             pageSettings.PrinterSettings.Collate = false;      // print all of one course, then all of next, etc.
+
+#endif
 
             CoursePageLayout pageLayout = new CoursePageLayout(eventDB, symbolDB, controller, appearance, coursePrintSettings.CropLargePrintArea);
             IEnumerable<CourseDesignator> courseDesignators = QueryEvent.EnumerateCourseDesignators(eventDB, coursePrintSettings.CourseIds, coursePrintSettings.VariationChoicesPerCourse, !coursePrintSettings.PrintMapExchangesOnOneMap);
@@ -102,13 +97,17 @@ namespace PurplePen
             return pages.Count;            // total number of pages.
         }
 
-        // Set landscape/portrait and margins for a particular page.
-        protected override void ChangePageSettings(int pageNumber, ref bool landscape, ref PaperSize paperSize, Margins margins)
+        // Set page size and landscape/portrait for a particular page.
+        public PrintingPaperSize GetPagePaperSize(int pageNumber)
         {
-            landscape = pages[pageNumber].landscape;
-            paperSize = pages[pageNumber].paperSize;
-            margins.Left = margins.Right = margins.Top = margins.Bottom = 0;
+            PrintingPaperSize paperSize = pages[pageNumber].paperSize;
+            bool landscape = pages[pageNumber].landscape;
+            return new PrintingPaperSize(landscape, paperSize);
         }
+
+#if !PORTING
+        // Need to implement the pausing functionality still, maybe. Not sure how this 
+        // integrates into IPrintable.
 
         protected override bool PausePrintingAfterPage(int pageNumber, out string pauseMessage)
         {
@@ -126,10 +125,12 @@ namespace PurplePen
         {
             return string.Format(MiscText.PausePrinting, pages[pageNumber].description, pages[pageNumber + 1].description);
         }
+#endif
 
         // The core printing routine. The origin of the graphics is the upper-left of the margins,
         // and the printArea in the size to draw into (in hundreths of an inch).
-        protected override void DrawPage(IGraphicsTarget graphicsTarget, int pageNumber, SizeF printArea, float dpi)
+        //protected override void DrawPage(IGraphicsTarget graphicsTarget, int pageNumber, SizeF printArea, float dpi)
+        public void DrawPage(IGraphicsTarget grTarget, int pageNumber, float dpi)
         {
             CoursePage page = pages[pageNumber];
 
@@ -157,72 +158,42 @@ namespace PurplePen
             // Collecting garbage should make out of memory less common.
             GC.Collect();
 
-            if (graphicsTarget is GDIPlus_GraphicsTarget) {
-                // We print to intermediate bands of bitmaps. This is the only way to get purple blending correct.
-                // Other code ensure that if purple blending is on, we always take this code path.
+            // We print to intermediate bands of bitmaps. This is the only way to get purple blending correct.
+            // Is also insures that we get the most accurate print.
 
-                GDIPlus_GraphicsTarget gdiGraphicsTarget = ((GDIPlus_GraphicsTarget)graphicsTarget);
-                Graphics g = gdiGraphicsTarget.Graphics;
-                // Save and restore state so we can mess with stuff.
-                GraphicsState graphicsState = g.Save();
+            //GDIPlus_GraphicsTarget gdiGraphicsTarget = ((GDIPlus_GraphicsTarget)graphicsTarget);
+            //Graphics g = gdiGraphicsTarget.Graphics;
+            //// Save and restore state so we can mess with stuff.
+            //GraphicsState graphicsState = g.Save();
 
-                // Printing via a bitmap. Works best with some print drivers.
-                dpi = AdjustDpi(dpi);
+            // Adjust the DPI so it isn't too high or too low. So printer drivers are bad.
+            dpi = AdjustDpi(dpi);
 
-                const long MAX_PIXELS_PER_BAND = 20000000;    // 20M pixels = 60M bytes (3 bytes per pixel).
-                List<CoursePage> bands = BandPageToLimitBitmapSize(page, dpi, MAX_PIXELS_PER_BAND);
+            const long MAX_PIXELS_PER_BAND = 20000000;    // 20M pixels = 60M bytes (3 bytes per pixel).
+            List<CoursePage> bands = BandPageToLimitBitmapSize(page, dpi, MAX_PIXELS_PER_BAND);
 
-                // Create the bitmap. Can do this once because each band is the same size.
-                int bitmapWidth = (int) Math.Round(bands[0].printRectangle.Width * dpi / 100F);
-                int bitmapHeight = (int) Math.Round(bands[0].printRectangle.Height * dpi / 100F);
-                Bitmap bitmap = new Bitmap(bitmapWidth, bitmapHeight, GDIPlus_GraphicsTarget.NonAlphaPixelFormat);
+            // Create the bitmap. Can do this once because each band is the same size.
+            int bitmapWidth = (int) Math.Round(bands[0].printRectangle.Width * dpi / 100F);
+            int bitmapHeight = (int) Math.Round(bands[0].printRectangle.Height * dpi / 100F);
+            IGraphicsBitmap bitmap = Services.BitmapLoader.CreateEmptyBitmap(bitmapWidth, bitmapHeight, null);
 
-                foreach (CoursePage band in bands) {
-                    // Set the transform
-                    Matrix transform = Geometry.CreateInvertedRectangleTransform(band.mapRectangle, new RectangleF(0, 0, bitmapWidth, bitmapHeight));
-                    mapDisplay.Draw(new GDIPlus_Bitmap(bitmap), transform);
+            foreach (CoursePage band in bands) {
+                // Set the transform
+                Matrix transform = Geometry.CreateInvertedRectangleTransform(band.mapRectangle, new RectangleF(0, 0, bitmapWidth, bitmapHeight));
+                mapDisplay.Draw(bitmap, transform);
 
-                    try {
-                        // Draw the bitmap on the printer.
-                        g.DrawImage(bitmap, band.printRectangle);
-                    }
-                    catch (Exception) { }
-                }
-
-                // restore state.
-                g.Restore(graphicsState);
-                bitmap.Dispose();
+                // Draw the bitmap on the printer.
+                grTarget.DrawBitmap(bitmap, band.printRectangle, BitmapScaling.HighQuality);
             }
-            else {
-                // Print directly. Used only when prerasterization is off.
-                // Set the transform, and the clip.
-                Matrix transform = Geometry.CreateInvertedRectangleTransform(page.mapRectangle, page.printRectangle);
-                PushRectangleClip(graphicsTarget, page.printRectangle);
-                graphicsTarget.PushTransform(transform);
-                // Determine the resolution in map coordinates.
-                Matrix inverseTransform = transform.Clone();
-                inverseTransform.Invert();
-                float minResolutionPage = 100F / dpi;
-                float minResolutionMap = Geometry.TransformDistance(minResolutionPage, inverseTransform);
 
-                // And draw.
-                mapDisplay.Draw(graphicsTarget, page.mapRectangle, minResolutionMap);
-
-                graphicsTarget.PopTransform();
-                graphicsTarget.PopClip();
-            }
+            // And we are done with the bitmap.
+            bitmap.Dispose();
         }
 
-        private void PushRectangleClip(IGraphicsTarget graphicsTarget, RectangleF rect)
+        public void PrintingComplete()
         {
-            object rectanglePath = new object();
-            graphicsTarget.CreatePath(rectanglePath, new List<GraphicsPathPart>() {
-                new GraphicsPathPart(GraphicsPathPartKind.Start, new PointF[] { rect.Location }),
-                new GraphicsPathPart(GraphicsPathPartKind.Lines, new PointF[] { new PointF(rect.Right, rect.Top), new PointF(rect.Right, rect.Bottom), new PointF(rect.Left, rect.Bottom), new PointF(rect.Left, rect.Top)}),
-                new GraphicsPathPart(GraphicsPathPartKind.Close, new PointF[0])
-            }, AreaFillMode.Winding);
-            graphicsTarget.PushClip(rectanglePath);
         }
+
 
         const float MIN_DPI = 400;
         const float MAX_DPI = 1500;

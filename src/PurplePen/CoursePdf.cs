@@ -196,7 +196,7 @@ namespace PurplePen
             foreach (CoursePage page in pages) {
                 CoursePage pageToDraw = page;
 
-                SizeF paperSize = new SizeF(pageToDraw.paperSize.Width / 100F, pageToDraw.paperSize.Height / 100F);
+                SizeF paperSize = new SizeF(pageToDraw.paperSize.SizeInInches.Width, pageToDraw.paperSize.SizeInInches.Height);
                 if (pageToDraw.landscape)
                     paperSize = new SizeF(paperSize.Height, paperSize.Width);
 
@@ -263,18 +263,6 @@ namespace PurplePen
                                                                 coursePdfSettings.CropLargePrintArea);
 
             return pageLayout.LayoutPages(courseDesignators);
-        }
-
-        private CoursePage PdfNonScaledPage(CourseDesignator designator)
-        {
-            RectangleF pageArea = new RectangleF(0, 0, Geometry.HundredthsInchesFromMm(mapBounds.Width), Geometry.HundredthsInchesFromMm(mapBounds.Height));
-            return new CoursePage() {
-                courseDesignator = designator,
-                landscape = false,
-                mapRectangle = mapBounds,
-                printRectangle = pageArea,
-                paperSize = new PaperSize("", (int) Math.Round(pageArea.Width), (int) Math.Round(pageArea.Height))
-            };
         }
 
         // The core printing routine. 

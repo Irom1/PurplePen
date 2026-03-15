@@ -27,6 +27,12 @@ namespace PurplePen
             pdfWriter = Services.PdfWriter.CreateDocument(pathName, documentTitle, cmykMode);
         }
 
+        // PDFs are inherently high resolution, so return a high resolution number here: 1200 seems good.
+        public float GetPrinterDpi()
+        {
+            return 1200F;   
+        }
+
         public void EndPrinting()
         {
             pdfWriter.Save();

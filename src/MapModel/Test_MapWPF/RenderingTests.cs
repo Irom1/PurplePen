@@ -302,10 +302,10 @@ namespace TestWpfMap
                         grTarget => {
                             IGraphicsBitmap bitmap = new GDIPlus_FileLoader(TestUtil.GetTestFileDirectory()).LoadBitmap(TestUtil.GetTestFile("wpfrender\\Jellyfish.jpg"), false);
 
-                            grTarget.DrawBitmap(bitmap, new RectangleF(100, 100, 800, 400), BitmapScaling.HighQuality, 0.01F);
+                            grTarget.DrawBitmap(bitmap, new RectangleF(100, 100, 800, 400), BitmapScaling.HighQuality);
 
                             grTarget.DrawBitmapPart(bitmap, bitmap.PixelWidth * 3 / 10, bitmap.PixelHeight * 2 / 10, bitmap.PixelWidth * 5 / 10, bitmap.PixelHeight * 4 / 10,
-                                                    new RectangleF(100, 500, 800, 400), BitmapScaling.NearestNeighbor, 0.01F);
+                                                    new RectangleF(100, 500, 800, 400), BitmapScaling.NearestNeighbor);
 
                             bitmap.Dispose();
                         });

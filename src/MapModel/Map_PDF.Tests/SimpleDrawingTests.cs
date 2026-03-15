@@ -279,8 +279,8 @@ namespace Map_PDF.Tests
                 grTarget =>
                 {
                     GDIPlus_Bitmap penguins = new GDIPlus_Bitmap((Bitmap) Image.FromFile(TestUtil.GetTestFile("pdfrender\\penguins.jpg")));
-                    grTarget.DrawBitmap(penguins, new RectangleF(100, 100, 600, 400), BitmapScaling.MediumQuality, 0.01F);
-                    grTarget.DrawBitmap(penguins, new RectangleF(200, 800, 150, 100), BitmapScaling.MediumQuality, 0.01F);
+                    grTarget.DrawBitmap(penguins, new RectangleF(100, 100, 600, 400), BitmapScaling.MediumQuality);
+                    grTarget.DrawBitmap(penguins, new RectangleF(200, 800, 150, 100), BitmapScaling.MediumQuality);
                 }
             );
         }
@@ -293,7 +293,7 @@ namespace Map_PDF.Tests
                 {
                     GDIPlus_Bitmap bitmap = new GDIPlus_Bitmap((Bitmap) Image.FromFile(TestUtil.GetTestFile("pdfrender\\penguins.jpg")));
                     grTarget.DrawBitmapPart(bitmap, bitmap.PixelWidth * 3 / 10, bitmap.PixelHeight * 2 / 10, bitmap.PixelWidth * 5 / 10, bitmap.PixelHeight * 4 / 10,
-                                    new RectangleF(100, 500, 600, 400), BitmapScaling.NearestNeighbor, 0.01F);
+                                    new RectangleF(100, 500, 600, 400), BitmapScaling.NearestNeighbor);
                 }
             );
         }

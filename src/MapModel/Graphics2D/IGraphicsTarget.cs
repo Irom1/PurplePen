@@ -75,6 +75,7 @@ namespace PurplePen.Graphics2D
     public interface IGraphicsBitmapLoader : IDisposable
     {
         IGraphicsBitmap ReadBitmapFromStream(Stream stream);
+        IGraphicsBitmap CreateEmptyBitmap(int width, int height, System.Drawing.Color? initialColor = null);
     }
 
     // If an IGraphicsBitmap is locked, it won't be disposed by another thread while locked.
@@ -204,11 +205,11 @@ namespace PurplePen.Graphics2D
         void DrawTextOutline(string text, object fontKey, object penKey, PointF upperLeft);
 
         // Draw a bitmap. minResolution how big in paper coords a pixel in the destination is. Used to set scaling for large bitmaps.
-        void DrawBitmap(IGraphicsBitmap bm, RectangleF rectangle, BitmapScaling scalingMode, float minResolution);
+        void DrawBitmap(IGraphicsBitmap bm, RectangleF rectangle, BitmapScaling scalingMode);
 
         // Draw part of a bitmap
         // minResolution how big in paper coords a pixel in the destination is. Used to set scaling for large bitmaps.
-        void DrawBitmapPart(IGraphicsBitmap bm, int x, int y, int width, int height, RectangleF rectange, BitmapScaling scalingMode, float minResolution);
+        void DrawBitmapPart(IGraphicsBitmap bm, int x, int y, int width, int height, RectangleF rectange, BitmapScaling scalingMode);
     }
 
     public enum BitmapScaling { NearestNeighbor, MediumQuality, HighQuality }

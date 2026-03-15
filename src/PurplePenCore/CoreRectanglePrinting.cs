@@ -118,7 +118,7 @@ namespace PurplePen
             return paperSize;
         }
 
-        public void DrawPage(IGraphicsTarget grTarget, int pageNumber)
+        public void DrawPage(IGraphicsTarget grTarget, int pageNumber, float dpi)
         {
             positioner.DrawPage(grTarget, pageNumber);
         }

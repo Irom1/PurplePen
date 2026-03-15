@@ -595,7 +595,7 @@ namespace PurplePen
                 // ColorConverter doesn't actually matter since we are just drawing a bitmap.
                 using (IBitmapGraphicsTarget grTarget = Services.BitmapGraphicsTargetProvider.CreateBitmapGraphicsTarget(bitmap.PixelWidth, bitmap.PixelHeight, DefaultColorConverter.Instance)) {
                     grTarget.Intensity = mapIntensity;
-                    grTarget.DrawBitmap(bitmap, new RectangleF(0, 0, bitmap.PixelWidth, bitmap.PixelHeight), BitmapScaling.NearestNeighbor, 0);
+                    grTarget.DrawBitmap(bitmap, new RectangleF(0, 0, bitmap.PixelWidth, bitmap.PixelHeight), BitmapScaling.NearestNeighbor);
                     dimmedBitmap = grTarget.FinishBitmap();
                 }
             }
@@ -632,7 +632,7 @@ namespace PurplePen
                 sourceBitmap = bitmap;
 
             // Draw it.
-            grTarget.DrawBitmap(sourceBitmap, new RectangleF(0, 0, bitmap.PixelWidth, bitmap.PixelHeight), scalingMode, minResolution);
+            grTarget.DrawBitmap(sourceBitmap, new RectangleF(0, 0, bitmap.PixelWidth, bitmap.PixelHeight), scalingMode);
 
             if (mapIntensity < 0.99 && sourceBitmap == bitmap) {
                 // Dimming desired, but we don't have a dimmed bitmap. Use an alpha mask instead.

@@ -436,13 +436,13 @@ namespace PurplePen.MapModel
         private static extern bool DeleteObject(IntPtr hObject);
 
         // Draw a bitmap
-        public void DrawBitmap(IGraphicsBitmap bm, RectangleF rectangle, BitmapScaling scalingMode, float minResolution)
+        public void DrawBitmap(IGraphicsBitmap bm, RectangleF rectangle, BitmapScaling scalingMode)
         {
-            DrawBitmapPart(bm, 0, 0, bm.PixelWidth, bm.PixelHeight, rectangle, scalingMode, minResolution);
+            DrawBitmapPart(bm, 0, 0, bm.PixelWidth, bm.PixelHeight, rectangle, scalingMode);
         }
 
         // Draw part of a bitmap
-        public void DrawBitmapPart(IGraphicsBitmap bm, int x, int y, int width, int height, RectangleF rectangle, BitmapScaling scalingMode, float minResolution)
+        public void DrawBitmapPart(IGraphicsBitmap bm, int x, int y, int width, int height, RectangleF rectangle, BitmapScaling scalingMode)
         {
             GDIPlus_Bitmap gdiBitmap = (GDIPlus_Bitmap)bm;
             var hBitmap = gdiBitmap.Bitmap.GetHbitmap();
