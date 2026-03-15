@@ -215,7 +215,7 @@ Invalid control point kind 'norfmal''
             controller.SelectTab(1);
             MakeDirty();
 
-            ui.returnQuestion = DialogResult.No;
+            ui.returnQuestion = YesNoCancel.No;
             Controller.CreateEventInfo info;
             info.title = "My New Event";
             info.eventFileName = TestUtil.GetTestFile("initial\\newevent1.coursescribe");
@@ -382,7 +382,7 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
             File.Delete(TestUtil.GetTestFile("file_temp.coursescribe"));
             MakeDirty();
 
-            ui.returnQuestion = DialogResult.Yes;
+            ui.returnQuestion = YesNoCancel.Yes;
             success = controller.TryCloseFile();
             Assert.IsTrue(success);
             Assert.IsTrue(File.Exists(TestUtil.GetTestFile("file_temp.coursescribe")));  // make sure it was saved.
@@ -402,7 +402,7 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
             File.Delete(TestUtil.GetTestFile("file_temp.coursescribe"));
             MakeDirty();
 
-            ui.returnQuestion = DialogResult.No;
+            ui.returnQuestion = YesNoCancel.No;
             success = controller.TryCloseFile();
             Assert.IsTrue(success);
             Assert.IsFalse(File.Exists(TestUtil.GetTestFile("file_temp.coursescribe")));  // make sure it was NOT saved.
@@ -423,7 +423,7 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
             File.Delete(TestUtil.GetTestFile("file_temp.coursescribe"));
             MakeDirty();
 
-            ui.returnQuestion = DialogResult.Cancel;
+            ui.returnQuestion = YesNoCancel.Cancel;
             success = controller.TryCloseFile();
             Assert.IsFalse(success);
             Assert.IsFalse(File.Exists(TestUtil.GetTestFile("file_temp.coursescribe")));  // make sure it was NOT saved.
@@ -445,7 +445,7 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
             controller.SelectTab(1);
             MakeDirty();
 
-            ui.returnQuestion = DialogResult.No;
+            ui.returnQuestion = YesNoCancel.No;
             success = controller.TryCloseFile();
             controller.LoadNewFile(TestUtil.GetTestFile("marymoor.ppen"));
             Assert.IsTrue(success);
@@ -510,15 +510,15 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
             Assert.IsTrue(success);
 
             controller.SelectTab(3);
-            controller.DescriptionChange(DescriptionControl.ChangeKind.Directive, 4, 0, symbolDB["13.4"]);
+            controller.DescriptionChange(DescriptionChangeKind.Directive, 4, 0, symbolDB["13.4"]);
             controller.SelectTab(5);
-            controller.DescriptionChange(DescriptionControl.ChangeKind.DescriptionBox, 3, 2, symbolDB["0.2NE"]);
+            controller.DescriptionChange(DescriptionChangeKind.DescriptionBox, 3, 2, symbolDB["0.2NE"]);
             controller.SelectTab(0);
-            controller.DescriptionChange(DescriptionControl.ChangeKind.DescriptionBox, 4, 5, null);
+            controller.DescriptionChange(DescriptionChangeKind.DescriptionBox, 4, 5, null);
             controller.SelectTab(1);
-            controller.DescriptionChange(DescriptionControl.ChangeKind.DescriptionBox, 8, 7, symbolDB["12.2"]);
-            controller.DescriptionChange(DescriptionControl.ChangeKind.DescriptionBox, 8, 6, null);
-            controller.DescriptionChange(DescriptionControl.ChangeKind.DescriptionBox, 8, 5, "2/4");
+            controller.DescriptionChange(DescriptionChangeKind.DescriptionBox, 8, 7, symbolDB["12.2"]);
+            controller.DescriptionChange(DescriptionChangeKind.DescriptionBox, 8, 6, null);
+            controller.DescriptionChange(DescriptionChangeKind.DescriptionBox, 8, 5, "2/4");
 
             ControlPoint control;
 
@@ -547,9 +547,9 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
             Assert.IsTrue(success);
 
             controller.SelectTab(1);
-            controller.DescriptionChange(DescriptionControl.ChangeKind.Code, 8, 1, "997");
+            controller.DescriptionChange(DescriptionChangeKind.Code, 8, 1, "997");
             controller.SelectTab(0);
-            controller.DescriptionChange(DescriptionControl.ChangeKind.Code, 5, 1, "992");
+            controller.DescriptionChange(DescriptionChangeKind.Code, 5, 1, "992");
 
             ControlPoint control;
 
@@ -577,7 +577,7 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
             Assert.AreEqual("32", eventDB.GetControl(courseControl.control).code);
 
             controller.SelectTab(3);
-            controller.DescriptionChange(DescriptionControl.ChangeKind.Code, 5, 1, "302");
+            controller.DescriptionChange(DescriptionChangeKind.Code, 5, 1, "302");
 
             courseControl = eventDB.GetCourseControl(CourseControlId(15));
             Assert.AreEqual("302", eventDB.GetControl(courseControl.control).code);
@@ -597,7 +597,7 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
             Assert.IsTrue(success);
 
             controller.SelectTab(0);
-            controller.DescriptionChange(DescriptionControl.ChangeKind.Code, 7, 1, "302");
+            controller.DescriptionChange(DescriptionChangeKind.Code, 7, 1, "302");
 
             ControlPoint control;
 
@@ -618,7 +618,7 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
             Assert.IsTrue(success);
 
             controller.SelectTab(0);
-            controller.DescriptionChange(DescriptionControl.ChangeKind.Code, 7, 1, "666");
+            controller.DescriptionChange(DescriptionChangeKind.Code, 7, 1, "666");
 
             ControlPoint control;
 
@@ -639,7 +639,7 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
             Assert.IsTrue(success);
 
             controller.SelectTab(1);
-            controller.DescriptionChange(DescriptionControl.ChangeKind.Title, 0, 0, "Nifty Event");
+            controller.DescriptionChange(DescriptionChangeKind.Title, 0, 0, "Nifty Event");
 
             Event e;
 
@@ -658,15 +658,15 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
             Assert.IsTrue(success);
 
             controller.SelectTab(1);
-            controller.DescriptionChange(DescriptionControl.ChangeKind.Climb, 1, 2, "213.4");
+            controller.DescriptionChange(DescriptionChangeKind.Climb, 1, 2, "213.4");
             controller.SelectTab(3);
-            controller.DescriptionChange(DescriptionControl.ChangeKind.Climb, 1, 2, "");
+            controller.DescriptionChange(DescriptionChangeKind.Climb, 1, 2, "");
 
             Assert.AreEqual(213.4F, eventDB.GetCourse(CourseId(6)).climb);
             Assert.AreEqual(-1F, eventDB.GetCourse(CourseId(4)).climb);
 
             controller.SelectTab(3);
-            controller.DescriptionChange(DescriptionControl.ChangeKind.Climb, 1, 2, "25m");
+            controller.DescriptionChange(DescriptionChangeKind.Climb, 1, 2, "25m");
 
             Assert.AreEqual(25F, eventDB.GetCourse(CourseId(4)).climb);
 
@@ -682,7 +682,7 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
             Assert.IsTrue(success);
 
             controller.SelectTab(1);
-            controller.DescriptionChange(DescriptionControl.ChangeKind.CourseName, 1, 0, "Blue 1");
+            controller.DescriptionChange(DescriptionChangeKind.CourseName, 1, 0, "Blue 1");
 
             Assert.AreEqual("Blue 1", eventDB.GetCourse(CourseId(6)).name);
 
@@ -698,9 +698,9 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
             Assert.IsTrue(success);
 
             controller.SelectTab(5);
-            controller.DescriptionChange(DescriptionControl.ChangeKind.SecondaryTitle, 1, 0, null);
+            controller.DescriptionChange(DescriptionChangeKind.SecondaryTitle, 1, 0, null);
             controller.SelectTab(4);
-            controller.DescriptionChange(DescriptionControl.ChangeKind.SecondaryTitle, 1, 0, "hello");
+            controller.DescriptionChange(DescriptionChangeKind.SecondaryTitle, 1, 0, "hello");
 
             Assert.IsNull(eventDB.GetCourse(CourseId(1)).secondaryTitle);
             Assert.AreEqual("hello", eventDB.GetCourse(CourseId(5)).secondaryTitle);
@@ -717,10 +717,10 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
             Assert.IsTrue(success);
 
             controller.SelectTab(4);
-            controller.DescriptionChange(DescriptionControl.ChangeKind.Score, 7, 0, "35");
-            controller.DescriptionChange(DescriptionControl.ChangeKind.Score, 8, 0, "");
+            controller.DescriptionChange(DescriptionChangeKind.Score, 7, 0, "35");
+            controller.DescriptionChange(DescriptionChangeKind.Score, 8, 0, "");
             controller.SelectTab(2);
-            controller.DescriptionChange(DescriptionControl.ChangeKind.Score, 4, 0, "100");
+            controller.DescriptionChange(DescriptionChangeKind.Score, 4, 0, "100");
 
             CourseControl courseControl;
 
@@ -749,14 +749,14 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
             // Change to new text.
             controller.SelectTab(1);
             controller.SelectDescriptionLine(17);
-            controller.DescriptionChange(DescriptionControl.ChangeKind.Key, 17, 0, "MASH");
+            controller.DescriptionChange(DescriptionChangeKind.Key, 17, 0, "MASH");
             controller.GetCustomSymbolText(out customSymbolText, out customSymbolKey);
             Assert.AreEqual("MASH", customSymbolText["12.1"][0].Text);
             Assert.IsTrue(customSymbolKey["12.1"]);
 
             // Remove
             controller.SelectDescriptionLine(18);
-            controller.DescriptionChange(DescriptionControl.ChangeKind.Key, 18, 0, null);
+            controller.DescriptionChange(DescriptionChangeKind.Key, 18, 0, null);
             controller.GetCustomSymbolText(out customSymbolText, out customSymbolKey);
             Assert.IsFalse(customSymbolText.ContainsKey("6.1"));
             Assert.IsFalse(customSymbolKey.ContainsKey("6.1"));
@@ -772,7 +772,7 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
             Assert.IsTrue(success);
 
             controller.SelectTab(4);
-            controller.DescriptionChange(DescriptionControl.ChangeKind.Score, 7, 0, "-1");
+            controller.DescriptionChange(DescriptionChangeKind.Score, 7, 0, "-1");
 
             CourseControl courseControl;
 
@@ -793,7 +793,7 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
             Assert.IsTrue(success);
 
             controller.SelectTab(5);
-            controller.DescriptionChange(DescriptionControl.ChangeKind.Climb, 1, 2, "-1");
+            controller.DescriptionChange(DescriptionChangeKind.Climb, 1, 2, "-1");
 
             Assert.AreEqual(66F, eventDB.GetCourse(CourseId(1)).climb);
             Assert.AreEqual("ERROR: 'The climb for a course must be a number 0-9999, or blank.'\r\n", ui.output.ToString());
@@ -1001,7 +1001,7 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
             controller.SelectTab(4);
             controller.SelectDescriptionLine(14);
 
-            ui.returnQuestion = DialogResult.Yes;
+            ui.returnQuestion = YesNoCancel.Yes;
             success = controller.DeleteSelection();
             Assert.IsTrue(success);
 
@@ -1031,7 +1031,7 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
             controller.SelectTab(4);
             controller.SelectDescriptionLine(14);
 
-            ui.returnQuestion = DialogResult.No;
+            ui.returnQuestion = YesNoCancel.No;
             success = controller.DeleteSelection();
             Assert.IsTrue(success);
 
@@ -1061,7 +1061,7 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
             controller.SelectTab(0);
             controller.SelectDescriptionLine(3);
 
-            ui.returnQuestion = DialogResult.No;
+            ui.returnQuestion = YesNoCancel.No;
             success = controller.DeleteSelection();
             Assert.IsTrue(success);
 
@@ -1083,7 +1083,7 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
             controller.SelectTab(0);
             controller.SelectDescriptionLine(18);
 
-            ui.returnQuestion = DialogResult.Yes;
+            ui.returnQuestion = YesNoCancel.Yes;
             success = controller.DeleteSelection();
             Assert.IsTrue(success);
 
@@ -1117,7 +1117,7 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
             controller.SelectTab(0);
             controller.SelectDescriptionLine(18);
 
-            ui.returnQuestion = DialogResult.No;
+            ui.returnQuestion = YesNoCancel.No;
             success = controller.DeleteSelection();
             Assert.IsFalse(success);
 
@@ -1150,7 +1150,7 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
             controller.SelectTab(1);
             controller.SelectDescriptionLine(2);
 
-            ui.returnQuestion = DialogResult.Yes;
+            ui.returnQuestion = YesNoCancel.Yes;
             success = controller.DeleteSelection();
             Assert.IsTrue(success);
 
@@ -1177,7 +1177,7 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
             controller.SelectTab(6);
             controller.SelectDescriptionLine(18);
 
-            ui.returnQuestion = DialogResult.No;
+            ui.returnQuestion = YesNoCancel.No;
             success = controller.DeleteSelection();
             Assert.IsTrue(success);
 
@@ -1371,7 +1371,7 @@ Code:           layer:12  control:4  scale:1  text:GO  top-left:(38.29,-16.89)
 
             Assert.IsTrue(controller.CanDeleteCurrentCourse());
 
-            ui.returnQuestion = DialogResult.No;
+            ui.returnQuestion = YesNoCancel.No;
             success = controller.DeleteCurrentCourse();
             Assert.IsTrue(success);
 
@@ -1410,7 +1410,7 @@ Code:           layer:12  control:4  scale:1  text:GO  top-left:(38.29,-16.89)
 
             Assert.IsTrue(controller.CanDeleteCurrentCourse());
 
-            ui.returnQuestion = DialogResult.Yes;
+            ui.returnQuestion = YesNoCancel.Yes;
             success = controller.DeleteCurrentCourse();
             Assert.IsTrue(success);
 
@@ -2395,14 +2395,14 @@ Code:           layer:12  control:4  scale:1  text:GO  top-left:(38.29,-16.89)
 
             controller.SelectTab(4);    // All controls.
             controller.SelectDescriptionLine(12);
-            controller.DescriptionChange(DescriptionControl.ChangeKind.TextLine, 12, 0, "new text");
+            controller.DescriptionChange(DescriptionChangeKind.TextLine, 12, 0, "new text");
             Assert.AreEqual("Control 303 before", eventDB.GetControl(ControlId(18)).descTextBefore);
             Assert.AreEqual("Control 303 after", eventDB.GetControl(ControlId(18)).descTextAfter);
             Assert.AreEqual("new text", eventDB.GetCourseControl(CourseControlId(208)).descTextBefore);
             Assert.AreEqual("Course Control 303 after", eventDB.GetCourseControl(CourseControlId(208)).descTextAfter);
             
             controller.SelectDescriptionLine(15);
-            controller.DescriptionChange(DescriptionControl.ChangeKind.TextLine, 15, 0, "");
+            controller.DescriptionChange(DescriptionChangeKind.TextLine, 15, 0, "");
             Assert.AreEqual("Control 303 before", eventDB.GetControl(ControlId(18)).descTextBefore);
             Assert.AreEqual(null, eventDB.GetControl(ControlId(18)).descTextAfter);
             Assert.AreEqual("new text", eventDB.GetCourseControl(CourseControlId(208)).descTextBefore);
@@ -2411,7 +2411,7 @@ Code:           layer:12  control:4  scale:1  text:GO  top-left:(38.29,-16.89)
             Assert.AreEqual("Beware of frogs!", eventDB.GetControl(ControlId(4)).descTextBefore);
             controller.SelectTab(0);    // All controls.
             controller.SelectDescriptionLine(5);
-            controller.DescriptionChange(DescriptionControl.ChangeKind.TextLine, 5, 0, "smelly cat");
+            controller.DescriptionChange(DescriptionChangeKind.TextLine, 5, 0, "smelly cat");
             Assert.AreEqual("smelly cat", eventDB.GetControl(ControlId(4)).descTextBefore); 
         }
 

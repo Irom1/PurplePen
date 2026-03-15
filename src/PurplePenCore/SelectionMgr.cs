@@ -36,13 +36,11 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
-using System.Windows.Forms;
-using System.Diagnostics;
 using System.Linq;
 
 namespace PurplePen
 {
-    class SelectionMgr
+    public class SelectionMgr
     {
         EventDB eventDB;        // event database
         SymbolDB symbolDB;      // symbol database
@@ -550,7 +548,7 @@ namespace PurplePen
             // Copy to the names and ids arrays, adding in All Controls as the first element.
             courseViewNames = new string[courseIds.Length + 1];
             courseViewIds = new Id<Course>[courseIds.Length + 1];
-            courseViewNames[0] = MiscText.AllControls;
+            courseViewNames[0] = CoreMiscText.AllControls;
             courseViewIds[0] = Id<Course>.None;
             for (int i = 1; i < courseViewIds.Length; ++i) {
                 courseViewNames[i] = eventDB.GetCourse(courseIds[i - 1]).name;

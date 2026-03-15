@@ -366,6 +366,7 @@ namespace PurplePen
         }
     }
 
+#if !PORTING
     // Has all the settings for creating OCAD files.
     class OcadCreationSettings
     {
@@ -387,4 +388,5 @@ namespace PurplePen
             return (OcadCreationSettings) base.MemberwiseClone();
         }
     }
+#endif
 }

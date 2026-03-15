@@ -214,15 +214,6 @@ namespace PurplePen {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &apos;{0}&apos; is not a valid leg number for branch &apos;{1}&apos;.
-        /// </summary>
-        internal static string BadLegNumber {
-            get {
-                return ResourceManager.GetString("BadLegNumber", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The length for a course must be a number 0.1 - 99.9, or blank to calculate length automatically..
         /// </summary>
         internal static string BadLength {
@@ -349,15 +340,6 @@ namespace PurplePen {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cannot create PDFs for the following reason:.
-        /// </summary>
-        internal static string CannotCreatePdfs {
-            get {
-                return ResourceManager.GetString("CannotCreatePdfs", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Cannot load &apos;{0}&apos; for the following reason:.
         /// </summary>
         internal static string CannotLoadFile {
@@ -372,42 +354,6 @@ namespace PurplePen {
         internal static string CannotLoadMapFile {
             get {
                 return ResourceManager.GetString("CannotLoadMapFile", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Cannot print &apos;{0}&apos; for the following reason:.
-        /// </summary>
-        internal static string CannotPrint {
-            get {
-                return ResourceManager.GetString("CannotPrint", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Cannot read image file &apos;{0}&apos;..
-        /// </summary>
-        internal static string CannotReadImageFile {
-            get {
-                return ResourceManager.GetString("CannotReadImageFile", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Cannot read map for the following reason: &apos;{0}&apos; Using Optimize/Repair and re-saving in OCAD may fix problems..
-        /// </summary>
-        internal static string CannotReadMap {
-            get {
-                return ResourceManager.GetString("CannotReadMap", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Cannot read map for the following reason: &apos;{0}&apos; Opening and re-saving the map in the latest version of OpenOrienteering Mapper may fix problems..
-        /// </summary>
-        internal static string CannotReadMapOOM {
-            get {
-                return ResourceManager.GetString("CannotReadMapOOM", resourceCulture);
             }
         }
         
@@ -502,56 +448,11 @@ namespace PurplePen {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A control code must be one, two, or three letters or digits..
-        /// </summary>
-        internal static string CodeBadLength {
-            get {
-                return ResourceManager.GetString("CodeBadLength", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to A control code should not begin with zero..
-        /// </summary>
-        internal static string CodeBeginsWithZero {
-            get {
-                return ResourceManager.GetString("CodeBeginsWithZero", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to A control code must not contain a space..
-        /// </summary>
-        internal static string CodeContainsSpace {
-            get {
-                return ResourceManager.GetString("CodeContainsSpace", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to A control code should not look like another number when upside-down..
-        /// </summary>
-        internal static string CodeCouldBeUpsideDown {
-            get {
-                return ResourceManager.GetString("CodeCouldBeUpsideDown", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The control code &apos;{0}&apos; is already used by another control..
         /// </summary>
         internal static string CodeInUse {
             get {
                 return ResourceManager.GetString("CodeInUse", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Control {0}.
-        /// </summary>
-        internal static string Control_Code {
-            get {
-                return ResourceManager.GetString("Control_Code", resourceCulture);
             }
         }
         
@@ -896,15 +797,6 @@ namespace PurplePen {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Could not reproject points; either the coordinate system or the real world coordinates in the OCAD map are wrong..
-        /// </summary>
-        internal static string GpxReprojectFailure {
-            get {
-                return ResourceManager.GetString("GpxReprojectFailure", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The OCAD file uses a coordinate system that is not supported by Purple Pen..
         /// </summary>
         internal static string GpxUnsupportedCoordSystem {
@@ -946,33 +838,6 @@ namespace PurplePen {
         internal static string Landscape {
             get {
                 return ResourceManager.GetString("Landscape", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Leg {0} never reaches branch &apos;{1}&apos;: it was assigned to go a different way in a containing fork..
-        /// </summary>
-        internal static string LegAssignedOuterBranch {
-            get {
-                return ResourceManager.GetString("LegAssignedOuterBranch", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Leg {0} should be assigned to one of branches {1}.
-        /// </summary>
-        internal static string LegNotAssigned {
-            get {
-                return ResourceManager.GetString("LegNotAssigned", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Leg {0} is assigned to both branch &apos;{1}&apos; and branch &apos;{2}&apos;.
-        /// </summary>
-        internal static string LegUsedTwice {
-            get {
-                return ResourceManager.GetString("LegUsedTwice", resourceCulture);
             }
         }
         
@@ -1244,24 +1109,6 @@ namespace PurplePen {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Pdfium PDF converter failed to read PDF file successfully.
-        /// </summary>
-        internal static string PdfConversionFailed {
-            get {
-                return ResourceManager.GetString("PdfConversionFailed", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to PdfConverter.exe not found.
-        /// </summary>
-        internal static string PdfConverterNotFound {
-            get {
-                return ResourceManager.GetString("PdfConverterNotFound", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to PDF File|*.pdf.
         /// </summary>
         internal static string PdfFilter {
@@ -1276,15 +1123,6 @@ namespace PurplePen {
         internal static string PdfMapSize {
             get {
                 return ResourceManager.GetString("PdfMapSize", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Could not read result of PDF conversion from file &apos;{0}&apos;.
-        /// </summary>
-        internal static string PdfResultNotReadable {
-            get {
-                return ResourceManager.GetString("PdfResultNotReadable", resourceCulture);
             }
         }
         
@@ -1510,33 +1348,6 @@ namespace PurplePen {
         internal static string VariationNotLastControl {
             get {
                 return ResourceManager.GetString("VariationNotLastControl", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Alpha {0}.
-        /// </summary>
-        internal static string Version_Alpha {
-            get {
-                return ResourceManager.GetString("Version_Alpha", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Beta {0}.
-        /// </summary>
-        internal static string Version_Beta {
-            get {
-                return ResourceManager.GetString("Version_Beta", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to RC {0}.
-        /// </summary>
-        internal static string Version_RC {
-            get {
-                return ResourceManager.GetString("Version_RC", resourceCulture);
             }
         }
         

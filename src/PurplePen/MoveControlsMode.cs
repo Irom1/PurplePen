@@ -163,14 +163,14 @@ namespace PurplePen
         }
 
 
-        public override MapViewer.DragAction LeftButtonDown(Pane pane, PointF location, float pixelSize, ref bool displayUpdateNeeded)
+        public override DragAction LeftButtonDown(Pane pane, PointF location, float pixelSize, ref bool displayUpdateNeeded)
         {
             if (pane == Pane.Map) {
                 // Delay to see if click or drag.
-                return MapViewer.DragAction.DelayedDrag;
+                return DragAction.DelayedDrag;
             }
             else {
-                return MapViewer.DragAction.None;
+                return DragAction.None;
             }
         }
 
@@ -179,7 +179,7 @@ namespace PurplePen
             Debug.Assert(pane == Pane.Map);
 
             // Drag is move map.
-            controller.InitiateMapDragging(locationStart, System.Windows.Forms.MouseButtons.Left);
+            controller.InitiateMapDragging(locationStart, PointerButton.Left);
         }
 
         public override void LeftButtonClick(Pane pane, PointF location, float pixelSize, ref bool displayUpdateNeeded)
@@ -346,14 +346,14 @@ namespace PurplePen
                 return null;
         }
 
-        public override MapViewer.DragAction LeftButtonDown(Pane pane, PointF location, float pixelSize, ref bool displayUpdateNeeded)
+        public override DragAction LeftButtonDown(Pane pane, PointF location, float pixelSize, ref bool displayUpdateNeeded)
         {
             if (pane == Pane.Map) {
                 // Delay to see if click or drag.
-                return MapViewer.DragAction.DelayedDrag;
+                return DragAction.DelayedDrag;
             }
             else {
-                return MapViewer.DragAction.None;
+                return DragAction.None;
             }
         }
 
@@ -362,7 +362,7 @@ namespace PurplePen
             Debug.Assert(pane == Pane.Map);
 
             // Drag is move map.
-            controller.InitiateMapDragging(locationStart, System.Windows.Forms.MouseButtons.Left);
+            controller.InitiateMapDragging(locationStart, PointerButton.Left);
         }
 
         public override void LeftButtonClick(Pane pane, PointF location, float pixelSize, ref bool displayUpdateNeeded)
@@ -421,13 +421,13 @@ namespace PurplePen
 
     class ConfirmAllControlsMoveMode : BaseMode
     {
-        public override MapViewer.DragAction LeftButtonDown(Pane pane, PointF location, float pixelSize, ref bool displayUpdateNeeded)
+        public override DragAction LeftButtonDown(Pane pane, PointF location, float pixelSize, ref bool displayUpdateNeeded)
         {
             if (pane == Pane.Map) {
-                return MapViewer.DragAction.MapDrag;
+                return DragAction.MapDrag;
             }
             else {
-                return MapViewer.DragAction.None;
+                return DragAction.None;
             }
         }
 

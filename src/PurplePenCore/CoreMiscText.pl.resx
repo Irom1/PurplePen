@@ -120,6 +120,12 @@
   <data name="AllControls" xml:space="preserve">
     <value>Wszystkie PK</value>
   </data>
+  <data name="CannotCreatePdfs" xml:space="preserve">
+    <value>Nie udało się utworzyć plików PDF z następującego powodu:</value>
+  </data>
+  <data name="CannotPrint" xml:space="preserve">
+    <value>Nie mogę wydrukować '{0}' z następującego powodu:</value>
+  </data>
   <data name="CannotReadImageFile" xml:space="preserve">
     <value>Nie mogę przeczytać obrazu '{0}'.</value>
   </data>

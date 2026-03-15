@@ -250,7 +250,7 @@ namespace PurplePen
         private void previewButton_Click(object sender, EventArgs e)
         {
             if (SomeCoursesSelected())
-                controller.PrintDescriptions(PrintSettings, PrinterPageSettings, true);
+                controller.PrintDescriptions(PrintSettings, WindowsUtil.PrintingPaperSizeWithMarginsFromPageSettings(PrinterPageSettings), true);
         }
 
         private void copiesCombo_SelectedIndexChanged(object sender, EventArgs e)

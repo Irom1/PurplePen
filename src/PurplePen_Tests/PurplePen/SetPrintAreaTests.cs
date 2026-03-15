@@ -77,11 +77,11 @@ namespace PurplePen.Tests
             PointF ptClick = new PointF((initialRect.Left + initialRect.Right) / 2, (initialRect.Top + initialRect.Bottom) / 2);
             
             // Click in center and drag to left/right.
-            MapViewer.DragAction dragAction = controller.LeftButtonDown(Pane.Map, ptClick, 0.3F);
-            Assert.AreEqual(MapViewer.DragAction.ImmediateDrag, dragAction);
+            DragAction dragAction = controller.LeftButtonDown(Pane.Map, ptClick, 0.3F);
+            Assert.AreEqual(DragAction.ImmediateDrag, dragAction);
             Assert.AreEqual(StatusBarText.DraggingObject, controller.StatusText);
-            Cursor cursor = controller.GetMouseCursor(Pane.Map, ptClick, 0.3F);
-            Assert.AreSame(Cursors.SizeAll, cursor);
+            MousePointerShape cursor = controller.GetMouseCursor(Pane.Map, ptClick, 0.3F);
+            Assert.AreEqual(MousePointerShape.SizeAll, cursor);
             controller.LeftButtonEndDrag(Pane.Map, new PointF(ptClick.X + delta, ptClick.Y), ptClick, 0.3F);
             currentRect.Offset(delta, 0);
 
@@ -89,10 +89,10 @@ namespace PurplePen.Tests
             delta = finalRect.Top - currentRect.Top;
             ptClick = new PointF((currentRect.Right + currentRect.Left) / 2, currentRect.Top);
             dragAction = controller.LeftButtonDown(Pane.Map, ptClick, 0.3F);
-            Assert.AreEqual(MapViewer.DragAction.ImmediateDrag, dragAction);
+            Assert.AreEqual(DragAction.ImmediateDrag, dragAction);
             Assert.AreEqual(StatusBarText.SizingRectangle, controller.StatusText);
             cursor = controller.GetMouseCursor(Pane.Map, ptClick, 0.3F);
-            Assert.AreSame(Cursors.SizeNS, cursor);
+            Assert.AreEqual(MousePointerShape.SizeNS, cursor);
             controller.LeftButtonEndDrag(Pane.Map, new PointF(ptClick.X, ptClick.Y + delta), ptClick, 0.3F);
             currentRect.Height = currentRect.Height - delta;
             currentRect.Y = currentRect.Y + delta;
@@ -102,10 +102,10 @@ namespace PurplePen.Tests
             float deltaY = finalRect.Bottom - currentRect.Bottom;
             ptClick = new PointF(currentRect.Right, currentRect.Bottom);
             dragAction = controller.LeftButtonDown(Pane.Map, ptClick, 0.3F);
-            Assert.AreEqual(MapViewer.DragAction.ImmediateDrag, dragAction);
+            Assert.AreEqual(DragAction.ImmediateDrag, dragAction);
             Assert.AreEqual(StatusBarText.SizingRectangle, controller.StatusText);
             cursor = controller.GetMouseCursor(Pane.Map, ptClick, 0.3F);
-            Assert.AreSame(Cursors.SizeNESW, cursor);
+            Assert.AreEqual(MousePointerShape.SizeNESW, cursor);
             controller.LeftButtonEndDrag(Pane.Map, new PointF(ptClick.X + deltaX, ptClick.Y + deltaY), ptClick, 0.3F);
             currentRect = RectangleF.FromLTRB(currentRect.Left, currentRect.Top, currentRect.Right + deltaX, currentRect.Bottom + deltaY);
 

@@ -144,9 +144,6 @@
   <data name="CannotLoadMapFile" xml:space="preserve">
     <value>Não é possível carregar arquivo de mapa '{0}' pelo seguinte motivo:</value>
   </data>
-  <data name="CannotPrint" xml:space="preserve">
-    <value>Não é possível imprimir '{0}' pelo seguinte motivo:</value>
-  </data>
   <data name="CannotCreateFile" xml:space="preserve">
     <value>Não é possível criar '{0}' pelo seguinte motivo:</value>
   </data>
@@ -395,9 +392,6 @@ O Purple Pen agora recarregará o mapa.</value>
   </data>
   <data name="CrashSend" xml:space="preserve">
     <value>Enviar Relatório</value>
-  </data>
-  <data name="CannotCreatePdfs" xml:space="preserve">
-    <value>Não é possível criar arquivos PDF pelo seguinte motivo:</value>
   </data>
   <data name="UserDefined" xml:space="preserve">
     <value>Definido pelo usuário</value>

@@ -126,6 +126,12 @@
   <data name="BadLegNumber" xml:space="preserve">
     <value>'{0}' 不是一个有效的路段序号对于分支 '{1}'</value>
   </data>
+  <data name="CannotCreatePdfs" xml:space="preserve">
+    <value>无法为以下原因创建PDF文件：</value>
+  </data>
+  <data name="CannotPrint" xml:space="preserve">
+    <value>无法打印“{0}的原因如下：</value>
+  </data>
   <data name="CannotReadImageFile" xml:space="preserve">
     <value>无法读取图像文件“{0}”。</value>
   </data>

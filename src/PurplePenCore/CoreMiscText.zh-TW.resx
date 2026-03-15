@@ -126,6 +126,12 @@
   <data name="BadLegNumber" xml:space="preserve">
     <value>“{0}”不是分支“{1}”的有效賽段編號</value>
   </data>
+  <data name="CannotCreatePdfs" xml:space="preserve">
+    <value>由於下列原因無法建立 PDF：</value>
+  </data>
+  <data name="CannotPrint" xml:space="preserve">
+    <value>無法列印 '{0}' 由於下列原因:</value>
+  </data>
   <data name="CannotReadImageFile" xml:space="preserve">
     <value>無法讀取地圖檔案 '{0}'.</value>
   </data>

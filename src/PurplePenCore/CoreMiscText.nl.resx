@@ -123,6 +123,12 @@
   <data name="AllVariations" xml:space="preserve">
     <value>Alle varianten</value>
   </data>
+  <data name="CannotCreatePdfs" xml:space="preserve">
+    <value>Kan geen PDF's aanmaken vanwege:</value>
+  </data>
+  <data name="CannotPrint" xml:space="preserve">
+    <value>'{0}' kan niet worden afgedrukt vanwege:</value>
+  </data>
   <data name="PageTooSmall" xml:space="preserve">
     <value>Het paginaformaat is te klein voor elke postomschrijving.</value>
   </data>

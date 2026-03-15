@@ -135,9 +135,6 @@
   <data name="AllControls" xml:space="preserve">
     <value>Alle posten</value>
   </data>
-  <data name="CannotPrint" xml:space="preserve">
-    <value>'{0}' kan niet worden afgedrukt vanwege:</value>
-  </data>
   <data name="CannotCreateFile" xml:space="preserve">
     <value>Kan geen '{0}' aanmaken vanwege:</value>
   </data>
@@ -176,9 +173,6 @@
   </data>
   <data name="CrashSave" xml:space="preserve">
     <value>Save</value>
-  </data>
-  <data name="CannotCreatePdfs" xml:space="preserve">
-    <value>Kan geen PDF's aanmaken vanwege:</value>
   </data>
   <data name="PrintingPage" xml:space="preserve">
     <value>Afdrukken van pagina {0} (van {1})</value>

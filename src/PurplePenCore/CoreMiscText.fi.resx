@@ -126,6 +126,12 @@
   <data name="BadLegNumber" xml:space="preserve">
     <value>'{0}' ei ole kelvollinen osuusnumero hajonnalle '{1}'</value>
   </data>
+  <data name="CannotCreatePdfs" xml:space="preserve">
+    <value>PDF-tiedostojen luominen ei onnistunut seuraavasta syystä:</value>
+  </data>
+  <data name="CannotPrint" xml:space="preserve">
+    <value>Ei voida tulostaa '{0}' seuraavasta syystä:</value>
+  </data>
   <data name="CannotReadImageFile" xml:space="preserve">
     <value>Kuvatiedostoa '{0}' ei voida lukea.</value>
   </data>

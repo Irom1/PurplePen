@@ -96,6 +96,35 @@ namespace PurplePen
 
     }
 
+    // A paper size with margins.
+    public class PrintingPaperSizeWithMargins
+    {
+        public PrintingPaperSizeWithMargins(PrintingPaperSize paperSize, PrintingMarginSize marginSize)
+        {
+            PaperSize = paperSize;
+            MarginSize = marginSize;
+        }
+        
+        public PrintingPaperSize PaperSize { get; private set; }
+        public PrintingMarginSize MarginSize { get; private set; }
+
+        public RectangleF AreaInsideMarginsInInches {
+            get {
+                return new RectangleF(MarginSize.LeftInInches, MarginSize.TopInInches,
+                    PaperSize.SizeInInches.Width - MarginSize.LeftInInches - MarginSize.RightInInches,
+                    PaperSize.SizeInInches.Height - MarginSize.TopInInches - MarginSize.BottomInInches);    
+
+            }
+        }
+
+        public RectangleF AreaInsideMarginsInHundreths {
+            get { return new RectangleF(MarginSize.LeftInHundreths, MarginSize.TopInHundreths,
+                    PaperSize.SizeInHundreths.Width - MarginSize.LeftInHundreths - MarginSize.RightInHundreths,
+                    PaperSize.SizeInHundreths.Height - MarginSize.TopInHundreths - MarginSize.BottomInHundreths);
+            }
+        }
+    }
+
     // Interface that is implemented to print pages onto "paper". Also used for print preview, and 
     // for creating PDFs.
     public interface IPrintingTarget
@@ -117,9 +146,9 @@ namespace PurplePen
     // punch cards, reports, etc.
     public interface IPrintable
     {
-        // Layout the pages, and return the total number of papers. For layout, you typically only need to pay attendtion to the defaultPrintableAreaInInches,
-        // which takes into account the paper size and margin size.
-        int LayoutPages(PrintingPaperSize defaultPaperSize, PrintingMarginSize defaultMarginSize, SizeF defaultPrintableAreaInInches);
+        // Layout the pages, and return the total number of papers. For layout, you typically only need to pay attention to
+        // defaultPaperSizeWithMargins.AreaInsideMargins.Size.
+        int LayoutPages(PrintingPaperSizeWithMargins defaultPaperSizeWithMargins);
 
         // Get the paper size for a particular page number. This is generally used to set the orientation to
         // landscape or portrait. 

@@ -120,6 +120,9 @@
   <data name="AllControls" xml:space="preserve">
     <value>Alle poster</value>
   </data>
+  <data name="CannotPrint" xml:space="preserve">
+    <value>Kan ikkje skrive ut '{0}' på grunn av:</value>
+  </data>
   <data name="CannotReadImageFile" xml:space="preserve">
     <value>Kan ikkje lese bildefil '{0}'.</value>
   </data>

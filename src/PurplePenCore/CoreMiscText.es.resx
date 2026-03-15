@@ -126,6 +126,12 @@
   <data name="BadLegNumber" xml:space="preserve">
     <value>«{0}» no es un número de tramo válido para la rama «{1}»</value>
   </data>
+  <data name="CannotCreatePdfs" xml:space="preserve">
+    <value>No se pueden crear PDF por el siguiente motivo:</value>
+  </data>
+  <data name="CannotPrint" xml:space="preserve">
+    <value>No se puede imprimir «{0}» por la siguiente razón:</value>
+  </data>
   <data name="CannotReadImageFile" xml:space="preserve">
     <value>No se puede leer el archivo de imagen «{0}».</value>
   </data>

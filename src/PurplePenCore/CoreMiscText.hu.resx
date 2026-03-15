@@ -126,6 +126,12 @@
   <data name="BadLegNumber" xml:space="preserve">
     <value>'{0}' nem egy valós ág a(z)  '{1}' elágazáshoz.</value>
   </data>
+  <data name="CannotCreatePdfs" xml:space="preserve">
+    <value>A PDF fájl nem hozható létre az alábbi okból:</value>
+  </data>
+  <data name="CannotPrint" xml:space="preserve">
+    <value>'{0}' nem nyomtatható a következő okból:</value>
+  </data>
   <data name="CannotReadImageFile" xml:space="preserve">
     <value>'{0}' kép fájl nem betölthető a következő okból:</value>
   </data>

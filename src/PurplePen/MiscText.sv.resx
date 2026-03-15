@@ -144,9 +144,6 @@
   <data name="CannotLoadMapFile" xml:space="preserve">
     <value>Kan inte läsa kartfil '{0}' av följande skäl:</value>
   </data>
-  <data name="CannotPrint" xml:space="preserve">
-    <value>Kan inte skriva ut '{0}' av följande skäl:</value>
-  </data>
   <data name="CannotCreateFile" xml:space="preserve">
     <value>Kan inte skapa '{0}' av följande skäl:</value>
   </data>
@@ -391,9 +388,6 @@ Tryck OK och försök hitta kartfilen på din dator.</value>
   <data name="CrashSend" xml:space="preserve">
     <value>Skicka rapport</value>
   </data>
-  <data name="CannotCreatePdfs" xml:space="preserve">
-    <value>Kan inte skapa PDF av följande orsaker:</value>
-  </data>
   <data name="UserDefined" xml:space="preserve">
     <value>Egendefinierad</value>
   </data>
@@ -565,13 +559,13 @@ Tryck OK och försök hitta kartfilen på din dator.</value>
   <data name="RobotoFontsInstallFailed" xml:space="preserve">
     <value>Installationen av Roboto Fonts misslyckades.</value>
   </data>
+  <data name="GpxMustBeOcadMap" xml:space="preserve">
+    <value>Kartfilen måste vara en OCAD-fil för att kunna använda GPX-filer.</value>
+  </data>
   <data name="DownloadGhostscript" xml:space="preserve">
     <value>För att läsa in PDF-filer krävs det att GPL Ghostscript installeras. Vill du automatiskt ladda ner och installera det nu?</value>
   </data>
   <data name="GhostscriptNotInstalled" xml:space="preserve">
     <value>GPL Ghostscript är inte installerat</value>
-  </data>
-  <data name="GpxMustBeOcadMap" xml:space="preserve">
-    <value>Kartfilen måste vara en OCAD-fil för att kunna använda GPX-filer.</value>
   </data>
 </root>

@@ -58,13 +58,13 @@ namespace PurplePen
         }
 
         // Mouse cursor looks like a crosshair
-        public override Cursor GetMouseCursor(Pane pane, PointF location, float pixelSize)
+        public override MousePointerShape GetMouseCursor(Pane pane, PointF location, float pixelSize)
         {
             if (pane == Pane.Map) {
-                return Cursors.Cross;
+                return MousePointerShape.Cross;
             }
             else {
-                return Cursors.Arrow;
+                return MousePointerShape.Arrow;
             }
         }
 
@@ -83,15 +83,15 @@ namespace PurplePen
  	        return highlights;
         }
 
-        public override MapViewer.DragAction LeftButtonDown(Pane pane, PointF location, float pixelSize, ref bool displayUpdateNeeded)
+        public override DragAction LeftButtonDown(Pane pane, PointF location, float pixelSize, ref bool displayUpdateNeeded)
         {
             if (pane != Pane.Map)
-                return MapViewer.DragAction.None;
+                return DragAction.None;
 
             // Create the new corner
             controller.AddCorner(location);
             controller.DefaultCommandMode();
-            return MapViewer.DragAction.SuppressClick;
+            return DragAction.SuppressClick;
         }
     }
 
@@ -135,15 +135,15 @@ namespace PurplePen
             return new CourseObj[] { courseObject };
         }
 
-        public override Cursor GetMouseCursor(Pane pane, PointF location, float pixelSize)
+        public override MousePointerShape GetMouseCursor(Pane pane, PointF location, float pixelSize)
         {
             PointF handleLocation;
 
             if (pane == Pane.Map && HitTestHandle(location, pixelSize, out handleLocation)) {
-                return WindowsUtil.DeleteHandleCursor;
+                return MousePointerShape.DeleteHandle;
             }
             else {
-                return Cursors.Arrow;
+                return MousePointerShape.Arrow;
             }
         }
 
@@ -155,7 +155,7 @@ namespace PurplePen
             }
         }
 
-        public override MapViewer.DragAction LeftButtonDown(Pane pane, PointF location, float pixelSize, ref bool displayUpdateNeeded)
+        public override DragAction LeftButtonDown(Pane pane, PointF location, float pixelSize, ref bool displayUpdateNeeded)
         {
             PointF handleLocation;
 
@@ -164,7 +164,7 @@ namespace PurplePen
                 controller.DefaultCommandMode();
             }
 
-            return MapViewer.DragAction.SuppressClick;
+            return DragAction.SuppressClick;
         }
     }
 }

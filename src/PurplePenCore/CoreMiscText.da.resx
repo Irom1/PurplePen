@@ -126,6 +126,12 @@
   <data name="BadLegNumber" xml:space="preserve">
     <value>'{0}' er  ikke et gyldigt bennummer til gren '{1}'</value>
   </data>
+  <data name="CannotCreatePdfs" xml:space="preserve">
+    <value>Kan ikke oprette PDFs af følgende grund:</value>
+  </data>
+  <data name="CannotPrint" xml:space="preserve">
+    <value>Kan ikke udskrive '(0)' af følgende grund:</value>
+  </data>
   <data name="CannotReadImageFile" xml:space="preserve">
     <value>Kan ikke læse billedfil '(0)'</value>
   </data>

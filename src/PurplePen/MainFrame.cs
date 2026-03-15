@@ -32,26 +32,26 @@
  * OF SUCH DAMAGE.
  */
 
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Drawing.Printing;
-using System.Text;
-using System.Windows.Forms;
-using System.Diagnostics;
-using System.IO;
-using System.Net;
-using System.Reflection;
-using System.Globalization;
-using System.Linq;
-using System.Threading;
-using PurplePen.MapView;
-using PurplePen.MapModel;
-
 using PurplePen.DebugUI;
 using PurplePen.Graphics2D;
 using PurplePen.Livelox;
+using PurplePen.MapModel;
+using PurplePen.MapView;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Drawing;
+using System.Drawing.Printing;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Net;
+using System.Reflection;
+using System.Text;
+using System.Threading;
+using System.Windows.Forms;
+using static SkiaSharp.HarfBuzz.SKShaper;
 
 namespace PurplePen
 {
@@ -202,9 +202,24 @@ namespace PurplePen
             }
         }
 
-        public void InitiateMapDragging(PointF initialPos, System.Windows.Forms.MouseButtons buttonEnd)
+        public void InitiateMapDragging(PointF initialPos, PointerButton buttonEnd)
         {
-            mapViewer.BeginMapDragging(Geometry.PointFromPointF(mapViewer.WorldToPixel(initialPos)), buttonEnd);
+            MouseButtons mouseButtonEnd = MouseButtonFromPointerButton(buttonEnd);
+            mapViewer.BeginMapDragging(Geometry.PointFromPointF(mapViewer.WorldToPixel(initialPos)), mouseButtonEnd);
+        }
+
+        private MouseButtons MouseButtonFromPointerButton(PointerButton buttonEnd)
+        {
+            switch (buttonEnd) {
+            case PointerButton.Left:
+                return MouseButtons.Left;
+            case PointerButton.Right:
+                return MouseButtons.Right;
+            case PointerButton.Middle:
+                return MouseButtons.Middle;
+            default:
+                throw new InvalidOperationException("Unexpected PointerButton value");
+            }
         }
 
         // Prompt the user for a file name to open.
@@ -281,19 +296,35 @@ namespace PurplePen
             return result == DialogResult.Yes;
         }
 
+        private YesNoCancel YesNoCancelFromDialogResult(DialogResult dialogResult)
+        {
+            switch (dialogResult) {
+                case DialogResult.Yes:
+                    return YesNoCancel.Yes;
+                case DialogResult.No:
+                    return YesNoCancel.No;
+                case DialogResult.Cancel:
+                    return YesNoCancel.Cancel;
+                default:
+                    throw new InvalidOperationException("Unexpected DialogResult value");
+            }
+        }
+
         // Ask a yes-no-cancel question.
-        public DialogResult YesNoCancelQuestion(string message, bool yesDefault)
+        public YesNoCancel YesNoCancelQuestion(string message, bool yesDefault)
         {
             if (descriptionControl != null)
                 descriptionControl.CloseAnyPopup();
 
-            return MessageBox.Show(this, message, MiscText.AppTitle, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, yesDefault ? MessageBoxDefaultButton.Button1 : MessageBoxDefaultButton.Button2);
+            DialogResult result = MessageBox.Show(this, message, MiscText.AppTitle, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, yesDefault ? MessageBoxDefaultButton.Button1 : MessageBoxDefaultButton.Button2);
+            return YesNoCancelFromDialogResult(result);
         }
 
-        public DialogResult MovingSharedControl(string controlCode, string otherCourses)
+        public YesNoCancel MovingSharedControl(string controlCode, string otherCourses)
         {
             using (MoveControlChoiceDialog dialog = new MoveControlChoiceDialog(controlCode, otherCourses)) {
-                return dialog.ShowDialog();
+                DialogResult result = dialog.ShowDialog();
+                return YesNoCancelFromDialogResult(result);
             }
         }
 
@@ -1235,7 +1266,7 @@ namespace PurplePen
             controller.SelectTab(courseTabs.SelectedIndex);
         }
 
-        private void descriptionControl_Change(DescriptionControl sender, DescriptionControl.ChangeKind kind, int line, int box, object newValue)
+        private void descriptionControl_Change(DescriptionControl sender, DescriptionChangeKind kind, int line, int box, object newValue)
         {
             controller.DescriptionChange(kind, line, box, newValue);
         }
@@ -1254,7 +1285,7 @@ namespace PurplePen
                 controller.MouseMoved(Pane.Map, location, mapViewer.PixelSize);
 
                 // Update the mouse cursor.
-                mapViewer.Cursor = controller.GetMouseCursor(Pane.Map, location, mapViewer.PixelSize);
+                mapViewer.Cursor = WindowsUtil.CursorFromMousePointerShape(controller.GetMouseCursor(Pane.Map, location, mapViewer.PixelSize));
             }
 
             PointF pixelLocation = Geometry.PointFromPointF(mapViewer.WorldToPixel(location));
@@ -1312,7 +1343,7 @@ namespace PurplePen
             }
         }
 
-        private MapViewer.DragAction mapViewer_OnMouseEvent(object sender, MouseAction action, int buttonNumber, bool[] whichButtonsDown, PointF location, PointF locationStart)
+        private DragAction mapViewer_OnMouseEvent(object sender, MouseAction action, int buttonNumber, bool[] whichButtonsDown, PointF location, PointF locationStart)
         {
             if (action != MouseAction.Move)
                 toolTip.Hide(mapViewer);
@@ -1320,7 +1351,7 @@ namespace PurplePen
             return HandleMouseEvent(Pane.Map, mapViewer, action, buttonNumber, whichButtonsDown, location, locationStart);
         }
 
-        private MapViewer.DragAction mapViewerTopology_OnMouseEvent(object sender, MouseAction action, int buttonNumber, bool[] whichButtonsDown, PointF location, PointF locationStart)
+        private DragAction mapViewerTopology_OnMouseEvent(object sender, MouseAction action, int buttonNumber, bool[] whichButtonsDown, PointF location, PointF locationStart)
         {
             if (action != MouseAction.Move)
                 toolTip.Hide(mapViewerTopology);
@@ -1328,7 +1359,7 @@ namespace PurplePen
             return HandleMouseEvent(Pane.Topology, mapViewerTopology, action, buttonNumber, whichButtonsDown, location, locationStart);
         }
 
-        private MapViewer.DragAction HandleMouseEvent(Pane pane, MapViewer activePaneMapViewer, MouseAction action, int buttonNumber, bool[] whichButtonsDown, PointF location, PointF locationStart)
+        private DragAction HandleMouseEvent(Pane pane, MapViewer activePaneMapViewer, MouseAction action, int buttonNumber, bool[] whichButtonsDown, PointF location, PointF locationStart)
         {
             if (action == MouseAction.Down && buttonNumber == MapViewer.LeftMouseButton)
                 return controller.LeftButtonDown(pane, location, activePaneMapViewer.PixelSize);
@@ -1355,7 +1386,7 @@ namespace PurplePen
             else if (action == MouseAction.DragCancel && buttonNumber == MapViewer.RightMouseButton)
                 controller.RightButtonCancelDrag(pane);
 
-            return MapViewer.DragAction.None;
+            return DragAction.None;
         }
 
         private void mapViewer_KeyDown(object sender, KeyEventArgs e)
@@ -2240,7 +2271,7 @@ namespace PurplePen
                 // Save the settings for the next invocation of the dialog.
                 descPrintSettings = printDescDialog.PrintSettings;
                 descPrintPageSettings = printDescDialog.PrinterPageSettings;
-                controller.PrintDescriptions(descPrintSettings, descPrintPageSettings, false);
+                controller.PrintDescriptions(descPrintSettings, WindowsUtil.PrintingPaperSizeWithMarginsFromPageSettings(descPrintPageSettings), false);
             }
 
             // And the dialog is done.
@@ -2270,7 +2301,7 @@ namespace PurplePen
                     // Save the settings for the next invocation of the dialog.
                     descPrintSettings = printDescDialog.PrintSettings;
                     descPrintPageSettings = printDescDialog.PrinterPageSettings;
-                    controller.CreateDescriptionsPdf(descPrintSettings, descPrintPageSettings, savePdfDialog.FileName);
+                    controller.CreateDescriptionsPdf(descPrintSettings, WindowsUtil.PrintingPaperSizeWithMarginsFromPageSettings(descPrintPageSettings), savePdfDialog.FileName);
                 }
             }
 
@@ -2294,7 +2325,9 @@ namespace PurplePen
                 // Save the settings for the next invocation of the dialog.
                 punchPrintSettings = printPunchesDialog.PrintSettings;
                 punchPrintPageSettings = printPunchesDialog.PrinterPageSettings;
-                controller.PrintPunches(punchPrintSettings, punchPrintPageSettings, false);
+                controller.PrintPunches(WindowsUtil.GetWinFormsPrintTarget(punchPrintPageSettings, this, false), 
+                                        punchPrintSettings,
+                                        WindowsUtil.PrintingPaperSizeWithMarginsFromPageSettings(punchPrintPageSettings));
             }
 
             // And the dialog is done.
@@ -2325,7 +2358,7 @@ namespace PurplePen
                     // Save the settings for the next invocation of the dialog.
                     punchPrintSettings = printPunchesDialog.PrintSettings;
                     punchPrintPageSettings = printPunchesDialog.PrinterPageSettings;
-                    controller.CreatePunchesPdf(punchPrintSettings, punchPrintPageSettings, savePdfDialog.FileName);
+                    controller.CreatePunchesPdf(punchPrintSettings, WindowsUtil.PrintingPaperSizeWithMarginsFromPageSettings(punchPrintPageSettings), savePdfDialog.FileName);
                 }
             }
 
@@ -3032,7 +3065,7 @@ namespace PurplePen
             }
         }
 
-        void ExportVariationReport(TeamVariationsForm form, TeamVariationsForm.ExportFileType exportFileType, string exportFileName)
+        void ExportVariationReport(TeamVariationsForm form, VariationExportFileType exportFileType, string exportFileName)
         {
             VariationReportData variationReportData = controller.GetVariationReportData(form.RelaySettings);
             controller.ExportRelayVariationsReport(form.RelaySettings, exportFileType, exportFileName);

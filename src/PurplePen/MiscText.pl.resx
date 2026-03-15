@@ -144,9 +144,6 @@
   <data name="CannotLoadMapFile" xml:space="preserve">
     <value>Nie mogę załadować pliku mapy '{0}' z następującego powodu:</value>
   </data>
-  <data name="CannotPrint" xml:space="preserve">
-    <value>Nie mogę wydrukować '{0}' z następującego powodu:</value>
-  </data>
   <data name="CannotCreateFile" xml:space="preserve">
     <value>Nie mogę utworzyć '{0}' z następującego powodu:</value>
   </data>
@@ -382,9 +379,6 @@ Użyj | aby rozdzielić linie
   <data name="CrashSend" xml:space="preserve">
     <value>Wyślij raport</value>
   </data>
-  <data name="CannotCreatePdfs" xml:space="preserve">
-    <value>Nie udało się utworzyć plików PDF z następującego powodu:</value>
-  </data>
   <data name="UserDefined" xml:space="preserve">
     <value>Zdefiniowane przez użytkownika</value>
   </data>
@@ -475,13 +469,13 @@ Użyj | aby rozdzielić linie
   <data name="PausePrinting" xml:space="preserve">
     <value>Zakończono drukowanie "{0}". Naciśnij OK aby rozpocząć drukowanie "{1}".</value>
   </data>
+  <data name="GpxMustBeOcadMap" xml:space="preserve">
+    <value>Plik mapy musi być plikiem OCAD aby można było używać plików GPX.</value>
+  </data>
   <data name="DownloadGhostscript" xml:space="preserve">
     <value>Załadowanie plików PDF wymaga zainstalowanego GPL Ghostscript. Czy chciałbyś go automatycznie pobrać i zainstalować?</value>
   </data>
   <data name="GhostscriptNotInstalled" xml:space="preserve">
     <value>GPL Ghostscript nie jest zainstalowany</value>
-  </data>
-  <data name="GpxMustBeOcadMap" xml:space="preserve">
-    <value>Plik mapy musi być plikiem OCAD aby można było używać plików GPX.</value>
   </data>
 </root>

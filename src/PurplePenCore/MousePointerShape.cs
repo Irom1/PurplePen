@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Tracing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,6 +32,23 @@ namespace PurplePen
         {
             return this.predefinedShape.GetHashCode();
         }
+
+        public static readonly MousePointerShape Arrow = new MousePointerShape(PredefinedMousePointerShape.Arrow);
+        public static readonly MousePointerShape Default = new MousePointerShape(PredefinedMousePointerShape.Default);
+        public static readonly MousePointerShape Cross = new MousePointerShape(PredefinedMousePointerShape.Cross);
+        public static readonly MousePointerShape Hand = new MousePointerShape(PredefinedMousePointerShape.Hand);
+        public static readonly MousePointerShape Help = new MousePointerShape(PredefinedMousePointerShape.Help);
+        public static readonly MousePointerShape IBeam = new MousePointerShape(PredefinedMousePointerShape.IBeam);
+        public static readonly MousePointerShape No = new MousePointerShape(PredefinedMousePointerShape.No);
+        public static readonly MousePointerShape SizeAll = new MousePointerShape(PredefinedMousePointerShape.SizeAll);
+        public static readonly MousePointerShape SizeNESW = new MousePointerShape(PredefinedMousePointerShape.SizeNESW);
+        public static readonly MousePointerShape SizeNS = new MousePointerShape(PredefinedMousePointerShape.SizeNS);
+        public static readonly MousePointerShape SizeNWSE = new MousePointerShape(PredefinedMousePointerShape.SizeNWSE);
+        public static readonly MousePointerShape SizeWE = new MousePointerShape(PredefinedMousePointerShape.SizeWE);
+        public static readonly MousePointerShape UpArrow = new MousePointerShape(PredefinedMousePointerShape.UpArrow);
+        public static readonly MousePointerShape Wait = new MousePointerShape(PredefinedMousePointerShape.Wait);
+        public static readonly MousePointerShape MoveHandle = new MousePointerShape(PredefinedMousePointerShape.MoveHandle);
+        public static readonly MousePointerShape DeleteHandle = new MousePointerShape(PredefinedMousePointerShape.DeleteHandle);
     }
 
     // Predefined mouse pointer shapes.
@@ -37,6 +56,7 @@ namespace PurplePen
     {
         None,
         Arrow,
+        Default = Arrow,
         Cross,
         Hand,
         Help,

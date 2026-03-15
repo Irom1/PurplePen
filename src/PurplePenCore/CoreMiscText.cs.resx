@@ -126,6 +126,12 @@
   <data name="BadLegNumber" xml:space="preserve">
     <value>'{0}' je neplatné číslo farsty '{1}'</value>
   </data>
+  <data name="CannotCreatePdfs" xml:space="preserve">
+    <value>Nelze vytvořit PDFko z tohoto důvodu:</value>
+  </data>
+  <data name="CannotPrint" xml:space="preserve">
+    <value>Z následujícího důvodu nelze vytisknout '{0}' :</value>
+  </data>
   <data name="CannotReadImageFile" xml:space="preserve">
     <value>Nelze číst obrázkový soubor '{0}'.</value>
   </data>

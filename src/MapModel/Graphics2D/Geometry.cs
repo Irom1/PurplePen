@@ -42,8 +42,6 @@ using SizeF = System.Drawing.SizeF;
 
 namespace PurplePen.Graphics2D
 {
-    public delegate void Operation();
-
     public static class Geometry
     {
         public static Point PointFromPointF(PointF pointf)

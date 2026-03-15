@@ -126,6 +126,12 @@
   <data name="BadLegNumber" xml:space="preserve">
     <value>'{0}' ist keine gültige Teilstreckennummer für die Verzweigung '{1}'</value>
   </data>
+  <data name="CannotCreatePdfs" xml:space="preserve">
+    <value>PDFs können aus folgendem Grund nicht erzeugt werden:</value>
+  </data>
+  <data name="CannotPrint" xml:space="preserve">
+    <value>Kann '{0}' aus folgendem Grund nicht drucken:</value>
+  </data>
   <data name="CannotReadImageFile" xml:space="preserve">
     <value>Bilddatei '{0}' kann nicht gelesen werden.</value>
   </data>

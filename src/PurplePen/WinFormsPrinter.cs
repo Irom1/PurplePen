@@ -16,7 +16,6 @@ namespace PurplePen
     // Abstracts the Windows Form printing API as an IPrintingTarget.  
     internal class WinFormsPrinter : IPrintingTarget
     {
-        private readonly Controller controller;
         private readonly WinFormsPrinterOptions options;
         private string documentTitle;
         private int currentPage, pageCount;
@@ -30,9 +29,8 @@ namespace PurplePen
         }
 
 
-        public WinFormsPrinter(Controller controller, WinFormsPrinter.WinFormsPrinterOptions options)
+        public WinFormsPrinter(WinFormsPrinter.WinFormsPrinterOptions options)
         {
-            this.controller = controller;
             this.options = options.Clone();
 
             if (this.options.ColorModel == ColorModel.OCADCompatible) {

@@ -152,7 +152,8 @@ namespace PurplePen.Tests
 
 
             // Get the pages of the printing.
-            CoursePrinting coursePrinter = new CoursePrinting(controller.GetEventDB(), ui.symbolDB, controller, mapDisplay.CloneToFullIntensity(), coursePrintSettings, appearance);
+            PageSettings pageSettings = new PageSettings() { Margins = new Margins(0, 0, 0, 0) };
+            CoursePrinting coursePrinter = new CoursePrinting(controller.GetEventDB(), ui.symbolDB, controller, mapDisplay.CloneToFullIntensity(), coursePrintSettings, pageSettings, appearance);
             Bitmap[] bitmaps = coursePrinter.PrintBitmaps();
             
             // Check all the pages against the baseline.
@@ -403,7 +404,8 @@ namespace PurplePen.Tests
             CoursePrintSettings coursePrintSettings = new CoursePrintSettings();
 
             coursePrintSettings.CourseIds = new Id<Course>[] { CourseId(1), CourseId(2), CourseId(3) };
-            coursePrintSettings.PageSettings.PrinterSettings.PrinterName = "foobar";
+            PageSettings pageSettings = new PageSettings() { Margins = new Margins(0, 0, 0, 0) };
+            pageSettings.PrinterSettings.PrinterName = "foobar";
 
             bool success = controller.PrintCourses(coursePrintSettings, false);
 

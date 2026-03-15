@@ -144,9 +144,6 @@
   <data name="CannotLoadMapFile" xml:space="preserve">
     <value>Z následujícího důvodu nelze načíst mapový soubor '{0}':</value>
   </data>
-  <data name="CannotPrint" xml:space="preserve">
-    <value>Z následujícího důvodu nelze vytisknout '{0}' :</value>
-  </data>
   <data name="CannotCreateFile" xml:space="preserve">
     <value>Z následujícího důvodu nelze vytvořit '{0}' :</value>
   </data>
@@ -391,9 +388,6 @@ OK - zkus soubor s mapou najít.</value>
   <data name="CrashSend" xml:space="preserve">
     <value>Odeslat hlášení</value>
   </data>
-  <data name="CannotCreatePdfs" xml:space="preserve">
-    <value>Nelze vytvořit PDFko z tohoto důvodu:</value>
-  </data>
   <data name="UserDefined" xml:space="preserve">
     <value>Definováno uživatelem</value>
   </data>
@@ -556,10 +550,10 @@ OK - zkus soubor s mapou najít.</value>
   <data name="AddEllipseTitle" xml:space="preserve">
     <value>Přidat elipsu</value>
   </data>
-  <data name="CodeUnder31" xml:space="preserve">
-    <value>Kód kontroly by měl být 31 nebo vyšší.</value>
-  </data>
   <data name="GpxMustBeOcadMap" xml:space="preserve">
     <value>Mapový soubor musí být z OCADu pro použití GPX.</value>
+  </data>
+  <data name="CodeUnder31" xml:space="preserve">
+    <value>Kód kontroly by měl být 31 nebo vyšší.</value>
   </data>
 </root>

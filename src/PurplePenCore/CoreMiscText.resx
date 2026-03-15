@@ -126,6 +126,12 @@
   <data name="BadLegNumber" xml:space="preserve">
     <value>'{0}' is not a valid leg number for branch '{1}'</value>
   </data>
+  <data name="CannotCreatePdfs" xml:space="preserve">
+    <value>Cannot create PDFs for the following reason:</value>
+  </data>
+  <data name="CannotPrint" xml:space="preserve">
+    <value>Cannot print '{0}' for the following reason:</value>
+  </data>
   <data name="CannotReadImageFile" xml:space="preserve">
     <value>Cannot read image file '{0}'.</value>
   </data>

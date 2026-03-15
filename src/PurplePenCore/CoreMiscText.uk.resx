@@ -126,6 +126,12 @@
   <data name="BadLegNumber" xml:space="preserve">
     <value>'{0}' не є правильною кількістю етапів для гілки '{1}'</value>
   </data>
+  <data name="CannotCreatePdfs" xml:space="preserve">
+    <value>Не вдалося створити PDF через наступні причини:</value>
+  </data>
+  <data name="CannotPrint" xml:space="preserve">
+    <value>Не вдалося роздрукувати '{0}' з наступних причин:</value>
+  </data>
   <data name="CannotReadImageFile" xml:space="preserve">
     <value>Не вдалося зчитати файл зображення '{0}'.</value>
   </data>

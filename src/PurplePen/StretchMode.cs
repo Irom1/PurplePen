@@ -59,12 +59,12 @@ namespace PurplePen
         }
 
         // Mouse cursor looks like a crosshair
-        public override Cursor GetMouseCursor(Pane pane, PointF location, float pixelSize)
+        public override MousePointerShape GetMouseCursor(Pane pane, PointF location, float pixelSize)
         {
             if (pane == Pane.Map)
-                return Cursors.Cross;
+                return MousePointerShape.Cross;
             else
-                return Cursors.Arrow;
+                return MousePointerShape.Arrow;
         }
 
         public override string StatusText
@@ -83,14 +83,14 @@ namespace PurplePen
             return new CourseObj[1] { courseObj };
         }
 
-        public override MapViewer.DragAction LeftButtonDown(Pane pane, PointF location, float pixelSize, ref bool displayUpdateNeeded)
+        public override DragAction LeftButtonDown(Pane pane, PointF location, float pixelSize, ref bool displayUpdateNeeded)
         {
             if (pane != Pane.Map)
-                return MapViewer.DragAction.None;
+                return DragAction.None;
 
             // Create the new start point of the drag
             mouseDown = location;
-            return MapViewer.DragAction.ImmediateDrag;
+            return DragAction.ImmediateDrag;
         }
 
         public override void LeftButtonDrag(Pane pane, PointF location, PointF locationStart, float pixelSize, ref bool displayUpdateNeeded)

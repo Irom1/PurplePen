@@ -59,7 +59,7 @@ namespace PurplePen
         PointF startDrag;             // location dragging started
         SelectingRectangleCourseObj dragStartCourseObj;  // course object when dragging began
         PointF handleDrag;         // if draggingHandle is true, the exact handle location being dragged.
-        Cursor cursorDrag;         // if draggingHandle is true, the cursor used for the drag.
+        MousePointerShape cursorDrag;         // if draggingHandle is true, the cursor used for the drag.
 
         bool allowDrag = true;    // Allow dragging the entire size.
         bool allowResize = true;  // Allow resized with a handle.
@@ -130,7 +130,7 @@ namespace PurplePen
             get
             {
                 PointF location, dummy;
-                Cursor handleCursor;
+                MousePointerShape handleCursor;
                 float pixelSize;
                 bool onMap = controller.GetCurrentLocation(out location, out pixelSize);
 
@@ -149,7 +149,7 @@ namespace PurplePen
         }
 
         // Hit test a location to see if it is over a handle. Return the handleLocation and handleCursor.
-        bool HitTestHandle(PointF location, float pixelSize, out PointF handleLocation, out Cursor handleCursor)
+        bool HitTestHandle(PointF location, float pixelSize, out PointF handleLocation, out MousePointerShape handleCursor)
         {
             PointF[] handles = selectingCourseObj.GetHandles();
             foreach (PointF handle in handles) {
@@ -157,7 +157,7 @@ namespace PurplePen
                 if (distance / pixelSize <= 3.0) {
                     // over a handle.
                     handleLocation = handle;
-                    handleCursor =  WindowsUtil.CursorFromMousePointerShape(selectingCourseObj.GetHandleCursor(handle));
+                    handleCursor = selectingCourseObj.GetHandleCursor(handle);
                     return true;
                 }
             }
@@ -178,19 +178,19 @@ namespace PurplePen
         }
 
         // Mouse cursor looks like a move cursor when hovering over something that is selected.
-        public override Cursor GetMouseCursor(Pane pane, PointF location, float pixelSize)
+        public override MousePointerShape GetMouseCursor(Pane pane, PointF location, float pixelSize)
         {
             if (pane != Pane.Map)
-                return Cursors.Arrow;
+                return MousePointerShape.Arrow;
 
             PointF dummy;
-            Cursor handleCursor;
+            MousePointerShape handleCursor;
 
             Debug.WriteLine("allowdrag = {0}", allowDrag);
 
             if (draggingWhole) {
                 Debug.WriteLine("dragging whole");
-                return Cursors.SizeAll;
+                return MousePointerShape.SizeAll;
             }
             else if (draggingHandle) {
                 Debug.WriteLine("dragging handle");
@@ -202,19 +202,19 @@ namespace PurplePen
             }
             else if (HitTestDraggable(location, pixelSize)) {
                 Debug.WriteLine("draggable");
-                return Cursors.SizeAll;
+                return MousePointerShape.SizeAll;
             }
             else {
                 Debug.WriteLine("Not over anything");
-                return Cursors.Default;
+                return MousePointerShape.Default;
             }
         }
 
         // Left mouse button selects the object clicked on, or drag something already selected.
-        public override MapViewer.DragAction LeftButtonDown(Pane pane, PointF location, float pixelSize, ref bool displayUpdateNeeded)
+        public override DragAction LeftButtonDown(Pane pane, PointF location, float pixelSize, ref bool displayUpdateNeeded)
         {
             if (pane != Pane.Map)
-                return MapViewer.DragAction.None;
+                return DragAction.None;
 
             PointF handleLocation;
 
@@ -226,7 +226,7 @@ namespace PurplePen
                 handleDrag = handleLocation;
                 dragStartCourseObj = (SelectingRectangleCourseObj) selectingCourseObj.Clone();
                 displayUpdateNeeded = true;
-                return MapViewer.DragAction.ImmediateDrag;
+                return DragAction.ImmediateDrag;
             }
 
             // Are we initiating a drag of the whole object?
@@ -236,10 +236,10 @@ namespace PurplePen
                 startDrag = location;
                 dragStartCourseObj = (SelectingRectangleCourseObj) selectingCourseObj.Clone();
                 displayUpdateNeeded = true;
-                return MapViewer.DragAction.ImmediateDrag;
+                return DragAction.ImmediateDrag;
             }
 
-            return MapViewer.DragAction.None;
+            return DragAction.None;
         }
 
         public override void LeftButtonDrag(Pane pane, PointF location, PointF locationStart, float pixelSize, ref bool displayUpdateNeeded)
@@ -346,9 +346,9 @@ namespace PurplePen
             }
         }
 
-        public override MapViewer.DragAction LeftButtonDown(PointF location, float pixelSize, ref bool displayUpdateNeeded)
+        public override DragAction LeftButtonDown(PointF location, float pixelSize, ref bool displayUpdateNeeded)
         {
-            return MapViewer.DragAction.ImmediateDrag;
+            return DragAction.ImmediateDrag;
         }
 
         public override void LeftButtonDrag(PointF location, float pixelSize, ref bool displayUpdateNeeded)
@@ -438,9 +438,9 @@ namespace PurplePen
             }
         }
 
-        public override MapViewer.DragAction LeftButtonDown(PointF location, float pixelSize, ref bool displayUpdateNeeded)
+        public override DragAction LeftButtonDown(PointF location, float pixelSize, ref bool displayUpdateNeeded)
         {
-            return MapViewer.DragAction.ImmediateDrag;
+            return DragAction.ImmediateDrag;
         }
 
         public override void LeftButtonDrag(PointF location, float pixelSize, ref bool displayUpdateNeeded)

@@ -988,11 +988,6 @@
     <Reference Include="System.Net.Http" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="CommandNameText.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>CommandNameText.resx</DependentUpon>
-    </Compile>
     <Compile Update="CommandNameText.*.Designer.cs">
       <DependentUpon>CommandNameText.resx</DependentUpon>
     </Compile>
@@ -1014,10 +1009,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Update="CommandNameText.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>CommandNameText.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Update="CommandNameText.*.resx">
       <DependentUpon>CommandNameText.resx</DependentUpon>
     </EmbeddedResource>

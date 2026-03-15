@@ -76,8 +76,8 @@ namespace PurplePen.Tests
             CheckHighlightedLines(controller, -1, -1);
 
             // Click on control to select it.
-            MapViewer.DragAction dragAction = controller.LeftButtonDown(Pane.Map, new PointF(27F, 41F), 0.3F);
-            Assert.AreEqual(MapViewer.DragAction.DelayedDrag, dragAction);
+            DragAction dragAction = controller.LeftButtonDown(Pane.Map, new PointF(27F, 41F), 0.3F);
+            Assert.AreEqual(DragAction.DelayedDrag, dragAction);
             controller.LeftButtonClick(Pane.Map, new PointF(27F, 41F), 0.3F);
 
             // Begin the add bend mode.
@@ -85,8 +85,8 @@ namespace PurplePen.Tests
 
             // Should have crosshair cursor
             ui.MouseMoved(26.1F, 31.5F, 0.3F);
-            Cursor cursor = controller.GetMouseCursor(Pane.Map, new PointF(26.1F, 31.5F), 0.3F);
-            Assert.AreSame(Cursors.Cross, cursor);
+            MousePointerShape cursor = controller.GetMouseCursor(Pane.Map, new PointF(26.1F, 31.5F), 0.3F);
+            Assert.AreEqual(MousePointerShape.Cross, cursor);
 
             // And the adding bend text.
             Assert.AreEqual(StatusBarText.AddingControlGap, controller.StatusText);
@@ -99,14 +99,14 @@ namespace PurplePen.Tests
 
             // Click to add a gap.
             dragAction = controller.LeftButtonDown(Pane.Map, new PointF(26.1F, 31.5F), 0.3F);
-            Assert.AreEqual(MapViewer.DragAction.DelayedDrag, dragAction);
+            Assert.AreEqual(DragAction.DelayedDrag, dragAction);
             controller.LeftButtonClick(Pane.Map, new PointF(26.1F, 31.5F), 0.3F);
 
             // Check the status text
             Assert.AreEqual(StatusBarText.DefaultStatus, controller.StatusText);
             // Check the cursor
             cursor = controller.GetMouseCursor(Pane.Map, new PointF(26.1F, 31.5F), 0.3F);
-            Assert.AreSame(Cursors.Default, cursor);
+            Assert.AreEqual(MousePointerShape.Default, cursor);
 
             // Check the highlights
             highlights = (CourseObj[]) controller.GetHighlights(Pane.Map);
@@ -133,8 +133,8 @@ namespace PurplePen.Tests
             CheckHighlightedLines(controller, -1, -1);
 
             // Click on control to select it.
-            MapViewer.DragAction dragAction = controller.LeftButtonDown(Pane.Map, new PointF(27F, 41F), 0.3F);
-            Assert.AreEqual(MapViewer.DragAction.DelayedDrag, dragAction);
+            DragAction dragAction = controller.LeftButtonDown(Pane.Map, new PointF(27F, 41F), 0.3F);
+            Assert.AreEqual(DragAction.DelayedDrag, dragAction);
             controller.LeftButtonClick(Pane.Map, new PointF(27F, 41F), 0.3F);
 
             // Begin the add bend mode.
@@ -142,8 +142,8 @@ namespace PurplePen.Tests
 
             // Should have crosshair cursor
             ui.MouseMoved(26.1F, 31.5F, 0.3F);
-            Cursor cursor = controller.GetMouseCursor(Pane.Map, new PointF(26.1F, 31.5F), 0.3F);
-            Assert.AreSame(Cursors.Cross, cursor);
+            MousePointerShape cursor = controller.GetMouseCursor(Pane.Map, new PointF(26.1F, 31.5F), 0.3F);
+            Assert.AreEqual(MousePointerShape.Cross, cursor);
 
             // And the adding gap text
             Assert.AreEqual(StatusBarText.AddingControlGap, controller.StatusText);
@@ -156,14 +156,14 @@ namespace PurplePen.Tests
 
             // Click to add a gap.
             dragAction = controller.LeftButtonDown(Pane.Map, new PointF(35.0F, 31.5F), 0.3F);
-            Assert.AreEqual(MapViewer.DragAction.DelayedDrag, dragAction);
+            Assert.AreEqual(DragAction.DelayedDrag, dragAction);
             controller.LeftButtonEndDrag(Pane.Map, new PointF(12, -1), new PointF(35.0F, 31.5F), 0.3F);
 
             // Check the status text
             Assert.AreEqual(StatusBarText.DefaultStatus, controller.StatusText);
             // Check the cursor
             cursor = controller.GetMouseCursor(Pane.Map, new PointF(26.1F, 31.5F), 0.3F);
-            Assert.AreSame(Cursors.Default, cursor);
+            Assert.AreSame(MousePointerShape.Default, cursor);
 
             // Check the highlights
             highlights = (CourseObj[])controller.GetHighlights(Pane.Map);
@@ -190,8 +190,8 @@ namespace PurplePen.Tests
             CheckHighlightedLines(controller, -1, -1);
 
             // Click on control 1 to select it.
-            MapViewer.DragAction dragAction = controller.LeftButtonDown(Pane.Map, new PointF(38.6F, -21F), 0.3F);
-            Assert.AreEqual(MapViewer.DragAction.DelayedDrag, dragAction);
+            DragAction dragAction = controller.LeftButtonDown(Pane.Map, new PointF(38.6F, -21F), 0.3F);
+            Assert.AreEqual(DragAction.DelayedDrag, dragAction);
             controller.LeftButtonClick(Pane.Map, new PointF(38.6F, -21F), 0.3F);
 
             // Begin the remove gap mode.
@@ -199,8 +199,8 @@ namespace PurplePen.Tests
 
             // Should have crosshair cursor
             ui.MouseMoved(39.0F, -29F, 0.3F);
-            Cursor cursor = controller.GetMouseCursor(Pane.Map, new PointF(39.0F, -29F), 0.3F);
-            Assert.AreSame(Cursors.Cross, cursor);
+            MousePointerShape cursor = controller.GetMouseCursor(Pane.Map, new PointF(39.0F, -29F), 0.3F);
+            Assert.AreEqual(MousePointerShape.Cross, cursor);
 
             // And the adding bend text.
             Assert.AreEqual(StatusBarText.RemovingControlGap, controller.StatusText);
@@ -213,14 +213,14 @@ namespace PurplePen.Tests
 
             // Click to add a gap.
             dragAction = controller.LeftButtonDown(Pane.Map, new PointF(42.0F, -32F), 0.3F);
-            Assert.AreEqual(MapViewer.DragAction.SuppressClick, dragAction);
+            Assert.AreEqual(DragAction.SuppressClick, dragAction);
 
             // Check the status text
             ui.MouseMoved(42.0F, -32F, 0.1F);
             Assert.AreEqual(StatusBarText.DefaultStatus, controller.StatusText);
             // Check the cursor
             cursor = controller.GetMouseCursor(Pane.Map, new PointF(42.0F, -32F), 0.3F);
-            Assert.AreSame(Cursors.Default, cursor);
+            Assert.AreEqual(MousePointerShape.Default, cursor);
 
             // Check the highlights
             highlights = (CourseObj[]) controller.GetHighlights(Pane.Map);
@@ -247,8 +247,8 @@ namespace PurplePen.Tests
             CheckHighlightedLines(controller, -1, -1);
 
             // Click on leg to select it.
-            MapViewer.DragAction dragAction = controller.LeftButtonDown(Pane.Map, new PointF(71, 0), 0.3F);
-            Assert.AreEqual(MapViewer.DragAction.DelayedDrag, dragAction);
+            DragAction dragAction = controller.LeftButtonDown(Pane.Map, new PointF(71, 0), 0.3F);
+            Assert.AreEqual(DragAction.DelayedDrag, dragAction);
             controller.LeftButtonClick(Pane.Map, new PointF(71, 0), 0.3F);
 
             // Begin the remove gap mode.
@@ -256,8 +256,8 @@ namespace PurplePen.Tests
 
             // Should have crosshair cursor
             ui.MouseMoved(70, -13, 0.3F);
-            Cursor cursor = controller.GetMouseCursor(Pane.Map, new PointF(70, -13), 0.3F);
-            Assert.AreSame(Cursors.Cross, cursor);
+            MousePointerShape cursor = controller.GetMouseCursor(Pane.Map, new PointF(70, -13), 0.3F);
+            Assert.AreEqual(MousePointerShape.Cross, cursor);
 
             // And the adding bend text.
             Assert.AreEqual(StatusBarText.RemovingLegGap, controller.StatusText);
@@ -270,14 +270,14 @@ namespace PurplePen.Tests
 
             // Click to remove the gap.
             dragAction = controller.LeftButtonDown(Pane.Map, new PointF(70, -13), 0.3F);
-            Assert.AreEqual(MapViewer.DragAction.SuppressClick, dragAction);
+            Assert.AreEqual(DragAction.SuppressClick, dragAction);
 
             // Check the status text
             ui.MouseMoved(70, -13, 0.1F);
             Assert.AreEqual(StatusBarText.DefaultStatus, controller.StatusText);
             // Check the cursor
             cursor = controller.GetMouseCursor(Pane.Map, new PointF(42.0F, -32F), 0.3F);
-            Assert.AreSame(Cursors.Default, cursor);
+            Assert.AreEqual(MousePointerShape.Default, cursor);
 
             // Check the highlights
             highlights = (CourseObj[]) controller.GetHighlights(Pane.Map);
@@ -302,8 +302,8 @@ namespace PurplePen.Tests
             CheckHighlightedLines(controller, -1, -1);
 
             // Click on leg to select it.
-            MapViewer.DragAction dragAction = controller.LeftButtonDown(Pane.Map, new PointF(20, -5), 0.3F);
-            Assert.AreEqual(MapViewer.DragAction.DelayedDrag, dragAction);
+            DragAction dragAction = controller.LeftButtonDown(Pane.Map, new PointF(20, -5), 0.3F);
+            Assert.AreEqual(DragAction.DelayedDrag, dragAction);
             controller.LeftButtonClick(Pane.Map, new PointF(20, -5), 0.3F);
 
             // Begin the add gap mode.
@@ -311,8 +311,8 @@ namespace PurplePen.Tests
 
             // Should have crosshair cursor
             ui.MouseMoved(32, -5, 0.3F);
-            Cursor cursor = controller.GetMouseCursor(Pane.Map, new PointF(32, -5), 0.3F);
-            Assert.AreSame(Cursors.Cross, cursor);
+            MousePointerShape cursor = controller.GetMouseCursor(Pane.Map, new PointF(32, -5), 0.3F);
+            Assert.AreEqual(MousePointerShape.Cross, cursor);
 
             // And the adding leg gap text.
             Assert.AreEqual(StatusBarText.AddingLegGap, controller.StatusText);
@@ -325,7 +325,7 @@ namespace PurplePen.Tests
 
             // Click and drag add a gap.
             dragAction = controller.LeftButtonDown(Pane.Map, new PointF(30, -11), 0.3F);
-            Assert.AreEqual(MapViewer.DragAction.DelayedDrag, dragAction);
+            Assert.AreEqual(DragAction.DelayedDrag, dragAction);
             controller.LeftButtonEndDrag(Pane.Map, new PointF(12, -1), new PointF(30, -11), 0.3F);
 
             // Check the status text
@@ -333,7 +333,7 @@ namespace PurplePen.Tests
             Assert.AreEqual(StatusBarText.DefaultStatus, controller.StatusText);
             // Check the cursor
             cursor = controller.GetMouseCursor(Pane.Map, new PointF(12, -1), 0.3F);
-            Assert.AreSame(Cursors.Default, cursor);
+            Assert.AreEqual(MousePointerShape.Default, cursor);
 
             // Check the highlights
             highlights = (CourseObj[]) controller.GetHighlights(Pane.Map);
@@ -359,8 +359,8 @@ namespace PurplePen.Tests
             CheckHighlightedLines(controller, -1, -1);
 
             // Click on leg to select it.
-            MapViewer.DragAction dragAction = controller.LeftButtonDown(Pane.Map, new PointF(71, 0), 0.3F);
-            Assert.AreEqual(MapViewer.DragAction.DelayedDrag, dragAction);
+            DragAction dragAction = controller.LeftButtonDown(Pane.Map, new PointF(71, 0), 0.3F);
+            Assert.AreEqual(DragAction.DelayedDrag, dragAction);
             controller.LeftButtonClick(Pane.Map, new PointF(71, 0), 0.3F);
 
             // Begin the add gap mode.
@@ -368,8 +368,8 @@ namespace PurplePen.Tests
 
             // Should have crosshair cursor
             ui.MouseMoved(72, 10, 0.3F);
-            Cursor cursor = controller.GetMouseCursor(Pane.Map, new PointF(72, 10), 0.3F);
-            Assert.AreSame(Cursors.Cross, cursor);
+            MousePointerShape cursor = controller.GetMouseCursor(Pane.Map, new PointF(72, 10), 0.3F);
+            Assert.AreEqual(MousePointerShape.Cross, cursor);
 
             // And the adding leg gap text.
             Assert.AreEqual(StatusBarText.AddingLegGap, controller.StatusText);
@@ -382,7 +382,7 @@ namespace PurplePen.Tests
 
             // Click and drag add a gap.
             dragAction = controller.LeftButtonDown(Pane.Map, new PointF(72, 10), 0.3F);
-            Assert.AreEqual(MapViewer.DragAction.DelayedDrag, dragAction);
+            Assert.AreEqual(DragAction.DelayedDrag, dragAction);
             controller.LeftButtonEndDrag(Pane.Map, new PointF(50, -25), new PointF(72, 10), 0.3F);
 
             // Check the status text
@@ -390,7 +390,7 @@ namespace PurplePen.Tests
             Assert.AreEqual(StatusBarText.DefaultStatus, controller.StatusText);
             // Check the cursor
             cursor = controller.GetMouseCursor(Pane.Map, new PointF(12, -1), 0.3F);
-            Assert.AreSame(Cursors.Default, cursor);
+            Assert.AreEqual(MousePointerShape.Default, cursor);
 
             // Check the highlights
             highlights = (CourseObj[]) controller.GetHighlights(Pane.Map);
@@ -416,8 +416,8 @@ namespace PurplePen.Tests
             CheckHighlightedLines(controller, -1, -1);
 
             // Click on leg to select it.
-            MapViewer.DragAction dragAction = controller.LeftButtonDown(Pane.Map, new PointF(20, -5), 0.3F);
-            Assert.AreEqual(MapViewer.DragAction.DelayedDrag, dragAction);
+            DragAction dragAction = controller.LeftButtonDown(Pane.Map, new PointF(20, -5), 0.3F);
+            Assert.AreEqual(DragAction.DelayedDrag, dragAction);
             controller.LeftButtonClick(Pane.Map, new PointF(20, -5), 0.3F);
 
             // Begin the add gap mode.
@@ -425,8 +425,8 @@ namespace PurplePen.Tests
 
             // Should have crosshair cursor
             ui.MouseMoved(32, -5, 0.3F);
-            Cursor cursor = controller.GetMouseCursor(Pane.Map, new PointF(32, -5), 0.3F);
-            Assert.AreSame(Cursors.Cross, cursor);
+            MousePointerShape cursor = controller.GetMouseCursor(Pane.Map, new PointF(32, -5), 0.3F);
+            Assert.AreEqual(MousePointerShape.Cross, cursor);
 
             // And the adding leg gap text.
             Assert.AreEqual(StatusBarText.AddingLegGap, controller.StatusText);
@@ -439,7 +439,7 @@ namespace PurplePen.Tests
 
             // Click to add a gap.
             dragAction = controller.LeftButtonDown(Pane.Map, new PointF(30, -11), 0.3F);
-            Assert.AreEqual(MapViewer.DragAction.DelayedDrag, dragAction);
+            Assert.AreEqual(DragAction.DelayedDrag, dragAction);
             controller.LeftButtonClick(Pane.Map, new PointF(30, -11), 0.3F);
 
             // Check the status text
@@ -447,7 +447,7 @@ namespace PurplePen.Tests
             Assert.AreEqual(StatusBarText.DefaultStatus, controller.StatusText);
             // Check the cursor
             cursor = controller.GetMouseCursor(Pane.Map, new PointF(12, -1), 0.3F);
-            Assert.AreSame(Cursors.Default, cursor);
+            Assert.AreEqual(MousePointerShape.Default, cursor);
 
             // Check the highlights
             highlights = (CourseObj[])controller.GetHighlights(Pane.Map);

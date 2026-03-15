@@ -120,6 +120,9 @@
   <data name="AllControls" xml:space="preserve">
     <value>Toate posturile</value>
   </data>
+  <data name="CannotPrint" xml:space="preserve">
+    <value>Nu se poate tipări '{0}' deoarece:</value>
+  </data>
   <data name="CannotReadImageFile" xml:space="preserve">
     <value>Nu se poate citi fișierul de imagine '{0}'.</value>
   </data>

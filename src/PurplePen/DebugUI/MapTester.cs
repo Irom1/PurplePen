@@ -173,10 +173,10 @@ namespace PurplePen.DebugUI
                 mapViewer.Focus();
         }
 
-        private MapViewer.DragAction mapViewer_OnMouseEvent(object sender, MouseAction action, int buttonNumber, bool[] whichButtonsDown, PointF location, PointF locationStart)
+        private DragAction mapViewer_OnMouseEvent(object sender, MouseAction action, int buttonNumber, bool[] whichButtonsDown, PointF location, PointF locationStart)
         {
             if (action == MouseAction.Down && buttonNumber == MapViewer.RightMouseButton)
-                return MapViewer.DragAction.DelayedDrag;
+                return DragAction.DelayedDrag;
 
             if (action == MouseAction.Drag && buttonNumber == MapViewer.RightMouseButton) {
                 RectangleF rect = new RectangleF(Math.Min(location.X, locationStart.X),
@@ -185,14 +185,14 @@ namespace PurplePen.DebugUI
                                                  Math.Abs(locationStart.Y - location.Y));
                 highlight = new RectangleHighlight(rect);
                 mapViewer.ChangeHighlight(new IMapViewerHighlight[] { highlight });
-                return MapViewer.DragAction.DelayedDrag;
+                return DragAction.DelayedDrag;
             }
 
             // Allow the left mouse button to drag.
             if (action == MouseAction.Down && buttonNumber == MapViewer.LeftMouseButton)
-                return MapViewer.DragAction.MapDrag;
+                return DragAction.MapDrag;
             else
-                return MapViewer.DragAction.None;
+                return DragAction.None;
         }
 
         private void zoomCombo_TextChanged(object sender, EventArgs e)

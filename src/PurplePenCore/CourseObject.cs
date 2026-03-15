@@ -189,7 +189,7 @@ namespace PurplePen
         // Get the cursor that should be used for a given handle.
         public virtual MousePointerShape GetHandleCursor(PointF handlePoint)
         {
-            return new MousePointerShape(PredefinedMousePointerShape.MoveHandle);
+            return MousePointerShape.MoveHandle;
         }
 
         // Draw a highlight for this course object.    
@@ -798,11 +798,11 @@ namespace PurplePen
             int index = Array.IndexOf(GetHandles(), handlePoint);
 
             switch (index) {
-                case 0: case 7: return new MousePointerShape(PredefinedMousePointerShape.SizeNESW);
-                case 1: case 6: return new MousePointerShape(PredefinedMousePointerShape.SizeNS);
-                case 2: case 5: return new MousePointerShape(PredefinedMousePointerShape.SizeNWSE);
-                case 3: case 4: return new MousePointerShape(PredefinedMousePointerShape.SizeWE);
-                default: return new MousePointerShape(PredefinedMousePointerShape.MoveHandle);
+                case 0: case 7: return MousePointerShape.SizeNESW;
+                case 1: case 6: return MousePointerShape.SizeNS;
+                case 2: case 5: return MousePointerShape.SizeNWSE;
+                case 3: case 4: return MousePointerShape.SizeWE;
+                default: return MousePointerShape.MoveHandle;
             }
         }
 
@@ -2947,14 +2947,14 @@ namespace PurplePen
 
             switch (index) {
                 case 0:
-                case 7: return new MousePointerShape(PredefinedMousePointerShape.SizeNESW);
+                case 7: return MousePointerShape.SizeNESW;
                 case 1:
-                case 6: return new MousePointerShape(PredefinedMousePointerShape.SizeNS);
+                case 6: return MousePointerShape.SizeNS;
                 case 2:
-                case 5: return new MousePointerShape(PredefinedMousePointerShape.SizeNWSE);
+                case 5: return MousePointerShape.SizeNWSE;
                 case 3:
-                case 4: return new MousePointerShape(PredefinedMousePointerShape.SizeWE);
-                default: return new MousePointerShape(PredefinedMousePointerShape.MoveHandle);
+                case 4: return MousePointerShape.SizeWE;
+                default: return MousePointerShape.MoveHandle;
             }
         }
 

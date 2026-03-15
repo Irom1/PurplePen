@@ -332,6 +332,7 @@ namespace PurplePen
         }
     }
 
+#if !PORTING
     // All the information needed to print courses.
     class CoursePdfSettings
     {
@@ -361,4 +362,5 @@ namespace PurplePen
             return n;
         }
     }
+#endif
 }

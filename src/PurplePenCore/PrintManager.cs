@@ -13,8 +13,7 @@ namespace PurplePen
         private IPrintingTarget printingTarget;
         private IPrintable printable;
         private string documentTitle;
-        private PrintingPaperSize defaultPaperSize;
-        private PrintingMarginSize defaultMarginSize;
+        private PrintingPaperSizeWithMargins defaultPaperSizeWithMargins;
 
         // Create a PrintManager that prints the given printable onto the given target.
         public PrintManager(string documentTitle, IPrintingTarget printingTarget, IPrintable printable)
@@ -25,10 +24,9 @@ namespace PurplePen
         }
 
         // Set the default paper size and margin size used for layout and printing.
-        public void SetDefaultPaperSize(PrintingPaperSize paperSize, PrintingMarginSize marginSize)
+        public void SetDefaultPaperSize(PrintingPaperSizeWithMargins paperSizeWithMargins)
         {
-            this.defaultPaperSize = paperSize;
-            this.defaultMarginSize = marginSize;
+            this.defaultPaperSizeWithMargins = paperSizeWithMargins;
         }
 
         // Perform the printing. Lays out the pages using the default paper and margin sizes,
@@ -36,15 +34,11 @@ namespace PurplePen
         // the IPrintable draws at (0,0) relative to the printable area.
         public void DoPrinting()
         {
-            if (defaultPaperSize == null || defaultMarginSize == null) {
+            if (defaultPaperSizeWithMargins == null) {
                 throw new InvalidOperationException("Default paper size and margin size must be set before printing.");
             }
 
-            SizeF defaultPrintableAreaInInches = new SizeF(
-                defaultPaperSize.SizeInInches.Width - defaultMarginSize.LeftInInches - defaultMarginSize.RightInInches,
-                defaultPaperSize.SizeInInches.Height - defaultMarginSize.TopInInches - defaultMarginSize.BottomInInches);
-
-            int pageCount = printable.LayoutPages(defaultPaperSize, defaultMarginSize, defaultPrintableAreaInInches);
+            int pageCount = printable.LayoutPages(defaultPaperSizeWithMargins);
 
             printingTarget.StartPrinting(documentTitle, pageCount);
 
@@ -58,7 +52,7 @@ namespace PurplePen
                         // Translate so (0,0) is at the top-left of the printable area (inside the margins).
                         // The IPrintingTarget provides coordinates in hundredths of an inch from the page top-left.
                         Matrix translateTransform = new Matrix();
-                        translateTransform.Translate(defaultMarginSize.LeftInHundreths, defaultMarginSize.TopInHundreths);
+                        translateTransform.Translate(defaultPaperSizeWithMargins.MarginSize.LeftInHundreths, defaultPaperSizeWithMargins.MarginSize.TopInHundreths);
                         grTarget.PushTransform(translateTransform);
                         try {
                             printable.DrawPage(grTarget, currentPageNumber);

@@ -144,9 +144,6 @@
   <data name="CannotLoadMapFile" xml:space="preserve">
     <value>Kan ikke lese kartfil '{0}' på grunn av:</value>
   </data>
-  <data name="CannotPrint" xml:space="preserve">
-    <value>Kan ikke skrive ut '{0}' på grunn av:</value>
-  </data>
   <data name="CannotCreateFile" xml:space="preserve">
     <value>Kan ikke lage '{0}' på grunn av:</value>
   </data>
@@ -390,9 +387,6 @@ Trykk OK og forsøk å finne kartfilen på din datamaskin.</value>
   <data name="CrashSend" xml:space="preserve">
     <value>Send Rapport</value>
   </data>
-  <data name="CannotCreatePdfs" xml:space="preserve">
-    <value>Kan ikke lage PDF pga følgende:</value>
-  </data>
   <data name="UserDefined" xml:space="preserve">
     <value>Egendefinert</value>
   </data>
@@ -555,13 +549,13 @@ Trykk OK og forsøk å finne kartfilen på din datamaskin.</value>
   <data name="AddEllipseTitle" xml:space="preserve">
     <value>Legg til ellipse</value>
   </data>
+  <data name="GpxMustBeOcadMap" xml:space="preserve">
+    <value>Kartfilen må være en OCAD fil for å bruke GPX filer.</value>
+  </data>
   <data name="DownloadGhostscript" xml:space="preserve">
     <value>Lasting av PDF filer krever GPL Ghostscript installert. Vil du laste ned og installere det automatisk?</value>
   </data>
   <data name="GhostscriptNotInstalled" xml:space="preserve">
     <value>GPL Ghostscript er ikke installert</value>
-  </data>
-  <data name="GpxMustBeOcadMap" xml:space="preserve">
-    <value>Kartfilen må være en OCAD fil for å bruke GPX filer.</value>
   </data>
 </root>

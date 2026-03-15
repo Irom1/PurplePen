@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFrameworks>net48;net10.0</TargetFrameworks>
@@ -63,6 +63,47 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="CommandNameText.cs.Designer.cs">
+      <DependentUpon>CommandNameText.resx</DependentUpon>
+    </Compile>
+    <Compile Update="CommandNameText.da.Designer.cs">
+      <DependentUpon>CommandNameText.resx</DependentUpon>
+    </Compile>
+    <Compile Update="CommandNameText.Designer.cs">
+      <DependentUpon>CommandNameText.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="CommandNameText.hu.Designer.cs">
+      <DependentUpon>CommandNameText.resx</DependentUpon>
+    </Compile>
+    <Compile Update="CommandNameText.ja.Designer.cs">
+      <DependentUpon>CommandNameText.resx</DependentUpon>
+    </Compile>
+    <Compile Update="CommandNameText.nl.Designer.cs">
+      <DependentUpon>CommandNameText.resx</DependentUpon>
+    </Compile>
+    <Compile Update="CommandNameText.pl.Designer.cs">
+      <DependentUpon>CommandNameText.resx</DependentUpon>
+    </Compile>
+    <Compile Update="CommandNameText.pt-BR.Designer.cs">
+      <DependentUpon>CommandNameText.resx</DependentUpon>
+    </Compile>
+    <Compile Update="CommandNameText.pt.Designer.cs">
+      <DependentUpon>CommandNameText.resx</DependentUpon>
+    </Compile>
+    <Compile Update="CommandNameText.tr.Designer.cs">
+      <DependentUpon>CommandNameText.resx</DependentUpon>
+    </Compile>
+    <Compile Update="CommandNameText.uk.Designer.cs">
+      <DependentUpon>CommandNameText.resx</DependentUpon>
+    </Compile>
+    <Compile Update="CommandNameText.zh-CN.Designer.cs">
+      <DependentUpon>CommandNameText.resx</DependentUpon>
+    </Compile>
+    <Compile Update="CommandNameText.zh-TW.Designer.cs">
+      <DependentUpon>CommandNameText.resx</DependentUpon>
+    </Compile>
     <Compile Update="CoreMiscText.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -87,6 +128,76 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="CommandNameText.bg.resx">
+      <DependentUpon>CommandNameText.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="CommandNameText.cs.resx">
+      <DependentUpon>CommandNameText.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="CommandNameText.da.resx">
+      <DependentUpon>CommandNameText.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="CommandNameText.de.resx">
+      <DependentUpon>CommandNameText.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="CommandNameText.es.resx">
+      <DependentUpon>CommandNameText.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="CommandNameText.et.resx">
+      <DependentUpon>CommandNameText.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="CommandNameText.fi.resx">
+      <DependentUpon>CommandNameText.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="CommandNameText.fr.resx">
+      <DependentUpon>CommandNameText.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="CommandNameText.hu.resx">
+      <DependentUpon>CommandNameText.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="CommandNameText.ja.resx">
+      <DependentUpon>CommandNameText.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="CommandNameText.nb-NO.resx">
+      <DependentUpon>CommandNameText.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="CommandNameText.nl.resx">
+      <DependentUpon>CommandNameText.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="CommandNameText.nn-NO.resx">
+      <DependentUpon>CommandNameText.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="CommandNameText.pl.resx">
+      <DependentUpon>CommandNameText.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="CommandNameText.pt-BR.resx">
+      <DependentUpon>CommandNameText.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="CommandNameText.pt.resx">
+      <DependentUpon>CommandNameText.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="CommandNameText.resx">
+      <LastGenOutput>CommandNameText.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="CommandNameText.ro.resx">
+      <DependentUpon>CommandNameText.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="CommandNameText.sv.resx">
+      <DependentUpon>CommandNameText.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="CommandNameText.tr.resx">
+      <DependentUpon>CommandNameText.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="CommandNameText.uk.resx">
+      <DependentUpon>CommandNameText.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="CommandNameText.zh-CN.resx">
+      <DependentUpon>CommandNameText.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="CommandNameText.zh-TW.resx">
+      <DependentUpon>CommandNameText.resx</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Update="CoreMiscText.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>CoreMiscText.Designer.cs</LastGenOutput>

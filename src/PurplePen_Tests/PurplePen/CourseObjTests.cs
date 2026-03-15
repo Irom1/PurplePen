@@ -2641,7 +2641,7 @@ namespace PurplePen.Tests
             PointF[] handles = courseobj.GetHandles();
 
             for (int i = 0; i < handles.Length; ++i)
-                Assert.AreEqual(new MousePointerShape(PredefinedMousePointerShape.MoveHandle), courseobj.GetHandleCursor(handles[i]));
+                Assert.AreEqual(PredefinedMousePointerShape.MoveHandle, courseobj.GetHandleCursor(handles[i]).PredefinedShape);
         }
 	
 
@@ -2689,7 +2689,7 @@ namespace PurplePen.Tests
                 PredefinedMousePointerShape.SizeNS, PredefinedMousePointerShape.SizeNS, PredefinedMousePointerShape.SizeWE, PredefinedMousePointerShape.SizeWE };
 
             for (int i = 0; i < expected.Length; ++i)
-                Assert.AreEqual(new MousePointerShape(expectedCursors[i]), courseObj.GetHandleCursor(expected[i]));
+                Assert.AreEqual(expectedCursors[i], courseObj.GetHandleCursor(expected[i]).PredefinedShape);
         }
 
         [TestMethod]
@@ -2706,7 +2706,7 @@ namespace PurplePen.Tests
                 PredefinedMousePointerShape.SizeNS, PredefinedMousePointerShape.SizeNS, PredefinedMousePointerShape.SizeWE, PredefinedMousePointerShape.SizeWE };
 
             for (int i = 0; i < expected.Length; ++i)
-                Assert.AreEqual(new MousePointerShape(expectedCursors[i]), courseObj.GetHandleCursor(expected[i]));
+                Assert.AreEqual(expectedCursors[i], courseObj.GetHandleCursor(expected[i]).PredefinedShape);
         }
 
         // Move a description handle and make sure the description ends up in the right place.

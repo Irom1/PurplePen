@@ -84,12 +84,12 @@ namespace PurplePen
         }
 
         // Mouse cursor looks like a crosshair
-        public override Cursor GetMouseCursor(Pane pane, PointF location, float pixelSize)
+        public override MousePointerShape GetMouseCursor(Pane pane, PointF location, float pixelSize)
         {
             if (pane == Pane.Map)
-                return Cursors.Cross;
+                return MousePointerShape.Cross;
             else
-                return Cursors.Arrow;
+                return MousePointerShape.Arrow;
         }
 
         public override string StatusText
@@ -115,10 +115,10 @@ namespace PurplePen
             currentObj.MoveHandle(handleDragging, location);
         }
 
-        public override MapViewer.DragAction LeftButtonDown(Pane pane, PointF location, float pixelSize, ref bool displayUpdateNeeded)
+        public override DragAction LeftButtonDown(Pane pane, PointF location, float pixelSize, ref bool displayUpdateNeeded)
         {
             if (pane != Pane.Map)
-                return MapViewer.DragAction.None;
+                return DragAction.None;
 
             // Begin dragging out the description block.
             startLocation = location;
@@ -126,7 +126,7 @@ namespace PurplePen
             handleDragging = location;
             DragTo(location);
             displayUpdateNeeded = true;
-            return MapViewer.DragAction.DelayedDrag;  // Also allow a click.
+            return DragAction.DelayedDrag;  // Also allow a click.
         }
 
         public override void LeftButtonDrag(Pane pane, PointF location, PointF locationStart, float pixelSize, ref bool displayUpdateNeeded)

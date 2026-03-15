@@ -192,6 +192,7 @@ namespace PurplePen
         }
     }
 
+#if !PORTING
     // All the information needed to create bitmaps.
     class BitmapCreationSettings
     {
@@ -220,4 +221,5 @@ namespace PurplePen
             return n;
         }
     }
+#endif
 }

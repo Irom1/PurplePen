@@ -144,9 +144,6 @@
   <data name="CannotLoadMapFile" xml:space="preserve">
     <value>'{0}' térkép fájl nem betölthető a következő okból:</value>
   </data>
-  <data name="CannotPrint" xml:space="preserve">
-    <value>'{0}' nem nyomtatható a következő okból:</value>
-  </data>
   <data name="CannotCreateFile" xml:space="preserve">
     <value>'{0}' nem létrehozható a következő okból:</value>
   </data>
@@ -391,9 +388,6 @@ A Rendben lenyomása után próbálja megkeresni a térkép fájlt a számítóg
   <data name="CrashSend" xml:space="preserve">
     <value>Jelentés küldése</value>
   </data>
-  <data name="CannotCreatePdfs" xml:space="preserve">
-    <value>A PDF fájl nem hozható létre az alábbi okból:</value>
-  </data>
   <data name="UserDefined" xml:space="preserve">
     <value>Felhasználói</value>
   </data>
@@ -550,13 +544,13 @@ A Rendben lenyomása után próbálja megkeresni a térkép fájlt a számítóg
   <data name="PdfFilter" xml:space="preserve">
     <value>PDF Fájl|*.pdf</value>
   </data>
+  <data name="GpxMustBeOcadMap" xml:space="preserve">
+    <value>A térképnek OCAD fájlnak kell lennie GPX fájlok használatához.</value>
+  </data>
   <data name="DownloadGhostscript" xml:space="preserve">
     <value>A PDF fájlok betöltéséhez szükséges a GPL Ghostscript. Kívánja automatikusan letölteni és telepíteni?</value>
   </data>
   <data name="GhostscriptNotInstalled" xml:space="preserve">
     <value>A GPL Ghostscript nincs telepítve.</value>
-  </data>
-  <data name="GpxMustBeOcadMap" xml:space="preserve">
-    <value>A térképnek OCAD fájlnak kell lennie GPX fájlok használatához.</value>
   </data>
 </root>

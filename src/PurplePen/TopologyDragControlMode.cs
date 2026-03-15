@@ -82,13 +82,13 @@ namespace PurplePen
             return nearest;
         }
 
-        public override MapViewer.DragAction LeftButtonDown(Pane pane, PointF location, float pixelSize, ref bool displayUpdateNeeded)
+        public override DragAction LeftButtonDown(Pane pane, PointF location, float pixelSize, ref bool displayUpdateNeeded)
         {
             if (pane == Pane.Topology) {
-                return MapViewer.DragAction.ImmediateDrag;
+                return DragAction.ImmediateDrag;
             }
             else {
-                return MapViewer.DragAction.None;
+                return DragAction.None;
             }
         }
 
@@ -136,13 +136,13 @@ namespace PurplePen
             controller.DefaultCommandMode();
         }
 
-        public override Cursor GetMouseCursor(Pane pane, PointF location, float pixelSize)
+        public override MousePointerShape GetMouseCursor(Pane pane, PointF location, float pixelSize)
         {
             if (pane == Pane.Topology) {
-                return Cursors.SizeAll;
+                return MousePointerShape.SizeAll;
             }
             else {
-                return Cursors.Arrow;
+                return MousePointerShape.Arrow;
             }
         }
 

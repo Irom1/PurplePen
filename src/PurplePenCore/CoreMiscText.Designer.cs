@@ -88,6 +88,24 @@ namespace PurplePen {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot create PDFs for the following reason:.
+        /// </summary>
+        internal static string CannotCreatePdfs {
+            get {
+                return ResourceManager.GetString("CannotCreatePdfs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot print &apos;{0}&apos; for the following reason:.
+        /// </summary>
+        internal static string CannotPrint {
+            get {
+                return ResourceManager.GetString("CannotPrint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cannot read image file &apos;{0}&apos;..
         /// </summary>
         internal static string CannotReadImageFile {

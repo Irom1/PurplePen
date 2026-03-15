@@ -126,6 +126,12 @@
   <data name="BadLegNumber" xml:space="preserve">
     <value>'{0}' är inte ett giltigt sträcknummer för gaffling '{1}'</value>
   </data>
+  <data name="CannotCreatePdfs" xml:space="preserve">
+    <value>Kan inte skapa PDF av följande orsaker:</value>
+  </data>
+  <data name="CannotPrint" xml:space="preserve">
+    <value>Kan inte skriva ut '{0}' av följande skäl:</value>
+  </data>
   <data name="CannotReadImageFile" xml:space="preserve">
     <value>Kan inte läsa bildfil '{0}'.</value>
   </data>

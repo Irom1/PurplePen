@@ -67,9 +67,9 @@ namespace PurplePen
         }
 
         // Mouse cursor looks like a move cursor when hovering over something that is selected.
-        public virtual Cursor GetMouseCursor(Pane pane, PointF location, float pixelSize)
+        public virtual MousePointerShape GetMouseCursor(Pane pane, PointF location, float pixelSize)
         {
-            return Cursors.Default;
+            return MousePointerShape.Default;
         }
 
         public virtual string StatusText
@@ -80,19 +80,19 @@ namespace PurplePen
         public virtual void MouseMoved(Pane pane, PointF location, float pixelSize, ref bool displayUpdateNeeded)
         { }
 
-        public virtual MapViewer.DragAction LeftButtonDown(Pane pane, PointF location, float pixelSize, ref bool displayUpdateNeeded)
+        public virtual DragAction LeftButtonDown(Pane pane, PointF location, float pixelSize, ref bool displayUpdateNeeded)
         {
-            return MapViewer.DragAction.None;
+            return DragAction.None;
         }
 
         // By default, the right mouse button drags the map.
-        public virtual MapViewer.DragAction RightButtonDown(Pane pane, PointF location, float pixelSize, ref bool displayUpdateNeeded)
+        public virtual DragAction RightButtonDown(Pane pane, PointF location, float pixelSize, ref bool displayUpdateNeeded)
         {
             if (pane == Pane.Map) {
-                return MapViewer.DragAction.MapDrag;
+                return DragAction.MapDrag;
             }
             else {
-                return MapViewer.DragAction.None;
+                return DragAction.None;
             }
         }
 
@@ -220,7 +220,7 @@ namespace PurplePen
             get
             {
                 PointF location, dummy;
-                Cursor handleCursor;
+                MousePointerShape handleCursor;
                 float pixelSize;
                 bool onMap = controller.GetCurrentLocation(out location, out pixelSize);
                 CourseObj courseObj;
@@ -260,7 +260,7 @@ namespace PurplePen
         }
 
         // Hit test a location to see if it is over a handle of a selected object.
-        CourseObj HitTestHandle(PointF location, float pixelSize, out PointF handleLocation, out Cursor handleCursor)
+        CourseObj HitTestHandle(PointF location, float pixelSize, out PointF handleLocation, out MousePointerShape handleCursor)
         {
             CourseObj[] selectedObjects = selectionMgr.SelectedCourseObjects;
 
@@ -273,7 +273,7 @@ namespace PurplePen
                             if (distance / pixelSize <= 3.0) {
                                 // over a handle.
                                 handleLocation = handle;
-                                handleCursor = WindowsUtil.CursorFromMousePointerShape(courseObj.GetHandleCursor(handle));
+                                handleCursor = courseObj.GetHandleCursor(handle);
                                 return courseObj;
                             }
                         }
@@ -304,21 +304,21 @@ namespace PurplePen
         }
 
         // Mouse cursor looks like a move cursor when hovering over something that is selected.
-        public override Cursor GetMouseCursor(Pane pane, PointF location, float pixelSize)
+        public override MousePointerShape GetMouseCursor(Pane pane, PointF location, float pixelSize)
         {
             if (pane == Pane.Map) {
                 PointF dummy;
-                Cursor handleCursor;
+                MousePointerShape handleCursor;
 
                 if (HitTestHandle(location, pixelSize, out dummy, out handleCursor) != null)
                     return handleCursor;
                 if (HitTestDraggable(location, pixelSize) != null)
-                    return Cursors.SizeAll;
+                    return MousePointerShape.SizeAll;
                 else
-                    return Cursors.Default;
+                    return MousePointerShape.Default;
             }
             else {
-                return Cursors.Default;
+                return MousePointerShape.Default;
             }
         }
 
@@ -346,7 +346,7 @@ namespace PurplePen
             if (pane == Pane.Map) {
                 // If we dragged an object or corner, we would have entered a new mode. So this must be a delayed drag that should
                 // become map dragging.
-                controller.InitiateMapDragging(locationStart, System.Windows.Forms.MouseButtons.Left);
+                controller.InitiateMapDragging(locationStart, PointerButton.Left);
             }
             else if (pane == Pane.Topology) {
                 CourseObj clickedObject = HitTest(pane, locationStart, pixelSize,
@@ -358,13 +358,13 @@ namespace PurplePen
         }
 
         // Left mouse button selects the object clicked on, or drag something already selected.
-        public override MapViewer.DragAction LeftButtonDown(Pane pane, PointF location, float pixelSize, ref bool displayUpdateNeeded)
+        public override DragAction LeftButtonDown(Pane pane, PointF location, float pixelSize, ref bool displayUpdateNeeded)
         {
             if (pane == Pane.Map) {
                 CourseLayout activeCourse = controller.GetCourseLayout();
                 CourseObj clickedObject;
                 PointF handleLocation;
-                Cursor handleCursor;
+                MousePointerShape handleCursor;
 
                 // Area we initiating a drag of a corner?
                 clickedObject = HitTestHandle(location, pixelSize, out handleLocation, out handleCursor);
@@ -373,7 +373,7 @@ namespace PurplePen
                     DragHandleMode commandMode = new DragHandleMode(controller, clickedObject, handleLocation, location);
                     controller.SetCommandMode(commandMode);
                     displayUpdateNeeded = true;
-                    return MapViewer.DragAction.ImmediateDrag;
+                    return DragAction.ImmediateDrag;
                 }
 
                 // Are we initiating a drag of an object?
@@ -383,10 +383,10 @@ namespace PurplePen
                     DragObjectMode commandMode = new DragObjectMode(controller, eventDB, selectionMgr, clickedObject, location);
                     controller.SetCommandMode(commandMode);
                     displayUpdateNeeded = true;
-                    return MapViewer.DragAction.ImmediateDrag;
+                    return DragAction.ImmediateDrag;
                 }
 
-                return MapViewer.DragAction.DelayedDrag;
+                return DragAction.DelayedDrag;
             }
             else if (pane == Pane.Topology) {
                 CourseObj clickedObject = HitTest(pane, location, pixelSize, (co => !(co is TopologyDropTargetCourseObj)));
@@ -396,11 +396,11 @@ namespace PurplePen
                     // Can drag control numbers, crossing points, or map exchanges.
                     selectionMgr.SelectCourseObject(clickedObject);
                     displayUpdateNeeded = true;
-                    return MapViewer.DragAction.DelayedDrag;
+                    return DragAction.DelayedDrag;
                 }
             }
 
-            return MapViewer.DragAction.None;
+            return DragAction.None;
         }
 
         private CourseObj HitTest(Pane pane, PointF location, float pixelSize, Predicate<CourseObj> filter)
@@ -494,13 +494,13 @@ namespace PurplePen
             }
         }
 
-        public override MapViewer.DragAction LeftButtonDown(Pane pane, PointF location, float pixelSize, ref bool displayUpdateNeeded)
+        public override DragAction LeftButtonDown(Pane pane, PointF location, float pixelSize, ref bool displayUpdateNeeded)
         {
             if (pane == Pane.Map) {
-                return MapViewer.DragAction.ImmediateDrag;
+                return DragAction.ImmediateDrag;
             }
             else {
-                return MapViewer.DragAction.None;
+                return DragAction.None;
             }
         }
 
@@ -603,13 +603,13 @@ namespace PurplePen
             controller.DefaultCommandMode();
         }
 
-        public override Cursor GetMouseCursor(Pane pane, PointF location, float pixelSize)
+        public override MousePointerShape GetMouseCursor(Pane pane, PointF location, float pixelSize)
         {
             if (pane == Pane.Map) {
-                return Cursors.SizeAll;
+                return MousePointerShape.SizeAll;
             }
             else {
-                return Cursors.Arrow;
+                return MousePointerShape.Arrow;
             }
         }
     }
@@ -621,7 +621,7 @@ namespace PurplePen
         Controller controller;
         CourseObj courseObjectStart, courseObjectDrag;
         PointF handleLocation, startDrag, currentLocation;
-        Cursor handleCursor;
+        MousePointerShape handleCursor;
 
         public DragHandleMode(Controller controller, CourseObj courseObject, PointF handleLocation, PointF startDrag)
         {
@@ -629,7 +629,7 @@ namespace PurplePen
             this.courseObjectStart = courseObject;
             this.courseObjectDrag = (CourseObj) (courseObject.Clone());
             this.handleLocation = handleLocation;
-            this.handleCursor = WindowsUtil.CursorFromMousePointerShape(courseObject.GetHandleCursor(handleLocation));
+            this.handleCursor = courseObject.GetHandleCursor(handleLocation);
             this.startDrag = this.currentLocation = startDrag;
         }
 
@@ -652,11 +652,11 @@ namespace PurplePen
             }
         }
 
-        public override MapViewer.DragAction LeftButtonDown(Pane pane, PointF location, float pixelSize, ref bool displayUpdateNeeded)
+        public override DragAction LeftButtonDown(Pane pane, PointF location, float pixelSize, ref bool displayUpdateNeeded)
         {
             Debug.Assert(pane == Pane.Map);
 
-            return MapViewer.DragAction.ImmediateDrag;
+            return DragAction.ImmediateDrag;
         }
 
         public override void LeftButtonDrag(Pane pane, PointF location, PointF locationStart, float pixelSize, ref bool displayUpdateNeeded)
@@ -736,13 +736,13 @@ namespace PurplePen
             controller.DefaultCommandMode();
         }
 
-        public override Cursor GetMouseCursor(Pane pane, PointF location, float pixelSize)
+        public override MousePointerShape GetMouseCursor(Pane pane, PointF location, float pixelSize)
         {
             if (pane == Pane.Map) {
                 return handleCursor;
             }
             else {
-                return Cursors.Arrow;
+                return MousePointerShape.Arrow;
             }
         }
     }

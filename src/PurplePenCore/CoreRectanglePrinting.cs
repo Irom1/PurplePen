@@ -73,12 +73,12 @@ namespace PurplePen
 
         // Position all the descriptions with the positioner.
 
-        public int LayoutPages(PrintingPaperSize defaultPaperSize, PrintingMarginSize defaultMarginSize, SizeF defaultPrintableAreaInInches)
+        public int LayoutPages(PrintingPaperSizeWithMargins defaultPaperSizeWithMargins)
         {
-            paperSize = defaultPaperSize;
+            paperSize = defaultPaperSizeWithMargins.PaperSize;
 
             // The rectangle positioner works in hundreths of an inch, so convert the default printable area to that.
-            SizeF printAreaInHundreths = new SizeF(defaultPrintableAreaInInches.Width * 100, defaultPrintableAreaInInches.Height * 100);
+            SizeF printAreaInHundreths = defaultPaperSizeWithMargins.AreaInsideMarginsInHundreths.Size;
 
             // Get the list of renderers for the descriptions we're printing.
             IPrintableRectangle[] rendererList = GetRectangleList();

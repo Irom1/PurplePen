@@ -68,7 +68,7 @@ namespace PurplePen.Tests
             BitmapPrintingTarget bitmapPrintTarget = new BitmapPrintingTarget();
 
             PrintManager printManager = new PrintManager("", bitmapPrintTarget, descPrinter);
-            printManager.SetDefaultPaperSize(controller.PrintingPaperSizeFromPageSettings(descPrintPageSettings), controller.PrintingMarginSizeFromPageSettings(descPrintPageSettings));
+            printManager.SetDefaultPaperSize(WindowsUtil.PrintingPaperSizeWithMarginsFromPageSettings(descPrintPageSettings));
             printManager.DoPrinting();
 
             // Check all the pages against the baseline.
@@ -90,7 +90,7 @@ namespace PurplePen.Tests
             PdfPrintTarget pdfPrintTarget = new PdfPrintTarget(pdfFileName, cmykMode: false);
 
             PrintManager printManager = new PrintManager("", pdfPrintTarget, descPrinter);
-            printManager.SetDefaultPaperSize(controller.PrintingPaperSizeFromPageSettings(descPrintPageSettings), controller.PrintingMarginSizeFromPageSettings(descPrintPageSettings));
+            printManager.SetDefaultPaperSize(WindowsUtil.PrintingPaperSizeWithMarginsFromPageSettings(descPrintPageSettings));
             printManager.DoPrinting();
 
             CheckPdfDump(pdfFileName, TestUtil.GetTestFile(basename + "_baseline_page%d.png"));
@@ -334,7 +334,7 @@ namespace PurplePen.Tests
             pageSettings.Margins = new Margins(50, 50, 50, 50);        // default to 1/2" margins.
             pageSettings.PrinterSettings.PrinterName = "foobar";
 
-            bool success = controller.PrintDescriptions(descPrintSettings, pageSettings, false);
+            bool success = controller.PrintDescriptions(descPrintSettings, WindowsUtil.PrintingPaperSizeWithMarginsFromPageSettings(pageSettings), false);
 
             Assert.IsFalse(success);
             string expected =

@@ -214,7 +214,9 @@ namespace PurplePen
         private void previewButton_Click(object sender, EventArgs e)
         {
             if (SomeCoursesSelected())
-                controller.PrintPunches(PrintSettings, PrinterPageSettings, true);
+                controller.PrintPunches(WindowsUtil.GetWinFormsPrintTarget(PrinterPageSettings, this.Owner, true),
+                                        PrintSettings,
+                                        WindowsUtil.PrintingPaperSizeWithMarginsFromPageSettings(PrinterPageSettings));
         }
 
         private void punchCardLayoutButton_Click(object sender, EventArgs e)

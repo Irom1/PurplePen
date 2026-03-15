@@ -140,7 +140,7 @@ namespace PurplePen
         }
     }
 
-
+#if !PORTING
     // Has all the settings for creating OCAD files.
     class RouteGadgetCreationSettings
     {
@@ -154,4 +154,5 @@ namespace PurplePen
             return (RouteGadgetCreationSettings)base.MemberwiseClone();
         }
     }
+#endif
 }

@@ -144,9 +144,6 @@
   <data name="CannotLoadMapFile" xml:space="preserve">
     <value>Karttatiedostoa '{0}' ei voida ladata seuraavasta syystä:</value>
   </data>
-  <data name="CannotPrint" xml:space="preserve">
-    <value>Ei voida tulostaa '{0}' seuraavasta syystä:</value>
-  </data>
   <data name="CannotCreateFile" xml:space="preserve">
     <value>Tiedostoa '{0}' ei voida luoda seuraavasta syystä:</value>
   </data>
@@ -391,9 +388,6 @@ Paina OK ja yritä etsiä karttatiedoston kopio tietokoneeltasi.</value>
   <data name="CrashSend" xml:space="preserve">
     <value>Lähetä raportti</value>
   </data>
-  <data name="CannotCreatePdfs" xml:space="preserve">
-    <value>PDF-tiedostojen luominen ei onnistunut seuraavasta syystä:</value>
-  </data>
   <data name="UserDefined" xml:space="preserve">
     <value>Käyttäjän määrittelemä</value>
   </data>
@@ -559,13 +553,13 @@ Paina OK ja yritä etsiä karttatiedoston kopio tietokoneeltasi.</value>
   <data name="UninstallNonStoreVersion" xml:space="preserve">
     <value>Purple Pen -ohjelman vanhempi versio on edelleen asennettuna. Kahden version aiheuttamien sekaannusten välttämiseksi on erittäin suositeltavaa poistaa vanhempi versio. Poistetaanko se nyt?</value>
   </data>
+  <data name="GpxMustBeOcadMap" xml:space="preserve">
+    <value>Karttatiedoston pitää olla OCAD-tiedosto, jotta voit käyttää GPX-tiedostoja.</value>
+  </data>
   <data name="DownloadGhostscript" xml:space="preserve">
     <value>Jotta PDF-tiedostoja voidaan ladata, pitää GPL Ghostscript olla asennettuna. Haluatko, että se automaattisesti ladataan ja asennetaan nyt?</value>
   </data>
   <data name="GhostscriptNotInstalled" xml:space="preserve">
     <value>GPL Ghostscriptiä ei ole asennettu</value>
-  </data>
-  <data name="GpxMustBeOcadMap" xml:space="preserve">
-    <value>Karttatiedoston pitää olla OCAD-tiedosto, jotta voit käyttää GPX-tiedostoja.</value>
   </data>
 </root>

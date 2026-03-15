@@ -126,6 +126,12 @@
   <data name="BadLegNumber" xml:space="preserve">
     <value>'{0}' er ikke gyldig strekknummer for avgreining '{1}'</value>
   </data>
+  <data name="CannotCreatePdfs" xml:space="preserve">
+    <value>Kan ikke lage PDF pga følgende:</value>
+  </data>
+  <data name="CannotPrint" xml:space="preserve">
+    <value>Kan ikke skrive ut '{0}' på grunn av:</value>
+  </data>
   <data name="CannotReadImageFile" xml:space="preserve">
     <value>Kan ikke lese bildefil '{0}'.</value>
   </data>

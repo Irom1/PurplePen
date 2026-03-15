@@ -144,9 +144,6 @@
   <data name="CannotLoadMapFile" xml:space="preserve">
     <value>Kan ikkje lese kartfil '{0}' på grunn av:</value>
   </data>
-  <data name="CannotPrint" xml:space="preserve">
-    <value>Kan ikkje skrive ut '{0}' på grunn av:</value>
-  </data>
   <data name="CannotCreateFile" xml:space="preserve">
     <value>Kan ikkje lage '{0}' på grunn av:</value>
   </data>

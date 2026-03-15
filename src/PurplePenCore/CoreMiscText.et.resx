@@ -126,6 +126,12 @@
   <data name="BadLegNumber" xml:space="preserve">
     <value>'{0}' ei ole sobiv vahetuse number harule '{1}'</value>
   </data>
+  <data name="CannotCreatePdfs" xml:space="preserve">
+    <value>Ei saanud salvestada PDFe järgmise põhjuse pärast:</value>
+  </data>
+  <data name="CannotPrint" xml:space="preserve">
+    <value>Ei saa trükkida '{0}' , põhjusel:</value>
+  </data>
   <data name="CannotReadImageFile" xml:space="preserve">
     <value>Ei saa lugeda pildi faili '{0}'.</value>
   </data>

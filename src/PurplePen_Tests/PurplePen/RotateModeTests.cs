@@ -76,7 +76,7 @@ namespace PurplePen.Tests
 
             // Select mandatory crossing point.
             var dragAction = controller.LeftButtonDown(Pane.Map, new PointF(25.4F, 25.5F), 0.2F);
-            Assert.AreEqual(MapViewer.DragAction.DelayedDrag, dragAction);
+            Assert.AreEqual(DragAction.DelayedDrag, dragAction);
             controller.LeftButtonClick(Pane.Map, new PointF(25.4F, 25.5F), 0.3F);
 
             highlights = (CourseObj[]) controller.GetHighlights(Pane.Map);
@@ -104,7 +104,7 @@ namespace PurplePen.Tests
             Assert.AreEqual(187.7F, obj.orientation, 0.1F);
 
             // Mouse down somewhere.
-            MapViewer.DragAction action = controller.LeftButtonDown(Pane.Map, new PointF(44, 29), 0.1F);
+            DragAction action = controller.LeftButtonDown(Pane.Map, new PointF(44, 29), 0.1F);
 
             // The highlight should be in the same place, but rotated again.
             highlights = (CourseObj[]) controller.GetHighlights(Pane.Map);
@@ -130,7 +130,7 @@ namespace PurplePen.Tests
 
             // Select mandatory crossing point.
             var dragAction = controller.LeftButtonDown(Pane.Map, new PointF(76, -5F), 0.2F);
-            Assert.AreEqual(MapViewer.DragAction.DelayedDrag, dragAction);
+            Assert.AreEqual(DragAction.DelayedDrag, dragAction);
             controller.LeftButtonClick(Pane.Map, new PointF(76, -5F), 0.3F);
 
             highlights = (CourseObj[]) controller.GetHighlights(Pane.Map);
@@ -158,7 +158,7 @@ namespace PurplePen.Tests
             Assert.AreEqual(97.8F, obj.orientation, 0.1F);
 
             // Mouse down somewhere.
-            MapViewer.DragAction action = controller.LeftButtonDown(Pane.Map, new PointF(44, 29), 0.1F);
+            DragAction action = controller.LeftButtonDown(Pane.Map, new PointF(44, 29), 0.1F);
 
             // The highlight should be in the same place, but rotated again.
             highlights = (CourseObj[]) controller.GetHighlights(Pane.Map);

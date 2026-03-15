@@ -94,7 +94,6 @@ namespace PurplePen.MapView
         Point lastDragScrollPoint;								// last point we dragged to
 
         // Events that we raise
-        public enum DragAction { None, SuppressClick, MapDrag, ImmediateDrag, DelayedDrag };
         public delegate void PointerEventHandler(object sender, bool inViewport, PointF location);
         public delegate DragAction MouseEventHandler(object sender, MouseAction action, int buttonNumber, bool[] whichButtonsDown, PointF location, PointF locationStart);
         public event EventHandler OnViewportChange;

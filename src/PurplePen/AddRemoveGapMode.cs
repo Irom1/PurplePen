@@ -60,12 +60,12 @@ namespace PurplePen
         }
 
         // Mouse cursor looks like a crosshair
-        public override Cursor GetMouseCursor(Pane pane, PointF location, float pixelSize)
+        public override MousePointerShape GetMouseCursor(Pane pane, PointF location, float pixelSize)
         {
             if (pane == Pane.Map)
-                return Cursors.Cross;
+                return MousePointerShape.Cross;
             else
-                return Cursors.Arrow;
+                return MousePointerShape.Arrow;
         }
 
         public override string StatusText
@@ -84,13 +84,13 @@ namespace PurplePen
             return new CourseObj[1] { courseObjDrag };
         }
 
-        public override MapViewer.DragAction LeftButtonDown(Pane pane, PointF location, float pixelSize, ref bool displayUpdateNeeded)
+        public override DragAction LeftButtonDown(Pane pane, PointF location, float pixelSize, ref bool displayUpdateNeeded)
         {
             if (pane != Pane.Map)
-                return MapViewer.DragAction.None;
+                return DragAction.None;
 
             startDrag = location;
-            return MapViewer.DragAction.DelayedDrag;
+            return DragAction.DelayedDrag;
         }
 
         public override void LeftButtonDrag(Pane pane, PointF location, PointF locationStart, float pixelSize, ref bool displayUpdateNeeded)
@@ -152,12 +152,12 @@ namespace PurplePen
         }
 
         // Mouse cursor looks like a crosshair
-        public override Cursor GetMouseCursor(Pane pane, PointF location, float pixelSize)
+        public override MousePointerShape GetMouseCursor(Pane pane, PointF location, float pixelSize)
         {
             if (pane == Pane.Map)
-                return Cursors.Cross;
+                return MousePointerShape.Cross;
             else
-                return Cursors.Arrow;
+                return MousePointerShape.Arrow;
         }
 
         public override string StatusText
@@ -176,15 +176,15 @@ namespace PurplePen
             return new CourseObj[1] { courseObj };
         }
 
-        public override MapViewer.DragAction LeftButtonDown(Pane pane, PointF location, float pixelSize, ref bool displayUpdateNeeded)
+        public override DragAction LeftButtonDown(Pane pane, PointF location, float pixelSize, ref bool displayUpdateNeeded)
         {
             if (pane != Pane.Map)
-                return MapViewer.DragAction.None;
+                return DragAction.None;
 
             // Create the new corner
             controller.RemoveControlGap(location);
             controller.DefaultCommandMode();
-            return MapViewer.DragAction.SuppressClick;
+            return DragAction.SuppressClick;
         }
     }
 
@@ -201,12 +201,12 @@ namespace PurplePen
         }
 
         // Mouse cursor looks like a crosshair
-        public override Cursor GetMouseCursor(Pane pane, PointF location, float pixelSize)
+        public override MousePointerShape GetMouseCursor(Pane pane, PointF location, float pixelSize)
         {
             if (pane == Pane.Map)
-                return Cursors.Cross;
+                return MousePointerShape.Cross;
             else
-                return Cursors.Arrow;
+                return MousePointerShape.Arrow;
         }
 
         public override string StatusText
@@ -225,15 +225,15 @@ namespace PurplePen
             return new CourseObj[1] { courseObj };
         }
 
-        public override MapViewer.DragAction LeftButtonDown(Pane pane, PointF location, float pixelSize, ref bool displayUpdateNeeded)
+        public override DragAction LeftButtonDown(Pane pane, PointF location, float pixelSize, ref bool displayUpdateNeeded)
         {
             if (pane != Pane.Map)
-                return MapViewer.DragAction.None;
+                return DragAction.None;
 
             // Remove the gap
             controller.RemoveLegGap(location);
             controller.DefaultCommandMode();
-            return MapViewer.DragAction.SuppressClick;
+            return DragAction.SuppressClick;
         }
     }
 
@@ -262,9 +262,9 @@ namespace PurplePen
         }
 
         // Mouse cursor looks like a crosshair
-        public override Cursor GetMouseCursor(Pane pane, PointF location, float pixelSize)
+        public override MousePointerShape GetMouseCursor(Pane pane, PointF location, float pixelSize)
         {
-            return Cursors.Cross;
+            return MousePointerShape.Cross;
         }
 
         public override string StatusText
@@ -275,13 +275,13 @@ namespace PurplePen
             }
         }
 
-        public override MapViewer.DragAction LeftButtonDown(Pane pane, PointF location, float pixelSize, ref bool displayUpdateNeeded)
+        public override DragAction LeftButtonDown(Pane pane, PointF location, float pixelSize, ref bool displayUpdateNeeded)
         {
             if (pane != Pane.Map)
-                return MapViewer.DragAction.None;
+                return DragAction.None;
 
             startDrag = location;
-            return MapViewer.DragAction.DelayedDrag;
+            return DragAction.DelayedDrag;
         }
 
         public override void LeftButtonDrag(Pane pane, PointF location, PointF locationStart, float pixelSize, ref bool displayUpdateNeeded)

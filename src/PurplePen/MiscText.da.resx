@@ -144,9 +144,6 @@
   <data name="CannotLoadMapFile" xml:space="preserve">
     <value>Kan ikke indlæse kortfil '(0)' af følgende grund:</value>
   </data>
-  <data name="CannotPrint" xml:space="preserve">
-    <value>Kan ikke udskrive '(0)' af følgende grund:</value>
-  </data>
   <data name="CannotCreateFile" xml:space="preserve">
     <value>Kan ikke oprette '(0)' af følgende grund:</value>
   </data>
@@ -387,9 +384,6 @@ Efter at klikke OK, prøv at finde en kopi af kortfilen på din computer.</value
   </data>
   <data name="CrashSend" xml:space="preserve">
     <value>Send rapport</value>
-  </data>
-  <data name="CannotCreatePdfs" xml:space="preserve">
-    <value>Kan ikke oprette PDFs af følgende grund:</value>
   </data>
   <data name="UserDefined" xml:space="preserve">
     <value>Brugerdefineret</value>

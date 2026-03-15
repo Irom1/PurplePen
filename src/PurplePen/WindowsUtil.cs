@@ -32,22 +32,23 @@
  * OF SUCH DAMAGE.
  */
 
+using PurplePen.Graphics2D;
+using PurplePen.MapModel;
 using System;
 using System.Collections.Generic;
-using System.Text;
-using System.IO;
-using System.Xml;
 using System.Diagnostics;
-using System.Runtime.InteropServices;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 using System.Drawing.Printing;
 using System.Globalization;
-using System.Windows.Forms;
-using PurplePen.MapModel;
-using PurplePen.Graphics2D;
-using System.Drawing.Imaging;
+using System.IO;
+using System.Runtime.InteropServices;
+using System.Text;
 using System.Threading;
+using System.Windows.Forms;
+using System.Xml;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace PurplePen
 {
@@ -225,8 +226,52 @@ namespace PurplePen
             }
         }
 
+        // Convert the paper size from the PageSettings to a PrintingPaperSize. 
+        public static PrintingPaperSize PrintingPaperSizeFromPageSettings(PageSettings pageSettings)
+        {
 
-        static class NativeMethods
+            return new PrintingPaperSize(pageSettings.PaperSize.Kind.ToString(), pageSettings.Bounds.Width, pageSettings.Bounds.Height);
+        }
+
+        public static PrintingMarginSize PrintingMarginSizeFromPageSettings(PageSettings pageSettings)
+        {
+
+            return new PrintingMarginSize(pageSettings.Margins.Left, pageSettings.Margins.Top, pageSettings.Margins.Right, pageSettings.Margins.Bottom);
+        }
+
+
+        public static PrintingPaperSizeWithMargins PrintingPaperSizeWithMarginsFromPageSettings(PageSettings pageSettings)
+        {
+            return new PrintingPaperSizeWithMargins(PrintingPaperSizeFromPageSettings(pageSettings), PrintingMarginSizeFromPageSettings(pageSettings));
+        }
+
+        // Returns an IPrintingTarget for printing to the Windows Forms printing subsystem, or to print
+        // preview.
+        public static IPrintingTarget GetWinFormsPrintTarget(PageSettings pageSettings, Form mainWindow, bool preview) 
+        {
+            Size previewDialogSize = new Size();
+
+            if (preview) {
+                Size scaledSize = mainWindow.Size;
+                int scaled1000 = mainWindow.LogicalToDeviceUnits(1000);
+
+                // Size is 0.8 times size of main window.
+                previewDialogSize = new Size((int)(scaledSize.Width * 0.8 * 1000 / scaled1000), (int)(scaledSize.Height * 0.8 * 1000 / scaled1000));
+            }
+
+            WinFormsPrinter winFormsPrintTarget = new WinFormsPrinter(new WinFormsPrinter.WinFormsPrinterOptions() {
+                PageSettings = pageSettings,
+                ColorModel = ColorModel.RGB,
+                StopAfterEachPage = false,
+                PrintPreview = preview,
+                PreviewDialogSize = previewDialogSize
+            });
+
+            return winFormsPrintTarget;
+        }
+
+
+        class NativeMethods
         {
             // Windows API for loading a cursor from file. The Cursor constructor does not work
             // correctly with .cur files that have 32-bit color with alpha transparency.

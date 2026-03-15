@@ -126,6 +126,12 @@
   <data name="BadLegNumber" xml:space="preserve">
     <value>„{0}“ не е валиден номер на отсечка за разклонение „{1}“</value>
   </data>
+  <data name="CannotCreatePdfs" xml:space="preserve">
+    <value>Не може да се създадат PDF файлове поради следната причина:</value>
+  </data>
+  <data name="CannotPrint" xml:space="preserve">
+    <value>Не може да се отпечата '{0}' поради следната причина:</value>
+  </data>
   <data name="CannotReadImageFile" xml:space="preserve">
     <value>Не може да се прочете файлът с изображение '{0}'.</value>
   </data>

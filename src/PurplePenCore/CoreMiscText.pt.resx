@@ -126,6 +126,12 @@
   <data name="BadLegNumber" xml:space="preserve">
     <value>'{0}' não é um número de pernada válido para a variante {1}'</value>
   </data>
+  <data name="CannotCreatePdfs" xml:space="preserve">
+    <value>Não é possível criar PDFs pelo seguinte motivo:</value>
+  </data>
+  <data name="CannotPrint" xml:space="preserve">
+    <value>Não é possível imprimir '{0}' pelo seguinte motivo:</value>
+  </data>
   <data name="CannotReadImageFile" xml:space="preserve">
     <value>Não é possível ler o ficheiro imagem '{0}'.</value>
   </data>

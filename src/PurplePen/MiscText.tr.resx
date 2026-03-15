@@ -144,9 +144,6 @@
   <data name="CannotLoadMapFile" xml:space="preserve">
     <value>Aşağıdaki nedenden dolayı '{0}' harita dosyası yüklenemiyor:</value>
   </data>
-  <data name="CannotPrint" xml:space="preserve">
-    <value>Aşağıdaki nedenden dolayı '{0}' harita dosyası yüklenmiyor:</value>
-  </data>
   <data name="CannotCreateFile" xml:space="preserve">
     <value>Aşağıdaki nedenden dolayı '{0}' harita dosyası yüklenmiyor:</value>
   </data>
@@ -390,9 +387,6 @@ Tamam düğmesine bastıktan sonra, bilgisayarınızda harita dosyasının bir k
   </data>
   <data name="CrashSend" xml:space="preserve">
     <value>Rapor Gönder</value>
-  </data>
-  <data name="CannotCreatePdfs" xml:space="preserve">
-    <value>Aşağıdaki nedenden dolayı PDF oluşturulamıyor:</value>
   </data>
   <data name="UserDefined" xml:space="preserve">
     <value>Kullanıcı Tanımlı</value>

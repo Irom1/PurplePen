@@ -57,7 +57,7 @@ namespace PurplePen.Tests
 
         // These data members change return values.
         public string returnOpenFileName = TestUtil.GetTestFile("sampleevent1.coursescribe");
-        public System.Windows.Forms.DialogResult returnQuestion = System.Windows.Forms.DialogResult.None;  // None means return default.
+        public YesNoCancel returnQuestion = YesNoCancel.None;  // None means return default.
 
         // This tracks the mouse position and pixel size.
         PointF mouseLocation;
@@ -99,7 +99,7 @@ namespace PurplePen.Tests
             controller.MouseMoved(Pane.Map, mouseLocation, pixelSize);
         }
 
-        public MapViewer.DragAction LeftButtonDown(float x, float y, float pixelSize)
+        public DragAction LeftButtonDown(float x, float y, float pixelSize)
         {
             this.mouseLocation = new PointF(x, y);
             this.pixelSize = pixelSize;
@@ -152,9 +152,9 @@ namespace PurplePen.Tests
             output.WriteLine("YES/NO QUESTION: '{0}' (default {1})", message, yesDefault ? "yes" : "no");
             bool retVal;
 
-            if (returnQuestion == System.Windows.Forms.DialogResult.None)
+            if (returnQuestion == YesNoCancel.None)
                 retVal = yesDefault;
-            else if (returnQuestion == System.Windows.Forms.DialogResult.Yes)
+            else if (returnQuestion == YesNoCancel.Yes)
                 retVal = true;
             else
                 retVal = false;
@@ -167,9 +167,9 @@ namespace PurplePen.Tests
             output.WriteLine("OK/CANCEL MESSAGE: '{0}' (default {1})", message, okDefault ? "ok" : "cancel");
             bool retVal;
 
-            if (returnQuestion == System.Windows.Forms.DialogResult.None)
+            if (returnQuestion == YesNoCancel.None)
                 retVal = okDefault;
-            else if (returnQuestion == System.Windows.Forms.DialogResult.OK)
+            else if (returnQuestion == YesNoCancel.Yes)
                 retVal = true;
             else
                 retVal = false;
@@ -177,13 +177,13 @@ namespace PurplePen.Tests
             return retVal;
         }
 
-        public System.Windows.Forms.DialogResult YesNoCancelQuestion(string message, bool yesDefault)
+        public YesNoCancel YesNoCancelQuestion(string message, bool yesDefault)
         {
             output.WriteLine("YES/NO/CANCEL QUESTION: '{0}' (default {1})", message, yesDefault ? "yes" : "no");
-            System.Windows.Forms.DialogResult retVal;
+            YesNoCancel retVal;
 
-            if (returnQuestion == System.Windows.Forms.DialogResult.None)
-                retVal = yesDefault ? System.Windows.Forms.DialogResult.Yes : System.Windows.Forms.DialogResult.No;
+            if (returnQuestion == YesNoCancel.None)
+                retVal = yesDefault ? YesNoCancel.Yes : YesNoCancel.No;
             else 
                 retVal = returnQuestion;
 
@@ -191,7 +191,7 @@ namespace PurplePen.Tests
             return retVal;
         }
 
-        public System.Windows.Forms.DialogResult MovingSharedControl(string controlCode, string otherCourses)
+        public YesNoCancel MovingSharedControl(string controlCode, string otherCourses)
         {
             output.WriteLine("MOVING SHARED CONTROL QUESTION: '{0}' in '{1}'", controlCode, otherCourses);
             return returnQuestion;
@@ -210,7 +210,7 @@ namespace PurplePen.Tests
             return true;
         }
 
-        public void InitiateMapDragging(PointF initialPos, System.Windows.Forms.MouseButtons buttonEnd)
+        public void InitiateMapDragging(PointF initialPos, PointerButton buttonEnd)
         {
             throw new NotSupportedException();
         }

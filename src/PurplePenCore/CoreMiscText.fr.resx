@@ -123,6 +123,12 @@
   <data name="AllVariations" xml:space="preserve">
     <value>Toutes les variations</value>
   </data>
+  <data name="CannotCreatePdfs" xml:space="preserve">
+    <value>Impossible de créer des PDFs pour la raison suivante :</value>
+  </data>
+  <data name="CannotPrint" xml:space="preserve">
+    <value>Ne peut pas imprimer '{0}' pour les raisons suivantes :</value>
+  </data>
   <data name="CannotReadImageFile" xml:space="preserve">
     <value>Ne peut pas lire le fichier image '{0}'.</value>
   </data>
