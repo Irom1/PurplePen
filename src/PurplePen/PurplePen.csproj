@@ -991,11 +991,6 @@
     <Compile Update="CommandNameText.*.Designer.cs">
       <DependentUpon>CommandNameText.resx</DependentUpon>
     </Compile>
-    <Compile Update="MiscText.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>MiscText.resx</DependentUpon>
-    </Compile>
     <Compile Update="MiscText.*.Designer.cs">
       <DependentUpon>MiscText.resx</DependentUpon>
     </Compile>
@@ -1006,10 +1001,6 @@
   <ItemGroup>
     <EmbeddedResource Update="CommandNameText.*.resx">
       <DependentUpon>CommandNameText.resx</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Update="MiscText.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>MiscText.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="MiscText.*.resx">
       <DependentUpon>MiscText.resx</DependentUpon>

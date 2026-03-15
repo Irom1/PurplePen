@@ -109,6 +109,47 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>CoreMiscText.resx</DependentUpon>
     </Compile>
+    <Compile Update="MiscText.cs.Designer.cs">
+      <DependentUpon>MiscText.resx</DependentUpon>
+    </Compile>
+    <Compile Update="MiscText.da.Designer.cs">
+      <DependentUpon>MiscText.resx</DependentUpon>
+    </Compile>
+    <Compile Update="MiscText.Designer.cs">
+      <DependentUpon>MiscText.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="MiscText.hu.Designer.cs">
+      <DependentUpon>MiscText.resx</DependentUpon>
+    </Compile>
+    <Compile Update="MiscText.ja.Designer.cs">
+      <DependentUpon>MiscText.resx</DependentUpon>
+    </Compile>
+    <Compile Update="MiscText.nl.Designer.cs">
+      <DependentUpon>MiscText.resx</DependentUpon>
+    </Compile>
+    <Compile Update="MiscText.pl.Designer.cs">
+      <DependentUpon>MiscText.resx</DependentUpon>
+    </Compile>
+    <Compile Update="MiscText.pt-BR.Designer.cs">
+      <DependentUpon>MiscText.resx</DependentUpon>
+    </Compile>
+    <Compile Update="MiscText.pt.Designer.cs">
+      <DependentUpon>MiscText.resx</DependentUpon>
+    </Compile>
+    <Compile Update="MiscText.tr.Designer.cs">
+      <DependentUpon>MiscText.resx</DependentUpon>
+    </Compile>
+    <Compile Update="MiscText.uk.Designer.cs">
+      <DependentUpon>MiscText.resx</DependentUpon>
+    </Compile>
+    <Compile Update="MiscText.zh-CN.Designer.cs">
+      <DependentUpon>MiscText.resx</DependentUpon>
+    </Compile>
+    <Compile Update="MiscText.zh-TW.Designer.cs">
+      <DependentUpon>MiscText.resx</DependentUpon>
+    </Compile>
     <Compile Update="ReportText.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -245,6 +286,76 @@
     </EmbeddedResource>
     <EmbeddedResource Update="CoreMiscText.*.resx">
       <DependentUpon>CoreMiscText.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="MiscText.bg.resx">
+      <DependentUpon>MiscText.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="MiscText.cs.resx">
+      <DependentUpon>MiscText.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="MiscText.da.resx">
+      <DependentUpon>MiscText.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="MiscText.de.resx">
+      <DependentUpon>MiscText.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="MiscText.es.resx">
+      <DependentUpon>MiscText.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="MiscText.et.resx">
+      <DependentUpon>MiscText.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="MiscText.fi.resx">
+      <DependentUpon>MiscText.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="MiscText.fr.resx">
+      <DependentUpon>MiscText.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="MiscText.hu.resx">
+      <DependentUpon>MiscText.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="MiscText.ja.resx">
+      <DependentUpon>MiscText.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="MiscText.nb-NO.resx">
+      <DependentUpon>MiscText.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="MiscText.nl.resx">
+      <DependentUpon>MiscText.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="MiscText.nn-NO.resx">
+      <DependentUpon>MiscText.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="MiscText.pl.resx">
+      <DependentUpon>MiscText.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="MiscText.pt-BR.resx">
+      <DependentUpon>MiscText.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="MiscText.pt.resx">
+      <DependentUpon>MiscText.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="MiscText.resx">
+      <LastGenOutput>MiscText.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="MiscText.ro.resx">
+      <DependentUpon>MiscText.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="MiscText.sv.resx">
+      <DependentUpon>MiscText.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="MiscText.tr.resx">
+      <DependentUpon>MiscText.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="MiscText.uk.resx">
+      <DependentUpon>MiscText.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="MiscText.zh-CN.resx">
+      <DependentUpon>MiscText.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="MiscText.zh-TW.resx">
+      <DependentUpon>MiscText.resx</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Update="ReportText.resx">
       <Generator>ResXFileCodeGenerator</Generator>
