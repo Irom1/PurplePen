@@ -38,8 +38,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using Margins = System.Drawing.Printing.Margins;
-using PaperSize = System.Drawing.Printing.PaperSize;
 using System.Diagnostics;
 
 
@@ -50,11 +48,9 @@ namespace PurplePen
     using System.Globalization;
     using System.IO;
     using System.Linq;
-    using PdfSharp.Pdf;
-    using PdfSharp.Drawing;
 
     // Class to output courses to PDF
-    class CoursePdf 
+    public class CoursePdf 
     {
         private CoursePdfSettings coursePdfSettings;
         private EventDB eventDB;
