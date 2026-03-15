@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFrameworks>net48;net10.0</TargetFrameworks>
@@ -63,45 +63,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="CommandNameText.cs.Designer.cs">
-      <DependentUpon>CommandNameText.resx</DependentUpon>
-    </Compile>
-    <Compile Update="CommandNameText.da.Designer.cs">
-      <DependentUpon>CommandNameText.resx</DependentUpon>
-    </Compile>
     <Compile Update="CommandNameText.Designer.cs">
-      <DependentUpon>CommandNameText.resx</DependentUpon>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-    </Compile>
-    <Compile Update="CommandNameText.hu.Designer.cs">
       <DependentUpon>CommandNameText.resx</DependentUpon>
     </Compile>
-    <Compile Update="CommandNameText.ja.Designer.cs">
-      <DependentUpon>CommandNameText.resx</DependentUpon>
-    </Compile>
-    <Compile Update="CommandNameText.nl.Designer.cs">
-      <DependentUpon>CommandNameText.resx</DependentUpon>
-    </Compile>
-    <Compile Update="CommandNameText.pl.Designer.cs">
-      <DependentUpon>CommandNameText.resx</DependentUpon>
-    </Compile>
-    <Compile Update="CommandNameText.pt-BR.Designer.cs">
-      <DependentUpon>CommandNameText.resx</DependentUpon>
-    </Compile>
-    <Compile Update="CommandNameText.pt.Designer.cs">
-      <DependentUpon>CommandNameText.resx</DependentUpon>
-    </Compile>
-    <Compile Update="CommandNameText.tr.Designer.cs">
-      <DependentUpon>CommandNameText.resx</DependentUpon>
-    </Compile>
-    <Compile Update="CommandNameText.uk.Designer.cs">
-      <DependentUpon>CommandNameText.resx</DependentUpon>
-    </Compile>
-    <Compile Update="CommandNameText.zh-CN.Designer.cs">
-      <DependentUpon>CommandNameText.resx</DependentUpon>
-    </Compile>
-    <Compile Update="CommandNameText.zh-TW.Designer.cs">
+    <Compile Update="CommandNameText.*.Designer.cs">
       <DependentUpon>CommandNameText.resx</DependentUpon>
     </Compile>
     <Compile Update="CoreMiscText.Designer.cs">
@@ -109,45 +76,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>CoreMiscText.resx</DependentUpon>
     </Compile>
-    <Compile Update="MiscText.cs.Designer.cs">
-      <DependentUpon>MiscText.resx</DependentUpon>
-    </Compile>
-    <Compile Update="MiscText.da.Designer.cs">
-      <DependentUpon>MiscText.resx</DependentUpon>
-    </Compile>
     <Compile Update="MiscText.Designer.cs">
-      <DependentUpon>MiscText.resx</DependentUpon>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-    </Compile>
-    <Compile Update="MiscText.hu.Designer.cs">
       <DependentUpon>MiscText.resx</DependentUpon>
     </Compile>
-    <Compile Update="MiscText.ja.Designer.cs">
-      <DependentUpon>MiscText.resx</DependentUpon>
-    </Compile>
-    <Compile Update="MiscText.nl.Designer.cs">
-      <DependentUpon>MiscText.resx</DependentUpon>
-    </Compile>
-    <Compile Update="MiscText.pl.Designer.cs">
-      <DependentUpon>MiscText.resx</DependentUpon>
-    </Compile>
-    <Compile Update="MiscText.pt-BR.Designer.cs">
-      <DependentUpon>MiscText.resx</DependentUpon>
-    </Compile>
-    <Compile Update="MiscText.pt.Designer.cs">
-      <DependentUpon>MiscText.resx</DependentUpon>
-    </Compile>
-    <Compile Update="MiscText.tr.Designer.cs">
-      <DependentUpon>MiscText.resx</DependentUpon>
-    </Compile>
-    <Compile Update="MiscText.uk.Designer.cs">
-      <DependentUpon>MiscText.resx</DependentUpon>
-    </Compile>
-    <Compile Update="MiscText.zh-CN.Designer.cs">
-      <DependentUpon>MiscText.resx</DependentUpon>
-    </Compile>
-    <Compile Update="MiscText.zh-TW.Designer.cs">
+    <Compile Update="MiscText.*.Designer.cs">
       <DependentUpon>MiscText.resx</DependentUpon>
     </Compile>
     <Compile Update="ReportText.Designer.cs">
@@ -163,121 +97,25 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>SelectionDescriptionText.resx</DependentUpon>
     </Compile>
-    <Compile Update="StatusBarText.cs.Designer.cs">
-      <DependentUpon>StatusBarText.resx</DependentUpon>
-    </Compile>
-    <Compile Update="StatusBarText.da.Designer.cs">
-      <DependentUpon>StatusBarText.resx</DependentUpon>
-    </Compile>
-    <Compile Update="StatusBarText.Designer.cs">
-      <DependentUpon>StatusBarText.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-    </Compile>
-    <Compile Update="StatusBarText.hu.Designer.cs">
-      <DependentUpon>StatusBarText.resx</DependentUpon>
-    </Compile>
-    <Compile Update="StatusBarText.ja.Designer.cs">
-      <DependentUpon>StatusBarText.resx</DependentUpon>
-    </Compile>
-    <Compile Update="StatusBarText.nl.Designer.cs">
-      <DependentUpon>StatusBarText.resx</DependentUpon>
-    </Compile>
-    <Compile Update="StatusBarText.pl.Designer.cs">
-      <DependentUpon>StatusBarText.resx</DependentUpon>
-    </Compile>
-    <Compile Update="StatusBarText.pt-BR.Designer.cs">
-      <DependentUpon>StatusBarText.resx</DependentUpon>
-    </Compile>
-    <Compile Update="StatusBarText.pt.Designer.cs">
-      <DependentUpon>StatusBarText.resx</DependentUpon>
-    </Compile>
-    <Compile Update="StatusBarText.tr.Designer.cs">
-      <DependentUpon>StatusBarText.resx</DependentUpon>
-    </Compile>
-    <Compile Update="StatusBarText.uk.Designer.cs">
-      <DependentUpon>StatusBarText.resx</DependentUpon>
-    </Compile>
-    <Compile Update="StatusBarText.zh-CN.Designer.cs">
-      <DependentUpon>StatusBarText.resx</DependentUpon>
-    </Compile>
-    <Compile Update="StatusBarText.zh-TW.Designer.cs">
-      <DependentUpon>StatusBarText.resx</DependentUpon>
-    </Compile>
     <Compile Update="SelectionDescriptionText.*.Designer.cs">
       <DependentUpon>SelectionDescriptionText.resx</DependentUpon>
+    </Compile>
+    <Compile Update="StatusBarText.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>StatusBarText.resx</DependentUpon>
+    </Compile>
+    <Compile Update="StatusBarText.*.Designer.cs">
+      <DependentUpon>StatusBarText.resx</DependentUpon>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="CommandNameText.bg.resx">
-      <DependentUpon>CommandNameText.resx</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Update="CommandNameText.cs.resx">
-      <DependentUpon>CommandNameText.resx</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Update="CommandNameText.da.resx">
-      <DependentUpon>CommandNameText.resx</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Update="CommandNameText.de.resx">
-      <DependentUpon>CommandNameText.resx</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Update="CommandNameText.es.resx">
-      <DependentUpon>CommandNameText.resx</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Update="CommandNameText.et.resx">
-      <DependentUpon>CommandNameText.resx</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Update="CommandNameText.fi.resx">
-      <DependentUpon>CommandNameText.resx</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Update="CommandNameText.fr.resx">
-      <DependentUpon>CommandNameText.resx</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Update="CommandNameText.hu.resx">
-      <DependentUpon>CommandNameText.resx</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Update="CommandNameText.ja.resx">
-      <DependentUpon>CommandNameText.resx</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Update="CommandNameText.nb-NO.resx">
-      <DependentUpon>CommandNameText.resx</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Update="CommandNameText.nl.resx">
-      <DependentUpon>CommandNameText.resx</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Update="CommandNameText.nn-NO.resx">
-      <DependentUpon>CommandNameText.resx</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Update="CommandNameText.pl.resx">
-      <DependentUpon>CommandNameText.resx</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Update="CommandNameText.pt-BR.resx">
-      <DependentUpon>CommandNameText.resx</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Update="CommandNameText.pt.resx">
-      <DependentUpon>CommandNameText.resx</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Update="CommandNameText.resx">
-      <LastGenOutput>CommandNameText.Designer.cs</LastGenOutput>
       <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>CommandNameText.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Update="CommandNameText.ro.resx">
-      <DependentUpon>CommandNameText.resx</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Update="CommandNameText.sv.resx">
-      <DependentUpon>CommandNameText.resx</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Update="CommandNameText.tr.resx">
-      <DependentUpon>CommandNameText.resx</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Update="CommandNameText.uk.resx">
-      <DependentUpon>CommandNameText.resx</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Update="CommandNameText.zh-CN.resx">
-      <DependentUpon>CommandNameText.resx</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Update="CommandNameText.zh-TW.resx">
+    <EmbeddedResource Update="CommandNameText.*.resx">
       <DependentUpon>CommandNameText.resx</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Update="CoreMiscText.resx">
@@ -287,74 +125,11 @@
     <EmbeddedResource Update="CoreMiscText.*.resx">
       <DependentUpon>CoreMiscText.resx</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Update="MiscText.bg.resx">
-      <DependentUpon>MiscText.resx</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Update="MiscText.cs.resx">
-      <DependentUpon>MiscText.resx</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Update="MiscText.da.resx">
-      <DependentUpon>MiscText.resx</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Update="MiscText.de.resx">
-      <DependentUpon>MiscText.resx</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Update="MiscText.es.resx">
-      <DependentUpon>MiscText.resx</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Update="MiscText.et.resx">
-      <DependentUpon>MiscText.resx</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Update="MiscText.fi.resx">
-      <DependentUpon>MiscText.resx</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Update="MiscText.fr.resx">
-      <DependentUpon>MiscText.resx</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Update="MiscText.hu.resx">
-      <DependentUpon>MiscText.resx</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Update="MiscText.ja.resx">
-      <DependentUpon>MiscText.resx</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Update="MiscText.nb-NO.resx">
-      <DependentUpon>MiscText.resx</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Update="MiscText.nl.resx">
-      <DependentUpon>MiscText.resx</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Update="MiscText.nn-NO.resx">
-      <DependentUpon>MiscText.resx</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Update="MiscText.pl.resx">
-      <DependentUpon>MiscText.resx</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Update="MiscText.pt-BR.resx">
-      <DependentUpon>MiscText.resx</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Update="MiscText.pt.resx">
-      <DependentUpon>MiscText.resx</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Update="MiscText.resx">
-      <LastGenOutput>MiscText.Designer.cs</LastGenOutput>
       <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>MiscText.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Update="MiscText.ro.resx">
-      <DependentUpon>MiscText.resx</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Update="MiscText.sv.resx">
-      <DependentUpon>MiscText.resx</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Update="MiscText.tr.resx">
-      <DependentUpon>MiscText.resx</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Update="MiscText.uk.resx">
-      <DependentUpon>MiscText.resx</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Update="MiscText.zh-CN.resx">
-      <DependentUpon>MiscText.resx</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Update="MiscText.zh-TW.resx">
+    <EmbeddedResource Update="MiscText.*.resx">
       <DependentUpon>MiscText.resx</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Update="ReportText.resx">
@@ -368,78 +143,15 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>SelectionDescriptionText.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Update="StatusBarText.bg.resx">
-      <DependentUpon>StatusBarText.resx</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Update="StatusBarText.cs.resx">
-      <DependentUpon>StatusBarText.resx</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Update="StatusBarText.da.resx">
-      <DependentUpon>StatusBarText.resx</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Update="StatusBarText.de.resx">
-      <DependentUpon>StatusBarText.resx</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Update="StatusBarText.es.resx">
-      <DependentUpon>StatusBarText.resx</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Update="StatusBarText.et.resx">
-      <DependentUpon>StatusBarText.resx</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Update="StatusBarText.fi.resx">
-      <DependentUpon>StatusBarText.resx</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Update="StatusBarText.fr.resx">
-      <DependentUpon>StatusBarText.resx</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Update="StatusBarText.hu.resx">
-      <DependentUpon>StatusBarText.resx</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Update="StatusBarText.ja.resx">
-      <DependentUpon>StatusBarText.resx</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Update="StatusBarText.nb-NO.resx">
-      <DependentUpon>StatusBarText.resx</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Update="StatusBarText.nl.resx">
-      <DependentUpon>StatusBarText.resx</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Update="StatusBarText.nn-NO.resx">
-      <DependentUpon>StatusBarText.resx</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Update="StatusBarText.pl.resx">
-      <DependentUpon>StatusBarText.resx</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Update="StatusBarText.pt-BR.resx">
-      <DependentUpon>StatusBarText.resx</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Update="StatusBarText.pt.resx">
-      <DependentUpon>StatusBarText.resx</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Update="StatusBarText.resx">
-      <LastGenOutput>StatusBarText.Designer.cs</LastGenOutput>
-      <Generator>PublicResXFileCodeGenerator</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="StatusBarText.ro.resx">
-      <DependentUpon>StatusBarText.resx</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Update="StatusBarText.sv.resx">
-      <DependentUpon>StatusBarText.resx</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Update="StatusBarText.tr.resx">
-      <DependentUpon>StatusBarText.resx</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Update="StatusBarText.uk.resx">
-      <DependentUpon>StatusBarText.resx</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Update="StatusBarText.zh-CN.resx">
-      <DependentUpon>StatusBarText.resx</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Update="StatusBarText.zh-TW.resx">
-      <DependentUpon>StatusBarText.resx</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Update="SelectionDescriptionText.*.resx">
       <DependentUpon>SelectionDescriptionText.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="StatusBarText.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>StatusBarText.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="StatusBarText.*.resx">
+      <DependentUpon>StatusBarText.resx</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
 
