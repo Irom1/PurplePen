@@ -44,7 +44,7 @@ using PurplePen.Graphics2D;
 
 namespace PurplePen
 {
-    class ExportRouteGadget
+    public class ExportRouteGadget
     {
         SymbolDB symbolDB;
         EventDB eventDB;
