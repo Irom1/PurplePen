@@ -1133,12 +1133,14 @@ namespace PurplePen.MapModel
         public double HorizontalResolution
         {
             get { return horizontalResolution; }
+            set { horizontalResolution = value; }
         }
 
         /// <summary>Vertical resolution in dots per inch.</summary>
         public double VerticalResolution
         {
             get { return verticalResolution; }
+            set { verticalResolution = value; }
         }
 
         public int PixelWidth
@@ -1285,12 +1287,14 @@ namespace PurplePen.MapModel
         public double HorizontalResolution
         {
             get { return horizontalResolution; }
+            set { horizontalResolution = value; }
         }
 
         /// <summary>Vertical resolution in dots per inch.</summary>
         public double VerticalResolution
         {
             get { return verticalResolution; }
+            set { verticalResolution = value; }
         }
 
         public int PixelWidth
@@ -1439,11 +1443,13 @@ namespace PurplePen.MapModel
         /// <summary>Horizontal resolution in dots per inch.</summary>
         public double HorizontalResolution {
             get { return horizontalResolution; }
+            set {  horizontalResolution = value; }
         }
 
         /// <summary>Vertical resolution in dots per inch.</summary>
         public double VerticalResolution {
             get { return verticalResolution; }
+            set { verticalResolution = value; }
         }
 
         public int PixelWidth {

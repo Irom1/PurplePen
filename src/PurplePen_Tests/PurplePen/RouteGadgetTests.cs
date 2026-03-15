@@ -33,16 +33,16 @@
  */
 
 #if TEST
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using PurplePen.Graphics2D;
 using System;
 using System.Collections.Generic;
-using System.Text;
-using System.IO;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
+using System.IO;
+using System.Text;
 using TestingUtils;
-
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace PurplePen.Tests
 {
@@ -65,8 +65,8 @@ namespace PurplePen.Tests
             mapDisplay.MapIntensity = 0.3F;
 
             ExportBitmap exporter = new ExportBitmap(mapDisplay.Clone());
-            exporter.CreateBitmap(filenameJpeg, RectangleF.FromLTRB(-90F, 10F, 60F, 105F), ImageFormat.Jpeg, 200F, null);
-            exporter.CreateBitmap(filenameGif, RectangleF.FromLTRB(-90F, 10F, 60F, 105F), ImageFormat.Gif, 200F, null);
+            exporter.CreateBitmap(filenameJpeg, RectangleF.FromLTRB(-90F, 10F, 60F, 105F), GraphicsBitmapFormat.JPEG, 200F, null);
+            exporter.CreateBitmap(filenameGif, RectangleF.FromLTRB(-90F, 10F, 60F, 105F), GraphicsBitmapFormat.GIF, 200F, null);
         }
 
 
@@ -83,7 +83,7 @@ namespace PurplePen.Tests
             mapDisplay.MapIntensity = 0.3F;
 
             ExportBitmap exporter = new ExportBitmap(mapDisplay.Clone());
-            exporter.CreateBitmap(filename, RectangleF.FromLTRB(0F, 70F, 300F, 400F), ImageFormat.Jpeg, 200F, null);
+            exporter.CreateBitmap(filename, RectangleF.FromLTRB(0F, 70F, 300F, 400F), GraphicsBitmapFormat.JPEG, 200F, null);
 
             Assert.IsFalse(mapDisplay.AntiAlias);
             Assert.AreEqual(0.3F, mapDisplay.MapIntensity);
@@ -109,7 +109,7 @@ namespace PurplePen.Tests
             mapDisplay.MapIntensity = 0.3F;
 
             ExportBitmap exporter = new ExportBitmap(mapDisplay.Clone());
-            exporter.CreateBitmapAutoDpi(filename, RectangleF.FromLTRB(0F, 70F, 300F, 200F), ImageFormat.Jpeg, 1700, 100, 200);
+            exporter.CreateBitmapAutoDpi(filename, RectangleF.FromLTRB(0F, 70F, 300F, 200F), GraphicsBitmapFormat.JPEG, 1700, 100, 200);
 
             Assert.IsFalse(mapDisplay.AntiAlias);
             Assert.AreEqual(0.3F, mapDisplay.MapIntensity);
@@ -135,7 +135,7 @@ namespace PurplePen.Tests
             mapDisplay.MapIntensity = 0.3F;
 
             ExportBitmap exporter = new ExportBitmap(mapDisplay.Clone());
-            exporter.CreateBitmapAutoDpi(filename, RectangleF.FromLTRB(0F, 70F, 100F, 100F), ImageFormat.Jpeg, 1700, 100, 200);
+            exporter.CreateBitmapAutoDpi(filename, RectangleF.FromLTRB(0F, 70F, 100F, 100F), GraphicsBitmapFormat.JPEG, 1700, 100, 200);
 
             Assert.IsFalse(mapDisplay.AntiAlias);
             Assert.AreEqual(0.3F, mapDisplay.MapIntensity);
@@ -162,7 +162,7 @@ namespace PurplePen.Tests
             mapDisplay.MapIntensity = 0.3F;
 
             ExportBitmap exporter = new ExportBitmap(mapDisplay.Clone());
-            exporter.CreateBitmapAutoDpi(filename, RectangleF.FromLTRB(0F, 70F, 600F, 600F), ImageFormat.Jpeg, 1700, 100, 200);
+            exporter.CreateBitmapAutoDpi(filename, RectangleF.FromLTRB(0F, 70F, 600F, 600F), GraphicsBitmapFormat.JPEG, 1700, 100, 200);
 
             Assert.IsFalse(mapDisplay.AntiAlias);
             Assert.AreEqual(0.3F, mapDisplay.MapIntensity);
@@ -189,7 +189,7 @@ namespace PurplePen.Tests
             mapDisplay.MapIntensity = 0.3F;
 
             ExportBitmap exporter = new ExportBitmap(mapDisplay.Clone());
-            exporter.CreateBitmap(filename, RectangleF.FromLTRB(0F, 70F, 300F, 400F), ImageFormat.Gif, 200F, null);
+            exporter.CreateBitmap(filename, RectangleF.FromLTRB(0F, 70F, 300F, 400F), GraphicsBitmapFormat.GIF, 200F, null);
 
             Assert.IsFalse(mapDisplay.AntiAlias);
             Assert.AreEqual(0.3F, mapDisplay.MapIntensity);
@@ -215,7 +215,7 @@ namespace PurplePen.Tests
             mapDisplay.MapIntensity = 0.3F;
 
             ExportBitmap exporter = new ExportBitmap(mapDisplay.Clone());
-            exporter.CreateBitmap(filename, RectangleF.FromLTRB(-43.78F, 201.04F, 168.46F, 418.32F), ImageFormat.Gif, 200F, mapDisplay.CoordinateMapper);
+            exporter.CreateBitmap(filename, RectangleF.FromLTRB(-43.78F, 201.04F, 168.46F, 418.32F), GraphicsBitmapFormat.GIF, 200F, mapDisplay.CoordinateMapper);
 
             Assert.IsFalse(mapDisplay.AntiAlias);
             Assert.AreEqual(0.3F, mapDisplay.MapIntensity);

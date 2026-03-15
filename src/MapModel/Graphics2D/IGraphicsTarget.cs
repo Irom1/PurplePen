@@ -91,8 +91,8 @@ namespace PurplePen.Graphics2D
         bool MustCopyBitsForGraphicsTarget { get; }
 
         // Resolution in dots per inch. Defaults to 96 if unknown.
-        double HorizontalResolution { get; }
-        double VerticalResolution { get; }
+        double HorizontalResolution { get; set; }
+        double VerticalResolution { get; set; }
 
         // Get the format this bitmap was loaded from, if read from stream/file.
         // Otherwise, return None. Return Other if format not in the enum, or Unknown

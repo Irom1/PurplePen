@@ -40,6 +40,7 @@ using System.Xml;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
+using PurplePen.Graphics2D;
 
 namespace PurplePen
 {
@@ -89,7 +90,7 @@ namespace PurplePen
 
             // Export the GIF file.
             ExportBitmap exportBitmap = new ExportBitmap(mapDisplay);
-            exportBitmap.CreateBitmapAutoDpi(gifFileName, mapArea, ImageFormat.Gif, MAXPIXELWITH, MINDPI, MAXDPI, mapDisplay.CoordinateMapper);
+            exportBitmap.CreateBitmapAutoDpi(gifFileName, mapArea, GraphicsBitmapFormat.GIF, MAXPIXELWITH, MINDPI, MAXDPI, mapDisplay.CoordinateMapper);
         }
 
         // Get the union of all the print areas in the event.

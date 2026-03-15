@@ -37,6 +37,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
+using PurplePen.Graphics2D;
 using PurplePen.Livelox.ApiContracts;
 
 namespace PurplePen.Livelox
@@ -98,7 +99,7 @@ namespace PurplePen.Livelox
             mapExporter.CreateBitmap(
                 Path.Combine(temporaryDirectory, mapFileName),
                 clonedMapDisplay.Bounds,
-                ImageFormat.Png,
+                GraphicsBitmapFormat.PNG,
                 dpi,
                 clonedMapDisplay.CoordinateMapper
             );

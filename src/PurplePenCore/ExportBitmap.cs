@@ -49,7 +49,7 @@ using System.Globalization;
 namespace PurplePen
 {
     // Class for exporting the map to a bitmap file..
-    class ExportBitmap
+    public class ExportBitmap
     {
         private MapDisplay mapDisplay;
 
@@ -65,7 +65,7 @@ namespace PurplePen
 
         // Create a bitmap file of the mapDisplay supplied at construction.
         // If mapperForWorldFile is not null and real world coords are defined, also create a world file.
-        public void CreateBitmap(string fileName, RectangleF rect, ImageFormat imageFormat, float dpi, CoordinateMapper mapperForWorldFile)
+        public void CreateBitmap(string fileName, RectangleF rect, GraphicsBitmapFormat imageFormat, float dpi, CoordinateMapper mapperForWorldFile)
         {
             float bitmapWidth, bitmapHeight; // size of the bitmap in pixels.
             int pixelWidth, pixelHeight; // bitmapWidth/Height, rounded up to integer.
@@ -75,24 +75,24 @@ namespace PurplePen
             pixelWidth = (int)Math.Ceiling(bitmapWidth);
             pixelHeight = (int)Math.Ceiling(bitmapHeight);
 
-            Bitmap bitmap = new Bitmap(pixelWidth, pixelHeight, GDIPlus_GraphicsTarget.NonAlphaPixelFormat);
-            bitmap.SetResolution(dpi, dpi);
+            IGraphicsBitmap bitmap = Services.BitmapLoader.CreateEmptyBitmap(pixelWidth, pixelHeight);
+            bitmap.HorizontalResolution = dpi;
+            bitmap.VerticalResolution = dpi;
 
             // Set the transform
             Matrix transform = Geometry.CreateInvertedRectangleTransform(rect, new RectangleF(0, 0, bitmapWidth, bitmapHeight));
 
             // And draw.
-            mapDisplay.Draw(new GDIPlus_Bitmap(bitmap), transform);
+            mapDisplay.Draw(bitmap, transform);
 
             // JPEG and GIF have special code paths because the default Save method isn't
             // really good enough.
             using (Stream stream = new FileStream(fileName, FileMode.Create, FileAccess.Write)) {
-                if (imageFormat == ImageFormat.Jpeg)
-                    BitmapUtil.SaveJpeg(bitmap, stream, 80);
-                else if (imageFormat == ImageFormat.Gif)
-                    BitmapUtil.SaveGif(bitmap, stream);
-                else
-                    bitmap.Save(stream, imageFormat);
+#if !PORTING
+                // Should there be a way to set the JPEG image quality. Was 80 before.
+                // We need to check the GIF saved and see if we need to tweak the quantizer.
+#endif
+                bitmap.WriteToStream(imageFormat, stream);
             }
 
             bitmap.Dispose();
@@ -104,7 +104,7 @@ namespace PurplePen
             }
         }
 
-        public void CreateBitmapAutoDpi(string fileName, RectangleF rect, ImageFormat imageFormat, int maxPixelWidth, float minDpi, float maxDpi, CoordinateMapper mapperForWorldFile = null)
+        public void CreateBitmapAutoDpi(string fileName, RectangleF rect, GraphicsBitmapFormat imageFormat, int maxPixelWidth, float minDpi, float maxDpi, CoordinateMapper mapperForWorldFile = null)
         {
             float dpi = maxPixelWidth * 25.4F / Math.Max(rect.Width, rect.Height);
 

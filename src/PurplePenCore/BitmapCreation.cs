@@ -37,9 +37,6 @@ using System.ComponentModel;
 using System.Collections.Generic;
 using System.Linq;
 using System.Drawing;
-using System.Drawing.Drawing2D;
-using Margins = System.Drawing.Printing.Margins;
-using PaperSize = System.Drawing.Printing.PaperSize;
 using System.Diagnostics;
 
 
@@ -53,7 +50,7 @@ namespace PurplePen
     using System.Linq;
 
     // Class to output courses to bitmaps
-    class BitmapCreation
+    public class BitmapCreation
     {
         private BitmapCreationSettings bitmapCreationSettings;
         private EventDB eventDB;
@@ -139,15 +136,15 @@ namespace PurplePen
         }
 
         // Get the image format for the type of bitmap file we are creating.
-        private ImageFormat GetImageFormat()
+        private GraphicsBitmapFormat GetImageFormat()
         {
             switch (bitmapCreationSettings.ExportedBitmapKind) {
                 case BitmapCreationSettings.BitmapKind.Gif:
-                    return ImageFormat.Gif;
+                    return GraphicsBitmapFormat.GIF;
                 case BitmapCreationSettings.BitmapKind.Png:
-                    return ImageFormat.Png;
+                    return GraphicsBitmapFormat.PNG;
                 case BitmapCreationSettings.BitmapKind.Jpeg:
-                    return ImageFormat.Jpeg;
+                    return GraphicsBitmapFormat.JPEG;
                 default:
                     throw new ApplicationException("Unknown bitmap kind");
             }

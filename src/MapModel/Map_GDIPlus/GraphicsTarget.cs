@@ -1149,11 +1149,13 @@ namespace PurplePen.MapModel
         public double HorizontalResolution
         {
             get { return bitmap != null ? bitmap.HorizontalResolution : 96; }
+            set { bitmap.SetResolution((float)value, bitmap.VerticalResolution); }
         }
 
         public double VerticalResolution
         {
             get { return bitmap != null ? bitmap.VerticalResolution : 96; }
+            set { bitmap.SetResolution(bitmap.HorizontalResolution, (float)value); }
         }
 
         public int PixelWidth
