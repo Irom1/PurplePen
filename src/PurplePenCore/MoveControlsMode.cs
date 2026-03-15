@@ -36,7 +36,6 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 
-using PurplePen.MapView;
 using PurplePen.MapModel;
 using System.Diagnostics;
 using static PurplePen.Controller;

@@ -35,10 +35,8 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Windows.Forms;
 using System.Diagnostics;
 
-using PurplePen.MapView;
 using PurplePen.MapModel;
 using PurplePen.Graphics2D;
 using System.Text;
@@ -47,7 +45,7 @@ using System.Linq;
 namespace PurplePen
 {
     // The base mode is a base class with default behavior.
-    class BaseMode: ICommandMode
+    public class BaseMode: ICommandMode
     {
         public virtual void BeginMode()
         { }

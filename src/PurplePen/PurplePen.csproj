@@ -999,11 +999,6 @@
     <Compile Update="MiscText.*.Designer.cs">
       <DependentUpon>MiscText.resx</DependentUpon>
     </Compile>
-    <Compile Update="StatusBarText.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>StatusBarText.resx</DependentUpon>
-    </Compile>
     <Compile Update="StatusBarText.*.Designer.cs">
       <DependentUpon>StatusBarText.resx</DependentUpon>
     </Compile>
@@ -1018,10 +1013,6 @@
     </EmbeddedResource>
     <EmbeddedResource Update="MiscText.*.resx">
       <DependentUpon>MiscText.resx</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Update="StatusBarText.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>StatusBarText.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="StatusBarText.*.resx">
       <DependentUpon>StatusBarText.resx</DependentUpon>

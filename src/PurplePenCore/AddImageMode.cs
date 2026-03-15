@@ -1,4 +1,4 @@
-/* Copyright (c) 2006-2008, Peter Golde
+﻿/* Copyright (c) 2006-2008, Peter Golde
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without 
@@ -35,42 +35,40 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Windows.Forms;
 
-using PurplePen.MapView;
 using PurplePen.MapModel;
 using System.Diagnostics;
 
 namespace PurplePen
 {
-    // Mode for adding a description to a course.
-    class AddDescriptionMode: BaseMode
+    // Mode for adding an image or rectangleSpecial to a course.
+    class AddRectangleMode : BaseMode
     {
         Controller controller;
         SelectionMgr selectionMgr;
         UndoMgr undoMgr;
         EventDB eventDB;
-        CourseDesignator courseDesignator;                         // course we are adding to.
-        DescriptionCourseObj startingObj;           // base object being dragged out -- used to create current obj being dragged.
-        DescriptionCourseObj currentObj;           // current object being dragged out.
+        CourseObj startingObj;           // base object being dragged out -- used to create current obj being dragged.
+        RectCourseObj currentObj;           // current object being dragged out.
         PointF startLocation;                               // location where dragging started.
         PointF handleDragging;
 
-        // The description being dragged out.
-        SymbolDB symbolDB;
-        DescriptionLine[] description;
-        DescriptionKind kind;
+        // Aspect ratio 
+        float aspectRatio;
 
-        public AddDescriptionMode(Controller controller, UndoMgr undoMgr, SelectionMgr selectionMgr, EventDB eventDB, SymbolDB symbolDB, CourseDesignator courseDesignator, DescriptionLine[] description, DescriptionKind kind)
+        Func<RectangleF, CourseObj> createCourseObj;
+        Func<RectangleF, Id<Special>> createSpecial;
+
+
+        public AddRectangleMode(Controller controller, UndoMgr undoMgr, SelectionMgr selectionMgr, EventDB eventDB, float aspectRatio, Func<RectangleF, CourseObj> createCourseObj, Func<RectangleF, Id<Special>> createSpecial)
         {
             this.controller = controller;
             this.undoMgr = undoMgr;
             this.selectionMgr = selectionMgr;
-            this.symbolDB = symbolDB;
             this.eventDB = eventDB;
-            this.courseDesignator = courseDesignator;
-            this.description = description;
-            this.kind = kind;
+            this.aspectRatio = aspectRatio;
+            this.createCourseObj = createCourseObj;
+            this.createSpecial = createSpecial;
         }
 
         // Mouse cursor looks like a crosshair
@@ -86,7 +84,7 @@ namespace PurplePen
         {
             get
             {
-                return StatusBarText.AddingDescription;
+                return StatusBarText.AddingRectangle;
             }
         }
 
@@ -101,7 +99,7 @@ namespace PurplePen
         // Update currentObj to reflect dragging to the given location.
         void DragTo(PointF location)
         {
-            currentObj = (DescriptionCourseObj) startingObj.Clone();
+            currentObj = (RectCourseObj)startingObj.Clone();
             currentObj.MoveHandle(handleDragging, location);
         }
 
@@ -110,13 +108,13 @@ namespace PurplePen
             if (pane != Pane.Map)
                 return DragAction.None;
 
-            // Begin dragging out the description block; start at 1 column
+            // Begin dragging out the image.
             startLocation = location;
-            startingObj = new DescriptionCourseObj(Id<Special>.None, startLocation, 1F, symbolDB, description, kind, false, 1);
-            handleDragging = new PointF(startingObj.rect.Right, startingObj.rect.Top);
+            startingObj = createCourseObj(new RectangleF(location.X, location.Y, 0.1F, 0.1F * aspectRatio));
+            handleDragging = location;
             DragTo(location);
             displayUpdateNeeded = true;
-            return DragAction.ImmediateDrag;
+            return DragAction.DelayedDrag;  // Also allow a click.
         }
 
         public override void LeftButtonDrag(Pane pane, PointF location, PointF locationStart, float pixelSize, ref bool displayUpdateNeeded)
@@ -127,32 +125,43 @@ namespace PurplePen
             displayUpdateNeeded = true;
         }
 
+        public override void LeftButtonClick(Pane pane, PointF location, float pixelSize, ref bool displayUpdateNeeded)
+        {
+            if (pane != Pane.Map)
+                return;
+
+            // User just clicked. Create rectangle of a default size.
+            SizeF newSize = aspectRatio < 1 ? new SizeF(60F, 60F * aspectRatio) : new SizeF(60F / aspectRatio, 60F);
+            CreateImageSpecial(new RectangleF(location, newSize));
+            displayUpdateNeeded = true;
+        }
+
         public override void LeftButtonEndDrag(Pane pane, PointF location, PointF locationStart, float pixelSize, ref bool displayUpdateNeeded)
         {
             Debug.Assert(pane == Pane.Map);
 
             DragTo(location);
 
-            PointF upperLeft = new PointF(currentObj.rect.Left, currentObj.rect.Bottom);
-            float cellSize = currentObj.CellSize;
-            int numColumns = currentObj.NumberOfColumns;
-
-            // Create the new description, unless it's ridiculously small.
-            if (cellSize > 0.5F) {
-                CourseDesignator[] courses = null;
-                courses = new CourseDesignator[] { courseDesignator.WithAllVariations()};
-
-                undoMgr.BeginCommand(1522, CommandNameText.AddObject);
-                Id<Special> specialId = ChangeEvent.AddDescription(eventDB, false, courses, upperLeft, cellSize, numColumns);
-                undoMgr.EndCommand(1522);
-
-                selectionMgr.SelectSpecial(specialId);
+            RectangleF rect = currentObj.rect;
+            if (rect.Height < 1 || rect.Width < 1) {
+                // Too small. Use the click action.
+                LeftButtonClick(pane, location, pixelSize, ref displayUpdateNeeded);
             }
+            else {
+                CreateImageSpecial(rect);
+                displayUpdateNeeded = true;
+            }
+        }
 
+        void CreateImageSpecial(RectangleF boundingRect)
+        {
+            undoMgr.BeginCommand(1851, CommandNameText.AddObject);
+            Id<Special> specialId = createSpecial(boundingRect);
+            undoMgr.EndCommand(1851);
+
+            selectionMgr.SelectSpecial(specialId);
 
             controller.DefaultCommandMode();
-            displayUpdateNeeded = true;
         }
     }
-
 }

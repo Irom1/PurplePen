@@ -1,4 +1,4 @@
-﻿/* Copyright (c) 2006-2008, Peter Golde
+/* Copyright (c) 2006-2008, Peter Golde
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without 
@@ -35,68 +35,56 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Windows.Forms;
 
-using PurplePen.MapView;
 using PurplePen.MapModel;
 using System.Diagnostics;
-using PurplePen.Graphics2D;
 
 namespace PurplePen
 {
     // Mode for adding a description to a course.
-    class AddTextMode: BaseMode
+    class AddDescriptionMode: BaseMode
     {
         Controller controller;
         SelectionMgr selectionMgr;
         UndoMgr undoMgr;
         EventDB eventDB;
-        BasicTextCourseObj startingObj;           // base object being dragged out -- used to create current obj being dragged.
-        BasicTextCourseObj currentObj;           // current object being dragged out.
+        CourseDesignator courseDesignator;                         // course we are adding to.
+        DescriptionCourseObj startingObj;           // base object being dragged out -- used to create current obj being dragged.
+        DescriptionCourseObj currentObj;           // current object being dragged out.
         PointF startLocation;                               // location where dragging started.
         PointF handleDragging;
 
-        // The text being added.
-        string text;
+        // The description being dragged out.
+        SymbolDB symbolDB;
+        DescriptionLine[] description;
+        DescriptionKind kind;
 
-        // The text to display
-        string displayText;
-
-        // The text properties
-        string fontName;
-        bool fontBold, fontItalic;
-        SpecialColor fontColor;
-        float fontHeight;
-
-        public AddTextMode(Controller controller, UndoMgr undoMgr, SelectionMgr selectionMgr, EventDB eventDB, string text, string fontName, bool fontBold, bool fontItalic, SpecialColor fontColor, float fontHeight)
+        public AddDescriptionMode(Controller controller, UndoMgr undoMgr, SelectionMgr selectionMgr, EventDB eventDB, SymbolDB symbolDB, CourseDesignator courseDesignator, DescriptionLine[] description, DescriptionKind kind)
         {
             this.controller = controller;
             this.undoMgr = undoMgr;
             this.selectionMgr = selectionMgr;
+            this.symbolDB = symbolDB;
             this.eventDB = eventDB;
-            this.text = text;
-            this.fontName = fontName;
-            this.fontBold = fontBold;
-            this.fontItalic = fontItalic;
-            this.fontColor = fontColor;
-            this.fontHeight = fontHeight;
-            this.displayText = CourseFormatter.ExpandText(eventDB, selectionMgr.ActiveCourseView, text);
+            this.courseDesignator = courseDesignator;
+            this.description = description;
+            this.kind = kind;
         }
 
         // Mouse cursor looks like a crosshair
         public override MousePointerShape GetMouseCursor(Pane pane, PointF location, float pixelSize)
         {
-            if (pane == Pane.Map)
-                return MousePointerShape.Cross;
-            else
+            if (pane != Pane.Map)
                 return MousePointerShape.Arrow;
+
+            return MousePointerShape.Cross;
         }
 
         public override string StatusText
         {
             get
             {
-                return StatusBarText.AddingText;
+                return StatusBarText.AddingDescription;
             }
         }
 
@@ -111,7 +99,7 @@ namespace PurplePen
         // Update currentObj to reflect dragging to the given location.
         void DragTo(PointF location)
         {
-            currentObj = (BasicTextCourseObj) startingObj.Clone();
+            currentObj = (DescriptionCourseObj) startingObj.Clone();
             currentObj.MoveHandle(handleDragging, location);
         }
 
@@ -120,13 +108,13 @@ namespace PurplePen
             if (pane != Pane.Map)
                 return DragAction.None;
 
-            // Begin dragging out the description block.
+            // Begin dragging out the description block; start at 1 column
             startLocation = location;
-            startingObj = new BasicTextCourseObj(Id<Special>.None, displayText, new RectangleF(location, new SizeF(0.001F, 0.001F)), fontName, Util.GetTextEffects(fontBold, fontItalic), fontColor, fontHeight);
-            handleDragging = location;
+            startingObj = new DescriptionCourseObj(Id<Special>.None, startLocation, 1F, symbolDB, description, kind, false, 1);
+            handleDragging = new PointF(startingObj.rect.Right, startingObj.rect.Top);
             DragTo(location);
             displayUpdateNeeded = true;
-            return DragAction.DelayedDrag;  // Also allow a click.
+            return DragAction.ImmediateDrag;
         }
 
         public override void LeftButtonDrag(Pane pane, PointF location, PointF locationStart, float pixelSize, ref bool displayUpdateNeeded)
@@ -137,54 +125,31 @@ namespace PurplePen
             displayUpdateNeeded = true;
         }
 
-        public override void LeftButtonClick(Pane pane, PointF location, float pixelSize, ref bool displayUpdateNeeded)
-        {
-            if (pane != Pane.Map)
-                return;
-
-            // If text is empty, use a non-empty text
-            string measureText = string.IsNullOrEmpty(displayText) ? "000000" : displayText;
-
-            // User just clicked. Create text of a default size.
-            SizeF size;
-            Graphics g = WindowsUtil.GetHiresGraphics();
-            using (Font f = ((GdiplusFontLoader)Services.FontLoader).CreateFont(NormalCourseAppearance.fontNameTextSpecial, NormalCourseAppearance.emHeightDefaultTextSpecial, NormalCourseAppearance.fontEffectsTextSpecial))
-                size = g.MeasureString(measureText, f, new PointF(0,0), StringFormat.GenericTypographic);
-
-            RectangleF boundingRect = new RectangleF(new PointF(location.X, location.Y - size.Height), size);
-            boundingRect = currentObj.AdjustBoundingRect(boundingRect);
-            CreateTextSpecial(boundingRect);
-            displayUpdateNeeded = true;
-        }
-
         public override void LeftButtonEndDrag(Pane pane, PointF location, PointF locationStart, float pixelSize, ref bool displayUpdateNeeded)
         {
             Debug.Assert(pane == Pane.Map);
 
             DragTo(location);
 
-            RectangleF rect = currentObj.GetHighlightBounds();
-            if (rect.Height < 1 || rect.Width < 1) {
-                // Too small. Use the click action.
-                LeftButtonClick(pane, location, pixelSize, ref displayUpdateNeeded);
+            PointF upperLeft = new PointF(currentObj.rect.Left, currentObj.rect.Bottom);
+            float cellSize = currentObj.CellSize;
+            int numColumns = currentObj.NumberOfColumns;
+
+            // Create the new description, unless it's ridiculously small.
+            if (cellSize > 0.5F) {
+                CourseDesignator[] courses = null;
+                courses = new CourseDesignator[] { courseDesignator.WithAllVariations()};
+
+                undoMgr.BeginCommand(1522, CommandNameText.AddObject);
+                Id<Special> specialId = ChangeEvent.AddDescription(eventDB, false, courses, upperLeft, cellSize, numColumns);
+                undoMgr.EndCommand(1522);
+
+                selectionMgr.SelectSpecial(specialId);
             }
-            else {
-                rect = currentObj.AdjustBoundingRect(rect);
-                CreateTextSpecial(rect);
-                displayUpdateNeeded = true;
-            }
-        }
 
-        void CreateTextSpecial(RectangleF boundingRect)
-        {
-            undoMgr.BeginCommand(1551, CommandNameText.AddObject);
-
-            Id<Special> specialId = ChangeEvent.AddTextSpecial(eventDB, boundingRect, text, currentObj.fontName, (currentObj.textEffects & TextEffects.Bold) != 0, (currentObj.textEffects & TextEffects.Italic) != 0, currentObj.fontColor, currentObj.fontDigitHeight);
-            undoMgr.EndCommand(1551);
-
-            selectionMgr.SelectSpecial(specialId);
 
             controller.DefaultCommandMode();
+            displayUpdateNeeded = true;
         }
     }
 

@@ -7,10 +7,8 @@ using System.Linq;
 
 namespace PurplePen
 {
-    using PurplePen.MapView;
     using PurplePen.MapModel;
     using PurplePen.Graphics2D;
-    using System.Windows.Forms;
 
     internal class TopologyDragControlMode: BaseMode
     {

@@ -35,58 +35,66 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Windows.Forms;
 
-using PurplePen.MapView;
 using PurplePen.MapModel;
 using System.Diagnostics;
+using PurplePen.Graphics2D;
 
 namespace PurplePen
 {
-    // Mode for adding an image or rectangleSpecial to a course.
-    class AddRectangleMode : BaseMode
+    // Mode for adding a description to a course.
+    class AddTextMode: BaseMode
     {
         Controller controller;
         SelectionMgr selectionMgr;
         UndoMgr undoMgr;
         EventDB eventDB;
-        CourseObj startingObj;           // base object being dragged out -- used to create current obj being dragged.
-        RectCourseObj currentObj;           // current object being dragged out.
+        BasicTextCourseObj startingObj;           // base object being dragged out -- used to create current obj being dragged.
+        BasicTextCourseObj currentObj;           // current object being dragged out.
         PointF startLocation;                               // location where dragging started.
         PointF handleDragging;
 
-        // Aspect ratio 
-        float aspectRatio;
+        // The text being added.
+        string text;
 
-        Func<RectangleF, CourseObj> createCourseObj;
-        Func<RectangleF, Id<Special>> createSpecial;
+        // The text to display
+        string displayText;
 
+        // The text properties
+        string fontName;
+        bool fontBold, fontItalic;
+        SpecialColor fontColor;
+        float fontHeight;
 
-        public AddRectangleMode(Controller controller, UndoMgr undoMgr, SelectionMgr selectionMgr, EventDB eventDB, float aspectRatio, Func<RectangleF, CourseObj> createCourseObj, Func<RectangleF, Id<Special>> createSpecial)
+        public AddTextMode(Controller controller, UndoMgr undoMgr, SelectionMgr selectionMgr, EventDB eventDB, string text, string fontName, bool fontBold, bool fontItalic, SpecialColor fontColor, float fontHeight)
         {
             this.controller = controller;
             this.undoMgr = undoMgr;
             this.selectionMgr = selectionMgr;
             this.eventDB = eventDB;
-            this.aspectRatio = aspectRatio;
-            this.createCourseObj = createCourseObj;
-            this.createSpecial = createSpecial;
+            this.text = text;
+            this.fontName = fontName;
+            this.fontBold = fontBold;
+            this.fontItalic = fontItalic;
+            this.fontColor = fontColor;
+            this.fontHeight = fontHeight;
+            this.displayText = CourseFormatter.ExpandText(eventDB, selectionMgr.ActiveCourseView, text);
         }
 
         // Mouse cursor looks like a crosshair
         public override MousePointerShape GetMouseCursor(Pane pane, PointF location, float pixelSize)
         {
-            if (pane != Pane.Map)
+            if (pane == Pane.Map)
+                return MousePointerShape.Cross;
+            else
                 return MousePointerShape.Arrow;
-
-            return MousePointerShape.Cross;
         }
 
         public override string StatusText
         {
             get
             {
-                return StatusBarText.AddingRectangle;
+                return StatusBarText.AddingText;
             }
         }
 
@@ -101,7 +109,7 @@ namespace PurplePen
         // Update currentObj to reflect dragging to the given location.
         void DragTo(PointF location)
         {
-            currentObj = (RectCourseObj)startingObj.Clone();
+            currentObj = (BasicTextCourseObj) startingObj.Clone();
             currentObj.MoveHandle(handleDragging, location);
         }
 
@@ -110,9 +118,9 @@ namespace PurplePen
             if (pane != Pane.Map)
                 return DragAction.None;
 
-            // Begin dragging out the image.
+            // Begin dragging out the description block.
             startLocation = location;
-            startingObj = createCourseObj(new RectangleF(location.X, location.Y, 0.1F, 0.1F * aspectRatio));
+            startingObj = new BasicTextCourseObj(Id<Special>.None, displayText, new RectangleF(location, new SizeF(0.001F, 0.001F)), fontName, Util.GetTextEffects(fontBold, fontItalic), fontColor, fontHeight);
             handleDragging = location;
             DragTo(location);
             displayUpdateNeeded = true;
@@ -132,9 +140,17 @@ namespace PurplePen
             if (pane != Pane.Map)
                 return;
 
-            // User just clicked. Create rectangle of a default size.
-            SizeF newSize = aspectRatio < 1 ? new SizeF(60F, 60F * aspectRatio) : new SizeF(60F / aspectRatio, 60F);
-            CreateImageSpecial(new RectangleF(location, newSize));
+            // If text is empty, use a non-empty text
+            string measureText = string.IsNullOrEmpty(displayText) ? "000000" : displayText;
+
+            // User just clicked. Create text of a default size.
+            ITextMetrics textMetrics = Services.TextMetricsProvider;
+            ITextFaceMetrics textFaceMetrics = textMetrics.GetTextFaceMetrics(NormalCourseAppearance.fontNameTextSpecial, NormalCourseAppearance.emHeightDefaultTextSpecial, NormalCourseAppearance.fontEffectsTextSpecial); 
+            SizeF size = textFaceMetrics.GetTextSize(measureText);
+
+            RectangleF boundingRect = new RectangleF(new PointF(location.X, location.Y - size.Height), size);
+            boundingRect = currentObj.AdjustBoundingRect(boundingRect);
+            CreateTextSpecial(boundingRect);
             displayUpdateNeeded = true;
         }
 
@@ -144,26 +160,29 @@ namespace PurplePen
 
             DragTo(location);
 
-            RectangleF rect = currentObj.rect;
+            RectangleF rect = currentObj.GetHighlightBounds();
             if (rect.Height < 1 || rect.Width < 1) {
                 // Too small. Use the click action.
                 LeftButtonClick(pane, location, pixelSize, ref displayUpdateNeeded);
             }
             else {
-                CreateImageSpecial(rect);
+                rect = currentObj.AdjustBoundingRect(rect);
+                CreateTextSpecial(rect);
                 displayUpdateNeeded = true;
             }
         }
 
-        void CreateImageSpecial(RectangleF boundingRect)
+        void CreateTextSpecial(RectangleF boundingRect)
         {
-            undoMgr.BeginCommand(1851, CommandNameText.AddObject);
-            Id<Special> specialId = createSpecial(boundingRect);
-            undoMgr.EndCommand(1851);
+            undoMgr.BeginCommand(1551, CommandNameText.AddObject);
+
+            Id<Special> specialId = ChangeEvent.AddTextSpecial(eventDB, boundingRect, text, currentObj.fontName, (currentObj.textEffects & TextEffects.Bold) != 0, (currentObj.textEffects & TextEffects.Italic) != 0, currentObj.fontColor, currentObj.fontDigitHeight);
+            undoMgr.EndCommand(1551);
 
             selectionMgr.SelectSpecial(specialId);
 
             controller.DefaultCommandMode();
         }
     }
+
 }

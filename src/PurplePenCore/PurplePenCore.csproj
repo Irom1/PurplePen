@@ -122,6 +122,47 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>SelectionDescriptionText.resx</DependentUpon>
     </Compile>
+    <Compile Update="StatusBarText.cs.Designer.cs">
+      <DependentUpon>StatusBarText.resx</DependentUpon>
+    </Compile>
+    <Compile Update="StatusBarText.da.Designer.cs">
+      <DependentUpon>StatusBarText.resx</DependentUpon>
+    </Compile>
+    <Compile Update="StatusBarText.Designer.cs">
+      <DependentUpon>StatusBarText.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="StatusBarText.hu.Designer.cs">
+      <DependentUpon>StatusBarText.resx</DependentUpon>
+    </Compile>
+    <Compile Update="StatusBarText.ja.Designer.cs">
+      <DependentUpon>StatusBarText.resx</DependentUpon>
+    </Compile>
+    <Compile Update="StatusBarText.nl.Designer.cs">
+      <DependentUpon>StatusBarText.resx</DependentUpon>
+    </Compile>
+    <Compile Update="StatusBarText.pl.Designer.cs">
+      <DependentUpon>StatusBarText.resx</DependentUpon>
+    </Compile>
+    <Compile Update="StatusBarText.pt-BR.Designer.cs">
+      <DependentUpon>StatusBarText.resx</DependentUpon>
+    </Compile>
+    <Compile Update="StatusBarText.pt.Designer.cs">
+      <DependentUpon>StatusBarText.resx</DependentUpon>
+    </Compile>
+    <Compile Update="StatusBarText.tr.Designer.cs">
+      <DependentUpon>StatusBarText.resx</DependentUpon>
+    </Compile>
+    <Compile Update="StatusBarText.uk.Designer.cs">
+      <DependentUpon>StatusBarText.resx</DependentUpon>
+    </Compile>
+    <Compile Update="StatusBarText.zh-CN.Designer.cs">
+      <DependentUpon>StatusBarText.resx</DependentUpon>
+    </Compile>
+    <Compile Update="StatusBarText.zh-TW.Designer.cs">
+      <DependentUpon>StatusBarText.resx</DependentUpon>
+    </Compile>
     <Compile Update="SelectionDescriptionText.*.Designer.cs">
       <DependentUpon>SelectionDescriptionText.resx</DependentUpon>
     </Compile>
@@ -215,6 +256,76 @@
     <EmbeddedResource Update="SelectionDescriptionText.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>SelectionDescriptionText.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="StatusBarText.bg.resx">
+      <DependentUpon>StatusBarText.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="StatusBarText.cs.resx">
+      <DependentUpon>StatusBarText.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="StatusBarText.da.resx">
+      <DependentUpon>StatusBarText.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="StatusBarText.de.resx">
+      <DependentUpon>StatusBarText.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="StatusBarText.es.resx">
+      <DependentUpon>StatusBarText.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="StatusBarText.et.resx">
+      <DependentUpon>StatusBarText.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="StatusBarText.fi.resx">
+      <DependentUpon>StatusBarText.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="StatusBarText.fr.resx">
+      <DependentUpon>StatusBarText.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="StatusBarText.hu.resx">
+      <DependentUpon>StatusBarText.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="StatusBarText.ja.resx">
+      <DependentUpon>StatusBarText.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="StatusBarText.nb-NO.resx">
+      <DependentUpon>StatusBarText.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="StatusBarText.nl.resx">
+      <DependentUpon>StatusBarText.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="StatusBarText.nn-NO.resx">
+      <DependentUpon>StatusBarText.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="StatusBarText.pl.resx">
+      <DependentUpon>StatusBarText.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="StatusBarText.pt-BR.resx">
+      <DependentUpon>StatusBarText.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="StatusBarText.pt.resx">
+      <DependentUpon>StatusBarText.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="StatusBarText.resx">
+      <LastGenOutput>StatusBarText.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="StatusBarText.ro.resx">
+      <DependentUpon>StatusBarText.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="StatusBarText.sv.resx">
+      <DependentUpon>StatusBarText.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="StatusBarText.tr.resx">
+      <DependentUpon>StatusBarText.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="StatusBarText.uk.resx">
+      <DependentUpon>StatusBarText.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="StatusBarText.zh-CN.resx">
+      <DependentUpon>StatusBarText.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="StatusBarText.zh-TW.resx">
+      <DependentUpon>StatusBarText.resx</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Update="SelectionDescriptionText.*.resx">
       <DependentUpon>SelectionDescriptionText.resx</DependentUpon>

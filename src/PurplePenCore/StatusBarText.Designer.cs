@@ -19,10 +19,10 @@ namespace PurplePen {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "18.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class StatusBarText {
+    public class StatusBarText {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace PurplePen {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("PurplePen.StatusBarText", typeof(StatusBarText).Assembly);
@@ -51,7 +51,7 @@ namespace PurplePen {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace PurplePen {
         /// <summary>
         ///   Looks up a localized string similar to Click left mouse button at the location of the bend.
         /// </summary>
-        internal static string AddingBend {
+        public static string AddingBend {
             get {
                 return ResourceManager.GetString("AddingBend", resourceCulture);
             }
@@ -72,7 +72,7 @@ namespace PurplePen {
         /// <summary>
         ///   Looks up a localized string similar to Click left mouse button to place new control.
         /// </summary>
-        internal static string AddingControl {
+        public static string AddingControl {
             get {
                 return ResourceManager.GetString("AddingControl", resourceCulture);
             }
@@ -81,7 +81,7 @@ namespace PurplePen {
         /// <summary>
         ///   Looks up a localized string similar to Click left mouse button on the control circle to add a small gap; hold down left mouse button and drag to create a large gap.
         /// </summary>
-        internal static string AddingControlGap {
+        public static string AddingControlGap {
             get {
                 return ResourceManager.GetString("AddingControlGap", resourceCulture);
             }
@@ -90,7 +90,7 @@ namespace PurplePen {
         /// <summary>
         ///   Looks up a localized string similar to Click left mouse button to add a new corner.
         /// </summary>
-        internal static string AddingCorner {
+        public static string AddingCorner {
             get {
                 return ResourceManager.GetString("AddingCorner", resourceCulture);
             }
@@ -99,7 +99,7 @@ namespace PurplePen {
         /// <summary>
         ///   Looks up a localized string similar to Click left mouse button to place new mandatory crossing point.
         /// </summary>
-        internal static string AddingCrossingPoint {
+        public static string AddingCrossingPoint {
             get {
                 return ResourceManager.GetString("AddingCrossingPoint", resourceCulture);
             }
@@ -108,7 +108,7 @@ namespace PurplePen {
         /// <summary>
         ///   Looks up a localized string similar to Hold down left mouse button and drag to create control descriptions.
         /// </summary>
-        internal static string AddingDescription {
+        public static string AddingDescription {
             get {
                 return ResourceManager.GetString("AddingDescription", resourceCulture);
             }
@@ -117,7 +117,7 @@ namespace PurplePen {
         /// <summary>
         ///   Looks up a localized string similar to Click left mouse button to add existing control &quot;{0}&quot; to course.
         /// </summary>
-        internal static string AddingExistingControl {
+        public static string AddingExistingControl {
             get {
                 return ResourceManager.GetString("AddingExistingControl", resourceCulture);
             }
@@ -126,7 +126,7 @@ namespace PurplePen {
         /// <summary>
         ///   Looks up a localized string similar to Click left mouse button to add existing mandatory crossing point to course.
         /// </summary>
-        internal static string AddingExistingCrossingPoint {
+        public static string AddingExistingCrossingPoint {
             get {
                 return ResourceManager.GetString("AddingExistingCrossingPoint", resourceCulture);
             }
@@ -135,7 +135,7 @@ namespace PurplePen {
         /// <summary>
         ///   Looks up a localized string similar to Click left mouse button to add existing finish to course.
         /// </summary>
-        internal static string AddingExistingFinish {
+        public static string AddingExistingFinish {
             get {
                 return ResourceManager.GetString("AddingExistingFinish", resourceCulture);
             }
@@ -144,7 +144,7 @@ namespace PurplePen {
         /// <summary>
         ///   Looks up a localized string similar to Click left mouse button to add existing map exchange to course.
         /// </summary>
-        internal static string AddingExistingMapExchange {
+        public static string AddingExistingMapExchange {
             get {
                 return ResourceManager.GetString("AddingExistingMapExchange", resourceCulture);
             }
@@ -153,7 +153,7 @@ namespace PurplePen {
         /// <summary>
         ///   Looks up a localized string similar to Click left mouse button to add existing map issue point to course.
         /// </summary>
-        internal static string AddingExistingMapIssue {
+        public static string AddingExistingMapIssue {
             get {
                 return ResourceManager.GetString("AddingExistingMapIssue", resourceCulture);
             }
@@ -162,7 +162,7 @@ namespace PurplePen {
         /// <summary>
         ///   Looks up a localized string similar to Click left mouse button to add existing start to course.
         /// </summary>
-        internal static string AddingExistingStart {
+        public static string AddingExistingStart {
             get {
                 return ResourceManager.GetString("AddingExistingStart", resourceCulture);
             }
@@ -171,7 +171,7 @@ namespace PurplePen {
         /// <summary>
         ///   Looks up a localized string similar to Click left mouse button to place new finish.
         /// </summary>
-        internal static string AddingFinish {
+        public static string AddingFinish {
             get {
                 return ResourceManager.GetString("AddingFinish", resourceCulture);
             }
@@ -180,7 +180,7 @@ namespace PurplePen {
         /// <summary>
         ///   Looks up a localized string similar to Click left mouse button to create small gap; hold down left mouse button and drag to create a large gap in the leg.
         /// </summary>
-        internal static string AddingLegGap {
+        public static string AddingLegGap {
             get {
                 return ResourceManager.GetString("AddingLegGap", resourceCulture);
             }
@@ -189,7 +189,7 @@ namespace PurplePen {
         /// <summary>
         ///   Looks up a localized string similar to Hold down left mouse button and drag to add a line segment; click the left mouse button to finish adding object.
         /// </summary>
-        internal static string AddingLineArea {
+        public static string AddingLineArea {
             get {
                 return ResourceManager.GetString("AddingLineArea", resourceCulture);
             }
@@ -198,7 +198,7 @@ namespace PurplePen {
         /// <summary>
         ///   Looks up a localized string similar to Click left mouse button to place new map exchange.
         /// </summary>
-        internal static string AddingMapExchange {
+        public static string AddingMapExchange {
             get {
                 return ResourceManager.GetString("AddingMapExchange", resourceCulture);
             }
@@ -207,7 +207,7 @@ namespace PurplePen {
         /// <summary>
         ///   Looks up a localized string similar to Click left mouse button to add map exchange at control &quot;{0}&quot; .
         /// </summary>
-        internal static string AddingMapExchangeToControl {
+        public static string AddingMapExchangeToControl {
             get {
                 return ResourceManager.GetString("AddingMapExchangeToControl", resourceCulture);
             }
@@ -216,7 +216,7 @@ namespace PurplePen {
         /// <summary>
         ///   Looks up a localized string similar to Click left mouse button to place new map issue point.
         /// </summary>
-        internal static string AddingMapIssue {
+        public static string AddingMapIssue {
             get {
                 return ResourceManager.GetString("AddingMapIssue", resourceCulture);
             }
@@ -225,7 +225,7 @@ namespace PurplePen {
         /// <summary>
         ///   Looks up a localized string similar to Click left mouse button to place new object.
         /// </summary>
-        internal static string AddingObject {
+        public static string AddingObject {
             get {
                 return ResourceManager.GetString("AddingObject", resourceCulture);
             }
@@ -234,7 +234,7 @@ namespace PurplePen {
         /// <summary>
         ///   Looks up a localized string similar to Hold down left mouse button and drag to create object.
         /// </summary>
-        internal static string AddingRectangle {
+        public static string AddingRectangle {
             get {
                 return ResourceManager.GetString("AddingRectangle", resourceCulture);
             }
@@ -243,7 +243,7 @@ namespace PurplePen {
         /// <summary>
         ///   Looks up a localized string similar to Click left mouse button to place new start.
         /// </summary>
-        internal static string AddingStart {
+        public static string AddingStart {
             get {
                 return ResourceManager.GetString("AddingStart", resourceCulture);
             }
@@ -252,7 +252,7 @@ namespace PurplePen {
         /// <summary>
         ///   Looks up a localized string similar to Hold down left mouse button and drag to create text.
         /// </summary>
-        internal static string AddingText {
+        public static string AddingText {
             get {
                 return ResourceManager.GetString("AddingText", resourceCulture);
             }
@@ -261,7 +261,7 @@ namespace PurplePen {
         /// <summary>
         ///   Looks up a localized string similar to Click the left mouse button on a control or registration mark to move to a new location.
         /// </summary>
-        internal static string ControlForMoveAllControls {
+        public static string ControlForMoveAllControls {
             get {
                 return ResourceManager.GetString("ControlForMoveAllControls", resourceCulture);
             }
@@ -270,7 +270,7 @@ namespace PurplePen {
         /// <summary>
         ///   Looks up a localized string similar to Left mouse button: move/size rectangle;   Right mouse button: move map;   Scroll wheel: zoom in/out.
         /// </summary>
-        internal static string DefaultRectangle {
+        public static string DefaultRectangle {
             get {
                 return ResourceManager.GetString("DefaultRectangle", resourceCulture);
             }
@@ -279,7 +279,7 @@ namespace PurplePen {
         /// <summary>
         ///   Looks up a localized string similar to Left mouse button: select object;   Right mouse button: move map;   Scroll wheel: zoom in/out.
         /// </summary>
-        internal static string DefaultStatus {
+        public static string DefaultStatus {
             get {
                 return ResourceManager.GetString("DefaultStatus", resourceCulture);
             }
@@ -288,7 +288,7 @@ namespace PurplePen {
         /// <summary>
         ///   Looks up a localized string similar to Click left mouse button on a bend to remove it.
         /// </summary>
-        internal static string DeletingBend {
+        public static string DeletingBend {
             get {
                 return ResourceManager.GetString("DeletingBend", resourceCulture);
             }
@@ -297,7 +297,7 @@ namespace PurplePen {
         /// <summary>
         ///   Looks up a localized string similar to Click left mouse button on a corner to remove it.
         /// </summary>
-        internal static string DeletingCorner {
+        public static string DeletingCorner {
             get {
                 return ResourceManager.GetString("DeletingCorner", resourceCulture);
             }
@@ -306,7 +306,7 @@ namespace PurplePen {
         /// <summary>
         ///   Looks up a localized string similar to Hold down left mouse button and drag corner point to move it.
         /// </summary>
-        internal static string DragCorner {
+        public static string DragCorner {
             get {
                 return ResourceManager.GetString("DragCorner", resourceCulture);
             }
@@ -315,7 +315,7 @@ namespace PurplePen {
         /// <summary>
         ///   Looks up a localized string similar to Move corner point to desired location and release mouse button.
         /// </summary>
-        internal static string DraggingCorner {
+        public static string DraggingCorner {
             get {
                 return ResourceManager.GetString("DraggingCorner", resourceCulture);
             }
@@ -324,7 +324,7 @@ namespace PurplePen {
         /// <summary>
         ///   Looks up a localized string similar to Move object to desired location and release mouse button.
         /// </summary>
-        internal static string DraggingObject {
+        public static string DraggingObject {
             get {
                 return ResourceManager.GetString("DraggingObject", resourceCulture);
             }
@@ -333,7 +333,7 @@ namespace PurplePen {
         /// <summary>
         ///   Looks up a localized string similar to Drag control number to reorder it in the course (hold shift to duplicate).
         /// </summary>
-        internal static string DraggingTopologyObject {
+        public static string DraggingTopologyObject {
             get {
                 return ResourceManager.GetString("DraggingTopologyObject", resourceCulture);
             }
@@ -342,7 +342,7 @@ namespace PurplePen {
         /// <summary>
         ///   Looks up a localized string similar to Hold down left mouse button and drag to move selected object.
         /// </summary>
-        internal static string DragObject {
+        public static string DragObject {
             get {
                 return ResourceManager.GetString("DragObject", resourceCulture);
             }
@@ -351,7 +351,7 @@ namespace PurplePen {
         /// <summary>
         ///   Looks up a localized string similar to Click the left mouse button on the new location for the control or registration mark.
         /// </summary>
-        internal static string NewLocationForMoveAllControls {
+        public static string NewLocationForMoveAllControls {
             get {
                 return ResourceManager.GetString("NewLocationForMoveAllControls", resourceCulture);
             }
@@ -360,7 +360,7 @@ namespace PurplePen {
         /// <summary>
         ///   Looks up a localized string similar to Click left mouse button on a gap in the control circle to remove it.
         /// </summary>
-        internal static string RemovingControlGap {
+        public static string RemovingControlGap {
             get {
                 return ResourceManager.GetString("RemovingControlGap", resourceCulture);
             }
@@ -369,7 +369,7 @@ namespace PurplePen {
         /// <summary>
         ///   Looks up a localized string similar to Click left mouse button on a gap in the leg to remove it.
         /// </summary>
-        internal static string RemovingLegGap {
+        public static string RemovingLegGap {
             get {
                 return ResourceManager.GetString("RemovingLegGap", resourceCulture);
             }
@@ -378,7 +378,7 @@ namespace PurplePen {
         /// <summary>
         ///   Looks up a localized string similar to Click left mouse button when the crossing point is rotated to the correct angle.
         /// </summary>
-        internal static string RotatingObject {
+        public static string RotatingObject {
             get {
                 return ResourceManager.GetString("RotatingObject", resourceCulture);
             }
@@ -387,7 +387,7 @@ namespace PurplePen {
         /// <summary>
         ///   Looks up a localized string similar to Hold down left mouse button and drag to size the selected object.
         /// </summary>
-        internal static string SizeRectangle {
+        public static string SizeRectangle {
             get {
                 return ResourceManager.GetString("SizeRectangle", resourceCulture);
             }
@@ -396,7 +396,7 @@ namespace PurplePen {
         /// <summary>
         ///   Looks up a localized string similar to Move edge(s) to desired location and release mouse button.
         /// </summary>
-        internal static string SizingRectangle {
+        public static string SizingRectangle {
             get {
                 return ResourceManager.GetString("SizingRectangle", resourceCulture);
             }
@@ -405,7 +405,7 @@ namespace PurplePen {
         /// <summary>
         ///   Looks up a localized string similar to Hold down left mouse button and drag to stretch the stretch the crossing point.
         /// </summary>
-        internal static string StretchingObject {
+        public static string StretchingObject {
             get {
                 return ResourceManager.GetString("StretchingObject", resourceCulture);
             }
