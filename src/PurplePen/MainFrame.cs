@@ -71,6 +71,7 @@ namespace PurplePen
         CorePunchPrintSettings punchPrintSettings = new CorePunchPrintSettings();     // printing settings for the punch cards
         PageSettings punchPrintPageSettings = new PageSettings() { Margins = new Margins(50, 50, 50, 50) };     // page settings for the punch cards, default is 1/2 inch margins.
         CoursePrintSettings coursePrintSettings = new CoursePrintSettings();   // printing settings for courses.
+        PageSettings coursePrintPageSettings = new PageSettings() { Margins = new Margins(0, 0, 0, 0) };     // page settings for courses, default is 0 margins.
         CoursePdfSettings coursePdfSettings = null;   // PDF creation settings for courses.
         OcadCreationSettings ocadCreationSettingsPrevious = null;     // creation settings for OCAD creation, if it has been done before.
         ExportKmlSettings exportKmlSettingsPrevious = null;     // creation settings for KML creation, if it has been done before.
@@ -123,7 +124,7 @@ namespace PurplePen
             vScrollbarWidth = scrollBar.GetPreferredSize(new Size(200, 200)).Width;
             scrollBar.Dispose();
 
-            showToolTips = Settings.Default.ShowPopupInfo;
+            showToolTips = UserSettings.Current.ShowPopupInfo;
 
             SetMenuIcons();
 
@@ -350,9 +351,9 @@ namespace PurplePen
             if (mapDisplay != controller.MapDisplay) {
                 // The mapDisplay object is new. This currently only happens on startup.
                 mapDisplay = controller.MapDisplay;
-                mapDisplay.MapIntensity = Settings.Default.MapIntensity;
-                mapDisplay.AntiAlias = Settings.Default.MapHighQuality;
-                controller.ShowAllControls = Settings.Default.ViewAllControls;
+                mapDisplay.MapIntensity = UserSettings.Current.MapIntensity;
+                mapDisplay.AntiAlias = UserSettings.Current.MapHighQuality;
+                controller.ShowAllControls = UserSettings.Current.ViewAllControls;
                 mapViewer.SetMap(mapDisplay);
                 ShowRectangle(mapDisplay.MapBounds);
             }
@@ -464,7 +465,7 @@ namespace PurplePen
         // Update the print area in the map pane.
         void UpdatePrintArea()
         {
-            if (hidePrintArea || !Settings.Default.ShowPrintArea)
+            if (hidePrintArea || !UserSettings.Current.ShowPrintArea)
                 mapDisplay.SetPrintArea(null);
             else
                 mapDisplay.SetPrintArea(controller.GetCurrentPrintAreaRectangle(PrintAreaKind.OnePart));
@@ -718,7 +719,7 @@ namespace PurplePen
             showPopupsMenu.Checked = showToolTips;
 
             // Update checkmark on View/Show Print Area
-            showPrintAreaMenu.Checked = Settings.Default.ShowPrintArea;
+            showPrintAreaMenu.Checked = UserSettings.Current.ShowPrintArea;
 
             // Update Delete menu item
             deleteToolStripButton.Enabled =  deleteMenu.Enabled = deleteItemMenu.Enabled = controller.CanDeleteSelection();
@@ -1164,8 +1165,8 @@ namespace PurplePen
         private void allControlsMenu_Click(object sender, EventArgs e)
         {
             controller.ShowAllControls = !controller.ShowAllControls;
-            Settings.Default.ViewAllControls = controller.ShowAllControls;
-            Settings.Default.Save();
+            UserSettings.Current.ViewAllControls = controller.ShowAllControls;
+            UserSettings.Current.Save();
         }
 
         private void otherCoursesMenu_Click(object sender, EventArgs e)
@@ -1243,21 +1244,21 @@ namespace PurplePen
         {
             double intensityAmount = (double) ((ToolStripMenuItem) sender).Tag;
             mapDisplay.MapIntensity = (float) intensityAmount;
-            Settings.Default.MapIntensity = mapDisplay.MapIntensity;
-            Settings.Default.Save();
+            UserSettings.Current.MapIntensity = mapDisplay.MapIntensity;
+            UserSettings.Current.Save();
         }
 
         private void showPopupsMenu_Click(object sender, EventArgs e)
         {
             showToolTips = !showToolTips;
-            Settings.Default.ShowPopupInfo = showToolTips;
-            Settings.Default.Save();
+            UserSettings.Current.ShowPopupInfo = showToolTips;
+            UserSettings.Current.Save();
         }
 
         private void showPrintAreaMenu_Click(object sender, EventArgs e)
         {
-            Settings.Default.ShowPrintArea = !Settings.Default.ShowPrintArea;
-            Settings.Default.Save();
+            UserSettings.Current.ShowPrintArea = !UserSettings.Current.ShowPrintArea;
+            UserSettings.Current.Save();
             controller.ForceChangeUpdate();
         }
 
@@ -2086,8 +2087,8 @@ namespace PurplePen
         private void SetQuality(bool highQuality)
         {
             mapDisplay.AntiAlias = highQuality;
-            Settings.Default.MapHighQuality = highQuality;
-            Settings.Default.Save();
+            UserSettings.Current.MapHighQuality = highQuality;
+            UserSettings.Current.Save();
         }
 
         private void changeCodesMenu_Click(object sender, EventArgs e)
@@ -2271,7 +2272,8 @@ namespace PurplePen
                 // Save the settings for the next invocation of the dialog.
                 descPrintSettings = printDescDialog.PrintSettings;
                 descPrintPageSettings = printDescDialog.PrinterPageSettings;
-                controller.PrintDescriptions(descPrintSettings, WindowsUtil.PrintingPaperSizeWithMarginsFromPageSettings(descPrintPageSettings), false);
+                controller.PrintDescriptions(WindowsUtil.GetWinFormsPrintTarget(descPrintPageSettings, this, false),
+                    descPrintSettings, WindowsUtil.PrintingPaperSizeWithMarginsFromPageSettings(descPrintPageSettings));
             }
 
             // And the dialog is done.
@@ -2392,7 +2394,10 @@ namespace PurplePen
             if (printCoursesDialog.ShowDialog(this) == DialogResult.OK) {
                 // Save the settings for the next invocation of the dialog.
                 coursePrintSettings = printCoursesDialog.PrintSettings;
-                controller.PrintCourses(coursePrintSettings, false);
+                coursePrintPageSettings = printCoursesDialog.PageSettings;
+                controller.PrintCourses(WindowsUtil.GetWinFormsPrintTarget(coursePrintPageSettings, this, false),
+                                        coursePrintSettings, 
+                                        WindowsUtil.PrintingPaperSizeWithMarginsFromPageSettings(coursePrintPageSettings));
             }
 
             // And the dialog is done.
@@ -3144,8 +3149,8 @@ namespace PurplePen
 
             if (dialog.ShowDialog() == DialogResult.OK && dialog.Culture != null) {
                 System.Threading.Thread.CurrentThread.CurrentUICulture = dialog.Culture;
-                Settings.Default.UILanguage = dialog.Culture.Name;
-                Settings.Default.Save();
+                UserSettings.Current.UILanguage = dialog.Culture.Name;
+                UserSettings.Current.Save();
 
                 controller.ForceChangeUpdate();     // make the controller update state.
 

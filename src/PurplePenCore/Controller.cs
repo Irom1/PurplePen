@@ -40,6 +40,7 @@ using System.Drawing;
 using System.Diagnostics;
 using System.Linq;
 using PurplePen.MapModel;
+using PurplePen.Graphics2D;
 
 namespace PurplePen
 {
@@ -66,7 +67,7 @@ namespace PurplePen
         ControlPointKind temporaryControlViewKind;      // temporary view of controls for an add control mode.
 
         // For each course, we store the additional courses that we are displaying with that course.
-        Dictionary<Id<Course>, List<Id<Course>>> extraCourses = new Dictionary<Id<Course>, List<Id<Course>>>();  
+        Dictionary<Id<Course>, List<Id<Course>>> extraCourses = new Dictionary<Id<Course>, List<Id<Course>>>();
 
         public bool scrollHighlightIntoView;  // If true, the UI should scroll the highlight into view.
 
@@ -82,7 +83,7 @@ namespace PurplePen
         {
             mapDisplay?.Dispose();
             mapDisplay = null;
-}
+        }
 
         public Controller(IUserInterface ui)
         {
@@ -95,7 +96,7 @@ namespace PurplePen
 
             // Initialize the user interface.
             ui.Initialize(this, symbolDB);
-}
+        }
 
         // Reset state that needs to be reset at construction time or after loading a new file.
         private void ResetState()
@@ -103,9 +104,7 @@ namespace PurplePen
             undoMgr = new UndoMgr(100);
             eventDB = new EventDB(undoMgr);
             selectionMgr = new SelectionMgr(eventDB, symbolDB, this);
-#if !PORTING
             currentMode = defaultMode = new DefaultMode(this, eventDB, symbolDB, selectionMgr);
-#endif
 
             showAllControls = false;
             temporaryControlView = false;
@@ -114,23 +113,19 @@ namespace PurplePen
         }
 
         // Get the full file name of the currently loaded event.
-        public string FileName
-        {
+        public string FileName {
             get { return fileName; }
         }
 
         // Is the loaded file dirty?
-        public bool IsDirty
-        {
+        public bool IsDirty {
             get { return undoMgr.IsDirty; }
         }
 
         // Gets a change number that reflects both the selection and the event database.
-        public long ChangeNum
-        {
-            get
-            {
-                return changeNum + selectionMgr.ChangeNum; 
+        public long ChangeNum {
+            get {
+                return changeNum + selectionMgr.ChangeNum;
             }
         }
 
@@ -142,7 +137,7 @@ namespace PurplePen
             bool changed = (newChangeNum != changeNum);
             changeNum = newChangeNum;
             return changed;
-}
+        }
 
         // Update changenum.
         public void ForceChangeUpdate()
@@ -153,34 +148,28 @@ namespace PurplePen
 
         // Should the highlight be scrolled into view?
         // Returns true once after set to true, then resets to false.
-        public bool ScrollHighlightIntoView
-        {
-            get
-            {
+        public bool ScrollHighlightIntoView {
+            get {
                 bool ret = scrollHighlightIntoView;
                 scrollHighlightIntoView = false;
                 return ret;
             }
-            set
-            {
+            set {
                 scrollHighlightIntoView = value;
             }
         }
 
 
         // Get the map type
-        public MapType MapType
-        {
-            get
-            {
+        public MapType MapType {
+            get {
                 Event ev = eventDB.GetEvent();
                 return ev.mapType;
             }
         }
 
         // Get the map file name (null if map type is None.
-        public string MapFileName 
-        {
+        public string MapFileName {
             get {
                 Event ev = eventDB.GetEvent();
                 return (ev.mapType == MapType.None) ? null : ev.mapFileName;
@@ -188,20 +177,16 @@ namespace PurplePen
         }
 
         // Get the map real world coordinates (default if the map isn't OCAD).
-        public RealWorldCoords MapRealWorldCoords
-        {
+        public RealWorldCoords MapRealWorldCoords {
 
-            get
-            {
+            get {
                 return MapDisplay.RealWorldCoords;
             }
         }
 
         // Get the map dpi (only if map type is bitmap.
-        public float MapDpi
-        {
-            get
-            {
+        public float MapDpi {
+            get {
                 Event ev = eventDB.GetEvent();
                 if (ev.mapType != MapType.Bitmap)
                     throw new InvalidOperationException("Dpi only valid for bitmap maps");
@@ -213,14 +198,10 @@ namespace PurplePen
         // Change the map file.
         public void ChangeMapFile(MapType mapType, string mapFileName, float scale, float dpi)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             undoMgr.BeginCommand(792, CommandNameText.ChangeMapFile);
 
             Event ev = eventDB.GetEvent();
-            ev = (Event) ev.Clone();
+            ev = (Event)ev.Clone();
             ev.mapFileName = mapFileName;
             ev.mapType = mapType;
             ev.mapScale = scale;
@@ -236,15 +217,11 @@ throw new NotImplementedException("Unported Controller method");
             undoMgr.EndCommand(792);
 
             NewMapFileLoaded(false);
-        
-#endif
-}
+        }
 
         // Get the map display
-        public MapDisplay MapDisplay
-        {
-            get
-            {
+        public MapDisplay MapDisplay {
+            get {
                 if (mapDisplay.FileName != MapFileName && MapFileName != mapCantLoad)
                     NewMapFileLoaded(false);
 
@@ -255,10 +232,6 @@ throw new NotImplementedException("Unported Controller method");
         // Bookkeeping that needs to be done when a new map file is loaded. If "tryToFindMissingMap" is true, then attempt to recover from a missing map, possibly asking the user.
         private void NewMapFileLoaded(bool tryToFindMissingMap)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             if (tryToFindMissingMap) {
                 // If the map file can't be found, try to recover.
                 if (MapType != MapType.None && !File.Exists(MapFileName) && FindMissingMapFile(MapFileName))
@@ -308,9 +281,7 @@ throw new NotImplementedException("Unported Controller method");
             checkForUnrenderableObjects = true;   // warn about non-renderable objects.
 
             symbolDB.Standard = eventDB.GetEvent().descriptionStandard;
-        
-#endif
-}
+        }
 
         // Try to recover from a missing map file. If the map file can be found in the same directory as the event file, then
         // use that. Otherwise, inform the user and try to find the map file elsewhere.
@@ -318,10 +289,6 @@ throw new NotImplementedException("Unported Controller method");
         // Return false if a new map file was not found.
         private bool FindMissingMapFile(string missingMapFile)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             // Try the file name in the same directory as the purple pen event file.
             string directory = Path.GetDirectoryName(FileName);
             if (directory == null)
@@ -339,20 +306,13 @@ throw new NotImplementedException("Unported Controller method");
 
             // Ask the UI to set a new map file.
             return ui.FindMissingMapFile(missingMapFile);
-        
-#endif
-}
+        }
 
         private bool inChangeMapFileCheck = false;       // prevent recursive calls.
 
         // Check if the map file has changed.
         public void CheckForChangedMapFile()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
-
             if (!inChangeMapFileCheck && mapDisplay != null && MapFileName != null) {
                 if (!File.Exists(MapFileName)) {
                     // The map file has been deleted. 
@@ -430,19 +390,12 @@ throw new NotImplementedException("Unported Controller method");
                     }
                 }
             }
-        
-#endif
-}
+        }
 
         // Once each time the map file is loaded, and if the event is not set to disallow it, return a list of missing fonts. Once this 
         // is returned, it is never returned again.
         public string[] MissingFontList()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
-
             if (checkForMissingFonts) {
                 checkForMissingFonts = false;         // don't display the list again.
 
@@ -469,17 +422,11 @@ throw new NotImplementedException("Unported Controller method");
             else {
                 return null;
             }
-        
-#endif
-}
+        }
 
         // Return a list of non-renderable objects. If "onlyOnce" is set, only return once per map file.
         public string[] NonrenderableObjects(bool onlyOnce)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             if (onlyOnce) {
                 if (!checkForUnrenderableObjects)
                     return null;
@@ -487,53 +434,34 @@ throw new NotImplementedException("Unported Controller method");
             }
 
             return mapDisplay.NonRenderableObjects();
-        
-#endif
-}
+        }
 
         // Set the state of whether to ignore missing fonts forever, even on reload. If non set, then the list of missing fonts
         // is returned once each time the event is loaded.
         public void IgnoreMissingFontsForever(bool ignore)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             Event ev = eventDB.GetEvent();
 
             if (ev.ignoreMissingFonts != ignore) {
                 undoMgr.BeginCommand(797, CommandNameText.IgnoreMissingFonts);
 
-                ev = (Event) ev.Clone();
+                ev = (Event)ev.Clone();
                 ev.ignoreMissingFonts = ignore;
                 eventDB.ChangeEvent(ev);
 
                 undoMgr.EndCommand(797);
             }
-        
-#endif
-}
+        }
 
         private IEnumerable<string> MissingFontsInTextSpecials()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
-
             ITextMetrics metrics = MapUtil.TextMetricsProvider;
             return QueryEvent.GetTextSpecialFonts(eventDB).Where(fontName => !metrics.TextFaceIsInstalled(fontName));
-        
-#endif
-}
+        }
 
         // Change the command mode that is active.
         public void SetCommandMode(ICommandMode newCommandMode)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             if (newCommandMode == currentMode)
                 return;
 
@@ -542,68 +470,35 @@ throw new NotImplementedException("Unported Controller method");
             ++changeNum;
 
             currentMode.BeginMode();
-        
-#endif
-}
+        }
 
         // Is the current mode cancellable?
         public bool CanCancelMode()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
-
             return currentMode.CanCancel();
-        
-#endif
-}
+        }
 
         public void CancelMode()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
-
             if (currentMode.CanCancel())
                 DefaultCommandMode();
-        
-#endif
-}
+        }
 
         // Go back to the default command mode.
         public void DefaultCommandMode()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
-
             SetCommandMode(defaultMode);
-        
-#endif
-}
+        }
 
         // Get the current mouse point position from the UI.
         public bool GetCurrentLocation(out PointF location, out float pixelSize)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             return ui.GetCurrentLocation(out location, out pixelSize);
-        
-#endif
-}
+        }
 
         // Load the initial file. Should only be called before any file has been loaded.
         public bool LoadInitialFile(string fileName, bool setAsLastLoadedFile)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             bool success = HandleExceptions(
                 delegate { eventDB.Load(fileName); },
                 MiscText.CannotLoadFile, fileName);
@@ -611,8 +506,8 @@ throw new NotImplementedException("Unported Controller method");
             if (success) {
                 this.fileName = Path.GetFullPath(fileName);
                 if (setAsLastLoadedFile) {
-                    Settings.Default.LastLoadedFile = this.fileName;
-                    Settings.Default.Save();
+                    UserSettings.Current.LastLoadedFile = this.fileName;
+                    UserSettings.Current.Save();
                 }
                 undoMgr.MarkClean();
                 symbolDB.Standard = eventDB.GetEvent().descriptionStandard;
@@ -625,26 +520,19 @@ throw new NotImplementedException("Unported Controller method");
             }
 
             return success;
-        
-#endif
-}
+        }
 
         // Load a new file. Should only be called if you know the current file can be closed.
         // If this method returns false, the old file has been destroyed so we're basically in limbo.
         public bool LoadNewFile(string fileName)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             ResetState();
             return LoadInitialFile(fileName, true);
-        
-#endif
-}
+        }
 
         // Info needed to create a new event.
-        public struct CreateEventInfo {
+        public struct CreateEventInfo
+        {
             public string title;                         // title of the event
             public string eventFileName;        // full path name of the Purple Pen file
             public MapType mapType;            // map type.
@@ -665,10 +553,6 @@ throw new NotImplementedException("Unported Controller method");
         // Create a new event. Should only be called before any file has been loaded.
         public bool InitialNewEvent(CreateEventInfo info)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             undoMgr.BeginCommand(8112, CommandNameText.NewEvent);
 
             Event ev = new Event();
@@ -688,7 +572,7 @@ throw new NotImplementedException("Unported Controller method");
             ev.descriptionStandard = info.descriptionStandard;
             ev.courseAppearance.mapStandard = info.mapStandard;
             ev.courseAppearance.purpleColorBlend = info.blend;
-            if (info.lowerPurpleLayer.HasValue) { 
+            if (info.lowerPurpleLayer.HasValue) {
                 ev.courseAppearance.mapLayerForLowerPurple = info.lowerPurpleLayer.Value;
             }
 
@@ -708,9 +592,9 @@ throw new NotImplementedException("Unported Controller method");
             }
             eventDB.ChangeEvent(ev);
 
-            Settings.Default.NewEventMapStandard = info.mapStandard;
-            Settings.Default.NewEventDescriptionStandard = info.descriptionStandard;
-            Settings.Default.Save();
+            UserSettings.Current.NewEventMapStandard = info.mapStandard;
+            UserSettings.Current.NewEventDescriptionStandard = info.descriptionStandard;
+            UserSettings.Current.Save();
 
             symbolDB.Standard = info.descriptionStandard;
 
@@ -726,36 +610,25 @@ throw new NotImplementedException("Unported Controller method");
             }
 
             return success;
-        
-#endif
-}
+        }
 
         // Create a new event. Should only be called if you know the current file can be closed.
         // If this method returns false, the old file has been destroyed so we're basically in limbo.
         public bool NewEvent(CreateEventInfo info)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             ResetState();
             return InitialNewEvent(info);
-        
-#endif
-}
+        }
 
 
 
         // Change the recorded map scale to a new value. Used when an OCAD map is loaded to ensure that the 
         // recorded map scale is correct.
-        public float MapScale
-        {
-            get
-            {
+        public float MapScale {
+            get {
                 return eventDB.GetEvent().mapScale;
             }
-            set
-            {
+            set {
                 if (value != 0 && eventDB.GetEvent().mapScale != value) {
                     undoMgr.BeginCommand(123, CommandNameText.ChangeScale);
                     ChangeEvent.ChangeMapScale(eventDB, value);
@@ -766,10 +639,6 @@ throw new NotImplementedException("Unported Controller method");
 
         public bool CanExportGpxOrKml(out string message)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             // First check and give immediate message if we can't do coordinate mapping.
             CoordinateMapper coordinateMapper = mapDisplay.CoordinateMapper;
             if (coordinateMapper == null) {
@@ -792,17 +661,11 @@ throw new NotImplementedException("Unported Controller method");
                 message = "";
                 return true;
             }
-        
-#endif
-}
+        }
 
         // Export GPX file to the give file name.
         public bool ExportGpx(string filename, GpxCreationSettings settings)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             bool success = HandleExceptions(
                 delegate {
                     string msg;
@@ -817,17 +680,11 @@ throw new NotImplementedException("Unported Controller method");
                 MiscText.CannotCreateFile, filename);
 
             return success;
-        
-#endif
-}
+        }
 
         // Export XML interchange file to the give file name.
         public bool ExportXml(string filename, RectangleF mapBounds, int version)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             ExportXmlBase exportXml;
 
             if (version == 2)
@@ -844,45 +701,31 @@ throw new NotImplementedException("Unported Controller method");
                 MiscText.CannotCreateFile, filename);
 
             return success;
-        
-#endif
-}
+        }
 
         // Export RouteGadget files
         public bool ExportRouteGadget(string xmlFileName, string gifFileName, int xmlVersion)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             ExportRouteGadget exportRouteGadget = new ExportRouteGadget(symbolDB, eventDB, this, mapDisplay);
 
             bool successXml = HandleExceptions(
-                delegate
-                {
+                delegate {
                     exportRouteGadget.ExportXml(xmlFileName, xmlVersion);
                 },
                 MiscText.CannotCreateFile, xmlFileName);
 
             bool successGif = HandleExceptions(
-                delegate
-                {
+                delegate {
                     exportRouteGadget.ExportGif(gifFileName);
                 },
                 MiscText.CannotCreateFile, gifFileName);
 
             return successXml && successGif;
-        
-#endif
-}
+        }
 
         // Get the route gadget file names.
         public void GetRouteGadgetFileNames(RouteGadgetCreationSettings settings, out string xmlFileName, out string gifFileName)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             string outputDirectory;
 
             // Process the fileDirectory and mapDirectory fields.
@@ -898,17 +741,11 @@ throw new NotImplementedException("Unported Controller method");
 
             xmlFileName = Path.Combine(outputDirectory, settings.fileBaseName + ".xml");
             gifFileName = Path.Combine(outputDirectory, settings.fileBaseName + ".gif");
-        
-#endif
-}
+        }
 
         // Get the list of files that will be overwritteing by creating RouteGadget files
         public List<string> OverwritingRouteGadgetFiles(RouteGadgetCreationSettings settings)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             string xmlFileName, gifFileName;
 
             GetRouteGadgetFileNames(settings, out xmlFileName, out gifFileName);
@@ -920,35 +757,22 @@ throw new NotImplementedException("Unported Controller method");
                 overwrittenFiles.Add(gifFileName);
 
             return overwrittenFiles;
-        
-#endif
-}
+        }
 
 
         // Create the RouteGadgetFiles, given the settings.
         public bool CreateRouteGadgetFiles(RouteGadgetCreationSettings settings)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             string xmlFileName, gifFileName;
 
             GetRouteGadgetFileNames(settings, out xmlFileName, out gifFileName);
             return ExportRouteGadget(xmlFileName, gifFileName, settings.xmlVersion);
-        
-#endif
-}
+        }
 
 
         // Get the list of tab names.
         public string[] GetTabNames()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
-
             string[] result = new string[selectionMgr.TabCount];
 
             for (int i = 0; i < result.Length; i++) {
@@ -956,40 +780,32 @@ throw new NotImplementedException("Unported Controller method");
             }
 
             return result;
-        
-#endif
-}
+        }
 
         // Get the current tab name.
         public string CurrentTabName {
             get {
-                return selectionMgr.TabName(selectionMgr.ActiveTab); 
+                return selectionMgr.TabName(selectionMgr.ActiveTab);
             }
         }
 
         // Get the current course id.
         public Id<Course> CurrentCourseId {
             get {
-                return selectionMgr.Selection.ActiveCourseDesignator.CourseId; 
+                return selectionMgr.Selection.ActiveCourseDesignator.CourseId;
             }
         }
 
         // Get the current description to show in the description pane.
         public DescriptionLine[] GetDescription(out CourseView.CourseViewKind kind, out bool isCoursePart, out bool hasCustomLength)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             kind = selectionMgr.ActiveCourseView.Kind;
             CourseDesignator courseDesignator = selectionMgr.ActiveCourseView.CourseDesignator;
             isCoursePart = courseDesignator.IsNotAllControls && !courseDesignator.AllParts;
             hasCustomLength = courseDesignator.IsNotAllControls && eventDB.GetCourse(courseDesignator.CourseId).overrideCourseLength.HasValue;
 
             return selectionMgr.ActiveDescription;
-        
-#endif
-}
+        }
 
         // Get the score column to use, if any.
         public int GetScoreColumn()
@@ -1015,14 +831,8 @@ throw new NotImplementedException("Unported Controller method");
         // Returns null if non.
         public IMapViewerHighlight[] GetHighlights(Pane pane)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             return currentMode.GetHighlights(pane);
-        
-#endif
-}
+        }
 
         // Get the current course topology to show in the topology pane. Can be null if there isn't any topology (all controls or score).
         public CourseLayout GetTopologyLayout()
@@ -1031,27 +841,21 @@ throw new NotImplementedException("Unported Controller method");
         }
 
         // Get the active tab.
-        public int ActiveTab
-        {
-            get
-            {
+        public int ActiveTab {
+            get {
                 return selectionMgr.ActiveTab;
             }
         }
 
-        public int NumberOfParts
-        {
-            get
-            {
+        public int NumberOfParts {
+            get {
                 CourseDesignator activeCourseDesignator = selectionMgr.Selection.ActiveCourseDesignator;
                 return QueryEvent.CountCourseParts(eventDB, activeCourseDesignator);
             }
         }
 
-        public int CurrentPart
-        {
-            get
-            {
+        public int CurrentPart {
+            get {
                 if (NumberOfParts == 1) {
                     return -1; // all parts
                 }
@@ -1061,10 +865,8 @@ throw new NotImplementedException("Unported Controller method");
             }
         }
 
-        public PartOptions ActivePartOptions
-        {
-            get
-            {
+        public PartOptions ActivePartOptions {
+            get {
                 CourseDesignator activeCourseDesignator = selectionMgr.Selection.ActiveCourseDesignator;
                 if (activeCourseDesignator.IsAllControls)
                     return null;
@@ -1075,51 +877,30 @@ throw new NotImplementedException("Unported Controller method");
 
         public void ChangeActivePartOptions(PartOptions partOptions)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             CourseDesignator activeCourseDesignator = selectionMgr.Selection.ActiveCourseDesignator;
             if (activeCourseDesignator.IsNotAllControls) {
                 undoMgr.BeginCommand(5107, CommandNameText.ChangePartProperties);
                 ChangeEvent.ChangePartOptions(eventDB, activeCourseDesignator, partOptions);
                 undoMgr.EndCommand(5107);
             }
-        
-#endif
-}
+        }
 
         public void SelectPart(int newPart)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             if (newPart == -1)
                 selectionMgr.SelectCourseView(selectionMgr.Selection.ActiveCourseDesignator.WithAllParts());
             else
                 selectionMgr.SelectCourseView(selectionMgr.Selection.ActiveCourseDesignator.WithPart(newPart));
             CancelMode();
-        
-#endif
-}
+        }
 
         public bool AnyMultipart()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
-
             return QueryEvent.AnyMultipartCourses(eventDB);
-        
-#endif
-}
+        }
 
-        public bool HasVariations
-        {
-            get
-            {
+        public bool HasVariations {
+            get {
                 return QueryEvent.HasVariations(eventDB, selectionMgr.Selection.ActiveCourseDesignator.CourseId);
             }
         }
@@ -1129,24 +910,15 @@ throw new NotImplementedException("Unported Controller method");
         // Get objects representing the variations, where ToString() is used to show variation text.
         public object[] GetVariations()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
-
             Debug.Assert(HasVariations);
 
             IEnumerable<VariationInfo> variations = QueryEvent.GetAllVariations(eventDB, selectionMgr.Selection.ActiveCourseDesignator.CourseId);
 
             return (new[] { allVariations }).Concat(from v in variations orderby v.CodeString select new VariationDescriber(v)).ToArray();
-        
-#endif
-}
+        }
 
-        public object CurrentVariation
-        {
-            get
-            {
+        public object CurrentVariation {
+            get {
                 Debug.Assert(HasVariations);
                 VariationInfo currentVariationInfo = selectionMgr.Selection.ActiveCourseDesignator.VariationInfo;
 
@@ -1155,9 +927,8 @@ throw new NotImplementedException("Unported Controller method");
 
                 return new VariationDescriber(currentVariationInfo);
             }
-            
-            set
-            {
+
+            set {
                 Debug.Assert(HasVariations);
 
                 VariationDescriber newVariationDescriber = (VariationDescriber)value;
@@ -1171,7 +942,7 @@ throw new NotImplementedException("Unported Controller method");
                     return;
 
                 CourseDesignator newCourseDesignator = new CourseDesignator(currentCourseId, newVariationInfo);
-                if (! currentDesignator.AllParts) {
+                if (!currentDesignator.AllParts) {
                     int currentPart = currentDesignator.Part;
                     if (currentPart < QueryEvent.CountCourseParts(eventDB, currentDesignator))
                         newCourseDesignator = new CourseDesignator(currentCourseId, newVariationInfo, currentPart);
@@ -1184,11 +955,6 @@ throw new NotImplementedException("Unported Controller method");
 
         public CommandStatus CanGetVariationReport()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
-
             CourseDesignator courseDesignator = selectionMgr.Selection.ActiveCourseDesignator;
             if (courseDesignator.IsAllControls)
                 return CommandStatus.Disabled;
@@ -1197,32 +963,19 @@ throw new NotImplementedException("Unported Controller method");
                 return CommandStatus.Enabled;
             else
                 return CommandStatus.Disabled;
-        
-#endif
-}
+        }
 
         public VariationReportData GetVariationReportData(RelaySettings relaySettings)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             Id<Course> courseId = selectionMgr.Selection.ActiveCourseDesignator.CourseId;
             string courseName = eventDB.GetCourse(courseId).name;
             RelayVariations relayVariations = new RelayVariations(eventDB, courseId, relaySettings);
             return new VariationReportData(courseName, relayVariations);
-        
-#endif
-}
+        }
 
         // For the current course, get the relay parameters.
         public RelaySettings GetRelayParameters()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
-
             Id<Course> courseId = selectionMgr.Selection.ActiveCourseDesignator.CourseId;
             if (courseId.IsNone)
                 return null;
@@ -1235,52 +988,32 @@ throw new NotImplementedException("Unported Controller method");
             settings.relayBranchAssignments = relayVariations.ValidateFixedBranches(settings.relayBranchAssignments);
 
             return settings;
-        
-#endif
-}
+        }
 
         public bool GetHideVariationsOnMap()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
-
             Id<Course> courseId = selectionMgr.Selection.ActiveCourseDesignator.CourseId;
             if (courseId.IsNone)
                 return false;
 
             Course course = eventDB.GetCourse(courseId);
             return course.hideVariationsOnMap;
-        
-#endif
-}
+        }
 
         // Get the branch codes that are available for leg assignments.
         public List<char[]> GetLegAssignmentCodes()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
-
             Id<Course> courseId = selectionMgr.Selection.ActiveCourseDesignator.CourseId;
             if (courseId.IsNone)
                 return new List<char[]>();
 
             RelayVariations relayVariations = new RelayVariations(eventDB, courseId, new RelaySettings(1, 20));  // parameters are irrelavaent
             return relayVariations.GetPossibleFixedBranches();
-        
-#endif
-}
+        }
 
         // Validate fixed branch assignments, return error message on bad, null on good.
         public string ValidateFixedBranchAssignments(int numberOfLegs, FixedBranchAssignments fixedBranchAssignments)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             Id<Course> courseId = selectionMgr.Selection.ActiveCourseDesignator.CourseId;
             if (courseId.IsNone)
                 return null;
@@ -1292,17 +1025,11 @@ throw new NotImplementedException("Unported Controller method");
                 return errors[0];
             else
                 return null;
-        
-#endif
-}
+        }
 
         // For the current course, set the relay parameters.
         public void SetRelayParameters(RelaySettings relaySettings, bool hideVariationsOnMap)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             Id<Course> courseId = selectionMgr.Selection.ActiveCourseDesignator.CourseId;
             if (courseId.IsNone)
                 return;
@@ -1311,28 +1038,15 @@ throw new NotImplementedException("Unported Controller method");
             ChangeEvent.SetRelayParameters(eventDB, courseId, relaySettings);
             ChangeEvent.SetHideVariationsOnMap(eventDB, courseId, hideVariationsOnMap);
             undoMgr.EndCommand(9812);
-        
-#endif
-}
+        }
 
         public string GetDefaultVariationExportFileName()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
-
             return QueryEvent.CreateOutputFileName(eventDB, selectionMgr.Selection.ActiveCourseDesignator.WithAllParts(), "", "_Relay", ".xml");
-        
-#endif
-}
+        }
 
         public bool ExportRelayVariationsReport(RelaySettings relaySettings, VariationExportFileType exportFileType, string exportFileName)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             bool success = HandleExceptions(
                 delegate {
                     VariationReportData variationReportData = GetVariationReportData(relaySettings);
@@ -1350,16 +1064,12 @@ throw new NotImplementedException("Unported Controller method");
                 MiscText.CannotCreateFile, exportFileName);
 
             return success;
-        
-#endif
-}
+        }
 
 
         // Get the text for the status line
-        public string StatusText
-        {
-            get
-            {
+        public string StatusText {
+            get {
                 return currentMode.StatusText;
             }
         }
@@ -1367,76 +1077,39 @@ throw new NotImplementedException("Unported Controller method");
         // Get the selection description for the selection panel.
         public TextPart[] GetSelectionDescription()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
-
             return SelectionDescriber.DescribeSelection(symbolDB, eventDB, selectionMgr.ActiveCourseView, selectionMgr.Selection);
-        
-#endif
-}
+        }
 
         // Get the maps for the active view.
         public RectangleF GetCourseBounds()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
-
             return selectionMgr.ActiveCourseView.GetViewBounds();
-        
-#endif
-}
+        }
 
         // Clear the selection
         public void ClearSelection()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
-
             selectionMgr.ClearSelection();
-        
-#endif
-}
+        }
 
         // Select a tab.
         public void SelectTab(int tabIndex)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             CancelMode();
             selectionMgr.ActiveTab = tabIndex;
             UpdateExtraControlsDisplay();
-        
-#endif
-}
+        }
 
         // Select a line in the description pane.
         public void SelectDescriptionLine(int line)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             CancelMode();
             selectionMgr.SelectDescriptionLine(line);
-        
-#endif
-}
+        }
 
         // Set the AllControlsDisplay of the selection manager correction.
         private void UpdateExtraControlsDisplay()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
 
             if (temporaryControlView) {
                 selectionMgr.SetAllControlsDisplay(true, temporaryControlViewKind);
@@ -1446,21 +1119,12 @@ throw new NotImplementedException("Unported Controller method");
             }
 
             selectionMgr.SetExtraCourseDisplay(ExtraCourseDisplay);
-        
-#endif
-}
+        }
 
         public CommandStatus CanChangeExtraCourseDisplay()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
-
             return selectionMgr.Selection.ActiveCourseDesignator.IsNotAllControls ? CommandStatus.Enabled : CommandStatus.Disabled;
-        
-#endif
-}
+        }
 
         public List<Id<Course>> ExtraCourseDisplay {
             get {
@@ -1477,43 +1141,26 @@ throw new NotImplementedException("Unported Controller method");
 
         public CommandStatus CanClearExtraCourseDisplay()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
-
             foreach (var pair in extraCourses) {
                 if (pair.Value != null && pair.Value.Count > 0) {
                     return CommandStatus.Enabled;
                 }
             }
             return CommandStatus.Hidden;
-        
-#endif
-}
+        }
 
         public void ClearExtraCourseDisplay()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
-
             extraCourses.Clear();
             UpdateExtraControlsDisplay();
-        
-#endif
-}
+        }
 
         // Determine if show all controls mode is active.
-        public bool ShowAllControls
-        {
-            get
-            {
+        public bool ShowAllControls {
+            get {
                 return showAllControls;
             }
-            set
-            {
+            set {
                 if (showAllControls != value) {
                     showAllControls = value;
                     UpdateExtraControlsDisplay();
@@ -1527,10 +1174,6 @@ throw new NotImplementedException("Unported Controller method");
         // Used from various modes when adding controls, for example.
         public void SetTemporaryControlView(bool temporaryControlView, ControlPointKind temporaryControlViewKind)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             if (this.temporaryControlView == temporaryControlView && this.temporaryControlViewKind == temporaryControlViewKind)
                 return;         // no change.
 
@@ -1538,30 +1181,17 @@ throw new NotImplementedException("Unported Controller method");
             this.temporaryControlViewKind = temporaryControlViewKind;
             UpdateExtraControlsDisplay();
             ++changeNum;
-        
-#endif
-}
+        }
 
         // Save the file in its current file. Returns true if succeeded.
         public bool Save()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
-
             return SaveAs(fileName);
-        
-#endif
-}
+        }
 
         // Save the file into a (possible) new file. Returns true if succeeded.
         public bool SaveAs(string newFileName)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             CancelMode();
 
             bool success = HandleExceptions(
@@ -1570,29 +1200,20 @@ throw new NotImplementedException("Unported Controller method");
 
             if (success) {
                 this.fileName = Path.GetFullPath(newFileName);
-                Settings.Default.LastLoadedFile = this.fileName;
-                Settings.Default.Save();
+                UserSettings.Current.LastLoadedFile = this.fileName;
+                UserSettings.Current.Save();
                 ++changeNum;
                 undoMgr.MarkClean();        // we saved, so the file isn't dirty any more.
             }
 
             return success;
-        
-#endif
-}
+        }
 
         // Mark the file clean, without saving. Be careful -- this can easily lead to data loss!!!
         public void MarkClean()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
-
             undoMgr.MarkClean();
-        
-#endif
-}
+        }
 
         // Try to close the current file and reinitialize state. 
         // If we're dirty, ask the user whether to save, not save, or cancel.
@@ -1601,73 +1222,48 @@ throw new NotImplementedException("Unported Controller method");
         // If true is returned, can exit or load a new file via LoadNewFile.
         public bool TryCloseFile()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
-
             bool success;
 
             CancelMode();
 
             if (IsDirty) {
-                DialogResult result = ui.YesNoCancelQuestion(string.Format(MiscText.SaveChanges, Path.GetFileName(FileName)), true);
-                if (result == DialogResult.Yes) {
+                YesNoCancel result = ui.YesNoCancelQuestion(string.Format(MiscText.SaveChanges, Path.GetFileName(FileName)), true);
+                if (result == YesNoCancel.Yes) {
                     if (!Save())
-                        result = DialogResult.Cancel;   // if the save fails, automatically cancel the exit.
+                        result = YesNoCancel.Cancel;   // if the save fails, automatically cancel the exit.
                 }
 
-                success = (result != DialogResult.Cancel);
+                success = (result != YesNoCancel.Cancel);
             }
             else {
-                success =  true;
+                success = true;
             }
 
             return success;
-        
-#endif
-}
+        }
 
 
         // Print or print preview the descriptions. Returns success or failure; any errors are already reported to the user.
-        public bool PrintDescriptions(DescriptionPrintSettings descriptionPrintSettings, PrintingPaperSizeWithMargins paperSizeWithMargins, bool preview)
+        public bool PrintDescriptions(IPrintingTarget printingTarget, DescriptionPrintSettings descriptionPrintSettings, PrintingPaperSizeWithMargins paperSizeWithMargins)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             string documentTitle = QueryEvent.GetEventTitle(eventDB, " ");
 
             bool success = HandleExceptions(
                 delegate {
                     DescriptionPrinting descriptionPrinter = new DescriptionPrinting(eventDB, symbolDB, descriptionPrintSettings);
 
-                    WinFormsPrinter winFormsPrinter = new WinFormsPrinter(this, new WinFormsPrinter.WinFormsPrinterOptions() {
-                        PageSettings = pageSettings,
-                        ColorModel = ColorModel.RGB,
-                        StopAfterEachPage = false,
-                        PrintPreview = preview,
-                        PreviewDialogSize = GetPrintPreviewSize()
-                    });
-
-                    PrintManager printManager = new PrintManager(documentTitle, winFormsPrinter, descriptionPrinter);
-                    printManager.SetDefaultPaperSize(PrintingPaperSizeFromPageSettings(pageSettings), PrintingMarginSizeFromPageSettings(pageSettings));
+                    PrintManager printManager = new PrintManager(documentTitle, printingTarget, descriptionPrinter);
+                    printManager.SetDefaultPaperSize(paperSizeWithMargins);
                     printManager.DoPrinting();
                 },
                 MiscText.CannotPrint, documentTitle);
 
             return success;
-        
-#endif
-}
+        }
 
         // Create a PDF for descriptions. Returns success or failure; any errors are already reported to the user.
         public bool CreateDescriptionsPdf(DescriptionPrintSettings descriptionPrintSettings, PrintingPaperSizeWithMargins paperSizeWithMargins, string pathName)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             string documentTitle = QueryEvent.GetEventTitle(eventDB, " ");
 
             bool success = HandleExceptions(
@@ -1677,15 +1273,13 @@ throw new NotImplementedException("Unported Controller method");
                     PdfPrintTarget pdfPrintTarget = new PdfPrintTarget(pathName, cmykMode: false);
 
                     PrintManager printManager = new PrintManager(documentTitle, pdfPrintTarget, descriptionPrinter);
-                    printManager.SetDefaultPaperSize(PrintingPaperSizeFromPageSettings(pageSettings), PrintingMarginSizeFromPageSettings(pageSettings));
+                    printManager.SetDefaultPaperSize(paperSizeWithMargins);
                     printManager.DoPrinting();
                 },
                 MiscText.CannotCreatePdfs);
 
             return success;
-        
-#endif
-}
+        }
 
 
         // Print or print preview punch cards. Returns success or failure; any errors are already reported to the user.
@@ -1699,15 +1293,6 @@ throw new NotImplementedException("Unported Controller method");
                 delegate {
                     PunchPrinting punchPrinter = new PunchPrinting(eventDB, punchPrintSettings);
 
-/*
-                    WinFormsPrinter winFormsPrinter = new WinFormsPrinter(this, new WinFormsPrinter.WinFormsPrinterOptions() {
-                        PageSettings = pageSettings,
-                        ColorModel = ColorModel.RGB,
-                        StopAfterEachPage = false,
-                        PrintPreview = preview,
-                        PreviewDialogSize = GetPrintPreviewSize()
-                    });
-*/
                     PrintManager printManager = new PrintManager(documentTitle, printingTarget, punchPrinter);
                     printManager.SetDefaultPaperSize(paperSizeWithMargins);
                     printManager.DoPrinting();
@@ -1728,7 +1313,7 @@ throw new NotImplementedException("Unported Controller method");
 
             return success;        
 #endif
-}
+        }
 
         // Create PDF for punch cards. Returns success or failure; any errors are already reported to the user.
         public bool CreatePunchesPdf(CorePunchPrintSettings punchPrintSettings, PrintingPaperSizeWithMargins paperSizeWithMargins, string pathName)
@@ -1759,13 +1344,11 @@ throw new NotImplementedException("Unported Controller method");
 
             return success;        
 #endif
-}
+        }
 
         // Return true if we must rasterize before printing.
-        public bool MustRasterizePrinting
-        {
-            get
-            {
+        public bool MustRasterizePrinting {
+            get {
                 /* 
                 // Windows XP -> must rasterize because print drivers don't work well.
                 // Bitmap/PDF maps should rasterize because they are already bitmaps so more efficient to.
@@ -1780,43 +1363,30 @@ throw new NotImplementedException("Unported Controller method");
         }
 
         // Print or print preview the courses. Returns success or failure; any errors are already reported to the user.
-        public bool PrintCourses(CoursePrintSettings coursePrintSettings, bool preview)
+        public bool PrintCourses(IPrintingTarget printingTarget, CoursePrintSettings coursePrintSettings, PrintingPaperSizeWithMargins paperSizeWithMargins)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
+            string documentTitle = QueryEvent.GetEventTitle(eventDB, " ");
 
             bool success = HandleExceptions(
                 delegate {
-                    CoursePrinting coursePrinter = new CoursePrinting(eventDB, symbolDB, this, mapDisplay.CloneToFullIntensity(), coursePrintSettings, GetCourseAppearance());
-                    if (preview)
-                        coursePrinter.PrintPreview(GetPrintPreviewSize());
-#if XPS_PRINTING
-                    else if (coursePrintSettings.UseXpsPrinting && MapType == MapType.OCAD)
-                        coursePrinter.PrintUsingXps(true);
-#endif // XPS_PRINTING
-                    else
-                        coursePrinter.Print();
+                    CoursePrinting coursePrinter = new CoursePrinting(eventDB, symbolDB, this, mapDisplay.CloneToFullIntensity(), coursePrintSettings, paperSizeWithMargins, GetCourseAppearance());
+
+                    PrintManager printManager = new PrintManager(documentTitle, printingTarget, coursePrinter);
+                    printManager.SetDefaultPaperSize(paperSizeWithMargins);
+                    printManager.DoPrinting();
                 },
                 MiscText.CannotPrint, QueryEvent.GetEventTitle(eventDB, " "));
 
             return success;
-        
-#endif
-}
+        }
 
         // Create PDFs for the courses. Returns success or failure; any errors are already reported to the user.
         public bool CreateCoursePdfs(CoursePdfSettings coursePdfSettings)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             SetOutputDirectory(coursePdfSettings);
 
             bool success = HandleExceptions(
-                delegate
-                {
+                delegate {
                     MapDisplay clonedMapDisplay = mapDisplay.CloneToFullIntensity();
 
                     CourseAppearance courseAppearance = GetCourseAppearance();
@@ -1826,32 +1396,20 @@ throw new NotImplementedException("Unported Controller method");
                 MiscText.CannotCreatePdfs);
 
             return success;
-        
-#endif
-}
+        }
 
         // Get the list of files that will be overwritteing by creating PDF files
         public List<string> OverwritingPdfFiles(CoursePdfSettings coursePdfSettings)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             SetOutputDirectory(coursePdfSettings);
 
             CoursePdf coursePdf = new CoursePdf(eventDB, symbolDB, this, mapDisplay.CloneToFullIntensity(), coursePdfSettings, GetCourseAppearance());
             return coursePdf.OverwrittenFiles();
-        
-#endif
-}
+        }
 
         // Set the outputDirectory field of OcadCreationSettings.
         private void SetOutputDirectory(OcadCreationSettings creationSettings)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             // Process the fileDirectory and mapDirectory fields.
             if (creationSettings.fileDirectory) {
                 creationSettings.outputDirectory = Path.GetDirectoryName(FileName);
@@ -1859,17 +1417,11 @@ throw new NotImplementedException("Unported Controller method");
             else if (creationSettings.mapDirectory) {
                 creationSettings.outputDirectory = Path.GetDirectoryName(MapFileName);
             }
-        
-#endif
-}
+        }
 
         // Set the outputDirectory field of ExportKmlSettings.
         private void SetOutputDirectory(ExportKmlSettings creationSettings)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             // Process the fileDirectory and mapDirectory fields.
             if (creationSettings.fileDirectory) {
                 creationSettings.outputDirectory = Path.GetDirectoryName(FileName);
@@ -1877,17 +1429,11 @@ throw new NotImplementedException("Unported Controller method");
             else if (creationSettings.mapDirectory) {
                 creationSettings.outputDirectory = Path.GetDirectoryName(MapFileName);
             }
-        
-#endif
-}
+        }
 
         // Set the outputDirectory field of BitmapCreationSettings.
         private void SetOutputDirectory(BitmapCreationSettings creationSettings)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             // Process the fileDirectory and mapDirectory fields.
             if (creationSettings.fileDirectory) {
                 creationSettings.outputDirectory = Path.GetDirectoryName(FileName);
@@ -1895,17 +1441,11 @@ throw new NotImplementedException("Unported Controller method");
             else if (creationSettings.mapDirectory) {
                 creationSettings.outputDirectory = Path.GetDirectoryName(MapFileName);
             }
-        
-#endif
-}
+        }
 
         // Set the outputDirectory field of OcadCreationSettings.
         private void SetOutputDirectory(CoursePdfSettings coursePdfSettings)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             // Process the fileDirectory and mapDirectory fields.
             if (coursePdfSettings.fileDirectory) {
                 coursePdfSettings.outputDirectory = Path.GetDirectoryName(FileName);
@@ -1913,17 +1453,11 @@ throw new NotImplementedException("Unported Controller method");
             else if (coursePdfSettings.mapDirectory) {
                 coursePdfSettings.outputDirectory = Path.GetDirectoryName(MapFileName);
             }
-        
-#endif
-}
+        }
 
         // Get the text name of the Create OCAD/OOM Files command. Does not include the "..."
         public string CreateOcadFilesText(bool includeShortcutKey)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             string formatText = CommandNameText.CreateMapFiles;
             if (!includeShortcutKey)
                 formatText = formatText.Replace("&", "");
@@ -1938,19 +1472,13 @@ throw new NotImplementedException("Unported Controller method");
                 insertText = MiscText.OCAD + "/" + MiscText.OpenOrienteeringMapper;
 
             return string.Format(formatText, insertText);
-        
-#endif
-}
+        }
 
         // Create OCAD files.
         // Returns success or failure; any errors are already reported to the user.
         // If mapDirectory or fileDirectory is set, the outputDirectory fields is filled in.
         public bool CreateOcadFiles(OcadCreationSettings creationSettings)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             SetOutputDirectory(creationSettings);
 
             bool success = HandleExceptions(
@@ -1961,45 +1489,31 @@ throw new NotImplementedException("Unported Controller method");
                 MiscText.CannotCreateOcadFiles);
 
             return success;
-        
-#endif
-}
+        }
 
         // Any warnings other that overwriting for creating OCAD files.
         public List<string> OcadFilesWarnings(OcadCreationSettings creationSettings)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             SetOutputDirectory(creationSettings);
 
             OcadCreation creation = new OcadCreation(symbolDB, eventDB, this, GetCourseAppearance(), creationSettings);
             return creation.WarningMessages();
-        
-#endif
-}
+        }
 
         // Get the list of files that will be overwritteing by creating OCAD files
         public List<string> OverwritingOcadFiles(OcadCreationSettings creationSettings)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             SetOutputDirectory(creationSettings);
 
             OcadCreation creation = new OcadCreation(symbolDB, eventDB, this, GetCourseAppearance(), creationSettings);
             return creation.OverwrittenFiles();
-        
-#endif
-}
+        }
 
         // Check if the system needs to have Roboto fonts installed on it.
         public bool ShouldInstallRobotoFonts()
         {
 #if PORTING
-throw new NotImplementedException("Unported Controller method");
+            throw new NotImplementedException("Unported Controller method");
 #else //!PORTING
 
 
@@ -2007,30 +1521,26 @@ throw new NotImplementedException("Unported Controller method");
             return !FontInstallation.AreRobotoFontsInstalledOnSystem();
         
 #endif
-}
+        }
 
         // Install the Roboto fonts. Return true if succeeded, return false if didn't.
         public bool InstallRobotoFonts()
         {
 #if PORTING
-throw new NotImplementedException("Unported Controller method");
+            throw new NotImplementedException("Unported Controller method");
 #else //!PORTING
 
 
             return FontInstallation.RunRobotoFontInstaller();
         
 #endif
-}
+        }
 
         // Create KML files.
         // Returns success or failure; any errors are already reported to the user.
         // If mapDirectory or fileDirectory is set, the outputDirectory fields is filled in.
         public bool CreateKmlFiles(ExportKmlSettings creationSettings)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             SetOutputDirectory(creationSettings);
 
             bool success = HandleExceptions(
@@ -2046,17 +1556,11 @@ throw new NotImplementedException("Unported Controller method");
                 MiscText.CannotCreateOcadFiles);
 
             return success;
-        
-#endif
-}
+        }
 
         // Get the list of files that will be overwritteing by creating KML files
         public List<string> OverwritingKmlFiles(ExportKmlSettings creationSettings)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             string msg;
             if (!CanExportGpxOrKml(out msg)) {
                 return new List<string>();
@@ -2066,19 +1570,13 @@ throw new NotImplementedException("Unported Controller method");
 
             ExportKml exportKml = new ExportKml(eventDB, creationSettings, mapDisplay.CoordinateMapper);
             return exportKml.OverwrittenFiles();
-        
-#endif
-}
+        }
 
         // Create Bitmap files.
         // Returns success or failure; any errors are already reported to the user.
         // If mapDirectory or fileDirectory is set, the outputDirectory fields is filled in.
         public bool CreateBitmapFiles(BitmapCreationSettings creationSettings)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             SetOutputDirectory(creationSettings);
 
             bool success = HandleExceptions(
@@ -2089,91 +1587,58 @@ throw new NotImplementedException("Unported Controller method");
                 MiscText.CannotCreateImageFiles);
 
             return success;
-        
-#endif
-}
+        }
 
         // Get the list of files that will be overwritteing by creating Bitmaps files
         public List<string> OverwritingBitmapFiles(BitmapCreationSettings creationSettings)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             SetOutputDirectory(creationSettings);
 
             BitmapCreation creation = new BitmapCreation(eventDB, symbolDB, this, mapDisplay.CloneToFullIntensity(), creationSettings, GetCourseAppearance());
             return creation.OverwrittenFiles();
-        
-#endif
-}
+        }
 
         // Should bitmap files enable world file.
         public bool BitmapFilesCanCreateWorldFile()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
-
             if (mapDisplay.CoordinateMapper == null)
                 return false;
 
             return mapDisplay.CoordinateMapper.HasRealWorldCoords;
-        
-#endif
-}
+        }
 
 
         // Combine two status.
         CommandStatus CombineStatus(CommandStatus status1, CommandStatus status2)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             if (status1 == CommandStatus.Enabled || status2 == CommandStatus.Enabled)
                 return CommandStatus.Enabled;
             else if (status1 == CommandStatus.Disabled || status2 == CommandStatus.Disabled)
                 return CommandStatus.Disabled;
             else
                 return CommandStatus.Hidden;
-        
-#endif
-}
+        }
 
 
         // Determine if we can delete the active object.
         public bool CanDeleteSelection()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
-
             if (currentMode != defaultMode)
                 return false;
 
             SelectionInfo selection = selectionMgr.Selection;
 
             // We can delete any selected control or a special or a text line
-            if (selection.SelectionKind == SelectionKind.Control || selection.SelectionKind == SelectionKind.Special || 
+            if (selection.SelectionKind == SelectionKind.Control || selection.SelectionKind == SelectionKind.Special ||
                 selection.SelectionKind == SelectionKind.TextLine || selection.SelectionKind == SelectionKind.MapExchangeOrFlipAtControl)
                 return true;
 
             return false;
-        
-#endif
-}
+        }
 
         // Delete the currently selected object.
         public bool DeleteSelection()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
-
             CancelMode();
 
             SelectionInfo selection = selectionMgr.Selection;
@@ -2217,26 +1682,18 @@ throw new NotImplementedException("Unported Controller method");
             }
 
             return false;
-        
-#endif
-}
+        }
 
         // Get the previous control in the selection.
         private Id<CourseControl> PreviousCourseControlInSelection()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
-
             CourseView courseView = selectionMgr.ActiveCourseView;
             if (courseView == null)
                 return Id<CourseControl>.None;
             if (courseView.Kind != CourseView.CourseViewKind.Normal)
                 return Id<CourseControl>.None;
 
-            for (int i = 0; i < courseView.ControlViews.Count; ++i)
-            {
+            for (int i = 0; i < courseView.ControlViews.Count; ++i) {
                 if (courseView.ControlViews[i].courseControlIds.Contains(selectionMgr.Selection.SelectedCourseControl)) {
                     int prevIndex = courseView.GetPrevControl(i);
                     if (prevIndex >= 0)
@@ -2245,16 +1702,10 @@ throw new NotImplementedException("Unported Controller method");
             }
 
             return Id<CourseControl>.None;
-        
-#endif
-}
+        }
 
         private bool DeleteControlFromCourse(Id<Course> courseId, Id<CourseControl> courseControl, string commandNameText)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             Debug.Assert(selectionMgr.Selection.ActiveCourseDesignator.IsNotAllControls);
             Id<CourseControl> previous = PreviousCourseControlInSelection();
 
@@ -2271,16 +1722,10 @@ throw new NotImplementedException("Unported Controller method");
                 selectionMgr.SelectCourseControl(previous);
 
             return true;
-        
-#endif
-}
+        }
 
         private bool DeleteControlFromAllControls(SelectionInfo selection)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             bool delete = true;   // actually delete the control?
 
             // Deleting a control from the controls collection.
@@ -2305,31 +1750,17 @@ throw new NotImplementedException("Unported Controller method");
             else {
                 return false;
             }
-        
-#endif
-}
+        }
 
         // Can we delete the current course
         public bool CanDeleteCurrentCourse()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
-
-            return (selectionMgr.Selection.ActiveCourseDesignator.IsNotAllControls) ;
-        
-#endif
-}
+            return (selectionMgr.Selection.ActiveCourseDesignator.IsNotAllControls);
+        }
 
         // Delete the current course
         public bool DeleteCurrentCourse()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
-
             CourseDesignator courseDesignator = selectionMgr.Selection.ActiveCourseDesignator;
             if (courseDesignator.IsAllControls)
                 return false;
@@ -2351,16 +1782,10 @@ throw new NotImplementedException("Unported Controller method");
             undoMgr.EndCommand(712);
 
             return true;
-        
-#endif
-}
+        }
 
         private void AskUserAboutDeletingOrphanedControls(IEnumerable<Id<ControlPoint>> possibleOrphans)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             // Determine if any of the controls are "orphaned".
             List<Id<ControlPoint>> orphanedControls = new List<Id<ControlPoint>>();
             string orphanedControlsText = "";
@@ -2382,31 +1807,18 @@ throw new NotImplementedException("Unported Controller method");
                         ChangeEvent.RemoveControl(eventDB, controlId);
                 }
             }
-        
-#endif
-}
+        }
 
         // Can we duplicate the current course
         public bool CanDuplicateCurrentCourse()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
-
             return (selectionMgr.Selection.ActiveCourseDesignator.IsNotAllControls);
-        
-#endif
-}
+        }
 
         // Duplicate the current course, with new properties. Duplicates all the course controls.
         // The course kind cannot be changed.
         public void DuplicateCurrentCourse(string name, ControlLabelKind labelKind, int scoreColumn, string secondaryTitle, float printScale, float climb, float? length, DescriptionKind descriptionKind, int firstControlOrdinal, bool hideFromReports)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             Id<Course> currentCourseId = selectionMgr.Selection.ActiveCourseDesignator.CourseId;
             Course currentCourse = eventDB.GetCourse(currentCourseId);
 
@@ -2417,7 +1829,7 @@ throw new NotImplementedException("Unported Controller method");
 
             // Change properties as desired.
             ChangeEvent.ChangeCourseProperties(eventDB, newCourseId, currentCourse.kind, name, labelKind, scoreColumn, secondaryTitle, printScale, climb, length, descriptionKind, firstControlOrdinal, hideFromReports);
-            
+
             // Show the new (duplicated) course (with same part as before).
             CourseDesignator newCourseDesignator;
             if (selectionMgr.Selection.ActiveCourseDesignator.Part >= 0)
@@ -2425,47 +1837,28 @@ throw new NotImplementedException("Unported Controller method");
             else
                 newCourseDesignator = new CourseDesignator(newCourseId);
             selectionMgr.SelectCourseView(newCourseDesignator);
-            
+
             undoMgr.EndCommand(24713);
-        
-#endif
-}
+        }
 
         // Add a new course. If a unique start or finish control is found, it is added.
         public void NewCourse(CourseKind courseKind, string name, ControlLabelKind labelKind, int scoreColumn, string secondaryTitle, float printScale, float climb, float? length, DescriptionKind descriptionKind, int firstControlOrdinal, bool hideFromReports)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             undoMgr.BeginCommand(713, CommandNameText.NewCourse);
             Id<Course> newCourse = ChangeEvent.CreateCourse(eventDB, courseKind, name, labelKind, scoreColumn, secondaryTitle, printScale, climb, length, descriptionKind, firstControlOrdinal, addStartAndFinish: true, hideFromReports: hideFromReports);
             selectionMgr.SelectCourseView(new CourseDesignator(newCourse));
             undoMgr.EndCommand(713);
-        
-#endif
-}
+        }
 
         // Can we change the properties fo the current course?
         public bool CanChangeCourseProperties()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
-
             return selectionMgr.Selection.ActiveCourseDesignator.IsNotAllControls;
-        
-#endif
-}
+        }
 
         // Get the properties of the current course?
         public void GetCurrentCourseProperties(out CourseKind courseKind, out string courseName, out ControlLabelKind labelKind, out int scoreColumn, out string secondaryTitle, out float printScale, out float climb, out float? length, out DescriptionKind descKind, out int firstControlOrdinal, out bool hideFromReports)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             Course course = eventDB.GetCourse(selectionMgr.Selection.ActiveCourseDesignator.CourseId);
             courseKind = course.kind;
             courseName = course.name;
@@ -2478,59 +1871,35 @@ throw new NotImplementedException("Unported Controller method");
             firstControlOrdinal = course.firstControlOrdinal;
             scoreColumn = course.scoreColumn;
             hideFromReports = course.hideFromReports;
-        
-#endif
-}
+        }
 
         // Change the properties of the current course.
         public void ChangeCurrentCourseProperties(CourseKind courseKind, string courseName, ControlLabelKind labelKind, int scoreColumn, string secondaryTitle, float printScale, float climb, float? length, DescriptionKind descriptionKind, int firstControlOrdinal, bool hideFromReports)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             undoMgr.BeginCommand(888, CommandNameText.ChangeCourseProperties);
             ChangeEvent.ChangeCourseProperties(eventDB, selectionMgr.Selection.ActiveCourseDesignator.CourseId, courseKind, courseName, labelKind, scoreColumn, secondaryTitle, printScale, climb, length, descriptionKind, firstControlOrdinal, hideFromReports);
             undoMgr.EndCommand(888);
-        
-#endif
-}
+        }
 
         // Get the properties of the all controls printing
         public void GetAllControlsProperties(out float printScale, out DescriptionKind descKind)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             printScale = eventDB.GetEvent().allControlsPrintScale;
             descKind = eventDB.GetEvent().allControlsDescKind;
-        
-#endif
-}
+        }
 
         // Set properties of all controls printing
         public void ChangeAllControlsProperties(float printScale, DescriptionKind descKind)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             undoMgr.BeginCommand(4888, CommandNameText.ChangeAllControlsProperties);
             ChangeEvent.ChangeAllControlsProperties(eventDB, printScale, descKind);
             undoMgr.EndCommand(4888);
-        
-#endif
-}
+        }
 
         // Given a PrintArea and a particular course, get the actual print area rectangle in map units. If the PrintArea
         // is restricting to the page size, or is automatically computed, handles that computation.
         public RectangleF GetPrintAreaRectangle(CourseDesignator courseDesignator, PrintArea printArea)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             courseDesignator = QueryEvent.AddDefaultVariationIfNecessary(eventDB, courseDesignator);
 
             // Get the course view and course layout for this course.
@@ -2540,9 +1909,9 @@ throw new NotImplementedException("Unported Controller method");
 
             // Determine the page size in map units, taking into account the scale ratio and portrait/landscape.
             float mmPerPageUnit = (0.254F * courseView.ScaleRatio);
-            SizeF pageSizeInMapUnits = new SizeF(Math.Max(0, (printArea.pageWidth - 2 * printArea.pageMargins) * mmPerPageUnit), 
-                                                 Math.Max(0, (printArea.pageHeight - 2 * printArea.pageMargins) * mmPerPageUnit)); 
-            
+            SizeF pageSizeInMapUnits = new SizeF(Math.Max(0, (printArea.pageWidth - 2 * printArea.pageMargins) * mmPerPageUnit),
+                                                 Math.Max(0, (printArea.pageHeight - 2 * printArea.pageMargins) * mmPerPageUnit));
+
             if (printArea.pageLandscape) {
                 pageSizeInMapUnits = new SizeF(pageSizeInMapUnits.Height, pageSizeInMapUnits.Width);
             }
@@ -2554,7 +1923,7 @@ throw new NotImplementedException("Unported Controller method");
                 // High priority: conver the bounding rect of the course objects with a 1mm padding.
                 // Lower priority: cover the map rectangle.
                 RectangleF courseObjectsRectangle = layout.BoundingRect();
-                if (! courseObjectsRectangle.IsEmpty) {
+                if (!courseObjectsRectangle.IsEmpty) {
                     courseObjectsRectangle = RectangleF.Inflate(courseObjectsRectangle, 1.0F, 1.0F);
                 }
                 RectangleF mapRectangle = mapDisplay.MapBounds;
@@ -2588,31 +1957,18 @@ throw new NotImplementedException("Unported Controller method");
             }
 
             return printRectangle;
-        
-#endif
-}
+        }
 
         public RectangleF GetPrintAreaRectangle(PrintAreaKind printAreaKind, PrintArea printArea)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             return GetPrintAreaRectangle(CourseDesignatorFromPrintAreaKind(printAreaKind), printArea);
-        
-#endif
-}
+        }
 
         // Input: Given two intervals [lowPriL,lowPriR] and [highPriL, highPriR], and a width.
         // Output: Returns the best interval of the given width. It should best cover the high pri interval, then 
         // best cover the low pri interval, centering as much as possible given those constraints.
         void PositionPrintInterval(float width, float highPriL, float highPriR, float lowPriL, float lowPriR, out float resultL, out float resultR)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
-
             float minL = Math.Min(lowPriL, highPriL), maxR = Math.Max(lowPriR, highPriR);
             float mid;
 
@@ -2653,101 +2009,59 @@ throw new NotImplementedException("Unported Controller method");
                 resultL = resultR - width;
                 return;
             }
-        
-#endif
-}
+        }
 
         // Get the current print area, for the current course or all courses.
         public RectangleF GetCurrentPrintAreaRectangle(PrintAreaKind printAreaKind)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             return GetCurrentPrintAreaRectangle(CourseDesignatorFromPrintAreaKind(printAreaKind));
-        
-#endif
-}
+        }
 
         // Get the print area rectangle for a course. If the print area indicates a default positioned
         // rectangle, then calculate he default position and return it.
         public RectangleF GetCurrentPrintAreaRectangle(CourseDesignator courseDesignator)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             PrintArea printArea = QueryEvent.GetPrintArea(eventDB, courseDesignator);
             return GetPrintAreaRectangle(courseDesignator, printArea);
-        
-#endif
-}
+        }
 
 
         public PrintArea GetCurrentPrintArea(PrintAreaKind printAreaKind)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             return GetCurrentPrintArea(CourseDesignatorFromPrintAreaKind(printAreaKind));
-        
-#endif
-}
+        }
 
         public PrintArea GetCurrentPrintArea(CourseDesignator courseDesignator)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             return QueryEvent.GetPrintArea(eventDB, courseDesignator);
-        
-#endif
-}
+        }
 
         CourseDesignator CourseDesignatorFromPrintAreaKind(PrintAreaKind printAreaKind)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             switch (printAreaKind) {
-                case PrintAreaKind.AllCourses:
-                    return CourseDesignator.AllControls;
-                case PrintAreaKind.OneCourse:
-                    return new CourseDesignator(selectionMgr.Selection.ActiveCourseDesignator.CourseId);
-                case PrintAreaKind.OnePart:
-                    return selectionMgr.Selection.ActiveCourseDesignator;
-                default:
-                    Debug.Fail("unknown print area kind");
-                    return CourseDesignator.AllControls;
+            case PrintAreaKind.AllCourses:
+                return CourseDesignator.AllControls;
+            case PrintAreaKind.OneCourse:
+                return new CourseDesignator(selectionMgr.Selection.ActiveCourseDesignator.CourseId);
+            case PrintAreaKind.OnePart:
+                return selectionMgr.Selection.ActiveCourseDesignator;
+            default:
+                Debug.Fail("unknown print area kind");
+                return CourseDesignator.AllControls;
             }
 
-        
-#endif
-}
+        }
 
         // Begin the mode to set the print area, for the current course or all courses.
         public void BeginSetPrintArea(PrintAreaKind printArea, IDisposable disposeOnEndMode)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             RectangleF initialPrintArea = GetCurrentPrintAreaRectangle(printArea);
 
-            SetCommandMode(new RectangleSelectMode(this, initialPrintArea, disposeOnEndMode));  
-        
-#endif
-}
+            SetCommandMode(new RectangleSelectMode(this, initialPrintArea, disposeOnEndMode));
+        }
 
         public void SetPrintAreaUpdate(PrintAreaKind printAreaKind, PrintArea printArea)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             RectangleSelectMode rectSelectMode = currentMode as RectangleSelectMode;
             if (rectSelectMode != null) {
                 rectSelectMode.Rectangle = GetPrintAreaRectangle(CourseDesignatorFromPrintAreaKind(printAreaKind), printArea);
@@ -2756,17 +2070,10 @@ throw new NotImplementedException("Unported Controller method");
 
                 ++changeNum;
             }
-        
-#endif
-}
+        }
 
         public RectangleF SetPrintAreaCurrentRectangle()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
-
             if (currentMode is RectangleSelectMode) {
                 RectangleF newRectangle = ((RectangleSelectMode)currentMode).Rectangle;
                 return newRectangle;
@@ -2774,17 +2081,11 @@ throw new NotImplementedException("Unported Controller method");
             else {
                 return new RectangleF();
             }
-        
-#endif
-}
+        }
 
         // End the mode to set the print area, and set it.
         public void EndSetPrintArea(PrintAreaKind printAreaKind, PrintArea printArea)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             if (currentMode is RectangleSelectMode) {
                 // Always set the print area rectangle into the print area, even if automatic is selected.
                 // This is for backward compatibility.
@@ -2796,7 +2097,7 @@ throw new NotImplementedException("Unported Controller method");
                     ChangeEvent.ChangePrintArea(eventDB, CourseDesignator.AllControls, true, printArea);    // all controls
                     Id<Course>[] courses = QueryEvent.SortedCourseIds(eventDB, true);
                     foreach (Id<Course> courseId in courses) {
-                        ChangeEvent.ChangePrintArea(eventDB, new CourseDesignator(courseId), true, printArea);  
+                        ChangeEvent.ChangePrintArea(eventDB, new CourseDesignator(courseId), true, printArea);
                     }
                 }
                 else {
@@ -2809,17 +2110,11 @@ throw new NotImplementedException("Unported Controller method");
 
                 DefaultCommandMode();
             }
-        
-#endif
-}
+        }
 
         // Update all the automatic print area in the event. Done after load for backward compatibility purposes.
         private void UpdateAutomaticPrintAreas()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
 
             bool wasDirty = undoMgr.IsDirty;
 
@@ -2844,18 +2139,12 @@ throw new NotImplementedException("Unported Controller method");
                 // These changes shouldn't cause the file to become dirty if it wasn't already.
                 undoMgr.MarkClean();
             }
-        
-#endif
-}
+        }
 
         // If the print area associated with this designator is automatic, update the printAreaRectangle field
         // to have the default print area in it. This is for backward compatibility when saving files.
         private void UpdateAutomaticPrintArea(CourseDesignator courseDesignator)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             if (courseDesignator.IsNotAllControls && !courseDesignator.AllParts && !QueryEvent.HasPartSpecificPrintArea(eventDB, courseDesignator))
                 return;
 
@@ -2866,17 +2155,11 @@ throw new NotImplementedException("Unported Controller method");
                 printArea.printAreaRectangle = GetPrintAreaRectangle(courseDesignator, printArea);
                 ChangeEvent.ChangePrintArea(eventDB, courseDesignator, false, printArea);
             }
-        
-#endif
-}
+        }
 
         // Get the properties for a selected special line/rectangle (selectedLineSpecial == true), or the defaults for a new one (selectedLineSpecial == false).
         public void GetLineSpecialProperties(SpecialKind specialKind, bool selectedLineSpecial, out SpecialColor color, out LineKind lineKind, out float lineWidth, out float gapSize, out float dashSize, out float cornerRadius)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             if (selectedLineSpecial) {
                 SelectionInfo selection = selectionMgr.Selection;
                 if (selection.SelectionKind == SelectionKind.Special) {
@@ -2916,31 +2199,19 @@ throw new NotImplementedException("Unported Controller method");
                 cornerRadius = 0;
                 return;
             }
-        
-#endif
-}
+        }
 
         // Move a special to a new location
         public void MoveSpecial(Id<Special> specialId, PointF[] newLocations)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             undoMgr.BeginCommand(871, CommandNameText.MoveObject);
             ChangeEvent.ChangeSpecialLocations(eventDB, specialId, newLocations);
             undoMgr.EndCommand(871);
-        
-#endif
-}
+        }
 
         // Move a descripion to a new location, and possibly change the number of columns also.
         public void MoveSpecial(Id<Special> specialId, PointF[] newLocations, int numColumns)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             undoMgr.BeginCommand(871, CommandNameText.MoveObject);
             ChangeEvent.ChangeSpecialLocations(eventDB, specialId, newLocations);
             int currentNumColumns = QueryEvent.GetDescriptionColumns(eventDB, specialId);
@@ -2948,19 +2219,12 @@ throw new NotImplementedException("Unported Controller method");
                 ChangeEvent.ChangeDescriptionColumns(eventDB, specialId, numColumns);
             }
             undoMgr.EndCommand(871);
-        
-#endif
-}
+        }
 
         // Move a special to a new location by translation
         public void MoveSpecialDelta(Id<Special> specialId, float deltaX, float deltaY)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
-
-            PointF[] newLocations = (PointF[]) eventDB.GetSpecial(specialId).locations.Clone();
+            PointF[] newLocations = (PointF[])eventDB.GetSpecial(specialId).locations.Clone();
 
             for (int i = 0; i < newLocations.Length; ++i) {
                 newLocations[i].X += deltaX;
@@ -2968,18 +2232,13 @@ throw new NotImplementedException("Unported Controller method");
             }
 
             MoveSpecial(specialId, newLocations);
-        
-#endif
-}
+        }
 
         // Move a special to a new location by changing one point
         public void MoveSpecialPoint(Id<Special> specialId, PointF oldPoint, PointF newPoint)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
 
-            PointF[] newLocations = (PointF[]) eventDB.GetSpecial(specialId).locations.Clone();
+            PointF[] newLocations = (PointF[])eventDB.GetSpecial(specialId).locations.Clone();
 
             for (int i = 0; i < newLocations.Length; ++i) {
                 if (newLocations[i] == oldPoint)
@@ -2987,17 +2246,11 @@ throw new NotImplementedException("Unported Controller method");
             }
 
             MoveSpecial(specialId, newLocations);
-        
-#endif
-}
+        }
 
         // Move a leg bend or a gap start/end to a new location.
         public void MoveLegBendOrGap(Id<CourseControl> courseControlId1, Id<CourseControl> courseControlId2, PointF oldPoint, PointF newPoint)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             Id<ControlPoint> controlId1 = eventDB.GetCourseControl(courseControlId1).control;
             Id<ControlPoint> controlId2 = eventDB.GetCourseControl(courseControlId2).control;
 
@@ -3016,86 +2269,51 @@ throw new NotImplementedException("Unported Controller method");
                 ChangeEvent.MoveLegGap(eventDB, controlId1, controlId2, oldPoint, newPoint);
                 undoMgr.EndCommand(878);
             }
-        
-#endif
-}
+        }
 
         // Can we add a bend to a leg or an area special item?
         public CommandStatus CanAddBend()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
 
             return CombineStatus(CanAddLegBend(), CanAddSpecialCorner());
-        
-#endif
-}
+        }
 
         // Can we remove a bend from a leg or an area special item?
         public CommandStatus CanRemoveBend()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
-
             return CombineStatus(CanRemoveLegBend(), CanRemoveSpecialCorner());
-        
-#endif
-}
+        }
 
         // Add a bend to a leg or an area special item
         public void BeginAddBend()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
 
             if (CanAddLegBend() == CommandStatus.Enabled)
                 BeginAddLegBend();
             else if (CanAddSpecialCorner() == CommandStatus.Enabled)
                 BeginAddSpecialCorner();
-        
-#endif
-}
+        }
 
         // Start the mode for remove a bend from a special or a leg.
         public void BeginRemoveBend()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
-
             SelectionInfo selection = selectionMgr.Selection;
 
             if (selection.SelectionKind == SelectionKind.Special || selection.SelectionKind == SelectionKind.Leg) {
                 SetCommandMode(new DeleteCornerMode(this, selectionMgr.SelectedCourseObjects[0]));
             }
-        
-#endif
-}
+        }
 
 
         // Command status for adding a bend to a leg.
         private CommandStatus CanAddLegBend()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
-
             SelectionInfo selection = selectionMgr.Selection;
             if (selection.SelectionKind == SelectionKind.Leg)
                 return CommandStatus.Enabled;    // can always add a new bend
             else
                 return CommandStatus.Disabled;
-        
-#endif
-}
+        }
 
         // Start the mode for adding a bend to a leg.
 #if TEST
@@ -3105,27 +2323,17 @@ throw new NotImplementedException("Unported Controller method");
 #endif
         void BeginAddLegBend()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
 
             SelectionInfo selection = selectionMgr.Selection;
 
             if (selection.SelectionKind == SelectionKind.Leg) {
                 SetCommandMode(new AddCornerMode(this, true, selectionMgr.SelectedCourseObjects));
             }
-        
-#endif
-}
+        }
 
         // Command status for adding a corner to a special.
         private CommandStatus CanAddSpecialCorner()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
 
             SelectionInfo selection = selectionMgr.Selection;
             if (selection.SelectionKind == SelectionKind.Special) {
@@ -3137,9 +2345,7 @@ throw new NotImplementedException("Unported Controller method");
             }
             else
                 return CommandStatus.Disabled;
-        
-#endif
-}
+        }
 
         // Start the mode for adding a corner to a special.
 #if TEST
@@ -3149,27 +2355,16 @@ throw new NotImplementedException("Unported Controller method");
 #endif
         void BeginAddSpecialCorner()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
-
             SelectionInfo selection = selectionMgr.Selection;
 
             if (selection.SelectionKind == SelectionKind.Special) {
                 SetCommandMode(new AddCornerMode(this, false, selectionMgr.SelectedCourseObjects));
             }
-        
-#endif
-}
+        }
 
         // Add a bend or corner to the currently selected objects.
         public void AddCorner(PointF newCorner)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             SelectionInfo selection = selectionMgr.Selection;
 
             if (selection.SelectionKind == SelectionKind.Leg) {
@@ -3186,18 +2381,11 @@ throw new NotImplementedException("Unported Controller method");
                 undoMgr.EndCommand(879);
 
             }
-        
-#endif
-}
+        }
 
         // Command status for removing a corner from a special.
         private CommandStatus CanRemoveSpecialCorner()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
-
             SelectionInfo selection = selectionMgr.Selection;
             if (selection.SelectionKind == SelectionKind.Special) {
                 Special special = eventDB.GetSpecial(selection.SelectedSpecial);
@@ -3217,18 +2405,11 @@ throw new NotImplementedException("Unported Controller method");
             else {
                 return CommandStatus.Disabled;
             }
-        
-#endif
-}
+        }
 
         // Command status for removeing a bend from a leg.
         private CommandStatus CanRemoveLegBend()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
-
             SelectionInfo selection = selectionMgr.Selection;
             if (selection.SelectionKind == SelectionKind.Leg) {
                 Id<Leg> legId = QueryEvent.FindLeg(eventDB, eventDB.GetCourseControl(selection.SelectedCourseControl).control, eventDB.GetCourseControl(selection.SelectedCourseControl2).control);
@@ -3241,17 +2422,11 @@ throw new NotImplementedException("Unported Controller method");
             }
             else
                 return CommandStatus.Disabled;
-        
-#endif
-}
+        }
 
         // Delete a corner from the selected object
         public void DeleteCorner(PointF cornerLocation)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             SelectionInfo selection = selectionMgr.Selection;
 
             if (selection.SelectionKind == SelectionKind.Special) {
@@ -3261,23 +2436,17 @@ throw new NotImplementedException("Unported Controller method");
             }
             else {
                 undoMgr.BeginCommand(8189, CommandNameText.DeleteBend);
-                ChangeEvent.RemoveLegBend(eventDB, 
-                                                                eventDB.GetCourseControl(selection.SelectedCourseControl).control, 
-                                                                eventDB.GetCourseControl(selection.SelectedCourseControl2).control, 
+                ChangeEvent.RemoveLegBend(eventDB,
+                                                                eventDB.GetCourseControl(selection.SelectedCourseControl).control,
+                                                                eventDB.GetCourseControl(selection.SelectedCourseControl2).control,
                                                                 cornerLocation);
                 undoMgr.EndCommand(8189);
             }
-        
-#endif
-}
+        }
 
         // Get the command status for adding a gap.
         public CommandStatus CanAddGap()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
 
             SelectionInfo selection = selectionMgr.Selection;
 
@@ -3294,37 +2463,24 @@ throw new NotImplementedException("Unported Controller method");
             }
             else
                 return CommandStatus.Disabled;
-        
-#endif
-}
+        }
 
         // Start the mode for adding a gap to a leg or control.
         public void BeginAddGap()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
-
             SelectionInfo selection = selectionMgr.Selection;
 
             if (selection.SelectionKind == SelectionKind.Control) {
-                SetCommandMode(new AddControlGapMode(this, (PointCourseObj) selectionMgr.SelectedCourseObjects[0]));
+                SetCommandMode(new AddControlGapMode(this, (PointCourseObj)selectionMgr.SelectedCourseObjects[0]));
             }
             else if (selection.SelectionKind == SelectionKind.Leg) {
-                SetCommandMode(new AddLegGapMode(this, (LegCourseObj) selectionMgr.SelectedCourseObjects[0]));
+                SetCommandMode(new AddLegGapMode(this, (LegCourseObj)selectionMgr.SelectedCourseObjects[0]));
             }
-        
-#endif
-}
+        }
 
         // Add a gap to the selection control at a given location.
         public void AddControlGap(PointF gapLocation)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             SelectionInfo selection = selectionMgr.Selection;
 
             if (selection.SelectionKind == SelectionKind.Control) {
@@ -3343,17 +2499,11 @@ throw new NotImplementedException("Unported Controller method");
                 ChangeEvent.ChangeControlGaps(eventDB, selection.SelectedControl, scaleForCircleGaps, gaps);
                 undoMgr.EndCommand(8142);
             }
-        
-#endif
-}
+        }
 
         // Add a gap to the selection control at a given location.
         public void AddControlGap(PointF gapLocation1, PointF gapLocation2)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             SelectionInfo selection = selectionMgr.Selection;
 
             if (selection.SelectionKind == SelectionKind.Control) {
@@ -3364,33 +2514,21 @@ throw new NotImplementedException("Unported Controller method");
                 ChangeEvent.AddGap(eventDB, scaleForCircleGaps, selection.SelectedControl, gapLocation1, gapLocation2);
                 undoMgr.EndCommand(8142);
             }
-        
-#endif
-}
+        }
 
         // Move a gap end point on a control.
         public void MoveControlGap(Id<ControlPoint> controlId, CircleGap[] newGaps)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             float scaleForCircleGaps = selectionMgr.ActiveCourseView.CircleGapScale(GetCourseAppearance());
 
             undoMgr.BeginCommand(8142, CommandNameText.MoveGap);
             ChangeEvent.ChangeControlGaps(eventDB, controlId, scaleForCircleGaps, CircleGap.SimplifyGaps(newGaps));
             undoMgr.EndCommand(8142);
-        
-#endif
-}
+        }
 
         // Add a gap to the selected leg using two points as the end points of the gap.
         public void AddLegGap(PointF pt1, PointF pt2)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             SelectionInfo selection = selectionMgr.Selection;
 
             if (selection.SelectionKind == SelectionKind.Leg) {
@@ -3407,17 +2545,11 @@ throw new NotImplementedException("Unported Controller method");
                 ChangeEvent.ChangeLegGaps(eventDB, controlId1, controlId2, newGaps);
                 undoMgr.EndCommand(8642);
             }
-        
-#endif
-}
+        }
 
         // Add a leg gap of 2mm around a center point.
         public void AddLegGap(PointF ptCenter)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             SelectionInfo selection = selectionMgr.Selection;
 
             if (selection.SelectionKind == SelectionKind.Leg) {
@@ -3434,17 +2566,11 @@ throw new NotImplementedException("Unported Controller method");
 
                 AddLegGap(pt1, pt2);
             }
-        
-#endif
-}
+        }
 
         // Get the command status for removing a gap.
         public CommandStatus CanRemoveGap()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
 
             SelectionInfo selection = selectionMgr.Selection;
 
@@ -3475,37 +2601,25 @@ throw new NotImplementedException("Unported Controller method");
             }
             else
                 return CommandStatus.Disabled;
-        
-#endif
-}
+        }
 
         // Start the mode for removing a gap from a leg or control.
         public void BeginRemoveGap()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
 
             SelectionInfo selection = selectionMgr.Selection;
 
             if (selection.SelectionKind == SelectionKind.Control) {
-                SetCommandMode(new RemoveControlGapMode(this, (PointCourseObj) selectionMgr.SelectedCourseObjects[0]));
+                SetCommandMode(new RemoveControlGapMode(this, (PointCourseObj)selectionMgr.SelectedCourseObjects[0]));
             }
             else if (selection.SelectionKind == SelectionKind.Leg) {
-                SetCommandMode(new RemoveLegGapMode(this, (LineCourseObj) selectionMgr.SelectedCourseObjects[0]));
+                SetCommandMode(new RemoveLegGapMode(this, (LineCourseObj)selectionMgr.SelectedCourseObjects[0]));
             }
-        
-#endif
-}
+        }
 
         // Remove a gap from the selected control at a given location.
         public void RemoveControlGap(PointF gapLocation)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             SelectionInfo selection = selectionMgr.Selection;
 
             if (selection.SelectionKind == SelectionKind.Control) {
@@ -3524,17 +2638,11 @@ throw new NotImplementedException("Unported Controller method");
                 ChangeEvent.ChangeControlGaps(eventDB, selection.SelectedControl, scaleForCircleGaps, gaps);
                 undoMgr.EndCommand(8147);
             }
-        
-#endif
-}
+        }
 
         // Remove a gap from the selected leg at a given location.
         public void RemoveLegGap(PointF gapLocation)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             SelectionInfo selection = selectionMgr.Selection;
 
             if (selection.SelectionKind == SelectionKind.Leg) {
@@ -3546,17 +2654,11 @@ throw new NotImplementedException("Unported Controller method");
                 ChangeEvent.RemoveLegGap(eventDB, controlId1, controlId2, gapLocation);
                 undoMgr.EndCommand(8142);
             }
-        
-#endif
-}
+        }
 
         // Command status for setting the leg flagging kind.
         public CommandStatus CanSetLegFlagging(out FlaggingKind currentFlagging)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             SelectionInfo selection = selectionMgr.Selection;
 
             // Leg flagging can only be set if a leg is selected.
@@ -3569,17 +2671,11 @@ throw new NotImplementedException("Unported Controller method");
                 currentFlagging = FlaggingKind.None;
                 return CommandStatus.Disabled;
             }
-        
-#endif
-}
+        }
 
         // Set the leg flagging of the currently selected leg.
         public void SetLegFlagging(FlaggingKind flagging)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             SelectionInfo selection = selectionMgr.Selection;
 
             if (selection.SelectionKind == SelectionKind.Leg) {
@@ -3592,52 +2688,33 @@ throw new NotImplementedException("Unported Controller method");
 
                 undoMgr.EndCommand(851);
             }
-        
-#endif
-}
+        }
 
         // Get list of controls for the remove unused controls dialog. A list of keyvaluepairs, where key is the control id, and value is the string to represent it.
         public List<KeyValuePair<Id<ControlPoint>, string>> GetUnusedControls()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
-
-            List<KeyValuePair<Id<ControlPoint>, string>> list = QueryEvent.ControlsUnusedInCourses(eventDB, true).ConvertAll(id => new KeyValuePair<Id<ControlPoint>,string>(id, Util.ControlPointName(eventDB, id, NameStyle.Medium)));
+            List<KeyValuePair<Id<ControlPoint>, string>> list = QueryEvent.ControlsUnusedInCourses(eventDB, true).ConvertAll(id => new KeyValuePair<Id<ControlPoint>, string>(id, Util.ControlPointName(eventDB, id, NameStyle.Medium)));
 
             list.Sort((pair1, pair2) => QueryEvent.CompareControlIds(eventDB, pair1.Key, pair2.Key));
             return list;
-        
-#endif
-}
+        }
 
         // Remove controls
         public void RemoveControls(List<Id<ControlPoint>> controlsToRemove)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             if (controlsToRemove.Count > 0) {
                 undoMgr.BeginCommand(3311, CommandNameText.RemoveUnusedControls);
 
-                foreach (Id<ControlPoint> controlId in controlsToRemove) 
+                foreach (Id<ControlPoint> controlId in controlsToRemove)
                     ChangeEvent.RemoveControl(eventDB, controlId);
 
                 undoMgr.EndCommand(3311);
             }
-        
-#endif
-}
+        }
 
         // Command status for changing the set of displayed courses.
         public CommandStatus CanChangeDisplayedCourses(out CourseDesignator[] displayedCourses, out bool showAllControls)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             SelectionInfo selection = selectionMgr.Selection;
 
             // Set of displayed courses can be changed only for a special.
@@ -3651,17 +2728,11 @@ throw new NotImplementedException("Unported Controller method");
                 showAllControls = false;
                 return CommandStatus.Disabled;
             }
-        
-#endif
-}
+        }
 
         // Change the set of displayed courses for the selection.
         public void ChangeDisplayedCourses(CourseDesignator[] displayedCourses)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             SelectionInfo selection = selectionMgr.Selection;
 
             // Set of displayed courses can be changed only for a special.
@@ -3672,19 +2743,12 @@ throw new NotImplementedException("Unported Controller method");
 
                 undoMgr.EndCommand(852);
             }
-        
-#endif
-}
+        }
 
         // Command status for rotating the currently selected object. Only crossing points
         // can be rotated.
         public CommandStatus CanRotate()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
-
             SelectionInfo selection = selectionMgr.Selection;
 
             //  Only crossing points (optional or mandatory) can be rotated.
@@ -3697,37 +2761,24 @@ throw new NotImplementedException("Unported Controller method");
             else {
                 return CommandStatus.Disabled;
             }
-        
-#endif
-}
+        }
 
         // Begin mode to rotate the selected object.
         public void BeginRotate()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
 
             SelectionInfo selection = selectionMgr.Selection;
 
             //  Only crossing points (optional or mandatory) can be rotated.
             if ((selection.SelectionKind == SelectionKind.Special && eventDB.GetSpecial(selection.SelectedSpecial).kind == SpecialKind.OptCrossing) ||
-                (selection.SelectionKind == SelectionKind.Control && eventDB.GetControl(selection.SelectedControl).kind == ControlPointKind.CrossingPoint)) 
-            {
-                SetCommandMode(new RotateMode(this, (CrossingCourseObj) selectionMgr.SelectedCourseObjects[0]));
+                (selection.SelectionKind == SelectionKind.Control && eventDB.GetControl(selection.SelectedControl).kind == ControlPointKind.CrossingPoint)) {
+                SetCommandMode(new RotateMode(this, (CrossingCourseObj)selectionMgr.SelectedCourseObjects[0]));
             }
-        
-#endif
-}
+        }
 
         // Rotate the selected object to the given new orientation.
         public void Rotate(float newOrientation)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             SelectionInfo selection = selectionMgr.Selection;
 
             //  Only crossing points (optional or mandatory) can be rotated.
@@ -3745,18 +2796,12 @@ throw new NotImplementedException("Unported Controller method");
                 ChangeEvent.ChangeControlOrientation(eventDB, controlId, newOrientation);
                 undoMgr.EndCommand(8813);
             }
-        
-#endif
-}
+        }
 
         // Command status for stretching the currently selected object. Only crossing points
         // can be stretched.
         public CommandStatus CanStretch()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
 
             SelectionInfo selection = selectionMgr.Selection;
 
@@ -3770,18 +2815,11 @@ throw new NotImplementedException("Unported Controller method");
             else {
                 return CommandStatus.Disabled;
             }
-        
-#endif
-}
+        }
 
         // Begin mode to stretch the selected object.
         public void BeginStretch()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
-
             SelectionInfo selection = selectionMgr.Selection;
 
             //  Only crossing points (optional or mandatory) can be stretched.
@@ -3789,17 +2827,11 @@ throw new NotImplementedException("Unported Controller method");
                 (selection.SelectionKind == SelectionKind.Control && eventDB.GetControl(selection.SelectedControl).kind == ControlPointKind.CrossingPoint)) {
                 SetCommandMode(new StretchMode(this, (CrossingCourseObj)selectionMgr.SelectedCourseObjects[0]));
             }
-        
-#endif
-}
+        }
 
         // Stretch the selected object to the given new orientation.
         public void Stretch(float newStretch)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             SelectionInfo selection = selectionMgr.Selection;
 
             //  Only crossing points (optional or mandatory) can be stretched.
@@ -3817,19 +2849,13 @@ throw new NotImplementedException("Unported Controller method");
                 ChangeEvent.ChangeControlStretch(eventDB, controlId, newStretch);
                 undoMgr.EndCommand(8813);
             }
-        
-#endif
-}
+        }
 
 
 
         // Command status for changing the text of a given item.
         public CommandStatus CanChangeText()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
 
             SelectionInfo selection = selectionMgr.Selection;
 
@@ -3838,33 +2864,21 @@ throw new NotImplementedException("Unported Controller method");
                 return CommandStatus.Enabled;
             else
                 return CommandStatus.Disabled;
-        
-#endif
-}
+        }
 
         // Get the text of a object if can change the text.
         public string GetChangableText()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
 
-
-            if (CanChangeText() == CommandStatus.Enabled) 
+            if (CanChangeText() == CommandStatus.Enabled)
                 return eventDB.GetSpecial(selectionMgr.Selection.SelectedSpecial).text;
             else
                 return null;
-        
-#endif
-}
+        }
 
         // Get the text properties of a object if can change the text.
         public bool GetChangableTextProperties(out string fontName, out bool fontBold, out bool fontItalic, out SpecialColor specialColor, out float fontHeight)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             if (CanChangeText() == CommandStatus.Enabled) {
                 Special special = eventDB.GetSpecial(selectionMgr.Selection.SelectedSpecial);
                 fontName = special.fontName;
@@ -3882,17 +2896,11 @@ throw new NotImplementedException("Unported Controller method");
                 fontHeight = -1;
                 return false;
             }
-        
-#endif
-}
+        }
 
         // Get the properties of a new text object.
         public void GetAddTextDefaultProperties(out string fontName, out bool fontBold, out bool fontItalic, out SpecialColor fontColor, out float fontHeight, out bool fontAutoSize)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             var specials = eventDB.AllSpecialPairs.Where(s => s.Value.kind == SpecialKind.Text);
             if (specials.Any()) {
                 // Look at the text special with the largest id (most recently added).
@@ -3915,35 +2923,22 @@ throw new NotImplementedException("Unported Controller method");
                 fontHeight = 5.0F;
                 return;
             }
-        
-#endif
-}
+        }
 
 
         // Change the text.
         public void ChangeText(string newText, string fontName, bool fontBold, bool fontItalic, SpecialColor specialColor, float fontHeight)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             if (CanChangeText() == CommandStatus.Enabled) {
                 undoMgr.BeginCommand(7114, CommandNameText.ChangeText);
                 ChangeEvent.ChangeSpecialText(eventDB, selectionMgr.Selection.SelectedSpecial, newText, fontName, fontBold, fontItalic, specialColor, fontHeight);
                 undoMgr.EndCommand(7114);
             }
-        
-#endif
-}
+        }
 
         // Command status for changing the line appearance of a given item.
         public CommandStatus CanChangeLineAppearance()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
-
             SelectionInfo selection = selectionMgr.Selection;
 
             // Only line and rectangle special can have their line appearance changed.
@@ -3952,19 +2947,13 @@ throw new NotImplementedException("Unported Controller method");
                 if (special.kind == SpecialKind.Line || special.kind == SpecialKind.Rectangle || special.kind == SpecialKind.Ellipse)
                     return CommandStatus.Enabled;
             }
-                
+
             return CommandStatus.Disabled;
-        
-#endif
-}
+        }
 
         // Get the properties of a line objects that can be changed
         public bool GetChangableLineProperties(out bool showRadius, out SpecialColor color, out LineKind lineKind, out float lineWidth, out float gapSize, out float dashSize, out float cornerRadius)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             if (CanChangeLineAppearance() == CommandStatus.Enabled) {
                 Special special = eventDB.GetSpecial(selectionMgr.Selection.SelectedSpecial);
 
@@ -3987,35 +2976,23 @@ throw new NotImplementedException("Unported Controller method");
                 cornerRadius = 0;
                 return true;
             }
-        
-#endif
-}
+        }
 
         // Change the line appearance.
         public void ChangeLineAppearance(SpecialColor color, LineKind lineKind, float lineWidth, float gapSize, float dashSize, float cornerRadius)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             if (CanChangeLineAppearance() == CommandStatus.Enabled) {
                 undoMgr.BeginCommand(7154, CommandNameText.ChangeLineAppearance);
                 ChangeEvent.ChangeSpecialLineAppearance(eventDB, selectionMgr.Selection.SelectedSpecial, color, lineKind, lineWidth, gapSize, dashSize, cornerRadius);
                 undoMgr.EndCommand(7154);
             }
-        
-#endif
-}
+        }
 
 
         // Get all the controls codes, sorted in display order and keyed by an object used
         // for SetAllControlCodes.
         public KeyValuePair<object, string>[] GetAllControlCodes()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
 
             List<KeyValuePair<object, string>> codes = new List<KeyValuePair<object, string>>();
 
@@ -4027,26 +3004,20 @@ throw new NotImplementedException("Unported Controller method");
             }
 
             // Sort in the correct order to display.
-            codes.Sort(delegate(KeyValuePair<object, string> pair1, KeyValuePair<object,string> pair2) {
+            codes.Sort(delegate (KeyValuePair<object, string> pair1, KeyValuePair<object, string> pair2) {
                 return Util.CompareCodes(pair1.Value, pair2.Value);
             });
 
             return codes.ToArray();
-        
-#endif
-}
+        }
 
         // Change multiple controls codes in the event. Uses an array of pairs of control ids and controls codes.
         public void SetAllControlCodes(KeyValuePair<object, string>[] newCodes)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             undoMgr.BeginCommand(9912, CommandNameText.ChangeCodes);
 
             foreach (KeyValuePair<object, string> pair in newCodes) {
-                Id<ControlPoint> controlId = (Id<ControlPoint>) pair.Key;
+                Id<ControlPoint> controlId = (Id<ControlPoint>)pair.Key;
                 string newCode = pair.Value;
 
                 if (eventDB.GetControl(controlId).code != newCode)
@@ -4054,11 +3025,10 @@ throw new NotImplementedException("Unported Controller method");
             }
 
             undoMgr.EndCommand(9912);
-        
-#endif
-}
+        }
 
-        public struct CourseLoadInfo {
+        public struct CourseLoadInfo
+        {
             internal Id<Course> courseId;
             public string courseName;
             public int load;
@@ -4067,10 +3037,6 @@ throw new NotImplementedException("Unported Controller method");
         // Get the load for all the courses, sorted in the right way.
         public CourseLoadInfo[] GetAllCourseLoads()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
 
             List<CourseLoadInfo> loadList = new List<CourseLoadInfo>();
 
@@ -4086,17 +3052,11 @@ throw new NotImplementedException("Unported Controller method");
             }
 
             return loadList.ToArray();
-        
-#endif
-}
+        }
 
         // Set the load for all the courses
         public void SetAllCourseLoads(CourseLoadInfo[] loads)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             undoMgr.BeginCommand(9315, CommandNameText.SetCourseLoad);
 
             foreach (CourseLoadInfo loadInfo in loads) {
@@ -4104,9 +3064,7 @@ throw new NotImplementedException("Unported Controller method");
             }
 
             undoMgr.EndCommand(9315);
-        
-#endif
-}
+        }
 
         public struct CourseOrderInfo
         {
@@ -4118,11 +3076,6 @@ throw new NotImplementedException("Unported Controller method");
         // Get the sort order for all the courses.
         public CourseOrderInfo[] GetAllCourseOrders()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
-
             List<CourseOrderInfo> orderList = new List<CourseOrderInfo>();
 
             // Get loads for each course.
@@ -4136,17 +3089,11 @@ throw new NotImplementedException("Unported Controller method");
             }
 
             return orderList.ToArray();
-        
-#endif
-}
+        }
 
         // Set the load for all the courses
         public void SetAllCourseOrders(CourseOrderInfo[] orders)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             undoMgr.BeginCommand(9375, CommandNameText.ChangeCourseOrder);
 
             foreach (CourseOrderInfo orderInfo in orders) {
@@ -4154,73 +3101,42 @@ throw new NotImplementedException("Unported Controller method");
             }
 
             undoMgr.EndCommand(9375);
-        
-#endif
-}
+        }
 
         // Get the custom symbol texts for the event.
         public void GetCustomSymbolText(out Dictionary<string, List<SymbolText>> customSymbolText, out Dictionary<string, bool> customSymbolKey)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             QueryEvent.GetCustomSymbolText(eventDB, out customSymbolText, out customSymbolKey);
-        
-#endif
-}
+        }
 
         // Set the custom symbol texts for the event.
         public void SetCustomSymbolText(Dictionary<string, List<SymbolText>> customSymbolText, Dictionary<string, bool> customSymbolKey, string descriptionLangId)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             undoMgr.BeginCommand(9329, CommandNameText.SetCustomSymbolText);
             ChangeEvent.ChangeDescriptionLanguage(eventDB, descriptionLangId);
             ChangeEvent.ChangeCustomSymbolText(eventDB, customSymbolText, customSymbolKey);
             undoMgr.EndCommand(9329);
-        
-#endif
-}
+        }
 
         // Is the description language existing?
         public bool HasDescriptionLanguage(string langId)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             return symbolDB.HasLanguage(langId);
-        
-#endif
-}
+        }
 
         // Set the description language
         public void SetDescriptionLanguage(string descriptionLangId)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             undoMgr.BeginCommand(9377, CommandNameText.SetDescriptionLanguage);
             ChangeEvent.ChangeDescriptionLanguage(eventDB, descriptionLangId);
             undoMgr.EndCommand(9377);
-        
-#endif
-}
+        }
 
         // Get/Set the default description language for new events.
-        public string DefaultDescriptionLanguage
-        {
-            get
-            {
-#if PORTING
-                throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
+        public string DefaultDescriptionLanguage {
+            get {
                 // Use language set as default language.
-                string defaultLang = Settings.Default.DefaultDescriptionLanguage;
+                string defaultLang = UserSettings.Current.DefaultDescriptionLanguage;
 
                 // If none, use current.
                 if (string.IsNullOrEmpty(defaultLang))
@@ -4238,28 +3154,18 @@ throw new NotImplementedException("Unported Controller method");
 
                 // Use English.
                 return "en";
-#endif
             }
-            set
-            {
-#if PORTING
-                throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
+            set {
                 if (HasDescriptionLanguage(value)) {
-                    Settings.Default.DefaultDescriptionLanguage = value;
-                    Settings.Default.Save();
+                    UserSettings.Current.DefaultDescriptionLanguage = value;
+                    UserSettings.Current.Save();
                 }
-#endif
             }
         }
 
         // Can we add a variation.
         public CommandStatus CanAddVariation(out string reason)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             reason = null;
             SelectionInfo selection = selectionMgr.Selection;
 
@@ -4267,33 +3173,27 @@ throw new NotImplementedException("Unported Controller method");
 
             QueryEvent.AddVariationResult result = QueryEvent.CanAddVariation(eventDB, selection.ActiveCourseDesignator, courseControl);
             switch (result) {
-                case QueryEvent.AddVariationResult.CantAddInAllControls:
-                    reason = MiscText.VariationNotInAllControls; break;
-                case QueryEvent.AddVariationResult.CantAddInScoreCourse:
-                    reason = MiscText.VariationNotInScoreCourse;  break;
-                case QueryEvent.AddVariationResult.NoControlSelected:
-                    reason = MiscText.VariationMustSelectControl;  break;
-                case QueryEvent.AddVariationResult.CantAddToLastControl:
-                    reason = MiscText.VariationNotLastControl;  break;
-                case QueryEvent.AddVariationResult.CantAddToFinishControl:
-                    reason = MiscText.VariationNotFinish;  break;
-                case QueryEvent.AddVariationResult.VariationAlreadyExists:
-                    reason = MiscText.VariationAlreadyExists;  break;
-                default:
-                    reason = MiscText.CannotAddVariation; break;
+            case QueryEvent.AddVariationResult.CantAddInAllControls:
+                reason = MiscText.VariationNotInAllControls; break;
+            case QueryEvent.AddVariationResult.CantAddInScoreCourse:
+                reason = MiscText.VariationNotInScoreCourse; break;
+            case QueryEvent.AddVariationResult.NoControlSelected:
+                reason = MiscText.VariationMustSelectControl; break;
+            case QueryEvent.AddVariationResult.CantAddToLastControl:
+                reason = MiscText.VariationNotLastControl; break;
+            case QueryEvent.AddVariationResult.CantAddToFinishControl:
+                reason = MiscText.VariationNotFinish; break;
+            case QueryEvent.AddVariationResult.VariationAlreadyExists:
+                reason = MiscText.VariationAlreadyExists; break;
+            default:
+                reason = MiscText.CannotAddVariation; break;
             }
 
             return (result == QueryEvent.AddVariationResult.OK) ? CommandStatus.Enabled : CommandStatus.Disabled;
-        
-#endif
-}
+        }
 
         public void AddVariation(bool loop, int numberOfForks)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             SelectionInfo selection = selectionMgr.Selection;
             Id<Course> courseId = selection.ActiveCourseDesignator.CourseId;
             Id<CourseControl> selectedCourseControl = selection.SelectedCourseControl;
@@ -4319,29 +3219,17 @@ throw new NotImplementedException("Unported Controller method");
             }
 
             ui.ShowTopologyView();
-        
-#endif
-}
+        }
 
         int CheckTotalVariations(Id<Course> courseId)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
 
             RelayVariations relayVariations = new RelayVariations(eventDB, courseId, new RelaySettings(1, 4));  // number of teams/legs irrelevant.
             return relayVariations.GetTotalPossiblePaths();
-        
-#endif
-}
+        }
 
         public CommandStatus CanDeleteFork()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
 
             SelectionInfo selection = selectionMgr.Selection;
 
@@ -4365,16 +3253,10 @@ throw new NotImplementedException("Unported Controller method");
             }
 
             return CommandStatus.Disabled;
-        
-#endif
-}
+        }
 
         public void DeleteFork()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
 
             if (CanDeleteFork() != CommandStatus.Enabled)
                 return;
@@ -4385,17 +3267,11 @@ throw new NotImplementedException("Unported Controller method");
             Id<CourseControl> forkStart = QueryEvent.GetForkStart(eventDB, courseId, selection.SelectedCourseControl);
 
             DeleteControlFromCourse(courseId, forkStart, CommandNameText.DeleteFork);
-        
-#endif
-}
+        }
 
         // Can we set a text line for the selected object? If so, return default text and position, name of object, and whether to enable the "this course only" option.
         public bool CanAddTextLine(out string defaultText, out DescriptionLine.TextLineKind textLineKind, out string objectName, out bool enableThisCourse)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             SelectionInfo selection = selectionMgr.Selection;
 
             if (selection.SelectionKind == SelectionKind.Control) {
@@ -4406,7 +3282,7 @@ throw new NotImplementedException("Unported Controller method");
                 int line, dummy;
                 textLineKind = selection.SelectedTextLineKind;
                 selectionMgr.GetSelectedLines(out line, out dummy);
-                defaultText = (string) selectionMgr.ActiveDescription[line].boxes[0];
+                defaultText = (string)selectionMgr.ActiveDescription[line].boxes[0];
             }
             else {
                 textLineKind = DescriptionLine.TextLineKind.None;
@@ -4419,158 +3295,95 @@ throw new NotImplementedException("Unported Controller method");
             enableThisCourse = selection.SelectedCourseControl.IsNotNone;
             objectName = Util.ControlPointName(eventDB, selection.SelectedControl, NameStyle.Long);
             return true;
-        
-#endif
-}
+        }
 
         public CommandStatus CanAddTextLine()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
-
             string dummy1;
             DescriptionLine.TextLineKind dummy2;
             string dummy3;
             bool dummy4;
 
             return CanAddTextLine(out dummy1, out dummy2, out dummy3, out dummy4) ? CommandStatus.Enabled : CommandStatus.Disabled;
-        
-#endif
-}
+        }
 
         // Set a text line for the selected object.
         public void AddTextLine(string text, DescriptionLine.TextLineKind textLineKind)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             SelectionInfo selection = selectionMgr.Selection;
 
             if (selection.SelectionKind == SelectionKind.Control || selection.SelectionKind == SelectionKind.TextLine) {
                 undoMgr.BeginCommand(8173, CommandNameText.AddTextLine);
 
-                if (textLineKind == DescriptionLine.TextLineKind.BeforeControl || textLineKind == DescriptionLine.TextLineKind.AfterControl) 
+                if (textLineKind == DescriptionLine.TextLineKind.BeforeControl || textLineKind == DescriptionLine.TextLineKind.AfterControl)
                     ChangeEvent.ChangeTextLine(eventDB, selection.SelectedControl, text, (textLineKind == DescriptionLine.TextLineKind.BeforeControl));
                 else
                     ChangeEvent.ChangeTextLine(eventDB, selection.SelectedCourseControl, text, (textLineKind == DescriptionLine.TextLineKind.BeforeCourseControl));
 
                 undoMgr.EndCommand(8173);
 
-                if (! string.IsNullOrEmpty(text))
+                if (!string.IsNullOrEmpty(text))
                     selectionMgr.SelectTextLine(selection.SelectedControl, selection.SelectedCourseControl, textLineKind);      // select the new line.
             }
-        
-#endif
-}
+        }
 
 
         // Get all the punch patterns for the event.
         public Dictionary<string, PunchPattern> GetAllPunchPatterns()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
-
             return QueryEvent.GetAllPunchPatterns(eventDB);
-        
-#endif
-}
+        }
 
         // Change all the punch patterns for the event.
-        public void  SetAllPunchPatterns(Dictionary<string, PunchPattern> allPunches)
+        public void SetAllPunchPatterns(Dictionary<string, PunchPattern> allPunches)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             undoMgr.BeginCommand(9711, CommandNameText.ChangePunchPatterns);
             ChangeEvent.SetAllPunchPatterns(eventDB, allPunches);
             undoMgr.EndCommand(9711);
-        
-#endif
-}
+        }
 
         // Get the punch card format.
         public PunchcardFormat GetPunchcardFormat()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
 
             Event ev = eventDB.GetEvent();
-            return (PunchcardFormat) ev.punchcardFormat.Clone();
-        
-#endif
-}
+            return (PunchcardFormat)ev.punchcardFormat.Clone();
+        }
 
         // Change the punch card format
         public void SetPunchcardFormat(PunchcardFormat punchcardFormat)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             undoMgr.BeginCommand(9712, CommandNameText.ChangePunchcardFormat);
             ChangeEvent.ChangePunchcardFormat(eventDB, punchcardFormat);
             undoMgr.EndCommand(9712);
-        
-#endif
-}
+        }
 
         // Get the course appearance
         public CourseAppearance GetCourseAppearance()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
-
             Event ev = eventDB.GetEvent();
-            return (CourseAppearance) ev.courseAppearance.Clone();
-        
-#endif
-}
+            return (CourseAppearance)ev.courseAppearance.Clone();
+        }
 
         // Get the purple color to use.
         public void GetPurpleColor(out short ocadId, out float cyan, out float magenta, out float yellow, out float black, out bool overprint)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             FindPurple.GetPurpleColor(mapDisplay, GetCourseAppearance(), out ocadId, out cyan, out magenta, out yellow, out black, out overprint);
-        
-#endif
-}
+        }
 
         // Change the course appearance
         public void SetCourseAppearance(CourseAppearance courseAppearance)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             undoMgr.BeginCommand(318, CommandNameText.ChangeCourseAppearance);
             ChangeEvent.ChangeCourseAppearance(eventDB, courseAppearance);
             undoMgr.EndCommand(318);
-        
-#endif
-}
+        }
 
         // Get the map colors for the underlying map, from top to bottom, as a pair
         // of OCAD ID, name. Used for the Course Appearance dialog. If the underlying map isn't
         // an OCAD or OOM file, returns an empty list.
         public List<Pair<int, string>> GetUnderlyingMapColors()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
 
             if (mapDisplay == null)
                 return new List<Pair<int, string>>();
@@ -4585,26 +3398,16 @@ throw new NotImplementedException("Unported Controller method");
             }
 
             return result;
-        
-#endif
-}
+        }
 
         // Get the default layer for lower purple.
         public int GetDefaultLowerPurpleLayer()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
-
             List<SymColor> symColors = mapDisplay.GetMapColors();
             return FindPurple.FindBestLowerPurpleLayer(symColors);
-        
-#endif
-}
+        }
 
-        public bool OcadOverprintEffect
-        {
+        public bool OcadOverprintEffect {
             get { return GetCourseAppearance().useOcadOverprint; }
         }
 
@@ -4624,22 +3427,12 @@ throw new NotImplementedException("Unported Controller method");
         // Get the auto-number values.
         public void GetAutoNumbering(out int firstCode, out bool disallowInvertibleCodes)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             QueryEvent.GetAutoNumbering(eventDB, out firstCode, out disallowInvertibleCodes);
-        
-#endif
-}
+        }
 
         // Set the auto-number values. Possibly renumber existing.
         public void AutoNumbering(int firstCode, bool disallowInvertibleCodes, bool renumberExisting)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             undoMgr.BeginCommand(9913, CommandNameText.AutoNumbering);
 
             ChangeEvent.ChangeAutoNumbering(eventDB, firstCode, disallowInvertibleCodes);
@@ -4648,31 +3441,17 @@ throw new NotImplementedException("Unported Controller method");
             }
 
             undoMgr.EndCommand(9913);
-        
-#endif
-}
+        }
 
         // Get the description language
         public string GetDescriptionLanguage()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
-
             return eventDB.GetEvent().descriptionLangId;
-        
-#endif
-}
+        }
 
         // Get the status of undo and redo.
         public UndoStatus GetUndoStatus()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
-
             UndoStatus status = new UndoStatus();
 
             status.CanUndo = undoMgr.CanUndo;
@@ -4683,18 +3462,11 @@ throw new NotImplementedException("Unported Controller method");
                 status.RedoName = undoMgr.RedoName;
 
             return status;
-        
-#endif
-}
+        }
 
         // Undo one command of changes.
         public void Undo()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
-
             CancelMode();
 
             Debug.Assert(undoMgr.CanUndo);
@@ -4702,19 +3474,13 @@ throw new NotImplementedException("Unported Controller method");
             undoMgr.Undo();
 #if DEBUG
             eventDB.Validate();
-        
+
 #endif
-#endif
-}
+        }
 
         // Undo one command of changes.
         public void Redo()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
-
             CancelMode();
 
             Debug.Assert(undoMgr.CanRedo);
@@ -4722,18 +3488,13 @@ throw new NotImplementedException("Unported Controller method");
             undoMgr.Redo();
 #if DEBUG
             eventDB.Validate();
-        
+
 #endif
-#endif
-}
+        }
 
         // A change has been made to a box in the description.
         public void DescriptionChange(DescriptionChangeKind kind, int line, int box, object newValue)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             string newStringValue = "";  // never null!
             if (newValue is string)
                 newStringValue = (string)newValue;
@@ -4741,227 +3502,222 @@ throw new NotImplementedException("Unported Controller method");
             CancelMode();
 
             switch (kind) {
-                case DescriptionChangeKind.None:
-                    break;
+            case DescriptionChangeKind.None:
+                break;
 
-                case DescriptionChangeKind.Climb:
-                    float newClimb;
+            case DescriptionChangeKind.Climb:
+                float newClimb;
 
-                    if (newStringValue == "") {
-                        newClimb = -1F;
+                if (newStringValue == "") {
+                    newClimb = -1F;
+                }
+                else {
+                    if (!float.TryParse(Util.RemoveMeterSuffix(newStringValue), out newClimb) || newClimb < 0 || newClimb >= 10000) {
+                        // Invalid climb value.
+                        ui.ErrorMessage(string.Format(MiscText.BadClimb, newStringValue));
+                        break;
+                    }
+                }
+
+                undoMgr.BeginCommand(108, CommandNameText.ChangeClimb);
+                ChangeEvent.ChangeCourseClimb(eventDB, selectionMgr.Selection.ActiveCourseDesignator.CourseId, newClimb);
+                undoMgr.EndCommand(108);
+                break;
+
+            case DescriptionChangeKind.Length:
+                float newLength;
+
+                if (newStringValue == "") {
+                    newLength = -1;
+                }
+                else {
+                    if (!float.TryParse(Util.RemoveSuffix(newStringValue, "km"), out newLength) || newLength <= 0 || newLength >= 100) {
+                        // Invalid length value.
+                        ui.ErrorMessage(string.Format(MiscText.BadLength, newStringValue));
+                        break;
+                    }
+                }
+
+                undoMgr.BeginCommand(45108, CommandNameText.ChangeClimb);
+                // convert km to meters.
+                ChangeEvent.ChangeCourseOverrideLength(eventDB, selectionMgr.Selection.ActiveCourseDesignator.CourseId, (newLength > 0) ? (float?)newLength * 1000F : (float?)null);
+                undoMgr.EndCommand(45108);
+                break;
+
+            case DescriptionChangeKind.Score:
+                int newScore;
+
+                if (newStringValue == "") {
+                    newScore = 0;
+                }
+                else {
+                    if (!int.TryParse(newStringValue, out newScore) || newScore < 0 || newScore >= 1000) {
+                        // Invalid score value.
+                        ui.ErrorMessage(string.Format(MiscText.BadScore, newStringValue));
+                        break;
+                    }
+                }
+
+                undoMgr.BeginCommand(107, CommandNameText.ChangeScore);
+                ChangeEvent.ChangeScore(eventDB, selectionMgr.ActiveDescription[line].courseControlId, newScore);
+                undoMgr.EndCommand(107);
+                break;
+
+            case DescriptionChangeKind.SecondaryTitle:
+                Debug.Assert(selectionMgr.Selection.ActiveCourseDesignator.IsNotAllControls);
+                undoMgr.BeginCommand(106, CommandNameText.ChangeTitle);
+                ChangeEvent.ChangeCourseSecondaryTitle(eventDB, selectionMgr.Selection.ActiveCourseDesignator.CourseId, newStringValue);
+                undoMgr.EndCommand(106);
+                break;
+
+            case DescriptionChangeKind.CourseName:
+                Debug.Assert(selectionMgr.Selection.ActiveCourseDesignator.IsNotAllControls);
+                undoMgr.BeginCommand(105, CommandNameText.ChangeCourseName);
+                ChangeEvent.ChangeCourseName(eventDB, selectionMgr.Selection.ActiveCourseDesignator.CourseId, newStringValue);
+                undoMgr.EndCommand(105);
+                break;
+
+            case DescriptionChangeKind.Title:
+                undoMgr.BeginCommand(104, CommandNameText.ChangeTitle);
+                ChangeEvent.ChangeEventTitle(eventDB, newStringValue);
+                undoMgr.EndCommand(104);
+                break;
+
+            case DescriptionChangeKind.Code:
+                if (eventDB.GetControl(selectionMgr.ActiveDescription[line].controlId).code == newStringValue)
+                    break;  // no change to control.
+
+                if (QueryEvent.IsCodeInUse(eventDB, newStringValue)) {
+                    if (selectionMgr.Selection.ActiveCourseDesignator.IsAllControls) {
+                        // In all controls. We can't change to a control that is in use.
+                        ui.ErrorMessage(string.Format(MiscText.CodeInUse, newStringValue));
                     }
                     else {
-                        if (!float.TryParse(Util.RemoveMeterSuffix(newStringValue), out newClimb) || newClimb < 0 || newClimb >= 10000) {
-                            // Invalid climb value.
-                            ui.ErrorMessage(string.Format(MiscText.BadClimb, newStringValue));
-                            break;
-                        }
+                        // In a course, we can change a control to a new control by typing in the new code.
+                        Id<ControlPoint> newControlId = QueryEvent.FindCode(eventDB, newStringValue);
+                        undoMgr.BeginCommand(193, CommandNameText.ChangeControl);
+                        ChangeEvent.ChangeControl(eventDB, selectionMgr.ActiveDescription[line].courseControlId, newControlId);
+                        undoMgr.EndCommand(193);
+                    }
+                }
+                else {
+                    // The new code is not in use. Change the code to the new code after validating.
+                    string reason;
+                    bool valid;
+                    valid = QueryEvent.IsPreferredControlCode(eventDB, newStringValue, out reason);
+                    if (reason != null) {
+                        if (valid)
+                            ui.WarningMessage(reason);   // valid, but not preferred. Warn the user but continue with the change.
+                        else
+                            ui.ErrorMessage(reason);
                     }
 
-                    undoMgr.BeginCommand(108, CommandNameText.ChangeClimb);
-                    ChangeEvent.ChangeCourseClimb(eventDB, selectionMgr.Selection.ActiveCourseDesignator.CourseId, newClimb);
-                    undoMgr.EndCommand(108);
-                    break;
-
-                case DescriptionChangeKind.Length:
-                    float newLength;
-
-                    if (newStringValue == "") {
-                        newLength = -1;
+                    if (valid) {
+                        undoMgr.BeginCommand(103, CommandNameText.ChangeCode);
+                        ChangeEvent.ChangeCode(eventDB, selectionMgr.ActiveDescription[line].controlId, newStringValue);
+                        undoMgr.EndCommand(103);
                     }
-                    else {
-                        if (!float.TryParse(Util.RemoveSuffix(newStringValue, "km"), out newLength) || newLength <= 0 || newLength >= 100) {
-                            // Invalid length value.
-                            ui.ErrorMessage(string.Format(MiscText.BadLength, newStringValue));
-                            break;
-                        }
-                    }
+                }
+                break;
 
-                    undoMgr.BeginCommand(45108, CommandNameText.ChangeClimb);
-                    // convert km to meters.
-                    ChangeEvent.ChangeCourseOverrideLength(eventDB, selectionMgr.Selection.ActiveCourseDesignator.CourseId, (newLength > 0) ? (float?)newLength * 1000F : (float?)null);
-                    undoMgr.EndCommand(45108);
-                    break;
+            case DescriptionChangeKind.DescriptionBox:
+                undoMgr.BeginCommand(101, CommandNameText.ChangeSymbol);
 
-                case DescriptionChangeKind.Score:
-                    int newScore;
+                if (newValue == null)
+                    ChangeEvent.ChangeDescriptionSymbol(eventDB, selectionMgr.ActiveDescription[line].controlId, box - 2, null);
+                else if (newValue is Symbol)
+                    ChangeEvent.ChangeDescriptionSymbol(eventDB, selectionMgr.ActiveDescription[line].controlId, box - 2, ((Symbol)newValue).Id);
+                else {
+                    Debug.Assert(box == 5);         // must be column F.
+                    ChangeEvent.ChangeColumnFText(eventDB, selectionMgr.ActiveDescription[line].controlId, newStringValue);
+                }
 
-                    if (newStringValue == "") {
-                        newScore = 0;
-                    }
-                    else {
-                        if (!int.TryParse(newStringValue, out newScore) || newScore < 0 || newScore >= 1000) {
-                            // Invalid score value.
-                            ui.ErrorMessage(string.Format(MiscText.BadScore, newStringValue));
-                            break;
-                        }
-                    }
+                undoMgr.EndCommand(101);
 
-                    undoMgr.BeginCommand(107, CommandNameText.ChangeScore);
-                    ChangeEvent.ChangeScore(eventDB, selectionMgr.ActiveDescription[line].courseControlId, newScore);
-                    undoMgr.EndCommand(107);
-                    break;
+                break;
 
-                case DescriptionChangeKind.SecondaryTitle:
-                    Debug.Assert(selectionMgr.Selection.ActiveCourseDesignator.IsNotAllControls);
-                    undoMgr.BeginCommand(106, CommandNameText.ChangeTitle);
-                    ChangeEvent.ChangeCourseSecondaryTitle(eventDB, selectionMgr.Selection.ActiveCourseDesignator.CourseId, newStringValue);
-                    undoMgr.EndCommand(106);
-                    break;
+            case DescriptionChangeKind.Directive:
+                // Directive change can't be text, empty, and must be box zero.
+                Debug.Assert(newValue is Symbol);
+                Debug.Assert(box == 0);
 
-                case DescriptionChangeKind.CourseName:
-                    Debug.Assert(selectionMgr.Selection.ActiveCourseDesignator.IsNotAllControls);
-                    undoMgr.BeginCommand(105, CommandNameText.ChangeCourseName);
-                    ChangeEvent.ChangeCourseName(eventDB, selectionMgr.Selection.ActiveCourseDesignator.CourseId, newStringValue);
-                    undoMgr.EndCommand(105);
-                    break;
+                Id<ControlPoint> controlId = selectionMgr.ActiveDescription[line].controlId;
+                Id<CourseControl> courseControlId = selectionMgr.ActiveDescription[line].courseControlId;
 
-                case DescriptionChangeKind.Title:
-                    undoMgr.BeginCommand(104, CommandNameText.ChangeTitle);
-                    ChangeEvent.ChangeEventTitle(eventDB, newStringValue);
-                    undoMgr.EndCommand(104);
-                    break;
+                undoMgr.BeginCommand(102, CommandNameText.ChangeSymbol);
 
-                case DescriptionChangeKind.Code:
-                    if (eventDB.GetControl(selectionMgr.ActiveDescription[line].controlId).code == newStringValue)
-                        break;  // no change to control.
+                bool updateControlSymbol = true;
 
-                    if (QueryEvent.IsCodeInUse(eventDB, newStringValue)) {
-                        if (selectionMgr.Selection.ActiveCourseDesignator.IsAllControls) {
-                            // In all controls. We can't change to a control that is in use.
-                            ui.ErrorMessage(string.Format(MiscText.CodeInUse, newStringValue));
-                        }
-                        else {
-                            // In a course, we can change a control to a new control by typing in the new code.
-                            Id<ControlPoint> newControlId = QueryEvent.FindCode(eventDB, newStringValue);
-                            undoMgr.BeginCommand(193, CommandNameText.ChangeControl);
-                            ChangeEvent.ChangeControl(eventDB, selectionMgr.ActiveDescription[line].courseControlId, newControlId);
-                            undoMgr.EndCommand(193);
-                        }
-                    }
-                    else {
-                        // The new code is not in use. Change the code to the new code after validating.
-                        string reason;
-                        bool valid;
-                        valid = QueryEvent.IsPreferredControlCode(eventDB, newStringValue, out reason);
-                        if (reason != null) {
-                            if (valid)
-                                ui.WarningMessage(reason);   // valid, but not preferred. Warn the user but continue with the change.
-                            else
-                                ui.ErrorMessage(reason);
-                        }
+                // If changing the directive on the finish, this may update flagging instead.
+                if (eventDB.GetControl(controlId).kind == ControlPointKind.Finish && selectionMgr.Selection.ActiveCourseDesignator.IsNotAllControls) {
+                    updateControlSymbol = UpdateFinishFlagging(controlId, ((Symbol)newValue).Id);
+                }
 
-                        if (valid) {
-                            undoMgr.BeginCommand(103, CommandNameText.ChangeCode);
-                            ChangeEvent.ChangeCode(eventDB, selectionMgr.ActiveDescription[line].controlId, newStringValue);
-                            undoMgr.EndCommand(103);
-                        }
-                    }
-                    break;
+                // If changing the directive on a map exchange at a control, change the attribute of the associated course control instead.
+                if ((newValue as Symbol).Kind == 'Y') {
+                    updateControlSymbol = UpdateExchangeAtControl(courseControlId, ((Symbol)newValue).Id);
+                }
 
-                case DescriptionChangeKind.DescriptionBox:
-                    undoMgr.BeginCommand(101, CommandNameText.ChangeSymbol);
+                if (updateControlSymbol) {
+                    ChangeEvent.ChangeDescriptionSymbol(eventDB, selectionMgr.ActiveDescription[line].controlId, 0, ((Symbol)newValue).Id);
+                }
 
-                    if (newValue == null)
-                        ChangeEvent.ChangeDescriptionSymbol(eventDB, selectionMgr.ActiveDescription[line].controlId, box - 2, null);
-                    else if (newValue is Symbol)
-                        ChangeEvent.ChangeDescriptionSymbol(eventDB, selectionMgr.ActiveDescription[line].controlId, box - 2, ((Symbol)newValue).Id);
-                    else {
-                        Debug.Assert(box == 5);         // must be column F.
-                        ChangeEvent.ChangeColumnFText(eventDB, selectionMgr.ActiveDescription[line].controlId, newStringValue);
+                undoMgr.EndCommand(102);
+                break;
+
+            case DescriptionChangeKind.Key:
+                // Change the custom text for a symbol.
+                Dictionary<string, List<SymbolText>> customSymbolText;
+                Dictionary<string, bool> customSymbolKey;
+
+                Debug.Assert(newValue == null || newValue is String);
+
+                string symbolId = selectionMgr.Selection.SelectedKeySymbol.Id;
+
+                // Update the custom symbol text. Empty string means revert to standard text.
+                QueryEvent.GetCustomSymbolText(eventDB, out customSymbolText, out customSymbolKey);
+                if (String.IsNullOrEmpty(newStringValue)) {
+                    customSymbolText.Remove(symbolId);
+                    customSymbolKey.Remove(symbolId);
+                }
+                else {
+                    List<SymbolText> newTexts = new List<SymbolText>();
+                    foreach (SymbolText symtext in customSymbolText[symbolId]) {
+                        SymbolText newText = symtext.Clone();
+                        newText.Text = newStringValue;
+                        newTexts.Add(newText);
                     }
 
-                    undoMgr.EndCommand(101);
+                    customSymbolText[symbolId] = newTexts;
+                }
 
-                    break;
+                undoMgr.BeginCommand(9731, CommandNameText.SetCustomSymbolText);
+                ChangeEvent.ChangeCustomSymbolText(eventDB, customSymbolText, customSymbolKey);
+                undoMgr.EndCommand(9731);
+                break;
 
-                case DescriptionChangeKind.Directive:
-                    // Directive change can't be text, empty, and must be box zero.
-                    Debug.Assert(newValue is Symbol);
-                    Debug.Assert(box == 0);
+            case DescriptionChangeKind.TextLine:
+                // Change a text line.
+                Debug.Assert(newValue == null || newValue is String);
+                string text = newStringValue;
+                DescriptionLine.TextLineKind textLineKind = selectionMgr.Selection.SelectedTextLineKind;
 
-                    Id<ControlPoint> controlId = selectionMgr.ActiveDescription[line].controlId;
-                    Id<CourseControl> courseControlId = selectionMgr.ActiveDescription[line].courseControlId;
+                undoMgr.BeginCommand(8173, CommandNameText.ChangeTextLine);
 
-                    undoMgr.BeginCommand(102, CommandNameText.ChangeSymbol);
+                if (textLineKind == DescriptionLine.TextLineKind.BeforeControl || textLineKind == DescriptionLine.TextLineKind.AfterControl)
+                    ChangeEvent.ChangeTextLine(eventDB, selectionMgr.Selection.SelectedControl, text, (textLineKind == DescriptionLine.TextLineKind.BeforeControl));
+                else
+                    ChangeEvent.ChangeTextLine(eventDB, selectionMgr.Selection.SelectedCourseControl, text, (textLineKind == DescriptionLine.TextLineKind.BeforeCourseControl));
 
-                    bool updateControlSymbol = true;
+                undoMgr.EndCommand(8173);
 
-                    // If changing the directive on the finish, this may update flagging instead.
-                    if (eventDB.GetControl(controlId).kind == ControlPointKind.Finish && selectionMgr.Selection.ActiveCourseDesignator.IsNotAllControls) {
-                        updateControlSymbol = UpdateFinishFlagging(controlId, ((Symbol)newValue).Id);
-                    }
-
-                    // If changing the directive on a map exchange at a control, change the attribute of the associated course control instead.
-                    if ((newValue as Symbol).Kind == 'Y') {
-                        updateControlSymbol = UpdateExchangeAtControl(courseControlId, ((Symbol)newValue).Id);
-                    }
-
-                    if (updateControlSymbol) { 
-                        ChangeEvent.ChangeDescriptionSymbol(eventDB, selectionMgr.ActiveDescription[line].controlId, 0, ((Symbol)newValue).Id);
-                    }
-
-                    undoMgr.EndCommand(102);
-                    break;
-
-                case DescriptionChangeKind.Key:
-                    // Change the custom text for a symbol.
-                    Dictionary<string, List<SymbolText>> customSymbolText;
-                    Dictionary<string, bool> customSymbolKey;
-
-                    Debug.Assert(newValue == null || newValue is String);
-
-                    string symbolId = selectionMgr.Selection.SelectedKeySymbol.Id;
-
-                    // Update the custom symbol text. Empty string means revert to standard text.
-                    QueryEvent.GetCustomSymbolText(eventDB, out customSymbolText, out customSymbolKey);
-                    if (String.IsNullOrEmpty(newStringValue)) {
-                        customSymbolText.Remove(symbolId);
-                        customSymbolKey.Remove(symbolId);
-                    }
-                    else {
-                        List<SymbolText> newTexts = new List<SymbolText>();
-                        foreach (SymbolText symtext in customSymbolText[symbolId]) {
-                            SymbolText newText = symtext.Clone();
-                            newText.Text = newStringValue;
-                            newTexts.Add(newText);
-                        }
-
-                        customSymbolText[symbolId] = newTexts;
-                    }
-
-                    undoMgr.BeginCommand(9731, CommandNameText.SetCustomSymbolText);
-                    ChangeEvent.ChangeCustomSymbolText(eventDB, customSymbolText, customSymbolKey);
-                    undoMgr.EndCommand(9731);
-                    break;
-
-                case DescriptionChangeKind.TextLine:
-                    // Change a text line.
-                    Debug.Assert(newValue == null || newValue is String);
-                    string text = newStringValue;
-                    DescriptionLine.TextLineKind textLineKind = selectionMgr.Selection.SelectedTextLineKind;
-
-                    undoMgr.BeginCommand(8173, CommandNameText.ChangeTextLine);
-
-                    if (textLineKind == DescriptionLine.TextLineKind.BeforeControl || textLineKind == DescriptionLine.TextLineKind.AfterControl)
-                        ChangeEvent.ChangeTextLine(eventDB, selectionMgr.Selection.SelectedControl, text, (textLineKind == DescriptionLine.TextLineKind.BeforeControl));
-                    else
-                        ChangeEvent.ChangeTextLine(eventDB, selectionMgr.Selection.SelectedCourseControl, text, (textLineKind == DescriptionLine.TextLineKind.BeforeCourseControl));
-
-                    undoMgr.EndCommand(8173);
-                    
-                    break;
+                break;
             }
-        
-#endif
-}
+
+        }
 
         private bool UpdateFinishFlagging(Id<ControlPoint> finishId, string newSymbolId)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             // On all controls, just update the finish symbol according to what was chosen.
             CourseDesignator activeCourseDesignator = selectionMgr.Selection.ActiveCourseDesignator;
             bool modifySymbolId = true;
@@ -4998,16 +3754,10 @@ throw new NotImplementedException("Unported Controller method");
             }
 
             return modifySymbolId;
-        
-#endif
-}
+        }
 
         private bool UpdateExchangeAtControl(Id<CourseControl> courseControlId, string newSymbolId)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             Debug.Assert(courseControlId.IsNotNone);
 
             if (newSymbolId == "13.5control") {
@@ -5020,222 +3770,134 @@ throw new NotImplementedException("Unported Controller method");
             }
             else {
                 Debug.Fail("Unexpected newSymbolId");
-                return false; 
+                return false;
             }
-        
-#endif
-}
+        }
 
         // Can we add a map exchange at a control?
         public CommandStatus CanAddMapExchangeControl()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
-
             CourseDesignator courseDesignator = selectionMgr.Selection.ActiveCourseDesignator;
             if (courseDesignator.IsAllControls)
                 return CommandStatus.Disabled;
             if (eventDB.GetCourse(courseDesignator.CourseId).kind == CourseKind.Score)
                 return CommandStatus.Disabled;
             return CommandStatus.Enabled;
-        
-#endif
-}
+        }
 
         public CommandStatus CanAddMapFlipControl()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
-
             // Map flips cannot be added for the old control standard.
             if (GetDescriptionStandard() == "2004")
                 return CommandStatus.Disabled;
 
             // Otherwise Same rules as for a map exchange.
             return CanAddMapExchangeControl();
-        
-#endif
-}
+        }
 
         // Can we add a standalong map exchange 
         public CommandStatus CanAddMapExchangeSeparate()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
-
             CourseDesignator courseDesignator = selectionMgr.Selection.ActiveCourseDesignator;
             if (courseDesignator.IsAllControls)
                 return CommandStatus.Enabled;
             if (eventDB.GetCourse(courseDesignator.CourseId).kind == CourseKind.Score)
                 return CommandStatus.Disabled;
             return CommandStatus.Enabled;
-        
-#endif
-}
+        }
 
         // Start the mode to add a new control of a certain kind (Start/Finish/Control/CrossingPoint).
         public void BeginAddControlMode(ControlPointKind controlKind, MapExchangeType mapExchangeType)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             SetCommandMode(new AddControlMode(this, selectionMgr, undoMgr, eventDB, symbolDB, selectionMgr.Selection.ActiveCourseDesignator.CourseId.IsNone, controlKind, mapExchangeType, MapIssueKind.None));
-        
-#endif
-}
+        }
 
         // Start the mode to add a new map issue point with the given kind.
         public void BeginAddMapIssuePointMode(MapIssueKind mapIssueKind)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             SetCommandMode(new AddControlMode(this, selectionMgr, undoMgr, eventDB, symbolDB, selectionMgr.Selection.ActiveCourseDesignator.CourseId.IsNone, ControlPointKind.MapIssue, MapExchangeType.None, mapIssueKind));
-        
-#endif
-}
+        }
 
         // Start the mode to add a point special of a certain kind (Water, FirstAid, ...).
         public void BeginAddPointSpecialMode(SpecialKind specialKind)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             SetCommandMode(new AddPointSpecialMode(this, selectionMgr, undoMgr, eventDB, specialKind));
-        
-#endif
-}
+        }
 
         // Start the mode to add a line or area special of a certain kind (OOB, Boundary, ...
         public void BeginAddLineOrAreaSpecialMode(SpecialKind specialKind, bool isArea)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
-            SetCommandMode(new AddLineAreaSpecialMode(this, selectionMgr, undoMgr, eventDB, 
+            SetCommandMode(new AddLineAreaSpecialMode(this, selectionMgr, undoMgr, eventDB,
                            pts => ChangeEvent.AddLineAreaSpecial(eventDB, specialKind, pts),
                            isArea));
-        
-#endif
-}
+        }
 
         // Start the mode to add a line special 
         public void BeginAddLineSpecialMode(SpecialColor color, LineKind lineKind, float lineWidth, float gapSize, float dashSize)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             SetCommandMode(new AddLineAreaSpecialMode(this, selectionMgr, undoMgr, eventDB,
                            pts => ChangeEvent.AddLineSpecial(eventDB, pts, color, lineKind, lineWidth, gapSize, dashSize),
                            false));
-        
-#endif
-}
+        }
 
         // Start the mode to add a line special 
         public void BeginAddRectangleSpecialMode(bool isEllipse, SpecialColor color, LineKind lineKind, float lineWidth, float gapSize, float dashSize, float cornerRadius)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             SetCommandMode(new AddRectangleMode(this, undoMgr, selectionMgr, eventDB, 1.0F,
                            rect => new RectSpecialCourseObj(Id<Special>.None, GetCourseAppearance(), isEllipse, color, lineKind, lineWidth, cornerRadius, gapSize, dashSize, rect),
                            rect => ChangeEvent.AddRectangleSpecial(eventDB, rect, isEllipse, color, lineKind, lineWidth, gapSize, dashSize, cornerRadius)));
-        
-#endif
-}
+        }
 
         // Start the mode to add a control description block to a course
         public void BeginAddDescriptionMode()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
-
             DescriptionKind descKind;
             bool columnHScore;
             DescriptionLine[] description = CourseFormatter.GetCourseDescription(eventDB, symbolDB, selectionMgr.Selection.ActiveCourseDesignator, out descKind, out columnHScore);
-            SetCommandMode(new AddDescriptionMode(this, undoMgr, selectionMgr, eventDB, symbolDB, selectionMgr.Selection.ActiveCourseDesignator, description, descKind)); 
-        
-#endif
-}
+            SetCommandMode(new AddDescriptionMode(this, undoMgr, selectionMgr, eventDB, symbolDB, selectionMgr.Selection.ActiveCourseDesignator, description, descKind));
+        }
 
         // Start the mode to add text to a course
         public void BeginAddTextSpecialMode(string text, string fontName, bool fontBold, bool fontItalic, SpecialColor fontColor, float fontHeight)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             SetCommandMode(new AddTextMode(this, undoMgr, selectionMgr, eventDB, text, fontName, fontBold, fontItalic, fontColor, fontHeight));
-        
-#endif
-}
+        }
 
         // expand text via current state.
         public string ExpandText(string text)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             return CourseFormatter.ExpandText(eventDB, selectionMgr.ActiveCourseView, text);
-        
-#endif
-}
+        }
 
         // Start the mode to add image to a course
         public void BeginAddImageSpecialMode(string fileName)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
-            Bitmap imageBitmap = null;
+            IGraphicsBitmap graphicsBitmap = null;
 
             bool success = HandleExceptions(
                 delegate {
-                    imageBitmap = (Bitmap)Image.FromFile(fileName);
+                    using (Stream stream = new FileStream(fileName, FileMode.Open, FileAccess.Read)) {
+                        graphicsBitmap = Services.BitmapLoader.ReadBitmapFromStream(stream);
+                    }
                 },
                 MiscText.CannotReadImageFile, fileName);
 
             if (success) {
                 string imageName = QueryEvent.UniqueImageName(eventDB, Path.GetFileName(fileName));
-                IGraphicsBitmap graphicsBitmap = new GDIPlus_Bitmap(imageBitmap);
-
-                SetCommandMode(new AddRectangleMode(this, undoMgr, selectionMgr, eventDB, (float) imageBitmap.Height / (float) imageBitmap.Width,
+                SetCommandMode(new AddRectangleMode(this, undoMgr, selectionMgr, eventDB, (float)graphicsBitmap.PixelHeight / (float)graphicsBitmap.PixelWidth,
                     rect => new ImageCourseObj(Id<Special>.None, 1.0F, GetCourseAppearance(),
                                              new PointF[] { rect.Location, new PointF(rect.Right, rect.Bottom) },
                                              imageName, graphicsBitmap),
                     rect => ChangeEvent.AddImageSpecial(eventDB, rect, graphicsBitmap, imageName)
                     ));
             }
-        
-#endif
-}
+        }
 
         // Move a control.
         public void MoveControlInCurrentCourse(Id<ControlPoint> controlId, PointF newLocation)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             CourseDesignator currentCourse = selectionMgr.Selection.ActiveCourseDesignator;
-            if (!currentCourse.IsAllControls) { 
+            if (!currentCourse.IsAllControls) {
                 Id<Course> courseId = currentCourse.CourseId;
                 Id<CourseControl>[] courseControls = QueryEvent.GetCourseControlsInCourse(eventDB, new CourseDesignator(courseId), controlId);
                 Debug.Assert(courseControls.Length > 0);  // Control better be in current course.
@@ -5245,12 +3907,12 @@ throw new NotImplementedException("Unported Controller method");
                 if (otherCourses != null) {
                     string courseList = QueryEvent.CourseList(eventDB, otherCourses);
                     string code = eventDB.GetControl(controlId).code;
-                    DialogResult result = ui.MovingSharedControl(code, courseList);
-                    if (result == DialogResult.Cancel) {
+                    YesNoCancel result = ui.MovingSharedControl(code, courseList);
+                    if (result == YesNoCancel.Cancel) {
                         // Cancel -- do nothing.
                         return;
                     }
-                    else if (result == DialogResult.No) {
+                    else if (result == YesNoCancel.No) {
                         undoMgr.BeginCommand(9137, CommandNameText.MoveControl);
                         // Create new control at location.
                         string newCode = QueryEvent.NextUnusedControlCode(eventDB);
@@ -5269,17 +3931,11 @@ throw new NotImplementedException("Unported Controller method");
             undoMgr.BeginCommand(137, CommandNameText.MoveControl);
             ChangeEvent.ChangeControlLocation(eventDB, controlId, newLocation);
             undoMgr.EndCommand(137);
-        
-#endif
-}
+        }
 
         // Move a control number. If the new location is on top of the existing control, it goes back to the default location.
         public void MoveControlNumber(Id<ControlPoint> controlId, Id<CourseControl> courseControlId, PointF newLocation)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             float courseObjRatio = 1;
             if (selectionMgr.ActiveCourseView != null)
                 courseObjRatio = selectionMgr.ActiveCourseView.CourseObjRatio(GetCourseAppearance());
@@ -5292,24 +3948,18 @@ throw new NotImplementedException("Unported Controller method");
             undoMgr.BeginCommand(138, CommandNameText.MoveControlNumber);
 
             if (courseControlId.IsNone)
-                ChangeEvent.ChangeAllControlsCodeLocation(eventDB, controlId, ! defaultLocation, (float) (Math.Atan2(newLocation.Y - controlLocation.Y, newLocation.X - controlLocation.X) * 180.0 / Math.PI));
+                ChangeEvent.ChangeAllControlsCodeLocation(eventDB, controlId, !defaultLocation, (float)(Math.Atan2(newLocation.Y - controlLocation.Y, newLocation.X - controlLocation.X) * 180.0 / Math.PI));
             else
-                ChangeEvent.ChangeNumberLocation(eventDB, courseControlId, ! defaultLocation, newLocation);
+                ChangeEvent.ChangeNumberLocation(eventDB, courseControlId, !defaultLocation, newLocation);
 
             undoMgr.EndCommand(138);
-        
-#endif
-}
+        }
 
         // Move a course control to a different place in the course, like from the topology view.
         // If duplicate is true, makes a duplicate of the control.
-        public bool RearrangeControl(Id<CourseControl> courseControlToMove, Id<CourseControl> courseControlDest1, Id<CourseControl> courseControlDest2, 
+        public bool RearrangeControl(Id<CourseControl> courseControlToMove, Id<CourseControl> courseControlDest1, Id<CourseControl> courseControlDest2,
                                     LegInsertionLoc legInsertionLoc)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             Id<Course> courseId = selectionMgr.Selection.ActiveCourseDesignator.CourseId;
 
             // Get correct insertion point.
@@ -5323,7 +3973,7 @@ throw new NotImplementedException("Unported Controller method");
             }
 
             undoMgr.BeginCommand(139, CommandNameText.MoveControl);
-            Id<CourseControl> newCourseControl = ChangeEvent.MoveControlInCourse(eventDB, courseId, courseControlToMove, 
+            Id<CourseControl> newCourseControl = ChangeEvent.MoveControlInCourse(eventDB, courseId, courseControlToMove,
                                                                                  courseControlDest1, courseControlDest2, legInsertionLoc);
             undoMgr.EndCommand(139);
 
@@ -5334,26 +3984,18 @@ throw new NotImplementedException("Unported Controller method");
 #if DEBUG
             eventDB.Validate();
             return true;
-        
+
 #endif
-#endif
-}
+        }
 
 
         // Begin moving all controls.
         public void BeginMoveAllControls()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
-
             // Select all controls.
             selectionMgr.SelectCourseView(CourseDesignator.AllControls);
             selectionMgr.ClearSelection();
-        
-#endif
-}
+        }
 
         public delegate void MoveAllControlSelected(Id<ControlPoint> controlId, Id<Special> specialId, PointF location);
         public delegate void MoveAllLocationSelected(PointF location, bool finalLocation);
@@ -5361,22 +4003,12 @@ throw new NotImplementedException("Unported Controller method");
         // Select a control or registration mark to move.
         public void MoveAllControlSelectControl(PointF? blockLocation, MoveAllControlSelected controlSelected)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             SetCommandMode(new SelectControlToMoveMode(this, selectionMgr, eventDB, symbolDB, blockLocation, controlSelected));
-        
-#endif
-}
+        }
 
         // Select a location for the control or registration mark to move to.
         public void MoveAllControlsSelectNewLocation(Id<ControlPoint> controlId, Id<Special> specialId, PointF initialLocation, PointF otherLocation, MoveAllControlsAction action, MoveAllLocationSelected locationSelected)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             SelectNewControlLocationMode mode;
 
             if (controlId.IsNotNone) {
@@ -5387,16 +4019,10 @@ throw new NotImplementedException("Unported Controller method");
             }
 
             SetCommandMode(mode);
-        
-#endif
-}
+        }
 
         public void MoveAllControlsUpdateMovement(MoveAllControlsAction action, PointF[] points, bool alreadyUpdatedBefore)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             if (alreadyUpdatedBefore) {
                 // Undo previous move all controls.
                 while (undoMgr.CanUndo && undoMgr.UndoName != CommandNameText.MoveAllControls) {
@@ -5413,29 +4039,16 @@ throw new NotImplementedException("Unported Controller method");
             ChangeEvent.ChangeAllObjectLocations(eventDB, computation.Matrix);
 
             undoMgr.EndCommand(94431);
-        
-#endif
-}
+        }
 
         public void MoveAllControlsWaitingForConfirmation()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
-
             SetCommandMode(new ConfirmAllControlsMoveMode());
-        
-#endif
-}
+        }
 
         // Actually move all the controls and finish the command.
         public void FinishMoveAllControls(bool cancelPreviousUpdates)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             if (cancelPreviousUpdates) {
                 // Undo previous move all controls.
                 while (undoMgr.CanUndo && undoMgr.UndoName != CommandNameText.MoveAllControls) {
@@ -5447,71 +4060,40 @@ throw new NotImplementedException("Unported Controller method");
             }
 
             DefaultCommandMode();
-        
-#endif
-}
+        }
 
         // Add a new localization language for descriptions. This is a debug-level command.
         public void AddDescriptionLanguage(SymbolLanguage symbolLanguage, string langIdCopyFrom)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             DescriptionLocalize localizer = new DescriptionLocalize(symbolDB);
 
             localizer.AddLanguage(symbolLanguage, langIdCopyFrom);
-        
-#endif
-}
+        }
 
         // Add new localized description texts permanently. This is a debug-level command.
         public void AddDescriptionTexts(Dictionary<string, List<SymbolText>> symbolTexts, Dictionary<string, List<SymbolText>> symbolNames)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             DescriptionLocalize localizer = new DescriptionLocalize(symbolDB);
 
             localizer.CustomizeDescriptionNames(symbolNames);
             localizer.CustomizeDescriptionTexts(symbolTexts);
-        
-#endif
-}
+        }
 
         // Merge another symbols.xml
         public void MergeSymbolsXml(string filename, string langId)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             DescriptionLocalize localizer = new DescriptionLocalize(symbolDB);
 
             localizer.MergeSymbolsFile(filename, langId);
-        
-#endif
-}
+        }
 
         public string GetDescriptionStandard()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
-
             return symbolDB.Standard;
-        
-#endif
-}
+        }
 
         public void ChangeDescriptionStandard(string newDescriptionStd)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             string oldDescriptionStd = symbolDB.Standard;
 
             if (oldDescriptionStd != newDescriptionStd) {
@@ -5523,28 +4105,15 @@ throw new NotImplementedException("Unported Controller method");
 
                 undoMgr.EndCommand(2971);
             }
-        
-#endif
-}
+        }
 
         public string GetMapStandard()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
-
             return eventDB.GetEvent().courseAppearance.mapStandard;
-        
-#endif
-}
+        }
 
         public void ChangeMapStandard(string newMapStd)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             string oldMapStd = GetMapStandard();
 
             if (oldMapStd != newMapStd) {
@@ -5556,9 +4125,7 @@ throw new NotImplementedException("Unported Controller method");
 
                 undoMgr.EndCommand(2571);
             }
-        
-#endif
-}
+        }
 
         private class DescriptionStandardChange : UndoableAction
         {
@@ -5590,313 +4157,181 @@ throw new NotImplementedException("Unported Controller method");
 
         public void MouseMoved(Pane pane, PointF location, float pixelSize)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             bool displayUpdateNeeded = false;
 
             currentMode.MouseMoved(pane, location, pixelSize, ref displayUpdateNeeded);
             if (displayUpdateNeeded)
                 ++changeNum;
-        
-#endif
-}
+        }
 
         public DragAction LeftButtonDown(Pane pane, PointF location, float pixelSize)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
- 
             bool displayUpdateNeeded = false;
 
-            DragAction dragAction = currentMode.LeftButtonDown(pane, location, pixelSize, ref displayUpdateNeeded); 
+            DragAction dragAction = currentMode.LeftButtonDown(pane, location, pixelSize, ref displayUpdateNeeded);
             if (displayUpdateNeeded)
                 ++changeNum;
             return dragAction;
-        
-#endif
-}
+        }
 
         public DragAction RightButtonDown(Pane pane, PointF location, float pixelSize)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
- 
             bool displayUpdateNeeded = false;
 
-            DragAction dragAction = currentMode.RightButtonDown(pane, location, pixelSize, ref displayUpdateNeeded); 
+            DragAction dragAction = currentMode.RightButtonDown(pane, location, pixelSize, ref displayUpdateNeeded);
             if (displayUpdateNeeded)
                 ++changeNum;
             return dragAction;
-        
-#endif
-}
+        }
 
         public void LeftButtonUp(Pane pane, PointF location, float pixelSize)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             bool displayUpdateNeeded = false;
 
             currentMode.LeftButtonUp(pane, location, pixelSize, ref displayUpdateNeeded);
             if (displayUpdateNeeded)
                 ++changeNum;
-        
-#endif
-}
+        }
 
         public void RightButtonUp(Pane pane, PointF location, float pixelSize)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             bool displayUpdateNeeded = false;
 
             currentMode.RightButtonUp(pane, location, pixelSize, ref displayUpdateNeeded);
             if (displayUpdateNeeded)
                 ++changeNum;
-        
-#endif
-}
+        }
 
         public void LeftButtonClick(Pane pane, PointF location, float pixelSize)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             bool displayUpdateNeeded = false;
 
             currentMode.LeftButtonClick(pane, location, pixelSize, ref displayUpdateNeeded);
             if (displayUpdateNeeded)
                 ++changeNum;
-        
-#endif
-}
+        }
 
         public void RightButtonClick(Pane pane, PointF location, float pixelSize)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             bool displayUpdateNeeded = false;
 
             currentMode.RightButtonClick(pane, location, pixelSize, ref displayUpdateNeeded);
             if (displayUpdateNeeded)
                 ++changeNum;
-        
-#endif
-}
+        }
 
         public void LeftButtonDrag(Pane pane, PointF location, PointF locationStart, float pixelSize)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
- 
             bool displayUpdateNeeded = false;
 
-            currentMode.LeftButtonDrag(pane, location, locationStart, pixelSize, ref displayUpdateNeeded); 
+            currentMode.LeftButtonDrag(pane, location, locationStart, pixelSize, ref displayUpdateNeeded);
             if (displayUpdateNeeded)
                 ++changeNum;
-        
-#endif
-}
+        }
 
         public void RightButtonDrag(Pane pane, PointF location, PointF locationStart, float pixelSize)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
- 
             bool displayUpdateNeeded = false;
 
-            currentMode.RightButtonDrag(pane, location, locationStart, pixelSize, ref displayUpdateNeeded); 
+            currentMode.RightButtonDrag(pane, location, locationStart, pixelSize, ref displayUpdateNeeded);
             if (displayUpdateNeeded)
                 ++changeNum;
-        
-#endif
-}
+        }
 
         public void LeftButtonEndDrag(Pane pane, PointF location, PointF locationStart, float pixelSize)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             bool displayUpdateNeeded = false;
 
             currentMode.LeftButtonEndDrag(pane, location, locationStart, pixelSize, ref displayUpdateNeeded);
             if (displayUpdateNeeded)
                 ++changeNum;
-        
-#endif
-}
+        }
 
         public void RightButtonEndDrag(Pane pane, PointF location, PointF locationStart, float pixelSize)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             bool displayUpdateNeeded = false;
 
             currentMode.RightButtonEndDrag(pane, location, locationStart, pixelSize, ref displayUpdateNeeded);
             if (displayUpdateNeeded)
                 ++changeNum;
-        
-#endif
-}
+        }
 
         public void LeftButtonCancelDrag(Pane pane)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             bool displayUpdateNeeded = false;
 
             currentMode.LeftButtonCancelDrag(pane, ref displayUpdateNeeded);
             if (displayUpdateNeeded)
                 ++changeNum;
-        
-#endif
-}
+        }
 
         public void RightButtonCancelDrag(Pane pane)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             bool displayUpdateNeeded = false;
 
             currentMode.RightButtonCancelDrag(pane, ref displayUpdateNeeded);
             if (displayUpdateNeeded)
                 ++changeNum;
-        
-#endif
-}
+        }
 
         public void InitiateMapDragging(PointF initialPos, PointerButton buttonEnd)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             ui.InitiateMapDragging(initialPos, buttonEnd);
-        
-#endif
-}
+        }
 
         // Get the shape that the mouse cursor should be in.
         public MousePointerShape GetMouseCursor(Pane pane, PointF location, float pixelSize)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             return currentMode.GetMouseCursor(pane, location, pixelSize);
-        
-#endif
-}
+        }
 
         public bool GetToolTip(Pane pane, PointF location, float pixelSize, out string tipText, out string tipTitle)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             return currentMode.GetToolTip(pane, location, pixelSize, out tipText, out tipTitle);
-        
-#endif
-}
+        }
 
         // Get the event database. In most, if not all cases, the UI should NOT interact
         // directly with the event database. This is primarily for test support purposes.
         public EventDB GetEventDB()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
-
             return eventDB;
-        
-#endif
-}
+        }
 
         public void ShowProgressDialog(bool knownDuration, Action onCancelPressed = null)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             ui.ShowProgressDialog(knownDuration, onCancelPressed);
-        
-#endif
-}
+        }
 
         public bool UpdateProgressDialog(string info, double fractionDone)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             return ui.UpdateProgressDialog(info, fractionDone);
-        
-#endif
-}
+        }
 
         public void EndProgressDialog()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
-
             ui.EndProgressDialog();
-        
-#endif
-}
+        }
 
         public bool OkCancelMessage(string message, bool okDefault)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             return ui.OKCancelMessage(message, okDefault);
-        
-#endif
-}
+        }
 
         // Get the undo manager. 
         public UndoMgr GetUndoMgr()
         {
             return undoMgr;
-        
+
         }
 
         // Get the selection manager. This is ONLY for test support purposes.
 #if TEST
-        internal        SelectionMgr GetSelectionMgr()
+        internal SelectionMgr GetSelectionMgr()
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
 
 
             return selectionMgr;
-        
-#endif
+
         }
 #endif
 
@@ -5906,10 +4341,6 @@ throw new NotImplementedException("Unported Controller method");
         // Returns false if the operation has an exception.
         public bool HandleExceptions(Action operation, string message, params object[] fillIns)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             try {
                 operation();
                 return true;
@@ -5919,19 +4350,13 @@ throw new NotImplementedException("Unported Controller method");
                 ui.ErrorMessage(errorMessage);
                 return false;
             }
-        
-#endif
-}
+        }
 
         // Perform an operation. If an exception occurs, display the exception message.
         // Returns true if the operation had no exception.
         // Returns false if the operation has an exception.
         public bool HandleExceptions(Action operation)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
             try {
                 operation();
                 return true;
@@ -5941,13 +4366,11 @@ throw new NotImplementedException("Unported Controller method");
                 ui.ErrorMessage(errorMessage);
                 return false;
             }
-        
-#endif
-}
+        }
 
         // Class that wraps variations, insulating the UI from knowing much about them. The UI
         // just treats these as objects with ToString().
-        class VariationDescriber: IComparable<VariationDescriber>
+        class VariationDescriber : IComparable<VariationDescriber>
         {
 
             public readonly VariationInfo VariationInfo;
@@ -5989,7 +4412,7 @@ throw new NotImplementedException("Unported Controller method");
 
 
     // Which pane are we interacting in.
-    public enum Pane { Map, Topology}
+    public enum Pane { Map, Topology }
 
     // Describes the interface to a command mode. This handles modal multi-step commands.
     public interface ICommandMode
@@ -6096,7 +4519,7 @@ throw new NotImplementedException("Unported Controller method");
 
     public enum DragAction { None, SuppressClick, MapDrag, ImmediateDrag, DelayedDrag };
 
-    public enum PointerButton { Left, Right, Middle}
+    public enum PointerButton { Left, Right, Middle }
 
     public enum VariationExportFileType { Xml, Csv };
 
@@ -6124,14 +4547,8 @@ throw new NotImplementedException("Unported Controller method");
     {
         public static CommandStatus Combine(this CommandStatus cs1, CommandStatus cs2)
         {
-#if PORTING
-throw new NotImplementedException("Unported Controller method");
-#else //!PORTING
-
-            return (CommandStatus) Math.Max((int) cs1, (int) cs2);
-        
-#endif
-}
+            return (CommandStatus)Math.Max((int)cs1, (int)cs2);
+        }
     }
 
     public enum PrintAreaKind { AllCourses, OneCourse, OnePart }

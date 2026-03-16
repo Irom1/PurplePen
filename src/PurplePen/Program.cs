@@ -76,7 +76,7 @@ namespace PurplePen
 
             // Make sure that settings aren't corrupted, and fix them.
             try {
-                string uiLanguage = Settings.Default.UILanguage;
+                string uiLanguage = UserSettings.Current.UILanguage;
             }
             catch (ConfigurationErrorsException ex) { //(requires System.Configuration)
                 // Once the configuration system is corrupt, there doesn't appear a way to 
@@ -124,7 +124,7 @@ namespace PurplePen
         // Initialize the UI language. If there is no language set, keep with the default language.
         static void InitUILanguage()
         {
-            string uiLanguage = Settings.Default.UILanguage;
+            string uiLanguage = UserSettings.Current.UILanguage;
 
             if (!string.IsNullOrEmpty(uiLanguage)) {
                 try {
@@ -137,10 +137,10 @@ namespace PurplePen
         // Initialize the client id if we don't have one.
         static void InitClientId()
         {
-            Guid clientId = Settings.Default.ClientId;
+            Guid clientId = UserSettings.Current.ClientId;
             if (clientId == new Guid()) {
-                Settings.Default.ClientId = Guid.NewGuid();
-                Settings.Default.Save();
+                UserSettings.Current.ClientId = Guid.NewGuid();
+                UserSettings.Current.Save();
             }
         }
 

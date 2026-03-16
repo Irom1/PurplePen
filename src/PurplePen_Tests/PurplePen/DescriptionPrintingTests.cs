@@ -334,7 +334,7 @@ namespace PurplePen.Tests
             pageSettings.Margins = new Margins(50, 50, 50, 50);        // default to 1/2" margins.
             pageSettings.PrinterSettings.PrinterName = "foobar";
 
-            bool success = controller.PrintDescriptions(descPrintSettings, WindowsUtil.PrintingPaperSizeWithMarginsFromPageSettings(pageSettings), false);
+            bool success = controller.PrintDescriptions(WindowsUtil.GetWinFormsPrintTarget(pageSettings, null, false), descPrintSettings, WindowsUtil.PrintingPaperSizeWithMarginsFromPageSettings(pageSettings));
 
             Assert.IsFalse(success);
             string expected =

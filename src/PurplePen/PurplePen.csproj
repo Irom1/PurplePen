@@ -94,6 +94,11 @@
     <Compile Update="PaperSizeControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Update="TitleDetailButton.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -166,6 +171,10 @@
     </None>
     <None Update="Properties\app.manifest">
       <SubType>Designer</SubType>
+    </None>
+    <None Update="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <Content Include="..\FontInstaller\output\Roboto Font Installer.exe">
       <Link>Roboto Font Installer.exe</Link>

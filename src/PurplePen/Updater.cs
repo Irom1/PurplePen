@@ -465,7 +465,7 @@ namespace PurplePen
 #endif
 
             // Collect anonymous statistics, so we can know number of time the program is invoked, and from where, which version and language people are using.
-            string uiLanguage = Settings.Default.UILanguage;
+            string uiLanguage = UserSettings.Current.UILanguage;
             if (string.IsNullOrEmpty(uiLanguage))
                 uiLanguage = CultureInfo.CurrentUICulture.Name;
 
@@ -479,7 +479,7 @@ namespace PurplePen
                 JsonEncode(CultureInfo.CurrentCulture.Name),
                 JsonEncode(TimeZoneInfo.Local.StandardName),
                 JsonEncode(uiLanguage),
-                JsonEncode(Settings.Default.ClientId.ToString()),
+                JsonEncode(UserSettings.Current.ClientId.ToString()),
                 JsonEncode(CrashReporterDotNET.HelperMethods.GetWindowsVersion()));
             try {
                 StringContent content = new StringContent(status, Encoding.UTF8, "application/json");

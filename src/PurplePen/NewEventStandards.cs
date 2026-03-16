@@ -14,14 +14,14 @@ namespace PurplePen
         {
             InitializeComponent();
 
-            if (Settings.Default.NewEventMapStandard == "2017")
+            if (UserSettings.Current.NewEventMapStandard == "2017")
                 radioButtonMap2017.Checked = true;
-            else if (Settings.Default.NewEventMapStandard == "Spr2019")
+            else if (UserSettings.Current.NewEventMapStandard == "Spr2019")
                 radioButtonMapSpr2019.Checked = true;
             else
                 radioButtonMap2000.Checked = true;
 
-            if (Settings.Default.NewEventDescriptionStandard == "2018")
+            if (UserSettings.Current.NewEventDescriptionStandard == "2018")
                 radioButtonDescriptions2018.Checked = true;
             else
                 radioButtonDescriptions2004.Checked = true;

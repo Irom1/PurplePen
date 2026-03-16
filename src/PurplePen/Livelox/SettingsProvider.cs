@@ -10,7 +10,7 @@ namespace PurplePen.Livelox
             try
             {
                 var settings = JsonConvert.DeserializeObject<LiveloxSettings>(
-                    System.Text.Encoding.UTF8.GetString(Convert.FromBase64String(Settings.Default.LiveloxSettings))
+                    System.Text.Encoding.UTF8.GetString(Convert.FromBase64String(UserSettings.Current.LiveloxSettings))
                 );
                 return settings ?? new LiveloxSettings();
             }
@@ -22,8 +22,8 @@ namespace PurplePen.Livelox
 
         public void SaveSettings(LiveloxSettings liveloxSettings)
         {
-            Settings.Default.LiveloxSettings = Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(liveloxSettings)));
-            Settings.Default.Save();
+            UserSettings.Current.LiveloxSettings = Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(liveloxSettings)));
+            UserSettings.Current.Save();
         }
     }
 }

@@ -416,7 +416,7 @@ namespace PurplePen.Tests
             PageSettings pageSettings = new PageSettings() { Margins = new Margins(0, 0, 0, 0) };
             pageSettings.PrinterSettings.PrinterName = "foobar";
 
-            bool success = controller.PrintCourses(coursePrintSettings, false);
+            bool success = controller.PrintCourses(WindowsUtil.GetWinFormsPrintTarget(pageSettings, null, false), coursePrintSettings, WindowsUtil.PrintingPaperSizeWithMarginsFromPageSettings(pageSettings));
 
             Assert.IsFalse(success);
             string expected =
