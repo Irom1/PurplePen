@@ -100,8 +100,8 @@ namespace PurplePen
         // Set page size and landscape/portrait for a particular page.
         public PrintingPaperSize GetPagePaperSize(int pageNumber)
         {
-            PrintingPaperSize paperSize = pages[pageNumber].paperSize;
-            bool landscape = pages[pageNumber].landscape;
+            PrintingPaperSize paperSize = pages[pageNumber - 1].paperSize;
+            bool landscape = pages[pageNumber - 1].landscape;
             return new PrintingPaperSize(landscape, paperSize);
         }
 
@@ -132,7 +132,7 @@ namespace PurplePen
         //protected override void DrawPage(IGraphicsTarget graphicsTarget, int pageNumber, SizeF printArea, float dpi)
         public void DrawPage(IGraphicsTarget grTarget, int pageNumber, float dpi)
         {
-            CoursePage page = pages[pageNumber];
+            CoursePage page = pages[pageNumber - 1];
 
             // Get the course view for the course we are printing.
             CourseView courseView = CourseView.CreatePrintingCourseView(eventDB, page.courseDesignator);

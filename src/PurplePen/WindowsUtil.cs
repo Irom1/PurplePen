@@ -229,8 +229,15 @@ namespace PurplePen
         // Convert the paper size from the PageSettings to a PrintingPaperSize. 
         public static PrintingPaperSize PrintingPaperSizeFromPageSettings(PageSettings pageSettings)
         {
-
-            return new PrintingPaperSize(pageSettings.PaperSize.Kind.ToString(), pageSettings.Bounds.Width, pageSettings.Bounds.Height);
+            if (pageSettings.PrinterSettings.IsValid) {
+                return new PrintingPaperSize(pageSettings.PaperSize.Kind.ToString(), pageSettings.Bounds.Width, pageSettings.Bounds.Height);
+            }
+            else {
+                // Prevent exception if the printer settings are not valid. Just return the default paper size for the current culture.
+                // Probably will get an exception later on when we try to print, but we have a try-catch there.
+                bool metric = Util.IsCurrentCultureMetric();
+                return PrintingStandards.StandardPaperSizes[metric ? PrintingStandards.DefaultMetricPaperSizeindex : PrintingStandards.DefaultEnglighPaperSizeIndex];
+            }
         }
 
         public static PrintingMarginSize PrintingMarginSizeFromPageSettings(PageSettings pageSettings)
