@@ -24,7 +24,7 @@ namespace PurplePen
             byte[] data = new byte[SAMPLESIZE * SAMPLESIZE * SAMPLESIZE * SAMPLESIZE * 3];
 
             Assembly assembly = Assembly.GetExecutingAssembly();
-            using (Stream stream = assembly.GetManifestResourceStream("PurplePen.swopsamples.dat")) {
+            using (Stream stream = assembly.GetManifestResourceStream("PurplePen.Resources.swopsamples.dat")) {
                 Debug.Assert(stream != null, "Could not find the embedded resource.");
 
                 int read = stream.Read(data, 0, data.Length);

@@ -72,3 +72,10 @@ Pain points:
    that can work.
 
    Be sure to visit all #if PORTING.
+
+   Things not yet ported:
+       - Pause after each page when printing.
+	   - Installing Roboto fonts into the OS fonts.
+	   - JPEG quality setting; should be 80 like it was before, or maybe settable.
+	   - Check GIF quantization settings. Should maybe disable dithering?
+	   - Handling count in printing courses.

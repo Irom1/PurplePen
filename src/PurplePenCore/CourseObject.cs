@@ -1140,7 +1140,7 @@ namespace PurplePen
                 symdef.SetFraming(framing);
             }
 
-            symdef.ToolboxImage = CoreMapUtil.CreateToolboxIcon(IconBitmaps.Number_OcadToolbox);
+            symdef.ToolboxImage = CoreMapUtil.CreateToolboxIcon(ImageResources.Number_OcadToolbox);
             map.AddSymdef(symdef);
             return symdef;
         }
@@ -1320,7 +1320,7 @@ namespace PurplePen
             glyph.ConstructionComplete();
 
             PointSymDef symdef = new PointSymDef("Control point", "702", glyph, false);
-            symdef.ToolboxImage = CoreMapUtil.CreateToolboxIcon(IconBitmaps.Control_OcadToolbox);
+            symdef.ToolboxImage = CoreMapUtil.CreateToolboxIcon(ImageResources.Control_OcadToolbox);
             map.AddSymdef(symdef);
             return symdef;
         }
@@ -1434,7 +1434,7 @@ namespace PurplePen
             glyph.ConstructionComplete();
 
             PointSymDef symdef = new PointSymDef("Continuing point", "716", glyph, false);
-            symdef.ToolboxImage = CoreMapUtil.CreateToolboxIcon(IconBitmaps.ExchangeStart_OcadToolbox);
+            symdef.ToolboxImage = CoreMapUtil.CreateToolboxIcon(ImageResources.ExchangeStart_OcadToolbox);
             map.AddSymdef(symdef);
             return symdef;
         }
@@ -1525,7 +1525,7 @@ namespace PurplePen
             glyph.ConstructionComplete();
 
             PointSymDef symdef = new PointSymDef("Start", "701", glyph, true);
-            symdef.ToolboxImage = CoreMapUtil.CreateToolboxIcon(IconBitmaps.Start_OcadToolbox);
+            symdef.ToolboxImage = CoreMapUtil.CreateToolboxIcon(ImageResources.Start_OcadToolbox);
             map.AddSymdef(symdef);
             return symdef;
         }
@@ -1616,7 +1616,7 @@ namespace PurplePen
             glyph.ConstructionComplete();
 
             PointSymDef symdef = new PointSymDef("Map Issue Point", "715", glyph, true);
-            symdef.ToolboxImage = CoreMapUtil.CreateToolboxIcon(IconBitmaps.MapIssue_OcadToolbox);
+            symdef.ToolboxImage = CoreMapUtil.CreateToolboxIcon(ImageResources.MapIssue_OcadToolbox);
             map.AddSymdef(symdef);
             return symdef;
         }
@@ -1716,7 +1716,7 @@ namespace PurplePen
             glyph.ConstructionComplete();
 
             PointSymDef symdef = new PointSymDef("Finish", "706", glyph, false);
-            symdef.ToolboxImage = CoreMapUtil.CreateToolboxIcon(IconBitmaps.Finish_OcadToolbox);
+            symdef.ToolboxImage = CoreMapUtil.CreateToolboxIcon(ImageResources.Finish_OcadToolbox);
             map.AddSymdef(symdef);
             return symdef;
         }
@@ -1808,7 +1808,7 @@ namespace PurplePen
             glyph.ConstructionComplete();
 
             PointSymDef symdef = new PointSymDef("First aid post", "712", glyph, false);
-            symdef.ToolboxImage = CoreMapUtil.CreateToolboxIcon(IconBitmaps.FirstAid_OcadToolbox);
+            symdef.ToolboxImage = CoreMapUtil.CreateToolboxIcon(ImageResources.FirstAid_OcadToolbox);
             map.AddSymdef(symdef);
             return symdef;
         }
@@ -1924,7 +1924,7 @@ namespace PurplePen
             glyph.ConstructionComplete();
 
             PointSymDef symdef = new PointSymDef("Refreshment point", "713", glyph, false);
-            symdef.ToolboxImage = CoreMapUtil.CreateToolboxIcon(IconBitmaps.Water_OcadToolbox);
+            symdef.ToolboxImage = CoreMapUtil.CreateToolboxIcon(ImageResources.Water_OcadToolbox);
             map.AddSymdef(symdef);
             return symdef;
         }
@@ -2049,7 +2049,7 @@ namespace PurplePen
             glyph.ConstructionComplete();
 
             PointSymDef symdef = new PointSymDef("Crossing point", map.GetFreeSymbolId(708), glyph, true);
-            symdef.ToolboxImage = CoreMapUtil.CreateToolboxIcon(IconBitmaps.Crossing_OcadToolbox);
+            symdef.ToolboxImage = CoreMapUtil.CreateToolboxIcon(ImageResources.Crossing_OcadToolbox);
             map.AddSymdef(symdef);
             return symdef;
         }
@@ -2137,7 +2137,7 @@ namespace PurplePen
             glyph.ConstructionComplete();
 
             PointSymDef symdef = new PointSymDef("Registration mark", "717", glyph, false);
-            symdef.ToolboxImage = CoreMapUtil.CreateToolboxIcon(IconBitmaps.Registration_OcadToolbox);
+            symdef.ToolboxImage = CoreMapUtil.CreateToolboxIcon(ImageResources.Registration_OcadToolbox);
             map.AddSymdef(symdef);
             return symdef;
         }
@@ -2196,7 +2196,7 @@ namespace PurplePen
             glyph.ConstructionComplete();
 
             PointSymDef symdef = new PointSymDef("Forbidden route", "710", glyph, false);
-            symdef.ToolboxImage = CoreMapUtil.CreateToolboxIcon(IconBitmaps.Forbidden_OcadToolbox);
+            symdef.ToolboxImage = CoreMapUtil.CreateToolboxIcon(ImageResources.Forbidden_OcadToolbox);
             map.AddSymdef(symdef);
             return symdef;
         }
@@ -2235,7 +2235,7 @@ namespace PurplePen
         protected override SymDef CreateSymDef(Map map, SymColor symColor, SymColor lower_symColor)
         {
             LineSymDef symdef = new LineSymDef("Line", "704", lower_symColor, NormalCourseAppearance.lineThickness * courseObjRatio * appearance.lineWidth, LineJoinMode.Bevel, LineCapMode.Flat);
-            symdef.ToolboxImage = CoreMapUtil.CreateToolboxIcon(IconBitmaps.Line_OcadToolbox);
+            symdef.ToolboxImage = CoreMapUtil.CreateToolboxIcon(ImageResources.Line_OcadToolbox);
             map.AddSymdef(symdef);
             return symdef;
         }
@@ -2265,7 +2265,7 @@ namespace PurplePen
             dashes.minGaps = 1;
             symdef.SetDashInfo(dashes);
 
-            symdef.ToolboxImage = CoreMapUtil.CreateToolboxIcon(IconBitmaps.DashedLine_OcadToolbox);
+            symdef.ToolboxImage = CoreMapUtil.CreateToolboxIcon(ImageResources.DashedLine_OcadToolbox);
             map.AddSymdef(symdef);
             return symdef;
         }
@@ -2288,7 +2288,7 @@ namespace PurplePen
         protected override SymDef CreateSymDef(Map map, SymColor symColor, SymColor lower_symColor)
         {
             LineSymDef symdef = new LineSymDef("Line", "704", lower_symColor, LineThickness * courseObjRatio, LineJoinMode.Round, LineCapMode.Flat);
-            symdef.ToolboxImage = CoreMapUtil.CreateToolboxIcon(IconBitmaps.Line_OcadToolbox);
+            symdef.ToolboxImage = CoreMapUtil.CreateToolboxIcon(ImageResources.Line_OcadToolbox);
             map.AddSymdef(symdef);
             return symdef;
         }
@@ -2314,7 +2314,7 @@ namespace PurplePen
         protected override SymDef CreateSymDef(Map map, SymColor symColor, SymColor lower_symColor)
         {
             LineSymDef symdef = new LineSymDef("Uncrossable boundary", "707", lower_symColor, (appearance.mapStandard == "Spr2019" ? 1.0F : 0.7F) * courseObjRatio * appearance.lineWidth, LineJoinMode.Miter, LineCapMode.Flat);
-            symdef.ToolboxImage = CoreMapUtil.CreateToolboxIcon(IconBitmaps.Line_OcadToolbox);
+            symdef.ToolboxImage = CoreMapUtil.CreateToolboxIcon(ImageResources.Line_OcadToolbox);
             map.AddSymdef(symdef);
             return symdef;
         }
@@ -2425,7 +2425,7 @@ namespace PurplePen
                 default: throw new ApplicationException("Unexpected line kind");
             }
 
-            symdef.ToolboxImage = CoreMapUtil.CreateToolboxIcon(IconBitmaps.LineSpecial_OcadToolbox);
+            symdef.ToolboxImage = CoreMapUtil.CreateToolboxIcon(ImageResources.LineSpecial_OcadToolbox);
             map.AddSymdef(symdef);
             return symdef;
         }
@@ -2612,7 +2612,7 @@ namespace PurplePen
                 hatchInfo.hatchSpacing = 0.6F * courseObjRatio;
                 hatchInfo.hatchAngle = 90;
                 symdef.AddHatching(hatchInfo);
-                symdef.ToolboxImage = CoreMapUtil.CreateToolboxIcon(IconBitmaps.OOB_OcadToolbox);
+                symdef.ToolboxImage = CoreMapUtil.CreateToolboxIcon(ImageResources.OOB_OcadToolbox);
             }
             else {
                 AreaSymDef.HatchInfo hatchInfo = new AreaSymDef.HatchInfo();
@@ -2629,7 +2629,7 @@ namespace PurplePen
                 symdef.AddHatching(hatchInfo);
                 hatchInfo.hatchAngle = 135;
                 symdef.AddHatching(hatchInfo);
-                symdef.ToolboxImage = CoreMapUtil.CreateToolboxIcon(IconBitmaps.Dangerous_OcadToolbox);
+                symdef.ToolboxImage = CoreMapUtil.CreateToolboxIcon(ImageResources.Dangerous_OcadToolbox);
 
             }
             map.AddSymdef(symdef);
@@ -2664,7 +2664,7 @@ namespace PurplePen
             symdef.AddHatching(hatchInfo);
             hatchInfo.hatchAngle = 135;
             symdef.AddHatching(hatchInfo);
-            symdef.ToolboxImage = CoreMapUtil.CreateToolboxIcon(IconBitmaps.Dangerous_OcadToolbox);
+            symdef.ToolboxImage = CoreMapUtil.CreateToolboxIcon(ImageResources.Dangerous_OcadToolbox);
             map.AddSymdef(symdef);
             return symdef;
         }
@@ -2684,11 +2684,11 @@ namespace PurplePen
 
             // Add 0.1mm border.
             LineSymDef symdefBorder = new LineSymDef("Temporary construction border", "714.1", symColor, 0.1F * courseObjRatio, LineJoinMode.Miter, LineCapMode.Flat);
-            symdefBorder.ToolboxImage = CoreMapUtil.CreateToolboxIcon(IconBitmaps.ConstructionBoundary_OcadToolbox);
+            symdefBorder.ToolboxImage = CoreMapUtil.CreateToolboxIcon(ImageResources.ConstructionBoundary_OcadToolbox);
             map.AddSymdef(symdefBorder);
 
             AreaSymDef symdef = new AreaSymDef("Temporary construction", "714", purple50, symdefBorder);
-            symdef.ToolboxImage = CoreMapUtil.CreateToolboxIcon(IconBitmaps.Construction_OcadToolbox);
+            symdef.ToolboxImage = CoreMapUtil.CreateToolboxIcon(ImageResources.Construction_OcadToolbox);
             map.AddSymdef(symdef);
             return symdef;
         }

@@ -1227,7 +1227,7 @@ namespace PurplePen
         public object CreatePen(float thickness, LineJoinMode lineJoin, LineCapMode lineCap)
         {
             LineSymDef symdef = new LineSymDef("Description: line", GetOcadId(), color, Geometry.TransformDistance(thickness, currentTransform), lineJoin, lineCap);
-            symdef.ToolboxImage = CoreMapUtil.CreateToolboxIcon(IconBitmaps.DescLine_OcadToolbox);
+            symdef.ToolboxImage = CoreMapUtil.CreateToolboxIcon(ImageResources.DescLine_OcadToolbox);
             map.AddSymdef(symdef);
             return symdef;
         }
@@ -1255,7 +1255,7 @@ namespace PurplePen
                 fontAlign = TextSymDefHorizAlignment.Left;
 
             symdef.SetFont(fontName, Geometry.TransformDistance(emHeight, currentTransform), Util.GetTextEffects(bold, italic), color, Geometry.TransformDistance(emHeight * 1.1F, currentTransform), 0, 0, 0, null, 0, 1F, fontAlign, TextSymDefVertAlignment.TopAscent);
-            symdef.ToolboxImage = CoreMapUtil.CreateToolboxIcon(IconBitmaps.DescText_OcadToolbox);
+            symdef.ToolboxImage = CoreMapUtil.CreateToolboxIcon(ImageResources.DescText_OcadToolbox);
             map.AddSymdef(symdef);
             return symdef;
         }

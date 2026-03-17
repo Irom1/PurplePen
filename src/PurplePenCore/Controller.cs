@@ -1285,8 +1285,6 @@ namespace PurplePen
         // Print or print preview punch cards. Returns success or failure; any errors are already reported to the user.
         public bool PrintPunches(IPrintingTarget printingTarget, CorePunchPrintSettings punchPrintSettings, PrintingPaperSizeWithMargins paperSizeWithMargins)
         {
-#if PORTING
-
             string documentTitle = QueryEvent.GetEventTitle(eventDB, " ");
 
             bool success = HandleExceptions(
@@ -1300,25 +1298,11 @@ namespace PurplePen
                 MiscText.CannotPrint, documentTitle);
 
             return success;
-#else
-            bool success = HandleExceptions(
-                delegate {
-                    PunchPrinting punchPrinter = new PunchPrinting(eventDB, this, punchPrintSettings);
-                    if (preview)
-                        punchPrinter.PrintPreview(GetPrintPreviewSize());
-                    else
-                        punchPrinter.Print();
-                },
-                MiscText.CannotPrint, QueryEvent.GetEventTitle(eventDB, " "));
-
-            return success;        
-#endif
         }
 
         // Create PDF for punch cards. Returns success or failure; any errors are already reported to the user.
         public bool CreatePunchesPdf(CorePunchPrintSettings punchPrintSettings, PrintingPaperSizeWithMargins paperSizeWithMargins, string pathName)
         {
-#if PORTING
             string documentTitle = QueryEvent.GetEventTitle(eventDB, " ");
 
             bool success = HandleExceptions(
@@ -1334,16 +1318,6 @@ namespace PurplePen
                 MiscText.CannotCreatePdfs);
 
             return success;
-#else
-            bool success = HandleExceptions(
-                delegate {
-                    PunchPrinting punchPrinter = new PunchPrinting(eventDB, this, punchPrintSettings);
-                    punchPrinter.PrintToPdf(pathName, false);
-                },
-                MiscText.CannotCreatePdfs);
-
-            return success;        
-#endif
         }
 
         // Return true if we must rasterize before printing.

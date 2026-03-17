@@ -5,6 +5,7 @@ using PurplePen;
 using PurplePen.Graphics2D;
 using PurplePen.MapModel;
 using System;
+using System.IO;
 using System.Reflection;
 
 [TestClass]
@@ -61,6 +62,15 @@ public class GlobalTestSetup
          * ======================================================================================================== */
 
         AppDomain.CurrentDomain.AssemblyResolve += ResolveLoggingAbstractions;
+
+        // Initialize settings to a default state. This ensures that tests start with a clean slate and don't accidentally read/write real user settings.
+        string userSettingsPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "PurplePen_Tests", "UserSettings.json");
+        if (File.Exists(userSettingsPath))
+            File.Delete(userSettingsPath);
+        UserSettings.Initialize(userSettingsPath);
+
+
+        FontDesc.InitializeFonts();
     }
 
     private static Assembly ResolveLoggingAbstractions(object sender, ResolveEventArgs args)

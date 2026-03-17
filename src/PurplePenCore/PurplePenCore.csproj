@@ -53,8 +53,8 @@
     <EmbeddedResource Include="..\PurplePen\Images\Start_OcadToolbox.png" Link="Resources\OcadToolbox\Start_OcadToolbox.png" />
     <EmbeddedResource Include="..\PurplePen\Images\Water_OcadToolbox.png" Link="Resources\OcadToolbox\Water_OcadToolbox.png" />
     <EmbeddedResource Include="..\PurplePen\Images\WhiteOut_OcadToolbox.png" Link="Resources\OcadToolbox\WhiteOut_OcadToolbox.png" />
-    <EmbeddedResource Include="images\logobkgd.png" />
-    <EmbeddedResource Include="swopsamples.dat" />
+    <EmbeddedResource Include="Resources\logobkgd.png" />
+    <EmbeddedResource Include="Resources\swopsamples.dat" />
   </ItemGroup>
 
   <ItemGroup>
@@ -153,6 +153,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
+    <PackageReference Include="System.Text.Json" />
   </ItemGroup>
 
   <ItemGroup>

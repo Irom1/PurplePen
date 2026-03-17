@@ -9,11 +9,7 @@ namespace PurplePen
     {
         public static void DrawPurplePenLogo(IGraphicsTarget g, RectangleF rect)
         {
-            IGraphicsBitmap logoImage;
-
-            using (Stream stream = typeof(LogoDrawing).Assembly.GetManifestResourceStream("PurplePen.images.logobkgd.png")) {
-                logoImage = Services.BitmapLoader.ReadBitmapFromStream(stream);
-            }
+            IGraphicsBitmap logoImage = ImageResources.LogoImage;
 
             g.DrawBitmap(logoImage, rect, BitmapScaling.HighQuality);
 
