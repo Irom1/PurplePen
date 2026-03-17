@@ -578,7 +578,7 @@ namespace PurplePen.MapModel
 
             Graphics.InterpolationMode = GetInterpolationMode(scalingMode);
             try {
-                if (imageAttributes != null) {
+              if (imageAttributes != null) {
                     Graphics.DrawImage(gdiBitmap,
                         new PointF[3] { new PointF(rectangle.Left, rectangle.Top), new PointF(rectangle.Right, rectangle.Top), new PointF(rectangle.Left, rectangle.Bottom) },
                         new RectangleF(0, 0, gdiBitmap.Width, gdiBitmap.Height),

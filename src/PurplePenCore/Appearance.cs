@@ -178,6 +178,9 @@ namespace PurplePen
             string fontPath = Path.Combine(executablePath, "fonts");
 
 #if true
+            // Font used for the Purple Pen About Box/Splash screen. Like Palatino.
+            Services.FontLoader.AddFontFile("TeX Gyre Pagella", TextEffects.Bold | TextEffects.Italic, Path.Combine(fontPath, "texgyrepagella-bolditalic.otf"));
+
             Services.FontLoader.AddFontFile("Roboto", TextEffects.Regular, Path.Combine(fontPath, "Roboto-Regular.ttf"));
             Services.FontLoader.AddFontFile("Roboto", TextEffects.Bold, Path.Combine(fontPath, "Roboto-Bold.ttf"));
             Services.FontLoader.AddFontFile("Roboto", TextEffects.Italic, Path.Combine(fontPath, "Roboto-Italic.ttf"));

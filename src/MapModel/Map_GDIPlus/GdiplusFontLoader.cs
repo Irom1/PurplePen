@@ -86,12 +86,8 @@ namespace PurplePen.MapModel
         public bool FontFamilyIsInstalled(string familyName)
         {
             lock (lockObj) {
-                FontKey fontKey = new FontKey(familyName, TextEffects.Regular);
-
                 try {
-                    if (fontCollections.ContainsKey(fontKey)) {
-                        //FontFamily family = new FontFamily(familyName, fontCollections[fontKey]);
-                        //family.Dispose();
+                    if (fontCollections.Any(pair => pair.Key.familyName == familyName)) {
                         return true;
                     }
                     else {

@@ -32,14 +32,15 @@
  * OF SUCH DAMAGE.
  */
 
+using PurplePen.MapModel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Text;
 using System.Windows.Forms;
-using System.Diagnostics;
-using System.IO;
 
 namespace PurplePen
 {
@@ -227,7 +228,7 @@ namespace PurplePen
 
         private void backgroundPanel_Paint(object sender, PaintEventArgs e)
         {
-            GraphicsHelper.DrawPurplePenLogo(e.Graphics, backgroundPanel);
+            LogoDrawing.DrawPurplePenLogo(new GDIPlus_GraphicsTarget(e.Graphics), backgroundPanel.ClientRectangle);
         }
 
         private void InitialScreen_Shown(object sender, EventArgs e)

@@ -32,6 +32,7 @@
  * OF SUCH DAMAGE.
  */
 
+using PurplePen.MapModel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -63,7 +64,7 @@ namespace PurplePen
 
         private void logoPanel_Paint(object sender, PaintEventArgs e)
         {
-            GraphicsHelper.DrawPurplePenLogo(e.Graphics, logoPanel);
+            LogoDrawing.DrawPurplePenLogo(new GDIPlus_GraphicsTarget(e.Graphics), logoPanel.ClientRectangle);
         }
 
         private void creditsButton_Click(object sender, EventArgs e)

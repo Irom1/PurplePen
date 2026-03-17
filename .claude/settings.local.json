@@ -18,7 +18,15 @@
       "Bash(dotnet list:*)",
       "Bash(grep -l bindingRedirect /d/Repos/Main/PurplePen/src/**/*.config)",
       "Bash(ls -la /d/Repos/Main/PurplePen/src/MapModel/InteractiveTestApp/*.config)",
-      "Bash(grep -r bindingRedirect /d/Repos/Main/PurplePen/src --include=*.config)"
+      "Bash(grep -r bindingRedirect /d/Repos/Main/PurplePen/src --include=*.config)",
+      "Bash(sed 's/.*\\\\.\\\\\\([a-z-]*\\\\\\)\\\\.resx$/\\\\1/')",
+      "Bash(grep \"\\\\.po$\")",
+      "Bash(grep -l \"class.*:\\\\s*Panel\\\\|class.*:\\\\s*UserControl\" /d/Repos/Main/PurplePen/src/PurplePen/*.cs)",
+      "Bash(grep -oh \"new System.Windows.Forms\\\\.[A-Za-z]*\" /d/Repos/Main/PurplePen/src/PurplePen/*.Designer.cs)",
+      "Bash(ls /d/Repos/Main/PurplePen/src/PurplePen/*Strings*)",
+      "Bash(grep -E \"\\\\.\\(bg|ca|cs|da|de|es|et|fi|fr|he|hu|id|it|ja|ku|nb|nl|nn|pl|pt|ro|ru|sl|sv|tr|uk|vec|zh\\)\\\\.resx$\")",
+      "Bash(xargs grep:*)",
+      "Bash(grep -r .pob /d/Repos/Main/PurplePen/src --include=*.cs)"
     ]
   }
 }
