@@ -26,7 +26,8 @@
       "Bash(ls /d/Repos/Main/PurplePen/src/PurplePen/*Strings*)",
       "Bash(grep -E \"\\\\.\\(bg|ca|cs|da|de|es|et|fi|fr|he|hu|id|it|ja|ku|nb|nl|nn|pl|pt|ro|ru|sl|sv|tr|uk|vec|zh\\)\\\\.resx$\")",
       "Bash(xargs grep:*)",
-      "Bash(grep -r .pob /d/Repos/Main/PurplePen/src --include=*.cs)"
+      "Bash(grep -r .pob /d/Repos/Main/PurplePen/src --include=*.cs)",
+      "Bash(dotnet test:*)"
     ]
   }
 }

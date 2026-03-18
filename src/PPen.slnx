@@ -108,6 +108,9 @@
     <Project Path="PurplePenViewModels/PurplePenViewModels.csproj" Id="689dd20f-9b33-49ec-b92e-5c8ab79ad765">
       <BuildType Solution="StorePkg|*" Project="Release" />
     </Project>
+    <Project Path="PurplePenViewModels.Tests/PurplePenViewModels.Tests.csproj">
+      <BuildType Solution="StorePkg|*" Project="Release" />
+    </Project>
     <Project Path="PurplePen_Tests/PurplePen_Tests.csproj" Id="0690d25c-7696-4b7a-9aab-fbbcafd0eef5">
       <Build Solution="Debug|x86" Project="false" />
     </Project>
