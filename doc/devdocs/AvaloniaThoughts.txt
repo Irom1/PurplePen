@@ -42,7 +42,12 @@ Pain points:
    for Avalonia which should be good enough for reports, but printing will be difficult. Maybe can print
    by launching a browser and printing from there. This should be doable. We can use PuppeteerSharp for printing
    or maybe Chrome (if installed) or AppleScript for Mac. cups can also print HTML but may not handle
-   the pagination well. I think PuppeteerSharp is probably the best bet, and we can use it on Windows too.
+   the pagination well. I think PuppeteerSharp is probably the best bet, and we can use it on Windows too. 
+   
+   Or maybe just do our own rendering implementation for reports. HTML does have some nice styling and word-wrapping features in 
+   tables that would take some work, but it would be more self-contained and not require a browser. We could use SkiaSharp to do 
+   the rendering, and then print the resulting PDF, and also allow saving reports to PDFs, which we didn't have a direct solution
+   for before (but Microsoft Print to PDF). This would make print preview easier and more consistent too.
 
    Generally printing is hard. On mac and linux print by creating a PDF and that launching a command
    line app that prints a pdf. The lp can be used. Need to figure out a way to determine which printers
@@ -68,9 +73,6 @@ Pain points:
    CrashReporter - need to redo this to be cross platform and use web request to a web server
    instead of email.
 
-   Settings system - need to redo this to be cross platform. Need to see if there is something in .NET Core
-   that can work.
-
    Be sure to visit all #if PORTING.
 
    Things not yet ported:
@@ -79,3 +81,4 @@ Pain points:
 	   - JPEG quality setting; should be 80 like it was before, or maybe settable.
 	   - Check GIF quantization settings. Should maybe disable dithering?
 	   - Handling count in printing courses.
+	   - Crash reporter. Needs a full rewrite to be cross platform and use web requests instead of email.

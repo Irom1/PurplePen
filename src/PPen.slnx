@@ -86,6 +86,9 @@
     <Project Path="PdfiumViewer/PdfiumViewer/PdfiumViewer.csproj" Id="438914b6-5d1c-482c-b942-5c0e057eef6f" />
   </Folder>
   <Folder Name="/Purple Pen/">
+    <Project Path="AvPurplePen/AvPurplePen.csproj" Id="e36ee026-b338-4927-8e6b-8cfca9007148">
+      <BuildType Solution="StorePkg|*" Project="Release" />
+    </Project>
     <Project Path="CrashReporter.NET/CrashReporter.NET.csproj" Id="67912bda-1572-46b0-8623-5872d9dadbc8">
       <Build Solution="Debug|x86" Project="false" />
     </Project>
