@@ -74,6 +74,10 @@ namespace PurplePen
             serviceProvider = services.BuildServiceProvider();
             Services.RegisterServiceProvider(serviceProvider);
 
+            string userSettingsPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "PurplePen", "PurplePenSettings.json");
+            UserSettings.Initialize(userSettingsPath);
+
+
             // Make sure that settings aren't corrupted, and fix them.
             try {
                 string uiLanguage = UserSettings.Current.UILanguage;

@@ -933,6 +933,25 @@ namespace PurplePen.MapModel
         }
     }
 
+    public class SkiaFontLoader : IFontLoader
+    {
+        public static SkiaFontLoader Instance { get { return instance; } }
+        private static SkiaFontLoader instance = new SkiaFontLoader();
+
+        public void AddFontFile(string familyName, TextEffects textEffects, string fontFilePath)
+        {
+            SKFontStyleWeight weight = SkiaFont.GetSKFontStyleWeight(textEffects);
+            SKFontStyleSlant slant = SkiaFont.GetSKFontStyleSlant(textEffects);
+            SKFontStyleWidth width = SKFontStyleWidth.Normal;
+            SkiaFontManager.AddFontFile(familyName, weight, width, slant, fontFilePath);
+        }
+
+        public bool FontFamilyIsInstalled(string familyName)
+        {
+            return SkiaFontManager.FontFamilyIsInstalled(familyName);
+        }
+    }
+
     // A graphics target that draw onto a bitmap. Also adds support for blending mode Darken.
     public class Skia_BitmapGraphicsTarget: Skia_GraphicsTarget, IBitmapGraphicsTarget
     {
@@ -1577,6 +1596,14 @@ namespace PurplePen.MapModel
 
         public void Dispose()
         {
+        }
+    }
+
+    public class SkiaFileLoaderProvider : IFileLoaderProvider
+    {
+        public IFileLoader GetFileLoaderForDirectory(string path)
+        {
+            return new Skia_FileLoader(path);
         }
     }
 
