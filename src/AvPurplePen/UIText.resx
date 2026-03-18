@@ -107,4 +107,19 @@
 	<data name="CounterLabel" xml:space="preserve">
 		<value>Counter: {0}</value>
 	</data>
+	<data name="OKButton" xml:space="preserve">
+		<value>OK</value>
+	</data>
+	<data name="CancelButton" xml:space="preserve">
+		<value>Cancel</value>
+	</data>
+	<data name="SwitchLanguageButton" xml:space="preserve">
+		<value>Switch Language...</value>
+	</data>
+	<data name="SwitchLanguageDialog_Title" xml:space="preserve">
+		<value>Switch Language</value>
+	</data>
+	<data name="SwitchLanguageDialog_Prompt" xml:space="preserve">
+		<value>Select a language:</value>
+	</data>
 </root>

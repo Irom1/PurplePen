@@ -86,5 +86,50 @@ namespace AvPurplePen {
                 return ResourceManager.GetString("IncrementButton", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        public static string OKButton {
+            get {
+                return ResourceManager.GetString("OKButton", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string CancelButton {
+            get {
+                return ResourceManager.GetString("CancelButton", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Switch Language....
+        /// </summary>
+        public static string SwitchLanguageButton {
+            get {
+                return ResourceManager.GetString("SwitchLanguageButton", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Switch Language.
+        /// </summary>
+        public static string SwitchLanguageDialog_Title {
+            get {
+                return ResourceManager.GetString("SwitchLanguageDialog_Title", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Select a language:.
+        /// </summary>
+        public static string SwitchLanguageDialog_Prompt {
+            get {
+                return ResourceManager.GetString("SwitchLanguageDialog_Prompt", resourceCulture);
+            }
+        }
     }
 }

@@ -91,6 +91,11 @@
 
         </StackPanel>
 
+        <!-- Language switch button -->
+        <Button Content="{x:Static resx:UIText.SwitchLanguageButton}"
+                HorizontalAlignment="Center"
+                Click="SwitchLanguageButton_Click"/>
+
     </StackPanel>
 
 </Window>
