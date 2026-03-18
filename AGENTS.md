@@ -131,8 +131,36 @@ CourseView creates static snapshots of courses for rendering. This separates the
 
 ## Project Structure
 
-### Main Application
-**PurplePen/** - WinForms desktop application
+### Avalonia Cross-Platform Application (active development)
+
+PurplePen is being ported from WinForms (PurplePen/) to Avalonia (AvPurplePen/) for cross-platform support. The Avalonia app follows MVVM with CommunityToolkit.Mvvm source generators.
+
+**AvPurplePen/** - Avalonia desktop application (Views and platform-specific code)
+- Namespace: `AvPurplePen`
+- Views/: AXAML views with code-behind (e.g., MainWindow.axaml)
+- ViewLocator.cs: Convention-based IDataTemplate that maps ViewModels to Views automatically. Maps `PurplePen.ViewModels.FooViewModel` → `AvPurplePen.Views.FooView`. Used when a ViewModel appears as Content of a ContentControl; not used for MainWindow (created directly in App.axaml.cs).
+- UIText.resx: Localized UI strings. Referenced directly from AXAML via `x:Static` (not through ViewModels). Uses `PublicResXFileCodeGenerator` so the generated class is public and accessible from XAML.
+- App.axaml.cs: Application startup, creates MainWindow, registers ViewLocator as a DataTemplate.
+- Program.cs: Entry point. DI container is set up before the Avalonia builder line (safe because DI is plain .NET, not Avalonia-dependent).
+
+**PurplePenViewModels/** - ViewModels (separate project, no UI dependencies)
+- Namespace: `PurplePen.ViewModels`
+- Uses CommunityToolkit.Mvvm source generators: `[ObservableProperty]` for properties, `[RelayCommand]` for commands. Classes must be `partial`.
+- ViewModelBase.cs: Abstract base class inheriting `ObservableObject`.
+- ViewModels do NOT contain localized strings or UI text — that belongs in the View layer (UIText.resx).
+- References PurplePenCore but NOT AvPurplePen (ViewModels must not depend on Views).
+
+**PurplePenViewModels.Tests/** - NUnit tests for ViewModels
+- Uses NUnit framework (`[TestFixture]`, `[Test]`, `[SetUp]`)
+- Tests command execution via `ICommand.Execute(null)` and verifies PropertyChanged notifications.
+
+#### Key MVVM Conventions
+- **Localized strings**: Stored in `AvPurplePen/UIText.resx`, accessed in XAML via `{x:Static resx:UIText.PropertyName}`. For formatted strings (e.g., "Counter: {0}"), use element-syntax `<Binding StringFormat="{x:Static resx:UIText.FormatString}" />`.
+- **Compiled bindings**: All AXAML files use `x:DataType` for compile-time checked bindings.
+- **Namespace mapping in XAML**: `xmlns:vm="using:PurplePen.ViewModels"` for ViewModels, `xmlns:resx="using:AvPurplePen"` for resource classes.
+
+### Legacy WinForms Application
+**PurplePen/** - WinForms desktop application (being ported to AvPurplePen)
 - Controller.cs: Central command coordinator
 - EventDB.cs: Course data model with undo
 - SelectionMgr.cs: Selection state management
@@ -216,6 +244,8 @@ Course files are stored in Purple Pen's XML format (.ppen files).
 4. **Test files in TestFiles/** - use existing test courses and maps
 5. **Bitmap test files in MapModel/TestFiles/bitmaps/** - includes resolution test images (e.g., `Waterfall.jpg`/`.png` at 230 DPI)
 6. **Interactive tests in MapModel/InteractiveTestApp** - for visual verification
+7. **ViewModel tests in PurplePenViewModels.Tests/** - NUnit tests for ViewModels (no UI dependencies). Test commands via `ICommand.Execute(null)` and verify `PropertyChanged` notifications.
+8. **MapModel tests use NUnit** (`[TestFixture]`, `[Test]`). PurplePen_Tests uses MSTest.
 
 ### Writing Code
 1. **Follow existing coding style** - consistent naming, formatting
@@ -230,7 +260,7 @@ The solution uses custom ruleset files:
 
 ## Current Development Focus
 
-Based on recent git commits:
+- **Avalonia port** - AvPurplePen is the new cross-platform application, gradually replacing the WinForms PurplePen project. Code is being moved from PurplePen/ and PurplePenCore/ into AvPurplePen/ (Views) and PurplePenViewModels/ (ViewModels).
 - **Skia rendering implementation** - migrating from GDI+ to SkiaSharp for cross-platform support
 - **Font fallback** - investigating font rendering issues
 - **Layer blending** - fixing template rendering with map files
