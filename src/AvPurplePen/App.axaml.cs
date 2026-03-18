@@ -3,9 +3,9 @@ using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Data.Core;
 using Avalonia.Data.Core.Plugins;
 using Avalonia.Markup.Xaml;
-using AvPurplePen.ViewModels;
 using AvPurplePen.Views;
 using System.Linq;
+using PurplePen.ViewModels;
 
 namespace AvPurplePen
 {

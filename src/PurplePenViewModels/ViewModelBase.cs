@@ -1,6 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 
-namespace AvPurplePen.ViewModels
+namespace PurplePen.ViewModels
 {
     public abstract class ViewModelBase : ObservableObject
     {

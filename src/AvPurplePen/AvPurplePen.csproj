@@ -13,15 +13,42 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Avalonia"  />
-    <PackageReference Include="Avalonia.Desktop"  />
-    <PackageReference Include="Avalonia.Themes.Fluent"  />
-    <PackageReference Include="Avalonia.Fonts.Inter"  />
+    <PackageReference Include="Avalonia" />
+    <PackageReference Include="Avalonia.Desktop" />
+    <PackageReference Include="Avalonia.Themes.Fluent" />
+    <PackageReference Include="Avalonia.Fonts.Inter" />
     <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
-    <PackageReference Include="Avalonia.Diagnostics" >
+    <PackageReference Include="Avalonia.Diagnostics">
       <IncludeAssets Condition="'$(Configuration)' != 'Debug'">None</IncludeAssets>
       <PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="CommunityToolkit.Mvvm"  />
+    <PackageReference Include="CommunityToolkit.Mvvm" />
+
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
+
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MapModel\Graphics2D\Graphics2D.csproj" />
+    <ProjectReference Include="..\MapModel\MapModel\MapModel.csproj" />
+    <ProjectReference Include="..\MapModel\Map_PDF\Map_PDF.csproj" />
+    <ProjectReference Include="..\PdfConverter\PdfConverter.csproj" />
+    <ProjectReference Include="..\PurplePenCore\PurplePenCore.csproj" />
+    <ProjectReference Include="..\PurplePenViewModels\PurplePenViewModels.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="UIText.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>UIText.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="UIText.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>UIText.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>
