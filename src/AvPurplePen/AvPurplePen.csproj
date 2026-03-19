@@ -44,12 +44,18 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>UIText.resx</DependentUpon>
     </Compile>
+    <Compile Update="UIText.*.Designer.cs">
+      <DependentUpon>UIText.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Update="UIText.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>UIText.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="UIText.*.resx">
+      <DependentUpon>UIText.resx</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
 </Project>
