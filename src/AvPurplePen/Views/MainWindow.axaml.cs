@@ -4,6 +4,8 @@
 // direct window interaction (like showing modal dialogs), which
 // don't fit cleanly into the ViewModel layer.
 
+using System.Globalization;
+using System.Threading;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using PurplePen.ViewModels;
@@ -37,8 +39,11 @@ namespace AvPurplePen.Views
             bool? result = await dialog.ShowDialog<bool?>(this);
 
             if (result == true && viewModel.SelectedLanguage != null) {
-                // For now, just update the window title to show the selection worked.
-                Title = $"Selected: {viewModel.SelectedLanguage.DisplayName} ({viewModel.SelectedLanguage.Code})";
+                // Switch the UI culture and notify all LocalizeExtension bindings to refresh.
+                CultureInfo newCulture = new CultureInfo(viewModel.SelectedLanguage.Code);
+                Thread.CurrentThread.CurrentUICulture = newCulture;
+                CultureInfo.DefaultThreadCurrentUICulture = newCulture;
+                LocalizedStringManager.Instance.NotifyLanguageChanged();
             }
         }
     }

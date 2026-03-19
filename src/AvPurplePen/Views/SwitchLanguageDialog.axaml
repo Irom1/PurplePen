@@ -55,7 +55,7 @@
 
         <!-- Prompt label above the list -->
         <TextBlock DockPanel.Dock="Top"
-                   Text="{x:Static resx:UIText.SwitchLanguageDialog_Prompt}"
+                   Text="{resx:Localize SwitchLanguageDialog_Prompt}"
                    Margin="0,0,0,8"/>
 
         <!-- Language list box fills the remaining space -->
