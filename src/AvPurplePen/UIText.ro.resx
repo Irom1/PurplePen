@@ -1,0 +1,2398 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AboutForm_freeLabel_Text" xml:space="preserve">
+    <value>Purple Pen este software gratuit și poate fi copiat și distribuit.</value>
+  </data>
+  <data name="AboutForm_disclaimerLabel_Text" xml:space="preserve">
+    <value>ACEST PROGRAM ESTE OFERIT DE CĂTRE DEȚINĂTORUL DREPTURILOR DE AUTOR ȘI CONTRIBUTORI "AȘA CUM ESTE" ȘI SUNT EXCLUSE ORICE GARAȚII IMPLICITE SAU EXPLICITE, SAU GARAȚII IMPLICITE DE COMERCIALIZARE SAU PENTRU UN ANUMIT SCOP, DAR FARĂ A SE LIMITA LA ACESTEA.</value>
+  </data>
+  <data name="AboutForm_okButton_Text" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="InitialScreen_okButton_Text" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="LicenseForm_okButton_Text" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="MissingFonts_okButton_Text" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="OkCancelDialog_okButton_Text" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="AboutForm_creditsButton_Text" xml:space="preserve">
+    <value>Mulţumiri</value>
+  </data>
+  <data name="AboutForm_licenseButton_Text" xml:space="preserve">
+    <value>Vizualizați întreaga licență</value>
+  </data>
+  <data name="AboutForm_Text" xml:space="preserve">
+    <value>Despre Purple Pen</value>
+  </data>
+  <data name="AddCourse_firstControlLabel_Text" xml:space="preserve">
+    <value>Numărul primului post:</value>
+  </data>
+  <data name="AddCourse_descriptionAppearanceLabel_Text" xml:space="preserve">
+    <value>Aspect descriere:</value>
+  </data>
+  <data name="AllControlsProperties_descriptionAppearanceLabel_Text" xml:space="preserve">
+    <value>Aspect descriere:</value>
+  </data>
+  <data name="AddCourse_mapScaleLabel_Text" xml:space="preserve">
+    <value>Scara de tipărire a hărții:</value>
+  </data>
+  <data name="AllControlsProperties_printingScaleLabel_Text" xml:space="preserve">
+    <value>Scara de tipărire a hărții:</value>
+  </data>
+  <data name="AddCourse_oneToPrefixLabel_Text" xml:space="preserve">
+    <value>1 : </value>
+  </data>
+  <data name="AllControlsProperties_oneToPrefix_Text" xml:space="preserve">
+    <value>1 : </value>
+  </data>
+  <data name="AddCourse_descKindCombo_Items" xml:space="preserve">
+    <value>Simboluri</value>
+  </data>
+  <data name="AllControlsProperties_descKindCombo_Items" xml:space="preserve">
+    <value>Simboluri</value>
+  </data>
+  <data name="PrintDescriptions_descriptionKindCombo_Items1" xml:space="preserve">
+    <value>Simboluri</value>
+  </data>
+  <data name="AddCourse_descKindCombo_Items1" xml:space="preserve">
+    <value>Text</value>
+  </data>
+  <data name="AllControlsProperties_descKindCombo_Items1" xml:space="preserve">
+    <value>Text</value>
+  </data>
+  <data name="ChangeText_groupBox3_Text" xml:space="preserve">
+    <value>Text</value>
+  </data>
+  <data name="EnterSymbolText_textColumn_HeaderText" xml:space="preserve">
+    <value>Text</value>
+  </data>
+  <data name="MainFrame_addTextMenu_Text" xml:space="preserve">
+    <value>Text</value>
+  </data>
+  <data name="MainFrame_textToolStripMenuItem_Text" xml:space="preserve">
+    <value>Text</value>
+  </data>
+  <data name="PrintDescriptions_descriptionKindCombo_Items2" xml:space="preserve">
+    <value>Text</value>
+  </data>
+  <data name="SelectionDescriptionText_SpecialName_Text" xml:space="preserve">
+    <value>Text</value>
+  </data>
+  <data name="AddCourse_descKindCombo_Items2" xml:space="preserve">
+    <value>Simboluri și text</value>
+  </data>
+  <data name="AllControlsProperties_descKindCombo_Items2" xml:space="preserve">
+    <value>Simboluri și text</value>
+  </data>
+  <data name="AddCourse_labelKindLabel_Text" xml:space="preserve">
+    <value>Etichete la cercul postului:</value>
+  </data>
+  <data name="AddCourse_labelKindCombo_Items" xml:space="preserve">
+    <value>Număr secvențial</value>
+  </data>
+  <data name="AddCourse_labelKindCombo_Items1" xml:space="preserve">
+    <value>Codul postului</value>
+  </data>
+  <data name="AddCourse_labelKindCombo_Items2" xml:space="preserve">
+    <value>Număr și cod</value>
+  </data>
+  <data name="AddCourse_scoreColumnLabel_Text" xml:space="preserve">
+    <value>Afișează punctele în:</value>
+  </data>
+  <data name="AddCourse_scoreColumnCombo_Items" xml:space="preserve">
+    <value>Coloana A</value>
+  </data>
+  <data name="AddCourse_scoreColumnCombo_Items1" xml:space="preserve">
+    <value>Coloana B</value>
+  </data>
+  <data name="AddCourse_scoreColumnCombo_Items2" xml:space="preserve">
+    <value>Coloana H</value>
+  </data>
+  <data name="AddCourse_scoreColumnCombo_Items3" xml:space="preserve">
+    <value>(nu afișa)</value>
+  </data>
+  <data name="AddCourse_groupBox1_Text" xml:space="preserve">
+    <value>Aspect</value>
+  </data>
+  <data name="AllControlsProperties_appearanceGroupBox_Text" xml:space="preserve">
+    <value>Aspect</value>
+  </data>
+  <data name="ChangeText_groupBox1_Text" xml:space="preserve">
+    <value>Aspect</value>
+  </data>
+  <data name="CreatePdfCourses_groupBoxAppearance_Text" xml:space="preserve">
+    <value>Aspect</value>
+  </data>
+  <data name="LinePropertiesDialog_groupBox2_Text" xml:space="preserve">
+    <value>Aspect</value>
+  </data>
+  <data name="PrintCourses_groupBoxAppearance_Text" xml:space="preserve">
+    <value>Aspect</value>
+  </data>
+  <data name="PrintDescriptions_layoutGroup_Text" xml:space="preserve">
+    <value>Aspect</value>
+  </data>
+  <data name="PrintPunches_layoutGroup_Text" xml:space="preserve">
+    <value>Aspect</value>
+  </data>
+  <data name="AddCourse_secondaryTitleDescription_Text" xml:space="preserve">
+    <value>Următorul text (opțional) va apărea în a doua linie a tabelului de descriere al posturilor</value>
+  </data>
+  <data name="AddCourse_secondaryTitleGroup_Text" xml:space="preserve">
+    <value>Categorie / Titlu secundar</value>
+  </data>
+  <data name="AddCourse_lengthLabel_Text" xml:space="preserve">
+    <value>Lungime:</value>
+  </data>
+  <data name="SelectionDescriptionText_Length" xml:space="preserve">
+    <value>Lungime:</value>
+  </data>
+  <data name="AddCourse_climbLabel_Text" xml:space="preserve">
+    <value>Diferență de nivel:</value>
+  </data>
+  <data name="SelectionDescriptionText_Climb" xml:space="preserve">
+    <value>Diferență de nivel:</value>
+  </data>
+  <data name="AddCourse_courseTypeLabel_Text" xml:space="preserve">
+    <value>Tipul traseului:</value>
+  </data>
+  <data name="AddCourse_courseNameLabel_Text" xml:space="preserve">
+    <value>Numele traseului:</value>
+  </data>
+  <data name="AddCourse_courseKindCombo_Items" xml:space="preserve">
+    <value>Traseu normal</value>
+  </data>
+  <data name="AddCourse_courseKindCombo_Items1" xml:space="preserve">
+    <value>Traseu cu scor</value>
+  </data>
+  <data name="AddCourse_metersSuffix_Text" xml:space="preserve">
+    <value>metri</value>
+  </data>
+  <data name="AddCourse_Text" xml:space="preserve">
+    <value>Traseu nou</value>
+  </data>
+  <data name="CommandNameText_NewCourse" xml:space="preserve">
+    <value>Traseu nou</value>
+  </data>
+  <data name="AddTextLine_textLineLabel_Text" xml:space="preserve">
+    <value>Introduceți textul plasat pe linie separată a descrierii punctelor de control:</value>
+  </data>
+  <data name="AddTextLine_coursesLabel_Text" xml:space="preserve">
+    <value>Trasee:</value>
+  </data>
+  <data name="AddTextLine_positionLabel_Text" xml:space="preserve">
+    <value>Poziție:</value>
+  </data>
+  <data name="AddTextLine_comboBoxPosition_Items" xml:space="preserve">
+    <value>Deasupra {0}</value>
+  </data>
+  <data name="AddTextLine_comboBoxPosition_Items1" xml:space="preserve">
+    <value>Sub {0}</value>
+  </data>
+  <data name="AddTextLine_comboBoxCourses_Items" xml:space="preserve">
+    <value>Doar acest traseu</value>
+  </data>
+  <data name="AddTextLine_comboBoxCourses_Items1" xml:space="preserve">
+    <value>Toate traseele cu {0}</value>
+  </data>
+  <data name="AddTextLine_Text" xml:space="preserve">
+    <value>Adaugă linie de text</value>
+  </data>
+  <data name="CommandNameText_AddTextLine" xml:space="preserve">
+    <value>Adaugă linie de text</value>
+  </data>
+  <data name="AllControlsProperties_allControlsPropertiesLabel_Text" xml:space="preserve">
+    <value>Aceste setări controlează cum vor fi tipărite harta și descrierea pentru toate posturile.</value>
+  </data>
+  <data name="AllControlsProperties_Text" xml:space="preserve">
+    <value>Proprietăți toate posturile</value>
+  </data>
+  <data name="AutoNumbering_disallowInvertibleCheckBox_Text" xml:space="preserve">
+    <value>Interzice codurile care pot fi citite inversate pe dos (ex, "68"/"89")</value>
+  </data>
+  <data name="NewEventNumbering_disallowInvertibleCheckBox_Text" xml:space="preserve">
+    <value>Interzice codurile care pot fi citite inversate pe dos (ex, "68"/"89")</value>
+  </data>
+  <data name="AutoNumbering_renumberExistingRadioButton_Text" xml:space="preserve">
+    <value>Renumerotează și posturile existente</value>
+  </data>
+  <data name="AutoNumbering_newControlsOnlyRadioButton_Text" xml:space="preserve">
+    <value>Aplică aceste setări doar posturilor proaspăt create</value>
+  </data>
+  <data name="AutoNumbering_existingControlsGroupBox_Text" xml:space="preserve">
+    <value>Posturi Existente</value>
+  </data>
+  <data name="AutoNumbering_automaticNumberingLabel_Text" xml:space="preserve">
+    <value>Posturile proaspăt create sunt numerotate automat în concordanță cu setările următoare.</value>
+  </data>
+  <data name="AutoNumbering_startingCodeLabel_Text" xml:space="preserve">
+    <value>Codul de start:</value>
+  </data>
+  <data name="NewEventNumbering_startingCodeLabel_Text" xml:space="preserve">
+    <value>Codul de start:</value>
+  </data>
+  <data name="AutoNumbering_Text" xml:space="preserve">
+    <value>Numerotare Automată</value>
+  </data>
+  <data name="CommandNameText_AutoNumbering" xml:space="preserve">
+    <value>Numerotare Automată</value>
+  </data>
+  <data name="ChangeAllCodes_OldCode_HeaderText" xml:space="preserve">
+    <value>Codul Original</value>
+  </data>
+  <data name="ChangeAllCodes_NewCode_HeaderText" xml:space="preserve">
+    <value>Noul Cod</value>
+  </data>
+  <data name="ChangeAllCodes_changeControlCodesLabel_Text" xml:space="preserve">
+    <value>Pentru a schimba codul pentru unul sau mai multe posturi, click pe coloana "Cod Nou" și introduceți noul cod. </value>
+  </data>
+  <data name="ChangeAllCodes_Text" xml:space="preserve">
+    <value>Schimbare Coduri Posturi</value>
+  </data>
+  <data name="ChangeCourseOrder_moveDownButton_Text" xml:space="preserve">
+    <value>Mută în jos</value>
+  </data>
+  <data name="ChangeCourseOrder_courseOrderLabel_Text" xml:space="preserve">
+    <value>Folosește butoanele "Mută în sus" și "Mută în jos" pentru a schimba ordinea de listare a traseelor în interfață, rapoarte și imprimare.</value>
+  </data>
+  <data name="ChangeCourseOrder_moveUpButton_Text" xml:space="preserve">
+    <value>Mută în sus</value>
+  </data>
+  <data name="ChangeCourseOrder_Text" xml:space="preserve">
+    <value>Ordinea Traseelor</value>
+  </data>
+  <data name="ChangeMapFile_mapFileDisplay_Text" xml:space="preserve">
+    <value>Fișierul Hărții Curente</value>
+  </data>
+  <data name="ChangeMapFile_buttonChooseFile_Text" xml:space="preserve">
+    <value>&amp;Alege fișierul de hartă...</value>
+  </data>
+  <data name="NewEventMapFile_chooseMapFileButton_Text" xml:space="preserve">
+    <value>&amp;Alege fișierul de hartă...</value>
+  </data>
+  <data name="ChangeMapFile_labelDpi_Text" xml:space="preserve">
+    <value>Rezoluție:</value>
+  </data>
+  <data name="ChangeMapFile_labelScale_Text" xml:space="preserve">
+    <value>Scara:</value>
+  </data>
+  <data name="SelectLocationsForMove_labelScale_Text" xml:space="preserve">
+    <value>Scara:</value>
+  </data>
+  <data name="ChangeMapFile_labelOneTo_Text" xml:space="preserve">
+    <value>1 :</value>
+  </data>
+  <data name="ChangeMapFile_labelDpi2_Text" xml:space="preserve">
+    <value>puncte/ţol (dpi)</value>
+  </data>
+  <data name="NewEventBitmapScale_dpiLabel_Text" xml:space="preserve">
+    <value>puncte/ţol (dpi)</value>
+  </data>
+  <data name="ChangeMapFile_Text" xml:space="preserve">
+    <value>Fișier Hartă</value>
+  </data>
+  <data name="NewEventMapFile_labelTitle_Text" xml:space="preserve">
+    <value>Fișier Hartă</value>
+  </data>
+  <data name="ChangeSpecialCourses_changeDisplayedCoursesLabel_Text" xml:space="preserve">
+    <value>Alege traseele în care va fi afișat obiectul curent:</value>
+  </data>
+  <data name="ChangeSpecialCourses_Text" xml:space="preserve">
+    <value>Schimbă Traseele Afișate</value>
+  </data>
+  <data name="CommandNameText_ChangeDisplayedCourses" xml:space="preserve">
+    <value>Schimbă Traseele Afișate</value>
+  </data>
+  <data name="ChangeText_eventTitleMenuItem_Text" xml:space="preserve">
+    <value>Titlul Evenimentului</value>
+  </data>
+  <data name="NewEventTitle_labelTitle_Text" xml:space="preserve">
+    <value>Titlul Evenimentului</value>
+  </data>
+  <data name="ChangeText_courseNameMenuItem_Text" xml:space="preserve">
+    <value>Numele Traseului</value>
+  </data>
+  <data name="CourseLoad_CourseName_HeaderText" xml:space="preserve">
+    <value>Numele Traseului</value>
+  </data>
+  <data name="SelectionDescriptionText_SpecialName_CourseName" xml:space="preserve">
+    <value>Numele Traseului</value>
+  </data>
+  <data name="ChangeText_courseLengthMenuItem_Text" xml:space="preserve">
+    <value>Lungimea Traseului</value>
+  </data>
+  <data name="ChangeText_courseClimbMenuItem_Text" xml:space="preserve">
+    <value>Diferența de nivel a Traseului</value>
+  </data>
+  <data name="ChangeText_classListMenuItem_Text" xml:space="preserve">
+    <value>Categoria</value>
+  </data>
+  <data name="ChangeText_fileNameMenuItem_Text" xml:space="preserve">
+    <value>Nume fișier</value>
+  </data>
+  <data name="CreateRouteGadget_nameGroupBox_Text" xml:space="preserve">
+    <value>Nume fișier</value>
+  </data>
+  <data name="ChangeText_checkBoxBold_Text" xml:space="preserve">
+    <value>Îngroșat</value>
+  </data>
+  <data name="ChangeText_labelFontSizeMm_Text" xml:space="preserve">
+    <value>mm</value>
+  </data>
+  <data name="CourseAppearanceDialog_label12_Text" xml:space="preserve">
+    <value>mm</value>
+  </data>
+  <data name="CourseAppearanceDialog_label10_Text" xml:space="preserve">
+    <value>mm</value>
+  </data>
+  <data name="CourseAppearanceDialog_label8_Text" xml:space="preserve">
+    <value>mm</value>
+  </data>
+  <data name="CourseAppearanceDialog_label4_Text" xml:space="preserve">
+    <value>mm</value>
+  </data>
+  <data name="CourseAppearanceDialog_label2_Text" xml:space="preserve">
+    <value>mm</value>
+  </data>
+  <data name="CourseAppearanceDialog_labelMM1_Text" xml:space="preserve">
+    <value>mm</value>
+  </data>
+  <data name="LinePropertiesDialog_labelWidthMm_Text" xml:space="preserve">
+    <value>mm</value>
+  </data>
+  <data name="LinePropertiesDialog_labelGapSizeMm_Text" xml:space="preserve">
+    <value>mm</value>
+  </data>
+  <data name="LinePropertiesDialog_labelDashSizeMm_Text" xml:space="preserve">
+    <value>mm</value>
+  </data>
+  <data name="LinePropertiesDialog_labelRadiusMm_Text" xml:space="preserve">
+    <value>mm</value>
+  </data>
+  <data name="PrintDescriptions_mmSuffixLabel_Text" xml:space="preserve">
+    <value>mm</value>
+  </data>
+  <data name="PrintPunches_mmSuffixLabel_Text" xml:space="preserve">
+    <value>mm</value>
+  </data>
+  <data name="ChangeText_insertSpecialButton_Text" xml:space="preserve">
+    <value>Adaugă Text Special</value>
+  </data>
+  <data name="ColorChooserDialog_label5_Text" xml:space="preserve">
+    <value>Negru:</value>
+  </data>
+  <data name="CourseAppearanceDialog_label5_Text" xml:space="preserve">
+    <value>Negru:</value>
+  </data>
+  <data name="ColorChooserDialog_label6_Text" xml:space="preserve">
+    <value>Galben:</value>
+  </data>
+  <data name="CourseAppearanceDialog_label6_Text" xml:space="preserve">
+    <value>Galben:</value>
+  </data>
+  <data name="ColorChooserDialog_label3_Text" xml:space="preserve">
+    <value>Magenta:</value>
+  </data>
+  <data name="CourseAppearanceDialog_label3_Text" xml:space="preserve">
+    <value>Magenta:</value>
+  </data>
+  <data name="ColorChooserDialog_label1_Text" xml:space="preserve">
+    <value>Cyan:</value>
+  </data>
+  <data name="CourseAppearanceDialog_label1_Text" xml:space="preserve">
+    <value>Cyan:</value>
+  </data>
+  <data name="ColorChooserDialog_groupBoxPreview_Text" xml:space="preserve">
+    <value>Previzualizare</value>
+  </data>
+  <data name="CourseAppearanceDialog_groupBoxPreview_Text" xml:space="preserve">
+    <value>Previzualizare</value>
+  </data>
+  <data name="CommandNameText_ChangeSymbol" xml:space="preserve">
+    <value>Schimbă Simbol</value>
+  </data>
+  <data name="CommandNameText_ChangeCode" xml:space="preserve">
+    <value>Schimbă Codul Postului</value>
+  </data>
+  <data name="CommandNameText_ChangeControl" xml:space="preserve">
+    <value>Schimbă Postul</value>
+  </data>
+  <data name="CommandNameText_ChangeScore" xml:space="preserve">
+    <value>Schimbă Punctele Postului</value>
+  </data>
+  <data name="CommandNameText_ChangeTitle" xml:space="preserve">
+    <value>Schimbă Titlul</value>
+  </data>
+  <data name="CommandNameText_ChangeClimb" xml:space="preserve">
+    <value>Schimbă Diferența de Nivel</value>
+  </data>
+  <data name="CommandNameText_ChangeCourseName" xml:space="preserve">
+    <value>Schimbă Numele Traseului</value>
+  </data>
+  <data name="CommandNameText_ChangeTextLine" xml:space="preserve">
+    <value>Schimbă Linia de Text</value>
+  </data>
+  <data name="CommandNameText_ChangeScale" xml:space="preserve">
+    <value>Actualizează Scara Hărții</value>
+  </data>
+  <data name="CommandNameText_MoveControl" xml:space="preserve">
+    <value>Mută Post</value>
+  </data>
+  <data name="CommandNameText_MoveControlNumber" xml:space="preserve">
+    <value>Mută Numărul Postului</value>
+  </data>
+  <data name="CommandNameText_MoveObject" xml:space="preserve">
+    <value>Mută Obiect</value>
+  </data>
+  <data name="CommandNameText_DeleteControl" xml:space="preserve">
+    <value>Șterge Post</value>
+  </data>
+  <data name="CommandNameText_DeleteObject" xml:space="preserve">
+    <value>Șterge Obiect</value>
+  </data>
+  <data name="CommandNameText_DeleteTextLine" xml:space="preserve">
+    <value>Șterge Linia Text</value>
+  </data>
+  <data name="CommandNameText_AddControl" xml:space="preserve">
+    <value>Adăugare Post</value>
+  </data>
+  <data name="MainFrame_addControlToolStripButton_Text" xml:space="preserve">
+    <value>Adăugare Post</value>
+  </data>
+  <data name="CommandNameText_AddStart" xml:space="preserve">
+    <value>Adăugare Start</value>
+  </data>
+  <data name="MainFrame_addStartToolStripButton_Text" xml:space="preserve">
+    <value>Adăugare Start</value>
+  </data>
+  <data name="CommandNameText_AddFinish" xml:space="preserve">
+    <value>Adăugare Sosire</value>
+  </data>
+  <data name="MainFrame_addFinishToolStripButton_Text" xml:space="preserve">
+    <value>Adăugare Sosire</value>
+  </data>
+  <data name="CommandNameText_AddCrossingPoint" xml:space="preserve">
+    <value>Adăugare Punct Trecere Obligatoriu</value>
+  </data>
+  <data name="CommandNameText_AddObject" xml:space="preserve">
+    <value>Adăugare Obiect</value>
+  </data>
+  <data name="CommandNameText_DeleteCourse" xml:space="preserve">
+    <value>Ștergere Traseu</value>
+  </data>
+  <data name="CommandNameText_ChangeCourseProperties" xml:space="preserve">
+    <value>Schimbare Proprietăți Traseu</value>
+  </data>
+  <data name="CommandNameText_ChangeAllControlsProperties" xml:space="preserve">
+    <value>Schimbare Proprietăți Toate Posturile</value>
+  </data>
+  <data name="CommandNameText_NewEvent" xml:space="preserve">
+    <value>Creare Eveniment Nou</value>
+  </data>
+  <data name="NewEventWizard_Text" xml:space="preserve">
+    <value>Creare Eveniment Nou</value>
+  </data>
+  <data name="CommandNameText_SetLegFlagging" xml:space="preserve">
+    <value>Schimbare semnalizare secțiune</value>
+  </data>
+  <data name="CommandNameText_ChangeCodes" xml:space="preserve">
+    <value>Schimbare Coduri</value>
+  </data>
+  <data name="CommandNameText_MoveBend" xml:space="preserve">
+    <value>Mutare cotitură secțiune</value>
+  </data>
+  <data name="CommandNameText_AddBend" xml:space="preserve">
+    <value>Adăugare Îndoitură</value>
+  </data>
+  <data name="CommandNameText_AddCorner" xml:space="preserve">
+    <value>Adăugare Colț</value>
+  </data>
+  <data name="CommandNameText_DeleteBend" xml:space="preserve">
+    <value>Ștergere Îndoitură</value>
+  </data>
+  <data name="CommandNameText_DeleteCorner" xml:space="preserve">
+    <value>Ștergere Colț</value>
+  </data>
+  <data name="CommandNameText_AddGap" xml:space="preserve">
+    <value>Adăugare Spațiu Gol</value>
+  </data>
+  <data name="CommandNameText_RemoveGap" xml:space="preserve">
+    <value>Ștergere Spațiu Gol</value>
+  </data>
+  <data name="CommandNameText_MoveGap" xml:space="preserve">
+    <value>Mutare Spațiu Gol</value>
+  </data>
+  <data name="CommandNameText_Rotate" xml:space="preserve">
+    <value>Rotire</value>
+  </data>
+  <data name="CommandNameText_ChangePunchPatterns" xml:space="preserve">
+    <value>Schimbare Model de Compostare</value>
+  </data>
+  <data name="CommandNameText_ChangePunchcardFormat" xml:space="preserve">
+    <value>Schimare Aspect Fișă de Control</value>
+  </data>
+  <data name="CommandNameText_SetPrintArea" xml:space="preserve">
+    <value>Setare Zonă de Imprimare</value>
+  </data>
+  <data name="SetPrintAreaDialog_Text" xml:space="preserve">
+    <value>Setare Zonă de Imprimare</value>
+  </data>
+  <data name="CommandNameText_SetCourseLoad" xml:space="preserve">
+    <value>Schimare Încărcare Participanți</value>
+  </data>
+  <data name="CommandNameText_SetCustomSymbolText" xml:space="preserve">
+    <value>Personalizare Text Descriere</value>
+  </data>
+  <data name="CustomSymbolText_Text" xml:space="preserve">
+    <value>Personalizare Text Descriere</value>
+  </data>
+  <data name="CommandNameText_ChangeCourseOrder" xml:space="preserve">
+    <value>Schimbare Ordine Traseu</value>
+  </data>
+  <data name="CommandNameText_ChangeMapFile" xml:space="preserve">
+    <value>Schimare Fișier Hartă</value>
+  </data>
+  <data name="CommandNameText_IgnoreMissingFonts" xml:space="preserve">
+    <value>Ignoră Lipsă Fonturi</value>
+  </data>
+  <data name="CommandNameText_RemoveUnusedControls" xml:space="preserve">
+    <value>Eliminare Posturi Nefolosite</value>
+  </data>
+  <data name="CommandNameText_SetDescriptionLanguage" xml:space="preserve">
+    <value>Schimare Limbă Descriere</value>
+  </data>
+  <data name="CommandNameText_ChangeText" xml:space="preserve">
+    <value>Schimbare Text</value>
+  </data>
+  <data name="MiscText_ChangeTextTitle" xml:space="preserve">
+    <value>Schimbare Text</value>
+  </data>
+  <data name="CommandNameText_ChangeCourseAppearance" xml:space="preserve">
+    <value>Personalizare Aspect Traseu</value>
+  </data>
+  <data name="CourseAppearanceDialog_comboBoxControlNumberStyle_Items" xml:space="preserve">
+    <value>Arial</value>
+  </data>
+  <data name="CourseAppearanceDialog_comboBoxControlNumberStyle_Items1" xml:space="preserve">
+    <value>Arial Îngroșat</value>
+  </data>
+  <data name="CourseAppearanceDialog_labelControlNumberStyle_Text" xml:space="preserve">
+    <value>Stil numerotare post:</value>
+  </data>
+  <data name="CourseAppearanceDialog_labelControlNumber_Text" xml:space="preserve">
+    <value>Înălțime număr post</value>
+  </data>
+  <data name="CourseAppearanceDialog_labelLineWidth_Text" xml:space="preserve">
+    <value>Grosime linie:</value>
+  </data>
+  <data name="CourseAppearanceDialog_labelControlCircle_Text" xml:space="preserve">
+    <value>Diametru cerc post:</value>
+  </data>
+  <data name="CourseAppearanceDialog_checkBoxStandardSizes_Text" xml:space="preserve">
+    <value>Utilizează standardele de dimensiune IOF</value>
+  </data>
+  <data name="CourseAppearanceDialog_groupBoxSizes_Text" xml:space="preserve">
+    <value>Dimensiuni Element</value>
+  </data>
+  <data name="CourseAppearanceDialog_comboBoxBlendPurple_Items" xml:space="preserve">
+    <value>Nimic</value>
+  </data>
+  <data name="CourseSelector_selectNone_Text" xml:space="preserve">
+    <value>Nimic</value>
+  </data>
+  <data name="SelectionDescriptionText_CourseList_None" xml:space="preserve">
+    <value>Nimic</value>
+  </data>
+  <data name="CourseAppearanceDialog_checkBoxDefaultPurple_Text" xml:space="preserve">
+    <value>Folosește culoarea violet din hartă</value>
+  </data>
+  <data name="CourseAppearanceDialog_groupBoxPurple_Text" xml:space="preserve">
+    <value>Culoarea Violet</value>
+  </data>
+  <data name="CourseAppearanceDialog_groupBox1_Text" xml:space="preserve">
+    <value>Descrierea Posturilor</value>
+  </data>
+  <data name="SelectionDescriptionText_SpecialName_Descriptions" xml:space="preserve">
+    <value>Descrierea Posturilor</value>
+  </data>
+  <data name="CourseLoad_Load_HeaderText" xml:space="preserve">
+    <value>Încărcare Participanți</value>
+  </data>
+  <data name="CourseLoad_courseLoadLabel_Text" xml:space="preserve">
+    <value>Setați numărul de participanți pentru fiecare traseu prin click pe coloana a doua și introducere număr.</value>
+  </data>
+  <data name="CourseLoad_Text" xml:space="preserve">
+    <value>Încărcare traseu</value>
+  </data>
+  <data name="CourseSelector_selectAll_Text" xml:space="preserve">
+    <value>Toate</value>
+  </data>
+  <data name="CreateGpx_coursesGroupBox_Text" xml:space="preserve">
+    <value>Trasee</value>
+  </data>
+  <data name="CreateImageFiles_coursesGroupBox_Text" xml:space="preserve">
+    <value>Trasee</value>
+  </data>
+  <data name="CreateKmlFiles_coursesGroupBox_Text" xml:space="preserve">
+    <value>Trasee</value>
+  </data>
+  <data name="CreateOcadFiles_coursesGroupBox_Text" xml:space="preserve">
+    <value>Trasee</value>
+  </data>
+  <data name="CreatePdfCourses_coursesGroupBox_Text" xml:space="preserve">
+    <value>Trasee</value>
+  </data>
+  <data name="PrintCourses_coursesGroupBox_Text" xml:space="preserve">
+    <value>Trasee</value>
+  </data>
+  <data name="PrintDescriptions_coursesGroupBox_Text" xml:space="preserve">
+    <value>Trasee</value>
+  </data>
+  <data name="PrintPunches_coursesGroupBox_Text" xml:space="preserve">
+    <value>Trasee</value>
+  </data>
+  <data name="ReportText_ColumnHeader_Courses" xml:space="preserve">
+    <value>Trasee</value>
+  </data>
+  <data name="CreateImageFiles_createButton_Text" xml:space="preserve">
+    <value>Creare</value>
+  </data>
+  <data name="CreateKmlFiles_createButton_Text" xml:space="preserve">
+    <value>Creare</value>
+  </data>
+  <data name="CreateOcadFiles_createButton_Text" xml:space="preserve">
+    <value>Creare</value>
+  </data>
+  <data name="CreatePdfCourses_okButton_Text" xml:space="preserve">
+    <value>Creare</value>
+  </data>
+  <data name="CreateRouteGadget_createButton_Text" xml:space="preserve">
+    <value>Creare</value>
+  </data>
+  <data name="CreateImageFiles_cancelButton_Text" xml:space="preserve">
+    <value>Anulare</value>
+  </data>
+  <data name="CreateKmlFiles_cancelButton_Text" xml:space="preserve">
+    <value>Anulare</value>
+  </data>
+  <data name="CreateOcadFiles_cancelButton_Text" xml:space="preserve">
+    <value>Anulare</value>
+  </data>
+  <data name="CreateRouteGadget_cancelButton_Text" xml:space="preserve">
+    <value>Anulare</value>
+  </data>
+  <data name="MiscText_CrashCancel" xml:space="preserve">
+    <value>Anulare</value>
+  </data>
+  <data name="NewEventWizard_cancelButton_Text" xml:space="preserve">
+    <value>Anulare</value>
+  </data>
+  <data name="NonPrintableObjects_cancelButton_Text" xml:space="preserve">
+    <value>Anulare</value>
+  </data>
+  <data name="OkCancelDialog_cancelButton_Text" xml:space="preserve">
+    <value>Anulare</value>
+  </data>
+  <data name="OperationInProgress_cancelButton_Text" xml:space="preserve">
+    <value>Anulare</value>
+  </data>
+  <data name="OverwritingOcadFilesDialog_buttonCancel_Text" xml:space="preserve">
+    <value>Anulare</value>
+  </data>
+  <data name="PrintDescriptions_cancelButton_Text" xml:space="preserve">
+    <value>Anulare</value>
+  </data>
+  <data name="PrintPunches_cancelButton_Text" xml:space="preserve">
+    <value>Anulare</value>
+  </data>
+  <data name="SelectLocationsForMove_buttonCancel_Text" xml:space="preserve">
+    <value>Anulare</value>
+  </data>
+  <data name="SetPrintAreaDialog_cancelButton_Text" xml:space="preserve">
+    <value>Anulare</value>
+  </data>
+  <data name="CreateImageFiles_folderBrowserDialog_Description" xml:space="preserve">
+    <value>Selectați un director pentru fișierul OCAD</value>
+  </data>
+  <data name="CreateKmlFiles_folderBrowserDialog_Description" xml:space="preserve">
+    <value>Selectați un director pentru fișierul OCAD</value>
+  </data>
+  <data name="CreateOcadFiles_folderBrowserDialog_Description" xml:space="preserve">
+    <value>Selectați un director pentru fișierul OCAD</value>
+  </data>
+  <data name="CreateRouteGadget_folderBrowserDialog_Description" xml:space="preserve">
+    <value>Selectați un director pentru fișierul OCAD</value>
+  </data>
+  <data name="CreateImageFiles_fileFormatLabel_Text" xml:space="preserve">
+    <value>Format fişier:</value>
+  </data>
+  <data name="CreateOcadFiles_fileFormatLabel_Text" xml:space="preserve">
+    <value>Format fişier:</value>
+  </data>
+  <data name="CreateImageFiles_fileNamePrefixLabel_Text" xml:space="preserve">
+    <value>Prefixul numelui de fișier:</value>
+  </data>
+  <data name="CreateKmlFiles_fileNamePrefixLabel_Text" xml:space="preserve">
+    <value>Prefixul numelui de fișier:</value>
+  </data>
+  <data name="CreateOcadFiles_fileNamePrefixLabel_Text" xml:space="preserve">
+    <value>Prefixul numelui de fișier:</value>
+  </data>
+  <data name="CreateImageFiles_comboBoxWorldFile_Items" xml:space="preserve">
+    <value>Nu</value>
+  </data>
+  <data name="ReportText_EventAudit_No" xml:space="preserve">
+    <value>Nu</value>
+  </data>
+  <data name="CreateImageFiles_comboBoxWorldFile_Items1" xml:space="preserve">
+    <value>Da</value>
+  </data>
+  <data name="ReportText_EventAudit_Yes" xml:space="preserve">
+    <value>Da</value>
+  </data>
+  <data name="CreateImageFiles_outputGroupBox_Text" xml:space="preserve">
+    <value>Rezultat</value>
+  </data>
+  <data name="CreateKmlFiles_outputGroupBox_Text" xml:space="preserve">
+    <value>Rezultat</value>
+  </data>
+  <data name="CreateOcadFiles_outputGroupBox_Text" xml:space="preserve">
+    <value>Rezultat</value>
+  </data>
+  <data name="PrintCourses_printerGroup_Text" xml:space="preserve">
+    <value>Rezultat</value>
+  </data>
+  <data name="PrintDescriptions_printerGroup_Text" xml:space="preserve">
+    <value>Rezultat</value>
+  </data>
+  <data name="PrintPunches_printerGroup_Text" xml:space="preserve">
+    <value>Rezultat</value>
+  </data>
+  <data name="CreateImageFiles_selectOtherDirectoryButton_Text" xml:space="preserve">
+    <value>Selectare director...</value>
+  </data>
+  <data name="CreateKmlFiles_selectOtherDirectoryButton_Text" xml:space="preserve">
+    <value>Selectare director...</value>
+  </data>
+  <data name="CreateOcadFiles_selectOtherDirectoryButton_Text" xml:space="preserve">
+    <value>Selectare director...</value>
+  </data>
+  <data name="CreatePdfCourses_selectOtherDirectoryButton_Text" xml:space="preserve">
+    <value>Selectare director...</value>
+  </data>
+  <data name="CreateRouteGadget_selectOtherDirectoryButton_Text" xml:space="preserve">
+    <value>Selectare director...</value>
+  </data>
+  <data name="CreateImageFiles_coursesDirectory_Text" xml:space="preserve">
+    <value>Același director ca și fișierul Purple Pen</value>
+  </data>
+  <data name="CreateKmlFiles_coursesDirectory_Text" xml:space="preserve">
+    <value>Același director ca și fișierul Purple Pen</value>
+  </data>
+  <data name="CreateOcadFiles_coursesDirectory_Text" xml:space="preserve">
+    <value>Același director ca și fișierul Purple Pen</value>
+  </data>
+  <data name="CreatePdfCourses_coursesDirectory_Text" xml:space="preserve">
+    <value>Același director ca și fișierul Purple Pen</value>
+  </data>
+  <data name="CreateRouteGadget_coursesDirectory_Text" xml:space="preserve">
+    <value>Același director ca și fișierul Purple Pen</value>
+  </data>
+  <data name="CreateImageFiles_mapDirectory_Text" xml:space="preserve">
+    <value>Același director ca și fișierul hartă</value>
+  </data>
+  <data name="CreateKmlFiles_mapDirectory_Text" xml:space="preserve">
+    <value>Același director ca și fișierul hartă</value>
+  </data>
+  <data name="CreateOcadFiles_mapDirectory_Text" xml:space="preserve">
+    <value>Același director ca și fișierul hartă</value>
+  </data>
+  <data name="CreatePdfCourses_mapDirectory_Text" xml:space="preserve">
+    <value>Același director ca și fișierul hartă</value>
+  </data>
+  <data name="CreateRouteGadget_mapDirectory_Text" xml:space="preserve">
+    <value>Același director ca și fișierul hartă</value>
+  </data>
+  <data name="CreateImageFiles_otherDirectory_Text" xml:space="preserve">
+    <value>Alt director</value>
+  </data>
+  <data name="CreateKmlFiles_otherDirectory_Text" xml:space="preserve">
+    <value>Alt director</value>
+  </data>
+  <data name="CreateOcadFiles_otherDirectory_Text" xml:space="preserve">
+    <value>Alt director</value>
+  </data>
+  <data name="CreatePdfCourses_otherDirectory_Text" xml:space="preserve">
+    <value>Alt director</value>
+  </data>
+  <data name="CreateRouteGadget_otherDirectory_Text" xml:space="preserve">
+    <value>Alt director</value>
+  </data>
+  <data name="CreateImageFiles_folderGroupBox_Text" xml:space="preserve">
+    <value>Director</value>
+  </data>
+  <data name="CreateKmlFiles_folderGroupBox_Text" xml:space="preserve">
+    <value>Director</value>
+  </data>
+  <data name="CreateOcadFiles_folderGroupBox_Text" xml:space="preserve">
+    <value>Director</value>
+  </data>
+  <data name="CreatePdfCourses_folderGroupBox_Text" xml:space="preserve">
+    <value>Director</value>
+  </data>
+  <data name="CreateRouteGadget_folderGroupBox_Text" xml:space="preserve">
+    <value>Director</value>
+  </data>
+  <data name="CreateOcadFiles_Text" xml:space="preserve">
+    <value>Creare Fișier OCAD</value>
+  </data>
+  <data name="CreatePdfCourses_comboBoxMultiPage_Items" xml:space="preserve">
+    <value>Decupare într-o singură pagină</value>
+  </data>
+  <data name="PrintCourses_comboBoxMultiPage_Items" xml:space="preserve">
+    <value>Decupare într-o singură pagină</value>
+  </data>
+  <data name="CreatePdfCourses_comboBoxMultiPage_Items1" xml:space="preserve">
+    <value>Tipărește pe mai multe pagini</value>
+  </data>
+  <data name="PrintCourses_comboBoxMultiPage_Items1" xml:space="preserve">
+    <value>Tipărește pe mai multe pagini</value>
+  </data>
+  <data name="CreatePdfCourses_labelAppearanceInfo_Text" xml:space="preserve">
+    <value>Dacă zona de imprimat este prea mare pentru a încăpea într-o pagină:</value>
+  </data>
+  <data name="PrintCourses_labelAppearanceInfo_Text" xml:space="preserve">
+    <value>Dacă zona de imprimat este prea mare pentru a încăpea într-o pagină:</value>
+  </data>
+  <data name="CreatePdfCourses_Text" xml:space="preserve">
+    <value>Tipărire Trasee</value>
+  </data>
+  <data name="CreateRouteGadget_label1_Text" xml:space="preserve">
+    <value>Introduceți numele (fără .xml sau .gif) pentru ambele fișiere RouteGadget:</value>
+  </data>
+  <data name="CreateRouteGadget_learnMoreLink_Text" xml:space="preserve">
+    <value>Află mai multe despre RouteGadget</value>
+  </data>
+  <data name="CreateRouteGadget_label2_Text" xml:space="preserve">
+    <value>RouteGadget are nevoie atât de fișierul imagine (.gif) cât și de fișierul IOF XML (.xml). Alegeți numele și directorul pentru ambele fișiere.</value>
+  </data>
+  <data name="CreateRouteGadget_Text" xml:space="preserve">
+    <value>Creare Fișier RouteGadget</value>
+  </data>
+  <data name="CustomSymbolText_labelChooseLanguage_Text" xml:space="preserve">
+    <value>Alege Limba folosită pentru Descrierea Posturilor</value>
+  </data>
+  <data name="CustomSymbolText_labelSymbolName_Text" xml:space="preserve">
+    <value>Nume simbol:</value>
+  </data>
+  <data name="CustomSymbolText_labelCustomizedText_Text" xml:space="preserve">
+    <value>Text personalizat:</value>
+  </data>
+  <data name="CustomSymbolText_buttonChangeText_Text" xml:space="preserve">
+    <value>Schimbare text...</value>
+  </data>
+  <data name="CustomSymbolText_buttonDefault_Text" xml:space="preserve">
+    <value>Reinițializare la valori implicite</value>
+  </data>
+  <data name="CustomSymbolText_labelStandardText_Text" xml:space="preserve">
+    <value>Text standard:</value>
+  </data>
+  <data name="CustomSymbolText_checkBoxShowKey_Text" xml:space="preserve">
+    <value>Afișează semnificația sub simbolul de descriere</value>
+  </data>
+  <data name="CustomSymbolText_labelCustomizeText_Text" xml:space="preserve">
+    <value>Click pe un simbol de descriere pentru a personaliza textul folosit în descrierea textuală a postului.</value>
+  </data>
+  <data name="EnterSymbolText_numberColumn_HeaderText" xml:space="preserve">
+    <value>Număr</value>
+  </data>
+  <data name="EnterSymbolText_genderColumn_HeaderText" xml:space="preserve">
+    <value>Gen</value>
+  </data>
+  <data name="EnterSymbolText_checkBoxPlural_Text" xml:space="preserve">
+    <value>Afișează formele la plural</value>
+  </data>
+  <data name="EnterSymbolText_checkBoxGender_Text" xml:space="preserve">
+    <value>Afișează formele de gen</value>
+  </data>
+  <data name="EnterSymbolText_labelDescription_Text" xml:space="preserve">
+    <value>Afișează textul personalizat pentru simbol în coloana "Text"</value>
+  </data>
+  <data name="EnterSymbolText_labelGenderChooser_Text" xml:space="preserve">
+    <value>Gen:</value>
+  </data>
+  <data name="EnterSymbolText_Text" xml:space="preserve">
+    <value>Text simbol personalizat</value>
+  </data>
+  <data name="InitialScreen_openLastRadioButton_Text" xml:space="preserve">
+    <value>Deschide ultimul eveniment vizualizat</value>
+  </data>
+  <data name="InitialScreen_openSampleRadioButton_Text" xml:space="preserve">
+    <value>Deshide un eveniment de exemplu</value>
+  </data>
+  <data name="InitialScreen_createNewRadioButton_Text" xml:space="preserve">
+    <value>Creare eveniment nou...</value>
+  </data>
+  <data name="InitialScreen_openExistingRadioButton_Text" xml:space="preserve">
+    <value>Deschidere eveniment existent...</value>
+  </data>
+  <data name="InitialScreen_Text" xml:space="preserve">
+    <value>Bunvenit în Purple Pen</value>
+  </data>
+  <data name="LicenseForm_bsdLicenseLinkLabel_Text" xml:space="preserve">
+    <value>Purple Pen este oferit sub tipul de licență "BSD"</value>
+  </data>
+  <data name="LicenseForm_Text" xml:space="preserve">
+    <value>Licența Purple Pen</value>
+  </data>
+  <data name="MainFrame_tabPage1_Text" xml:space="preserve">
+    <value>Toate Posturile</value>
+  </data>
+  <data name="MainFrame_openFileDialog_Filter" xml:space="preserve">
+    <value>Fișiere Purple Pen|*.ppen|Toate fișierele|*.*</value>
+  </data>
+  <data name="MainFrame_saveFileDialog_Filter" xml:space="preserve">
+    <value>Fișier Purple Pen|*.ppen</value>
+  </data>
+  <data name="MainFrame_newEventMenu_Text" xml:space="preserve">
+    <value>Evniment &amp;Nou...</value>
+  </data>
+  <data name="MainFrame_openMenu_Text" xml:space="preserve">
+    <value>&amp;Deschidere...</value>
+  </data>
+  <data name="MainFrame_saveMenu_Text" xml:space="preserve">
+    <value>&amp;Salvare</value>
+  </data>
+  <data name="MainFrame_saveAsMenu_Text" xml:space="preserve">
+    <value>Salv&amp;are ca...</value>
+  </data>
+  <data name="MainFrame_createOcadFilesMenu_Text" xml:space="preserve">
+    <value>Creare Fișiere &amp;OCAD...</value>
+  </data>
+  <data name="MainFrame_printDescriptionsMenu_Text" xml:space="preserve">
+    <value>&amp;Tipărire Descriere...</value>
+  </data>
+  <data name="MainFrame_printPunchCardsMenu_Text" xml:space="preserve">
+    <value>Tipărire Fișe de &amp;Control...</value>
+  </data>
+  <data name="MainFrame_printCoursesMenu_Text" xml:space="preserve">
+    <value>Tipărire &amp;Trasee...</value>
+  </data>
+  <data name="MainFrame_printAreaThisCourseMenu_Text" xml:space="preserve">
+    <value>&amp;Acest Traseu</value>
+  </data>
+  <data name="MainFrame_printAreaAllCoursesMenu_Text" xml:space="preserve">
+    <value>&amp;Toate Traseele</value>
+  </data>
+  <data name="MainFrame_setPrintAreaMenu_Text" xml:space="preserve">
+    <value>Setare &amp;Zonă de Tipărire</value>
+  </data>
+  <data name="MainFrame_programLanguageMenu_Text" xml:space="preserve">
+    <value>&amp;Limba programului...</value>
+  </data>
+  <data name="MainFrame_exitMenu_Text" xml:space="preserve">
+    <value>&amp;Ieșire</value>
+  </data>
+  <data name="MainFrame_fileMenu_Text" xml:space="preserve">
+    <value>&amp;Fişier</value>
+  </data>
+  <data name="MainFrame_cancelMenu_Text" xml:space="preserve">
+    <value>&amp;Golește selecția</value>
+  </data>
+  <data name="MiscText_ClearSelectionWithShortcut" xml:space="preserve">
+    <value>&amp;Golește selecția</value>
+  </data>
+  <data name="MainFrame_undoMenu_Text" xml:space="preserve">
+    <value>An&amp;ulare</value>
+  </data>
+  <data name="MiscText_UndoWithShortcut" xml:space="preserve">
+    <value>An&amp;ulare</value>
+  </data>
+  <data name="MainFrame_redoMenu_Text" xml:space="preserve">
+    <value>&amp;Refacere</value>
+  </data>
+  <data name="MiscText_RedoWithShortcut" xml:space="preserve">
+    <value>&amp;Refacere</value>
+  </data>
+  <data name="MainFrame_deleteMenu_Text" xml:space="preserve">
+    <value>&amp;Ștergere</value>
+  </data>
+  <data name="MainFrame_deleteItemMenu_Text" xml:space="preserve">
+    <value>&amp;Ștergere</value>
+  </data>
+  <data name="MainFrame_editMenu_Text" xml:space="preserve">
+    <value>&amp;Editare</value>
+  </data>
+  <data name="MainFrame_entireCourseMenu_Text" xml:space="preserve">
+    <value>Tot &amp;Traseul</value>
+  </data>
+  <data name="MainFrame_entireMapMenu_Text" xml:space="preserve">
+    <value>Toată &amp;Harta</value>
+  </data>
+  <data name="MainFrame_zoom50Menu_Text" xml:space="preserve">
+    <value>50%</value>
+  </data>
+  <data name="MainFrame_zoom100Menu_Text" xml:space="preserve">
+    <value>100%</value>
+  </data>
+  <data name="MainFrame_zoom150Menu_Text" xml:space="preserve">
+    <value>150%</value>
+  </data>
+  <data name="MainFrame_zoom200Menu_Text" xml:space="preserve">
+    <value>200%</value>
+  </data>
+  <data name="MainFrame_zoom300Menu_Text" xml:space="preserve">
+    <value>300%</value>
+  </data>
+  <data name="MainFrame_zoom500Menu_Text" xml:space="preserve">
+    <value>500%</value>
+  </data>
+  <data name="MainFrame_zoom1000Menu_Text" xml:space="preserve">
+    <value>1000%</value>
+  </data>
+  <data name="MainFrame_zoomMenu_Text" xml:space="preserve">
+    <value>&amp;Zoom</value>
+  </data>
+  <data name="MainFrame_veryLowIntensityMenu_Text" xml:space="preserve">
+    <value>Foarte s&amp;căzută</value>
+  </data>
+  <data name="MainFrame_lowIntensityMenu_Text" xml:space="preserve">
+    <value>&amp;Scăzută</value>
+  </data>
+  <data name="MainFrame_mediumIntensityMenu_Text" xml:space="preserve">
+    <value>&amp;Medie</value>
+  </data>
+  <data name="MainFrame_highIntensityMenu_Text" xml:space="preserve">
+    <value>&amp;Ridicată</value>
+  </data>
+  <data name="MainFrame_fullIntensityMenu_Text" xml:space="preserve">
+    <value>&amp;Maximă</value>
+  </data>
+  <data name="MainFrame_mapIntensityMenu_Text" xml:space="preserve">
+    <value>&amp;Intensitate Hartă</value>
+  </data>
+  <data name="MainFrame_normalQualityMenu_Text" xml:space="preserve">
+    <value>Scăzută</value>
+  </data>
+  <data name="MainFrame_highQualityMenu_Text" xml:space="preserve">
+    <value>Ridicată</value>
+  </data>
+  <data name="MainFrame_mapQualityMenu_Text" xml:space="preserve">
+    <value>&amp;Calitate hartă</value>
+  </data>
+  <data name="MainFrame_allControlsMenu_Text" xml:space="preserve">
+    <value>&amp;Toate Posturile</value>
+  </data>
+  <data name="MainFrame_viewMenu_Text" xml:space="preserve">
+    <value>&amp;Vizualizare</value>
+  </data>
+  <data name="MainFrame_addFinishMenu_Text" xml:space="preserve">
+    <value>&amp;Finalizare</value>
+  </data>
+  <data name="MiscText_FinishButtonText" xml:space="preserve">
+    <value>&amp;Finalizare</value>
+  </data>
+  <data name="MainFrame_addMandatoryCrossingMenu_Text" xml:space="preserve">
+    <value>Punct Trecere Obligatoriu</value>
+  </data>
+  <data name="MainFrame_mandatoryCrossingPointToolStripMenuItem_Text" xml:space="preserve">
+    <value>Punct Trecere Obligatoriu</value>
+  </data>
+  <data name="MainFrame_addOptCrossingMenu_Text" xml:space="preserve">
+    <value>Punct Trecere Opțional</value>
+  </data>
+  <data name="MainFrame_optionalCrossingPointToolStripMenuItem_Text" xml:space="preserve">
+    <value>Punct Trecere Opțional</value>
+  </data>
+  <data name="SelectionDescriptionText_SpecialName_OptCrossing" xml:space="preserve">
+    <value>Punct Trecere Opțional</value>
+  </data>
+  <data name="MainFrame_addOutOfBoundsMenu_Text" xml:space="preserve">
+    <value>Zonă Înafara Limitelor</value>
+  </data>
+  <data name="MainFrame_outOfBoundsToolStripMenuItem_Text" xml:space="preserve">
+    <value>Zonă Înafara Limitelor</value>
+  </data>
+  <data name="MainFrame_addDangerousMenu_Text" xml:space="preserve">
+    <value>Zonă Periculoasă</value>
+  </data>
+  <data name="MainFrame_dangerousToolStripMenuItem_Text" xml:space="preserve">
+    <value>Zonă Periculoasă</value>
+  </data>
+  <data name="SelectionDescriptionText_SpecialName_Dangerous" xml:space="preserve">
+    <value>Zonă Periculoasă</value>
+  </data>
+  <data name="MainFrame_addWaterMenu_Text" xml:space="preserve">
+    <value>Locație apă</value>
+  </data>
+  <data name="MainFrame_waterLocationToolStripMenuItem_Text" xml:space="preserve">
+    <value>Locație apă</value>
+  </data>
+  <data name="SelectionDescriptionText_SpecialName_Water" xml:space="preserve">
+    <value>Locație apă</value>
+  </data>
+  <data name="MainFrame_addFirstAidMenu_Text" xml:space="preserve">
+    <value>Locație punct Prim Ajutor</value>
+  </data>
+  <data name="MainFrame_firstAidLocationToolStripMenuItem_Text" xml:space="preserve">
+    <value>Locație punct Prim Ajutor</value>
+  </data>
+  <data name="SelectionDescriptionText_SpecialName_FirstAid" xml:space="preserve">
+    <value>Locație punct Prim Ajutor</value>
+  </data>
+  <data name="MainFrame_addForbiddenMenu_Text" xml:space="preserve">
+    <value>Marcare Interzisă</value>
+  </data>
+  <data name="MainFrame_forbiddenRouteMarkingToolStripMenuItem_Text" xml:space="preserve">
+    <value>Marcare Interzisă</value>
+  </data>
+  <data name="MainFrame_addBoundaryMenu_Text" xml:space="preserve">
+    <value>Zonă Inaccesibilă</value>
+  </data>
+  <data name="MainFrame_boundaryToolStripMenuItem_Text" xml:space="preserve">
+    <value>Zonă Inaccesibilă</value>
+  </data>
+  <data name="SelectionDescriptionText_SpecialName_Boundary" xml:space="preserve">
+    <value>Zonă Inaccesibilă</value>
+  </data>
+  <data name="MainFrame_addRegMarkMenu_Text" xml:space="preserve">
+    <value>Macaj de Înregistrare</value>
+  </data>
+  <data name="MainFrame_registrationMarkToolStripMenuItem_Text" xml:space="preserve">
+    <value>Macaj de Înregistrare</value>
+  </data>
+  <data name="SelectionDescriptionText_SpecialName_RegMark" xml:space="preserve">
+    <value>Macaj de Înregistrare</value>
+  </data>
+  <data name="MainFrame_whiteOutMenu_Text" xml:space="preserve">
+    <value>Spațiu Alb</value>
+  </data>
+  <data name="MainFrame_whiteOutToolStripMenuItem_Text" xml:space="preserve">
+    <value>Spațiu Alb</value>
+  </data>
+  <data name="SelectionDescriptionText_SpecialName_WhiteOut" xml:space="preserve">
+    <value>Spațiu Alb</value>
+  </data>
+  <data name="MainFrame_changeMapFileMenu_Text" xml:space="preserve">
+    <value>Fișier &amp;Hartă...</value>
+  </data>
+  <data name="MainFrame_changeCodesMenu_Text" xml:space="preserve">
+    <value>Schimbare Coduri Posturi...</value>
+  </data>
+  <data name="MainFrame_autoNumberingMenu_Text" xml:space="preserve">
+    <value>&amp;Numerotare automată...</value>
+  </data>
+  <data name="MainFrame_removeUnusedControlsMenu_Text" xml:space="preserve">
+    <value>Șterge Posturile &amp;Nefolosite...</value>
+  </data>
+  <data name="MainFrame_punchPatternsMenu_Text" xml:space="preserve">
+    <value>Modele de Compostare...</value>
+  </data>
+  <data name="MainFrame_customizeDescriptionsMenu_Text" xml:space="preserve">
+    <value>Personalizare Text &amp;Descriere...</value>
+  </data>
+  <data name="MainFrame_eventMenu_Text" xml:space="preserve">
+    <value>Eve&amp;niment</value>
+  </data>
+  <data name="MainFrame_addCourseMenu_Text" xml:space="preserve">
+    <value>&amp;Adaugare Traseu...</value>
+  </data>
+  <data name="MainFrame_deleteCourseMenu_Text" xml:space="preserve">
+    <value>&amp;Ștergere Traseu</value>
+  </data>
+  <data name="MainFrame_propertiesMenu_Text" xml:space="preserve">
+    <value>&amp;Proprietăți...</value>
+  </data>
+  <data name="MainFrame_courseLoadMenu_Text" xml:space="preserve">
+    <value>&amp;Încărcare Participanți...</value>
+  </data>
+  <data name="MainFrame_courseMenu_Text" xml:space="preserve">
+    <value>&amp;Traseu</value>
+  </data>
+  <data name="MainFrame_addBendMenu_Text" xml:space="preserve">
+    <value>Adăugare &amp;Curbă</value>
+  </data>
+  <data name="MainFrame_removeBendMenu_Text" xml:space="preserve">
+    <value>Ștergere C&amp;urbă</value>
+  </data>
+  <data name="MainFrame_addGapMenu_Text" xml:space="preserve">
+    <value>Adăugare Spațiu &amp;Gol</value>
+  </data>
+  <data name="MainFrame_changeTextMenu_Text" xml:space="preserve">
+    <value>Schimbare &amp;Text...</value>
+  </data>
+  <data name="MainFrame_rotateMenu_Text" xml:space="preserve">
+    <value>&amp;Rotire</value>
+  </data>
+  <data name="MainFrame_noFlaggingMenu_Text" xml:space="preserve">
+    <value>Fără Semnalizare</value>
+  </data>
+  <data name="MainFrame_entireFlaggingMenu_Text" xml:space="preserve">
+    <value>Întreaga Secțiune Semnalizată</value>
+  </data>
+  <data name="MainFrame_beginFlaggingMenu_Text" xml:space="preserve">
+    <value>Semnalizare doar Început de Secțiune</value>
+  </data>
+  <data name="MainFrame_endFlaggingMenu_Text" xml:space="preserve">
+    <value>Semnalizare doar Sfârșit de Secțiune</value>
+  </data>
+  <data name="MainFrame_legFlaggingMenu_Text" xml:space="preserve">
+    <value>Semnalizare &amp;Secțiune</value>
+  </data>
+  <data name="MainFrame_changeDisplayedCoursesMenu_Text" xml:space="preserve">
+    <value>Schimbare Trasee Afișate...</value>
+  </data>
+  <data name="MainFrame_itemMenu_Text" xml:space="preserve">
+    <value>&amp;Element</value>
+  </data>
+  <data name="MainFrame_courseSummaryMenu_Text" xml:space="preserve">
+    <value>Rezumat Traseu</value>
+  </data>
+  <data name="MainFrame_eventAuditMenu_Text" xml:space="preserve">
+    <value>Verificare Eveniment</value>
+  </data>
+  <data name="MainFrame_legLengthsMenu_Text" xml:space="preserve">
+    <value>&amp;Lungimi Secțiuni</value>
+  </data>
+  <data name="MainFrame_controlCrossrefMenu_Text" xml:space="preserve">
+    <value>Referințe Încrucișate Posturi</value>
+  </data>
+  <data name="MainFrame_controlAndLegLoadMenu_Text" xml:space="preserve">
+    <value>&amp;Încărcare Post de control si Secțiune</value>
+  </data>
+  <data name="MainFrame_reportMenu_Text" xml:space="preserve">
+    <value>&amp;Rapoarte</value>
+  </data>
+  <data name="MainFrame_helpContentsMenu_Text" xml:space="preserve">
+    <value>&amp;Asistență Purple Pen</value>
+  </data>
+  <data name="MainFrame_helpTranslatedMenu_Text" xml:space="preserve">
+    <value>Asistență Purple Pen (Tradus)</value>
+  </data>
+  <data name="MainFrame_mainWebSiteToolMenu_Text" xml:space="preserve">
+    <value>Site-ul web Purple Pen</value>
+  </data>
+  <data name="MainFrame_supportWebSiteMenu_Text" xml:space="preserve">
+    <value>Asistență/&amp;Raportare erori</value>
+  </data>
+  <data name="MainFrame_aboutMenu_Text" xml:space="preserve">
+    <value>&amp;Despre Purple Pen</value>
+  </data>
+  <data name="MainFrame_symbolBrowserMenu_Text" xml:space="preserve">
+    <value>Fruzărire Simboluri</value>
+  </data>
+  <data name="MainFrame_descriptionBrowserMenu_Text" xml:space="preserve">
+    <value>Fruzărire Descrieri</value>
+  </data>
+  <data name="MainFrame_controlTesterMenu_Text" xml:space="preserve">
+    <value>Verificator Post</value>
+  </data>
+  <data name="MainFrame_mapTesterMenu_Text" xml:space="preserve">
+    <value>Verificator Hartă</value>
+  </data>
+  <data name="MainFrame_courseSelectorTesterMenu_Text" xml:space="preserve">
+    <value>Verificator Selecție Traseu</value>
+  </data>
+  <data name="MainFrame_dotGridTesterToolStripMenuItem_Text" xml:space="preserve">
+    <value>Testare Grid Puncte</value>
+  </data>
+  <data name="MainFrame_dumpOCADFileMenu_Text" xml:space="preserve">
+    <value>Dump OCAD File</value>
+  </data>
+  <data name="MainFrame_reportTesterToolStripMenuItem_Text" xml:space="preserve">
+    <value>Verificator Raport</value>
+  </data>
+  <data name="MainFrame_fontMetricsToolStripMenuItem_Text" xml:space="preserve">
+    <value>Metrici de Font</value>
+  </data>
+  <data name="MainFrame_debugMenu_Text" xml:space="preserve">
+    <value>Depanare</value>
+  </data>
+  <data name="MainFrame_addDescriptionLanguageMenu_Text" xml:space="preserve">
+    <value>Adăugare Limbă Descriere...</value>
+  </data>
+  <data name="MainFrame_addTranslatedTextsMenu_Text" xml:space="preserve">
+    <value>Adăugare Texte Traduse...</value>
+  </data>
+  <data name="MainFrame_mergeSymbolsMenu_Text" xml:space="preserve">
+    <value>Îmbină Symbol.xml...</value>
+  </data>
+  <data name="MainFrame_translateMenu_Text" xml:space="preserve">
+    <value>&amp;Traducere text descriere</value>
+  </data>
+  <data name="MainFrame_helpMenu_Text" xml:space="preserve">
+    <value>&amp;Asistență</value>
+  </data>
+  <data name="MainFrame_openToolStripButton_Text" xml:space="preserve">
+    <value>Deschidere</value>
+  </data>
+  <data name="MainFrame_openToolStripButton_ToolTipText" xml:space="preserve">
+    <value>Deschidere (Ctrl+O)</value>
+  </data>
+  <data name="MainFrame_saveToolStripButton_Text" xml:space="preserve">
+    <value>Salvare</value>
+  </data>
+  <data name="MiscText_CrashSave" xml:space="preserve">
+    <value>Salvare</value>
+  </data>
+  <data name="MainFrame_saveToolStripButton_ToolTipText" xml:space="preserve">
+    <value>Salvare (Ctrl+S)</value>
+  </data>
+  <data name="MainFrame_undoToolStripButton_Text" xml:space="preserve">
+    <value>Anulare</value>
+  </data>
+  <data name="MiscText_Undo" xml:space="preserve">
+    <value>Anulare</value>
+  </data>
+  <data name="MainFrame_undoToolStripButton_ToolTipText" xml:space="preserve">
+    <value>Anulare (Ctrol+Z)</value>
+  </data>
+  <data name="MainFrame_redoToolStripButton_Text" xml:space="preserve">
+    <value>Refacere</value>
+  </data>
+  <data name="MiscText_Redo" xml:space="preserve">
+    <value>Refacere</value>
+  </data>
+  <data name="MainFrame_redoToolStripButton_ToolTipText" xml:space="preserve">
+    <value>Refacere (Ctrl+Y)</value>
+  </data>
+  <data name="MainFrame_deleteToolStripButton_Text" xml:space="preserve">
+    <value>Ștergere (Del)</value>
+  </data>
+  <data name="MainFrame_addControlToolStripButton_ToolTipText" xml:space="preserve">
+    <value>Adăugare Post (Ctrl+A)</value>
+  </data>
+  <data name="MainFrame_descriptionsToolStripMenuItem_Text" xml:space="preserve">
+    <value>Adăugare Descriere</value>
+  </data>
+  <data name="MainFrame_specialItemToolStripMenu_Text" xml:space="preserve">
+    <value>Adăugare Element Special</value>
+  </data>
+  <data name="MainFrame_addBendToolStripButton_ToolTipText" xml:space="preserve">
+    <value>Adăugare Cotitură (Ctrl+B)</value>
+  </data>
+  <data name="MainFrame_addGapToolStripButton_Text" xml:space="preserve">
+    <value>toolStripButton1</value>
+  </data>
+  <data name="MainFrame_addGapToolStripButton_ToolTipText" xml:space="preserve">
+    <value>Adaugare Spațiu Gol (Ctrl+G)</value>
+  </data>
+  <data name="MainFrame_zoomAmountLabel_Text" xml:space="preserve">
+    <value>Zoom: 100%</value>
+  </data>
+  <data name="MainFrame_locationDisplay_Text" xml:space="preserve">
+    <value>X:-999.99 Y:-999.99</value>
+  </data>
+  <data name="MainFrame_saveXmlFileDialog_Title" xml:space="preserve">
+    <value>Creare fișier schimb XML</value>
+  </data>
+  <data name="MainFrame_Text" xml:space="preserve">
+    <value>Purple Pen</value>
+  </data>
+  <data name="MiscText_AppTitle" xml:space="preserve">
+    <value>Purple Pen</value>
+  </data>
+  <data name="MiscText_CtrlZ" xml:space="preserve">
+    <value>Ctrl+Z</value>
+  </data>
+  <data name="MiscText_CtrlY" xml:space="preserve">
+    <value>Ctrl+Y</value>
+  </data>
+  <data name="MiscText_Esc" xml:space="preserve">
+    <value>Esc</value>
+  </data>
+  <data name="MiscText_NoSymbol" xml:space="preserve">
+    <value>Nici un simbol</value>
+  </data>
+  <data name="MiscText_AllControls" xml:space="preserve">
+    <value>Toate posturile</value>
+  </data>
+  <data name="MiscText_CannotLoadFile" xml:space="preserve">
+    <value>Nu se poate încărca '{0}' deoarece:</value>
+  </data>
+  <data name="MiscText_CannotSaveFile" xml:space="preserve">
+    <value>Nu se poate salva '{0}' deoarece:</value>
+  </data>
+  <data name="MiscText_CannotLoadMapFile" xml:space="preserve">
+    <value>Nu se poate încărca fișierul hartă '{0}' deoarece:</value>
+  </data>
+  <data name="MiscText_CannotReadImageFile" xml:space="preserve">
+    <value>Nu se poate citi fișierul de imagine '{0}'.</value>
+  </data>
+  <data name="MiscText_CannotPrint" xml:space="preserve">
+    <value>Nu se poate tipări '{0}' deoarece:</value>
+  </data>
+  <data name="MiscText_CannotCreateFile" xml:space="preserve">
+    <value>Nu se poate crea '{0}' deoarece:</value>
+  </data>
+  <data name="MiscText_CannotCreateDirectory" xml:space="preserve">
+    <value>Nu se poate crea directorul '{0}' deoarece:</value>
+  </data>
+  <data name="MiscText_CannotCreateOcadFiles" xml:space="preserve">
+    <value>Nu se poate crea fișierul OCAD deoarece:</value>
+  </data>
+  <data name="MiscText_SaveChanges" xml:space="preserve">
+    <value>Doriți să salvați schimbările efectuate la '{0}'?</value>
+  </data>
+  <data name="MiscText_FileAlreadyExists" xml:space="preserve">
+    <value>Fișierul '{0}' exista deja în directorul specificat. Click pe butonul "Înapoi" și alegeți un nou director sau un nou titlu de eveniment.</value>
+  </data>
+  <data name="MiscText_CodeInUse" xml:space="preserve">
+    <value>Codul '{0}' este deja folosit de un alt post.</value>
+  </data>
+  <data name="MiscText_BadScore" xml:space="preserve">
+    <value>Punctajul pentru un post trebuie sa fie un întreg între 1 și  999.</value>
+  </data>
+  <data name="MiscText_BadClimb" xml:space="preserve">
+    <value>Diferența de nivel a traseului trebuie să fie număr de la 0 până la 9999, sau câmp gol.</value>
+  </data>
+  <data name="MiscText_BadLoad" xml:space="preserve">
+    <value>Încărcarea unui traseu trebuie să fie un întreg de la 0 până la 999999, sau câmp gol.</value>
+  </data>
+  <data name="MiscText_CancelOperationWithShortcut" xml:space="preserve">
+    <value>Anulare Operațiune</value>
+  </data>
+  <data name="MiscText_CancelOperation" xml:space="preserve">
+    <value>Anulare Operațiune</value>
+  </data>
+  <data name="MiscText_EnterScore" xml:space="preserve">
+    <value>Introduceți noul scor</value>
+  </data>
+  <data name="MiscText_EnterCode" xml:space="preserve">
+    <value>Introduceți noul cod</value>
+  </data>
+  <data name="MiscText_EnterDimensions" xml:space="preserve">
+    <value>Introduceți dimensiunea elementului
+Folosiți / pentru înălțime și pantă
+Folosiți | pentru două elemente</value>
+  </data>
+  <data name="MiscText_EnterEventTitle" xml:space="preserve">
+    <value>Introduceți noul titlu de eveniment
+Folosiți | pentru a separa liniile
+(afectează toate traseele)</value>
+  </data>
+  <data name="MiscText_EnterSecondaryTitle" xml:space="preserve">
+    <value>Introduceți noua linie secundară
+Folosiți | pentru a separa liniile</value>
+  </data>
+  <data name="MiscText_EnterCourseName" xml:space="preserve">
+    <value>Introduceți noul nume de traseu</value>
+  </data>
+  <data name="MiscText_EnterClimb" xml:space="preserve">
+    <value>Introduceți noua diferență de nivel in metri</value>
+  </data>
+  <data name="MiscText_EnterSymbolText" xml:space="preserve">
+    <value>Introduceți noua semnificație de simbol
+(afectează toate traseele)</value>
+  </data>
+  <data name="MiscText_DeleteMultipleControlsFromControlsCollection" xml:space="preserve">
+    <value>Postul {0} nu mai este folosit în nici un traseu. Doriți sa-l stergeți din colecția de posturi?</value>
+  </data>
+  <data name="MiscText_DeleteControlFromControlsCollection" xml:space="preserve">
+    <value>Postul {0} nu mai este folosit în nici un traseu. Doriți să ștergeți acest post din colecția de posturi?</value>
+  </data>
+  <data name="MiscText_DeleteControlFromAllControls" xml:space="preserve">
+    <value>Postul {0} este folosit de următoarele trasee: {1}. Doriți oricum să-l ștegeți?</value>
+  </data>
+  <data name="MiscText_CodeBadLength" xml:space="preserve">
+    <value>Un cod de post trebuie să conțină una, două sau trei litere sau cifre.</value>
+  </data>
+  <data name="MiscText_CodeContainsSpace" xml:space="preserve">
+    <value>Un cod de post nu poate conține spațiu.</value>
+  </data>
+  <data name="MiscText_CodeBeginsWithZero" xml:space="preserve">
+    <value>Un cod de post nu poate începe cu zero.</value>
+  </data>
+  <data name="MiscText_CodeCouldBeUpsideDown" xml:space="preserve">
+    <value>Un cod de post nu trebuie să semene cu alt cod întors cu susul în jos.</value>
+  </data>
+  <data name="MiscText_DuplicateCode" xml:space="preserve">
+    <value>Codul "{0}" e folosit cel puțin o dată.</value>
+  </data>
+  <data name="MiscText_BadScale" xml:space="preserve">
+    <value>Scara de imprimare trebuie să fie un număr între 100 și 100,000.</value>
+  </data>
+  <data name="MiscText_CoursePropertiesTitle" xml:space="preserve">
+    <value>Proprietăți traseu</value>
+  </data>
+  <data name="MiscText_Landscape" xml:space="preserve">
+    <value>Panoramic</value>
+  </data>
+  <data name="PrintDescriptions_orientation_Text" xml:space="preserve">
+    <value>Panoramic</value>
+  </data>
+  <data name="PrinterMargins_radioButtonLandscape_Text" xml:space="preserve">
+    <value>Panoramic</value>
+  </data>
+  <data name="PrintPunches_orientation_Text" xml:space="preserve">
+    <value>Panoramic</value>
+  </data>
+  <data name="MiscText_Portrait" xml:space="preserve">
+    <value>Portret</value>
+  </data>
+  <data name="PrinterMargins_radioButtonPortrait_Text" xml:space="preserve">
+    <value>Portret</value>
+  </data>
+  <data name="MiscText_PageTooSmall" xml:space="preserve">
+    <value>Dimensiunea paginii e prea mică pentru a tipări decrierea.</value>
+  </data>
+  <data name="MiscText_VersionLabel" xml:space="preserve">
+    <value>Versiunea {0}</value>
+  </data>
+  <data name="MiscText_HelpFileNotFound" xml:space="preserve">
+    <value>Fișierul de asistență '{0}' nu a putut fi deschis.</value>
+  </data>
+  <data name="MiscText_Zoom" xml:space="preserve">
+    <value>Zoom</value>
+  </data>
+  <data name="MiscText_MissingMapFile" xml:space="preserve">
+    <value>Fișierul hartă "{0}" nu a putut fi găsit.
+ 
+Cel mai probabil, fișierul hartă a fost mutat sau șters, sau fișierul Purple Pen a fost mutat (probabil pe un alt calculator). Fișierul hartă trebuie să fie prezent oricând se încarcă fișierul Purple Pen cu evenimentul dorit. Dacă trimiteți fișierul Purple Pen cu evenimentul unei alte persoane, asigurați-vă deasemeni că persoana respectivă deține o copie a fișierului hartă.
+ 
+După ce apăsați OK, încercați să localizați o copie a fișierului hartă pe calculatorul dumneavoastră.</value>
+  </data>
+  <data name="MiscText_NoUnusedControls" xml:space="preserve">
+    <value>Toate posturile sunt folosite într-un traseu.</value>
+  </data>
+  <data name="MiscText_NextButtonText" xml:space="preserve">
+    <value>&amp;Următor &gt;</value>
+  </data>
+  <data name="NewEventWizard_nextButton_Text" xml:space="preserve">
+    <value>&amp;Următor &gt;</value>
+  </data>
+  <data name="MiscText_Control_Code" xml:space="preserve">
+    <value>Postul {0}</value>
+  </data>
+  <data name="MiscText_Finish" xml:space="preserve">
+    <value>Sosire</value>
+  </data>
+  <data name="MiscText_Finish_Short" xml:space="preserve">
+    <value>F</value>
+  </data>
+  <data name="MiscText_MandCrossing_Long" xml:space="preserve">
+    <value>Punct de trecere obligatoriu</value>
+  </data>
+  <data name="MiscText_MandCrossing_Medium" xml:space="preserve">
+    <value>Încrucișare</value>
+  </data>
+  <data name="MiscText_MandCrossing_Short" xml:space="preserve">
+    <value>C</value>
+  </data>
+  <data name="MiscText_Margins_All" xml:space="preserve">
+    <value>Toate: {0}</value>
+  </data>
+  <data name="MiscText_Margins_LRTB" xml:space="preserve">
+    <value>Stânga: {0}, Dreapta: {1}, Sus: {2}, Jos: {3}</value>
+  </data>
+  <data name="MiscText_Start" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="MiscText_Start_Short" xml:space="preserve">
+    <value>S</value>
+  </data>
+  <data name="MiscText_Version_Alpha" xml:space="preserve">
+    <value>Alpha {0}</value>
+  </data>
+  <data name="MiscText_Version_Beta" xml:space="preserve">
+    <value>Beta {0}</value>
+  </data>
+  <data name="MiscText_Version_RC" xml:space="preserve">
+    <value>RC {0}</value>
+  </data>
+  <data name="MiscText_Plural" xml:space="preserve">
+    <value>plural</value>
+  </data>
+  <data name="MiscText_Singular" xml:space="preserve">
+    <value>singular</value>
+  </data>
+  <data name="MiscText_RequireStar" xml:space="preserve">
+    <value>Textul personalizat are nevoie de simbolul "*" pentru a indica amplasarea obiectului modificat.</value>
+  </data>
+  <data name="MiscText_AppSubtitle" xml:space="preserve">
+    <value>setare traseu pentru orientare</value>
+  </data>
+  <data name="MiscText_AddTextSpecialExplanation" xml:space="preserve">
+    <value>Introduceți textul pe care doriți să-l amplasați pe hartă. După ce apăsați OK, trageți mouse-ul pentru a poziționa textul în locația dorită.</value>
+  </data>
+  <data name="MiscText_AddTextSpecialTitle" xml:space="preserve">
+    <value>Adăugare Text</value>
+  </data>
+  <data name="MiscText_ChangeTextSpecialExplanation" xml:space="preserve">
+    <value>Introducere Text</value>
+  </data>
+  <data name="MiscText_MapFileChanged" xml:space="preserve">
+    <value>Un alt program a modificat fișierul hartă "{0}". Purple Pen va reîncărca harta.</value>
+  </data>
+  <data name="MiscText_ChangeDescriptionLanguage" xml:space="preserve">
+    <value>Evenimentul curent are descrierea posturilor în limba {0}. Doriți să schimbați descrierea posturilor în limba {1}?</value>
+  </data>
+  <data name="MiscText_OpenLastEvent" xml:space="preserve">
+    <value>Deschidere "{0}"</value>
+  </data>
+  <data name="MiscText_ClosePPBeforeLoadingOCAD" xml:space="preserve">
+    <value>Purple Pen trebuie să fie închis înainte de a încărca fișierele OCAD create.</value>
+  </data>
+  <data name="MiscText_NoCoursesSelected" xml:space="preserve">
+    <value>Nu a fost selectat nici un traseu pentru tipărire.</value>
+  </data>
+  <data name="MiscText_TranslatedHelpWebSite" xml:space="preserve">
+    <value>*** Dacă există un site în limba tradusă care conține documentație pentru Purple Pen, introduceți adresa de internet URL (inclusiv http) ca și traducere a acestui element. Altfel lăsați-l neatins.</value>
+  </data>
+  <data name="MissingFonts_checkBoxDontWarnAgain_Text" xml:space="preserve">
+    <value>Nu mai avertiza lipsa fonturilor pentru acest eveniment.</value>
+  </data>
+  <data name="MissingFonts_labelWarning_Text" xml:space="preserve">
+    <value>Fișierul hartă "{0}" utilizează fonturi care nu sunt instalate pe acest calculator. Textele care folosesc aceste fonturi vof fi afișate si tipărite cu fontul implicit, care poate genera un aspect diferit față de designul original. 
+
+Pentru a remedia acceastă problemă, căutați și instalați fonturile listate dedesubt în Windows Control Panel, apoi restartați Purple Pen.
+</value>
+  </data>
+  <data name="MissingFonts_Text" xml:space="preserve">
+    <value>Fonturi Lipsă</value>
+  </data>
+  <data name="NewEventBitmapScale_bitmapScaleLabel_Text" xml:space="preserve">
+    <value>Când folosiți o imagine ca și hartă, trebuie să specificați rezoluția imaginii și scara hărții. 
+
+Rezoluția imaginii indică câți pixeli sau puncte sunt în imagine pentru fiecare inch de pe harta tipărită pe hârtie; termenul uzual "dots per inch" sau "dpi".
+
+Scara hărții indică relația dintre harta tipărită pe hârtie si realitatea din teren.
+</value>
+  </data>
+  <data name="NewEventBitmapScale_resolutionLabel_Text" xml:space="preserve">
+    <value>Rezoluția imaginii:</value>
+  </data>
+  <data name="NewEventBitmapScale_oneToPrefixLabel_Text" xml:space="preserve">
+    <value>1:</value>
+  </data>
+  <data name="NewEventPrintScale_oneToPrefixLabel1_Text" xml:space="preserve">
+    <value>1:</value>
+  </data>
+  <data name="NewEventPrintScale_oneToPrefixLabel2_Text" xml:space="preserve">
+    <value>1:</value>
+  </data>
+  <data name="NewEventBitmapScale_mapScaleLabel_Text" xml:space="preserve">
+    <value>Scara hărții:</value>
+  </data>
+  <data name="NewEventPrintScale_mapScaleLabel_Text" xml:space="preserve">
+    <value>Scara hărții:</value>
+  </data>
+  <data name="NewEventDirectory_newEventDirectoryLabel_Text" xml:space="preserve">
+    <value>În ce director doriți să salvați fișierul cu evenimentul și traseele?</value>
+  </data>
+  <data name="NewEventDirectory_useMapDirectory_Text" xml:space="preserve">
+    <value>În același director în care se află fișierul hartă.</value>
+  </data>
+  <data name="NewEventDirectory_useOtherFolder_Text" xml:space="preserve">
+    <value>Într-un director pe care îl aleg.</value>
+  </data>
+  <data name="NewEventDirectory_chooseFolder_Text" xml:space="preserve">
+    <value>Alegere Director...</value>
+  </data>
+  <data name="NewEventDirectory_folderBrowserDialog_Description" xml:space="preserve">
+    <value>Selectați directorul pentru fișierul eveniment.</value>
+  </data>
+  <data name="NewEventDirectory_directoryDisplay_Text" xml:space="preserve">
+    <value>Directorul Selectat</value>
+  </data>
+  <data name="NewEventFinal_newEventFinalLabel_Text" xml:space="preserve">
+    <value>Click "Terminare" pentru a crea noul eveniment. Fișierul eveniment va fi salvat ca:</value>
+  </data>
+  <data name="NewEventFinal_afterEventCreatedLabel_Text" xml:space="preserve">
+    <value>După crearea evenimentului, selectați meniul Course - "New Course..." pentru a crea unul sau mai multe trasee.</value>
+  </data>
+  <data name="NewEventMapFile_mapFileDisplay_Text" xml:space="preserve">
+    <value>Selectează Fișierul Hartă</value>
+  </data>
+  <data name="NewEventNumbering_newEventNumberingLabel_Text" xml:space="preserve">
+    <value>Posturile noi create sunt numerotate automat. Alegeți numărul de start pentru posturile de control.</value>
+  </data>
+  <data name="NewEventPrintScale_newEventPrintScaleLabel_Text" xml:space="preserve">
+    <value>Ce scară veți folosi pentru tipărirea traseelor? În majoritatea cazurilor, veți dori să folosiți scara implicită a hărții.
+
+</value>
+  </data>
+  <data name="NewEventPrintScale_defaultPrintScaleLabel_Text" xml:space="preserve">
+    <value>Scara de &amp;tipărire Implicită:</value>
+  </data>
+  <data name="NewEventPrintScale_changeLaterLabel_Text" xml:space="preserve">
+    <value>(Puteți schimba scara de tipărire mai târziu pentru orice traseu accesând Traseu/Proprietăți.)</value>
+  </data>
+  <data name="NewEventTitle_newEventTitleLabel_Text" xml:space="preserve">
+    <value>Titlul evenimentului va fi afișat pe prima linie a tabelului de descriere a posturilor de control. Este totodată folosit ca și nume de fișier pentru a stoca evenimentul pe disk.
+
+Pentru a încăpea în tabelul de descriere, titlul ar trebui sa aibă o lungime mai mică de 25 caractere. Exemple de titluri potrivite sunt "US Champs Day 1" sau "Riverview Park, 4/12/06".</value>
+  </data>
+  <data name="NewEventTitle_eventTitleLabel_Text" xml:space="preserve">
+    <value>Titlul Evenimentului:</value>
+  </data>
+  <data name="NewEventWizard_backButton_Text" xml:space="preserve">
+    <value>&lt; &amp;Înapoi</value>
+  </data>
+  <data name="NonPrintableObjects_labelWarning_Text" xml:space="preserve">
+    <value>Fișierul hartă "{0}" conține obiecte sau simboluri care nu sunt suportate de Purple Pen, și e posibil să nu fie tipărite corect. Obiectele care e posibil să nu fie tipărite corect sunt listate mai jos.
+
+Pentru a tipări hărți de concurs, se recomandă exportul traseelor în fișiere OCAD (folosind meniul Fișiere/Creare Fișiere OCAD...) și tipărirea lor din OCAD.
+</value>
+  </data>
+  <data name="NonPrintableObjects_okButton_Text" xml:space="preserve">
+    <value>Continuare</value>
+  </data>
+  <data name="NonPrintableObjects_Text" xml:space="preserve">
+    <value>Fișierul Hartă nu poate fi tipărit cu acuratețe.</value>
+  </data>
+  <data name="OverwritingOcadFilesDialog_confirmReplaceLabel_Text" xml:space="preserve">
+    <value>Următoarele fișiere există deja. Dacă se continuă, acestea vor fi suprascrise(înlocuite).</value>
+  </data>
+  <data name="OverwritingOcadFilesDialog_buttonOK_Text" xml:space="preserve">
+    <value>Înlocuire</value>
+  </data>
+  <data name="OverwritingOcadFilesDialog_Text" xml:space="preserve">
+    <value>Confirmare Înlocuire Fișiere</value>
+  </data>
+  <data name="PrintCourses_okButton_Text" xml:space="preserve">
+    <value>Tipărire</value>
+  </data>
+  <data name="PrintDescriptions_printButton_Text" xml:space="preserve">
+    <value>Tipărire</value>
+  </data>
+  <data name="PrintPunches_printButton_Text" xml:space="preserve">
+    <value>Tipărire</value>
+  </data>
+  <data name="PrintCourses_printerChange_Text" xml:space="preserve">
+    <value>Schimbare Imprimantă...</value>
+  </data>
+  <data name="PrintDescriptions_printerChange_Text" xml:space="preserve">
+    <value>Schimbare Imprimantă...</value>
+  </data>
+  <data name="PrintPunches_printerChange_Text" xml:space="preserve">
+    <value>Schimbare Imprimantă...</value>
+  </data>
+  <data name="PrintCourses_printerName_Text" xml:space="preserve">
+    <value>Nume Imprimantă</value>
+  </data>
+  <data name="PrintDescriptions_printerName_Text" xml:space="preserve">
+    <value>Nume Imprimantă</value>
+  </data>
+  <data name="PrintPunches_printerName_Text" xml:space="preserve">
+    <value>Nume Imprimantă</value>
+  </data>
+  <data name="PrintCourses_printerLabel_Text" xml:space="preserve">
+    <value>Imprimantă:</value>
+  </data>
+  <data name="PrintDescriptions_printerLabel_Text" xml:space="preserve">
+    <value>Imprimantă:</value>
+  </data>
+  <data name="PrintPunches_printerLabel_Text" xml:space="preserve">
+    <value>Imprimantă:</value>
+  </data>
+  <data name="PrintCourses_previewButton_Text" xml:space="preserve">
+    <value>Previzualizare...</value>
+  </data>
+  <data name="PrintDescriptions_previewButton_Text" xml:space="preserve">
+    <value>Previzualizare...</value>
+  </data>
+  <data name="PrintPunches_previewButton_Text" xml:space="preserve">
+    <value>Previzualizare...</value>
+  </data>
+  <data name="PrintCourses_copiesLabel_Text" xml:space="preserve">
+    <value>Număr exemplare pe fiecare traseu:</value>
+  </data>
+  <data name="PrintCourses_copiesGroupBox_Text" xml:space="preserve">
+    <value>Număr exemplare</value>
+  </data>
+  <data name="PrintDescriptions_copiesGroupBox_Text" xml:space="preserve">
+    <value>Număr exemplare</value>
+  </data>
+  <data name="PrintPunches_copiesGroupBox_Text" xml:space="preserve">
+    <value>Număr exemplare</value>
+  </data>
+  <data name="PrintCourses_Text" xml:space="preserve">
+    <value>Tipărire Trasee</value>
+  </data>
+  <data name="PrintDescriptions_marginChange_Text" xml:space="preserve">
+    <value>Schimbare Margini...</value>
+  </data>
+  <data name="PrintPunches_marginChange_Text" xml:space="preserve">
+    <value>Schimbare Margini...</value>
+  </data>
+  <data name="PrintDescriptions_paperSize_Text" xml:space="preserve">
+    <value>Tabloid (11"x17")</value>
+  </data>
+  <data name="PrintPunches_paperSize_Text" xml:space="preserve">
+    <value>Tabloid (11"x17")</value>
+  </data>
+  <data name="PrintDescriptions_paperSizeLabel_Text" xml:space="preserve">
+    <value>Dimensiune Hârtie:</value>
+  </data>
+  <data name="PrintPunches_paperSizeLabel_Text" xml:space="preserve">
+    <value>Dimensiune Hârtie:</value>
+  </data>
+  <data name="PrintDescriptions_margins_Text" xml:space="preserve">
+    <value>Sus: 0.55", Jos: 0.55", Stânga: 0.55", Dreapta: 0.55"</value>
+  </data>
+  <data name="PrintPunches_margins_Text" xml:space="preserve">
+    <value>Sus: 0.55", Jos: 0.55", Stânga: 0.55", Dreapta: 0.55"</value>
+  </data>
+  <data name="PrintDescriptions_marginsLabel_Text" xml:space="preserve">
+    <value>Margini:</value>
+  </data>
+  <data name="PrintPunches_marginsLabel_Text" xml:space="preserve">
+    <value>Margini:</value>
+  </data>
+  <data name="PrintDescriptions_orientationLabel_Text" xml:space="preserve">
+    <value>Direcție</value>
+  </data>
+  <data name="PrintPunches_orientationLabel_Text" xml:space="preserve">
+    <value>Direcție</value>
+  </data>
+  <data name="PrintDescriptions_descriptionKindCombo_Items" xml:space="preserve">
+    <value>Valori implicite traseu</value>
+  </data>
+  <data name="PrintDescriptions_descriptionKindCombo_Items3" xml:space="preserve">
+    <value>Simboluri și Text</value>
+  </data>
+  <data name="PrintDescriptions_descriptionTypeLabel_Text" xml:space="preserve">
+    <value>Tipul descrierii:</value>
+  </data>
+  <data name="PrintDescriptions_lineSizeLabel_Text" xml:space="preserve">
+    <value>Dimensiunea liniei:</value>
+  </data>
+  <data name="PrintDescriptions_descriptionsLabel_Text" xml:space="preserve">
+    <value>descrieri pe traseu</value>
+  </data>
+  <data name="PrintDescriptions_copiesCombo_Items" xml:space="preserve">
+    <value>un exemplar din fiecare traseu</value>
+  </data>
+  <data name="PrintDescriptions_copiesCombo_Items1" xml:space="preserve">
+    <value>o pagină din fiecare traseu</value>
+  </data>
+  <data name="PrintDescriptions_copiesCombo_Items2" xml:space="preserve">
+    <value>mai multe pagini pe fiecare traseu</value>
+  </data>
+  <data name="PrintDescriptions_whatToPrintLabel_Text" xml:space="preserve">
+    <value>Tipărire:</value>
+  </data>
+  <data name="PrintDescriptions_Text" xml:space="preserve">
+    <value>Tipărește Descrieri</value>
+  </data>
+  <data name="PrintPunches_punchCardLayoutButton_Text" xml:space="preserve">
+    <value>Planul Fișei de Compostare...</value>
+  </data>
+  <data name="PunchPatternDialog_formatButton_Text" xml:space="preserve">
+    <value>Planul Fișei de Compostare...</value>
+  </data>
+  <data name="PrintPunches_punchBoxSizeLabel_Text" xml:space="preserve">
+    <value>Dimensiune căsuță compostare:</value>
+  </data>
+  <data name="PrintPunches_descriptionsLabel_Text" xml:space="preserve">
+    <value>Exemplare:</value>
+  </data>
+  <data name="PrintPunches_Text" xml:space="preserve">
+    <value>Tiparire Fișe de Compostare</value>
+  </data>
+  <data name="PunchcardLayoutDialog_boxOrderGroupBox_Text" xml:space="preserve">
+    <value>Ordine Casuțe</value>
+  </data>
+  <data name="PunchcardLayoutDialog_sizeGroupBox_Text" xml:space="preserve">
+    <value>Dimensiune</value>
+  </data>
+  <data name="PunchcardLayoutDialog_columnsLabel_Text" xml:space="preserve">
+    <value>Coloane:</value>
+  </data>
+  <data name="PunchcardLayoutDialog_rowsLabel_Text" xml:space="preserve">
+    <value>Rânduri:</value>
+  </data>
+  <data name="PunchcardLayoutDialog_Text" xml:space="preserve">
+    <value>Planul Fișei de Compostare</value>
+  </data>
+  <data name="PunchPatternDialog_punchPatternsLabel_Text" xml:space="preserve">
+    <value>Click pe codul postului in partea stângă a listei, și proiectați modelul de compostare în partea dreaptă. Codurile roșii indică posturile care nu au nici un model de compostare definit.</value>
+  </data>
+  <data name="PunchPatternDialog_Text" xml:space="preserve">
+    <value>Model Compostare</value>
+  </data>
+  <data name="ReportForm_printButton_Text" xml:space="preserve">
+    <value>Tipărire...</value>
+  </data>
+  <data name="TeamVariationsForm_buttonPrint_Text" xml:space="preserve">
+    <value>Tipărire...</value>
+  </data>
+  <data name="ReportForm_previewButton_Text" xml:space="preserve">
+    <value>Previzualizare Tipărire...</value>
+  </data>
+  <data name="TeamVariationsForm_buttonPrintPreview_Text" xml:space="preserve">
+    <value>Previzualizare Tipărire...</value>
+  </data>
+  <data name="ReportForm_okButton_Text" xml:space="preserve">
+    <value>Închide</value>
+  </data>
+  <data name="TeamVariationsForm_buttonClose_Text" xml:space="preserve">
+    <value>Închide</value>
+  </data>
+  <data name="ReportText_ColumnHeader_Climb" xml:space="preserve">
+    <value>Diferență de nivel</value>
+  </data>
+  <data name="ReportText_ColumnHeader_Code" xml:space="preserve">
+    <value>Cod</value>
+  </data>
+  <data name="ReportText_ColumnHeader_Column" xml:space="preserve">
+    <value>Coloană</value>
+  </data>
+  <data name="ReportText_ColumnHeader_Control" xml:space="preserve">
+    <value>Post de control</value>
+  </data>
+  <data name="ReportText_ColumnHeader_ControlCodes" xml:space="preserve">
+    <value>Coduri post</value>
+  </data>
+  <data name="ReportText_ColumnHeader_Controls" xml:space="preserve">
+    <value>Posturi de control</value>
+  </data>
+  <data name="ReportText_ColumnHeader_Course" xml:space="preserve">
+    <value>Traseu</value>
+  </data>
+  <data name="ReportText_ColumnHeader_Distance" xml:space="preserve">
+    <value>Distanță</value>
+  </data>
+  <data name="ReportText_ColumnHeader_Item" xml:space="preserve">
+    <value>Element</value>
+  </data>
+  <data name="ReportText_ColumnHeader_Leg" xml:space="preserve">
+    <value>Secțiune</value>
+  </data>
+  <data name="ReportText_ColumnHeader_Length" xml:space="preserve">
+    <value>Lungime</value>
+  </data>
+  <data name="ReportText_ColumnHeader_Load" xml:space="preserve">
+    <value>Încărcare</value>
+  </data>
+  <data name="ReportText_ColumnHeader_Location" xml:space="preserve">
+    <value>Locație</value>
+  </data>
+  <data name="ReportText_ColumnHeader_NumberOfCourses" xml:space="preserve">
+    <value>Număr Trasee</value>
+  </data>
+  <data name="ReportText_ColumnHeader_Reason" xml:space="preserve">
+    <value>Motiv</value>
+  </data>
+  <data name="ReportText_ColumnHeader_SameSymbol" xml:space="preserve">
+    <value>Același simbol?</value>
+  </data>
+  <data name="ReportText_CourseSummary_Title" xml:space="preserve">
+    <value>Rezumatul traseelor - {0}</value>
+  </data>
+  <data name="ReportText_CrossRef_Title" xml:space="preserve">
+    <value>Referințe încrucișate posturi de control - {0}</value>
+  </data>
+  <data name="ReportText_EventAudit_CloseTogetherControls" xml:space="preserve">
+    <value>Posturi de Control Apropiate</value>
+  </data>
+  <data name="ReportText_EventAudit_CloseTogetherExplanation" xml:space="preserve">
+    <value>Tabelul următor afișează perechile de posturi de control care sunt mai aproape de {0} metri unul de celălalt. Coloana "același simbol" afișează dacă cele două posturi au același simbol primar (coloana D).</value>
+  </data>
+  <data name="ReportText_EventAudit_MissingBoxes" xml:space="preserve">
+    <value>Căsuțe Fără Descriere</value>
+  </data>
+  <data name="ReportText_EventAudit_MissingClimb" xml:space="preserve">
+    <value>Traseele normale trebuie să indice diferența de nivel aferentă</value>
+  </data>
+  <data name="ReportText_EventAudit_MissingD" xml:space="preserve">
+    <value>Toate posturile trebuie să aibă un simbol principal în coloana D</value>
+  </data>
+  <data name="ReportText_EventAudit_MissingEBetween" xml:space="preserve">
+    <value>Când se folosește "între" în coloana G, cele două repere/simboluri trebuiesc specificate în coloanele D și E</value>
+  </data>
+  <data name="ReportText_EventAudit_MissingEJunction" xml:space="preserve">
+    <value>Când se folosește "bifurcație" sau "intersecție" în coloana F, cele două elemente/simboluri trebuiesc specificate în coloanele D and E</value>
+  </data>
+  <data name="ReportText_EventAudit_MissingFinish" xml:space="preserve">
+    <value>Traseele normale trebuie să aibă un cerc de sosire</value>
+  </data>
+  <data name="ReportText_EventAudit_MissingItems" xml:space="preserve">
+    <value>Elemente Lipsă în Trasee</value>
+  </data>
+  <data name="ReportText_EventAudit_MissingLoad" xml:space="preserve">
+    <value>Traseul ar trebui să aibă estimarea încărcării cu participanți</value>
+  </data>
+  <data name="ReportText_EventAudit_MissingPunch" xml:space="preserve">
+    <value>Nu a fost definit nici un model de compostare</value>
+  </data>
+  <data name="ReportText_EventAudit_MissingPunchPatterns" xml:space="preserve">
+    <value>Modele de Compostare Lipsă</value>
+  </data>
+  <data name="ReportText_EventAudit_MissingScore" xml:space="preserve">
+    <value>Traseul cu scor ar trebui să aibă setat un scor individual pentru toate posturile sau pentru nici un post de control</value>
+  </data>
+  <data name="ReportText_EventAudit_MissingScores" xml:space="preserve">
+    <value>Scoruri Lipsă</value>
+  </data>
+  <data name="ReportText_EventAudit_MissingStart" xml:space="preserve">
+    <value>Traseele normale trebuie sa aibă un triunghi de start</value>
+  </data>
+  <data name="ReportText_EventAudit_MissingStartScore" xml:space="preserve">
+    <value>Traseele cu scor trebuie sa aibă un triunghi de start</value>
+  </data>
+  <data name="ReportText_EventAudit_NoProblems" xml:space="preserve">
+    <value>Nu a fost identificată nici o problemă.</value>
+  </data>
+  <data name="ReportText_EventAudit_Title" xml:space="preserve">
+    <value>Verificare Eveniment {0}</value>
+  </data>
+  <data name="ReportText_EventAudit_UnusedControls" xml:space="preserve">
+    <value>Posturi Control Nefolosite</value>
+  </data>
+  <data name="UnusedControls_Text" xml:space="preserve">
+    <value>Posturi Control Nefolosite</value>
+  </data>
+  <data name="ReportText_EventAudit_UnusedControlsExplanation" xml:space="preserve">
+    <value>Următoarele posturi de control sunt prezente în lista tuturor posturilor dar nu sunt folosite în nici un traseu. Pentru a le elimina, accesați comanda "Eliminare Posturi Control Nefolosite" din meniul "Eveniment". Aceste posturi de control nu vor mai fi luate în considerare în continuare în acest raport.</value>
+  </data>
+  <data name="ReportText_LegLength_Average" xml:space="preserve">
+    <value>Media</value>
+  </data>
+  <data name="ReportText_LegLength_Title" xml:space="preserve">
+    <value>Raport Lungimi Secțiuni - {0}</value>
+  </data>
+  <data name="ReportText_Load_ControlLoadSection" xml:space="preserve">
+    <value>Încărcarea posturilor de control</value>
+  </data>
+  <data name="ReportText_Load_LegLoadSection" xml:space="preserve">
+    <value>Încărcare Secțiuni</value>
+  </data>
+  <data name="ReportText_Load_MissingLoads" xml:space="preserve">
+    <value>Unele sau toate traseele nu au specificate încărcarea de participanți. Încărcările afișate dedesubt pot fi incorecte sau pot avea lipsuri din acest motiv. Pentru a introduce încărcarea cu participanți, accesați "Încărcare Participanți" din meniul "Traseu".</value>
+  </data>
+  <data name="ReportText_Load_OnlyLegsMoreThanOnce" xml:space="preserve">
+    <value>(doar secțiunile folosite în cel puțin un traseu apar în tabelul următor)</value>
+  </data>
+  <data name="ReportText_Load_Title" xml:space="preserve">
+    <value>Rezumat încărcare participanți - {0}</value>
+  </data>
+  <data name="ReportText_Load_Warning" xml:space="preserve">
+    <value>ATENȚIE:</value>
+  </data>
+  <data name="SelectionDescriptionText_AwayFromControl" xml:space="preserve">
+    <value>departe de postul de control</value>
+  </data>
+  <data name="SelectionDescriptionText_CompetitorLoad" xml:space="preserve">
+    <value>Încărcarea cu participanți:</value>
+  </data>
+  <data name="SelectionDescriptionText_ControlsInUse" xml:space="preserve">
+    <value>Posturi folosite:</value>
+  </data>
+  <data name="SelectionDescriptionText_ControlsNotInUse" xml:space="preserve">
+    <value>Posturi nefolosite:</value>
+  </data>
+  <data name="SelectionDescriptionText_Control_Plural" xml:space="preserve">
+    <value>posturi de control</value>
+  </data>
+  <data name="SelectionDescriptionText_Control_Singular" xml:space="preserve">
+    <value>post de control</value>
+  </data>
+  <data name="SelectionDescriptionText_CourseList_AllCourses" xml:space="preserve">
+    <value>Toate traseele</value>
+  </data>
+  <data name="SelectionDescriptionText_CourseName" xml:space="preserve">
+    <value>Traseul "{0}"</value>
+  </data>
+  <data name="SelectionDescriptionText_CustomizedSymbolDesc" xml:space="preserve">
+    <value>Descriere personalizată simbol</value>
+  </data>
+  <data name="SelectionDescriptionText_EntireLeg" xml:space="preserve">
+    <value>întreaga secțiune</value>
+  </data>
+  <data name="SelectionDescriptionText_FinishFunnel" xml:space="preserve">
+    <value>culoar de sosire</value>
+  </data>
+  <data name="SelectionDescriptionText_Finish_Plural" xml:space="preserve">
+    <value>sosiri</value>
+  </data>
+  <data name="SelectionDescriptionText_Finish_Singular" xml:space="preserve">
+    <value>sosire</value>
+  </data>
+  <data name="SelectionDescriptionText_Flagging" xml:space="preserve">
+    <value>Semnalizare:</value>
+  </data>
+  <data name="SelectionDescriptionText_IntoControl" xml:space="preserve">
+    <value>în postul de control</value>
+  </data>
+  <data name="SelectionDescriptionText_IntoFinishFunnel" xml:space="preserve">
+    <value>în culoarul de sosire</value>
+  </data>
+  <data name="SelectionDescriptionText_LineHeight" xml:space="preserve">
+    <value>Înălțime linie:</value>
+  </data>
+  <data name="SelectionDescriptionText_Location" xml:space="preserve">
+    <value>Locația:</value>
+  </data>
+  <data name="SelectionDescriptionText_MandCrossing_Plural" xml:space="preserve">
+    <value>puncte de trecere obligatorii</value>
+  </data>
+  <data name="SelectionDescriptionText_MandCrossing_Singular" xml:space="preserve">
+    <value>punct de trecere obligatoriu</value>
+  </data>
+  <data name="SelectionDescriptionText_None" xml:space="preserve">
+    <value>nici unul</value>
+  </data>
+  <data name="SelectionDescriptionText_SpecialName_Forbidden" xml:space="preserve">
+    <value>Rută interzisă</value>
+  </data>
+  <data name="SelectionDescriptionText_SpecialName_OOB" xml:space="preserve">
+    <value>Zonă înafara limitelor</value>
+  </data>
+  <data name="SelectionDescriptionText_Start_Plural" xml:space="preserve">
+    <value>starturi</value>
+  </data>
+  <data name="SelectionDescriptionText_Start_Singular" xml:space="preserve">
+    <value>start</value>
+  </data>
+  <data name="SelectionDescriptionText_TextDescription" xml:space="preserve">
+    <value>Descriere textuală:</value>
+  </data>
+  <data name="SelectionDescriptionText_TextLine" xml:space="preserve">
+    <value>Linie de text</value>
+  </data>
+  <data name="SelectionDescriptionText_TextLine_AboveAllCourses" xml:space="preserve">
+    <value>Apare deasupra {0}, în toate traseele care conțin {0}</value>
+  </data>
+  <data name="SelectionDescriptionText_TextLine_AboveThisCourse" xml:space="preserve">
+    <value>Apare deasupra {0}, doar în acest traseu</value>
+  </data>
+  <data name="SelectionDescriptionText_TextLine_BelowAllCourses" xml:space="preserve">
+    <value>Apare sub {0}, în toate traseele care conțin {0}</value>
+  </data>
+  <data name="SelectionDescriptionText_TextLine_BelowThisCourse" xml:space="preserve">
+    <value>Apare sub {0}, doar în acest traseu</value>
+  </data>
+  <data name="SelectionDescriptionText_TotalControls" xml:space="preserve">
+    <value>Total posturi de control:</value>
+  </data>
+  <data name="SelectionDescriptionText_TotalScore" xml:space="preserve">
+    <value>Total scor:</value>
+  </data>
+  <data name="SelectionDescriptionText_UsedInCourses" xml:space="preserve">
+    <value>Folosit în aceste trasee:</value>
+  </data>
+  <data name="SetPrintAreaDialog_okButton_Text" xml:space="preserve">
+    <value>Efectuat</value>
+  </data>
+  <data name="SetPrintAreaDialog_setPrintAreaLabel_Text" xml:space="preserve">
+    <value>Setați zona de tipărire dorită prin tragerea cu mouse-ul.</value>
+  </data>
+  <data name="SetUILanguage_introLabel_Text" xml:space="preserve">
+    <value>Selectați limba în care să apară interfața utilizator a programului Purple Pen (meniuri, ferestre, etc.)</value>
+  </data>
+  <data name="SetUILanguage_Text" xml:space="preserve">
+    <value>Limba Programului</value>
+  </data>
+  <data name="StatusBarText_DefaultStatus" xml:space="preserve">
+    <value>Butonul stâng mouse: selecție obiect;   Butonul drept mouse: mutare hartă;   Învârtire rotiță mouse: marire/micșorare</value>
+  </data>
+  <data name="StatusBarText_DefaultRectangle" xml:space="preserve">
+    <value>Butonul stâng mouse: mutare/dimensionare dreptunghi;   Butonul drept mouse: mutare hartă;   Învârtire rotiță mouse: marire/micșorare</value>
+  </data>
+  <data name="StatusBarText_DragObject" xml:space="preserve">
+    <value>Țineți apăsat butonul stâng al mouse-ului și trageți pentru a muta obiectul selectat</value>
+  </data>
+  <data name="StatusBarText_DragCorner" xml:space="preserve">
+    <value>Țineți apăsat butonul stâng al mouse-ului și trageți punctele din colțuri pentru al muta</value>
+  </data>
+  <data name="StatusBarText_DraggingObject" xml:space="preserve">
+    <value>Mutați obiectul în locația dorită si eliberați butonul mouse-ului</value>
+  </data>
+  <data name="StatusBarText_DraggingCorner" xml:space="preserve">
+    <value>Mutați punctul din colț în locația dorită si eliberați butonul mouse-ului</value>
+  </data>
+  <data name="StatusBarText_AddingControl" xml:space="preserve">
+    <value>Click butonul stâng mouse pentru a plasa un nou post de control</value>
+  </data>
+  <data name="StatusBarText_AddingExistingControl" xml:space="preserve">
+    <value>Click butonul stâng mouse pentru a adăuga la traseu postul de control "{0}"</value>
+  </data>
+  <data name="StatusBarText_AddingStart" xml:space="preserve">
+    <value>Click butonul stâng mouse pentru a plasa un nou start</value>
+  </data>
+  <data name="StatusBarText_AddingExistingStart" xml:space="preserve">
+    <value>Click butonul stâng mouse pentru a adăuga la traseu un start pre-existent</value>
+  </data>
+  <data name="StatusBarText_AddingFinish" xml:space="preserve">
+    <value>Click butonul stâng mouse pentru a plasa o nouă sosire</value>
+  </data>
+  <data name="StatusBarText_AddingExistingFinish" xml:space="preserve">
+    <value>Click buton stâng mouse pentru a adăuga la traseu o sosire pre-existentă</value>
+  </data>
+  <data name="StatusBarText_AddingCrossingPoint" xml:space="preserve">
+    <value>Click buton stâng mouse pentru a plasa un nou punct de trecere obligatoriu</value>
+  </data>
+  <data name="StatusBarText_AddingExistingCrossingPoint" xml:space="preserve">
+    <value>Click buton stâng mouse pentru a adăuga la traseu un punct de trecere obligatoriu pre-existent</value>
+  </data>
+  <data name="StatusBarText_AddingObject" xml:space="preserve">
+    <value>Click buton stâng mouse pentru a plasa un nou obiect</value>
+  </data>
+  <data name="StatusBarText_AddingBend" xml:space="preserve">
+    <value>Click buton stâng mouse în locația de cotitură</value>
+  </data>
+  <data name="StatusBarText_AddingCorner" xml:space="preserve">
+    <value>Click buton stâng mouse pentru a adăuga un nou colț</value>
+  </data>
+  <data name="StatusBarText_DeletingBend" xml:space="preserve">
+    <value>Click buton stâng mouse pe cotitură pentru al șterge</value>
+  </data>
+  <data name="StatusBarText_DeletingCorner" xml:space="preserve">
+    <value>Click mouse stâng mouse pe un colț pentru al șterge</value>
+  </data>
+  <data name="StatusBarText_RemovingControlGap" xml:space="preserve">
+    <value>Click buton stâng mouse pe un spațiu gol în cercul postului de control pentru a șterge golul.</value>
+  </data>
+  <data name="StatusBarText_RemovingLegGap" xml:space="preserve">
+    <value>Click buton stâng mouse pe un spațiu gol din secțiune pentru a-l elimina.</value>
+  </data>
+  <data name="StatusBarText_SizeRectangle" xml:space="preserve">
+    <value>Țineți apăsat butonul stâng al mouse-ului și trageți pentru a dimensiona obiectul selectat</value>
+  </data>
+  <data name="StatusBarText_SizingRectangle" xml:space="preserve">
+    <value>Mutați marginea(marginile) în locația dorită și eliberați butonul mouse-ului</value>
+  </data>
+  <data name="StatusBarText_AddingDescription" xml:space="preserve">
+    <value>Țineți apăsat butonul stâng al mouse-ului și trageți pentru a crea descrierea posturilor de control</value>
+  </data>
+  <data name="StatusBarText_RotatingObject" xml:space="preserve">
+    <value>Click buton stâng mouse când punctul de intersecție este rotit la unghiul corect</value>
+  </data>
+  <data name="StatusBarText_AddingLineArea" xml:space="preserve">
+    <value>Țineți apăsat butonul stâng mouse și trageți pentru a adăuga un segment de linie; click buton stânga mouse pentru a termina adaugarea obiectului</value>
+  </data>
+  <data name="StatusBarText_AddingText" xml:space="preserve">
+    <value>Țineți apăsat butonul stâng mouse și trageți pentru a crea textul</value>
+  </data>
+  <data name="UnusedControls_okButton_Text" xml:space="preserve">
+    <value>Ștergere</value>
+  </data>
+  <data name="UnusedControls_unusedControlsLabel_Text" xml:space="preserve">
+    <value>Următoarele posturi de control sunt în colecția de posturi dar nu sunt utilizare în nici un traseu. Click Ștergere pentru a elimina toate posturile de control selectate.</value>
+  </data>
+</root>

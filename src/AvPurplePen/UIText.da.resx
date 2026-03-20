@@ -1,0 +1,2635 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AboutForm_copyrightLabel_Text" xml:space="preserve">
+    <value>Copyright © af Peter Golde</value>
+  </data>
+  <data name="AboutForm_freeLabel_Text" xml:space="preserve">
+    <value>Purple Pen er fri software og må kopieres og deles.</value>
+  </data>
+  <data name="AboutForm_disclaimerLabel_Text" xml:space="preserve">
+    <value>DENNE SOFTWARE ER GIVET AF COPYRIGHT HOLDERNE OG BIDRAGER SOM DET ER OG ETHVERT UDTRYK ELLER  STILTIENDE GARANTI, INKLUSIV, MEN IKKE BEGRÆNSET TIL DE STILTIENDE GARANTIER AF SALGBARHED OG  TILPASSE ET BESTEMT FORMÅL ER FRASAGT.</value>
+  </data>
+  <data name="AboutForm_okButton_Text" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="InitialScreen_okButton_Text" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="LicenseForm_okButton_Text" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="MissingFonts_okButton_Text" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="OkCancelDialog_okButton_Text" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="AboutForm_creditsButton_Text" xml:space="preserve">
+    <value>Bidragsydere</value>
+  </data>
+  <data name="AboutForm_licenseButton_Text" xml:space="preserve">
+    <value>Se den fulde licens</value>
+  </data>
+  <data name="AboutForm_Text" xml:space="preserve">
+    <value>Om Purple Pen</value>
+  </data>
+  <data name="AddCourse_firstControlLabel_Text" xml:space="preserve">
+    <value>Første kontrolnummer:</value>
+  </data>
+  <data name="AddCourse_descriptionAppearanceLabel_Text" xml:space="preserve">
+    <value>Beskrivelsesudseende:</value>
+  </data>
+  <data name="AllControlsProperties_descriptionAppearanceLabel_Text" xml:space="preserve">
+    <value>Beskrivelsesudseende:</value>
+  </data>
+  <data name="AddCourse_mapScaleLabel_Text" xml:space="preserve">
+    <value>Kort udskrivnings scala:</value>
+  </data>
+  <data name="AllControlsProperties_printingScaleLabel_Text" xml:space="preserve">
+    <value>Kort udskrivnings scala:</value>
+  </data>
+  <data name="AddCourse_oneToPrefixLabel_Text" xml:space="preserve">
+    <value>1: </value>
+  </data>
+  <data name="AllControlsProperties_oneToPrefix_Text" xml:space="preserve">
+    <value>1: </value>
+  </data>
+  <data name="AddCourse_descKindCombo_Items" xml:space="preserve">
+    <value>Symboler</value>
+  </data>
+  <data name="AllControlsProperties_descKindCombo_Items" xml:space="preserve">
+    <value>Symboler</value>
+  </data>
+  <data name="PrintDescriptions_descriptionKindCombo_Items1" xml:space="preserve">
+    <value>Symboler</value>
+  </data>
+  <data name="AddCourse_descKindCombo_Items1" xml:space="preserve">
+    <value>Tekst</value>
+  </data>
+  <data name="AllControlsProperties_descKindCombo_Items1" xml:space="preserve">
+    <value>Tekst</value>
+  </data>
+  <data name="ChangeText_groupBox3_Text" xml:space="preserve">
+    <value>Tekst</value>
+  </data>
+  <data name="EnterSymbolText_textColumn_HeaderText" xml:space="preserve">
+    <value>Tekst</value>
+  </data>
+  <data name="MainFrame_addTextMenu_Text" xml:space="preserve">
+    <value>Tekst</value>
+  </data>
+  <data name="MainFrame_textToolStripMenuItem_Text" xml:space="preserve">
+    <value>Tekst</value>
+  </data>
+  <data name="PrintDescriptions_descriptionKindCombo_Items2" xml:space="preserve">
+    <value>Tekst</value>
+  </data>
+  <data name="SelectionDescriptionText_SpecialName_Text" xml:space="preserve">
+    <value>Tekst</value>
+  </data>
+  <data name="AddCourse_labelKindLabel_Text" xml:space="preserve">
+    <value>Kontrolcirkelmærkater:</value>
+  </data>
+  <data name="AddCourse_labelKindCombo_Items" xml:space="preserve">
+    <value>Sekvens nummer (3)</value>
+  </data>
+  <data name="AddCourse_labelKindCombo_Items1" xml:space="preserve">
+    <value>Kontrolkode (145)</value>
+  </data>
+  <data name="AddCourse_labelKindCombo_Items2" xml:space="preserve">
+    <value>Sekvens og kode (3-145)</value>
+  </data>
+  <data name="AddCourse_labelKindCombo_Items3" xml:space="preserve">
+    <value>Sekvens og score (3(30))</value>
+  </data>
+  <data name="AddCourse_labelKindCombo_Items4" xml:space="preserve">
+    <value>Kode og score (145(30))</value>
+  </data>
+  <data name="AddCourse_scoreColumnLabel_Text" xml:space="preserve">
+    <value>Vis point i:</value>
+  </data>
+  <data name="AddCourse_scoreColumnCombo_Items" xml:space="preserve">
+    <value>Kolonne A</value>
+  </data>
+  <data name="AddCourse_scoreColumnCombo_Items1" xml:space="preserve">
+    <value>Kolonne B</value>
+  </data>
+  <data name="AddCourse_scoreColumnCombo_Items2" xml:space="preserve">
+    <value>Kolonne H</value>
+  </data>
+  <data name="AddCourse_scoreColumnCombo_Items3" xml:space="preserve">
+    <value>(Vis ikke)</value>
+  </data>
+  <data name="AddCourse_groupBox1_Text" xml:space="preserve">
+    <value>Udseende</value>
+  </data>
+  <data name="AllControlsProperties_appearanceGroupBox_Text" xml:space="preserve">
+    <value>Udseende</value>
+  </data>
+  <data name="ChangeText_groupBox1_Text" xml:space="preserve">
+    <value>Udseende</value>
+  </data>
+  <data name="CreatePdfCourses_groupBoxAppearance_Text" xml:space="preserve">
+    <value>Udseende</value>
+  </data>
+  <data name="LinePropertiesDialog_groupBox2_Text" xml:space="preserve">
+    <value>Udseende</value>
+  </data>
+  <data name="PrintCourses_groupBoxAppearance_Text" xml:space="preserve">
+    <value>Udseende</value>
+  </data>
+  <data name="PrintDescriptions_layoutGroup_Text" xml:space="preserve">
+    <value>Udseende</value>
+  </data>
+  <data name="PrintPunches_layoutGroup_Text" xml:space="preserve">
+    <value>Udseende</value>
+  </data>
+  <data name="AddCourse_secondaryTitleDescription_Text" xml:space="preserve">
+    <value>Den følgende (valgfrie) tekst vil fremtræde på den anden linje af kontrolbeskrivelses siden:</value>
+  </data>
+  <data name="AddCourse_secondaryTitleGroup_Text" xml:space="preserve">
+    <value>Klasse liste / Sekundær titel</value>
+  </data>
+  <data name="AddCourse_lengthLabel_Text" xml:space="preserve">
+    <value>Længde:</value>
+  </data>
+  <data name="SelectionDescriptionText_Length" xml:space="preserve">
+    <value>Længde:</value>
+  </data>
+  <data name="AddCourse_climbLabel_Text" xml:space="preserve">
+    <value>Klatre:</value>
+  </data>
+  <data name="SelectionDescriptionText_Climb" xml:space="preserve">
+    <value>Klatre:</value>
+  </data>
+  <data name="AddCourse_courseTypeLabel_Text" xml:space="preserve">
+    <value>Kursustype:</value>
+  </data>
+  <data name="AddCourse_courseNameLabel_Text" xml:space="preserve">
+    <value>Kursusnavn:</value>
+  </data>
+  <data name="AddCourse_courseKindCombo_Items" xml:space="preserve">
+    <value>Normal kursus</value>
+  </data>
+  <data name="AddCourse_courseKindCombo_Items1" xml:space="preserve">
+    <value>Score kursus</value>
+  </data>
+  <data name="AddCourse_metersSuffix_Text" xml:space="preserve">
+    <value>meter</value>
+  </data>
+  <data name="AddCourse_kmSuffix_Text" xml:space="preserve">
+    <value>km</value>
+  </data>
+  <data name="AddCourse_Text" xml:space="preserve">
+    <value>Nyt kursus</value>
+  </data>
+  <data name="CommandNameText_NewCourse" xml:space="preserve">
+    <value>Nyt kursus</value>
+  </data>
+  <data name="AddForkDialog_labelWhichType_Text" xml:space="preserve">
+    <value>Hvilken type variation ønsker du at tilføje?</value>
+  </data>
+  <data name="AddForkDialog_radioButtonFork_Text" xml:space="preserve">
+    <value>Fork</value>
+  </data>
+  <data name="AddForkDialog_radioButtonLoop_Text" xml:space="preserve">
+    <value>Løkke</value>
+  </data>
+  <data name="AddForkDialog_labelNumberBranches_Text" xml:space="preserve">
+    <value>Antal grene:</value>
+  </data>
+  <data name="AddForkDialog_comboBoxNumberBranches_Items" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="AddForkDialog_comboBoxNumberBranches_Items1" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="AddForkDialog_comboBoxNumberBranches_Items2" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="AddForkDialog_comboBoxNumberBranches_Items3" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="AddForkDialog_comboBoxNumberBranches_Items4" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="AddForkDialog_comboBoxNumberBranches_Items5" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="AddForkDialog_comboBoxNumberBranches_Items6" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="AddForkDialog_comboBoxNumberBranches_Items7" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="AddForkDialog_comboBoxNumberBranches_Items8" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="AddForkDialog_labelNumberLoops_Text" xml:space="preserve">
+    <value>Antal løkker:</value>
+  </data>
+  <data name="AddForkDialog_labelSummary_Text" xml:space="preserve">
+    <value>Løkke kontrollen vil blive besøgt 4 gange. Der er 24 forskellige veje gennem løkkerne.</value>
+  </data>
+  <data name="AddForkDialog_Text" xml:space="preserve">
+    <value>Tilføj variation</value>
+  </data>
+  <data name="CommandNameText_AddVariation" xml:space="preserve">
+    <value>Tilføj variation</value>
+  </data>
+  <data name="MainFrame_addVariationToolStripButton_Text" xml:space="preserve">
+    <value>Tilføj variation</value>
+  </data>
+  <data name="AddTextLine_textLineLabel_Text" xml:space="preserve">
+    <value>Indtast tekst at placere på den separate linje af kontrolbeskrivelserne:</value>
+  </data>
+  <data name="AddTextLine_coursesLabel_Text" xml:space="preserve">
+    <value>Kurser:</value>
+  </data>
+  <data name="AddTextLine_positionLabel_Text" xml:space="preserve">
+    <value>Position:</value>
+  </data>
+  <data name="AddTextLine_comboBoxPosition_Items" xml:space="preserve">
+    <value>Over (0)</value>
+  </data>
+  <data name="AddTextLine_comboBoxPosition_Items1" xml:space="preserve">
+    <value>Under (0)</value>
+  </data>
+  <data name="AddTextLine_comboBoxCourses_Items" xml:space="preserve">
+    <value>Kun dette kursus</value>
+  </data>
+  <data name="AddTextLine_comboBoxCourses_Items1" xml:space="preserve">
+    <value>Alle kurser med (0)</value>
+  </data>
+  <data name="AddTextLine_Text" xml:space="preserve">
+    <value>Tilføj tekstlinje</value>
+  </data>
+  <data name="CommandNameText_AddTextLine" xml:space="preserve">
+    <value>Tilføj tekstlinje</value>
+  </data>
+  <data name="AllControlsProperties_allControlsPropertiesLabel_Text" xml:space="preserve">
+    <value>Disse indstillinger kontrollerer hvordan kortet og beskrivelserne for alle kontroller er udskrevet.</value>
+  </data>
+  <data name="AllControlsProperties_Text" xml:space="preserve">
+    <value>Alle kontrollers egenskaber</value>
+  </data>
+  <data name="AutoNumbering_disallowInvertibleCheckBox_Text" xml:space="preserve">
+    <value>Forbyd kode der kan læses op-ned (f.eks. "68"/"89")</value>
+  </data>
+  <data name="NewEventNumbering_disallowInvertibleCheckBox_Text" xml:space="preserve">
+    <value>Forbyd kode der kan læses op-ned (f.eks. "68"/"89")</value>
+  </data>
+  <data name="AutoNumbering_renumberExistingRadioButton_Text" xml:space="preserve">
+    <value>Omnummerer eksisterende kontroller også</value>
+  </data>
+  <data name="AutoNumbering_newControlsOnlyRadioButton_Text" xml:space="preserve">
+    <value>Tilføj disse indstillinger til nyligt pårettede kontroller alene</value>
+  </data>
+  <data name="AutoNumbering_existingControlsGroupBox_Text" xml:space="preserve">
+    <value>Eksisterende kontroller</value>
+  </data>
+  <data name="AutoNumbering_automaticNumberingLabel_Text" xml:space="preserve">
+    <value>Nyligt oprettede kontroller bliver automatisk nummereret ifølge de følgende indstillinger.</value>
+  </data>
+  <data name="AutoNumbering_startingCodeLabel_Text" xml:space="preserve">
+    <value>Begyndelseskode:</value>
+  </data>
+  <data name="NewEventNumbering_startingCodeLabel_Text" xml:space="preserve">
+    <value>Begyndelseskode:</value>
+  </data>
+  <data name="AutoNumbering_Text" xml:space="preserve">
+    <value>Automatisk nummerering</value>
+  </data>
+  <data name="CommandNameText_AutoNumbering" xml:space="preserve">
+    <value>Automatisk nummerering</value>
+  </data>
+  <data name="ChangeAllCodes_OldCode_HeaderText" xml:space="preserve">
+    <value>Oprindelig kode</value>
+  </data>
+  <data name="ChangeAllCodes_NewCode_HeaderText" xml:space="preserve">
+    <value>Ny kode</value>
+  </data>
+  <data name="ChangeAllCodes_changeControlCodesLabel_Text" xml:space="preserve">
+    <value>For at ændre koden for en eller flere kontroller i "Ny kode" kolonnenog indtast den nye kode. </value>
+  </data>
+  <data name="ChangeAllCodes_Text" xml:space="preserve">
+    <value>Ændr kontrolkoder</value>
+  </data>
+  <data name="ChangeCourseOrder_moveDownButton_Text" xml:space="preserve">
+    <value>Flyt ned</value>
+  </data>
+  <data name="ChangeCourseOrder_courseOrderLabel_Text" xml:space="preserve">
+    <value>Brug "Flyt op" knapperne for at ændre rækkefølgen kurser listes i brugergrænsefladen, rapporter og udskrivning.</value>
+  </data>
+  <data name="ChangeCourseOrder_moveUpButton_Text" xml:space="preserve">
+    <value>Flyt op</value>
+  </data>
+  <data name="ChangeCourseOrder_Text" xml:space="preserve">
+    <value>Kursusorden</value>
+  </data>
+  <data name="ChangeMapFile_mapFileDisplay_Text" xml:space="preserve">
+    <value>uværende kortfil</value>
+  </data>
+  <data name="ChangeMapFile_buttonChooseFile_Text" xml:space="preserve">
+    <value>&amp;vælg kortfil...</value>
+  </data>
+  <data name="NewEventMapFile_chooseMapFileButton_Text" xml:space="preserve">
+    <value>&amp;vælg kortfil...</value>
+  </data>
+  <data name="ChangeMapFile_openFileDialog_Filter" xml:space="preserve">
+    <value>All kortfiler|*.ocd;*.omap;*.xmap;*.pdf;*.jpeg;*.jpg;*.tiff;*.tif;*.bmp;*.png;*.gif|OCAD files (*.ocd)|*.ocd|Open Orienteering Mapper Files|*.omap;*.xmap|PDF files (*.pdf)|*.pdf|Image files|*.jpeg;*.jpg;*.tiff;*.tif;*.bmp;*.png;*.gif</value>
+  </data>
+  <data name="NewEventMapFile_openFileDialog_Filter" xml:space="preserve">
+    <value>All kortfiler|*.ocd;*.omap;*.xmap;*.pdf;*.jpeg;*.jpg;*.tiff;*.tif;*.bmp;*.png;*.gif|OCAD files (*.ocd)|*.ocd|Open Orienteering Mapper Files|*.omap;*.xmap|PDF files (*.pdf)|*.pdf|Image files|*.jpeg;*.jpg;*.tiff;*.tif;*.bmp;*.png;*.gif</value>
+  </data>
+  <data name="ChangeMapFile_labelDpi_Text" xml:space="preserve">
+    <value>Opløsning:</value>
+  </data>
+  <data name="ChangeMapFile_labelScale_Text" xml:space="preserve">
+    <value>Skala:</value>
+  </data>
+  <data name="SelectLocationsForMove_labelScale_Text" xml:space="preserve">
+    <value>Skala:</value>
+  </data>
+  <data name="ChangeMapFile_labelOneTo_Text" xml:space="preserve">
+    <value>1 :</value>
+  </data>
+  <data name="ChangeMapFile_labelDpi2_Text" xml:space="preserve">
+    <value>punkter pr. tomme</value>
+  </data>
+  <data name="NewEventBitmapScale_dpiLabel_Text" xml:space="preserve">
+    <value>punkter pr. tomme</value>
+  </data>
+  <data name="ChangeMapFile_Text" xml:space="preserve">
+    <value>Kortfil</value>
+  </data>
+  <data name="NewEventMapFile_labelTitle_Text" xml:space="preserve">
+    <value>Kortfil</value>
+  </data>
+  <data name="ChangeSpecialCourses_changeDisplayedCoursesLabel_Text" xml:space="preserve">
+    <value>Vælg de kurser som dette objekt bliver vist på:</value>
+  </data>
+  <data name="ChangeSpecialCourses_Text" xml:space="preserve">
+    <value>Skift viste kurser</value>
+  </data>
+  <data name="CommandNameText_ChangeDisplayedCourses" xml:space="preserve">
+    <value>Skift viste kurser</value>
+  </data>
+  <data name="ChangeText_eventTitleMenuItem_Text" xml:space="preserve">
+    <value>Hændelsestitel</value>
+  </data>
+  <data name="NewEventTitle_labelTitle_Text" xml:space="preserve">
+    <value>Hændelsestitel</value>
+  </data>
+  <data name="ChangeText_courseNameMenuItem_Text" xml:space="preserve">
+    <value>Kursusnavn</value>
+  </data>
+  <data name="CourseLoad_CourseName_HeaderText" xml:space="preserve">
+    <value>Kursusnavn</value>
+  </data>
+  <data name="SelectionDescriptionText_SpecialName_CourseName" xml:space="preserve">
+    <value>Kursusnavn</value>
+  </data>
+  <data name="ChangeText_coursePartMenuItem_Text" xml:space="preserve">
+    <value>Kursusdel</value>
+  </data>
+  <data name="ChangeText_variationMenuItem_Text" xml:space="preserve">
+    <value>Kursus variation</value>
+  </data>
+  <data name="ChangeText_courseLengthMenuItem_Text" xml:space="preserve">
+    <value>Kursuslængde</value>
+  </data>
+  <data name="ChangeText_courseClimbMenuItem_Text" xml:space="preserve">
+    <value>Kursusstigning</value>
+  </data>
+  <data name="ChangeText_classListMenuItem_Text" xml:space="preserve">
+    <value>Klasseliste</value>
+  </data>
+  <data name="ChangeText_printScaleMenuItem_Text" xml:space="preserve">
+    <value>Udskrift skala</value>
+  </data>
+  <data name="NewEventPrintScale_labelTitle_Text" xml:space="preserve">
+    <value>Udskrift skala</value>
+  </data>
+  <data name="ChangeText_relayTeamMenuItem_Text" xml:space="preserve">
+    <value>Relay Team</value>
+  </data>
+  <data name="ChangeText_relayLegMenuItem_Text" xml:space="preserve">
+    <value>Relay ben</value>
+  </data>
+  <data name="ChangeText_fileNameMenuItem_Text" xml:space="preserve">
+    <value>Filnavn</value>
+  </data>
+  <data name="CreateRouteGadget_nameGroupBox_Text" xml:space="preserve">
+    <value>Filnavn</value>
+  </data>
+  <data name="ChangeText_mapFileNameMenuItem_Text" xml:space="preserve">
+    <value>Kortdilnavn</value>
+  </data>
+  <data name="ChangeText_buttonChangeColor_Text" xml:space="preserve">
+    <value>Ændr farve...</value>
+  </data>
+  <data name="ChangeText_label2_Text" xml:space="preserve">
+    <value>Farve:</value>
+  </data>
+  <data name="CourseAppearanceDialog_label9_Text" xml:space="preserve">
+    <value>Farve:</value>
+  </data>
+  <data name="LinePropertiesDialog_label1_Text" xml:space="preserve">
+    <value>Farve:</value>
+  </data>
+  <data name="ChangeText_checkBoxItalic_Text" xml:space="preserve">
+    <value>Kursiv</value>
+  </data>
+  <data name="ChangeText_checkBoxBold_Text" xml:space="preserve">
+    <value>Fed</value>
+  </data>
+  <data name="ChangeText_label1_Text" xml:space="preserve">
+    <value>Skrifttype:</value>
+  </data>
+  <data name="ChangeText_label3_Text" xml:space="preserve">
+    <value>størrelse:</value>
+  </data>
+  <data name="PrinterMargins_labelPaper_Text" xml:space="preserve">
+    <value>størrelse:</value>
+  </data>
+  <data name="ChangeText_labelFontSizeMm_Text" xml:space="preserve">
+    <value>mm</value>
+  </data>
+  <data name="CourseAppearanceDialog_label12_Text" xml:space="preserve">
+    <value>mm</value>
+  </data>
+  <data name="CourseAppearanceDialog_label10_Text" xml:space="preserve">
+    <value>mm</value>
+  </data>
+  <data name="CourseAppearanceDialog_label8_Text" xml:space="preserve">
+    <value>mm</value>
+  </data>
+  <data name="CourseAppearanceDialog_label4_Text" xml:space="preserve">
+    <value>mm</value>
+  </data>
+  <data name="CourseAppearanceDialog_label2_Text" xml:space="preserve">
+    <value>mm</value>
+  </data>
+  <data name="CourseAppearanceDialog_labelMM1_Text" xml:space="preserve">
+    <value>mm</value>
+  </data>
+  <data name="LinePropertiesDialog_labelWidthMm_Text" xml:space="preserve">
+    <value>mm</value>
+  </data>
+  <data name="LinePropertiesDialog_labelGapSizeMm_Text" xml:space="preserve">
+    <value>mm</value>
+  </data>
+  <data name="LinePropertiesDialog_labelDashSizeMm_Text" xml:space="preserve">
+    <value>mm</value>
+  </data>
+  <data name="LinePropertiesDialog_labelRadiusMm_Text" xml:space="preserve">
+    <value>mm</value>
+  </data>
+  <data name="PrintDescriptions_mmSuffixLabel_Text" xml:space="preserve">
+    <value>mm</value>
+  </data>
+  <data name="PrintPunches_mmSuffixLabel_Text" xml:space="preserve">
+    <value>mm</value>
+  </data>
+  <data name="ChangeText_checkBoxAutoFontSize_Text" xml:space="preserve">
+    <value>Automatisk</value>
+  </data>
+  <data name="MiscText_AutomaticLength" xml:space="preserve">
+    <value>Automatisk</value>
+  </data>
+  <data name="ChangeText_groupBox2_Text" xml:space="preserve">
+    <value>Eksempel</value>
+  </data>
+  <data name="LinePropertiesDialog_groupBox1_Text" xml:space="preserve">
+    <value>Eksempel</value>
+  </data>
+  <data name="ChangeText_insertSpecialButton_Text" xml:space="preserve">
+    <value>Indsæt særlig tekst</value>
+  </data>
+  <data name="ColorChooserDialog_label5_Text" xml:space="preserve">
+    <value>Sort:</value>
+  </data>
+  <data name="CourseAppearanceDialog_label5_Text" xml:space="preserve">
+    <value>Sort:</value>
+  </data>
+  <data name="ColorChooserDialog_label6_Text" xml:space="preserve">
+    <value>Gul:</value>
+  </data>
+  <data name="CourseAppearanceDialog_label6_Text" xml:space="preserve">
+    <value>Gul:</value>
+  </data>
+  <data name="ColorChooserDialog_label3_Text" xml:space="preserve">
+    <value>Magenta:</value>
+  </data>
+  <data name="CourseAppearanceDialog_label3_Text" xml:space="preserve">
+    <value>Magenta:</value>
+  </data>
+  <data name="ColorChooserDialog_label1_Text" xml:space="preserve">
+    <value>Cyan:</value>
+  </data>
+  <data name="CourseAppearanceDialog_label1_Text" xml:space="preserve">
+    <value>Cyan:</value>
+  </data>
+  <data name="ColorChooserDialog_groupBoxPreview_Text" xml:space="preserve">
+    <value>Forhåndsvisning</value>
+  </data>
+  <data name="CourseAppearanceDialog_groupBoxPreview_Text" xml:space="preserve">
+    <value>Forhåndsvisning</value>
+  </data>
+  <data name="ColorChooserDialog_Text" xml:space="preserve">
+    <value>Vælg farve</value>
+  </data>
+  <data name="CommandNameText_ChangeSymbol" xml:space="preserve">
+    <value>Ændr symbol</value>
+  </data>
+  <data name="CommandNameText_ChangeCode" xml:space="preserve">
+    <value>Ændr kontrolkode</value>
+  </data>
+  <data name="CommandNameText_ChangeControl" xml:space="preserve">
+    <value>Ændr kontrol</value>
+  </data>
+  <data name="CommandNameText_ChangeScore" xml:space="preserve">
+    <value>Ændr kontrolpoint</value>
+  </data>
+  <data name="CommandNameText_ChangeTitle" xml:space="preserve">
+    <value>Ændr titel</value>
+  </data>
+  <data name="CommandNameText_ChangeClimb" xml:space="preserve">
+    <value>Ændr stigning</value>
+  </data>
+  <data name="CommandNameText_ChangeCourseName" xml:space="preserve">
+    <value>Ændr kursusnavn</value>
+  </data>
+  <data name="CommandNameText_ChangeTextLine" xml:space="preserve">
+    <value>Ændr tekstlinje</value>
+  </data>
+  <data name="CommandNameText_ChangeScale" xml:space="preserve">
+    <value>Opdater kortskala</value>
+  </data>
+  <data name="CommandNameText_MoveControl" xml:space="preserve">
+    <value>Flyt kontrol</value>
+  </data>
+  <data name="CommandNameText_MoveControlNumber" xml:space="preserve">
+    <value>Flyt kontrolnummer</value>
+  </data>
+  <data name="CommandNameText_MoveObject" xml:space="preserve">
+    <value>Flyt objekt</value>
+  </data>
+  <data name="CommandNameText_DeleteControl" xml:space="preserve">
+    <value>Slet kontrol</value>
+  </data>
+  <data name="CommandNameText_DeleteObject" xml:space="preserve">
+    <value>Slet objekt</value>
+  </data>
+  <data name="CommandNameText_DeleteTextLine" xml:space="preserve">
+    <value>Slet tekstlinje</value>
+  </data>
+  <data name="CommandNameText_AddControl" xml:space="preserve">
+    <value>Tilføj kontrol</value>
+  </data>
+  <data name="MainFrame_addControlToolStripButton_Text" xml:space="preserve">
+    <value>Tilføj kontrol</value>
+  </data>
+  <data name="CommandNameText_AddStart" xml:space="preserve">
+    <value>Tilføj start</value>
+  </data>
+  <data name="MainFrame_addStartToolStripButton_Text" xml:space="preserve">
+    <value>Tilføj start</value>
+  </data>
+  <data name="CommandNameText_AddFinish" xml:space="preserve">
+    <value>Tilføj slut</value>
+  </data>
+  <data name="MainFrame_addFinishToolStripButton_Text" xml:space="preserve">
+    <value>Tilføj slut</value>
+  </data>
+  <data name="CommandNameText_AddCrossingPoint" xml:space="preserve">
+    <value>Tilføj Obligatorisk Krydspunkt</value>
+  </data>
+  <data name="CommandNameText_AddObject" xml:space="preserve">
+    <value>Tilføj objekt</value>
+  </data>
+  <data name="CommandNameText_DeleteCourse" xml:space="preserve">
+    <value>Slet kursus</value>
+  </data>
+  <data name="CommandNameText_ChangeCourseProperties" xml:space="preserve">
+    <value>Ændr kursusegenskaber</value>
+  </data>
+  <data name="CommandNameText_ChangeAllControlsProperties" xml:space="preserve">
+    <value>Ændr alle kontrollers egenskaber</value>
+  </data>
+  <data name="CommandNameText_NewEvent" xml:space="preserve">
+    <value>Opret ny hændelse</value>
+  </data>
+  <data name="NewEventWizard_Text" xml:space="preserve">
+    <value>Opret ny hændelse</value>
+  </data>
+  <data name="CommandNameText_SetLegFlagging" xml:space="preserve">
+    <value>Ændr benUdflagning</value>
+  </data>
+  <data name="CommandNameText_ChangeCodes" xml:space="preserve">
+    <value>Ændr koder</value>
+  </data>
+  <data name="CommandNameText_MoveBend" xml:space="preserve">
+    <value>Flyt ben buk</value>
+  </data>
+  <data name="CommandNameText_AddBend" xml:space="preserve">
+    <value>Tilføj buk</value>
+  </data>
+  <data name="CommandNameText_AddCorner" xml:space="preserve">
+    <value>Tilføj hjørne</value>
+  </data>
+  <data name="CommandNameText_DeleteBend" xml:space="preserve">
+    <value>Fjern buk</value>
+  </data>
+  <data name="CommandNameText_DeleteCorner" xml:space="preserve">
+    <value>Fjern hjørne</value>
+  </data>
+  <data name="CommandNameText_AddGap" xml:space="preserve">
+    <value>Tilføj hul</value>
+  </data>
+  <data name="CommandNameText_RemoveGap" xml:space="preserve">
+    <value>Fjern hul</value>
+  </data>
+  <data name="CommandNameText_MoveGap" xml:space="preserve">
+    <value>Flyt hul</value>
+  </data>
+  <data name="CommandNameText_Rotate" xml:space="preserve">
+    <value>Rotér</value>
+  </data>
+  <data name="CommandNameText_ChangePunchPatterns" xml:space="preserve">
+    <value>Ændr hulmønster</value>
+  </data>
+  <data name="CommandNameText_ChangePunchcardFormat" xml:space="preserve">
+    <value>Ændr hulkort layout</value>
+  </data>
+  <data name="CommandNameText_SetPrintArea" xml:space="preserve">
+    <value>Sæt udskriftområde</value>
+  </data>
+  <data name="SetPrintAreaDialog_Text" xml:space="preserve">
+    <value>Sæt udskriftområde</value>
+  </data>
+  <data name="CommandNameText_SetCourseLoad" xml:space="preserve">
+    <value>Ændr Konkurrent læsning</value>
+  </data>
+  <data name="CommandNameText_SetCustomSymbolText" xml:space="preserve">
+    <value>Tilpas beskrivelse tekst</value>
+  </data>
+  <data name="CustomSymbolText_Text" xml:space="preserve">
+    <value>Tilpas beskrivelse tekst</value>
+  </data>
+  <data name="CommandNameText_ChangeCourseOrder" xml:space="preserve">
+    <value>Ændr kursusorden</value>
+  </data>
+  <data name="CommandNameText_ChangeMapFile" xml:space="preserve">
+    <value>Ændr kortfil</value>
+  </data>
+  <data name="CommandNameText_IgnoreMissingFonts" xml:space="preserve">
+    <value>Ignorer manglende skrifttyper</value>
+  </data>
+  <data name="CommandNameText_RemoveUnusedControls" xml:space="preserve">
+    <value>Fjern ubrugte kontroller</value>
+  </data>
+  <data name="CommandNameText_SetDescriptionLanguage" xml:space="preserve">
+    <value>Ændr beskrivelsessprog</value>
+  </data>
+  <data name="CommandNameText_ChangeText" xml:space="preserve">
+    <value>Ændr tekst</value>
+  </data>
+  <data name="MiscText_ChangeTextTitle" xml:space="preserve">
+    <value>Ændr tekst</value>
+  </data>
+  <data name="CommandNameText_ChangeCourseAppearance" xml:space="preserve">
+    <value>Tilpas kursusfremtræden</value>
+  </data>
+  <data name="CommandNameText_AddMapExchange" xml:space="preserve">
+    <value>Tilføj kortUdveksling</value>
+  </data>
+  <data name="CommandNameText_DeleteMapExchangeAtControl" xml:space="preserve">
+    <value>Slet kortUdveksling</value>
+  </data>
+  <data name="CommandNameText_ChangePartProperties" xml:space="preserve">
+    <value>Ændr kursus delegenskaber</value>
+  </data>
+  <data name="CommandNameText_ChangeLineAppearance" xml:space="preserve">
+    <value>Ændr linjefremtræden</value>
+  </data>
+  <data name="MiscText_ChangeLineAppearanceTitle" xml:space="preserve">
+    <value>Ændr linjefremtræden</value>
+  </data>
+  <data name="CommandNameText_DuplicateCourse" xml:space="preserve">
+    <value>Dupliker kursus</value>
+  </data>
+  <data name="MiscText_DuplicateCourseTitle" xml:space="preserve">
+    <value>Dupliker kursus</value>
+  </data>
+  <data name="CommandNameText_CreateMapFiles" xml:space="preserve">
+    <value>Opret (0) &amp;Filer</value>
+  </data>
+  <data name="CommandNameText_DeleteFork" xml:space="preserve">
+    <value>Slet fork/løkke</value>
+  </data>
+  <data name="CommandNameText_RelayTeamVariations" xml:space="preserve">
+    <value>Relay Team variationer</value>
+  </data>
+  <data name="TeamVariationsForm_Text" xml:space="preserve">
+    <value>Relay Team variationer</value>
+  </data>
+  <data name="CommandNameText_AddMapIssue" xml:space="preserve">
+    <value>Tilføj kortspørgsmål point</value>
+  </data>
+  <data name="CommandNameText_ChangeDescriptionStandard" xml:space="preserve">
+    <value>Sæt kontrolbeskrivelses standard</value>
+  </data>
+  <data name="CommandNameText_ChangeMapStandard" xml:space="preserve">
+    <value>Sæt kort Standard</value>
+  </data>
+  <data name="CourseAppearanceDialog_comboBoxScaleItemSizes_Items" xml:space="preserve">
+    <value>Skalér ikke</value>
+  </data>
+  <data name="CourseAppearanceDialog_comboBoxScaleItemSizes_Items1" xml:space="preserve">
+    <value>Relativ til kortskala</value>
+  </data>
+  <data name="CourseAppearanceDialog_comboBoxScaleItemSizes_Items2" xml:space="preserve">
+    <value>Relativ til 1:15000</value>
+  </data>
+  <data name="CourseAppearanceDialog_label11_Text" xml:space="preserve">
+    <value>Skalér varestørrelser</value>
+  </data>
+  <data name="CourseAppearanceDialog_labelAutoGapSize_Text" xml:space="preserve">
+    <value>Automatisk benhulstørrelse:</value>
+  </data>
+  <data name="CourseAppearanceDialog_labelOutlineWidth_Text" xml:space="preserve">
+    <value>Hvid outline omkring numre:</value>
+  </data>
+  <data name="CourseAppearanceDialog_label7_Text" xml:space="preserve">
+    <value>Centerpunkt diameter:</value>
+  </data>
+  <data name="CourseAppearanceDialog_comboBoxControlNumberStyle_Items" xml:space="preserve">
+    <value>Arial</value>
+  </data>
+  <data name="CourseAppearanceDialog_comboBoxControlNumberStyle_Items1" xml:space="preserve">
+    <value>Arial Fed</value>
+  </data>
+  <data name="CourseAppearanceDialog_labelControlNumberStyle_Text" xml:space="preserve">
+    <value>Kontrolnummer stil:</value>
+  </data>
+  <data name="CourseAppearanceDialog_labelControlNumber_Text" xml:space="preserve">
+    <value>Kontrolnummer højde:</value>
+  </data>
+  <data name="CourseAppearanceDialog_labelLineWidth_Text" xml:space="preserve">
+    <value>Linjebredde:</value>
+  </data>
+  <data name="CourseAppearanceDialog_labelControlCircle_Text" xml:space="preserve">
+    <value>Kontrllér cirkel diameter:</value>
+  </data>
+  <data name="CourseAppearanceDialog_checkBoxStandardSizes_Text" xml:space="preserve">
+    <value>Brug IOF standard størrelser</value>
+  </data>
+  <data name="CourseAppearanceDialog_groupBoxSizes_Text" xml:space="preserve">
+    <value>Varestørrelser</value>
+  </data>
+  <data name="CourseAppearanceDialog_comboBoxBlendPurple_Items" xml:space="preserve">
+    <value>Ingen</value>
+  </data>
+  <data name="CourseSelector_selectNone_Text" xml:space="preserve">
+    <value>Ingen</value>
+  </data>
+  <data name="SelectionDescriptionText_CourseList_None" xml:space="preserve">
+    <value>Ingen</value>
+  </data>
+  <data name="CourseAppearanceDialog_checkBoxDefaultPurple_Text" xml:space="preserve">
+    <value>Brug lilla farve fra kort</value>
+  </data>
+  <data name="CourseAppearanceDialog_groupBoxPurple_Text" xml:space="preserve">
+    <value>Lilla farve</value>
+  </data>
+  <data name="CourseAppearanceDialog_comboBoxDescriptionColor_Items" xml:space="preserve">
+    <value>Sort</value>
+  </data>
+  <data name="MiscText_Black" xml:space="preserve">
+    <value>Sort</value>
+  </data>
+  <data name="CourseAppearanceDialog_comboBoxDescriptionColor_Items1" xml:space="preserve">
+    <value>Lilla</value>
+  </data>
+  <data name="MiscText_Purple" xml:space="preserve">
+    <value>Lilla</value>
+  </data>
+  <data name="CourseAppearanceDialog_groupBox1_Text" xml:space="preserve">
+    <value>Kontrolbeskrivelser</value>
+  </data>
+  <data name="SelectionDescriptionText_SpecialName_Descriptions" xml:space="preserve">
+    <value>Kontrolbeskrivelser</value>
+  </data>
+  <data name="CourseAppearanceDialog_checkBoxOverprint_Text" xml:space="preserve">
+    <value>Brug overtryk effekt for farver markeret "overprint"</value>
+  </data>
+  <data name="CourseAppearanceDialog_Text" xml:space="preserve">
+    <value>Tilpas udseende</value>
+  </data>
+  <data name="CourseLoad_Load_HeaderText" xml:space="preserve">
+    <value>Konkurrentlæs</value>
+  </data>
+  <data name="CourseLoad_courseLoadLabel_Text" xml:space="preserve">
+    <value>Sæt antallet af konkurrenter på hver kursus ved at klikke i den anden kolonne og skrive et nummer.</value>
+  </data>
+  <data name="CourseLoad_Text" xml:space="preserve">
+    <value>Kursuslæs</value>
+  </data>
+  <data name="CoursePartBanner_variationsLabel_Text" xml:space="preserve">
+    <value>Kursus variation: </value>
+  </data>
+  <data name="CoursePartBanner_buttonProperties_Text" xml:space="preserve">
+    <value>Egenskaber...</value>
+  </data>
+  <data name="CoursePartBanner_coursePartLabel_Text" xml:space="preserve">
+    <value>Kursusdel: </value>
+  </data>
+  <data name="CoursePartProperties_checkBoxDisplayFinish_Text" xml:space="preserve">
+    <value>Vis slutcirkel på denne kursusdel</value>
+  </data>
+  <data name="CoursePartProperties_label1_Text" xml:space="preserve">
+    <value>Disse indstillinger kontrollerer udseendet af denne del af et multi-del kursus.</value>
+  </data>
+  <data name="CoursePartProperties_Text" xml:space="preserve">
+    <value>Kursusdel egenskaber</value>
+  </data>
+  <data name="CourseSelector_selectAll_Text" xml:space="preserve">
+    <value>Alle</value>
+  </data>
+  <data name="CourseSelector_buttonChooseVariations_Text" xml:space="preserve">
+    <value>Vælg variation</value>
+  </data>
+  <data name="CreateGpx_coursesGroupBox_Text" xml:space="preserve">
+    <value>Kurser</value>
+  </data>
+  <data name="CreateImageFiles_coursesGroupBox_Text" xml:space="preserve">
+    <value>Kurser</value>
+  </data>
+  <data name="CreateKmlFiles_coursesGroupBox_Text" xml:space="preserve">
+    <value>Kurser</value>
+  </data>
+  <data name="CreateOcadFiles_coursesGroupBox_Text" xml:space="preserve">
+    <value>Kurser</value>
+  </data>
+  <data name="CreatePdfCourses_coursesGroupBox_Text" xml:space="preserve">
+    <value>Kurser</value>
+  </data>
+  <data name="PrintCourses_coursesGroupBox_Text" xml:space="preserve">
+    <value>Kurser</value>
+  </data>
+  <data name="PrintDescriptions_coursesGroupBox_Text" xml:space="preserve">
+    <value>Kurser</value>
+  </data>
+  <data name="PrintPunches_coursesGroupBox_Text" xml:space="preserve">
+    <value>Kurser</value>
+  </data>
+  <data name="ReportText_ColumnHeader_Courses" xml:space="preserve">
+    <value>Kurser</value>
+  </data>
+  <data name="CreateGpx_namePrefixLabel_Text" xml:space="preserve">
+    <value>Navnpræfiks</value>
+  </data>
+  <data name="CreatePdfCourses_fileNamePrefixLabel_Text" xml:space="preserve">
+    <value>Navnpræfiks</value>
+  </data>
+  <data name="CreateGpx_waypointGroupBox_Text" xml:space="preserve">
+    <value>Waypoints</value>
+  </data>
+  <data name="CreateGpx_headerLabel_Text" xml:space="preserve">
+    <value>En GPX-fil indeholder koordinater for kontroller, og kan indlæses på en GPS eller smartphone for at verificere den korrekte lokation af kontroller.</value>
+  </data>
+  <data name="CreateGpx_Text" xml:space="preserve">
+    <value>Opret GPX-fil</value>
+  </data>
+  <data name="MainFrame_saveGpxFileDialog_Title" xml:space="preserve">
+    <value>Opret GPX-fil</value>
+  </data>
+  <data name="CreateImageFiles_createButton_Text" xml:space="preserve">
+    <value>Opret</value>
+  </data>
+  <data name="CreateKmlFiles_createButton_Text" xml:space="preserve">
+    <value>Opret</value>
+  </data>
+  <data name="CreateOcadFiles_createButton_Text" xml:space="preserve">
+    <value>Opret</value>
+  </data>
+  <data name="CreatePdfCourses_okButton_Text" xml:space="preserve">
+    <value>Opret</value>
+  </data>
+  <data name="CreateRouteGadget_createButton_Text" xml:space="preserve">
+    <value>Opret</value>
+  </data>
+  <data name="CreateImageFiles_cancelButton_Text" xml:space="preserve">
+    <value>Annuller</value>
+  </data>
+  <data name="CreateKmlFiles_cancelButton_Text" xml:space="preserve">
+    <value>Annuller</value>
+  </data>
+  <data name="CreateOcadFiles_cancelButton_Text" xml:space="preserve">
+    <value>Annuller</value>
+  </data>
+  <data name="CreateRouteGadget_cancelButton_Text" xml:space="preserve">
+    <value>Annuller</value>
+  </data>
+  <data name="MiscText_CrashCancel" xml:space="preserve">
+    <value>Annuller</value>
+  </data>
+  <data name="NewEventWizard_cancelButton_Text" xml:space="preserve">
+    <value>Annuller</value>
+  </data>
+  <data name="NonPrintableObjects_cancelButton_Text" xml:space="preserve">
+    <value>Annuller</value>
+  </data>
+  <data name="OkCancelDialog_cancelButton_Text" xml:space="preserve">
+    <value>Annuller</value>
+  </data>
+  <data name="OperationInProgress_cancelButton_Text" xml:space="preserve">
+    <value>Annuller</value>
+  </data>
+  <data name="OverwritingOcadFilesDialog_buttonCancel_Text" xml:space="preserve">
+    <value>Annuller</value>
+  </data>
+  <data name="PrintDescriptions_cancelButton_Text" xml:space="preserve">
+    <value>Annuller</value>
+  </data>
+  <data name="PrintPunches_cancelButton_Text" xml:space="preserve">
+    <value>Annuller</value>
+  </data>
+  <data name="SelectLocationsForMove_buttonCancel_Text" xml:space="preserve">
+    <value>Annuller</value>
+  </data>
+  <data name="SetPrintAreaDialog_cancelButton_Text" xml:space="preserve">
+    <value>Annuller</value>
+  </data>
+  <data name="CreateImageFiles_folderBrowserDialog_Description" xml:space="preserve">
+    <value>Vælg mappe til OCADfilerne</value>
+  </data>
+  <data name="CreateKmlFiles_folderBrowserDialog_Description" xml:space="preserve">
+    <value>Vælg mappe til OCADfilerne</value>
+  </data>
+  <data name="CreateOcadFiles_folderBrowserDialog_Description" xml:space="preserve">
+    <value>Vælg mappe til OCADfilerne</value>
+  </data>
+  <data name="CreateRouteGadget_folderBrowserDialog_Description" xml:space="preserve">
+    <value>Vælg mappe til OCADfilerne</value>
+  </data>
+  <data name="CreateImageFiles_fileFormatLabel_Text" xml:space="preserve">
+    <value>Filformat:</value>
+  </data>
+  <data name="CreateOcadFiles_fileFormatLabel_Text" xml:space="preserve">
+    <value>Filformat:</value>
+  </data>
+  <data name="CreateImageFiles_fileFormatCombo_Items" xml:space="preserve">
+    <value>PNG</value>
+  </data>
+  <data name="CreateImageFiles_fileFormatCombo_Items1" xml:space="preserve">
+    <value>JPEG</value>
+  </data>
+  <data name="CreateImageFiles_fileFormatCombo_Items2" xml:space="preserve">
+    <value>GIF</value>
+  </data>
+  <data name="CreateImageFiles_fileNamePrefixLabel_Text" xml:space="preserve">
+    <value>Filnavn præfiks:</value>
+  </data>
+  <data name="CreateKmlFiles_fileNamePrefixLabel_Text" xml:space="preserve">
+    <value>Filnavn præfiks:</value>
+  </data>
+  <data name="CreateOcadFiles_fileNamePrefixLabel_Text" xml:space="preserve">
+    <value>Filnavn præfiks:</value>
+  </data>
+  <data name="CreateImageFiles_label1_Text" xml:space="preserve">
+    <value>Verdensfil:</value>
+  </data>
+  <data name="CreateImageFiles_comboBoxDpi_Items" xml:space="preserve">
+    <value>100</value>
+  </data>
+  <data name="CreateImageFiles_comboBoxDpi_Items1" xml:space="preserve">
+    <value>150</value>
+  </data>
+  <data name="CreateImageFiles_comboBoxDpi_Items2" xml:space="preserve">
+    <value>200</value>
+  </data>
+  <data name="CreateImageFiles_comboBoxDpi_Items3" xml:space="preserve">
+    <value>300</value>
+  </data>
+  <data name="CreateImageFiles_comboBoxDpi_Items4" xml:space="preserve">
+    <value>400</value>
+  </data>
+  <data name="CreateImageFiles_comboBoxDpi_Items5" xml:space="preserve">
+    <value>500</value>
+  </data>
+  <data name="CreateImageFiles_comboBoxDpi_Items6" xml:space="preserve">
+    <value>600</value>
+  </data>
+  <data name="CreateImageFiles_dpiLabel_Text" xml:space="preserve">
+    <value>Dpi:</value>
+  </data>
+  <data name="CreateImageFiles_comboBoxWorldFile_Items" xml:space="preserve">
+    <value>Nej</value>
+  </data>
+  <data name="ReportText_EventAudit_No" xml:space="preserve">
+    <value>Nej</value>
+  </data>
+  <data name="CreateImageFiles_comboBoxWorldFile_Items1" xml:space="preserve">
+    <value>Ja</value>
+  </data>
+  <data name="ReportText_EventAudit_Yes" xml:space="preserve">
+    <value>Ja</value>
+  </data>
+  <data name="CreateImageFiles_labelColorModel_Text" xml:space="preserve">
+    <value>Farvemodel:</value>
+  </data>
+  <data name="CreateImageFiles_comboBoxColorModel_Items" xml:space="preserve">
+    <value>RGB</value>
+  </data>
+  <data name="CreatePdfCourses_comboBoxColorModel_Items" xml:space="preserve">
+    <value>RGB</value>
+  </data>
+  <data name="PrintCourses_comboBoxColorModel_Items1" xml:space="preserve">
+    <value>RGB</value>
+  </data>
+  <data name="CreateImageFiles_comboBoxColorModel_Items1" xml:space="preserve">
+    <value>CMYK</value>
+  </data>
+  <data name="CreatePdfCourses_comboBoxColorModel_Items1" xml:space="preserve">
+    <value>CMYK</value>
+  </data>
+  <data name="PrintCourses_comboBoxColorModel_Items2" xml:space="preserve">
+    <value>CMYK</value>
+  </data>
+  <data name="CreateImageFiles_outputGroupBox_Text" xml:space="preserve">
+    <value>Uddata</value>
+  </data>
+  <data name="CreateKmlFiles_outputGroupBox_Text" xml:space="preserve">
+    <value>Uddata</value>
+  </data>
+  <data name="CreateOcadFiles_outputGroupBox_Text" xml:space="preserve">
+    <value>Uddata</value>
+  </data>
+  <data name="PrintCourses_printerGroup_Text" xml:space="preserve">
+    <value>Uddata</value>
+  </data>
+  <data name="PrintDescriptions_printerGroup_Text" xml:space="preserve">
+    <value>Uddata</value>
+  </data>
+  <data name="PrintPunches_printerGroup_Text" xml:space="preserve">
+    <value>Uddata</value>
+  </data>
+  <data name="CreateImageFiles_selectOtherDirectoryButton_Text" xml:space="preserve">
+    <value>Vælg mappe...</value>
+  </data>
+  <data name="CreateKmlFiles_selectOtherDirectoryButton_Text" xml:space="preserve">
+    <value>Vælg mappe...</value>
+  </data>
+  <data name="CreateOcadFiles_selectOtherDirectoryButton_Text" xml:space="preserve">
+    <value>Vælg mappe...</value>
+  </data>
+  <data name="CreatePdfCourses_selectOtherDirectoryButton_Text" xml:space="preserve">
+    <value>Vælg mappe...</value>
+  </data>
+  <data name="CreateRouteGadget_selectOtherDirectoryButton_Text" xml:space="preserve">
+    <value>Vælg mappe...</value>
+  </data>
+  <data name="CreateImageFiles_coursesDirectory_Text" xml:space="preserve">
+    <value>Samme mappe som Purple Pen fil</value>
+  </data>
+  <data name="CreateKmlFiles_coursesDirectory_Text" xml:space="preserve">
+    <value>Samme mappe som Purple Pen fil</value>
+  </data>
+  <data name="CreateOcadFiles_coursesDirectory_Text" xml:space="preserve">
+    <value>Samme mappe som Purple Pen fil</value>
+  </data>
+  <data name="CreatePdfCourses_coursesDirectory_Text" xml:space="preserve">
+    <value>Samme mappe som Purple Pen fil</value>
+  </data>
+  <data name="CreateRouteGadget_coursesDirectory_Text" xml:space="preserve">
+    <value>Samme mappe som Purple Pen fil</value>
+  </data>
+  <data name="CreateImageFiles_mapDirectory_Text" xml:space="preserve">
+    <value>Samme mappe som kortfil</value>
+  </data>
+  <data name="CreateKmlFiles_mapDirectory_Text" xml:space="preserve">
+    <value>Samme mappe som kortfil</value>
+  </data>
+  <data name="CreateOcadFiles_mapDirectory_Text" xml:space="preserve">
+    <value>Samme mappe som kortfil</value>
+  </data>
+  <data name="CreatePdfCourses_mapDirectory_Text" xml:space="preserve">
+    <value>Samme mappe som kortfil</value>
+  </data>
+  <data name="CreateRouteGadget_mapDirectory_Text" xml:space="preserve">
+    <value>Samme mappe som kortfil</value>
+  </data>
+  <data name="CreateImageFiles_otherDirectory_Text" xml:space="preserve">
+    <value>Anden mappe</value>
+  </data>
+  <data name="CreateKmlFiles_otherDirectory_Text" xml:space="preserve">
+    <value>Anden mappe</value>
+  </data>
+  <data name="CreateOcadFiles_otherDirectory_Text" xml:space="preserve">
+    <value>Anden mappe</value>
+  </data>
+  <data name="CreatePdfCourses_otherDirectory_Text" xml:space="preserve">
+    <value>Anden mappe</value>
+  </data>
+  <data name="CreateRouteGadget_otherDirectory_Text" xml:space="preserve">
+    <value>Anden mappe</value>
+  </data>
+  <data name="CreateImageFiles_folderGroupBox_Text" xml:space="preserve">
+    <value>Mappe</value>
+  </data>
+  <data name="CreateKmlFiles_folderGroupBox_Text" xml:space="preserve">
+    <value>Mappe</value>
+  </data>
+  <data name="CreateOcadFiles_folderGroupBox_Text" xml:space="preserve">
+    <value>Mappe</value>
+  </data>
+  <data name="CreatePdfCourses_folderGroupBox_Text" xml:space="preserve">
+    <value>Mappe</value>
+  </data>
+  <data name="CreateRouteGadget_folderGroupBox_Text" xml:space="preserve">
+    <value>Mappe</value>
+  </data>
+  <data name="CreateImageFiles_Text" xml:space="preserve">
+    <value>Opret billedfiler</value>
+  </data>
+  <data name="CreateKmlFiles_filesLabel_Text" xml:space="preserve">
+    <value>Filer:</value>
+  </data>
+  <data name="CreatePdfCourses_filesLabel_Text" xml:space="preserve">
+    <value>Filer:</value>
+  </data>
+  <data name="CreateKmlFiles_filesCombo_Items" xml:space="preserve">
+    <value>En for alle kurser</value>
+  </data>
+  <data name="CreatePdfCourses_comboBoxFileFormat_Items" xml:space="preserve">
+    <value>En for alle kurser</value>
+  </data>
+  <data name="CreateKmlFiles_filesCombo_Items1" xml:space="preserve">
+    <value>En per kursus</value>
+  </data>
+  <data name="CreatePdfCourses_comboBoxFileFormat_Items1" xml:space="preserve">
+    <value>En per kursus</value>
+  </data>
+  <data name="CreateOcadFiles_Text" xml:space="preserve">
+    <value>Opret OCADfiler</value>
+  </data>
+  <data name="CreatePdfCourses_checkBoxMergeParts_Text" xml:space="preserve">
+    <value>Udskriv kortUdvekslinger på samme kort </value>
+  </data>
+  <data name="PrintCourses_checkBoxMergeParts_Text" xml:space="preserve">
+    <value>Udskriv kortUdvekslinger på samme kort </value>
+  </data>
+  <data name="CreatePdfCourses_labelColorModel_Text" xml:space="preserve">
+    <value>Farveemodel</value>
+  </data>
+  <data name="PrintCourses_labelColorModel_Text" xml:space="preserve">
+    <value>Farveemodel</value>
+  </data>
+  <data name="CreatePdfCourses_comboBoxMultiPage_Items" xml:space="preserve">
+    <value>Skrump til en enkelt side</value>
+  </data>
+  <data name="PrintCourses_comboBoxMultiPage_Items" xml:space="preserve">
+    <value>Skrump til en enkelt side</value>
+  </data>
+  <data name="CreatePdfCourses_comboBoxMultiPage_Items1" xml:space="preserve">
+    <value>Udskriv på flere sider</value>
+  </data>
+  <data name="PrintCourses_comboBoxMultiPage_Items1" xml:space="preserve">
+    <value>Udskriv på flere sider</value>
+  </data>
+  <data name="CreatePdfCourses_labelAppearanceInfo_Text" xml:space="preserve">
+    <value>Hvis udskriften er for stor til at passe på en side:</value>
+  </data>
+  <data name="PrintCourses_labelAppearanceInfo_Text" xml:space="preserve">
+    <value>Hvis udskriften er for stor til at passe på en side:</value>
+  </data>
+  <data name="CreatePdfCourses_comboBoxFileFormat_Items2" xml:space="preserve">
+    <value>En per kursus del/variation</value>
+  </data>
+  <data name="CreatePdfCourses_outputGroupBox_Text" xml:space="preserve">
+    <value>Filer</value>
+  </data>
+  <data name="CreatePdfCourses_Text" xml:space="preserve">
+    <value>Opret PDF-filer</value>
+  </data>
+  <data name="CreateRouteGadget_label1_Text" xml:space="preserve">
+    <value>Skriv navnet (uden .xml eller .gif) for begge routegadget filer:</value>
+  </data>
+  <data name="CreateRouteGadget_learnMoreLink_Text" xml:space="preserve">
+    <value>Lær mere om Routegadget</value>
+  </data>
+  <data name="CreateRouteGadget_label2_Text" xml:space="preserve">
+    <value>Routegadget kræver både en billedfil (.gif) og IOF XML fil (.xml). Vælg navnet og mappen for begge disse filer.</value>
+  </data>
+  <data name="CreateRouteGadget_comboBoxIofXml_Items" xml:space="preserve">
+    <value>2.0.3</value>
+  </data>
+  <data name="CreateRouteGadget_comboBoxIofXml_Items1" xml:space="preserve">
+    <value>3.0</value>
+  </data>
+  <data name="CreateRouteGadget_labelIofXml_Text" xml:space="preserve">
+    <value>IOF XML Version:</value>
+  </data>
+  <data name="CreateRouteGadget_groupBox1_Text" xml:space="preserve">
+    <value>IOF XML</value>
+  </data>
+  <data name="CreateRouteGadget_Text" xml:space="preserve">
+    <value>Opret Routegadget filer</value>
+  </data>
+  <data name="CustomSymbolText_labelChooseLanguage_Text" xml:space="preserve">
+    <value>Vælg sproget der bruges til tekstual kontrol beskrivelser:</value>
+  </data>
+  <data name="CustomSymbolText_labelSymbolName_Text" xml:space="preserve">
+    <value>Symbolnavn:</value>
+  </data>
+  <data name="CustomSymbolText_labelCustomizedText_Text" xml:space="preserve">
+    <value>Tilpasset tekst:</value>
+  </data>
+  <data name="CustomSymbolText_buttonChangeText_Text" xml:space="preserve">
+    <value>Ændr tekst...</value>
+  </data>
+  <data name="CustomSymbolText_buttonDefault_Text" xml:space="preserve">
+    <value>Nulstil til standard</value>
+  </data>
+  <data name="CustomSymbolText_labelStandardText_Text" xml:space="preserve">
+    <value>Standard tekst:</value>
+  </data>
+  <data name="CustomSymbolText_checkBoxShowKey_Text" xml:space="preserve">
+    <value>Vis betydning under symbol beskrivelser</value>
+  </data>
+  <data name="CustomSymbolText_labelCustomizeText_Text" xml:space="preserve">
+    <value>Klik på en beskrivelse for at tilpasse teksten som bruges i  tekstuel kontrolbeskrivelser.</value>
+  </data>
+  <data name="CustomSymbolText_checkBoxDefaultLanguage_Text" xml:space="preserve">
+    <value>Gør dette til standard sproget for nye hændelser</value>
+  </data>
+  <data name="DownloadProgressDialog_Text" xml:space="preserve">
+    <value>Downloader</value>
+  </data>
+  <data name="EnterSymbolText_numberColumn_HeaderText" xml:space="preserve">
+    <value>Tal</value>
+  </data>
+  <data name="EnterSymbolText_genderColumn_HeaderText" xml:space="preserve">
+    <value>Køn</value>
+  </data>
+  <data name="EnterSymbolText_caseColumn_HeaderText" xml:space="preserve">
+    <value>Opgave</value>
+  </data>
+  <data name="EnterSymbolText_checkBoxPlural_Text" xml:space="preserve">
+    <value>Vis plural former</value>
+  </data>
+  <data name="EnterSymbolText_checkBoxGender_Text" xml:space="preserve">
+    <value>Vis kønsformer</value>
+  </data>
+  <data name="EnterSymbolText_labelDescription_Text" xml:space="preserve">
+    <value>Skriv den tilpassede tekst for symbolet i tekstkolonnen.</value>
+  </data>
+  <data name="EnterSymbolText_labelGenderChooser_Text" xml:space="preserve">
+    <value>Køn:</value>
+  </data>
+  <data name="EnterSymbolText_labelCaseChooser_Text" xml:space="preserve">
+    <value>Opgave af modificeret symbol:</value>
+  </data>
+  <data name="EnterSymbolText_checkBoxCases_Text" xml:space="preserve">
+    <value>Vis tilfældeformer</value>
+  </data>
+  <data name="EnterSymbolText_Text" xml:space="preserve">
+    <value>Tilpasset symboltekst:</value>
+  </data>
+  <data name="InitialScreen_openLastRadioButton_Text" xml:space="preserve">
+    <value>Åben sidst sete hændelse:</value>
+  </data>
+  <data name="InitialScreen_openSampleRadioButton_Text" xml:space="preserve">
+    <value>Åben en eksempel hændelse</value>
+  </data>
+  <data name="InitialScreen_createNewRadioButton_Text" xml:space="preserve">
+    <value>Opret en ny hændelse...</value>
+  </data>
+  <data name="InitialScreen_openExistingRadioButton_Text" xml:space="preserve">
+    <value>Åben en eksisterende hændelse...</value>
+  </data>
+  <data name="InitialScreen_label1_Text" xml:space="preserve">
+    <value>Purple Pen er fri software og må kopieres og deles. Udvikling af Purple Pen er udelukkende understøttet af dine donationer.</value>
+  </data>
+  <data name="InitialScreen_donationLink_Text" xml:space="preserve">
+    <value>Giv et bidrag</value>
+  </data>
+  <data name="InitialScreen_Text" xml:space="preserve">
+    <value>Velkommen til Purple Pen</value>
+  </data>
+  <data name="LegAssignmentsDialog_BranchColumn_HeaderText" xml:space="preserve">
+    <value>Gren</value>
+  </data>
+  <data name="LegAssignmentsDialog_LegsColumn_HeaderText" xml:space="preserve">
+    <value>Ben</value>
+  </data>
+  <data name="LegAssignmentsDialog_labelDescription_Text" xml:space="preserve">
+    <value>For at tildele et specifikt ben til en specifik gren, skriv benets nummer(re). Ben der ikke er tildelt en gren vil blive fordelt  tilfældigt mellem tilbageværende grene.</value>
+  </data>
+  <data name="LegAssignmentsDialog_linkLabel_Text" xml:space="preserve">
+    <value>Mere information...</value>
+  </data>
+  <data name="LegAssignmentsDialog_Text" xml:space="preserve">
+    <value>Ben tildelinger</value>
+  </data>
+  <data name="LicenseForm_bsdLicenseLinkLabel_Text" xml:space="preserve">
+    <value>Purple Pen er udgivet under en "BSD"-lignende licens.</value>
+  </data>
+  <data name="LicenseForm_Text" xml:space="preserve">
+    <value>Purple Pen licens</value>
+  </data>
+  <data name="LinePropertiesDialog_buttonChangeColor_Text" xml:space="preserve">
+    <value> Ændr farve...</value>
+  </data>
+  <data name="LinePropertiesDialog_label2_Text" xml:space="preserve">
+    <value>Stil:</value>
+  </data>
+  <data name="LinePropertiesDialog_comboBoxStyle_Items" xml:space="preserve">
+    <value>Single</value>
+  </data>
+  <data name="LinePropertiesDialog_comboBoxStyle_Items1" xml:space="preserve">
+    <value>Dobbelt</value>
+  </data>
+  <data name="LinePropertiesDialog_comboBoxStyle_Items2" xml:space="preserve">
+    <value>Stiplet</value>
+  </data>
+  <data name="LinePropertiesDialog_labelWidth_Text" xml:space="preserve">
+    <value>Bredde:</value>
+  </data>
+  <data name="PrinterMargins_label2_Text" xml:space="preserve">
+    <value>Bredde:</value>
+  </data>
+  <data name="LinePropertiesDialog_labelGapSize_Text" xml:space="preserve">
+    <value>Hulstørrelse:</value>
+  </data>
+  <data name="LinePropertiesDialog_labelDashSize_Text" xml:space="preserve">
+    <value>Stiblet størrelse:</value>
+  </data>
+  <data name="LinePropertiesDialog_labelCornerRadius_Text" xml:space="preserve">
+    <value>Hjørne radius:</value>
+  </data>
+  <data name="MainFrame_tabPage1_Text" xml:space="preserve">
+    <value>Alle kontroller</value>
+  </data>
+  <data name="MainFrame_radioButtonDescriptions_Text" xml:space="preserve">
+    <value>Beskrivelser</value>
+  </data>
+  <data name="MainFrame_radioButtonTopology_Text" xml:space="preserve">
+    <value>Rækkefølge</value>
+  </data>
+  <data name="MainFrame_mapViewerTopology_Text" xml:space="preserve">
+    <value>Kortviser typologi</value>
+  </data>
+  <data name="MainFrame_openFileDialog_Filter" xml:space="preserve">
+    <value>Purple Pen filer|*.ppen|Alle filer|*.*</value>
+  </data>
+  <data name="MainFrame_saveFileDialog_Filter" xml:space="preserve">
+    <value>Purple Pen file|*.ppen</value>
+  </data>
+  <data name="MainFrame_newEventMenu_Text" xml:space="preserve">
+    <value>&amp;Ny hændelse...</value>
+  </data>
+  <data name="MainFrame_openMenu_Text" xml:space="preserve">
+    <value>&amp;Åbn...</value>
+  </data>
+  <data name="MainFrame_saveMenu_Text" xml:space="preserve">
+    <value>&amp;Gem</value>
+  </data>
+  <data name="MainFrame_saveAsMenu_Text" xml:space="preserve">
+    <value>Gem &amp;som...</value>
+  </data>
+  <data name="MainFrame_createOcadFilesMenu_Text" xml:space="preserve">
+    <value>Opret OCAD &amp;Filer</value>
+  </data>
+  <data name="MainFrame_createImageFilesMenu_Text" xml:space="preserve">
+    <value>Opret bill&amp;edfiler...</value>
+  </data>
+  <data name="MainFrame_createDescriptionPdfMenu_Text" xml:space="preserve">
+    <value>&amp;Beskrivelser...</value>
+  </data>
+  <data name="MainFrame_createPunchcardPdfMenu_Text" xml:space="preserve">
+    <value>H&amp;ulkort...</value>
+  </data>
+  <data name="MainFrame_createCoursePdfMenu_Text" xml:space="preserve">
+    <value>&amp;Kurser...</value>
+  </data>
+  <data name="MainFrame_createPDFsMenu_Text" xml:space="preserve">
+    <value>Opret P&amp;DFs</value>
+  </data>
+  <data name="MainFrame_createRouteGadgetFilesMenu_Text" xml:space="preserve">
+    <value>Opret Route&amp;Gadgetfiler...</value>
+  </data>
+  <data name="MainFrame_createXmlMenu_Text" xml:space="preserve">
+    <value>Opret Data &amp;interchangefil (IOF XML)...</value>
+  </data>
+  <data name="MainFrame_createGPXFileMenu_Text" xml:space="preserve">
+    <value>Opret G&amp;PXfil...</value>
+  </data>
+  <data name="MainFrame_printDescriptionsMenu_Text" xml:space="preserve">
+    <value>&amp;Udskriv beskrivelser...</value>
+  </data>
+  <data name="MainFrame_printPunchCardsMenu_Text" xml:space="preserve">
+    <value>Udskriv H&amp;ulkort...</value>
+  </data>
+  <data name="MainFrame_printCoursesMenu_Text" xml:space="preserve">
+    <value>Udskriv &amp;Kurser...</value>
+  </data>
+  <data name="MainFrame_printAreaThisPartMenu_Text" xml:space="preserve">
+    <value>Denne &amp;Del alene</value>
+  </data>
+  <data name="MainFrame_printAreaThisCourseMenu_Text" xml:space="preserve">
+    <value>&amp;Dette kursus</value>
+  </data>
+  <data name="MainFrame_printAreaAllCoursesMenu_Text" xml:space="preserve">
+    <value>&amp;Alle kurser</value>
+  </data>
+  <data name="MainFrame_setPrintAreaMenu_Text" xml:space="preserve">
+    <value>Sæt udskrift Om&amp;råde</value>
+  </data>
+  <data name="MainFrame_programLanguageMenu_Text" xml:space="preserve">
+    <value>Program &amp;Sprog...</value>
+  </data>
+  <data name="MainFrame_exitMenu_Text" xml:space="preserve">
+    <value>Af&amp;slut</value>
+  </data>
+  <data name="MainFrame_fileMenu_Text" xml:space="preserve">
+    <value>&amp;Fil</value>
+  </data>
+  <data name="MainFrame_cancelMenu_Text" xml:space="preserve">
+    <value>&amp;Ryd markering</value>
+  </data>
+  <data name="MiscText_ClearSelectionWithShortcut" xml:space="preserve">
+    <value>&amp;Ryd markering</value>
+  </data>
+  <data name="MainFrame_undoMenu_Text" xml:space="preserve">
+    <value>&amp;Fortryd</value>
+  </data>
+  <data name="MiscText_UndoWithShortcut" xml:space="preserve">
+    <value>&amp;Fortryd</value>
+  </data>
+  <data name="MainFrame_redoMenu_Text" xml:space="preserve">
+    <value>&amp;Gendan</value>
+  </data>
+  <data name="MiscText_RedoWithShortcut" xml:space="preserve">
+    <value>&amp;Gendan</value>
+  </data>
+  <data name="MainFrame_deleteMenu_Text" xml:space="preserve">
+    <value>&amp;Slet</value>
+  </data>
+  <data name="MainFrame_deleteItemMenu_Text" xml:space="preserve">
+    <value>&amp;Slet</value>
+  </data>
+  <data name="MainFrame_editMenu_Text" xml:space="preserve">
+    <value>&amp;Rediger</value>
+  </data>
+  <data name="MainFrame_entireCourseMenu_Text" xml:space="preserve">
+    <value>Hele &amp;Kursus</value>
+  </data>
+  <data name="MainFrame_entireMapMenu_Text" xml:space="preserve">
+    <value>Hele &amp;Kort</value>
+  </data>
+  <data name="MainFrame_zoom50Menu_Text" xml:space="preserve">
+    <value>50%</value>
+  </data>
+  <data name="MainFrame_zoom100Menu_Text" xml:space="preserve">
+    <value>100%</value>
+  </data>
+  <data name="MainFrame_zoom150Menu_Text" xml:space="preserve">
+    <value>150%</value>
+  </data>
+  <data name="MainFrame_zoom200Menu_Text" xml:space="preserve">
+    <value>200%</value>
+  </data>
+  <data name="MainFrame_zoom300Menu_Text" xml:space="preserve">
+    <value>300%</value>
+  </data>
+  <data name="MainFrame_zoom500Menu_Text" xml:space="preserve">
+    <value>500%</value>
+  </data>
+  <data name="MainFrame_zoom1000Menu_Text" xml:space="preserve">
+    <value>1000%</value>
+  </data>
+  <data name="MainFrame_zoomMenu_Text" xml:space="preserve">
+    <value>&amp;Zoom</value>
+  </data>
+  <data name="MainFrame_veryLowIntensityMenu_Text" xml:space="preserve">
+    <value>&amp;Meget lav</value>
+  </data>
+  <data name="MainFrame_lowIntensityMenu_Text" xml:space="preserve">
+    <value>&amp;Lav</value>
+  </data>
+  <data name="MainFrame_mediumIntensityMenu_Text" xml:space="preserve">
+    <value>&amp;Mellem</value>
+  </data>
+  <data name="MainFrame_highIntensityMenu_Text" xml:space="preserve">
+    <value>&amp;Høj</value>
+  </data>
+  <data name="MainFrame_fullIntensityMenu_Text" xml:space="preserve">
+    <value>&amp;Fuldt ud</value>
+  </data>
+  <data name="MainFrame_mapIntensityMenu_Text" xml:space="preserve">
+    <value>Kort &amp;Intensitet</value>
+  </data>
+  <data name="MainFrame_normalQualityMenu_Text" xml:space="preserve">
+    <value>Lav</value>
+  </data>
+  <data name="MainFrame_highQualityMenu_Text" xml:space="preserve">
+    <value>Høj</value>
+  </data>
+  <data name="MainFrame_mapQualityMenu_Text" xml:space="preserve">
+    <value>Kort&amp;kvalitet</value>
+  </data>
+  <data name="MainFrame_showPrintAreaMenu_Text" xml:space="preserve">
+    <value>Vis Ud&amp;skriftområde</value>
+  </data>
+  <data name="MainFrame_showPopupsMenu_Text" xml:space="preserve">
+    <value>Vis &amp;popop information</value>
+  </data>
+  <data name="MainFrame_allControlsMenu_Text" xml:space="preserve">
+    <value>Alle &amp;kontroller</value>
+  </data>
+  <data name="MainFrame_otherCoursesMenu_Text" xml:space="preserve">
+    <value>Abdre kurser...</value>
+  </data>
+  <data name="MainFrame_clearOtherCoursesMenu_Text" xml:space="preserve">
+    <value>Ryd andre kurser</value>
+  </data>
+  <data name="MainFrame_viewMenu_Text" xml:space="preserve">
+    <value>&amp;Vis</value>
+  </data>
+  <data name="MainFrame_addStartMenu_Text" xml:space="preserve">
+    <value>&amp;Start</value>
+  </data>
+  <data name="MainFrame_addControlMenu_Text" xml:space="preserve">
+    <value>&amp;Kontrol</value>
+  </data>
+  <data name="MainFrame_addFinishMenu_Text" xml:space="preserve">
+    <value>&amp;Færdig</value>
+  </data>
+  <data name="MiscText_FinishButtonText" xml:space="preserve">
+    <value>&amp;Færdig</value>
+  </data>
+  <data name="MainFrame_addDescriptionsMenu_Text" xml:space="preserve">
+    <value>&amp;Beskrivelser</value>
+  </data>
+  <data name="MainFrame_mapExchangeControlMenuItem_Text" xml:space="preserve">
+    <value>Kort Udveksling ved &amp;Kontrolpoint</value>
+  </data>
+  <data name="MainFrame_mapExchangeSeparateMenuItem_Text" xml:space="preserve">
+    <value>&amp;Markeret rute til kortudveksling</value>
+  </data>
+  <data name="MainFrame_addMapExchangeMenu_Text" xml:space="preserve">
+    <value>Kort Ud&amp;veksling</value>
+  </data>
+  <data name="MainFrame_addVariationMenu_Text" xml:space="preserve">
+    <value>&amp;Variation</value>
+  </data>
+  <data name="MainFrame_addTextLineMenu_Text" xml:space="preserve">
+    <value>Tekst &amp;Linje...</value>
+  </data>
+  <data name="MainFrame_addMapIssueMenu_Text" xml:space="preserve">
+    <value>Timet start</value>
+  </data>
+  <data name="MainFrame_mapIssuePointToolStripMenuItem_Text" xml:space="preserve">
+    <value>Timet start</value>
+  </data>
+  <data name="MiscText_MapIssue_Long" xml:space="preserve">
+    <value>Timet start</value>
+  </data>
+  <data name="MiscText_MapIssue_Medium" xml:space="preserve">
+    <value>Timet start</value>
+  </data>
+  <data name="MainFrame_addMandatoryCrossingMenu_Text" xml:space="preserve">
+    <value>Oblikatorisk krydspunkt</value>
+  </data>
+  <data name="MainFrame_mandatoryCrossingPointToolStripMenuItem_Text" xml:space="preserve">
+    <value>Oblikatorisk krydspunkt</value>
+  </data>
+  <data name="MainFrame_addOptCrossingMenu_Text" xml:space="preserve">
+    <value>Valgfri krydspunkt</value>
+  </data>
+  <data name="MainFrame_optionalCrossingPointToolStripMenuItem_Text" xml:space="preserve">
+    <value>Valgfri krydspunkt</value>
+  </data>
+  <data name="SelectionDescriptionText_SpecialName_OptCrossing" xml:space="preserve">
+    <value>Valgfri krydspunkt</value>
+  </data>
+  <data name="MainFrame_addOutOfBoundsMenu_Text" xml:space="preserve">
+    <value>Ude af grænser område</value>
+  </data>
+  <data name="MainFrame_outOfBoundsToolStripMenuItem_Text" xml:space="preserve">
+    <value>Ude af grænser område</value>
+  </data>
+  <data name="MainFrame_addDangerousMenu_Text" xml:space="preserve">
+    <value>Farligt område</value>
+  </data>
+  <data name="MainFrame_dangerousToolStripMenuItem_Text" xml:space="preserve">
+    <value>Farligt område</value>
+  </data>
+  <data name="SelectionDescriptionText_SpecialName_Dangerous" xml:space="preserve">
+    <value>Farligt område</value>
+  </data>
+  <data name="MainFrame_addWaterMenu_Text" xml:space="preserve">
+    <value>Vand lokation</value>
+  </data>
+  <data name="MainFrame_waterLocationToolStripMenuItem_Text" xml:space="preserve">
+    <value>Vand lokation</value>
+  </data>
+  <data name="SelectionDescriptionText_SpecialName_Water" xml:space="preserve">
+    <value>Vand lokation</value>
+  </data>
+  <data name="MainFrame_addFirstAidMenu_Text" xml:space="preserve">
+    <value>Førstehjælps lokation</value>
+  </data>
+  <data name="MainFrame_firstAidLocationToolStripMenuItem_Text" xml:space="preserve">
+    <value>Førstehjælps lokation</value>
+  </data>
+  <data name="SelectionDescriptionText_SpecialName_FirstAid" xml:space="preserve">
+    <value>Førstehjælps lokation</value>
+  </data>
+  <data name="MainFrame_addForbiddenMenu_Text" xml:space="preserve">
+    <value>Forbudt område markering</value>
+  </data>
+  <data name="MainFrame_forbiddenRouteMarkingToolStripMenuItem_Text" xml:space="preserve">
+    <value>Forbudt område markering</value>
+  </data>
+  <data name="MainFrame_addBoundaryMenu_Text" xml:space="preserve">
+    <value>Ukrydselig grænse</value>
+  </data>
+  <data name="MainFrame_boundaryToolStripMenuItem_Text" xml:space="preserve">
+    <value>Ukrydselig grænse</value>
+  </data>
+  <data name="SelectionDescriptionText_SpecialName_Boundary" xml:space="preserve">
+    <value>Ukrydselig grænse</value>
+  </data>
+  <data name="MainFrame_addRegMarkMenu_Text" xml:space="preserve">
+    <value>Registrerings mærke</value>
+  </data>
+  <data name="MainFrame_registrationMarkToolStripMenuItem_Text" xml:space="preserve">
+    <value>Registrerings mærke</value>
+  </data>
+  <data name="SelectionDescriptionText_SpecialName_RegMark" xml:space="preserve">
+    <value>Registrerings mærke</value>
+  </data>
+  <data name="MainFrame_whiteOutMenu_Text" xml:space="preserve">
+    <value>Hvidt ud område</value>
+  </data>
+  <data name="MainFrame_whiteOutToolStripMenuItem_Text" xml:space="preserve">
+    <value>Hvidt ud område</value>
+  </data>
+  <data name="SelectionDescriptionText_SpecialName_WhiteOut" xml:space="preserve">
+    <value>Hvidt ud område</value>
+  </data>
+  <data name="MainFrame_addImageMenu_Text" xml:space="preserve">
+    <value>Billede</value>
+  </data>
+  <data name="MainFrame_imageToolStripMenuItem_Text" xml:space="preserve">
+    <value>Billede</value>
+  </data>
+  <data name="SelectionDescriptionText_SpecialName_Image" xml:space="preserve">
+    <value>Billede</value>
+  </data>
+  <data name="MainFrame_addLineMenu_Text" xml:space="preserve">
+    <value>Linje</value>
+  </data>
+  <data name="MainFrame_lineToolStripMenuItem_Text" xml:space="preserve">
+    <value>Linje</value>
+  </data>
+  <data name="SelectionDescriptionText_SpecialName_Line" xml:space="preserve">
+    <value>Linje</value>
+  </data>
+  <data name="MainFrame_addRectangleMenu_Text" xml:space="preserve">
+    <value>Rektangel</value>
+  </data>
+  <data name="MainFrame_rectangleToolStripMenuItem_Text" xml:space="preserve">
+    <value>Rektangel</value>
+  </data>
+  <data name="SelectionDescriptionText_SpecialName_Rectangle" xml:space="preserve">
+    <value>Rektangel</value>
+  </data>
+  <data name="MainFrame_addMenu_Text" xml:space="preserve">
+    <value>&amp;Tilføj</value>
+  </data>
+  <data name="MainFrame_changeMapFileMenu_Text" xml:space="preserve">
+    <value>&amp;Kortfil...</value>
+  </data>
+  <data name="MainFrame_changeCodesMenu_Text" xml:space="preserve">
+    <value>Ændr kontrol &amp;koder...</value>
+  </data>
+  <data name="MainFrame_autoNumberingMenu_Text" xml:space="preserve">
+    <value>Automatisk &amp;nummerering...</value>
+  </data>
+  <data name="MainFrame_removeUnusedControlsMenu_Text" xml:space="preserve">
+    <value>Fjern &amp;Ubrugte kontroller...</value>
+  </data>
+  <data name="MainFrame_punchPatternsMenu_Text" xml:space="preserve">
+    <value>&amp;Hulmønstre...</value>
+  </data>
+  <data name="MainFrame_descriptionStd2004Menu_Text" xml:space="preserve">
+    <value>2004 beskrivelses standard</value>
+  </data>
+  <data name="MainFrame_descriptionStd2018Menu_Text" xml:space="preserve">
+    <value>2018/2024 beskrivelses standard</value>
+  </data>
+  <data name="MainFrame_mapStd2000Menu_Text" xml:space="preserve">
+    <value>ISOM2000 kort Standard</value>
+  </data>
+  <data name="MainFrame_mapStd2017Menu_Text" xml:space="preserve">
+    <value>ISOM2017 Kort Standard</value>
+  </data>
+  <data name="MainFrame_iOFStandardsToolStripMenuItem_Text" xml:space="preserve">
+    <value>IOF &amp;Standards</value>
+  </data>
+  <data name="MainFrame_customizeDescriptionsMenu_Text" xml:space="preserve">
+    <value>Tilpas &amp;Beskrivelses tekst...</value>
+  </data>
+  <data name="MainFrame_customizeCourseAppearanceMenu_Text" xml:space="preserve">
+    <value>Tilpas &amp;Udseende...</value>
+  </data>
+  <data name="MainFrame_eventMenu_Text" xml:space="preserve">
+    <value>Hæ&amp;ndelse</value>
+  </data>
+  <data name="MainFrame_addCourseMenu_Text" xml:space="preserve">
+    <value>&amp;Tilføj kursus...</value>
+  </data>
+  <data name="MainFrame_deleteCourseMenu_Text" xml:space="preserve">
+    <value>&amp;Slet kursus</value>
+  </data>
+  <data name="MainFrame_duplicateCourseMenu_Text" xml:space="preserve">
+    <value>Du&amp;pliker kursus...</value>
+  </data>
+  <data name="MainFrame_propertiesMenu_Text" xml:space="preserve">
+    <value>&amp;Egenskaber...</value>
+  </data>
+  <data name="MainFrame_courseOrderMenu_Text" xml:space="preserve">
+    <value>Kursus &amp;Rækkefølge...</value>
+  </data>
+  <data name="MainFrame_courseLoadMenu_Text" xml:space="preserve">
+    <value>Konkurrent &amp;Læs</value>
+  </data>
+  <data name="MainFrame_courseVariationReportMenu_Text" xml:space="preserve">
+    <value>Relay Team &amp;Variationer...</value>
+  </data>
+  <data name="MainFrame_courseMenu_Text" xml:space="preserve">
+    <value>&amp;Kursus</value>
+  </data>
+  <data name="MainFrame_deleteForkMenu_Text" xml:space="preserve">
+    <value>Slet For&amp;k/Løkke</value>
+  </data>
+  <data name="MainFrame_addBendMenu_Text" xml:space="preserve">
+    <value>Tilføj &amp;Buk</value>
+  </data>
+  <data name="MainFrame_removeBendMenu_Text" xml:space="preserve">
+    <value>Fjern B&amp;uk</value>
+  </data>
+  <data name="MainFrame_addGapMenu_Text" xml:space="preserve">
+    <value>Tilføj &amp;hul</value>
+  </data>
+  <data name="MainFrame_removeGapMenu_Text" xml:space="preserve">
+    <value>Fjern H&amp;ul</value>
+  </data>
+  <data name="MainFrame_changeTextMenu_Text" xml:space="preserve">
+    <value>Ændr &amp;Tekst...</value>
+  </data>
+  <data name="MainFrame_changeLineAppearanceMenu_Text" xml:space="preserve">
+    <value>Ændr &amp;udseende...</value>
+  </data>
+  <data name="MainFrame_rotateMenu_Text" xml:space="preserve">
+    <value>R&amp;oter</value>
+  </data>
+  <data name="MainFrame_noFlaggingMenu_Text" xml:space="preserve">
+    <value>Ingen Udflagning</value>
+  </data>
+  <data name="MainFrame_entireFlaggingMenu_Text" xml:space="preserve">
+    <value>Hele Ben Udflagning</value>
+  </data>
+  <data name="MainFrame_beginFlaggingMenu_Text" xml:space="preserve">
+    <value>Begyndelse af ben Udflagning</value>
+  </data>
+  <data name="MainFrame_endFlaggingMenu_Text" xml:space="preserve">
+    <value>Slut på ben Udflagning</value>
+  </data>
+  <data name="MainFrame_legFlaggingMenu_Text" xml:space="preserve">
+    <value>&amp;Ben Udflagning</value>
+  </data>
+  <data name="MainFrame_changeDisplayedCoursesMenu_Text" xml:space="preserve">
+    <value>Ændr Vi&amp;ste kurser...</value>
+  </data>
+  <data name="MainFrame_itemMenu_Text" xml:space="preserve">
+    <value>&amp;Vare</value>
+  </data>
+  <data name="MainFrame_courseSummaryMenu_Text" xml:space="preserve">
+    <value>Kursus &amp;Resumé</value>
+  </data>
+  <data name="MainFrame_eventAuditMenu_Text" xml:space="preserve">
+    <value>Hændelse &amp;Resumé</value>
+  </data>
+  <data name="MainFrame_legLengthsMenu_Text" xml:space="preserve">
+    <value>&amp;Ben længder</value>
+  </data>
+  <data name="MainFrame_controlCrossrefMenu_Text" xml:space="preserve">
+    <value>Kontrol &amp;Krydsreference</value>
+  </data>
+  <data name="MainFrame_controlAndLegLoadMenu_Text" xml:space="preserve">
+    <value>Kontrol og læ&amp;s</value>
+  </data>
+  <data name="MainFrame_reportMenu_Text" xml:space="preserve">
+    <value>&amp;Rapporter</value>
+  </data>
+  <data name="MainFrame_helpContentsMenu_Text" xml:space="preserve">
+    <value>Purple Pen &amp;Hjælp</value>
+  </data>
+  <data name="MainFrame_helpTranslatedMenu_Text" xml:space="preserve">
+    <value>Purple Pen hjælp (oversat)</value>
+  </data>
+  <data name="MainFrame_mainWebSiteToolMenu_Text" xml:space="preserve">
+    <value>Purple Pen &amp;Webside</value>
+  </data>
+  <data name="MainFrame_supportWebSiteMenu_Text" xml:space="preserve">
+    <value>&amp;Support/Bug Rapportering</value>
+  </data>
+  <data name="MainFrame_donateWebSiteMenu_Text" xml:space="preserve">
+    <value>Giv en &amp;Donation</value>
+  </data>
+  <data name="MainFrame_aboutMenu_Text" xml:space="preserve">
+    <value>&amp;Om Purple Pen</value>
+  </data>
+  <data name="MainFrame_symbolBrowserMenu_Text" xml:space="preserve">
+    <value>Symbol Browser</value>
+  </data>
+  <data name="MainFrame_descriptionBrowserMenu_Text" xml:space="preserve">
+    <value>Beskrivelses Browser</value>
+  </data>
+  <data name="MainFrame_controlTesterMenu_Text" xml:space="preserve">
+    <value>Kontroltester</value>
+  </data>
+  <data name="MainFrame_mapTesterMenu_Text" xml:space="preserve">
+    <value>Korttester</value>
+  </data>
+  <data name="MainFrame_courseSelectorTesterMenu_Text" xml:space="preserve">
+    <value>Kursusvælger tester</value>
+  </data>
+  <data name="MainFrame_dotGridTesterToolStripMenuItem_Text" xml:space="preserve">
+    <value>Punktgitter tester</value>
+  </data>
+  <data name="MainFrame_dumpOCADFileMenu_Text" xml:space="preserve">
+    <value>Smid OCADfil</value>
+  </data>
+  <data name="MainFrame_reportTesterToolStripMenuItem_Text" xml:space="preserve">
+    <value>Rapporttester</value>
+  </data>
+  <data name="MainFrame_fontMetricsToolStripMenuItem_Text" xml:space="preserve">
+    <value>Skrifttype metrik</value>
+  </data>
+  <data name="MainFrame_crashToolStripMenuItem_Text" xml:space="preserve">
+    <value>Nedbrud</value>
+  </data>
+  <data name="MainFrame_debugMenu_Text" xml:space="preserve">
+    <value>Fejlsøg</value>
+  </data>
+  <data name="MainFrame_addDescriptionLanguageMenu_Text" xml:space="preserve">
+    <value>Tilføj beskrivelses sprog...</value>
+  </data>
+  <data name="MainFrame_addTranslatedTextsMenu_Text" xml:space="preserve">
+    <value>Tilføj oversat tekster...</value>
+  </data>
+  <data name="MainFrame_mergeSymbolsMenu_Text" xml:space="preserve">
+    <value>Sammenflet symboler.xml...</value>
+  </data>
+  <data name="MainFrame_translateMenu_Text" xml:space="preserve">
+    <value>&amp;Oversæt beskrivelsestekst</value>
+  </data>
+  <data name="MainFrame_helpMenu_Text" xml:space="preserve">
+    <value>&amp;Hjælp</value>
+  </data>
+  <data name="MainFrame_openToolStripButton_Text" xml:space="preserve">
+    <value>Åben</value>
+  </data>
+  <data name="MainFrame_openToolStripButton_ToolTipText" xml:space="preserve">
+    <value>Åben (ctrl+O)</value>
+  </data>
+  <data name="MainFrame_saveToolStripButton_Text" xml:space="preserve">
+    <value>Gem</value>
+  </data>
+  <data name="MiscText_CrashSave" xml:space="preserve">
+    <value>Gem</value>
+  </data>
+  <data name="MainFrame_saveToolStripButton_ToolTipText" xml:space="preserve">
+    <value>Gem (ctrl+S=</value>
+  </data>
+  <data name="MainFrame_undoToolStripButton_Text" xml:space="preserve">
+    <value>Fortryd</value>
+  </data>
+  <data name="MiscText_Undo" xml:space="preserve">
+    <value>Fortryd</value>
+  </data>
+  <data name="MainFrame_undoToolStripButton_ToolTipText" xml:space="preserve">
+    <value>Fortryd (Ctrl+Z)</value>
+  </data>
+  <data name="MainFrame_redoToolStripButton_Text" xml:space="preserve">
+    <value>Gentag</value>
+  </data>
+  <data name="MiscText_Redo" xml:space="preserve">
+    <value>Gentag</value>
+  </data>
+  <data name="MainFrame_redoToolStripButton_ToolTipText" xml:space="preserve">
+    <value>Gentag (Ctrl+Y)</value>
+  </data>
+  <data name="MainFrame_deleteToolStripButton_Text" xml:space="preserve">
+    <value>Slet (del)</value>
+  </data>
+  <data name="MainFrame_addControlToolStripButton_ToolTipText" xml:space="preserve">
+    <value>Tilføj kontrol Ctrl+A)</value>
+  </data>
+  <data name="MainFrame_descriptionsToolStripMenuItem_Text" xml:space="preserve">
+    <value>Tilføj beskrivelser</value>
+  </data>
+  <data name="MainFrame_mapExchangeControlToolStripMenuItem_Text" xml:space="preserve">
+    <value>Kortudveksling på kontrolpunkt</value>
+  </data>
+  <data name="MainFrame_mapExchangeSeparateToolStripMenuItem_Text" xml:space="preserve">
+    <value>Markeret rute til kortudveksling</value>
+  </data>
+  <data name="MainFrame_mapExchangeToolStripMenu_Text" xml:space="preserve">
+    <value>Tilføj kortUdveksling</value>
+  </data>
+  <data name="MainFrame_specialItemToolStripMenu_Text" xml:space="preserve">
+    <value>Tilføj speciel vare</value>
+  </data>
+  <data name="MainFrame_addBendToolStripButton_ToolTipText" xml:space="preserve">
+    <value>Tilføj buk (Ctrl+B)</value>
+  </data>
+  <data name="MainFrame_addGapToolStripButton_Text" xml:space="preserve">
+    <value>Værktøjsstripknap1</value>
+  </data>
+  <data name="MainFrame_addGapToolStripButton_ToolTipText" xml:space="preserve">
+    <value>Tilføj hul (Ctrl+G)</value>
+  </data>
+  <data name="MainFrame_zoomAmountLabel_Text" xml:space="preserve">
+    <value>Zoom: 100%</value>
+  </data>
+  <data name="MainFrame_locationDisplay_Text" xml:space="preserve">
+    <value>X:-999.99 Y:-999.99</value>
+  </data>
+  <data name="MainFrame_saveXmlFileDialog_Filter" xml:space="preserve">
+    <value>IOF XML version 2.0.3|*.xml|IOF XML version 3.0|*.xml</value>
+  </data>
+  <data name="MainFrame_saveXmlFileDialog_Title" xml:space="preserve">
+    <value>Opret XML Interchange Fil</value>
+  </data>
+  <data name="MainFrame_openImageDialog_Filter" xml:space="preserve">
+    <value>billdfil|*.jpg;*.jpeg;*.gif;*.png;*.bmp;*.tif;*.tiff</value>
+  </data>
+  <data name="MainFrame_saveGpxFileDialog_Filter" xml:space="preserve">
+    <value>GPX fil|*.gpx</value>
+  </data>
+  <data name="MainFrame_Text" xml:space="preserve">
+    <value>Purple Pen</value>
+  </data>
+  <data name="MiscText_AppTitle" xml:space="preserve">
+    <value>Purple Pen</value>
+  </data>
+  <data name="MiscText_CtrlZ" xml:space="preserve">
+    <value>Ctrl+Z</value>
+  </data>
+  <data name="MiscText_CtrlY" xml:space="preserve">
+    <value>Ctrl+Y</value>
+  </data>
+  <data name="MiscText_Esc" xml:space="preserve">
+    <value>Esc</value>
+  </data>
+  <data name="MiscText_NoSymbol" xml:space="preserve">
+    <value>Ingen symbol</value>
+  </data>
+  <data name="MiscText_AllControls" xml:space="preserve">
+    <value>Tilføj kontroller</value>
+  </data>
+  <data name="MiscText_CannotLoadFile" xml:space="preserve">
+    <value>Kan ikke indlæse '(0)' af følgende grund:</value>
+  </data>
+  <data name="MiscText_CannotSaveFile" xml:space="preserve">
+    <value>Kan ikke gemme '(0)' af følgende grund:</value>
+  </data>
+  <data name="MiscText_CannotLoadMapFile" xml:space="preserve">
+    <value>Kan ikke indlæse kortfil '(0)' af følgende grund:</value>
+  </data>
+  <data name="MiscText_CannotReadImageFile" xml:space="preserve">
+    <value>Kan ikke læse billedfil '(0)'</value>
+  </data>
+  <data name="MiscText_CannotPrint" xml:space="preserve">
+    <value>Kan ikke udskrive '(0)' af følgende grund:</value>
+  </data>
+  <data name="MiscText_CannotCreateFile" xml:space="preserve">
+    <value>Kan ikke oprette '(0)' af følgende grund:</value>
+  </data>
+  <data name="MiscText_CannotCreateDirectory" xml:space="preserve">
+    <value>Kan ikke oprette mappe '(0)' af følgende grund:</value>
+  </data>
+  <data name="MiscText_CannotReadMap" xml:space="preserve">
+    <value>Kan ikke læse kort af den følgende grund: '(0)' Optimer/Reparer og gen-gem i OCAD kan klare problemerne.</value>
+  </data>
+  <data name="MiscText_CannotCreateOcadFiles" xml:space="preserve">
+    <value>Kan ikke oprette OCAD filer af følgende grund:</value>
+  </data>
+  <data name="MiscText_SaveChanges" xml:space="preserve">
+    <value>Ønsker du at gemme de ændringer du lavede til '(0)'?</value>
+  </data>
+  <data name="MiscText_FileAlreadyExists" xml:space="preserve">
+    <value>Fil '(0)' eksisterer i den specificerede mappe. Klik "Tilbage" knappen og vælg en ny mappe eller en ny hændelsestitel.</value>
+  </data>
+  <data name="MiscText_CodeInUse" xml:space="preserve">
+    <value>Kontrolkoden '(0)' er allerede i brug af en anden kontrol.</value>
+  </data>
+  <data name="MiscText_BadScore" xml:space="preserve">
+    <value>Punkterne for en kontrol skal være et heltal 1-999.</value>
+  </data>
+  <data name="MiscText_BadClimb" xml:space="preserve">
+    <value>Stigningen for et kursus skal være et nummer mellem 0-999, eller blank.</value>
+  </data>
+  <data name="MiscText_BadLoad" xml:space="preserve">
+    <value>Indlæsningen af et kursus skal være et heltal 0-999999, eller blank.</value>
+  </data>
+  <data name="MiscText_CancelOperationWithShortcut" xml:space="preserve">
+    <value>An&amp;nuler handlingen</value>
+  </data>
+  <data name="MiscText_CancelOperation" xml:space="preserve">
+    <value>Annuller handlingen</value>
+  </data>
+  <data name="MiscText_EnterScore" xml:space="preserve">
+    <value>Indtast ny score</value>
+  </data>
+  <data name="MiscText_EnterCode" xml:space="preserve">
+    <value>Indtast ny kode</value>
+  </data>
+  <data name="MiscText_EnterDimensions" xml:space="preserve">
+    <value>Indtast feature størrelse
+Brug / for højde på en skråning
+Brug | for to features</value>
+  </data>
+  <data name="MiscText_EnterEventTitle" xml:space="preserve">
+    <value>Indtast ny hændelsestitel
+Brug | for at skille linjer
+(påvirker alle kurser)</value>
+  </data>
+  <data name="MiscText_EnterSecondaryTitle" xml:space="preserve">
+    <value>Indtast ny sekundær titel
+Brug | for at skille linjer</value>
+  </data>
+  <data name="MiscText_EnterCourseName" xml:space="preserve">
+    <value>Indtast nyt kursusnavn</value>
+  </data>
+  <data name="MiscText_EnterClimb" xml:space="preserve">
+    <value>Indtast ny stigning i meter</value>
+  </data>
+  <data name="MiscText_EnterSymbolText" xml:space="preserve">
+    <value>Indtast ny symbolbetydning
+(påvirker alle kurser)</value>
+  </data>
+  <data name="MiscText_EnterTextLine" xml:space="preserve">
+    <value>Indtast by tekst
+Brug | for at skille linjer</value>
+  </data>
+  <data name="MiscText_DeleteMultipleControlsFromControlsCollection" xml:space="preserve">
+    <value>Kontroller {0} bruges ikke længere af noget kursus. Ønsker du at slette disse kontroller fra kontrol-samlingen?</value>
+  </data>
+  <data name="MiscText_DeleteControlFromControlsCollection" xml:space="preserve">
+    <value>Kontrol {0} bruges ikke længere af noget kursus. Ønsker du at slette denne kontrol fra kontrolsamlingen?</value>
+  </data>
+  <data name="MiscText_DeleteControlFromAllControls" xml:space="preserve">
+    <value>Kontrol {0} bruges af de følgende kurser: {1}. Ønsker du at slette denne kontrol alligevel?</value>
+  </data>
+  <data name="MiscText_CodeBadLength" xml:space="preserve">
+    <value>En kontrolkode skal være en, to eller tre bogstaver eller tal.</value>
+  </data>
+  <data name="MiscText_CodeContainsSpace" xml:space="preserve">
+    <value>En kontrolkode må ikke indeholde mellemrum.</value>
+  </data>
+  <data name="MiscText_CodeBeginsWithZero" xml:space="preserve">
+    <value>En kontrolkode skulle ikke begynde med et nul.</value>
+  </data>
+  <data name="MiscText_CodeCouldBeUpsideDown" xml:space="preserve">
+    <value>En kontrolkode skulle ikke se ud som et andet nummer ved op-ned.</value>
+  </data>
+  <data name="MiscText_DuplicateCode" xml:space="preserve">
+    <value>Koden {0} bruges mere end en gang.</value>
+  </data>
+  <data name="MiscText_BadScale" xml:space="preserve">
+    <value>Udskriftskala skal være et nummer mellem 100 og 100.000.</value>
+  </data>
+  <data name="MiscText_CoursePropertiesTitle" xml:space="preserve">
+    <value>Kursusegenskaber</value>
+  </data>
+  <data name="MiscText_Landscape" xml:space="preserve">
+    <value>Landskab</value>
+  </data>
+  <data name="PrintDescriptions_orientation_Text" xml:space="preserve">
+    <value>Landskab</value>
+  </data>
+  <data name="PrinterMargins_radioButtonLandscape_Text" xml:space="preserve">
+    <value>Landskab</value>
+  </data>
+  <data name="PrintPunches_orientation_Text" xml:space="preserve">
+    <value>Landskab</value>
+  </data>
+  <data name="MiscText_Portrait" xml:space="preserve">
+    <value>Portræt</value>
+  </data>
+  <data name="PrinterMargins_radioButtonPortrait_Text" xml:space="preserve">
+    <value>Portræt</value>
+  </data>
+  <data name="MiscText_PageTooSmall" xml:space="preserve">
+    <value>Sidestørrelsen er for lille til at nogen beskrivelse kan udskrives.</value>
+  </data>
+  <data name="MiscText_VersionLabel" xml:space="preserve">
+    <value>Version {0}</value>
+  </data>
+  <data name="MiscText_NewerVersionAvailable" xml:space="preserve">
+    <value>Version {0} af Purple Pen er nu tilgængelig for download. Du bruger i øjeblikket versiom {1}.
+
+Ønsker du at downloade og installere den seneste version?</value>
+  </data>
+  <data name="MiscText_HelpFileNotFound" xml:space="preserve">
+    <value>Hjælpfil '{0}' kunne ikke åbnes.</value>
+  </data>
+  <data name="MiscText_Zoom" xml:space="preserve">
+    <value>Zoom</value>
+  </data>
+  <data name="MiscText_MissingMapFile" xml:space="preserve">
+    <value>Kortfilen"{0}" blev ikke fundet.
+
+Sandsynligvis er kortfilen blevet flyttet eller slettet, eller Purple Pen filen er blevet flyttet (muligvis til en anden computer). Kortfilen skal være til stede hver gang Purple Pen hændelsesfilen indlæses. Hvis du sender en Purple Pen hændelsesfil til en anden person, vær sikker på at den person også har en kopi af kortfilen.
+
+Efter at klikke OK, prøv at finde en kopi af kortfilen på din computer.</value>
+  </data>
+  <data name="MiscText_NoUnusedControls" xml:space="preserve">
+    <value>Alle kontroller er brugt på et kursus.</value>
+  </data>
+  <data name="MiscText_NextButtonText" xml:space="preserve">
+    <value>&amp;Next &gt;</value>
+  </data>
+  <data name="NewEventWizard_nextButton_Text" xml:space="preserve">
+    <value>&amp;Next &gt;</value>
+  </data>
+  <data name="MiscText_Control_Code" xml:space="preserve">
+    <value>Kontrol {0}</value>
+  </data>
+  <data name="MiscText_Finish" xml:space="preserve">
+    <value>Afslut</value>
+  </data>
+  <data name="MiscText_Finish_Short" xml:space="preserve">
+    <value>F</value>
+  </data>
+  <data name="MiscText_MandCrossing_Long" xml:space="preserve">
+    <value>Oblikatorisk krydspunkt</value>
+  </data>
+  <data name="MiscText_MandCrossing_Medium" xml:space="preserve">
+    <value>Overgang</value>
+  </data>
+  <data name="MiscText_MandCrossing_Short" xml:space="preserve">
+    <value>C</value>
+  </data>
+  <data name="MiscText_Margins_All" xml:space="preserve">
+    <value>Alle {0}</value>
+  </data>
+  <data name="MiscText_Margins_LRTB" xml:space="preserve">
+    <value>Venste {0}, Højre {1}, Top {2}, Bund {3}</value>
+  </data>
+  <data name="MiscText_Start" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="MiscText_Start_Short" xml:space="preserve">
+    <value>S</value>
+  </data>
+  <data name="MiscText_Version_Alpha" xml:space="preserve">
+    <value>Alfa {0}</value>
+  </data>
+  <data name="MiscText_Version_Beta" xml:space="preserve">
+    <value>Beta {0}</value>
+  </data>
+  <data name="MiscText_Version_RC" xml:space="preserve">
+    <value>RC {0}</value>
+  </data>
+  <data name="MiscText_Plural" xml:space="preserve">
+    <value>flertal</value>
+  </data>
+  <data name="MiscText_Singular" xml:space="preserve">
+    <value>ental</value>
+  </data>
+  <data name="MiscText_RequireStar" xml:space="preserve">
+    <value>Den tilpassede tekst kræver en "*" for at indikere hvor objektet som bliver modificeret er placeret.</value>
+  </data>
+  <data name="MiscText_AddTextSpecialExplanation" xml:space="preserve">
+    <value>Indtast teksten du ønsker at placere på kortet. Efter tryk på OK, træk musen for at placere teksten i den ønskede lokation.</value>
+  </data>
+  <data name="MiscText_AddTextSpecialTitle" xml:space="preserve">
+    <value>Tilføj tekst</value>
+  </data>
+  <data name="MiscText_ChangeTextSpecialExplanation" xml:space="preserve">
+    <value>Indtast den nye tekst</value>
+  </data>
+  <data name="MiscText_MapFileChanged" xml:space="preserve">
+    <value>Et andet program har ændret kortfilen "{0}". Purple Pen vil nu genindlæse kortet.</value>
+  </data>
+  <data name="MiscText_ChangeDescriptionLanguage" xml:space="preserve">
+    <value>Den nuværende hændelse har tekstuel kontrolbeskrivelser in {0}. Ønsker du at ændre sprog på kontrolbeskrivelser til {1}?</value>
+  </data>
+  <data name="MiscText_OpenLastEvent" xml:space="preserve">
+    <value>Åben "{0}"</value>
+  </data>
+  <data name="MiscText_ClosePPBeforeLoadingOCAD" xml:space="preserve">
+    <value>Purple Pen skal lukkes før indlæsning af de oprettede OCADfiler.</value>
+  </data>
+  <data name="MiscText_NoCoursesSelected" xml:space="preserve">
+    <value>Ingen kurser var valgt til udskrift.</value>
+  </data>
+  <data name="MiscText_TranslatedHelpWebSite" xml:space="preserve">
+    <value>*** Hvis der eksisterer en webside i det oversatte sprog som indeholder dokumentation for Purple Pen, indtast den URL (inklusive http) som oversættelse af denne vare. Ellers lad den være.</value>
+  </data>
+  <data name="MiscText_MapExchange_Long" xml:space="preserve">
+    <value>Kortudveksling</value>
+  </data>
+  <data name="MiscText_MapExchange_Medium" xml:space="preserve">
+    <value>Udveksl</value>
+  </data>
+  <data name="MiscText_MapExchange_Short" xml:space="preserve">
+    <value>MX</value>
+  </data>
+  <data name="MiscText_PartN" xml:space="preserve">
+    <value>Del {0}</value>
+  </data>
+  <data name="MiscText_AllParts" xml:space="preserve">
+    <value>Alle dele</value>
+  </data>
+  <data name="MiscText_PartXOfY" xml:space="preserve">
+    <value>Del {0} af {1})</value>
+  </data>
+  <data name="MiscText_CrashEmail" xml:space="preserve">
+    <value>Kontakt E-mail</value>
+  </data>
+  <data name="MiscText_CrashIntro" xml:space="preserve">
+    <value>Der er sket en fejl. For at hjælpe os med at løse problemet, venligst indtast din email adresse og yderligere information, og send os en fejlrapport.</value>
+  </data>
+  <data name="MiscText_CrashMessage" xml:space="preserve">
+    <value>Venligst fortæl os hvad du lavede i programmet, for at hjælpe med at løse problemet</value>
+  </data>
+  <data name="MiscText_CrashSend" xml:space="preserve">
+    <value>Send rapport</value>
+  </data>
+  <data name="MiscText_PdfConverterNotFound" xml:space="preserve">
+    <value>PdfConverter.exe blev ikke fundet</value>
+  </data>
+  <data name="MiscText_PdfConversionFailed" xml:space="preserve">
+    <value>Pdfium PDF converter mislykkedes med at læse PDF fil successfuldt</value>
+  </data>
+  <data name="MiscText_PdfResultNotReadable" xml:space="preserve">
+    <value>Kunne ikke læse resultatet af PDF omdannelse fra fil '{0}'</value>
+  </data>
+  <data name="MiscText_CannotCreatePdfs" xml:space="preserve">
+    <value>Kan ikke oprette PDFs af følgende grund:</value>
+  </data>
+  <data name="MiscText_UserDefined" xml:space="preserve">
+    <value>Brugerdefineret</value>
+  </data>
+  <data name="MiscText_PdfMapSize" xml:space="preserve">
+    <value>Kortstørrelse fra PDF</value>
+  </data>
+  <data name="MiscText_CancelledByUser" xml:space="preserve">
+    <value>Annulleret af bruger</value>
+  </data>
+  <data name="MiscText_CreatingFile" xml:space="preserve">
+    <value>Opretter {0}...</value>
+  </data>
+  <data name="MiscText_PrintingPage" xml:space="preserve">
+    <value>Udskriver side {0} (af {1})</value>
+  </data>
+  <data name="MiscText_MapFileDeleted" xml:space="preserve">
+    <value>Kortfilen "{0}" er blevet slettet. Venligst prøv at genskabe kortfilen, derpå tryk på "OK".</value>
+  </data>
+  <data name="MiscText_BadDotNetFramework" xml:space="preserve">
+    <value>.NET frameworket på din computer ser ikke ud til at være korrekt installeret. Venligst besøg http://microsoft.com/net og installer den seneste version af .NET-frameworket for dit Windows operativsystem.</value>
+  </data>
+  <data name="MiscText_ChooseOtherColor" xml:space="preserve">
+    <value>Vælg farve...</value>
+  </data>
+  <data name="MiscText_CustomColor" xml:space="preserve">
+    <value>Brugerdefineret farve</value>
+  </data>
+  <data name="MiscText_DarkBlue" xml:space="preserve">
+    <value>Mørkeblå</value>
+  </data>
+  <data name="MiscText_Green" xml:space="preserve">
+    <value>Grøn</value>
+  </data>
+  <data name="MiscText_LightBlue" xml:space="preserve">
+    <value>Lyseblå</value>
+  </data>
+  <data name="MiscText_Red" xml:space="preserve">
+    <value>Rød</value>
+  </data>
+  <data name="MiscText_Yellow" xml:space="preserve">
+    <value>Gul</value>
+  </data>
+  <data name="MiscText_AddLineExplanation" xml:space="preserve">
+    <value>Sæt udseende af linjen. Efter a have trykket OK, træk musen for at tegne linjesegmentet i på den  ønskede lokation.</value>
+  </data>
+  <data name="MiscText_AddLineTitle" xml:space="preserve">
+    <value>Tilføj linje</value>
+  </data>
+  <data name="MiscText_AddRectangleExplanation" xml:space="preserve">
+    <value>Sæt udseendet af rektanglen, Efter at du har trykket OK, træk musen for at placere rektanglen på den ønskede lokation.</value>
+  </data>
+  <data name="MiscText_AddRectangleTitle" xml:space="preserve">
+    <value>Tilføj rektangel</value>
+  </data>
+  <data name="MiscText_ChangeLineAppearanceExplanation" xml:space="preserve">
+    <value>Ændr udseende på linje eller rektakgel.</value>
+  </data>
+  <data name="MiscText_GpxMustBeOcadMap" xml:space="preserve">
+    <value>Kortfilen skal være en OCADfil for at bruge GPXfiler.</value>
+  </data>
+  <data name="MiscText_GpxMustHaveCoordSystem" xml:space="preserve">
+    <value>OCADfilen skal have et koordinatsystem defineret for at bruge GPXfiler.</value>
+  </data>
+  <data name="MiscText_GpxMustHaveRealWorldCoord" xml:space="preserve">
+    <value>OCADfilen skal have virkelige koordinater definere for at bruge GPXfiler.</value>
+  </data>
+  <data name="MiscText_GpxReprojectFailure" xml:space="preserve">
+    <value>Kunne ikke genprojekt punkter; enten er koordinaterne og de virkelige koordinater i OCAD kortet forkerte.</value>
+  </data>
+  <data name="MiscText_GpxUnsupportedCoordSystem" xml:space="preserve">
+    <value>OCADfil bruger et koordinatsystem som ikke er understøttet af Purple Pen.</value>
+  </data>
+  <data name="MiscText_BadLength" xml:space="preserve">
+    <value>Længden på et kursus skal være et nummer 0,1 - 99,9 eller blank for at udregne længden automatisk.</value>
+  </data>
+  <data name="MiscText_EnterLength" xml:space="preserve">
+    <value>Indtast længde i km, eller efterlad blank for at udregne automatisk</value>
+  </data>
+  <data name="MiscText_PausePrinting" xml:space="preserve">
+    <value>Afsluttede udskrivning "{0}", Tryk OK for at begynde udskrivning "{1}".</value>
+  </data>
+  <data name="MiscText_OCAD" xml:space="preserve">
+    <value>OCAD</value>
+  </data>
+  <data name="MiscText_OpenOrienteeringMapper" xml:space="preserve">
+    <value>OOM</value>
+  </data>
+  <data name="MiscText_AllVariations" xml:space="preserve">
+    <value>Alle variationer</value>
+  </data>
+  <data name="MiscText_ForkSummary" xml:space="preserve">
+    <value>Passende for brug i relays med {0} deltagere per team.</value>
+  </data>
+  <data name="MiscText_LoopSummary" xml:space="preserve">
+    <value>Den centrale kontrol i løkken vil blive besøgt {0} gange. der er {1} mulige stier gennem løkkerne.</value>
+  </data>
+  <data name="MiscText_CantRearrangeSplitControl" xml:space="preserve">
+    <value>En kontrol der starter en fork eller løkke kan ikke trækkes til et nyt sted i kurset.</value>
+  </data>
+  <data name="MiscText_TooManyVariations" xml:space="preserve">
+    <value>For mange totale variationer i dette kursus. Nummeret af tydelige variationer er begrænset til {0}.</value>
+  </data>
+  <data name="MiscText_CannotAddVariation" xml:space="preserve">
+    <value>Kan ikke tilføje variation.</value>
+  </data>
+  <data name="MiscText_VariationAlreadyExists" xml:space="preserve">
+    <value>En variation eksisterer ved denne kontrol.</value>
+  </data>
+  <data name="MiscText_VariationMustSelectControl" xml:space="preserve">
+    <value>En kontrol eller ben skal vælges for at tilføje variation.</value>
+  </data>
+  <data name="MiscText_VariationNotFinish" xml:space="preserve">
+    <value>En variation kan ikke tilfæjes til en færdig kontrol.</value>
+  </data>
+  <data name="MiscText_VariationNotInAllControls" xml:space="preserve">
+    <value>En variation kan ikke tilføjes alle kontroller vis.</value>
+  </data>
+  <data name="MiscText_VariationNotInScoreCourse" xml:space="preserve">
+    <value>En variation kan ikke tilføjees til et scrorekursus.</value>
+  </data>
+  <data name="MiscText_VariationNotLastControl" xml:space="preserve">
+    <value>En variation kan ikke tilføjes den sidste kontrol. Tilføj en slutkontrol først.</value>
+  </data>
+  <data name="MiscText_BadLegNumber" xml:space="preserve">
+    <value>'{0}' er  ikke et gyldigt bennummer til gren '{1}'</value>
+  </data>
+  <data name="MiscText_LegNotAssigned" xml:space="preserve">
+    <value>Ben {0} skal tildeles en sf grenene {1}</value>
+  </data>
+  <data name="MiscText_LegUsedTwice" xml:space="preserve">
+    <value>Ben {0} er tildelt begge grene '{1}' og gren '{2}'</value>
+  </data>
+  <data name="MiscText_CannotReadMapOOM" xml:space="preserve">
+    <value>Kan ikke læse kort af følgende grund: '{0}' Åbning og gen-gem kortet i den seneste version af OpenOrienteering Mapper kan løse problemerne.</value>
+  </data>
+  <data name="MiscText_BaseMapHasVisibleTemplatesThatMayNotAppear" xml:space="preserve">
+    <value>Det underliggende OCAD kort har synlig skabelonfiler. I OCAD 8 og lavere, disse skabeloner vil måske ikke træde frem på grund af begrænsninger i OCAD.</value>
+  </data>
+  <data name="MiscText_ImagesMayAppearBadlyLayeredInOcad10Below" xml:space="preserve">
+    <value>På grund af begrænsninger i OCAD filformatet (i OCAD 10 og lavere), vil billedobjekter træde frem under kurser og uden områder i de eksporterede OCAD-filer for at være sikker på at dine billeder vises som ønsket.</value>
+  </data>
+  <data name="MiscText_CannotCreateImageFiles" xml:space="preserve">
+    <value>Kan ikke oprette billedfiler af følgende grund:</value>
+  </data>
+  <data name="MiscText_CreatePdf" xml:space="preserve">
+    <value>Opret PDF</value>
+  </data>
+  <data name="MiscText_PdfFilter" xml:space="preserve">
+    <value>PDF Fil|*.pdf</value>
+  </data>
+  <data name="MiscText_LegAssignedOuterBranch" xml:space="preserve">
+    <value>Ben {0} når aldrig gren '{1}': det var tildelt at gå en anderledes vej i en Indeholdende fork.</value>
+  </data>
+  <data name="MissingFonts_checkBoxDontWarnAgain_Text" xml:space="preserve">
+    <value>Advar ikke om manglende fonte for denne hændelse igen</value>
+  </data>
+  <data name="MissingFonts_labelWarning_Text" xml:space="preserve">
+    <value>Kortfil "{0}" bruger fonte der ikke er installeret på din computer. Tekst der bruger disse fonte vil blive tegnet og udskrevet med en standard font, hvilket kan få teksten til at fremtræde forskelligt fra kortdesignerens intentioner.
+</value>
+  </data>
+  <data name="MissingFonts_Text" xml:space="preserve">
+    <value>Manglende fonte</value>
+  </data>
+  <data name="NewEventBitmapScale_bitmapScaleLabel_Text" xml:space="preserve">
+    <value>Ved brug af en billedfil, skal du specificere den opløsning af billedet og kortskalaen. 
+
+Opløsningen af billedet indikerer hvordan pixels og punkter er i billedet for hver tomme af papirkortet; sædvanligvis benævnt dots per inch eller "dpi".
+
+Skalaen af kortet indikerer forholdet mellem papirkortet og virkeligheden.
+</value>
+  </data>
+  <data name="NewEventBitmapScale_resolutionLabel_Text" xml:space="preserve">
+    <value>Billedopløsning:</value>
+  </data>
+  <data name="NewEventBitmapScale_oneToPrefixLabel_Text" xml:space="preserve">
+    <value>1:</value>
+  </data>
+  <data name="NewEventPrintScale_oneToPrefixLabel1_Text" xml:space="preserve">
+    <value>1:</value>
+  </data>
+  <data name="NewEventPrintScale_oneToPrefixLabel2_Text" xml:space="preserve">
+    <value>1:</value>
+  </data>
+  <data name="NewEventBitmapScale_mapScaleLabel_Text" xml:space="preserve">
+    <value>Kortskala:</value>
+  </data>
+  <data name="NewEventPrintScale_mapScaleLabel_Text" xml:space="preserve">
+    <value>Kortskala:</value>
+  </data>
+  <data name="NewEventBitmapScale_labelTitle_Text" xml:space="preserve">
+    <value>Bitmap opløsning</value>
+  </data>
+  <data name="NewEventBitmapScale_pdfScaleLabel_Text" xml:space="preserve">
+    <value>Når du bruger en PDF-fil som et kort, du skal specificere kortskala. 
+
+Skalaen af kortet indikerer forholdet mellem papirkortet og virkeligheden.
+</value>
+  </data>
+  <data name="NewEventDirectory_newEventDirectoryLabel_Text" xml:space="preserve">
+    <value>Hvilken mappe (bibliotek) ønsker du at gemme dine kursushændelsesfil i?</value>
+  </data>
+  <data name="NewEventDirectory_useMapDirectory_Text" xml:space="preserve">
+    <value>I samme mappe som kortfilen.</value>
+  </data>
+  <data name="NewEventDirectory_useOtherFolder_Text" xml:space="preserve">
+    <value>I en anden mappe jeg vælger.</value>
+  </data>
+  <data name="NewEventDirectory_chooseFolder_Text" xml:space="preserve">
+    <value>Vælg mappe...</value>
+  </data>
+  <data name="NewEventDirectory_folderBrowserDialog_Description" xml:space="preserve">
+    <value>Vælg mappen til din hændelsesfil</value>
+  </data>
+  <data name="NewEventDirectory_directoryDisplay_Text" xml:space="preserve">
+    <value>Valgte mappe</value>
+  </data>
+  <data name="NewEventDirectory_labelTitle_Text" xml:space="preserve">
+    <value>Hændelsesfil lokation</value>
+  </data>
+  <data name="NewEventFinal_newEventFinalLabel_Text" xml:space="preserve">
+    <value>Klik "Færdig" for at oprette din hændelse. Din hændelsesfil vil blive gemt som:</value>
+  </data>
+  <data name="NewEventFinal_afterEventCreatedLabel_Text" xml:space="preserve">
+    <value>Efter din hændelse er oprettet vælg "Nyt kursus..." fra kursusmenuen for at oprette et eller flere kurser.</value>
+  </data>
+</root>

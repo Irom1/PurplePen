@@ -1,0 +1,1767 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AboutForm_copyrightLabel_Text" xml:space="preserve">
+    <value>Copyright © by Peter Golde</value>
+  </data>
+  <data name="AboutForm_freeLabel_Text" xml:space="preserve">
+    <value>Purple Pen is gratis software en mag worden gekopieerd en gedeeld.</value>
+  </data>
+  <data name="AboutForm_disclaimerLabel_Text" xml:space="preserve">
+    <value>Deze software wordt verstrekt door de auteursrechthouders en de medewerkers "zoals ze is", en om het even welke uitdrukkelijke of impliciete garanties, inclusief -maar niet uitsluitend- de impliciete garanties van handelsgoed en geschiktheid voor een bepaald doel, worden afgewezen.</value>
+  </data>
+  <data name="AboutForm_okButton_Text" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="InitialScreen_okButton_Text" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="LicenseForm_okButton_Text" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="MissingFonts_okButton_Text" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="OkCancelDialog_okButton_Text" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="AboutForm_creditsButton_Text" xml:space="preserve">
+    <value>Met dank aan</value>
+  </data>
+  <data name="AboutForm_licenseButton_Text" xml:space="preserve">
+    <value>Bekijke de volledige licentie</value>
+  </data>
+  <data name="AboutForm_Text" xml:space="preserve">
+    <value>Over Purple Pen</value>
+  </data>
+  <data name="AddCourse_firstControlLabel_Text" xml:space="preserve">
+    <value>Nummer van eerste post:</value>
+  </data>
+  <data name="AddCourse_descriptionAppearanceLabel_Text" xml:space="preserve">
+    <value>Uiterlijk van de beschrijving:</value>
+  </data>
+  <data name="AllControlsProperties_descriptionAppearanceLabel_Text" xml:space="preserve">
+    <value>Uiterlijk van de beschrijving:</value>
+  </data>
+  <data name="AddCourse_mapScaleLabel_Text" xml:space="preserve">
+    <value>Schaal afgedrukte kaart:</value>
+  </data>
+  <data name="AllControlsProperties_printingScaleLabel_Text" xml:space="preserve">
+    <value>Schaal afgedrukte kaart:</value>
+  </data>
+  <data name="AddCourse_oneToPrefixLabel_Text" xml:space="preserve">
+    <value>1 : </value>
+  </data>
+  <data name="AllControlsProperties_oneToPrefix_Text" xml:space="preserve">
+    <value>1 : </value>
+  </data>
+  <data name="AddCourse_descKindCombo_Items" xml:space="preserve">
+    <value>Symbolen</value>
+  </data>
+  <data name="AllControlsProperties_descKindCombo_Items" xml:space="preserve">
+    <value>Symbolen</value>
+  </data>
+  <data name="PrintDescriptions_descriptionKindCombo_Items1" xml:space="preserve">
+    <value>Symbolen</value>
+  </data>
+  <data name="AddCourse_descKindCombo_Items1" xml:space="preserve">
+    <value>Tekst</value>
+  </data>
+  <data name="AllControlsProperties_descKindCombo_Items1" xml:space="preserve">
+    <value>Tekst</value>
+  </data>
+  <data name="ChangeText_groupBox3_Text" xml:space="preserve">
+    <value>Tekst</value>
+  </data>
+  <data name="EnterSymbolText_textColumn_HeaderText" xml:space="preserve">
+    <value>Tekst</value>
+  </data>
+  <data name="MainFrame_addTextMenu_Text" xml:space="preserve">
+    <value>Tekst</value>
+  </data>
+  <data name="MainFrame_textToolStripMenuItem_Text" xml:space="preserve">
+    <value>Tekst</value>
+  </data>
+  <data name="PrintDescriptions_descriptionKindCombo_Items2" xml:space="preserve">
+    <value>Tekst</value>
+  </data>
+  <data name="SelectionDescriptionText_SpecialName_Text" xml:space="preserve">
+    <value>Tekst</value>
+  </data>
+  <data name="AddCourse_descKindCombo_Items2" xml:space="preserve">
+    <value>Symbolen en tekst</value>
+  </data>
+  <data name="AllControlsProperties_descKindCombo_Items2" xml:space="preserve">
+    <value>Symbolen en tekst</value>
+  </data>
+  <data name="AddCourse_labelKindLabel_Text" xml:space="preserve">
+    <value>Post-cirkel labels:</value>
+  </data>
+  <data name="AddCourse_labelKindCombo_Items" xml:space="preserve">
+    <value>Volgnummer (3)</value>
+  </data>
+  <data name="AddCourse_labelKindCombo_Items1" xml:space="preserve">
+    <value>Controle code (145)</value>
+  </data>
+  <data name="AddCourse_labelKindCombo_Items2" xml:space="preserve">
+    <value>Volgorde en code (3-145)</value>
+  </data>
+  <data name="AddCourse_labelKindCombo_Items3" xml:space="preserve">
+    <value>Volgorde en score (3(30))</value>
+  </data>
+  <data name="AddCourse_labelKindCombo_Items4" xml:space="preserve">
+    <value>Code en score (145(30))</value>
+  </data>
+  <data name="AddCourse_scoreColumnLabel_Text" xml:space="preserve">
+    <value>Laat punten zien in:</value>
+  </data>
+  <data name="AddCourse_scoreColumnCombo_Items" xml:space="preserve">
+    <value>Kolom A</value>
+  </data>
+  <data name="AddCourse_scoreColumnCombo_Items1" xml:space="preserve">
+    <value>Kolom B</value>
+  </data>
+  <data name="AddCourse_scoreColumnCombo_Items2" xml:space="preserve">
+    <value>Kolom H</value>
+  </data>
+  <data name="AddCourse_scoreColumnCombo_Items3" xml:space="preserve">
+    <value>(niet tonen)</value>
+  </data>
+  <data name="AddCourse_groupBox1_Text" xml:space="preserve">
+    <value>Weergave</value>
+  </data>
+  <data name="AllControlsProperties_appearanceGroupBox_Text" xml:space="preserve">
+    <value>Weergave</value>
+  </data>
+  <data name="ChangeText_groupBox1_Text" xml:space="preserve">
+    <value>Weergave</value>
+  </data>
+  <data name="CreatePdfCourses_groupBoxAppearance_Text" xml:space="preserve">
+    <value>Weergave</value>
+  </data>
+  <data name="LinePropertiesDialog_groupBox2_Text" xml:space="preserve">
+    <value>Weergave</value>
+  </data>
+  <data name="PrintCourses_groupBoxAppearance_Text" xml:space="preserve">
+    <value>Weergave</value>
+  </data>
+  <data name="PrintDescriptions_layoutGroup_Text" xml:space="preserve">
+    <value>Weergave</value>
+  </data>
+  <data name="PrintPunches_layoutGroup_Text" xml:space="preserve">
+    <value>Weergave</value>
+  </data>
+  <data name="AddCourse_secondaryTitleDescription_Text" xml:space="preserve">
+    <value>De volgende (optionele) tekst verschijnt op de tweede regel van de postomschrijving:</value>
+  </data>
+  <data name="AddCourse_secondaryTitleGroup_Text" xml:space="preserve">
+    <value>Klasse lijst / secundaire titel</value>
+  </data>
+  <data name="AddCourse_lengthLabel_Text" xml:space="preserve">
+    <value>Lengte:</value>
+  </data>
+  <data name="SelectionDescriptionText_Length" xml:space="preserve">
+    <value>Lengte:</value>
+  </data>
+  <data name="AddCourse_climbLabel_Text" xml:space="preserve">
+    <value>Stijging:</value>
+  </data>
+  <data name="SelectionDescriptionText_Climb" xml:space="preserve">
+    <value>Stijging:</value>
+  </data>
+  <data name="AddCourse_courseTypeLabel_Text" xml:space="preserve">
+    <value>Route type:</value>
+  </data>
+  <data name="AddCourse_courseNameLabel_Text" xml:space="preserve">
+    <value>Route naam:</value>
+  </data>
+  <data name="AddCourse_courseKindCombo_Items" xml:space="preserve">
+    <value>Normale route</value>
+  </data>
+  <data name="AddCourse_courseKindCombo_Items1" xml:space="preserve">
+    <value>Scoreloop</value>
+  </data>
+  <data name="AddCourse_metersSuffix_Text" xml:space="preserve">
+    <value>meter</value>
+  </data>
+  <data name="AddCourse_kmSuffix_Text" xml:space="preserve">
+    <value>km</value>
+  </data>
+  <data name="AddCourse_Text" xml:space="preserve">
+    <value>Nieuwe route</value>
+  </data>
+  <data name="CommandNameText_NewCourse" xml:space="preserve">
+    <value>Nieuwe route</value>
+  </data>
+  <data name="AddForkDialog_labelWhichType_Text" xml:space="preserve">
+    <value>Welk type variant wil je toevoegen?</value>
+  </data>
+  <data name="AddForkDialog_radioButtonFork_Text" xml:space="preserve">
+    <value>Afsplitsing</value>
+  </data>
+  <data name="AddForkDialog_radioButtonLoop_Text" xml:space="preserve">
+    <value>Lus</value>
+  </data>
+  <data name="AddForkDialog_labelNumberBranches_Text" xml:space="preserve">
+    <value>Aantal varianten:</value>
+  </data>
+  <data name="AddForkDialog_comboBoxNumberBranches_Items" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="AddForkDialog_comboBoxNumberBranches_Items1" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="AddForkDialog_comboBoxNumberBranches_Items2" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="AddForkDialog_comboBoxNumberBranches_Items3" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="AddForkDialog_comboBoxNumberBranches_Items4" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="AddForkDialog_comboBoxNumberBranches_Items5" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="AddForkDialog_comboBoxNumberBranches_Items6" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="AddForkDialog_comboBoxNumberBranches_Items7" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="AddForkDialog_comboBoxNumberBranches_Items8" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="AddForkDialog_labelNumberLoops_Text" xml:space="preserve">
+    <value>Aantal lussen:</value>
+  </data>
+  <data name="AddForkDialog_labelSummary_Text" xml:space="preserve">
+    <value>De centrale post van de lus wordt 4 keer bezocht. Er zijn 24 verschillende combinaties van lussen.</value>
+  </data>
+  <data name="AddForkDialog_Text" xml:space="preserve">
+    <value>Voeg variant toe</value>
+  </data>
+  <data name="CommandNameText_AddVariation" xml:space="preserve">
+    <value>Voeg variant toe</value>
+  </data>
+  <data name="MainFrame_addVariationToolStripButton_Text" xml:space="preserve">
+    <value>Voeg variant toe</value>
+  </data>
+  <data name="AddTextLine_textLineLabel_Text" xml:space="preserve">
+    <value>Voer tekst in voor een aparte regel op de postomschrijving:</value>
+  </data>
+  <data name="AddTextLine_coursesLabel_Text" xml:space="preserve">
+    <value>Routes:</value>
+  </data>
+  <data name="AddTextLine_positionLabel_Text" xml:space="preserve">
+    <value>Positie:</value>
+  </data>
+  <data name="AddTextLine_comboBoxPosition_Items" xml:space="preserve">
+    <value>Boven {0}</value>
+  </data>
+  <data name="AddTextLine_comboBoxPosition_Items1" xml:space="preserve">
+    <value>Onder {0}</value>
+  </data>
+  <data name="AddTextLine_comboBoxCourses_Items" xml:space="preserve">
+    <value>Alleen deze route</value>
+  </data>
+  <data name="AddTextLine_comboBoxCourses_Items1" xml:space="preserve">
+    <value>Alle routes met {0}</value>
+  </data>
+  <data name="AddTextLine_Text" xml:space="preserve">
+    <value>Voeg regel tekst toe</value>
+  </data>
+  <data name="CommandNameText_AddTextLine" xml:space="preserve">
+    <value>Voeg regel tekst toe</value>
+  </data>
+  <data name="AllControlsProperties_allControlsPropertiesLabel_Text" xml:space="preserve">
+    <value>Deze instellingen bepalen hoe de kaart en de omschrijvingen voor Alle Posten worden afgedrukt.</value>
+  </data>
+  <data name="AllControlsProperties_Text" xml:space="preserve">
+    <value>Eigenschappen van Alle Posten</value>
+  </data>
+  <data name="AutoNumbering_disallowInvertibleCheckBox_Text" xml:space="preserve">
+    <value>Verbied codes die ondersteboven gelezen kunnen worden (b.v. "68"/"89")</value>
+  </data>
+  <data name="NewEventNumbering_disallowInvertibleCheckBox_Text" xml:space="preserve">
+    <value>Verbied codes die ondersteboven gelezen kunnen worden (b.v. "68"/"89")</value>
+  </data>
+  <data name="AutoNumbering_renumberExistingRadioButton_Text" xml:space="preserve">
+    <value>Hernummer ook bestaande posten</value>
+  </data>
+  <data name="AutoNumbering_newControlsOnlyRadioButton_Text" xml:space="preserve">
+    <value>Pas deze instellingen alleen op nieuw toegevoegde posten toe</value>
+  </data>
+  <data name="AutoNumbering_existingControlsGroupBox_Text" xml:space="preserve">
+    <value>Bestaande posten</value>
+  </data>
+  <data name="AutoNumbering_automaticNumberingLabel_Text" xml:space="preserve">
+    <value>Nieuw aangemaakte posten worden automatisch genummerd volgens onderstaande instellingen.</value>
+  </data>
+  <data name="AutoNumbering_startingCodeLabel_Text" xml:space="preserve">
+    <value>Laagste post nummer:</value>
+  </data>
+  <data name="NewEventNumbering_startingCodeLabel_Text" xml:space="preserve">
+    <value>Laagste post nummer:</value>
+  </data>
+  <data name="AutoNumbering_Text" xml:space="preserve">
+    <value>Automatische nummering</value>
+  </data>
+  <data name="CommandNameText_AutoNumbering" xml:space="preserve">
+    <value>Automatische nummering</value>
+  </data>
+  <data name="ChangeAllCodes_OldCode_HeaderText" xml:space="preserve">
+    <value>Oorspronkelijke code</value>
+  </data>
+  <data name="ChangeAllCodes_NewCode_HeaderText" xml:space="preserve">
+    <value>Nieuwe code</value>
+  </data>
+  <data name="ChangeAllCodes_changeControlCodesLabel_Text" xml:space="preserve">
+    <value>Om de code voor één of meer posten te wijzigen, klik in de "Nieuwe code" kolom en voer de nieuwe code in. </value>
+  </data>
+  <data name="ChangeAllCodes_Text" xml:space="preserve">
+    <value>Wijzig codes posten</value>
+  </data>
+  <data name="ChangeCourseOrder_moveDownButton_Text" xml:space="preserve">
+    <value>Omlaag</value>
+  </data>
+  <data name="ChangeCourseOrder_courseOrderLabel_Text" xml:space="preserve">
+    <value>Gebruik knoppen "Omhoog" en "Omlaag" om de volgorde van de routes in lijsten te wijzigen (in de gebruikersinterface, in rapporten, en voor afdrukken).</value>
+  </data>
+  <data name="ChangeCourseOrder_moveUpButton_Text" xml:space="preserve">
+    <value>Omhoog</value>
+  </data>
+  <data name="ChangeCourseOrder_Text" xml:space="preserve">
+    <value>Volgorde route</value>
+  </data>
+  <data name="ChangeMapFile_mapFileDisplay_Text" xml:space="preserve">
+    <value>Huidig kaart bestand</value>
+  </data>
+  <data name="ChangeMapFile_buttonChooseFile_Text" xml:space="preserve">
+    <value>&amp;Kies kaart bestand...</value>
+  </data>
+  <data name="NewEventMapFile_chooseMapFileButton_Text" xml:space="preserve">
+    <value>&amp;Kies kaart bestand...</value>
+  </data>
+  <data name="ChangeMapFile_openFileDialog_Filter" xml:space="preserve">
+    <value>Alle kaart bestanden|*.ocd;*.omap;*.xmap;*.pdf;*.jpeg;*.jpg;*.tiff;*.tif;*.bmp;*.png;*.gif|OCAD bestanden (*.ocd)|*.ocd|Open Orienteering Mapper bestanden|*.omap;*.xmap|PDF bestanden (*.pdf)|*.pdf|Afbeeldingen|*.jpeg;*.jpg;*.tiff;*.tif;*.bmp;*.png;*.gif</value>
+  </data>
+  <data name="NewEventMapFile_openFileDialog_Filter" xml:space="preserve">
+    <value>Alle kaart bestanden|*.ocd;*.omap;*.xmap;*.pdf;*.jpeg;*.jpg;*.tiff;*.tif;*.bmp;*.png;*.gif|OCAD bestanden (*.ocd)|*.ocd|Open Orienteering Mapper bestanden|*.omap;*.xmap|PDF bestanden (*.pdf)|*.pdf|Afbeeldingen|*.jpeg;*.jpg;*.tiff;*.tif;*.bmp;*.png;*.gif</value>
+  </data>
+  <data name="ChangeMapFile_labelDpi_Text" xml:space="preserve">
+    <value>Resolutie:</value>
+  </data>
+  <data name="ChangeMapFile_labelScale_Text" xml:space="preserve">
+    <value>Schaal:</value>
+  </data>
+  <data name="SelectLocationsForMove_labelScale_Text" xml:space="preserve">
+    <value>Schaal:</value>
+  </data>
+  <data name="ChangeMapFile_labelOneTo_Text" xml:space="preserve">
+    <value>1 :</value>
+  </data>
+  <data name="ChangeMapFile_labelDpi2_Text" xml:space="preserve">
+    <value>DPI (dots per inch)</value>
+  </data>
+  <data name="NewEventBitmapScale_dpiLabel_Text" xml:space="preserve">
+    <value>DPI (dots per inch)</value>
+  </data>
+  <data name="ChangeMapFile_Text" xml:space="preserve">
+    <value>Kaartbestand</value>
+  </data>
+  <data name="NewEventMapFile_labelTitle_Text" xml:space="preserve">
+    <value>Kaartbestand</value>
+  </data>
+  <data name="ChangeSpecialCourses_changeDisplayedCoursesLabel_Text" xml:space="preserve">
+    <value>Kies te routes waarin dit object wordt getoond:</value>
+  </data>
+  <data name="ChangeSpecialCourses_Text" xml:space="preserve">
+    <value>Kies getoonde routes</value>
+  </data>
+  <data name="CommandNameText_ChangeDisplayedCourses" xml:space="preserve">
+    <value>Kies getoonde routes</value>
+  </data>
+  <data name="ChangeText_eventTitleMenuItem_Text" xml:space="preserve">
+    <value>Naam van evenement</value>
+  </data>
+  <data name="NewEventTitle_labelTitle_Text" xml:space="preserve">
+    <value>Naam van evenement</value>
+  </data>
+  <data name="ChangeText_courseNameMenuItem_Text" xml:space="preserve">
+    <value>Naam van route</value>
+  </data>
+  <data name="CourseLoad_CourseName_HeaderText" xml:space="preserve">
+    <value>Naam van route</value>
+  </data>
+  <data name="SelectionDescriptionText_SpecialName_CourseName" xml:space="preserve">
+    <value>Naam van route</value>
+  </data>
+  <data name="ChangeText_coursePartMenuItem_Text" xml:space="preserve">
+    <value>Deel van route</value>
+  </data>
+  <data name="ChangeText_variationMenuItem_Text" xml:space="preserve">
+    <value>Variant van route</value>
+  </data>
+  <data name="ChangeText_courseLengthMenuItem_Text" xml:space="preserve">
+    <value>Route afstand</value>
+  </data>
+  <data name="ChangeText_courseClimbMenuItem_Text" xml:space="preserve">
+    <value>Route stijging</value>
+  </data>
+  <data name="ChangeText_classListMenuItem_Text" xml:space="preserve">
+    <value>Klasse lijst</value>
+  </data>
+  <data name="ChangeText_printScaleMenuItem_Text" xml:space="preserve">
+    <value>Schaal afdruk</value>
+  </data>
+  <data name="NewEventPrintScale_labelTitle_Text" xml:space="preserve">
+    <value>Schaal afdruk</value>
+  </data>
+  <data name="ChangeText_relayTeamMenuItem_Text" xml:space="preserve">
+    <value>Estafette team</value>
+  </data>
+  <data name="ChangeText_relayLegMenuItem_Text" xml:space="preserve">
+    <value>Estafette been</value>
+  </data>
+  <data name="ChangeText_fileNameMenuItem_Text" xml:space="preserve">
+    <value>Bestandsnaam</value>
+  </data>
+  <data name="CreateRouteGadget_nameGroupBox_Text" xml:space="preserve">
+    <value>Bestandsnaam</value>
+  </data>
+  <data name="ChangeText_buttonChangeColor_Text" xml:space="preserve">
+    <value>Kleur wijzigen...</value>
+  </data>
+  <data name="ChangeText_label2_Text" xml:space="preserve">
+    <value>Kleur:</value>
+  </data>
+  <data name="CourseAppearanceDialog_label9_Text" xml:space="preserve">
+    <value>Kleur:</value>
+  </data>
+  <data name="LinePropertiesDialog_label1_Text" xml:space="preserve">
+    <value>Kleur:</value>
+  </data>
+  <data name="ChangeText_checkBoxItalic_Text" xml:space="preserve">
+    <value>Cursief</value>
+  </data>
+  <data name="ChangeText_checkBoxBold_Text" xml:space="preserve">
+    <value>Vetgedrukt</value>
+  </data>
+  <data name="ChangeText_label1_Text" xml:space="preserve">
+    <value>Lettertype :</value>
+  </data>
+  <data name="ChangeText_labelFontSizeMm_Text" xml:space="preserve">
+    <value>mm</value>
+  </data>
+  <data name="CourseAppearanceDialog_label12_Text" xml:space="preserve">
+    <value>mm</value>
+  </data>
+  <data name="CourseAppearanceDialog_label10_Text" xml:space="preserve">
+    <value>mm</value>
+  </data>
+  <data name="CourseAppearanceDialog_label8_Text" xml:space="preserve">
+    <value>mm</value>
+  </data>
+  <data name="CourseAppearanceDialog_label4_Text" xml:space="preserve">
+    <value>mm</value>
+  </data>
+  <data name="CourseAppearanceDialog_label2_Text" xml:space="preserve">
+    <value>mm</value>
+  </data>
+  <data name="CourseAppearanceDialog_labelMM1_Text" xml:space="preserve">
+    <value>mm</value>
+  </data>
+  <data name="LinePropertiesDialog_labelWidthMm_Text" xml:space="preserve">
+    <value>mm</value>
+  </data>
+  <data name="LinePropertiesDialog_labelGapSizeMm_Text" xml:space="preserve">
+    <value>mm</value>
+  </data>
+  <data name="LinePropertiesDialog_labelDashSizeMm_Text" xml:space="preserve">
+    <value>mm</value>
+  </data>
+  <data name="LinePropertiesDialog_labelRadiusMm_Text" xml:space="preserve">
+    <value>mm</value>
+  </data>
+  <data name="PrintDescriptions_mmSuffixLabel_Text" xml:space="preserve">
+    <value>mm</value>
+  </data>
+  <data name="PrintPunches_mmSuffixLabel_Text" xml:space="preserve">
+    <value>mm</value>
+  </data>
+  <data name="ChangeText_groupBox2_Text" xml:space="preserve">
+    <value>Voorbeeld</value>
+  </data>
+  <data name="LinePropertiesDialog_groupBox1_Text" xml:space="preserve">
+    <value>Voorbeeld</value>
+  </data>
+  <data name="ChangeText_insertSpecialButton_Text" xml:space="preserve">
+    <value>Voer speciale tekst in</value>
+  </data>
+  <data name="ColorChooserDialog_label5_Text" xml:space="preserve">
+    <value>Zwart (K):</value>
+  </data>
+  <data name="CourseAppearanceDialog_label5_Text" xml:space="preserve">
+    <value>Zwart (K):</value>
+  </data>
+  <data name="ColorChooserDialog_label6_Text" xml:space="preserve">
+    <value>Geel (Y):</value>
+  </data>
+  <data name="CourseAppearanceDialog_label6_Text" xml:space="preserve">
+    <value>Geel (Y):</value>
+  </data>
+  <data name="ColorChooserDialog_label3_Text" xml:space="preserve">
+    <value>Magenta (M):</value>
+  </data>
+  <data name="CourseAppearanceDialog_label3_Text" xml:space="preserve">
+    <value>Magenta (M):</value>
+  </data>
+  <data name="ColorChooserDialog_label1_Text" xml:space="preserve">
+    <value>Cyaan (C):</value>
+  </data>
+  <data name="CourseAppearanceDialog_label1_Text" xml:space="preserve">
+    <value>Cyaan (C):</value>
+  </data>
+  <data name="ColorChooserDialog_groupBoxPreview_Text" xml:space="preserve">
+    <value>Voorbeeldweergave</value>
+  </data>
+  <data name="CourseAppearanceDialog_groupBoxPreview_Text" xml:space="preserve">
+    <value>Voorbeeldweergave</value>
+  </data>
+  <data name="ColorChooserDialog_Text" xml:space="preserve">
+    <value>Kies kleur</value>
+  </data>
+  <data name="CommandNameText_ChangeSymbol" xml:space="preserve">
+    <value>Symbool aanpassen</value>
+  </data>
+  <data name="CommandNameText_ChangeCode" xml:space="preserve">
+    <value>Postnummer aanpassen</value>
+  </data>
+  <data name="CommandNameText_ChangeControl" xml:space="preserve">
+    <value>Post aanpassen</value>
+  </data>
+  <data name="CommandNameText_ChangeScore" xml:space="preserve">
+    <value>Score aanpassen</value>
+  </data>
+  <data name="CommandNameText_ChangeTitle" xml:space="preserve">
+    <value>Naam aanpassen</value>
+  </data>
+  <data name="CommandNameText_ChangeClimb" xml:space="preserve">
+    <value>Stijging aanpassen</value>
+  </data>
+  <data name="CommandNameText_ChangeCourseName" xml:space="preserve">
+    <value>Naam route aanpassen</value>
+  </data>
+  <data name="CommandNameText_ChangeTextLine" xml:space="preserve">
+    <value>Tekst regel aanpassen</value>
+  </data>
+  <data name="CommandNameText_ChangeScale" xml:space="preserve">
+    <value>Kaartschaal vernieuwen</value>
+  </data>
+  <data name="CommandNameText_MoveControl" xml:space="preserve">
+    <value>Post verplaatsen</value>
+  </data>
+  <data name="CommandNameText_MoveControlNumber" xml:space="preserve">
+    <value>Verplaats postnummer</value>
+  </data>
+  <data name="CommandNameText_MoveObject" xml:space="preserve">
+    <value>Verplaats object</value>
+  </data>
+  <data name="CommandNameText_DeleteControl" xml:space="preserve">
+    <value>Verwijder post</value>
+  </data>
+  <data name="CommandNameText_DeleteObject" xml:space="preserve">
+    <value>Verwijder object</value>
+  </data>
+  <data name="CommandNameText_DeleteTextLine" xml:space="preserve">
+    <value>Verwijder tekstregel</value>
+  </data>
+  <data name="CommandNameText_AddControl" xml:space="preserve">
+    <value>Post toevoegen</value>
+  </data>
+  <data name="MainFrame_addControlToolStripButton_Text" xml:space="preserve">
+    <value>Post toevoegen</value>
+  </data>
+  <data name="CommandNameText_AddStart" xml:space="preserve">
+    <value>Start toevoegen</value>
+  </data>
+  <data name="MainFrame_addStartToolStripButton_Text" xml:space="preserve">
+    <value>Start toevoegen</value>
+  </data>
+  <data name="CommandNameText_AddFinish" xml:space="preserve">
+    <value>Finish toevoegen</value>
+  </data>
+  <data name="MainFrame_addFinishToolStripButton_Text" xml:space="preserve">
+    <value>Finish toevoegen</value>
+  </data>
+  <data name="CommandNameText_AddCrossingPoint" xml:space="preserve">
+    <value>Verplichte doorgang toevoegen</value>
+  </data>
+  <data name="CommandNameText_AddObject" xml:space="preserve">
+    <value>Object toevoegen</value>
+  </data>
+  <data name="CommandNameText_DeleteCourse" xml:space="preserve">
+    <value>Route verwijderen</value>
+  </data>
+  <data name="CommandNameText_ChangeCourseProperties" xml:space="preserve">
+    <value>Wijzig route eigenschappen</value>
+  </data>
+  <data name="CommandNameText_ChangeAllControlsProperties" xml:space="preserve">
+    <value>Wijzig eigenschappen Alle Posten</value>
+  </data>
+  <data name="CommandNameText_NewEvent" xml:space="preserve">
+    <value>Creëer nieuw evenement</value>
+  </data>
+  <data name="NewEventWizard_Text" xml:space="preserve">
+    <value>Creëer nieuw evenement</value>
+  </data>
+  <data name="CommandNameText_ChangeCodes" xml:space="preserve">
+    <value>Wijzig codes</value>
+  </data>
+  <data name="CommandNameText_MoveBend" xml:space="preserve">
+    <value>Verschuif bocht in been</value>
+  </data>
+  <data name="CommandNameText_AddBend" xml:space="preserve">
+    <value>Bocht toevoegen</value>
+  </data>
+  <data name="CommandNameText_AddCorner" xml:space="preserve">
+    <value>Hoek toevoegen</value>
+  </data>
+  <data name="CommandNameText_DeleteBend" xml:space="preserve">
+    <value>Verwijder bocht</value>
+  </data>
+  <data name="CommandNameText_DeleteCorner" xml:space="preserve">
+    <value>Verwijder knik</value>
+  </data>
+  <data name="CommandNameText_AddGap" xml:space="preserve">
+    <value>Maak gat</value>
+  </data>
+  <data name="CommandNameText_RemoveGap" xml:space="preserve">
+    <value>Verwijder gat</value>
+  </data>
+  <data name="CommandNameText_MoveGap" xml:space="preserve">
+    <value>Verschuif gat</value>
+  </data>
+  <data name="CommandNameText_Rotate" xml:space="preserve">
+    <value>Draaien</value>
+  </data>
+  <data name="CommandNameText_ChangePunchPatterns" xml:space="preserve">
+    <value>Prikkaart patronen</value>
+  </data>
+  <data name="CommandNameText_ChangePunchcardFormat" xml:space="preserve">
+    <value>Prikkaart afmeting</value>
+  </data>
+  <data name="CommandNameText_SetPrintArea" xml:space="preserve">
+    <value>Afdrukgebied instellen</value>
+  </data>
+  <data name="SetPrintAreaDialog_Text" xml:space="preserve">
+    <value>Afdrukgebied instellen</value>
+  </data>
+  <data name="CommandNameText_SetCourseLoad" xml:space="preserve">
+    <value>Pas drukte aan</value>
+  </data>
+  <data name="CommandNameText_SetCustomSymbolText" xml:space="preserve">
+    <value>Wijzig tekstomschrijving</value>
+  </data>
+  <data name="CustomSymbolText_Text" xml:space="preserve">
+    <value>Wijzig tekstomschrijving</value>
+  </data>
+  <data name="CommandNameText_ChangeCourseOrder" xml:space="preserve">
+    <value>Wijzig volgorde van routes</value>
+  </data>
+  <data name="CommandNameText_ChangeMapFile" xml:space="preserve">
+    <value>Wijzing kaartbestand</value>
+  </data>
+  <data name="CommandNameText_IgnoreMissingFonts" xml:space="preserve">
+    <value>Negeer ontbrekende lettertypen</value>
+  </data>
+  <data name="CommandNameText_RemoveUnusedControls" xml:space="preserve">
+    <value>Verwijder ongebruikte posten</value>
+  </data>
+  <data name="CommandNameText_SetDescriptionLanguage" xml:space="preserve">
+    <value>Wijzig taal van beschrijvingen</value>
+  </data>
+  <data name="CommandNameText_ChangeText" xml:space="preserve">
+    <value>Wijzig tekst</value>
+  </data>
+  <data name="MiscText_ChangeTextTitle" xml:space="preserve">
+    <value>Wijzig tekst</value>
+  </data>
+  <data name="CommandNameText_ChangeCourseAppearance" xml:space="preserve">
+    <value>Aangepaste route weergave</value>
+  </data>
+  <data name="CommandNameText_AddMapExchange" xml:space="preserve">
+    <value>Voeg kaartwissel toe</value>
+  </data>
+  <data name="CommandNameText_DeleteMapExchangeAtControl" xml:space="preserve">
+    <value>Verwijder kaartwissel</value>
+  </data>
+  <data name="CommandNameText_ChangePartProperties" xml:space="preserve">
+    <value>Wijzig deel-route eigenschappen</value>
+  </data>
+  <data name="CommandNameText_ChangeLineAppearance" xml:space="preserve">
+    <value>Wijzig weergave van lijn</value>
+  </data>
+  <data name="MiscText_ChangeLineAppearanceTitle" xml:space="preserve">
+    <value>Wijzig weergave van lijn</value>
+  </data>
+  <data name="CommandNameText_DuplicateCourse" xml:space="preserve">
+    <value>Dupliceer route</value>
+  </data>
+  <data name="MiscText_DuplicateCourseTitle" xml:space="preserve">
+    <value>Dupliceer route</value>
+  </data>
+  <data name="CommandNameText_CreateMapFiles" xml:space="preserve">
+    <value>Creëer {0} &amp;bestanden</value>
+  </data>
+  <data name="CommandNameText_DeleteFork" xml:space="preserve">
+    <value>Verwijder afsplitsing/lus</value>
+  </data>
+  <data name="CommandNameText_RelayTeamVariations" xml:space="preserve">
+    <value>Estafette team varianten</value>
+  </data>
+  <data name="TeamVariationsForm_Text" xml:space="preserve">
+    <value>Estafette team varianten</value>
+  </data>
+  <data name="CourseAppearanceDialog_labelAutoGapSize_Text" xml:space="preserve">
+    <value>Automatische afmeting van gat in been:</value>
+  </data>
+  <data name="CourseAppearanceDialog_labelOutlineWidth_Text" xml:space="preserve">
+    <value>Witte rand om getallen:</value>
+  </data>
+  <data name="CourseAppearanceDialog_label7_Text" xml:space="preserve">
+    <value>Diameter van centrale punt:</value>
+  </data>
+  <data name="CourseAppearanceDialog_comboBoxControlNumberStyle_Items" xml:space="preserve">
+    <value>Arial</value>
+  </data>
+  <data name="CourseAppearanceDialog_comboBoxControlNumberStyle_Items1" xml:space="preserve">
+    <value>Arial Vetgedrukt</value>
+  </data>
+  <data name="CourseAppearanceDialog_labelControlNumberStyle_Text" xml:space="preserve">
+    <value>Post nummer stijl:</value>
+  </data>
+  <data name="CourseAppearanceDialog_labelControlNumber_Text" xml:space="preserve">
+    <value>Post nummer hoogte:</value>
+  </data>
+  <data name="CourseAppearanceDialog_labelLineWidth_Text" xml:space="preserve">
+    <value>Lijnbreedte:</value>
+  </data>
+  <data name="CourseAppearanceDialog_labelControlCircle_Text" xml:space="preserve">
+    <value>Diameter postcirkel:</value>
+  </data>
+  <data name="CourseAppearanceDialog_checkBoxStandardSizes_Text" xml:space="preserve">
+    <value>Gebruik standaard IOF afmetingen</value>
+  </data>
+  <data name="CourseAppearanceDialog_groupBoxSizes_Text" xml:space="preserve">
+    <value>Afmetingen van items</value>
+  </data>
+  <data name="CourseAppearanceDialog_checkBoxDefaultPurple_Text" xml:space="preserve">
+    <value>Gebruik de kleur paars van de kaart</value>
+  </data>
+  <data name="CourseAppearanceDialog_groupBoxPurple_Text" xml:space="preserve">
+    <value>Paarse kleur</value>
+  </data>
+  <data name="CourseAppearanceDialog_comboBoxDescriptionColor_Items" xml:space="preserve">
+    <value>Zwart</value>
+  </data>
+  <data name="MiscText_Black" xml:space="preserve">
+    <value>Zwart</value>
+  </data>
+  <data name="CourseAppearanceDialog_comboBoxDescriptionColor_Items1" xml:space="preserve">
+    <value>Paars</value>
+  </data>
+  <data name="MiscText_Purple" xml:space="preserve">
+    <value>Paars</value>
+  </data>
+  <data name="CourseAppearanceDialog_groupBox1_Text" xml:space="preserve">
+    <value>Postomschrijvingen</value>
+  </data>
+  <data name="SelectionDescriptionText_SpecialName_Descriptions" xml:space="preserve">
+    <value>Postomschrijvingen</value>
+  </data>
+  <data name="CourseAppearanceDialog_checkBoxOverprint_Text" xml:space="preserve">
+    <value>Gebruik overdruk effect for kleuren die zijn gemarkeerd als "overdruk"</value>
+  </data>
+  <data name="CourseAppearanceDialog_Text" xml:space="preserve">
+    <value>Weergave aangepassen</value>
+  </data>
+  <data name="CourseLoad_Load_HeaderText" xml:space="preserve">
+    <value>Drukte</value>
+  </data>
+  <data name="CreateGpx_Text" xml:space="preserve">
+    <value>Creëer GPX bestand</value>
+  </data>
+  <data name="MainFrame_saveGpxFileDialog_Title" xml:space="preserve">
+    <value>Creëer GPX bestand</value>
+  </data>
+  <data name="CreateImageFiles_createButton_Text" xml:space="preserve">
+    <value>Creëren</value>
+  </data>
+  <data name="CreateKmlFiles_createButton_Text" xml:space="preserve">
+    <value>Creëren</value>
+  </data>
+  <data name="CreateOcadFiles_createButton_Text" xml:space="preserve">
+    <value>Creëren</value>
+  </data>
+  <data name="CreatePdfCourses_okButton_Text" xml:space="preserve">
+    <value>Creëren</value>
+  </data>
+  <data name="CreateRouteGadget_createButton_Text" xml:space="preserve">
+    <value>Creëren</value>
+  </data>
+  <data name="CreateImageFiles_comboBoxWorldFile_Items" xml:space="preserve">
+    <value>Nee</value>
+  </data>
+  <data name="ReportText_EventAudit_No" xml:space="preserve">
+    <value>Nee</value>
+  </data>
+  <data name="CreateImageFiles_comboBoxWorldFile_Items1" xml:space="preserve">
+    <value>Ja</value>
+  </data>
+  <data name="ReportText_EventAudit_Yes" xml:space="preserve">
+    <value>Ja</value>
+  </data>
+  <data name="CreateImageFiles_comboBoxColorModel_Items" xml:space="preserve">
+    <value>RGB</value>
+  </data>
+  <data name="CreatePdfCourses_comboBoxColorModel_Items" xml:space="preserve">
+    <value>RGB</value>
+  </data>
+  <data name="PrintCourses_comboBoxColorModel_Items1" xml:space="preserve">
+    <value>RGB</value>
+  </data>
+  <data name="CreateImageFiles_comboBoxColorModel_Items1" xml:space="preserve">
+    <value>CMYK</value>
+  </data>
+  <data name="CreatePdfCourses_comboBoxColorModel_Items1" xml:space="preserve">
+    <value>CMYK</value>
+  </data>
+  <data name="PrintCourses_comboBoxColorModel_Items2" xml:space="preserve">
+    <value>CMYK</value>
+  </data>
+  <data name="CreateImageFiles_outputGroupBox_Text" xml:space="preserve">
+    <value>Uitvoer</value>
+  </data>
+  <data name="CreateKmlFiles_outputGroupBox_Text" xml:space="preserve">
+    <value>Uitvoer</value>
+  </data>
+  <data name="CreateOcadFiles_outputGroupBox_Text" xml:space="preserve">
+    <value>Uitvoer</value>
+  </data>
+  <data name="PrintCourses_printerGroup_Text" xml:space="preserve">
+    <value>Uitvoer</value>
+  </data>
+  <data name="PrintDescriptions_printerGroup_Text" xml:space="preserve">
+    <value>Uitvoer</value>
+  </data>
+  <data name="PrintPunches_printerGroup_Text" xml:space="preserve">
+    <value>Uitvoer</value>
+  </data>
+  <data name="CreateImageFiles_selectOtherDirectoryButton_Text" xml:space="preserve">
+    <value>Kies folder...</value>
+  </data>
+  <data name="CreateKmlFiles_selectOtherDirectoryButton_Text" xml:space="preserve">
+    <value>Kies folder...</value>
+  </data>
+  <data name="CreateOcadFiles_selectOtherDirectoryButton_Text" xml:space="preserve">
+    <value>Kies folder...</value>
+  </data>
+  <data name="CreatePdfCourses_selectOtherDirectoryButton_Text" xml:space="preserve">
+    <value>Kies folder...</value>
+  </data>
+  <data name="CreateRouteGadget_selectOtherDirectoryButton_Text" xml:space="preserve">
+    <value>Kies folder...</value>
+  </data>
+  <data name="CreateImageFiles_coursesDirectory_Text" xml:space="preserve">
+    <value>Zelfde folder als Purple Pen bestand</value>
+  </data>
+  <data name="CreateKmlFiles_coursesDirectory_Text" xml:space="preserve">
+    <value>Zelfde folder als Purple Pen bestand</value>
+  </data>
+  <data name="CreateOcadFiles_coursesDirectory_Text" xml:space="preserve">
+    <value>Zelfde folder als Purple Pen bestand</value>
+  </data>
+  <data name="CreatePdfCourses_coursesDirectory_Text" xml:space="preserve">
+    <value>Zelfde folder als Purple Pen bestand</value>
+  </data>
+  <data name="CreateRouteGadget_coursesDirectory_Text" xml:space="preserve">
+    <value>Zelfde folder als Purple Pen bestand</value>
+  </data>
+  <data name="CreateImageFiles_mapDirectory_Text" xml:space="preserve">
+    <value>Zelfde folder als kaartbestand</value>
+  </data>
+  <data name="CreateKmlFiles_mapDirectory_Text" xml:space="preserve">
+    <value>Zelfde folder als kaartbestand</value>
+  </data>
+  <data name="CreateOcadFiles_mapDirectory_Text" xml:space="preserve">
+    <value>Zelfde folder als kaartbestand</value>
+  </data>
+  <data name="CreatePdfCourses_mapDirectory_Text" xml:space="preserve">
+    <value>Zelfde folder als kaartbestand</value>
+  </data>
+  <data name="CreateRouteGadget_mapDirectory_Text" xml:space="preserve">
+    <value>Zelfde folder als kaartbestand</value>
+  </data>
+  <data name="CreateImageFiles_otherDirectory_Text" xml:space="preserve">
+    <value>Andere folder</value>
+  </data>
+  <data name="CreateKmlFiles_otherDirectory_Text" xml:space="preserve">
+    <value>Andere folder</value>
+  </data>
+  <data name="CreateOcadFiles_otherDirectory_Text" xml:space="preserve">
+    <value>Andere folder</value>
+  </data>
+  <data name="CreatePdfCourses_otherDirectory_Text" xml:space="preserve">
+    <value>Andere folder</value>
+  </data>
+  <data name="CreateRouteGadget_otherDirectory_Text" xml:space="preserve">
+    <value>Andere folder</value>
+  </data>
+  <data name="CreateImageFiles_folderGroupBox_Text" xml:space="preserve">
+    <value>Folder</value>
+  </data>
+  <data name="CreateKmlFiles_folderGroupBox_Text" xml:space="preserve">
+    <value>Folder</value>
+  </data>
+  <data name="CreateOcadFiles_folderGroupBox_Text" xml:space="preserve">
+    <value>Folder</value>
+  </data>
+  <data name="CreatePdfCourses_folderGroupBox_Text" xml:space="preserve">
+    <value>Folder</value>
+  </data>
+  <data name="CreateRouteGadget_folderGroupBox_Text" xml:space="preserve">
+    <value>Folder</value>
+  </data>
+  <data name="CreateImageFiles_Text" xml:space="preserve">
+    <value>Creëer OCAD bestanden</value>
+  </data>
+  <data name="CreateKmlFiles_filesLabel_Text" xml:space="preserve">
+    <value>Bestanden:</value>
+  </data>
+  <data name="CreatePdfCourses_filesLabel_Text" xml:space="preserve">
+    <value>Bestanden:</value>
+  </data>
+  <data name="CreateKmlFiles_filesCombo_Items" xml:space="preserve">
+    <value>Eén voor alle routes</value>
+  </data>
+  <data name="CreatePdfCourses_comboBoxFileFormat_Items" xml:space="preserve">
+    <value>Eén voor alle routes</value>
+  </data>
+  <data name="CreateKmlFiles_filesCombo_Items1" xml:space="preserve">
+    <value>Eén per route</value>
+  </data>
+  <data name="CreatePdfCourses_comboBoxFileFormat_Items1" xml:space="preserve">
+    <value>Eén per route</value>
+  </data>
+  <data name="CreateKmlFiles_Text" xml:space="preserve">
+    <value>Creëer OCAD bestanden</value>
+  </data>
+  <data name="CreateOcadFiles_Text" xml:space="preserve">
+    <value>Creëer OCAD bestanden</value>
+  </data>
+  <data name="CreatePdfCourses_checkBoxMergeParts_Text" xml:space="preserve">
+    <value>Kaartwissels afdrukken op Dezelfde Kaart </value>
+  </data>
+  <data name="PrintCourses_checkBoxMergeParts_Text" xml:space="preserve">
+    <value>Kaartwissels afdrukken op Dezelfde Kaart </value>
+  </data>
+  <data name="CreatePdfCourses_labelColorModel_Text" xml:space="preserve">
+    <value>Kleurenmodel:</value>
+  </data>
+  <data name="PrintCourses_labelColorModel_Text" xml:space="preserve">
+    <value>Kleurenmodel:</value>
+  </data>
+  <data name="CreatePdfCourses_comboBoxMultiPage_Items" xml:space="preserve">
+    <value>Bijsnijden tot enkele pagina</value>
+  </data>
+  <data name="PrintCourses_comboBoxMultiPage_Items" xml:space="preserve">
+    <value>Bijsnijden tot enkele pagina</value>
+  </data>
+  <data name="CreatePdfCourses_comboBoxMultiPage_Items1" xml:space="preserve">
+    <value>Afdrukken op meerdere pagina's</value>
+  </data>
+  <data name="PrintCourses_comboBoxMultiPage_Items1" xml:space="preserve">
+    <value>Afdrukken op meerdere pagina's</value>
+  </data>
+  <data name="CreatePdfCourses_labelAppearanceInfo_Text" xml:space="preserve">
+    <value>Als het afdrukgebied te groot is voor één pagina:</value>
+  </data>
+  <data name="PrintCourses_labelAppearanceInfo_Text" xml:space="preserve">
+    <value>Als het afdrukgebied te groot is voor één pagina:</value>
+  </data>
+  <data name="CreatePdfCourses_comboBoxFileFormat_Items2" xml:space="preserve">
+    <value>Eén per routedeel/variant</value>
+  </data>
+  <data name="CreatePdfCourses_outputGroupBox_Text" xml:space="preserve">
+    <value>Bestanden</value>
+  </data>
+  <data name="CreatePdfCourses_folderBrowserDialog_Description" xml:space="preserve">
+    <value>Kies een folder voor de PDF bestanden</value>
+  </data>
+  <data name="CreatePdfCourses_Text" xml:space="preserve">
+    <value>Creëer PDF bestanden</value>
+  </data>
+  <data name="CreateRouteGadget_label1_Text" xml:space="preserve">
+    <value>Voer een naam in (zonder .xml of .gif) voor de beide RouteGadget bestanden:</value>
+  </data>
+  <data name="CreateRouteGadget_learnMoreLink_Text" xml:space="preserve">
+    <value>Lees meer over RouteGadget</value>
+  </data>
+  <data name="CreateRouteGadget_label2_Text" xml:space="preserve">
+    <value>RouteGadget heeft zowel een afbeelding (.fig) als een IOF XML bestand (.xml) nodig. Kies de naam en de folder voor deze beide bestanden.</value>
+  </data>
+  <data name="CreateRouteGadget_Text" xml:space="preserve">
+    <value>Creëer RouteGadget bestanden</value>
+  </data>
+  <data name="CustomSymbolText_labelChooseLanguage_Text" xml:space="preserve">
+    <value>Kies de taal voor de tekstuele postomschrijvingen:</value>
+  </data>
+  <data name="CustomSymbolText_labelSymbolName_Text" xml:space="preserve">
+    <value>Symbool naam:</value>
+  </data>
+  <data name="CustomSymbolText_labelCustomizedText_Text" xml:space="preserve">
+    <value>Aangepaste tekst:</value>
+  </data>
+  <data name="CustomSymbolText_buttonChangeText_Text" xml:space="preserve">
+    <value>Wijzig tekst...</value>
+  </data>
+  <data name="CustomSymbolText_buttonDefault_Text" xml:space="preserve">
+    <value>Herstel standaard</value>
+  </data>
+  <data name="CustomSymbolText_labelStandardText_Text" xml:space="preserve">
+    <value>Standaard tekst:</value>
+  </data>
+  <data name="CustomSymbolText_checkBoxShowKey_Text" xml:space="preserve">
+    <value>Toon betekenis onder postomschrijvingssymbolen</value>
+  </data>
+  <data name="CustomSymbolText_labelCustomizeText_Text" xml:space="preserve">
+    <value>Klik op een postomschrijvingssymbool om de tekst die in tekstuel postomschrijvingen gebuikt wordt aan te passen.</value>
+  </data>
+  <data name="CustomSymbolText_checkBoxDefaultLanguage_Text" xml:space="preserve">
+    <value>Maak dit de standaard taal voor nieuwe evenementen</value>
+  </data>
+  <data name="DownloadProgressDialog_Text" xml:space="preserve">
+    <value>Aan het downloaden</value>
+  </data>
+  <data name="EnterSymbolText_numberColumn_HeaderText" xml:space="preserve">
+    <value>Aantal</value>
+  </data>
+  <data name="EnterSymbolText_genderColumn_HeaderText" xml:space="preserve">
+    <value>Geslacht</value>
+  </data>
+  <data name="EnterSymbolText_caseColumn_HeaderText" xml:space="preserve">
+    <value>Hoofd/kleine letters</value>
+  </data>
+  <data name="EnterSymbolText_checkBoxPlural_Text" xml:space="preserve">
+    <value>Toon meervoudsvormen</value>
+  </data>
+  <data name="EnterSymbolText_checkBoxGender_Text" xml:space="preserve">
+    <value>Toon geslachts-vervoegingen</value>
+  </data>
+  <data name="EnterSymbolText_labelGenderChooser_Text" xml:space="preserve">
+    <value>Geslacht:</value>
+  </data>
+  <data name="InitialScreen_createNewRadioButton_Text" xml:space="preserve">
+    <value>Creëer nieuw evenement...</value>
+  </data>
+  <data name="LinePropertiesDialog_buttonChangeColor_Text" xml:space="preserve">
+    <value> Wijzig kleur...</value>
+  </data>
+  <data name="LinePropertiesDialog_label2_Text" xml:space="preserve">
+    <value>Stijl:</value>
+  </data>
+  <data name="LinePropertiesDialog_comboBoxStyle_Items" xml:space="preserve">
+    <value>Enkele</value>
+  </data>
+  <data name="LinePropertiesDialog_comboBoxStyle_Items1" xml:space="preserve">
+    <value>Dubbele</value>
+  </data>
+  <data name="LinePropertiesDialog_comboBoxStyle_Items2" xml:space="preserve">
+    <value>Gestreepte</value>
+  </data>
+  <data name="LinePropertiesDialog_labelWidth_Text" xml:space="preserve">
+    <value>Breedte:</value>
+  </data>
+  <data name="PrinterMargins_label2_Text" xml:space="preserve">
+    <value>Breedte:</value>
+  </data>
+  <data name="LinePropertiesDialog_labelGapSize_Text" xml:space="preserve">
+    <value>Afmeting gat:</value>
+  </data>
+  <data name="LinePropertiesDialog_labelDashSize_Text" xml:space="preserve">
+    <value>Streep lengte:</value>
+  </data>
+  <data name="LinePropertiesDialog_labelCornerRadius_Text" xml:space="preserve">
+    <value>Straal van hoek:</value>
+  </data>
+  <data name="MainFrame_tabPage1_Text" xml:space="preserve">
+    <value>Alle posten</value>
+  </data>
+  <data name="MainFrame_radioButtonDescriptions_Text" xml:space="preserve">
+    <value>Beschrijvingen</value>
+  </data>
+  <data name="MainFrame_radioButtonTopology_Text" xml:space="preserve">
+    <value>Volgorde</value>
+  </data>
+  <data name="MainFrame_mapViewerTopology_Text" xml:space="preserve">
+    <value>mapViewerTopology</value>
+  </data>
+  <data name="MainFrame_openMenu_Text" xml:space="preserve">
+    <value>&amp;Open...</value>
+  </data>
+  <data name="MainFrame_saveMenu_Text" xml:space="preserve">
+    <value>Op&amp;slaan</value>
+  </data>
+  <data name="MainFrame_saveAsMenu_Text" xml:space="preserve">
+    <value>Opslaan &amp;als...</value>
+  </data>
+  <data name="MainFrame_createOcadFilesMenu_Text" xml:space="preserve">
+    <value>Creëer OCAD &amp;bestanden...</value>
+  </data>
+  <data name="MainFrame_createCoursePdfMenu_Text" xml:space="preserve">
+    <value>Creëer PDF's...</value>
+  </data>
+  <data name="MainFrame_createRouteGadgetFilesMenu_Text" xml:space="preserve">
+    <value>Creëer Route&amp;Gadget bestanden...</value>
+  </data>
+  <data name="MainFrame_createXmlMenu_Text" xml:space="preserve">
+    <value>Creëer Data &amp;Uitwisselings bestand (IOF XML)...</value>
+  </data>
+  <data name="MainFrame_createGPXFileMenu_Text" xml:space="preserve">
+    <value>Creëer G&amp;PX bestand...</value>
+  </data>
+  <data name="MainFrame_printDescriptionsMenu_Text" xml:space="preserve">
+    <value>&amp;Postomschrijvingen afrdukken...</value>
+  </data>
+  <data name="MainFrame_printCoursesMenu_Text" xml:space="preserve">
+    <value>&amp;Routes afdrukken...</value>
+  </data>
+  <data name="MainFrame_setPrintAreaMenu_Text" xml:space="preserve">
+    <value>Afdruk&amp;gebied instellen</value>
+  </data>
+  <data name="MainFrame_zoom50Menu_Text" xml:space="preserve">
+    <value>50%</value>
+  </data>
+  <data name="MainFrame_zoom100Menu_Text" xml:space="preserve">
+    <value>100%</value>
+  </data>
+  <data name="MainFrame_zoom150Menu_Text" xml:space="preserve">
+    <value>150%</value>
+  </data>
+  <data name="MainFrame_zoom200Menu_Text" xml:space="preserve">
+    <value>200%</value>
+  </data>
+  <data name="MainFrame_zoom300Menu_Text" xml:space="preserve">
+    <value>300%</value>
+  </data>
+  <data name="MainFrame_zoom500Menu_Text" xml:space="preserve">
+    <value>500%</value>
+  </data>
+  <data name="MainFrame_zoom1000Menu_Text" xml:space="preserve">
+    <value>1000%</value>
+  </data>
+  <data name="MainFrame_zoomMenu_Text" xml:space="preserve">
+    <value>&amp;Zoom</value>
+  </data>
+  <data name="MainFrame_normalQualityMenu_Text" xml:space="preserve">
+    <value>Laag</value>
+  </data>
+  <data name="MainFrame_highQualityMenu_Text" xml:space="preserve">
+    <value>Hoog</value>
+  </data>
+  <data name="MainFrame_addImageMenu_Text" xml:space="preserve">
+    <value>Afbeelding</value>
+  </data>
+  <data name="MainFrame_imageToolStripMenuItem_Text" xml:space="preserve">
+    <value>Afbeelding</value>
+  </data>
+  <data name="SelectionDescriptionText_SpecialName_Image" xml:space="preserve">
+    <value>Afbeelding</value>
+  </data>
+  <data name="MainFrame_addLineMenu_Text" xml:space="preserve">
+    <value>Lijn</value>
+  </data>
+  <data name="MainFrame_lineToolStripMenuItem_Text" xml:space="preserve">
+    <value>Lijn</value>
+  </data>
+  <data name="SelectionDescriptionText_SpecialName_Line" xml:space="preserve">
+    <value>Lijn</value>
+  </data>
+  <data name="MainFrame_addRectangleMenu_Text" xml:space="preserve">
+    <value>Rechthoek</value>
+  </data>
+  <data name="MainFrame_rectangleToolStripMenuItem_Text" xml:space="preserve">
+    <value>Rechthoek</value>
+  </data>
+  <data name="SelectionDescriptionText_SpecialName_Rectangle" xml:space="preserve">
+    <value>Rechthoek</value>
+  </data>
+  <data name="MainFrame_deleteForkMenu_Text" xml:space="preserve">
+    <value>Verwijder a&amp;fsplitsing/lus</value>
+  </data>
+  <data name="MainFrame_addBendMenu_Text" xml:space="preserve">
+    <value>Voeg &amp;bocht toe</value>
+  </data>
+  <data name="MainFrame_removeBendMenu_Text" xml:space="preserve">
+    <value>Verwijder b&amp;ocht</value>
+  </data>
+  <data name="MainFrame_addGapMenu_Text" xml:space="preserve">
+    <value>Voeg &amp;gat toe</value>
+  </data>
+  <data name="MainFrame_removeGapMenu_Text" xml:space="preserve">
+    <value>Verwijder g&amp;at</value>
+  </data>
+  <data name="MainFrame_changeTextMenu_Text" xml:space="preserve">
+    <value>Wijzig &amp;tekst...</value>
+  </data>
+  <data name="MainFrame_changeLineAppearanceMenu_Text" xml:space="preserve">
+    <value>Wijzig lijn &amp;weergave...</value>
+  </data>
+  <data name="MainFrame_rotateMenu_Text" xml:space="preserve">
+    <value>&amp;Draai</value>
+  </data>
+  <data name="MainFrame_helpMenu_Text" xml:space="preserve">
+    <value>&amp;Help</value>
+  </data>
+  <data name="MainFrame_openToolStripButton_ToolTipText" xml:space="preserve">
+    <value>Open (Ctrl+O)</value>
+  </data>
+  <data name="MainFrame_saveToolStripButton_Text" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="MiscText_CrashSave" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="MainFrame_saveToolStripButton_ToolTipText" xml:space="preserve">
+    <value>Save (Ctrl+S)</value>
+  </data>
+  <data name="MainFrame_mapExchangeToolStripMenu_Text" xml:space="preserve">
+    <value>Voeg kaartwissel toe</value>
+  </data>
+  <data name="MainFrame_locationDisplay_Text" xml:space="preserve">
+    <value>X:-999.99 Y:-999.99</value>
+  </data>
+  <data name="MainFrame_saveXmlFileDialog_Filter" xml:space="preserve">
+    <value>IOF XML versie 2.0.3|*.xml|IOF XML versie 3.0|*.xml</value>
+  </data>
+  <data name="MainFrame_saveXmlFileDialog_Title" xml:space="preserve">
+    <value>Creëer XML uitwisselings bestand</value>
+  </data>
+  <data name="MainFrame_openImageDialog_Filter" xml:space="preserve">
+    <value>Afbeelding|*.jpg;*.jpeg;*.gif;*.png;*.bmp;*.tif;*.tiff</value>
+  </data>
+  <data name="MainFrame_saveGpxFileDialog_Filter" xml:space="preserve">
+    <value>GPX file|*.gpx</value>
+  </data>
+  <data name="MainFrame_Text" xml:space="preserve">
+    <value>Purple Pen</value>
+  </data>
+  <data name="MiscText_AppTitle" xml:space="preserve">
+    <value>Purple Pen</value>
+  </data>
+  <data name="MiscText_CtrlZ" xml:space="preserve">
+    <value>Ctrl+Z</value>
+  </data>
+  <data name="MiscText_CtrlY" xml:space="preserve">
+    <value>Ctrl+Y</value>
+  </data>
+  <data name="MiscText_Esc" xml:space="preserve">
+    <value>Esc</value>
+  </data>
+  <data name="MiscText_NoSymbol" xml:space="preserve">
+    <value>Geen symbool</value>
+  </data>
+  <data name="MiscText_AllControls" xml:space="preserve">
+    <value>Alle posten</value>
+  </data>
+  <data name="MiscText_CannotPrint" xml:space="preserve">
+    <value>'{0}' kan niet worden afgedrukt vanwege:</value>
+  </data>
+  <data name="MiscText_CannotCreateFile" xml:space="preserve">
+    <value>Kan geen '{0}' aanmaken vanwege:</value>
+  </data>
+  <data name="MiscText_CannotCreateDirectory" xml:space="preserve">
+    <value>Kan geen folder '{0}' aanmaken vanwege:</value>
+  </data>
+  <data name="MiscText_CannotCreateOcadFiles" xml:space="preserve">
+    <value>Kan geen OCAD bestanden aanmaken vanwege:</value>
+  </data>
+  <data name="MiscText_BadScale" xml:space="preserve">
+    <value>De afdrukschaal moet een waarde hebben tussen 100 en 100.000.</value>
+  </data>
+  <data name="MiscText_Landscape" xml:space="preserve">
+    <value>Liggend</value>
+  </data>
+  <data name="PrintDescriptions_orientation_Text" xml:space="preserve">
+    <value>Liggend</value>
+  </data>
+  <data name="PrinterMargins_radioButtonLandscape_Text" xml:space="preserve">
+    <value>Liggend</value>
+  </data>
+  <data name="PrintPunches_orientation_Text" xml:space="preserve">
+    <value>Liggend</value>
+  </data>
+  <data name="MiscText_Portrait" xml:space="preserve">
+    <value>Staand</value>
+  </data>
+  <data name="PrinterMargins_radioButtonPortrait_Text" xml:space="preserve">
+    <value>Staand</value>
+  </data>
+  <data name="MiscText_PageTooSmall" xml:space="preserve">
+    <value>Het paginaformaat is te klein voor elke postomschrijving.</value>
+  </data>
+  <data name="MiscText_Plural" xml:space="preserve">
+    <value>meervoud</value>
+  </data>
+  <data name="MiscText_Singular" xml:space="preserve">
+    <value>enkelvoud</value>
+  </data>
+  <data name="MiscText_ClosePPBeforeLoadingOCAD" xml:space="preserve">
+    <value>Purple Pen moet worden afgesloten om de gecreëerde OCAD bestanden te laden.</value>
+  </data>
+  <data name="MiscText_NoCoursesSelected" xml:space="preserve">
+    <value>Er zijn geen routes gekozen om af te drukken.</value>
+  </data>
+  <data name="MiscText_CannotCreatePdfs" xml:space="preserve">
+    <value>Kan geen PDF's aanmaken vanwege:</value>
+  </data>
+  <data name="MiscText_PrintingPage" xml:space="preserve">
+    <value>Afdrukken van pagina {0} (van {1})</value>
+  </data>
+  <data name="MiscText_PausePrinting" xml:space="preserve">
+    <value>Afdrukkken van "{0}" gereed. Druk op OK om door te gaan met afdrukken van "{1}".</value>
+  </data>
+  <data name="MiscText_OCAD" xml:space="preserve">
+    <value>OCAD</value>
+  </data>
+  <data name="MiscText_OpenOrienteeringMapper" xml:space="preserve">
+    <value>OOM</value>
+  </data>
+  <data name="MiscText_AllVariations" xml:space="preserve">
+    <value>Alle varianten</value>
+  </data>
+  <data name="MiscText_CantRearrangeSplitControl" xml:space="preserve">
+    <value>Een post waar een afsplitsing of lus start kan niet naar een nieuwe plaats in de route worden gesleept.</value>
+  </data>
+  <data name="NewEventBitmapScale_oneToPrefixLabel_Text" xml:space="preserve">
+    <value>1:</value>
+  </data>
+  <data name="NewEventPrintScale_oneToPrefixLabel1_Text" xml:space="preserve">
+    <value>1:</value>
+  </data>
+  <data name="NewEventPrintScale_oneToPrefixLabel2_Text" xml:space="preserve">
+    <value>1:</value>
+  </data>
+  <data name="NewEventBitmapScale_mapScaleLabel_Text" xml:space="preserve">
+    <value>Kaartschaal:</value>
+  </data>
+  <data name="NewEventPrintScale_mapScaleLabel_Text" xml:space="preserve">
+    <value>Kaartschaal:</value>
+  </data>
+  <data name="NewEventBitmapScale_labelTitle_Text" xml:space="preserve">
+    <value>Bitmap resolutie</value>
+  </data>
+  <data name="NewEventDirectory_chooseFolder_Text" xml:space="preserve">
+    <value>Kies folder...</value>
+  </data>
+  <data name="NewEventFinal_newEventFinalLabel_Text" xml:space="preserve">
+    <value>Klik op "Finish" om het nieuwe evenement te creëeren. Het bestand zal worden opgeslagen als:</value>
+  </data>
+  <data name="NewEventFinal_afterEventCreatedLabel_Text" xml:space="preserve">
+    <value>Nadat het evenement is gecreëerd, klik op "Nieuwe route..." in het Route menu om één of meer routes te beginnen.</value>
+  </data>
+  <data name="NewEventFinal_labelTitle_Text" xml:space="preserve">
+    <value>Creëer evenement</value>
+  </data>
+  <data name="NewEventNumbering_newEventNumberingLabel_Text" xml:space="preserve">
+    <value>Nieuwe posten worden automatisch genummerd. Kies het laagst te gebruiken postnummer.</value>
+  </data>
+  <data name="NewEventPrintScale_defaultPrintScaleLabel_Text" xml:space="preserve">
+    <value>S&amp;tandaard afdrukschaal:</value>
+  </data>
+  <data name="NonPrintableObjects_labelWarning_Text" xml:space="preserve">
+    <value>Kaartbestand "{0}" bevat (OCAD) objecten of symbolen die niet volledig worden ondersteund door Purple Pen, en worden misschien niet goed afgedrukt. De objecten die wellicht niet goed worden afgedrukt worden hier onder genoemd.
+
+Om wedstrijdkaarten af te drukken, wordt voorgesteld de routes als OCAD bestanden te exporteren (gebruik Bestand/Creëer OCAD bestanden...) en de kaarten met OCAD af te drukken.
+</value>
+  </data>
+  <data name="NonPrintableObjects_Text" xml:space="preserve">
+    <value>Kaart bestand kan niet nauwkeurig worden afgedrukt</value>
+  </data>
+  <data name="PrintCourses_okButton_Text" xml:space="preserve">
+    <value>Afdrukken</value>
+  </data>
+  <data name="PrintDescriptions_printButton_Text" xml:space="preserve">
+    <value>Afdrukken</value>
+  </data>
+  <data name="PrintPunches_printButton_Text" xml:space="preserve">
+    <value>Afdrukken</value>
+  </data>
+  <data name="PrintCourses_printerChange_Text" xml:space="preserve">
+    <value>Printer kiezen...</value>
+  </data>
+  <data name="PrintDescriptions_printerChange_Text" xml:space="preserve">
+    <value>Printer kiezen...</value>
+  </data>
+  <data name="PrintPunches_printerChange_Text" xml:space="preserve">
+    <value>Printer kiezen...</value>
+  </data>
+  <data name="PrintCourses_printerName_Text" xml:space="preserve">
+    <value>Printernaam</value>
+  </data>
+  <data name="PrintDescriptions_printerName_Text" xml:space="preserve">
+    <value>Printernaam</value>
+  </data>
+  <data name="PrintPunches_printerName_Text" xml:space="preserve">
+    <value>Printernaam</value>
+  </data>
+  <data name="PrintCourses_printerLabel_Text" xml:space="preserve">
+    <value>Printer:</value>
+  </data>
+  <data name="PrintDescriptions_printerLabel_Text" xml:space="preserve">
+    <value>Printer:</value>
+  </data>
+  <data name="PrintPunches_printerLabel_Text" xml:space="preserve">
+    <value>Printer:</value>
+  </data>
+  <data name="PrintCourses_checkBoxPausePrinting_Text" xml:space="preserve">
+    <value>Onderbreek afdrukken na elke route of deel daar van</value>
+  </data>
+  <data name="PrintCourses_Text" xml:space="preserve">
+    <value>Routes afdrukkken</value>
+  </data>
+  <data name="PrintDescriptions_whatToPrintLabel_Text" xml:space="preserve">
+    <value>Afdrukkken:</value>
+  </data>
+  <data name="PrintDescriptions_Text" xml:space="preserve">
+    <value>Routebeschrijvignen afdrukken</value>
+  </data>
+  <data name="PrintPunches_Text" xml:space="preserve">
+    <value>Prikkaarten afdrukken</value>
+  </data>
+  <data name="ReportForm_printButton_Text" xml:space="preserve">
+    <value>Afdrukken…</value>
+  </data>
+  <data name="TeamVariationsForm_buttonPrint_Text" xml:space="preserve">
+    <value>Afdrukken…</value>
+  </data>
+  <data name="ReportForm_previewButton_Text" xml:space="preserve">
+    <value>Afdrukvoorbeeld...</value>
+  </data>
+  <data name="TeamVariationsForm_buttonPrintPreview_Text" xml:space="preserve">
+    <value>Afdrukvoorbeeld...</value>
+  </data>
+  <data name="ReportForm_okButton_Text" xml:space="preserve">
+    <value>Sluit</value>
+  </data>
+  <data name="TeamVariationsForm_buttonClose_Text" xml:space="preserve">
+    <value>Sluit</value>
+  </data>
+  <data name="ReportText_ColumnHeader_Climb" xml:space="preserve">
+    <value>Stijging</value>
+  </data>
+  <data name="ReportText_ColumnHeader_Code" xml:space="preserve">
+    <value>Code</value>
+  </data>
+  <data name="ReportText_ColumnHeader_Column" xml:space="preserve">
+    <value>Kolom</value>
+  </data>
+  <data name="ReportText_ColumnHeader_Control" xml:space="preserve">
+    <value>Post</value>
+  </data>
+  <data name="ReportText_ColumnHeader_ControlCodes" xml:space="preserve">
+    <value>Post code</value>
+  </data>
+  <data name="ReportText_ColumnHeader_Controls" xml:space="preserve">
+    <value>Posten</value>
+  </data>
+  <data name="ReportText_ColumnHeader_Course" xml:space="preserve">
+    <value>Route</value>
+  </data>
+  <data name="ReportText_ColumnHeader_Distance" xml:space="preserve">
+    <value>Afstand</value>
+  </data>
+  <data name="ReportText_ColumnHeader_Item" xml:space="preserve">
+    <value>Voorwerp</value>
+  </data>
+  <data name="ReportText_ColumnHeader_Leg" xml:space="preserve">
+    <value>Been</value>
+  </data>
+  <data name="ReportText_ColumnHeader_Length" xml:space="preserve">
+    <value>Lengte</value>
+  </data>
+  <data name="ReportText_ColumnHeader_Load" xml:space="preserve">
+    <value>Drukte</value>
+  </data>
+  <data name="ReportText_ColumnHeader_Location" xml:space="preserve">
+    <value>Locatie</value>
+  </data>
+  <data name="ReportText_ColumnHeader_NumberOfCourses" xml:space="preserve">
+    <value># Routes</value>
+  </data>
+  <data name="ReportText_ColumnHeader_Reason" xml:space="preserve">
+    <value>Reden</value>
+  </data>
+  <data name="ReportText_ColumnHeader_SameSymbol" xml:space="preserve">
+    <value>Zelfde symbool?</value>
+  </data>
+  <data name="ReportText_EventAudit_NoProblems" xml:space="preserve">
+    <value>Geen problemen geconstateerd.</value>
+  </data>
+  <data name="ReportText_EventAudit_UnusedControls" xml:space="preserve">
+    <value>Ongebruikte posten</value>
+  </data>
+  <data name="UnusedControls_Text" xml:space="preserve">
+    <value>Ongebruikte posten</value>
+  </data>
+  <data name="ReportText_LegLength_Average" xml:space="preserve">
+    <value>Gemiddeld</value>
+  </data>
+  <data name="SelectionDescriptionText_Control_Plural" xml:space="preserve">
+    <value>posten</value>
+  </data>
+  <data name="SelectionDescriptionText_Control_Singular" xml:space="preserve">
+    <value>post</value>
+  </data>
+  <data name="SelectionDescriptionText_CourseList_AllCourses" xml:space="preserve">
+    <value>Alle routes</value>
+  </data>
+  <data name="SelectionDescriptionText_CourseName" xml:space="preserve">
+    <value>Route "{0}"</value>
+  </data>
+  <data name="SelectionDescriptionText_CustomizedSymbolDesc" xml:space="preserve">
+    <value>Aangepaste postomschrijving</value>
+  </data>
+  <data name="SelectionDescriptionText_EntireLeg" xml:space="preserve">
+    <value>compleet been</value>
+  </data>
+  <data name="SelectionDescriptionText_FinishFunnel" xml:space="preserve">
+    <value>finish trechter</value>
+  </data>
+  <data name="SelectionDescriptionText_Finish_Plural" xml:space="preserve">
+    <value>finisht</value>
+  </data>
+  <data name="SelectionDescriptionText_Finish_Singular" xml:space="preserve">
+    <value>finish</value>
+  </data>
+  <data name="SelectionDescriptionText_LineHeight" xml:space="preserve">
+    <value>Regelafstand:</value>
+  </data>
+  <data name="SelectionDescriptionText_Location" xml:space="preserve">
+    <value>Locatie:</value>
+  </data>
+  <data name="SelectionDescriptionText_MandCrossing_Plural" xml:space="preserve">
+    <value>verplichte doorgang</value>
+  </data>
+  <data name="SelectionDescriptionText_MandCrossing_Singular" xml:space="preserve">
+    <value>verplichte doorgang</value>
+  </data>
+  <data name="SelectionDescriptionText_Start_Plural" xml:space="preserve">
+    <value>starts</value>
+  </data>
+  <data name="SelectionDescriptionText_Start_Singular" xml:space="preserve">
+    <value>start</value>
+  </data>
+  <data name="SelectionDescriptionText_TextDescription" xml:space="preserve">
+    <value>Tekst omschrijving:</value>
+  </data>
+  <data name="SelectionDescriptionText_TextLine" xml:space="preserve">
+    <value>Tekst regel</value>
+  </data>
+  <data name="SelectionDescriptionText_TotalControls" xml:space="preserve">
+    <value>Totaal aantal posten:</value>
+  </data>
+  <data name="SelectionDescriptionText_TotalScore" xml:space="preserve">
+    <value>Totale score:</value>
+  </data>
+  <data name="SelectionDescriptionText_UsedInCourses" xml:space="preserve">
+    <value>Gebruikt in routes:</value>
+  </data>
+  <data name="SelectionDescriptionText_FileName" xml:space="preserve">
+    <value>Naam:</value>
+  </data>
+  <data name="SelectionDescriptionText_MapExchange_Plural" xml:space="preserve">
+    <value>kaartwissels</value>
+  </data>
+  <data name="SelectionDescriptionText_MapExchange_Singular" xml:space="preserve">
+    <value>kaartwissel</value>
+  </data>
+  <data name="SelectionDescriptionText_MapExchangeAtControl" xml:space="preserve">
+    <value>Kaartwissel bij {0}</value>
+  </data>
+  <data name="SelectionDescriptionText_Load" xml:space="preserve">
+    <value>Drukte:</value>
+  </data>
+  <data name="SelectionDescriptionText_UsedIn" xml:space="preserve">
+    <value>Gebruikt in:</value>
+  </data>
+  <data name="SelectVariations_labelAllVariations_Text" xml:space="preserve">
+    <value>Toon alle afsplitsingen samen op één kaart.</value>
+  </data>
+  <data name="SelectVariations_label3_Text" xml:space="preserve">
+    <value>naar</value>
+  </data>
+  <data name="SelectVariations_label2_Text" xml:space="preserve">
+    <value>Kies teams om af te drukken of te exporteren:</value>
+  </data>
+  <data name="SetPrintAreaDialog_okButton_Text" xml:space="preserve">
+    <value>Klaar</value>
+  </data>
+  <data name="SetPrintAreaDialog_setPrintAreaLabel_Text" xml:space="preserve">
+    <value>Selecteer het afdrukgebied door met de muis te slepen.</value>
+  </data>
+  <data name="SetPrintAreaDialog_groupBoxPaperSize_Text" xml:space="preserve">
+    <value>Papierformaat</value>
+  </data>
+  <data name="SetPrintAreaDialog_checkBoxAutomatic_Text" xml:space="preserve">
+    <value>Selecteer het afdrukgebied automatisch</value>
+  </data>
+  <data name="SetPrintAreaDialog_checkBoxFixSizeToPaper_Text" xml:space="preserve">
+    <value>Koppel afdrukgebied aan papierformaat</value>
+  </data>
+  <data name="StatusBarText_AddingControlGap" xml:space="preserve">
+    <value>Klik met de linker muisknop op de post cirkel om een kleine opening te maken; houd de linker muisknop ingedrukt en sleep met de muis om een grote opening te maken</value>
+  </data>
+  <data name="StatusBarText_AddingLegGap" xml:space="preserve">
+    <value>Klik op de linker muisknop om een kleine opening te maken; houd de linker muisknop ingedrukt en sleep met de muis om een grote opening in het been te maken</value>
+  </data>
+  <data name="StatusBarText_AddingDescription" xml:space="preserve">
+    <value>Houd de linker muisknop ingedrukt en sleep met de muis om postomschrijvingen te creëeren</value>
+  </data>
+  <data name="StatusBarText_AddingText" xml:space="preserve">
+    <value>Houd de linker muisknop ingedrukt en sleep met de muis om tekst te creëeren</value>
+  </data>
+  <data name="StatusBarText_AddingRectangle" xml:space="preserve">
+    <value>Houd de linker muisknop ingedrukt en sleep met de muis om het object te creëeren</value>
+  </data>
+  <data name="TeamVariationsForm_label2_Text" xml:space="preserve">
+    <value>Aantal benen:</value>
+  </data>
+  <data name="TeamVariationsForm_label1_Text" xml:space="preserve">
+    <value>Aantal teams:</value>
+  </data>
+  <data name="TeamVariationsForm_saveFileDialog_Filter" xml:space="preserve">
+    <value>IOF XML 3.0|*.xml|Spreadsheet (CSV)|*.csv</value>
+  </data>
+  <data name="UnusedControls_okButton_Text" xml:space="preserve">
+    <value>Verwijder</value>
+  </data>
+</root>

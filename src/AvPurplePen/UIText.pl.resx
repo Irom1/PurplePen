@@ -117,488 +117,386 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="IncrementButton" xml:space="preserve">
-    <value>Incrémenter</value>
-  </data>
-  <data name="DecrementButton" xml:space="preserve">
-    <value>Décrémenter</value>
-  </data>
-  <data name="CounterLabel" xml:space="preserve">
-    <value>Compteur : {0}</value>
-  </data>
-  <data name="OKButton" xml:space="preserve">
-    <value>OK</value>
-  </data>
-  <data name="CancelButton" xml:space="preserve">
-    <value>Annuler</value>
-  </data>
-  <data name="SwitchLanguageButton" xml:space="preserve">
-    <value>Changer de langue...</value>
-  </data>
-  <data name="SwitchLanguageDialog_Title" xml:space="preserve">
-    <value>Changer de langue</value>
-  </data>
-  <data name="SwitchLanguageDialog_Prompt" xml:space="preserve">
-    <value>Sélectionnez une langue :</value>
-  </data>
-  <data name="AboutForm_copyrightLabel_Text" xml:space="preserve">
-    <value>Copyright © par Peter Golde</value>
-  </data>
   <data name="AboutForm_freeLabel_Text" xml:space="preserve">
-    <value>Purple Pen est un logiciel libre et peut être copié et partagé.</value>
-  </data>
-  <data name="AboutForm_disclaimerLabel_Text" xml:space="preserve">
-    <value>CE LOGICIEL EST FOURNI TEL QUEL PAR LES DÉTENTEURS DES DROITS D'AUTEUR ET PAR LES CONTRIBUTEURS. TOUTES GARANTIES EXPLICITES OU IMPLICITES (INCLUANT, MAIS NON LIMITÉE À LA GARANTIE IMPLICITE DE COMMERCIALISATION ET CELLE D'ADÉQUATION À UN USAGE SPÉCIFIQUE) SONT REJETÉES.</value>
+    <value>Purple Pen jest darmową aplikacją i jako taka może być kopiowany i udostępniany.</value>
   </data>
   <data name="AboutForm_okButton_Text" xml:space="preserve">
-    <value>Valider</value>
+    <value>OK</value>
   </data>
   <data name="InitialScreen_okButton_Text" xml:space="preserve">
-    <value>Valider</value>
+    <value>OK</value>
   </data>
   <data name="LicenseForm_okButton_Text" xml:space="preserve">
-    <value>Valider</value>
+    <value>OK</value>
   </data>
   <data name="MissingFonts_okButton_Text" xml:space="preserve">
-    <value>Valider</value>
+    <value>OK</value>
   </data>
   <data name="OkCancelDialog_okButton_Text" xml:space="preserve">
-    <value>Valider</value>
+    <value>OK</value>
   </data>
   <data name="AboutForm_creditsButton_Text" xml:space="preserve">
-    <value>Contributeurs</value>
+    <value>Podziękowania</value>
   </data>
   <data name="AboutForm_licenseButton_Text" xml:space="preserve">
-    <value>Voir la licence complète</value>
+    <value>Pokaż Licencję</value>
   </data>
   <data name="AboutForm_Text" xml:space="preserve">
-    <value>À propos de Purple Pen</value>
+    <value>O Purple Pen</value>
   </data>
   <data name="AddCourse_firstControlLabel_Text" xml:space="preserve">
-    <value>Premier numéro :</value>
+    <value>Numer pierwszego PK:</value>
   </data>
   <data name="AddCourse_descriptionAppearanceLabel_Text" xml:space="preserve">
-    <value>Format des définitions :</value>
+    <value>Wygląd opisu:</value>
   </data>
   <data name="AllControlsProperties_descriptionAppearanceLabel_Text" xml:space="preserve">
-    <value>Format des définitions :</value>
+    <value>Wygląd opisu:</value>
   </data>
   <data name="AddCourse_mapScaleLabel_Text" xml:space="preserve">
-    <value>Échelle d'impression :</value>
+    <value>Skala wydruku mapy:</value>
   </data>
   <data name="AllControlsProperties_printingScaleLabel_Text" xml:space="preserve">
-    <value>Échelle d'impression :</value>
+    <value>Skala wydruku mapy:</value>
   </data>
   <data name="AddCourse_oneToPrefixLabel_Text" xml:space="preserve">
-    <value>1 : </value>
+    <value>1: </value>
   </data>
   <data name="AllControlsProperties_oneToPrefix_Text" xml:space="preserve">
-    <value>1 : </value>
+    <value>1: </value>
   </data>
   <data name="AddCourse_descKindCombo_Items" xml:space="preserve">
-    <value>Symboles</value>
+    <value>Piktografiki</value>
   </data>
   <data name="AllControlsProperties_descKindCombo_Items" xml:space="preserve">
-    <value>Symboles</value>
+    <value>Piktografiki</value>
   </data>
   <data name="PrintDescriptions_descriptionKindCombo_Items1" xml:space="preserve">
-    <value>Symboles</value>
+    <value>Piktografiki</value>
   </data>
   <data name="AddCourse_descKindCombo_Items1" xml:space="preserve">
-    <value>Texte</value>
+    <value>Opis</value>
   </data>
   <data name="AllControlsProperties_descKindCombo_Items1" xml:space="preserve">
-    <value>Texte</value>
+    <value>Opis</value>
   </data>
   <data name="ChangeText_groupBox3_Text" xml:space="preserve">
-    <value>Texte</value>
+    <value>Opis</value>
   </data>
   <data name="EnterSymbolText_textColumn_HeaderText" xml:space="preserve">
-    <value>Texte</value>
+    <value>Opis</value>
   </data>
   <data name="MainFrame_addTextMenu_Text" xml:space="preserve">
-    <value>Texte</value>
+    <value>Opis</value>
   </data>
   <data name="MainFrame_textToolStripMenuItem_Text" xml:space="preserve">
-    <value>Texte</value>
+    <value>Opis</value>
   </data>
   <data name="PrintDescriptions_descriptionKindCombo_Items2" xml:space="preserve">
-    <value>Texte</value>
+    <value>Opis</value>
   </data>
   <data name="SelectionDescriptionText_SpecialName_Text" xml:space="preserve">
-    <value>Texte</value>
+    <value>Opis</value>
   </data>
   <data name="AddCourse_descKindCombo_Items2" xml:space="preserve">
-    <value>Texte et symboles</value>
+    <value>Piktografiki i opis</value>
   </data>
   <data name="AllControlsProperties_descKindCombo_Items2" xml:space="preserve">
-    <value>Texte et symboles</value>
+    <value>Piktografiki i opis</value>
   </data>
   <data name="AddCourse_labelKindLabel_Text" xml:space="preserve">
-    <value>Étiquette des postes :</value>
+    <value>Etykiety punktów kontrolnych:</value>
   </data>
   <data name="AddCourse_labelKindCombo_Items" xml:space="preserve">
-    <value>Numéro d'ordre (3)</value>
+    <value>Liczba porządkowa (3)</value>
   </data>
   <data name="AddCourse_labelKindCombo_Items1" xml:space="preserve">
-    <value>Numéro/code du poste (145)</value>
+    <value>Kod punktu (145)</value>
   </data>
   <data name="AddCourse_labelKindCombo_Items2" xml:space="preserve">
-    <value>Numéro d'ordre et code (3-145)</value>
+    <value>Liczba porządkowa i kod (3-145)</value>
   </data>
   <data name="AddCourse_labelKindCombo_Items3" xml:space="preserve">
-    <value>Numéro d'ordre et points (3(30))</value>
+    <value>Numer PK oraz punktacja (3(30))</value>
   </data>
   <data name="AddCourse_labelKindCombo_Items4" xml:space="preserve">
-    <value>Code et points (145(30))</value>
+    <value>Kod PK oraz punktacja (145(30))</value>
   </data>
   <data name="AddCourse_scoreColumnLabel_Text" xml:space="preserve">
-    <value>Indiquer les points dans :</value>
+    <value>Pokaż punkty w:</value>
   </data>
   <data name="AddCourse_scoreColumnCombo_Items" xml:space="preserve">
-    <value>Colonne A</value>
+    <value>Kolumnie A</value>
   </data>
   <data name="AddCourse_scoreColumnCombo_Items1" xml:space="preserve">
-    <value>Colonne B</value>
+    <value>Kolumnie B</value>
   </data>
   <data name="AddCourse_scoreColumnCombo_Items2" xml:space="preserve">
-    <value>Colonne H</value>
+    <value>Kolumnie H</value>
   </data>
   <data name="AddCourse_scoreColumnCombo_Items3" xml:space="preserve">
-    <value>(ne pas afficher)</value>
+    <value>(nie wyświetlaj)</value>
   </data>
   <data name="AddCourse_groupBox1_Text" xml:space="preserve">
-    <value>Présentation</value>
+    <value>Wygląd</value>
   </data>
   <data name="AllControlsProperties_appearanceGroupBox_Text" xml:space="preserve">
-    <value>Présentation</value>
+    <value>Wygląd</value>
   </data>
   <data name="ChangeText_groupBox1_Text" xml:space="preserve">
-    <value>Présentation</value>
+    <value>Wygląd</value>
   </data>
   <data name="CreatePdfCourses_groupBoxAppearance_Text" xml:space="preserve">
-    <value>Présentation</value>
+    <value>Wygląd</value>
   </data>
   <data name="LinePropertiesDialog_groupBox2_Text" xml:space="preserve">
-    <value>Présentation</value>
+    <value>Wygląd</value>
   </data>
   <data name="PrintCourses_groupBoxAppearance_Text" xml:space="preserve">
-    <value>Présentation</value>
+    <value>Wygląd</value>
   </data>
   <data name="PrintDescriptions_layoutGroup_Text" xml:space="preserve">
-    <value>Présentation</value>
+    <value>Wygląd</value>
   </data>
   <data name="PrintPunches_layoutGroup_Text" xml:space="preserve">
-    <value>Présentation</value>
+    <value>Wygląd</value>
   </data>
   <data name="AddCourse_secondaryTitleDescription_Text" xml:space="preserve">
-    <value>Le texte suivant (facultatif) apparaîtra sur la deuxième ligne des définitions :</value>
+    <value>Poniższy (opcjonalny) tekst pojawi się w drugiej linii na stronie z opisami punktów:</value>
   </data>
   <data name="AddCourse_secondaryTitleGroup_Text" xml:space="preserve">
-    <value>Liste des catégories/titre secondaire</value>
+    <value>Lista kategorii / Podtytuł</value>
   </data>
   <data name="AddCourse_lengthLabel_Text" xml:space="preserve">
-    <value>Distance :</value>
+    <value>Długość:</value>
   </data>
   <data name="SelectionDescriptionText_Length" xml:space="preserve">
-    <value>Distance :</value>
+    <value>Długość:</value>
   </data>
   <data name="AddCourse_climbLabel_Text" xml:space="preserve">
-    <value>Dénivelé :</value>
+    <value>Przewyższenie</value>
   </data>
   <data name="SelectionDescriptionText_Climb" xml:space="preserve">
-    <value>Dénivelé :</value>
+    <value>Przewyższenie</value>
   </data>
   <data name="AddCourse_courseTypeLabel_Text" xml:space="preserve">
-    <value>Type de circuit :</value>
+    <value>Rodzaj trasy:</value>
   </data>
   <data name="AddCourse_courseNameLabel_Text" xml:space="preserve">
-    <value>Nom du circuit :</value>
+    <value>Nazwa trasy:</value>
   </data>
   <data name="AddCourse_courseKindCombo_Items" xml:space="preserve">
-    <value>Circuit normal</value>
+    <value>Trasa Normalna</value>
   </data>
   <data name="AddCourse_courseKindCombo_Items1" xml:space="preserve">
-    <value>Course au score</value>
+    <value>Trasa Punktowa</value>
   </data>
   <data name="AddCourse_metersSuffix_Text" xml:space="preserve">
-    <value>mètres</value>
+    <value>metry</value>
   </data>
   <data name="AddCourse_kmSuffix_Text" xml:space="preserve">
     <value>km</value>
   </data>
   <data name="AddCourse_Text" xml:space="preserve">
-    <value>Nouveau circuit</value>
+    <value>Nowy Kurs</value>
   </data>
   <data name="CommandNameText_NewCourse" xml:space="preserve">
-    <value>Nouveau circuit</value>
-  </data>
-  <data name="AddForkDialog_labelWhichType_Text" xml:space="preserve">
-    <value>Quel type de variation souhaitez-vous ajouter ?</value>
-  </data>
-  <data name="AddForkDialog_radioButtonFork_Text" xml:space="preserve">
-    <value>Fourche</value>
-  </data>
-  <data name="AddForkDialog_radioButtonLoop_Text" xml:space="preserve">
-    <value>Boucle</value>
-  </data>
-  <data name="AddForkDialog_labelNumberBranches_Text" xml:space="preserve">
-    <value>Nombre de branches :</value>
-  </data>
-  <data name="AddForkDialog_comboBoxNumberBranches_Items" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="AddForkDialog_comboBoxNumberBranches_Items1" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="AddForkDialog_comboBoxNumberBranches_Items2" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="AddForkDialog_comboBoxNumberBranches_Items3" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="AddForkDialog_comboBoxNumberBranches_Items4" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="AddForkDialog_comboBoxNumberBranches_Items5" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="AddForkDialog_comboBoxNumberBranches_Items6" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="AddForkDialog_comboBoxNumberBranches_Items7" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="AddForkDialog_comboBoxNumberBranches_Items8" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="AddForkDialog_labelNumberLoops_Text" xml:space="preserve">
-    <value>Nombre de boucles :</value>
-  </data>
-  <data name="AddForkDialog_labelSummary_Text" xml:space="preserve">
-    <value>Le poste de la boucle sera visité 4 fois. Il y a 24 parcours différents à travers les boucles.</value>
-  </data>
-  <data name="AddForkDialog_Text" xml:space="preserve">
-    <value>Ajouter une variation</value>
-  </data>
-  <data name="CommandNameText_AddVariation" xml:space="preserve">
-    <value>Ajouter une variation</value>
-  </data>
-  <data name="MainFrame_addVariationToolStripButton_Text" xml:space="preserve">
-    <value>Ajouter une variation</value>
+    <value>Nowy Kurs</value>
   </data>
   <data name="AddTextLine_textLineLabel_Text" xml:space="preserve">
-    <value>Entrer le texte à insérer sur une ligne séparée des définitions de poste :</value>
+    <value>Wstaw tekst, która znajdzie się w dodatkowej linii opisów punków:</value>
   </data>
   <data name="AddTextLine_coursesLabel_Text" xml:space="preserve">
-    <value>Circuits :</value>
+    <value>Trasy:</value>
   </data>
   <data name="AddTextLine_positionLabel_Text" xml:space="preserve">
-    <value>Position :</value>
+    <value>Położenie:</value>
   </data>
   <data name="AddTextLine_comboBoxPosition_Items" xml:space="preserve">
-    <value>Au dessus de {0}</value>
+    <value>Powyżej {0}</value>
   </data>
   <data name="AddTextLine_comboBoxPosition_Items1" xml:space="preserve">
-    <value>En dessous de {0}</value>
+    <value>Poniżej {0}</value>
   </data>
   <data name="AddTextLine_comboBoxCourses_Items" xml:space="preserve">
-    <value>Ce circuit uniquement</value>
+    <value>Tylka ta trasa</value>
   </data>
   <data name="AddTextLine_comboBoxCourses_Items1" xml:space="preserve">
-    <value>Tous les circuits avec  {0}</value>
+    <value>Wszystkie trasy z {0}</value>
   </data>
   <data name="AddTextLine_Text" xml:space="preserve">
-    <value>Ajouter une ligne de texte</value>
+    <value>Dodaj Tekst</value>
   </data>
   <data name="CommandNameText_AddTextLine" xml:space="preserve">
-    <value>Ajouter une ligne de texte</value>
+    <value>Dodaj Tekst</value>
   </data>
   <data name="AllControlsProperties_allControlsPropertiesLabel_Text" xml:space="preserve">
-    <value>Ces préférences gèrent l'impression de la carte et des définitions Tous Postes.</value>
+    <value>Te ustawienia mają wpływ na to w jaki sposób mapa oraz opisy Wszystkich Punktów są drukowane.</value>
   </data>
   <data name="AllControlsProperties_Text" xml:space="preserve">
-    <value>Propriétés pour Tous Postes</value>
+    <value>Ustawienia Wszystkich Punktów</value>
   </data>
   <data name="AutoNumbering_disallowInvertibleCheckBox_Text" xml:space="preserve">
-    <value>Écarter les numéros de poste pouvant être lus à l'envers (exemple : 68 / 89)</value>
+    <value>Nie dopuszczaj kodów, które mogłyby być odczytana do góry nogami (np., "68"/"89")</value>
   </data>
   <data name="NewEventNumbering_disallowInvertibleCheckBox_Text" xml:space="preserve">
-    <value>Écarter les numéros de poste pouvant être lus à l'envers (exemple : 68 / 89)</value>
+    <value>Nie dopuszczaj kodów, które mogłyby być odczytana do góry nogami (np., "68"/"89")</value>
   </data>
   <data name="AutoNumbering_renumberExistingRadioButton_Text" xml:space="preserve">
-    <value>Renuméroter également les postes existant</value>
+    <value>Zmień także numerację istniejących punktów</value>
   </data>
   <data name="AutoNumbering_newControlsOnlyRadioButton_Text" xml:space="preserve">
-    <value>Appliquer uniquement ces paramètres pour les postes venant d'être créés</value>
+    <value>Zastosuj ustawienia tylko do nowych punktów</value>
   </data>
   <data name="AutoNumbering_existingControlsGroupBox_Text" xml:space="preserve">
-    <value>Postes existants</value>
+    <value>Istniejące Punkty</value>
   </data>
   <data name="AutoNumbering_automaticNumberingLabel_Text" xml:space="preserve">
-    <value>Les nouveaux postes sont automatiquement numérotés avec les paramètres suivants :</value>
+    <value>Nowe punkty są numerowane automatycznie według poniższych ustawień.</value>
   </data>
   <data name="AutoNumbering_startingCodeLabel_Text" xml:space="preserve">
-    <value>Premier numéro de poste :</value>
+    <value>Kod początkowy:</value>
   </data>
   <data name="NewEventNumbering_startingCodeLabel_Text" xml:space="preserve">
-    <value>Premier numéro de poste :</value>
+    <value>Kod początkowy:</value>
   </data>
   <data name="AutoNumbering_Text" xml:space="preserve">
-    <value>Numérotation automatique</value>
+    <value>Numerowanie Automatyczne</value>
   </data>
   <data name="CommandNameText_AutoNumbering" xml:space="preserve">
-    <value>Numérotation automatique</value>
+    <value>Numerowanie Automatyczne</value>
   </data>
   <data name="ChangeAllCodes_OldCode_HeaderText" xml:space="preserve">
-    <value>Numéro Initial</value>
+    <value>Domyślny Kod</value>
   </data>
   <data name="ChangeAllCodes_NewCode_HeaderText" xml:space="preserve">
-    <value>Nouveau numéro</value>
+    <value>Nowy Kod</value>
   </data>
   <data name="ChangeAllCodes_changeControlCodesLabel_Text" xml:space="preserve">
-    <value>Pour changer le numéro d'un ou plusieurs postes, veuillez cliquer sur la colonne "Nouveau Numéro" puis renseignez-le. </value>
+    <value>Aby zmienić kod jednego lub więcej punktów, kliknij w kolumnie "Nowy Kod" i wprowadź nowy kod. </value>
   </data>
   <data name="ChangeAllCodes_Text" xml:space="preserve">
-    <value>Changer les numéros de poste</value>
+    <value>Zmiana Kodu Punktów</value>
   </data>
   <data name="ChangeCourseOrder_moveDownButton_Text" xml:space="preserve">
-    <value>Descendre</value>
+    <value>Przesuń niżej</value>
   </data>
   <data name="ChangeCourseOrder_courseOrderLabel_Text" xml:space="preserve">
-    <value>Utiliser les boutons "Monter" et "Descendre" pour changer l'ordre des circuits affichés dans l'interface utilisateur, les rapports et le module d'impression.</value>
+    <value>Użyj przycisków "W góre" oraz "W dół" aby zmienić kolejność według której trasy są wyświetlane na interfejsie użytkownika, w raportach oraz na wydrukach.</value>
   </data>
   <data name="ChangeCourseOrder_moveUpButton_Text" xml:space="preserve">
-    <value>Monter</value>
+    <value>Przesuń wyżej</value>
   </data>
   <data name="ChangeCourseOrder_Text" xml:space="preserve">
-    <value>Ordre des circuits</value>
+    <value>Sortowanie Tras</value>
   </data>
   <data name="ChangeMapFile_mapFileDisplay_Text" xml:space="preserve">
-    <value>Carte active</value>
+    <value>Plik Aktualnej Mapy</value>
   </data>
   <data name="ChangeMapFile_buttonChooseFile_Text" xml:space="preserve">
-    <value>&amp;Choisir une carte...</value>
+    <value>&amp;Wybierz plik mapy...</value>
   </data>
   <data name="NewEventMapFile_chooseMapFileButton_Text" xml:space="preserve">
-    <value>&amp;Choisir une carte...</value>
-  </data>
-  <data name="ChangeMapFile_openFileDialog_Filter" xml:space="preserve">
-    <value>Tous les fichiers cartes|*.ocd;*.omap;*.xmap;*.pdf;*.jpeg;*.jpg;*.tiff;*.tif;*.bmp;*.png;*.gif|fichiers OCAD (*.ocd)|*.ocd|fichiers Open Orienteering Mapper|*.omap;*.xmap|fichiers PDF (*.pdf)|*.pdf|fichiers Image|*.jpeg;*.jpg;*.tiff;*.tif;*.bmp;*.png;*.gif</value>
-  </data>
-  <data name="NewEventMapFile_openFileDialog_Filter" xml:space="preserve">
-    <value>Tous les fichiers cartes|*.ocd;*.omap;*.xmap;*.pdf;*.jpeg;*.jpg;*.tiff;*.tif;*.bmp;*.png;*.gif|fichiers OCAD (*.ocd)|*.ocd|fichiers Open Orienteering Mapper|*.omap;*.xmap|fichiers PDF (*.pdf)|*.pdf|fichiers Image|*.jpeg;*.jpg;*.tiff;*.tif;*.bmp;*.png;*.gif</value>
+    <value>&amp;Wybierz plik mapy...</value>
   </data>
   <data name="ChangeMapFile_labelDpi_Text" xml:space="preserve">
-    <value>Résolution :</value>
+    <value>Rozdzielczość:</value>
   </data>
   <data name="ChangeMapFile_labelScale_Text" xml:space="preserve">
-    <value>Échelle :</value>
+    <value>Skala:</value>
   </data>
   <data name="SelectLocationsForMove_labelScale_Text" xml:space="preserve">
-    <value>Échelle :</value>
+    <value>Skala:</value>
   </data>
   <data name="ChangeMapFile_labelOneTo_Text" xml:space="preserve">
-    <value>1 :</value>
+    <value>1:</value>
   </data>
   <data name="ChangeMapFile_labelDpi2_Text" xml:space="preserve">
-    <value>points par pouce</value>
+    <value>punkty na cal</value>
   </data>
   <data name="NewEventBitmapScale_dpiLabel_Text" xml:space="preserve">
-    <value>points par pouce</value>
+    <value>punkty na cal</value>
   </data>
   <data name="ChangeMapFile_Text" xml:space="preserve">
-    <value>Carte</value>
+    <value>Plik Mapy</value>
   </data>
   <data name="NewEventMapFile_labelTitle_Text" xml:space="preserve">
-    <value>Carte</value>
+    <value>Plik Mapy</value>
   </data>
   <data name="ChangeSpecialCourses_changeDisplayedCoursesLabel_Text" xml:space="preserve">
-    <value>Sélectionner les circuits sur lesquels cet objet sera affiché :</value>
+    <value>Wybierz trasę, na której ten obiekt będzie widoczny:</value>
   </data>
   <data name="ChangeSpecialCourses_Text" xml:space="preserve">
-    <value>Modifier les circuits affichés</value>
+    <value>Zmień Widoczne Kursy</value>
   </data>
   <data name="CommandNameText_ChangeDisplayedCourses" xml:space="preserve">
-    <value>Modifier les circuits affichés</value>
+    <value>Zmień Widoczne Kursy</value>
   </data>
   <data name="ChangeText_eventTitleMenuItem_Text" xml:space="preserve">
-    <value>Nom de la course</value>
+    <value>Nazwa Wydarzenia</value>
   </data>
   <data name="NewEventTitle_labelTitle_Text" xml:space="preserve">
-    <value>Nom de la course</value>
+    <value>Nazwa Wydarzenia</value>
   </data>
   <data name="ChangeText_courseNameMenuItem_Text" xml:space="preserve">
-    <value>Nom du circuit</value>
+    <value>Nazwa Trasy</value>
   </data>
   <data name="CourseLoad_CourseName_HeaderText" xml:space="preserve">
-    <value>Nom du circuit</value>
+    <value>Nazwa Trasy</value>
   </data>
   <data name="SelectionDescriptionText_SpecialName_CourseName" xml:space="preserve">
-    <value>Nom du circuit</value>
+    <value>Nazwa Trasy</value>
   </data>
   <data name="ChangeText_coursePartMenuItem_Text" xml:space="preserve">
-    <value>Partie de circuit</value>
-  </data>
-  <data name="ChangeText_variationMenuItem_Text" xml:space="preserve">
-    <value>Variation de circuit</value>
+    <value>Część trasy</value>
   </data>
   <data name="ChangeText_courseLengthMenuItem_Text" xml:space="preserve">
-    <value>Longueur du circuit</value>
+    <value>Długość Trasy</value>
   </data>
   <data name="ChangeText_courseClimbMenuItem_Text" xml:space="preserve">
-    <value>Dénivelé du circuit</value>
+    <value>Przewyższenie Trasy</value>
   </data>
   <data name="ChangeText_classListMenuItem_Text" xml:space="preserve">
-    <value>Catégories de course</value>
+    <value>Lista Kategorii</value>
   </data>
   <data name="ChangeText_printScaleMenuItem_Text" xml:space="preserve">
-    <value>Echelle d'impression</value>
+    <value>Skala</value>
   </data>
   <data name="NewEventPrintScale_labelTitle_Text" xml:space="preserve">
-    <value>Echelle d'impression</value>
-  </data>
-  <data name="ChangeText_relayTeamMenuItem_Text" xml:space="preserve">
-    <value>Equipe relais</value>
-  </data>
-  <data name="ChangeText_relayLegMenuItem_Text" xml:space="preserve">
-    <value>Numéro du relais</value>
+    <value>Skala</value>
   </data>
   <data name="ChangeText_fileNameMenuItem_Text" xml:space="preserve">
-    <value>Nom du fichier</value>
+    <value>Nazwa pliku</value>
   </data>
   <data name="CreateRouteGadget_nameGroupBox_Text" xml:space="preserve">
-    <value>Nom du fichier</value>
-  </data>
-  <data name="ChangeText_mapFileNameMenuItem_Text" xml:space="preserve">
-    <value>Nom du fichier de carte</value>
+    <value>Nazwa pliku</value>
   </data>
   <data name="ChangeText_buttonChangeColor_Text" xml:space="preserve">
-    <value>Modifier la couleur...</value>
+    <value>Zmień kolor...</value>
   </data>
   <data name="ChangeText_label2_Text" xml:space="preserve">
-    <value>Couleur :</value>
+    <value>Kolor:</value>
   </data>
   <data name="CourseAppearanceDialog_label9_Text" xml:space="preserve">
-    <value>Couleur :</value>
+    <value>Kolor:</value>
   </data>
   <data name="LinePropertiesDialog_label1_Text" xml:space="preserve">
-    <value>Couleur :</value>
+    <value>Kolor:</value>
   </data>
   <data name="ChangeText_checkBoxItalic_Text" xml:space="preserve">
-    <value>Italique</value>
+    <value>Kursywa</value>
   </data>
   <data name="ChangeText_checkBoxBold_Text" xml:space="preserve">
-    <value>Gras</value>
+    <value>Pogrubione</value>
   </data>
   <data name="ChangeText_label1_Text" xml:space="preserve">
-    <value>Police de caractères :</value>
+    <value>Czcionka:</value>
   </data>
   <data name="ChangeText_label3_Text" xml:space="preserve">
-    <value>Taille :</value>
+    <value>Rozmiar:</value>
   </data>
   <data name="PrinterMargins_labelPaper_Text" xml:space="preserve">
-    <value>Taille :</value>
+    <value>Rozmiar:</value>
   </data>
   <data name="ChangeText_labelFontSizeMm_Text" xml:space="preserve">
     <value>mm</value>
@@ -640,1045 +538,853 @@
     <value>mm</value>
   </data>
   <data name="ChangeText_checkBoxAutoFontSize_Text" xml:space="preserve">
-    <value>Automatique</value>
+    <value>Automatyczna</value>
   </data>
   <data name="MiscText_AutomaticLength" xml:space="preserve">
-    <value>Automatique</value>
+    <value>Automatyczna</value>
   </data>
   <data name="ChangeText_groupBox2_Text" xml:space="preserve">
-    <value>Exemple</value>
+    <value>Przykład</value>
   </data>
   <data name="LinePropertiesDialog_groupBox1_Text" xml:space="preserve">
-    <value>Exemple</value>
+    <value>Przykład</value>
   </data>
   <data name="ChangeText_insertSpecialButton_Text" xml:space="preserve">
-    <value>Insérer le texte prédéfini</value>
+    <value>Wstaw Tekst Specjalny</value>
   </data>
   <data name="ColorChooserDialog_label5_Text" xml:space="preserve">
-    <value>Noir :</value>
+    <value>Czarny:</value>
   </data>
   <data name="CourseAppearanceDialog_label5_Text" xml:space="preserve">
-    <value>Noir :</value>
+    <value>Czarny:</value>
   </data>
   <data name="ColorChooserDialog_label6_Text" xml:space="preserve">
-    <value>Jaune :</value>
+    <value>Żółty:</value>
   </data>
   <data name="CourseAppearanceDialog_label6_Text" xml:space="preserve">
-    <value>Jaune :</value>
+    <value>Żółty:</value>
   </data>
   <data name="ColorChooserDialog_label3_Text" xml:space="preserve">
-    <value>Magenta :</value>
+    <value>Purpurowy:</value>
   </data>
   <data name="CourseAppearanceDialog_label3_Text" xml:space="preserve">
-    <value>Magenta :</value>
+    <value>Purpurowy:</value>
   </data>
   <data name="ColorChooserDialog_label1_Text" xml:space="preserve">
-    <value>Cyan :</value>
+    <value>Niebieskozielony:</value>
   </data>
   <data name="CourseAppearanceDialog_label1_Text" xml:space="preserve">
-    <value>Cyan :</value>
+    <value>Niebieskozielony:</value>
   </data>
   <data name="ColorChooserDialog_groupBoxPreview_Text" xml:space="preserve">
-    <value>Aperçu</value>
+    <value>Podgląd</value>
   </data>
   <data name="CourseAppearanceDialog_groupBoxPreview_Text" xml:space="preserve">
-    <value>Aperçu</value>
+    <value>Podgląd</value>
   </data>
   <data name="ColorChooserDialog_Text" xml:space="preserve">
-    <value>Choisir la couleur</value>
+    <value>Wybierz kolor</value>
   </data>
   <data name="CommandNameText_ChangeSymbol" xml:space="preserve">
-    <value>Modifier le symbole</value>
+    <value>Zmień Piktografikę</value>
   </data>
   <data name="CommandNameText_ChangeCode" xml:space="preserve">
-    <value>Modifier le numéro de poste</value>
+    <value>Zmień Kod Punktu</value>
   </data>
   <data name="CommandNameText_ChangeControl" xml:space="preserve">
-    <value>Modifier le poste</value>
+    <value>Zmień Punkt</value>
   </data>
   <data name="CommandNameText_ChangeScore" xml:space="preserve">
-    <value>Modifier les points affectés au poste</value>
+    <value>Zmień Punkty</value>
   </data>
   <data name="CommandNameText_ChangeTitle" xml:space="preserve">
-    <value>Changer le titre</value>
+    <value>Zmień Nazwę</value>
   </data>
   <data name="CommandNameText_ChangeClimb" xml:space="preserve">
-    <value>Modifier le dénivelé</value>
+    <value>Zmień Przewyższenie</value>
   </data>
   <data name="CommandNameText_ChangeCourseName" xml:space="preserve">
-    <value>Modifier le nom du circuit</value>
+    <value>Zmień Nazwę Trasy</value>
   </data>
   <data name="CommandNameText_ChangeTextLine" xml:space="preserve">
-    <value>Modifier la ligne de texte</value>
+    <value>Zmień linię tekstu</value>
   </data>
   <data name="CommandNameText_ChangeScale" xml:space="preserve">
-    <value>Mettre à jour l'échelle de la carte</value>
+    <value>Aktualizuj Skalę Mapy</value>
   </data>
   <data name="CommandNameText_MoveControl" xml:space="preserve">
-    <value>Déplacer le poste</value>
+    <value>Przesuń Punkt</value>
   </data>
   <data name="CommandNameText_MoveControlNumber" xml:space="preserve">
-    <value>Déplacer le numéro du poste</value>
+    <value>Przesuń Numer Punktu</value>
   </data>
   <data name="CommandNameText_MoveObject" xml:space="preserve">
-    <value>Déplacer l'objet</value>
+    <value>Przesuń Obiekt</value>
   </data>
   <data name="CommandNameText_DeleteControl" xml:space="preserve">
-    <value>Supprimer le poste</value>
+    <value>Usuń Punkt</value>
   </data>
   <data name="CommandNameText_DeleteObject" xml:space="preserve">
-    <value>Supprimer l'objet</value>
+    <value>Usuń Obiekt</value>
   </data>
   <data name="CommandNameText_DeleteTextLine" xml:space="preserve">
-    <value>Supprimer la ligne de texte</value>
+    <value>Usuń Tekst</value>
   </data>
   <data name="CommandNameText_AddControl" xml:space="preserve">
-    <value>Ajouter un poste</value>
+    <value>Dodaj Punkt</value>
   </data>
   <data name="MainFrame_addControlToolStripButton_Text" xml:space="preserve">
-    <value>Ajouter un poste</value>
+    <value>Dodaj Punkt</value>
   </data>
   <data name="CommandNameText_AddStart" xml:space="preserve">
-    <value>Ajouter un départ</value>
+    <value>Dodaj Start</value>
   </data>
   <data name="MainFrame_addStartToolStripButton_Text" xml:space="preserve">
-    <value>Ajouter un départ</value>
+    <value>Dodaj Start</value>
   </data>
   <data name="CommandNameText_AddFinish" xml:space="preserve">
-    <value>Ajouter une arrivée</value>
+    <value>Dodaj Metę</value>
   </data>
   <data name="MainFrame_addFinishToolStripButton_Text" xml:space="preserve">
-    <value>Ajouter une arrivée</value>
+    <value>Dodaj Metę</value>
   </data>
   <data name="CommandNameText_AddCrossingPoint" xml:space="preserve">
-    <value>Ajouter un passage obligatoire</value>
+    <value>Dodaj Obowiązkowe Przejście</value>
   </data>
   <data name="CommandNameText_AddObject" xml:space="preserve">
-    <value>Ajouter un objet</value>
+    <value>Dodaj obiekt</value>
   </data>
   <data name="CommandNameText_DeleteCourse" xml:space="preserve">
-    <value>Supprimer le circuit</value>
+    <value>Usuń Trasę</value>
   </data>
   <data name="CommandNameText_ChangeCourseProperties" xml:space="preserve">
-    <value>Modifier les propriétés du circuit</value>
+    <value>Zmień Ustawienia Trasy</value>
   </data>
   <data name="CommandNameText_ChangeAllControlsProperties" xml:space="preserve">
-    <value>Modifier les propriétés Tous Postes</value>
+    <value>Zmień Ustawienia Wszystkich Punktów</value>
   </data>
   <data name="CommandNameText_NewEvent" xml:space="preserve">
-    <value>Créer une nouvelle course</value>
+    <value>Stwórz Wydarzenie</value>
   </data>
   <data name="NewEventWizard_Text" xml:space="preserve">
-    <value>Créer une nouvelle course</value>
+    <value>Stwórz Wydarzenie</value>
   </data>
   <data name="CommandNameText_SetLegFlagging" xml:space="preserve">
-    <value>Modifier le jalonnage de l'interposte</value>
+    <value>Zmień sposób otaśmowania przebiegu</value>
   </data>
   <data name="CommandNameText_ChangeCodes" xml:space="preserve">
-    <value>Modifier les numéros de poste</value>
+    <value>Zmieni Kody</value>
   </data>
   <data name="CommandNameText_MoveBend" xml:space="preserve">
-    <value>Déplacer le coude</value>
+    <value>Przesuń punkt zgięcia przebiegu</value>
   </data>
   <data name="CommandNameText_AddBend" xml:space="preserve">
-    <value>Insérer un coude</value>
+    <value>Dodaj Zgięcie</value>
   </data>
   <data name="CommandNameText_AddCorner" xml:space="preserve">
-    <value>Insérer un coin</value>
+    <value>Dodaj Narożnik</value>
   </data>
   <data name="CommandNameText_DeleteBend" xml:space="preserve">
-    <value>Supprimer un coude</value>
+    <value>Usuń Zgięcie</value>
   </data>
   <data name="CommandNameText_DeleteCorner" xml:space="preserve">
-    <value>Supprimer un coin</value>
+    <value>Usuń Narożnik</value>
   </data>
   <data name="CommandNameText_AddGap" xml:space="preserve">
-    <value>Insérer une découpe</value>
+    <value>Dodaj PRzerwę</value>
   </data>
   <data name="CommandNameText_RemoveGap" xml:space="preserve">
-    <value>Supprimer une découpe</value>
+    <value>Usuń Przerwę</value>
   </data>
   <data name="CommandNameText_MoveGap" xml:space="preserve">
-    <value>Déplacer une découpe</value>
+    <value>Przesuń Przerwę</value>
   </data>
   <data name="CommandNameText_Rotate" xml:space="preserve">
-    <value>Rotation</value>
+    <value>Obróć</value>
   </data>
   <data name="CommandNameText_ChangePunchPatterns" xml:space="preserve">
-    <value>Modifier les poinçons</value>
+    <value>Zmień  Wzory Dziurkowania</value>
   </data>
   <data name="CommandNameText_ChangePunchcardFormat" xml:space="preserve">
-    <value>Modifier le format du carton de contrôle</value>
+    <value>Zmień Układ Karty Biegowej</value>
   </data>
   <data name="CommandNameText_SetPrintArea" xml:space="preserve">
-    <value>Définir la zone d'impression</value>
+    <value>Ustaw Obszar Wydruku</value>
   </data>
   <data name="SetPrintAreaDialog_Text" xml:space="preserve">
-    <value>Définir la zone d'impression</value>
+    <value>Ustaw Obszar Wydruku</value>
   </data>
   <data name="CommandNameText_SetCourseLoad" xml:space="preserve">
-    <value>Modifier le nombre de concurrents</value>
+    <value>Zmień prognozowaną liczbę zawodników</value>
   </data>
   <data name="CommandNameText_SetCustomSymbolText" xml:space="preserve">
-    <value>Personnaliser la description en clair</value>
+    <value>Zmień Tekst Opisu</value>
   </data>
   <data name="CustomSymbolText_Text" xml:space="preserve">
-    <value>Personnaliser la description en clair</value>
+    <value>Zmień Tekst Opisu</value>
   </data>
   <data name="CommandNameText_ChangeCourseOrder" xml:space="preserve">
-    <value>Modifier l'ordre des circuits</value>
+    <value>Zmień Kolejność Tras</value>
   </data>
   <data name="CommandNameText_ChangeMapFile" xml:space="preserve">
-    <value>Changer de carte</value>
+    <value>Zmień Plik Mapy</value>
   </data>
   <data name="CommandNameText_IgnoreMissingFonts" xml:space="preserve">
-    <value>Ignorer les polices de caractères manquantes</value>
+    <value>Ignoruj Brakujące Czcionki</value>
   </data>
   <data name="CommandNameText_RemoveUnusedControls" xml:space="preserve">
-    <value>Supprimer les postes inutilisés</value>
+    <value>Usuń Nieużywane Punkty</value>
   </data>
   <data name="CommandNameText_SetDescriptionLanguage" xml:space="preserve">
-    <value>Modifier la langue des définitions</value>
+    <value>Zmień Język Opisu</value>
   </data>
   <data name="CommandNameText_ChangeText" xml:space="preserve">
-    <value>Modifier le texte</value>
+    <value>Zmień Tekst</value>
   </data>
   <data name="MiscText_ChangeTextTitle" xml:space="preserve">
-    <value>Modifier le texte</value>
+    <value>Zmień Tekst</value>
   </data>
   <data name="CommandNameText_ChangeCourseAppearance" xml:space="preserve">
-    <value>Personnaliser la présentation du circuit</value>
+    <value>Zmień Wygląd Tras</value>
   </data>
   <data name="CommandNameText_AddMapExchange" xml:space="preserve">
-    <value>Ajouter un échange de carte</value>
+    <value>Dodaj zmianę mapy</value>
   </data>
   <data name="CommandNameText_DeleteMapExchangeAtControl" xml:space="preserve">
-    <value>Supprimer l'échange de carte</value>
+    <value>Usuń zmianę mapy</value>
   </data>
   <data name="CommandNameText_ChangePartProperties" xml:space="preserve">
-    <value>Modifier les propriétés des parties de circuit</value>
+    <value>Zmień właściwości częsci trasy</value>
   </data>
   <data name="CommandNameText_ChangeLineAppearance" xml:space="preserve">
-    <value>Modifier le style de ligne</value>
+    <value>Zmień wygląd linii</value>
   </data>
   <data name="MiscText_ChangeLineAppearanceTitle" xml:space="preserve">
-    <value>Modifier le style de ligne</value>
+    <value>Zmień wygląd linii</value>
   </data>
   <data name="CommandNameText_DuplicateCourse" xml:space="preserve">
-    <value>Dupliquer le circuit</value>
+    <value>Zduplikuj trasę</value>
   </data>
   <data name="MiscText_DuplicateCourseTitle" xml:space="preserve">
-    <value>Dupliquer le circuit</value>
-  </data>
-  <data name="CommandNameText_CreateMapFiles" xml:space="preserve">
-    <value>Créer {0} &amp;Fichier(s)</value>
-  </data>
-  <data name="CommandNameText_DeleteFork" xml:space="preserve">
-    <value>Supprimer Fourche/Boucle</value>
-  </data>
-  <data name="CommandNameText_RelayTeamVariations" xml:space="preserve">
-    <value>Variations équipe de relais</value>
-  </data>
-  <data name="TeamVariationsForm_Text" xml:space="preserve">
-    <value>Variations équipe de relais</value>
-  </data>
-  <data name="CommandNameText_AddMapIssue" xml:space="preserve">
-    <value>Ajouter un point de prise de carte</value>
-  </data>
-  <data name="CommandNameText_ChangeMapStandard" xml:space="preserve">
-    <value>Définir la norme de la carte</value>
-  </data>
-  <data name="CommandNameText_Stretch" xml:space="preserve">
-    <value>Étirer</value>
-  </data>
-  <data name="CommandNameText_SetLiveloxImportableEventId" xml:space="preserve">
-    <value>Publier sur Livelox</value>
-  </data>
-  <data name="CommandNameText_MoveAllControls" xml:space="preserve">
-    <value>Déplacer tous les postes</value>
-  </data>
-  <data name="MoveAllControls_Text" xml:space="preserve">
-    <value>Déplacer tous les postes</value>
-  </data>
-  <data name="SelectLocationsForMove_Text" xml:space="preserve">
-    <value>Déplacer tous les postes</value>
-  </data>
-  <data name="CommandNameText_AddMapFlip" xml:space="preserve">
-    <value>Ajouter un retournement de carte</value>
-  </data>
-  <data name="CourseAppearanceDialog_comboBoxScaleItemSizes_Items" xml:space="preserve">
-    <value>Ne pas mettre à l'échelle</value>
-  </data>
-  <data name="CourseAppearanceDialog_comboBoxScaleItemSizes_Items1" xml:space="preserve">
-    <value>Par rapport à l'échelle de la carte</value>
-  </data>
-  <data name="CourseAppearanceDialog_comboBoxScaleItemSizes_Items2" xml:space="preserve">
-    <value>Par rapport à 1:15000</value>
-  </data>
-  <data name="CourseAppearanceDialog_label11_Text" xml:space="preserve">
-    <value>Mettre à l'échelle les tailles des éléments :</value>
+    <value>Zduplikuj trasę</value>
   </data>
   <data name="CourseAppearanceDialog_labelAutoGapSize_Text" xml:space="preserve">
-    <value>Dimension auto pour espace d'interposte :</value>
+    <value>Rozmiar automatycznego odstępu na przebiegu</value>
   </data>
   <data name="CourseAppearanceDialog_labelOutlineWidth_Text" xml:space="preserve">
-    <value>Halo blanc autour des numéros :</value>
+    <value>Białe tło wokól numerów PK</value>
   </data>
   <data name="CourseAppearanceDialog_label7_Text" xml:space="preserve">
-    <value>Diamètre du point central :</value>
+    <value>Średnica centralnej kropki:</value>
   </data>
   <data name="CourseAppearanceDialog_comboBoxControlNumberStyle_Items" xml:space="preserve">
     <value>Arial</value>
   </data>
   <data name="CourseAppearanceDialog_comboBoxControlNumberStyle_Items1" xml:space="preserve">
-    <value>Arial Gras</value>
-  </data>
-  <data name="CourseAppearanceDialog_comboBoxControlNumberStyle_Items2" xml:space="preserve">
-    <value>Roboto</value>
-  </data>
-  <data name="CourseAppearanceDialog_comboBoxControlNumberStyle_Items3" xml:space="preserve">
-    <value>Roboto Bold</value>
+    <value>Arial Pogrubione</value>
   </data>
   <data name="CourseAppearanceDialog_labelControlNumberStyle_Text" xml:space="preserve">
-    <value>Style du numéro de poste :</value>
+    <value>Styl numeracji punktu:</value>
   </data>
   <data name="CourseAppearanceDialog_labelControlNumber_Text" xml:space="preserve">
-    <value>Taille des numéros de poste :</value>
+    <value>Wysokość numeracji punków</value>
   </data>
   <data name="CourseAppearanceDialog_labelLineWidth_Text" xml:space="preserve">
-    <value>Largeur de ligne :</value>
+    <value>Szerokość linii:</value>
   </data>
   <data name="CourseAppearanceDialog_labelControlCircle_Text" xml:space="preserve">
-    <value>Diamètre du cercle du poste :</value>
+    <value>Średnica okręgu punktu:</value>
   </data>
   <data name="CourseAppearanceDialog_checkBoxStandardSizes_Text" xml:space="preserve">
-    <value>Utiliser les tailles IOF standards</value>
+    <value>Użyj standardowych rozmiarów IOF</value>
   </data>
   <data name="CourseAppearanceDialog_groupBoxSizes_Text" xml:space="preserve">
-    <value>Tailles des objets</value>
-  </data>
-  <data name="CourseAppearanceDialog_labelChooseLayer_Text" xml:space="preserve">
-    <value>Au dessus de la couleur</value>
+    <value>Rozmiar Obiektów</value>
   </data>
   <data name="CourseAppearanceDialog_comboBoxBlendPurple_Items" xml:space="preserve">
-    <value>Aucun</value>
+    <value>Żaden</value>
   </data>
   <data name="CourseSelector_selectNone_Text" xml:space="preserve">
-    <value>Aucun</value>
+    <value>Żaden</value>
   </data>
   <data name="SelectionDescriptionText_CourseList_None" xml:space="preserve">
-    <value>Aucun</value>
-  </data>
-  <data name="CourseAppearanceDialog_comboBoxBlendPurple_Items1" xml:space="preserve">
-    <value>Fondu</value>
-  </data>
-  <data name="CourseAppearanceDialog_comboBoxBlendPurple_Items2" xml:space="preserve">
-    <value>Couche dec couleur</value>
-  </data>
-  <data name="CourseAppearanceDialog_labelBlendPurple_Text" xml:space="preserve">
-    <value>Mélanger la violine avec les couleurs de la carte</value>
+    <value>Żaden</value>
   </data>
   <data name="CourseAppearanceDialog_checkBoxDefaultPurple_Text" xml:space="preserve">
-    <value>Utiliser la couleur violine de la carte</value>
+    <value>Użyj koloru purpurowego z mapy</value>
   </data>
   <data name="CourseAppearanceDialog_groupBoxPurple_Text" xml:space="preserve">
-    <value>Couleur violine</value>
+    <value>Purpurowy</value>
   </data>
   <data name="CourseAppearanceDialog_comboBoxDescriptionColor_Items" xml:space="preserve">
-    <value>Noir</value>
+    <value>Czarny</value>
   </data>
   <data name="MiscText_Black" xml:space="preserve">
-    <value>Noir</value>
+    <value>Czarny</value>
   </data>
   <data name="CourseAppearanceDialog_comboBoxDescriptionColor_Items1" xml:space="preserve">
-    <value>Violine</value>
+    <value>Purpurowy</value>
   </data>
   <data name="MiscText_Purple" xml:space="preserve">
-    <value>Violine</value>
+    <value>Purpurowy</value>
   </data>
   <data name="CourseAppearanceDialog_groupBox1_Text" xml:space="preserve">
-    <value>Définitions des postes</value>
+    <value>Opisy punktów kontrolnych</value>
   </data>
   <data name="SelectionDescriptionText_SpecialName_Descriptions" xml:space="preserve">
-    <value>Définitions des postes</value>
+    <value>Opisy punktów kontrolnych</value>
   </data>
   <data name="CourseAppearanceDialog_checkBoxOverprint_Text" xml:space="preserve">
-    <value>Utiliser l'effet de surimpression pour les couleurs marquées « surimpression »</value>
-  </data>
-  <data name="CourseAppearanceDialog_groupBoxOcadMap_Text" xml:space="preserve">
-    <value>Options avancées</value>
+    <value>Użyj efektu nadrukowania dla kolorów oznaczonych jako "nadrukowane"</value>
   </data>
   <data name="CourseAppearanceDialog_Text" xml:space="preserve">
-    <value>Personnaliser l'apparence</value>
+    <value>Dostosuj wygląd</value>
   </data>
   <data name="CourseLoad_Load_HeaderText" xml:space="preserve">
-    <value>Nombre de concurrents</value>
+    <value>Zawodnicy</value>
   </data>
   <data name="CourseLoad_courseLoadLabel_Text" xml:space="preserve">
-    <value>Modifier le nombre de concurrents sur chaque circuit en cliquant dans la seconde colonne et en tapant un nombre.</value>
+    <value>Ustaw liczbę zawodników na każdej trasie poprzez kliknięcie w drugiej kolumnie i wpisanie liczby.</value>
   </data>
   <data name="CourseLoad_Text" xml:space="preserve">
-    <value>Nombre de concurrents sur le circuit</value>
-  </data>
-  <data name="CoursePartBanner_variationsLabel_Text" xml:space="preserve">
-    <value>Variation de circuit : </value>
+    <value>Obciążenie Tras</value>
   </data>
   <data name="CoursePartBanner_buttonProperties_Text" xml:space="preserve">
-    <value>Propriétés…</value>
-  </data>
-  <data name="CoursePartBanner_coursePartLabel_Text" xml:space="preserve">
-    <value>Partie du circuit : </value>
+    <value>Właściwości...</value>
   </data>
   <data name="CoursePartProperties_checkBoxDisplayFinish_Text" xml:space="preserve">
-    <value>Afficher le cercle Arrivée sur cette partie de circuit</value>
+    <value>Wyświetl punkt mety na tej części trasy</value>
   </data>
   <data name="CoursePartProperties_label1_Text" xml:space="preserve">
-    <value>Ces paramètres contrôlent l'apparence de cette partie pour un circuit en plusieurs parties.</value>
+    <value>Te ustawienia zmieniają wygląd tej części wieloczęściowej trasy.</value>
   </data>
   <data name="CoursePartProperties_Text" xml:space="preserve">
-    <value>Propriétés de la partie de circuit</value>
+    <value>Właściwości części trasy</value>
   </data>
   <data name="CourseSelector_selectAll_Text" xml:space="preserve">
-    <value>Tous</value>
-  </data>
-  <data name="CourseSelector_buttonChooseVariations_Text" xml:space="preserve">
-    <value>Choisir les variations...</value>
+    <value>Wszystko</value>
   </data>
   <data name="CreateGpx_coursesGroupBox_Text" xml:space="preserve">
-    <value>Circuits</value>
+    <value>Trasy</value>
   </data>
   <data name="CreateImageFiles_coursesGroupBox_Text" xml:space="preserve">
-    <value>Circuits</value>
+    <value>Trasy</value>
   </data>
   <data name="CreateKmlFiles_coursesGroupBox_Text" xml:space="preserve">
-    <value>Circuits</value>
+    <value>Trasy</value>
   </data>
   <data name="CreateOcadFiles_coursesGroupBox_Text" xml:space="preserve">
-    <value>Circuits</value>
+    <value>Trasy</value>
   </data>
   <data name="CreatePdfCourses_coursesGroupBox_Text" xml:space="preserve">
-    <value>Circuits</value>
+    <value>Trasy</value>
   </data>
   <data name="PrintCourses_coursesGroupBox_Text" xml:space="preserve">
-    <value>Circuits</value>
+    <value>Trasy</value>
   </data>
   <data name="PrintDescriptions_coursesGroupBox_Text" xml:space="preserve">
-    <value>Circuits</value>
+    <value>Trasy</value>
   </data>
   <data name="PrintPunches_coursesGroupBox_Text" xml:space="preserve">
-    <value>Circuits</value>
+    <value>Trasy</value>
   </data>
   <data name="ReportText_ColumnHeader_Courses" xml:space="preserve">
-    <value>Circuits</value>
+    <value>Trasy</value>
   </data>
   <data name="CreateGpx_namePrefixLabel_Text" xml:space="preserve">
-    <value>Préfixe du nom :</value>
+    <value>Przedrostek nazwy:</value>
   </data>
   <data name="CreatePdfCourses_fileNamePrefixLabel_Text" xml:space="preserve">
-    <value>Préfixe du nom :</value>
+    <value>Przedrostek nazwy:</value>
   </data>
   <data name="CreateGpx_waypointGroupBox_Text" xml:space="preserve">
-    <value>Points de passage</value>
+    <value>Punkty pośrednie</value>
   </data>
   <data name="CreateGpx_headerLabel_Text" xml:space="preserve">
-    <value>Un fichier GPX contient les coordonnées GPS des postes et peut ainsi être chargé dans un GPS ou un smartphone afin de vérifier l'exactitude de chaque emplacement.</value>
+    <value>Plik GPX zawiera współrzędne GPS PK i może być załadowany na odbiornik GPS lub telefon celem weryfikacji ustawienia PK w terenie.</value>
   </data>
   <data name="CreateGpx_Text" xml:space="preserve">
-    <value>Créer un fichier GPX</value>
+    <value>Utwórz plik GPX</value>
   </data>
   <data name="MainFrame_saveGpxFileDialog_Title" xml:space="preserve">
-    <value>Créer un fichier GPX</value>
+    <value>Utwórz plik GPX</value>
   </data>
   <data name="CreateImageFiles_createButton_Text" xml:space="preserve">
-    <value>Créer</value>
+    <value>Utwórz</value>
   </data>
   <data name="CreateKmlFiles_createButton_Text" xml:space="preserve">
-    <value>Créer</value>
+    <value>Utwórz</value>
   </data>
   <data name="CreateOcadFiles_createButton_Text" xml:space="preserve">
-    <value>Créer</value>
+    <value>Utwórz</value>
   </data>
   <data name="CreatePdfCourses_okButton_Text" xml:space="preserve">
-    <value>Créer</value>
+    <value>Utwórz</value>
   </data>
   <data name="CreateRouteGadget_createButton_Text" xml:space="preserve">
-    <value>Créer</value>
+    <value>Utwórz</value>
   </data>
   <data name="CreateImageFiles_cancelButton_Text" xml:space="preserve">
-    <value>Annuler</value>
+    <value>Anuluj</value>
   </data>
   <data name="CreateKmlFiles_cancelButton_Text" xml:space="preserve">
-    <value>Annuler</value>
+    <value>Anuluj</value>
   </data>
   <data name="CreateOcadFiles_cancelButton_Text" xml:space="preserve">
-    <value>Annuler</value>
+    <value>Anuluj</value>
   </data>
   <data name="CreateRouteGadget_cancelButton_Text" xml:space="preserve">
-    <value>Annuler</value>
+    <value>Anuluj</value>
   </data>
   <data name="MiscText_CrashCancel" xml:space="preserve">
-    <value>Annuler</value>
+    <value>Anuluj</value>
   </data>
   <data name="NewEventWizard_cancelButton_Text" xml:space="preserve">
-    <value>Annuler</value>
+    <value>Anuluj</value>
   </data>
   <data name="NonPrintableObjects_cancelButton_Text" xml:space="preserve">
-    <value>Annuler</value>
+    <value>Anuluj</value>
   </data>
   <data name="OkCancelDialog_cancelButton_Text" xml:space="preserve">
-    <value>Annuler</value>
+    <value>Anuluj</value>
   </data>
   <data name="OperationInProgress_cancelButton_Text" xml:space="preserve">
-    <value>Annuler</value>
+    <value>Anuluj</value>
   </data>
   <data name="OverwritingOcadFilesDialog_buttonCancel_Text" xml:space="preserve">
-    <value>Annuler</value>
+    <value>Anuluj</value>
   </data>
   <data name="PrintDescriptions_cancelButton_Text" xml:space="preserve">
-    <value>Annuler</value>
+    <value>Anuluj</value>
   </data>
   <data name="PrintPunches_cancelButton_Text" xml:space="preserve">
-    <value>Annuler</value>
+    <value>Anuluj</value>
   </data>
   <data name="SelectLocationsForMove_buttonCancel_Text" xml:space="preserve">
-    <value>Annuler</value>
+    <value>Anuluj</value>
   </data>
   <data name="SetPrintAreaDialog_cancelButton_Text" xml:space="preserve">
-    <value>Annuler</value>
+    <value>Anuluj</value>
   </data>
   <data name="CreateImageFiles_folderBrowserDialog_Description" xml:space="preserve">
-    <value>Sélectionner un dossier pour les fichiers OCAD</value>
+    <value>Wybierz folder dla plików OCAD</value>
   </data>
   <data name="CreateKmlFiles_folderBrowserDialog_Description" xml:space="preserve">
-    <value>Sélectionner un dossier pour les fichiers OCAD</value>
+    <value>Wybierz folder dla plików OCAD</value>
   </data>
   <data name="CreateOcadFiles_folderBrowserDialog_Description" xml:space="preserve">
-    <value>Sélectionner un dossier pour les fichiers OCAD</value>
+    <value>Wybierz folder dla plików OCAD</value>
   </data>
   <data name="CreateRouteGadget_folderBrowserDialog_Description" xml:space="preserve">
-    <value>Sélectionner un dossier pour les fichiers OCAD</value>
+    <value>Wybierz folder dla plików OCAD</value>
   </data>
   <data name="CreateImageFiles_fileFormatLabel_Text" xml:space="preserve">
-    <value>Format de fichier :</value>
+    <value>Firnat pliku:</value>
   </data>
   <data name="CreateOcadFiles_fileFormatLabel_Text" xml:space="preserve">
-    <value>Format de fichier :</value>
-  </data>
-  <data name="CreateImageFiles_fileFormatCombo_Items" xml:space="preserve">
-    <value>PNG</value>
-  </data>
-  <data name="CreateImageFiles_fileFormatCombo_Items1" xml:space="preserve">
-    <value>JPEG</value>
-  </data>
-  <data name="CreateImageFiles_fileFormatCombo_Items2" xml:space="preserve">
-    <value>GIF</value>
+    <value>Firnat pliku:</value>
   </data>
   <data name="CreateImageFiles_fileNamePrefixLabel_Text" xml:space="preserve">
-    <value>Préfixe du nom de fichier :</value>
+    <value>Przedrostek nazwy pliku</value>
   </data>
   <data name="CreateKmlFiles_fileNamePrefixLabel_Text" xml:space="preserve">
-    <value>Préfixe du nom de fichier :</value>
+    <value>Przedrostek nazwy pliku</value>
   </data>
   <data name="CreateOcadFiles_fileNamePrefixLabel_Text" xml:space="preserve">
-    <value>Préfixe du nom de fichier :</value>
-  </data>
-  <data name="CreateImageFiles_label1_Text" xml:space="preserve">
-    <value>Fichier mondial :</value>
-  </data>
-  <data name="CreateImageFiles_comboBoxDpi_Items" xml:space="preserve">
-    <value>100</value>
-  </data>
-  <data name="CreateImageFiles_comboBoxDpi_Items1" xml:space="preserve">
-    <value>150</value>
-  </data>
-  <data name="CreateImageFiles_comboBoxDpi_Items2" xml:space="preserve">
-    <value>200</value>
-  </data>
-  <data name="CreateImageFiles_comboBoxDpi_Items3" xml:space="preserve">
-    <value>300</value>
-  </data>
-  <data name="CreateImageFiles_comboBoxDpi_Items4" xml:space="preserve">
-    <value>400</value>
-  </data>
-  <data name="CreateImageFiles_comboBoxDpi_Items5" xml:space="preserve">
-    <value>500</value>
-  </data>
-  <data name="CreateImageFiles_comboBoxDpi_Items6" xml:space="preserve">
-    <value>600</value>
-  </data>
-  <data name="CreateImageFiles_dpiLabel_Text" xml:space="preserve">
-    <value>PPP :</value>
+    <value>Przedrostek nazwy pliku</value>
   </data>
   <data name="CreateImageFiles_comboBoxWorldFile_Items" xml:space="preserve">
-    <value>Non</value>
+    <value>Nie</value>
   </data>
   <data name="ReportText_EventAudit_No" xml:space="preserve">
-    <value>Non</value>
+    <value>Nie</value>
   </data>
   <data name="CreateImageFiles_comboBoxWorldFile_Items1" xml:space="preserve">
-    <value>Oui</value>
+    <value>Tak</value>
   </data>
   <data name="ReportText_EventAudit_Yes" xml:space="preserve">
-    <value>Oui</value>
-  </data>
-  <data name="CreateImageFiles_labelColorModel_Text" xml:space="preserve">
-    <value>Modèle colorimétrique :</value>
+    <value>Tak</value>
   </data>
   <data name="CreateImageFiles_comboBoxColorModel_Items" xml:space="preserve">
-    <value>RVB</value>
+    <value>RGB</value>
   </data>
   <data name="CreatePdfCourses_comboBoxColorModel_Items" xml:space="preserve">
-    <value>RVB</value>
+    <value>RGB</value>
   </data>
   <data name="PrintCourses_comboBoxColorModel_Items1" xml:space="preserve">
-    <value>RVB</value>
+    <value>RGB</value>
   </data>
   <data name="CreateImageFiles_comboBoxColorModel_Items1" xml:space="preserve">
-    <value>CMJN</value>
+    <value>CMYK</value>
   </data>
   <data name="CreatePdfCourses_comboBoxColorModel_Items1" xml:space="preserve">
-    <value>CMJN</value>
+    <value>CMYK</value>
   </data>
   <data name="PrintCourses_comboBoxColorModel_Items2" xml:space="preserve">
-    <value>CMJN</value>
+    <value>CMYK</value>
   </data>
   <data name="CreateImageFiles_outputGroupBox_Text" xml:space="preserve">
-    <value>Sortie</value>
+    <value>Wyjście</value>
   </data>
   <data name="CreateKmlFiles_outputGroupBox_Text" xml:space="preserve">
-    <value>Sortie</value>
+    <value>Wyjście</value>
   </data>
   <data name="CreateOcadFiles_outputGroupBox_Text" xml:space="preserve">
-    <value>Sortie</value>
+    <value>Wyjście</value>
   </data>
   <data name="PrintCourses_printerGroup_Text" xml:space="preserve">
-    <value>Sortie</value>
+    <value>Wyjście</value>
   </data>
   <data name="PrintDescriptions_printerGroup_Text" xml:space="preserve">
-    <value>Sortie</value>
+    <value>Wyjście</value>
   </data>
   <data name="PrintPunches_printerGroup_Text" xml:space="preserve">
-    <value>Sortie</value>
+    <value>Wyjście</value>
   </data>
   <data name="CreateImageFiles_selectOtherDirectoryButton_Text" xml:space="preserve">
-    <value>Sélectionner un dossier...</value>
+    <value>Wybierz folder...</value>
   </data>
   <data name="CreateKmlFiles_selectOtherDirectoryButton_Text" xml:space="preserve">
-    <value>Sélectionner un dossier...</value>
+    <value>Wybierz folder...</value>
   </data>
   <data name="CreateOcadFiles_selectOtherDirectoryButton_Text" xml:space="preserve">
-    <value>Sélectionner un dossier...</value>
+    <value>Wybierz folder...</value>
   </data>
   <data name="CreatePdfCourses_selectOtherDirectoryButton_Text" xml:space="preserve">
-    <value>Sélectionner un dossier...</value>
+    <value>Wybierz folder...</value>
   </data>
   <data name="CreateRouteGadget_selectOtherDirectoryButton_Text" xml:space="preserve">
-    <value>Sélectionner un dossier...</value>
+    <value>Wybierz folder...</value>
   </data>
   <data name="CreateImageFiles_coursesDirectory_Text" xml:space="preserve">
-    <value>Même dossier que le fichier Purple Pen</value>
+    <value>Folder z plikiem Purple Pen</value>
   </data>
   <data name="CreateKmlFiles_coursesDirectory_Text" xml:space="preserve">
-    <value>Même dossier que le fichier Purple Pen</value>
+    <value>Folder z plikiem Purple Pen</value>
   </data>
   <data name="CreateOcadFiles_coursesDirectory_Text" xml:space="preserve">
-    <value>Même dossier que le fichier Purple Pen</value>
+    <value>Folder z plikiem Purple Pen</value>
   </data>
   <data name="CreatePdfCourses_coursesDirectory_Text" xml:space="preserve">
-    <value>Même dossier que le fichier Purple Pen</value>
+    <value>Folder z plikiem Purple Pen</value>
   </data>
   <data name="CreateRouteGadget_coursesDirectory_Text" xml:space="preserve">
-    <value>Même dossier que le fichier Purple Pen</value>
+    <value>Folder z plikiem Purple Pen</value>
   </data>
   <data name="CreateImageFiles_mapDirectory_Text" xml:space="preserve">
-    <value>Même dossier que la carte</value>
+    <value>Folder z plikiem mapy</value>
   </data>
   <data name="CreateKmlFiles_mapDirectory_Text" xml:space="preserve">
-    <value>Même dossier que la carte</value>
+    <value>Folder z plikiem mapy</value>
   </data>
   <data name="CreateOcadFiles_mapDirectory_Text" xml:space="preserve">
-    <value>Même dossier que la carte</value>
+    <value>Folder z plikiem mapy</value>
   </data>
   <data name="CreatePdfCourses_mapDirectory_Text" xml:space="preserve">
-    <value>Même dossier que la carte</value>
+    <value>Folder z plikiem mapy</value>
   </data>
   <data name="CreateRouteGadget_mapDirectory_Text" xml:space="preserve">
-    <value>Même dossier que la carte</value>
+    <value>Folder z plikiem mapy</value>
   </data>
   <data name="CreateImageFiles_otherDirectory_Text" xml:space="preserve">
-    <value>Autre dossier</value>
+    <value>Inny folder</value>
   </data>
   <data name="CreateKmlFiles_otherDirectory_Text" xml:space="preserve">
-    <value>Autre dossier</value>
+    <value>Inny folder</value>
   </data>
   <data name="CreateOcadFiles_otherDirectory_Text" xml:space="preserve">
-    <value>Autre dossier</value>
+    <value>Inny folder</value>
   </data>
   <data name="CreatePdfCourses_otherDirectory_Text" xml:space="preserve">
-    <value>Autre dossier</value>
+    <value>Inny folder</value>
   </data>
   <data name="CreateRouteGadget_otherDirectory_Text" xml:space="preserve">
-    <value>Autre dossier</value>
+    <value>Inny folder</value>
   </data>
   <data name="CreateImageFiles_folderGroupBox_Text" xml:space="preserve">
-    <value>Dossier</value>
+    <value>Folder</value>
   </data>
   <data name="CreateKmlFiles_folderGroupBox_Text" xml:space="preserve">
-    <value>Dossier</value>
+    <value>Folder</value>
   </data>
   <data name="CreateOcadFiles_folderGroupBox_Text" xml:space="preserve">
-    <value>Dossier</value>
+    <value>Folder</value>
   </data>
   <data name="CreatePdfCourses_folderGroupBox_Text" xml:space="preserve">
-    <value>Dossier</value>
+    <value>Folder</value>
   </data>
   <data name="CreateRouteGadget_folderGroupBox_Text" xml:space="preserve">
-    <value>Dossier</value>
-  </data>
-  <data name="CreateImageFiles_Text" xml:space="preserve">
-    <value>Créer des fichiers image</value>
+    <value>Folder</value>
   </data>
   <data name="CreateKmlFiles_filesLabel_Text" xml:space="preserve">
-    <value>Fichiers :</value>
+    <value>Pliki:</value>
   </data>
   <data name="CreatePdfCourses_filesLabel_Text" xml:space="preserve">
-    <value>Fichiers :</value>
+    <value>Pliki:</value>
   </data>
   <data name="CreateKmlFiles_filesCombo_Items" xml:space="preserve">
-    <value>Un pour tous les circuits</value>
+    <value>Jeden dla wszystkich tras</value>
   </data>
   <data name="CreatePdfCourses_comboBoxFileFormat_Items" xml:space="preserve">
-    <value>Un pour tous les circuits</value>
+    <value>Jeden dla wszystkich tras</value>
   </data>
   <data name="CreateKmlFiles_filesCombo_Items1" xml:space="preserve">
-    <value>Un par circuit</value>
+    <value>Jeden na każdą trasę</value>
   </data>
   <data name="CreatePdfCourses_comboBoxFileFormat_Items1" xml:space="preserve">
-    <value>Un par circuit</value>
-  </data>
-  <data name="CreateKmlFiles_Text" xml:space="preserve">
-    <value>Créer un fichier KML</value>
+    <value>Jeden na każdą trasę</value>
   </data>
   <data name="CreateOcadFiles_Text" xml:space="preserve">
-    <value>Créer des fichiers OCAD</value>
+    <value>Utwórz pliki OCAD</value>
   </data>
   <data name="CreatePdfCourses_checkBoxMergeParts_Text" xml:space="preserve">
-    <value>Imprimer les échanges de carte sur la même carte </value>
+    <value>Wydrukuj zmiany map na tej samej mapie </value>
   </data>
   <data name="PrintCourses_checkBoxMergeParts_Text" xml:space="preserve">
-    <value>Imprimer les échanges de carte sur la même carte </value>
+    <value>Wydrukuj zmiany map na tej samej mapie </value>
   </data>
   <data name="CreatePdfCourses_labelColorModel_Text" xml:space="preserve">
-    <value>Modèle de couleur :</value>
+    <value>Przestrzeń barw</value>
   </data>
   <data name="PrintCourses_labelColorModel_Text" xml:space="preserve">
-    <value>Modèle de couleur :</value>
+    <value>Przestrzeń barw</value>
   </data>
   <data name="CreatePdfCourses_comboBoxMultiPage_Items" xml:space="preserve">
-    <value>Réduire à une seule page</value>
+    <value>Przytnij do pojedynczej strony</value>
   </data>
   <data name="PrintCourses_comboBoxMultiPage_Items" xml:space="preserve">
-    <value>Réduire à une seule page</value>
+    <value>Przytnij do pojedynczej strony</value>
   </data>
   <data name="CreatePdfCourses_comboBoxMultiPage_Items1" xml:space="preserve">
-    <value>Imprimer sur plusieurs pages</value>
+    <value>Drukuj na kliku stronach</value>
   </data>
   <data name="PrintCourses_comboBoxMultiPage_Items1" xml:space="preserve">
-    <value>Imprimer sur plusieurs pages</value>
+    <value>Drukuj na kliku stronach</value>
   </data>
   <data name="CreatePdfCourses_labelAppearanceInfo_Text" xml:space="preserve">
-    <value>Si la zone d'impression est trop grande pour tenir sur une seule page :</value>
+    <value>Jeżeli obszar wydruku jest zbyt duży aby zmieścić się na jednej stronie:</value>
   </data>
   <data name="PrintCourses_labelAppearanceInfo_Text" xml:space="preserve">
-    <value>Si la zone d'impression est trop grande pour tenir sur une seule page :</value>
-  </data>
-  <data name="CreatePdfCourses_comboBoxFileFormat_Items2" xml:space="preserve">
-    <value>Un par partie de circuit/variation</value>
+    <value>Jeżeli obszar wydruku jest zbyt duży aby zmieścić się na jednej stronie:</value>
   </data>
   <data name="CreatePdfCourses_outputGroupBox_Text" xml:space="preserve">
-    <value>Fichiers</value>
+    <value>Pliki</value>
   </data>
   <data name="CreatePdfCourses_folderBrowserDialog_Description" xml:space="preserve">
-    <value>Sélectionner un répertoire pour les fichiers PDF</value>
+    <value>Wybierz Katalog dla plików PDF</value>
   </data>
   <data name="CreatePdfCourses_Text" xml:space="preserve">
-    <value>Imprimer les circuits</value>
+    <value>Utwórz pliki PDF</value>
   </data>
   <data name="CreateRouteGadget_label1_Text" xml:space="preserve">
-    <value>Entrer le nom valable pour les 2 fichiers RouteGadget (sans indiquer .xml ou .gif)</value>
+    <value>Wprowadź nazwę (bez rozszerzenia .xml czy .gif) dla obydwu plików RouteGadget:</value>
   </data>
   <data name="CreateRouteGadget_learnMoreLink_Text" xml:space="preserve">
-    <value>En savoir plus sur RouteGadget</value>
+    <value>Dowiedz się więcej o RouteGadget</value>
   </data>
   <data name="CreateRouteGadget_label2_Text" xml:space="preserve">
-    <value>RouteGadget exige à la fois un fichier image (.gif) et un fichier XML IOF (.xml). Choisissez le nom et le dossier de ces 2 fichiers.</value>
-  </data>
-  <data name="CreateRouteGadget_comboBoxIofXml_Items" xml:space="preserve">
-    <value>2.0.3</value>
-  </data>
-  <data name="CreateRouteGadget_comboBoxIofXml_Items1" xml:space="preserve">
-    <value>3.0</value>
-  </data>
-  <data name="CreateRouteGadget_groupBox1_Text" xml:space="preserve">
-    <value>IOF XML</value>
+    <value>RouteGadget wymaga zarówno pliku obrazu (.gif) jak i pliku IOF XML (.xml). Wybierz nazwę oraz folder dla obydwu z tych plików.</value>
   </data>
   <data name="CreateRouteGadget_Text" xml:space="preserve">
-    <value>Créer des fichiers RouteGadget</value>
+    <value>Utwórz pliki RouteGadget</value>
   </data>
   <data name="CustomSymbolText_labelChooseLanguage_Text" xml:space="preserve">
-    <value>Choisir la langue utilisée pour les définitions de poste :</value>
+    <value>Wybierz język używany do opisów tekstowych punktów kontrolnych:</value>
   </data>
   <data name="CustomSymbolText_labelSymbolName_Text" xml:space="preserve">
-    <value>Nom du symbole :</value>
+    <value>Nazwa piktografiki:</value>
   </data>
   <data name="CustomSymbolText_labelCustomizedText_Text" xml:space="preserve">
-    <value>Texte personnalisé :</value>
+    <value>Zmieniony tekst:</value>
   </data>
   <data name="CustomSymbolText_buttonChangeText_Text" xml:space="preserve">
-    <value>Modifier le texte...</value>
+    <value>Zmień tekst...</value>
   </data>
   <data name="CustomSymbolText_buttonDefault_Text" xml:space="preserve">
-    <value>Revenir aux réglages par défaut</value>
+    <value>Przywróć do standardowego</value>
   </data>
   <data name="CustomSymbolText_labelStandardText_Text" xml:space="preserve">
-    <value>Texte standard :</value>
+    <value>Standardowy tekst:</value>
   </data>
   <data name="CustomSymbolText_checkBoxShowKey_Text" xml:space="preserve">
-    <value>Afficher la description en clair en dessous des définitions</value>
+    <value>Pokaż znaczenie poniżej opisów symbolicznych</value>
   </data>
   <data name="CustomSymbolText_labelCustomizeText_Text" xml:space="preserve">
-    <value>Cliquer sur un symbole pour personnaliser la description affichée en clair.</value>
+    <value>Kliknij na symbol opisu PK aby dostosować tekst użyty jako tekstowy opis PK.</value>
   </data>
   <data name="CustomSymbolText_checkBoxDefaultLanguage_Text" xml:space="preserve">
-    <value>Langue par défaut pour les nouveaux événements</value>
+    <value>Ustaw jako język domyślny dla nowych zawodów</value>
   </data>
   <data name="DownloadProgressDialog_Text" xml:space="preserve">
-    <value>Téléchargement en cours</value>
+    <value>Pobieranie danych</value>
   </data>
   <data name="EnterSymbolText_numberColumn_HeaderText" xml:space="preserve">
-    <value>Nombre</value>
+    <value>Numer</value>
   </data>
   <data name="EnterSymbolText_genderColumn_HeaderText" xml:space="preserve">
-    <value>Genre</value>
-  </data>
-  <data name="EnterSymbolText_caseColumn_HeaderText" xml:space="preserve">
-    <value>Case</value>
+    <value>Płeć</value>
   </data>
   <data name="EnterSymbolText_checkBoxPlural_Text" xml:space="preserve">
-    <value>Afficher les formes plurielles</value>
+    <value>Pokaż formy liczby mnogiej</value>
   </data>
   <data name="EnterSymbolText_checkBoxGender_Text" xml:space="preserve">
-    <value>Afficher le genre (masculin / féminin)</value>
+    <value>Pokaż formy rodzaju gramatycznego</value>
   </data>
   <data name="EnterSymbolText_labelDescription_Text" xml:space="preserve">
-    <value>Entrer le texte personnalisé pour le symbole dans la colonne "Texte".</value>
+    <value>Wpisz dostosowany tekst dla symbolu w kolumnie "Tekst".</value>
   </data>
   <data name="EnterSymbolText_labelGenderChooser_Text" xml:space="preserve">
-    <value>Genre :</value>
-  </data>
-  <data name="EnterSymbolText_labelCaseChooser_Text" xml:space="preserve">
-    <value>Case du symbole modifié :</value>
-  </data>
-  <data name="EnterSymbolText_checkBoxCases_Text" xml:space="preserve">
-    <value>Afficher les formes de case</value>
+    <value>Płeć:</value>
   </data>
   <data name="EnterSymbolText_Text" xml:space="preserve">
-    <value>Texte personnalisé pour le symbole</value>
+    <value>Zmieniony Tekst Symbolu</value>
   </data>
   <data name="InitialScreen_openLastRadioButton_Text" xml:space="preserve">
-    <value>Ouvrir la dernière course visualisée</value>
+    <value>Otwórz ostatnio oglądane zawody</value>
   </data>
   <data name="InitialScreen_openSampleRadioButton_Text" xml:space="preserve">
-    <value>Ouvrir un exemple</value>
+    <value>Otwórz przykładowe zawody</value>
   </data>
   <data name="InitialScreen_createNewRadioButton_Text" xml:space="preserve">
-    <value>Créer une nouvelle course...</value>
+    <value>Utwórz nowe zawody...</value>
   </data>
   <data name="InitialScreen_openExistingRadioButton_Text" xml:space="preserve">
-    <value>Ouvrir une course existante...</value>
+    <value>Otwórz istniejące zawody...</value>
   </data>
   <data name="InitialScreen_label1_Text" xml:space="preserve">
-    <value>Purple Pen est une application gratuite qui peut être copiée et partagée. Le développement de Purple Pen est uniquement supporté par vos donations.</value>
+    <value>Purple Pen jest darmowym oprogramowaniem i może być kopiowane oraz współdzielone. Rozwój Purple Pen jest wspierany tylko poprzez Twoje darowizny.</value>
   </data>
   <data name="InitialScreen_donationLink_Text" xml:space="preserve">
-    <value>Faire un don</value>
+    <value>Przekaż datek</value>
   </data>
   <data name="InitialScreen_Text" xml:space="preserve">
-    <value>Bienvenue sur Purple Pen</value>
-  </data>
-  <data name="LegAssignmentsDialog_BranchColumn_HeaderText" xml:space="preserve">
-    <value>Branche</value>
-  </data>
-  <data name="LegAssignmentsDialog_LegsColumn_HeaderText" xml:space="preserve">
-    <value>Interpostes</value>
-  </data>
-  <data name="LegAssignmentsDialog_linkLabel_Text" xml:space="preserve">
-    <value>Plus d'informations...</value>
-  </data>
-  <data name="LegAssignmentsDialog_Text" xml:space="preserve">
-    <value>Affectations des interpostes</value>
+    <value>Witaj w Purple Pen</value>
   </data>
   <data name="LicenseForm_bsdLicenseLinkLabel_Text" xml:space="preserve">
-    <value>Purple Pen est fourni sous une licence "BSD".</value>
+    <value>Purple Pen jest wydany na licencji typu "BSD".</value>
   </data>
   <data name="LicenseForm_Text" xml:space="preserve">
-    <value>Licence de Purple Pen</value>
+    <value>Licencja Purple Pen</value>
   </data>
   <data name="LinePropertiesDialog_buttonChangeColor_Text" xml:space="preserve">
-    <value> Modifier la couleur...</value>
+    <value> Zmień kolor...</value>
   </data>
   <data name="LinePropertiesDialog_label2_Text" xml:space="preserve">
-    <value>Style :</value>
+    <value>Styl:</value>
   </data>
   <data name="LinePropertiesDialog_comboBoxStyle_Items" xml:space="preserve">
-    <value>Unique</value>
+    <value>Pojedyncza</value>
   </data>
   <data name="LinePropertiesDialog_comboBoxStyle_Items1" xml:space="preserve">
-    <value>Double</value>
+    <value>Podwójna</value>
   </data>
   <data name="LinePropertiesDialog_comboBoxStyle_Items2" xml:space="preserve">
-    <value>Pointillé</value>
+    <value>Linia przerywana</value>
   </data>
   <data name="LinePropertiesDialog_labelWidth_Text" xml:space="preserve">
-    <value>Largeur :</value>
+    <value>Szerokość:</value>
   </data>
   <data name="PrinterMargins_label2_Text" xml:space="preserve">
-    <value>Largeur :</value>
+    <value>Szerokość:</value>
   </data>
   <data name="LinePropertiesDialog_labelGapSize_Text" xml:space="preserve">
-    <value>Taille de l'espace :</value>
+    <value>Rozmiar odstępu:</value>
   </data>
   <data name="LinePropertiesDialog_labelDashSize_Text" xml:space="preserve">
-    <value>Taille du pointillé :</value>
+    <value>Długość kreski:</value>
   </data>
   <data name="LinePropertiesDialog_labelCornerRadius_Text" xml:space="preserve">
-    <value>Rayon de l'angle :</value>
+    <value>Promień zaokrąglenia narożników:</value>
   </data>
   <data name="MainFrame_tabPage1_Text" xml:space="preserve">
-    <value>Tous Postes</value>
-  </data>
-  <data name="MainFrame_radioButtonDescriptions_Text" xml:space="preserve">
-    <value>Descriptions</value>
-  </data>
-  <data name="MainFrame_radioButtonTopology_Text" xml:space="preserve">
-    <value>Ordre de tri</value>
-  </data>
-  <data name="MainFrame_mapViewerTopology_Text" xml:space="preserve">
-    <value>mapViewerTopology</value>
+    <value>Wszystkie PK</value>
   </data>
   <data name="MainFrame_openFileDialog_Filter" xml:space="preserve">
-    <value>Fichiers Purple Pen|*.ppen|Tous les fichiers|*.*</value>
+    <value>Pliki Purple Pen|*.ppen|Wszystkie|*.*</value>
   </data>
   <data name="MainFrame_saveFileDialog_Filter" xml:space="preserve">
-    <value>Fichier Purple Pen|*.ppen</value>
+    <value>Plik Purple Pen|*.ppen</value>
   </data>
   <data name="MainFrame_newEventMenu_Text" xml:space="preserve">
-    <value>&amp;Nouvelle Course...</value>
+    <value>&amp;Nowe zawody...</value>
   </data>
   <data name="MainFrame_openMenu_Text" xml:space="preserve">
-    <value>&amp;Ouvrir...</value>
+    <value>&amp;Otwórz...</value>
   </data>
   <data name="MainFrame_saveMenu_Text" xml:space="preserve">
-    <value>&amp;Enregistrer</value>
+    <value>&amp;Zapisz</value>
   </data>
   <data name="MainFrame_saveAsMenu_Text" xml:space="preserve">
-    <value>Enregistrer &amp;Sous...</value>
+    <value>Zapisz &amp;jako...</value>
   </data>
   <data name="MainFrame_createOcadFilesMenu_Text" xml:space="preserve">
-    <value>Créer des &amp;Fichiers OCAD...</value>
-  </data>
-  <data name="MainFrame_createImageFilesMenu_Text" xml:space="preserve">
-    <value>Créer des fichiers Ima&amp;ge...</value>
-  </data>
-  <data name="MainFrame_createDescriptionPdfMenu_Text" xml:space="preserve">
-    <value>&amp;Descriptions...</value>
-  </data>
-  <data name="MainFrame_createPunchcardPdfMenu_Text" xml:space="preserve">
-    <value>Poinçons...</value>
-  </data>
-  <data name="MainFrame_createCoursePdfMenu_Text" xml:space="preserve">
-    <value>&amp;Courses...</value>
-  </data>
-  <data name="MainFrame_createPDFsMenu_Text" xml:space="preserve">
-    <value>Créer des P&amp;DF</value>
-  </data>
-  <data name="MainFrame_createRouteGadgetFilesMenu_Text" xml:space="preserve">
-    <value>Créer un fichier RouteGadget...</value>
-  </data>
-  <data name="MainFrame_createRouteReviewFilesToolStripMenuItem_Text" xml:space="preserve">
-    <value>Créer des fichiers pour l'analyse de course</value>
+    <value>Utwórz &amp;pliki OCAD</value>
   </data>
   <data name="MainFrame_createXmlMenu_Text" xml:space="preserve">
-    <value>Créer Fichier &amp;Interchange XML...</value>
-  </data>
-  <data name="MainFrame_createGPXFileMenu_Text" xml:space="preserve">
-    <value>Créer Fichier G&amp;PX...</value>
-  </data>
-  <data name="MainFrame_createKMLFileMenu_Text" xml:space="preserve">
-    <value>Créer &amp;KML File...</value>
+    <value>Utwórz plik I&amp;OF XML</value>
   </data>
   <data name="MainFrame_printDescriptionsMenu_Text" xml:space="preserve">
-    <value>&amp;Imprimer les Définitions...</value>
+    <value>&amp;Drukuj opisy PK...</value>
   </data>
   <data name="MainFrame_printPunchCardsMenu_Text" xml:space="preserve">
-    <value>Imprimer les Car&amp;tons de Contrôle...</value>
+    <value>Wydrukuj &amp;perforowane karty startowe</value>
   </data>
   <data name="MainFrame_printCoursesMenu_Text" xml:space="preserve">
-    <value>Imprimer les &amp;Circuits...</value>
+    <value>Drukuj &amp;trasy...</value>
   </data>
   <data name="MainFrame_printAreaThisPartMenu_Text" xml:space="preserve">
-    <value>Cette &amp;Partie Uniquement</value>
+    <value>Tylko ta &amp;część</value>
   </data>
   <data name="MainFrame_printAreaThisCourseMenu_Text" xml:space="preserve">
-    <value>&amp;Ce circuit</value>
+    <value>&amp;Ta trasa</value>
   </data>
   <data name="MainFrame_printAreaAllCoursesMenu_Text" xml:space="preserve">
-    <value>&amp;Tous les circuits</value>
+    <value>&amp;Wszystkie trasy</value>
   </data>
   <data name="MainFrame_setPrintAreaMenu_Text" xml:space="preserve">
-    <value>Définir la &amp;Zone d'Impression</value>
+    <value>Ustaw &amp;obszar wydruku</value>
   </data>
   <data name="MainFrame_programLanguageMenu_Text" xml:space="preserve">
-    <value>Choisir &amp;Langue par défaut...</value>
+    <value>&amp;Język programu</value>
   </data>
   <data name="MainFrame_exitMenu_Text" xml:space="preserve">
-    <value>&amp;Quitter</value>
+    <value>&amp;Wyjście</value>
   </data>
   <data name="MainFrame_fileMenu_Text" xml:space="preserve">
-    <value>&amp;Fichier</value>
+    <value>&amp;Plik</value>
   </data>
   <data name="MainFrame_cancelMenu_Text" xml:space="preserve">
-    <value>&amp;Désélectionner</value>
+    <value>U&amp;suń zaznaczenie</value>
   </data>
   <data name="MiscText_ClearSelectionWithShortcut" xml:space="preserve">
-    <value>&amp;Désélectionner</value>
+    <value>U&amp;suń zaznaczenie</value>
   </data>
   <data name="MainFrame_undoMenu_Text" xml:space="preserve">
-    <value>&amp;Annuler</value>
+    <value>&amp;Cofnij</value>
   </data>
   <data name="MiscText_UndoWithShortcut" xml:space="preserve">
-    <value>&amp;Annuler</value>
+    <value>&amp;Cofnij</value>
   </data>
   <data name="MainFrame_redoMenu_Text" xml:space="preserve">
-    <value>&amp;Refaire</value>
+    <value>&amp;Ponów</value>
   </data>
   <data name="MiscText_RedoWithShortcut" xml:space="preserve">
-    <value>&amp;Refaire</value>
+    <value>&amp;Ponów</value>
   </data>
   <data name="MainFrame_deleteMenu_Text" xml:space="preserve">
-    <value>&amp;Supprimer</value>
+    <value>&amp;Usuń</value>
   </data>
   <data name="MainFrame_deleteItemMenu_Text" xml:space="preserve">
-    <value>&amp;Supprimer</value>
+    <value>&amp;Usuń</value>
   </data>
   <data name="MainFrame_editMenu_Text" xml:space="preserve">
-    <value>&amp;Édition</value>
+    <value>&amp;Edycja</value>
   </data>
   <data name="MainFrame_entireCourseMenu_Text" xml:space="preserve">
-    <value>&amp;Circuit Complet</value>
+    <value>&amp;Cała trasa</value>
   </data>
   <data name="MainFrame_entireMapMenu_Text" xml:space="preserve">
-    <value>C&amp;arte Entière</value>
+    <value>Cała &amp;mapa</value>
   </data>
   <data name="MainFrame_zoom50Menu_Text" xml:space="preserve">
     <value>50%</value>
@@ -1696,502 +1402,412 @@
     <value>300%</value>
   </data>
   <data name="MainFrame_zoom500Menu_Text" xml:space="preserve">
-    <value>500 %</value>
+    <value>500%</value>
   </data>
   <data name="MainFrame_zoom1000Menu_Text" xml:space="preserve">
     <value>1000%</value>
   </data>
   <data name="MainFrame_zoomMenu_Text" xml:space="preserve">
-    <value>&amp;Zoom</value>
+    <value>&amp;Powiększ</value>
   </data>
   <data name="MainFrame_veryLowIntensityMenu_Text" xml:space="preserve">
-    <value>&amp;Très faible</value>
+    <value>&amp;Bardzo niska</value>
   </data>
   <data name="MainFrame_lowIntensityMenu_Text" xml:space="preserve">
-    <value>&amp;Faible</value>
+    <value>&amp;Niska</value>
   </data>
   <data name="MainFrame_mediumIntensityMenu_Text" xml:space="preserve">
-    <value>&amp;Moyenne</value>
+    <value>Ś&amp;rednia</value>
   </data>
   <data name="MainFrame_highIntensityMenu_Text" xml:space="preserve">
-    <value>&amp;Haute</value>
+    <value>&amp;Wysoka</value>
   </data>
   <data name="MainFrame_fullIntensityMenu_Text" xml:space="preserve">
-    <value>&amp;Totale</value>
+    <value>&amp;Pełna</value>
   </data>
   <data name="MainFrame_mapIntensityMenu_Text" xml:space="preserve">
-    <value>&amp;Opacité de la Carte</value>
+    <value>&amp;Nieprzezroczystość mapy</value>
   </data>
   <data name="MainFrame_normalQualityMenu_Text" xml:space="preserve">
-    <value>Basse</value>
+    <value>Niska</value>
   </data>
   <data name="MainFrame_highQualityMenu_Text" xml:space="preserve">
-    <value>Haute</value>
+    <value>Wysoka</value>
   </data>
   <data name="MainFrame_mapQualityMenu_Text" xml:space="preserve">
-    <value>&amp;Qualité de la Carte</value>
+    <value>Jak&amp;ość mapy</value>
   </data>
   <data name="MainFrame_showPrintAreaMenu_Text" xml:space="preserve">
-    <value>Afficher la zone d'imp&amp;ression</value>
-  </data>
-  <data name="MainFrame_showPopupsMenu_Text" xml:space="preserve">
-    <value>Afficher les &amp;Popup</value>
+    <value>Pokaż obszar &amp;wydruku</value>
   </data>
   <data name="MainFrame_allControlsMenu_Text" xml:space="preserve">
-    <value>&amp;Tous Postes</value>
-  </data>
-  <data name="MainFrame_otherCoursesMenu_Text" xml:space="preserve">
-    <value>Autres courses...</value>
-  </data>
-  <data name="MainFrame_clearOtherCoursesMenu_Text" xml:space="preserve">
-    <value>Effacer les autres courses</value>
+    <value>&amp;Wszystkie  PK</value>
   </data>
   <data name="MainFrame_viewMenu_Text" xml:space="preserve">
-    <value>&amp;Affichage</value>
-  </data>
-  <data name="MainFrame_addStartMenu_Text" xml:space="preserve">
-    <value>&amp;Démarrer</value>
-  </data>
-  <data name="MainFrame_addControlMenu_Text" xml:space="preserve">
-    <value>&amp;Poste</value>
+    <value>&amp;Widok</value>
   </data>
   <data name="MainFrame_addFinishMenu_Text" xml:space="preserve">
-    <value>&amp;Terminer</value>
+    <value>&amp;Zakończ</value>
   </data>
   <data name="MiscText_FinishButtonText" xml:space="preserve">
-    <value>&amp;Terminer</value>
-  </data>
-  <data name="MainFrame_addDescriptionsMenu_Text" xml:space="preserve">
-    <value>&amp;Descriptions</value>
-  </data>
-  <data name="MainFrame_addMapFlipMenuItem_Text" xml:space="preserve">
-    <value>Retournement de carte au poste</value>
+    <value>&amp;Zakończ</value>
   </data>
   <data name="MainFrame_mapExchangeControlMenuItem_Text" xml:space="preserve">
-    <value>Echange de Carte au &amp;Poste</value>
+    <value>Zmiana &amp;mapy na PK</value>
   </data>
   <data name="MainFrame_mapExchangeSeparateMenuItem_Text" xml:space="preserve">
-    <value>Parcours &amp;Balisé vers Echange de Carte</value>
-  </data>
-  <data name="MainFrame_addMapExchangeMenu_Text" xml:space="preserve">
-    <value>E&amp;change de carte</value>
-  </data>
-  <data name="MainFrame_addVariationMenu_Text" xml:space="preserve">
-    <value>&amp;Variation...</value>
-  </data>
-  <data name="MainFrame_addTextLineMenu_Text" xml:space="preserve">
-    <value>Texte &amp;Ligne...</value>
-  </data>
-  <data name="MainFrame_addMapIssueMenu_Text" xml:space="preserve">
-    <value>Départ chronométré</value>
-  </data>
-  <data name="MainFrame_mapIssuePointToolStripMenuItem_Text" xml:space="preserve">
-    <value>Départ chronométré</value>
-  </data>
-  <data name="MiscText_MapIssue_Long" xml:space="preserve">
-    <value>Départ chronométré</value>
-  </data>
-  <data name="MiscText_MapIssue_Medium" xml:space="preserve">
-    <value>Départ chronométré</value>
+    <value>O&amp;taśmowany przebieg do zmiany mapy</value>
   </data>
   <data name="MainFrame_addMandatoryCrossingMenu_Text" xml:space="preserve">
-    <value>Point de passage obligatoire</value>
+    <value>Obowiązkowy punkt przebiegu</value>
   </data>
   <data name="MainFrame_mandatoryCrossingPointToolStripMenuItem_Text" xml:space="preserve">
-    <value>Point de passage obligatoire</value>
+    <value>Obowiązkowy punkt przebiegu</value>
   </data>
   <data name="MainFrame_addOptCrossingMenu_Text" xml:space="preserve">
-    <value>Point de passage facultatif</value>
+    <value>Opcjonalny punkt przebiegu</value>
   </data>
   <data name="MainFrame_optionalCrossingPointToolStripMenuItem_Text" xml:space="preserve">
-    <value>Point de passage facultatif</value>
+    <value>Opcjonalny punkt przebiegu</value>
   </data>
   <data name="SelectionDescriptionText_SpecialName_OptCrossing" xml:space="preserve">
-    <value>Point de passage facultatif</value>
+    <value>Opcjonalny punkt przebiegu</value>
   </data>
   <data name="MainFrame_addOutOfBoundsMenu_Text" xml:space="preserve">
-    <value>Zone interdite</value>
+    <value>Teren zakazany</value>
   </data>
   <data name="MainFrame_outOfBoundsToolStripMenuItem_Text" xml:space="preserve">
-    <value>Zone interdite</value>
+    <value>Teren zakazany</value>
   </data>
   <data name="MainFrame_addDangerousMenu_Text" xml:space="preserve">
-    <value>Zone dangereuse</value>
+    <value>Teren niebezpieczny</value>
   </data>
   <data name="MainFrame_dangerousToolStripMenuItem_Text" xml:space="preserve">
-    <value>Zone dangereuse</value>
+    <value>Teren niebezpieczny</value>
   </data>
   <data name="SelectionDescriptionText_SpecialName_Dangerous" xml:space="preserve">
-    <value>Zone dangereuse</value>
-  </data>
-  <data name="MainFrame_addConstructionMenu_Text" xml:space="preserve">
-    <value>Construction temporaire ou zone fermée</value>
-  </data>
-  <data name="MainFrame_constructionToolStripMenuItem_Text" xml:space="preserve">
-    <value>Construction temporaire ou zone fermée</value>
+    <value>Teren niebezpieczny</value>
   </data>
   <data name="MainFrame_addWaterMenu_Text" xml:space="preserve">
-    <value>Ravitaillement</value>
+    <value>Lokalizacja punktu odżywczego</value>
   </data>
   <data name="MainFrame_waterLocationToolStripMenuItem_Text" xml:space="preserve">
-    <value>Ravitaillement</value>
+    <value>Lokalizacja punktu odżywczego</value>
   </data>
   <data name="SelectionDescriptionText_SpecialName_Water" xml:space="preserve">
-    <value>Ravitaillement</value>
+    <value>Lokalizacja punktu odżywczego</value>
   </data>
   <data name="MainFrame_addFirstAidMenu_Text" xml:space="preserve">
-    <value>Secours</value>
+    <value>Lokalizacja punktu pierwszej pomocy</value>
   </data>
   <data name="MainFrame_firstAidLocationToolStripMenuItem_Text" xml:space="preserve">
-    <value>Secours</value>
+    <value>Lokalizacja punktu pierwszej pomocy</value>
   </data>
   <data name="SelectionDescriptionText_SpecialName_FirstAid" xml:space="preserve">
-    <value>Secours</value>
+    <value>Lokalizacja punktu pierwszej pomocy</value>
   </data>
   <data name="MainFrame_addForbiddenMenu_Text" xml:space="preserve">
-    <value>Route interdite</value>
+    <value>Oznaczenie niedozwolonego przebiegu</value>
   </data>
   <data name="MainFrame_forbiddenRouteMarkingToolStripMenuItem_Text" xml:space="preserve">
-    <value>Route interdite</value>
+    <value>Oznaczenie niedozwolonego przebiegu</value>
   </data>
   <data name="MainFrame_addBoundaryMenu_Text" xml:space="preserve">
-    <value>Limite infranchissable</value>
+    <value>Nieprzekraczalna granica</value>
   </data>
   <data name="MainFrame_boundaryToolStripMenuItem_Text" xml:space="preserve">
-    <value>Limite infranchissable</value>
+    <value>Nieprzekraczalna granica</value>
   </data>
   <data name="SelectionDescriptionText_SpecialName_Boundary" xml:space="preserve">
-    <value>Limite infranchissable</value>
+    <value>Nieprzekraczalna granica</value>
   </data>
   <data name="MainFrame_addRegMarkMenu_Text" xml:space="preserve">
-    <value>Croix de positionnement</value>
+    <value>Znak wewnętrzny</value>
   </data>
   <data name="MainFrame_registrationMarkToolStripMenuItem_Text" xml:space="preserve">
-    <value>Croix de positionnement</value>
+    <value>Znak wewnętrzny</value>
   </data>
   <data name="SelectionDescriptionText_SpecialName_RegMark" xml:space="preserve">
-    <value>Croix de positionnement</value>
+    <value>Znak wewnętrzny</value>
   </data>
   <data name="MainFrame_whiteOutMenu_Text" xml:space="preserve">
-    <value>Zone blanche</value>
+    <value>Wymaż obszar</value>
   </data>
   <data name="MainFrame_whiteOutToolStripMenuItem_Text" xml:space="preserve">
-    <value>Zone blanche</value>
+    <value>Wymaż obszar</value>
   </data>
   <data name="SelectionDescriptionText_SpecialName_WhiteOut" xml:space="preserve">
-    <value>Zone blanche</value>
+    <value>Wymaż obszar</value>
   </data>
   <data name="MainFrame_addImageMenu_Text" xml:space="preserve">
-    <value>Image</value>
+    <value>Obraz</value>
   </data>
   <data name="MainFrame_imageToolStripMenuItem_Text" xml:space="preserve">
-    <value>Image</value>
+    <value>Obraz</value>
   </data>
   <data name="SelectionDescriptionText_SpecialName_Image" xml:space="preserve">
-    <value>Image</value>
+    <value>Obraz</value>
   </data>
   <data name="MainFrame_addLineMenu_Text" xml:space="preserve">
-    <value>Ligne</value>
+    <value>Linia</value>
   </data>
   <data name="MainFrame_lineToolStripMenuItem_Text" xml:space="preserve">
-    <value>Ligne</value>
+    <value>Linia</value>
   </data>
   <data name="SelectionDescriptionText_SpecialName_Line" xml:space="preserve">
-    <value>Ligne</value>
+    <value>Linia</value>
   </data>
   <data name="MainFrame_addRectangleMenu_Text" xml:space="preserve">
-    <value>Rectangle</value>
+    <value>Prostokąt</value>
   </data>
   <data name="MainFrame_rectangleToolStripMenuItem_Text" xml:space="preserve">
-    <value>Rectangle</value>
+    <value>Prostokąt</value>
   </data>
   <data name="SelectionDescriptionText_SpecialName_Rectangle" xml:space="preserve">
-    <value>Rectangle</value>
-  </data>
-  <data name="MainFrame_addEllipseMenu_Text" xml:space="preserve">
-    <value>Ovale</value>
-  </data>
-  <data name="MainFrame_ellipseToolStripMenuItem_Text" xml:space="preserve">
-    <value>Ovale</value>
-  </data>
-  <data name="MainFrame_addMenu_Text" xml:space="preserve">
-    <value>&amp;Ajouter</value>
+    <value>Prostokąt</value>
   </data>
   <data name="MainFrame_changeMapFileMenu_Text" xml:space="preserve">
-    <value>&amp;Carte...</value>
+    <value>Plik &amp;mapy</value>
   </data>
   <data name="MainFrame_changeCodesMenu_Text" xml:space="preserve">
-    <value>&amp;Modifier Numéros de Poste...</value>
+    <value>Zmień &amp;kody PK</value>
   </data>
   <data name="MainFrame_autoNumberingMenu_Text" xml:space="preserve">
-    <value>&amp;Numérotation automatique...</value>
+    <value>Automatyczne &amp;numerowanie</value>
   </data>
   <data name="MainFrame_removeUnusedControlsMenu_Text" xml:space="preserve">
-    <value>&amp;Supprimer les Postes Inutilisés...</value>
-  </data>
-  <data name="MainFrame_moveAllControlsMenu_Text" xml:space="preserve">
-    <value>Déplacer tous les postes...</value>
+    <value>Usuń nie&amp;używane PK</value>
   </data>
   <data name="MainFrame_punchPatternsMenu_Text" xml:space="preserve">
-    <value>&amp;Poinçons...</value>
-  </data>
-  <data name="MainFrame_mapStd2000Menu_Text" xml:space="preserve">
-    <value>Norme ISOM2000</value>
-  </data>
-  <data name="MainFrame_mapStd2017Menu_Text" xml:space="preserve">
-    <value>Norme ISOM2017</value>
-  </data>
-  <data name="MainFrame_iOFStandardsToolStripMenuItem_Text" xml:space="preserve">
-    <value>&amp;Normes IOF</value>
+    <value>Wzorce &amp;perforowania...</value>
   </data>
   <data name="MainFrame_customizeDescriptionsMenu_Text" xml:space="preserve">
-    <value>Personnaliser Description en Clair...</value>
+    <value>Dostosuj tekst &amp;opisu...</value>
   </data>
   <data name="MainFrame_customizeCourseAppearanceMenu_Text" xml:space="preserve">
-    <value>Personnaliser l'&amp;apparence...</value>
+    <value>Dostosuj &amp;wygląd</value>
   </data>
   <data name="MainFrame_eventMenu_Text" xml:space="preserve">
-    <value>C&amp;ourse</value>
+    <value>&amp;Zawody</value>
   </data>
   <data name="MainFrame_addCourseMenu_Text" xml:space="preserve">
-    <value>&amp;Ajouter un Circuit...</value>
+    <value>&amp;Dodaj trasę...</value>
   </data>
   <data name="MainFrame_deleteCourseMenu_Text" xml:space="preserve">
-    <value>&amp;Supprimer un Circuit</value>
+    <value>&amp;Usuń trasę...</value>
   </data>
   <data name="MainFrame_duplicateCourseMenu_Text" xml:space="preserve">
-    <value>D&amp;upliquerCircuit...</value>
+    <value>&amp;Zduplikuj trasę...</value>
   </data>
   <data name="MainFrame_propertiesMenu_Text" xml:space="preserve">
-    <value>&amp;Propriétés...</value>
+    <value>&amp;Właściwości...</value>
   </data>
   <data name="MainFrame_courseOrderMenu_Text" xml:space="preserve">
-    <value>&amp;Ordre des Circuits...</value>
+    <value>&amp;Kolejność trasy...</value>
   </data>
   <data name="MainFrame_courseLoadMenu_Text" xml:space="preserve">
-    <value>&amp;Nombre de Concurrents...</value>
-  </data>
-  <data name="MainFrame_courseVariationReportMenu_Text" xml:space="preserve">
-    <value>Variations équipe de relais</value>
+    <value>&amp;Obciążenie zawodnikami...</value>
   </data>
   <data name="MainFrame_courseMenu_Text" xml:space="preserve">
-    <value>&amp;Circuit</value>
-  </data>
-  <data name="MainFrame_deleteForkMenu_Text" xml:space="preserve">
-    <value>Supprimer Fourche/Boucle</value>
+    <value>&amp;Trasa</value>
   </data>
   <data name="MainFrame_addBendMenu_Text" xml:space="preserve">
-    <value>Insérer un &amp;Coude</value>
+    <value>&amp;Dodaj punkt zgięcia</value>
   </data>
   <data name="MainFrame_removeBendMenu_Text" xml:space="preserve">
-    <value>Supprimer un C&amp;oude</value>
+    <value>&amp;Usuń punkt zgięcia</value>
   </data>
   <data name="MainFrame_addGapMenu_Text" xml:space="preserve">
-    <value>Insérer &amp;Découpe</value>
-  </data>
-  <data name="MainFrame_removeGapMenu_Text" xml:space="preserve">
-    <value>Supprimer une découpe</value>
+    <value>&amp;Dodaj przerwę</value>
   </data>
   <data name="MainFrame_changeTextMenu_Text" xml:space="preserve">
-    <value>Modifier &amp;Texte...</value>
+    <value>Zmień &amp;tekst...</value>
   </data>
   <data name="MainFrame_changeLineAppearanceMenu_Text" xml:space="preserve">
-    <value>Modifier le style de ligne...</value>
+    <value>Zmień wygląd &amp;linii...</value>
   </data>
   <data name="MainFrame_rotateMenu_Text" xml:space="preserve">
-    <value>&amp;Rotation</value>
+    <value>&amp;Obróć</value>
   </data>
   <data name="MainFrame_noFlaggingMenu_Text" xml:space="preserve">
-    <value>Sans Jalon</value>
+    <value>Brak otaśmowania</value>
   </data>
   <data name="MainFrame_entireFlaggingMenu_Text" xml:space="preserve">
-    <value>Interposte jalonné</value>
+    <value>Cały przebieg otaśmowany</value>
   </data>
   <data name="MainFrame_beginFlaggingMenu_Text" xml:space="preserve">
-    <value>Début d'interposte jalonné</value>
+    <value>Otaśmowany początek przebiegu</value>
   </data>
   <data name="MainFrame_endFlaggingMenu_Text" xml:space="preserve">
-    <value>Fin d'interposte jalonné</value>
+    <value>Otaśmowany koniec przebiegu</value>
   </data>
   <data name="MainFrame_legFlaggingMenu_Text" xml:space="preserve">
-    <value>&amp;Jalonnage de l'interposte</value>
+    <value>&amp;Otaśmowanie przebiegu</value>
   </data>
   <data name="MainFrame_changeDisplayedCoursesMenu_Text" xml:space="preserve">
-    <value>&amp;Modifier Affichage Circuits...</value>
+    <value>Zmień w&amp;yświetlane trasy...</value>
   </data>
   <data name="MainFrame_itemMenu_Text" xml:space="preserve">
-    <value>Élémen&amp;t</value>
+    <value>&amp;Obiekt</value>
   </data>
   <data name="MainFrame_courseSummaryMenu_Text" xml:space="preserve">
-    <value>&amp;Synthèse Circuit</value>
+    <value>&amp;Podsumowanie trasy</value>
   </data>
   <data name="MainFrame_eventAuditMenu_Text" xml:space="preserve">
-    <value>&amp;Audit Course</value>
+    <value>&amp;Audyt zawodów</value>
   </data>
   <data name="MainFrame_legLengthsMenu_Text" xml:space="preserve">
-    <value>&amp;Longueurs interpostes</value>
+    <value>&amp;Długości przebiegów</value>
   </data>
   <data name="MainFrame_controlCrossrefMenu_Text" xml:space="preserve">
-    <value>Contrôle C&amp;roisé</value>
+    <value>&amp;Indeks PK</value>
   </data>
   <data name="MainFrame_controlAndLegLoadMenu_Text" xml:space="preserve">
-    <value>&amp;Charger les postes et interpostes</value>
+    <value>O&amp;bciążenie PK oraz przebiegów</value>
   </data>
   <data name="MainFrame_reportMenu_Text" xml:space="preserve">
-    <value>&amp;Rapports</value>
+    <value>&amp;Raporty</value>
   </data>
   <data name="MainFrame_helpContentsMenu_Text" xml:space="preserve">
-    <value>&amp;Aide Purple Pen</value>
+    <value>&amp;Pomoc Purple Pen</value>
   </data>
   <data name="MainFrame_helpTranslatedMenu_Text" xml:space="preserve">
-    <value>Aide de Purple Pen (traduite)</value>
+    <value>Pomoc Purple Pen (przetłumaczone)</value>
   </data>
   <data name="MainFrame_mainWebSiteToolMenu_Text" xml:space="preserve">
-    <value>Site &amp;Web Purple Pen</value>
+    <value>Strona &amp;domowa Purple Pen</value>
   </data>
   <data name="MainFrame_supportWebSiteMenu_Text" xml:space="preserve">
-    <value>&amp;Support/Remonter un bogue</value>
+    <value>&amp;Wsparcie/Zgłaszanie błędów</value>
   </data>
   <data name="MainFrame_donateWebSiteMenu_Text" xml:space="preserve">
-    <value>Faire un &amp;Don</value>
+    <value>Złóź darowiznę</value>
   </data>
   <data name="MainFrame_aboutMenu_Text" xml:space="preserve">
-    <value>&amp;À Propos de Purple Pen</value>
+    <value>&amp;O Purple Pen</value>
   </data>
   <data name="MainFrame_symbolBrowserMenu_Text" xml:space="preserve">
-    <value>Navigateur de symbole</value>
+    <value>Przeglądarka symboli</value>
   </data>
   <data name="MainFrame_descriptionBrowserMenu_Text" xml:space="preserve">
-    <value>Navigateur des Définitions</value>
+    <value>Przeglądarka opisów</value>
   </data>
   <data name="MainFrame_controlTesterMenu_Text" xml:space="preserve">
-    <value>Testeur de poste</value>
+    <value>Tester PK</value>
   </data>
   <data name="MainFrame_mapTesterMenu_Text" xml:space="preserve">
-    <value>Testeur de carte</value>
+    <value>Tester mapy</value>
   </data>
   <data name="MainFrame_courseSelectorTesterMenu_Text" xml:space="preserve">
-    <value>Testeur du sélecteur de circuit</value>
+    <value>Tester wyboru trasy</value>
   </data>
   <data name="MainFrame_dotGridTesterToolStripMenuItem_Text" xml:space="preserve">
-    <value>Testeur de la grille de points</value>
+    <value>Testowanie siatki kropek</value>
   </data>
   <data name="MainFrame_dumpOCADFileMenu_Text" xml:space="preserve">
-    <value>Téléverser un fichier OCAD</value>
+    <value>Zrzuć plik OCAD</value>
   </data>
   <data name="MainFrame_reportTesterToolStripMenuItem_Text" xml:space="preserve">
-    <value>Testeur de rapport</value>
+    <value>Tester raportów</value>
   </data>
   <data name="MainFrame_fontMetricsToolStripMenuItem_Text" xml:space="preserve">
-    <value>Police</value>
-  </data>
-  <data name="MainFrame_missingTranslationsMenuItem_Text" xml:space="preserve">
-    <value>Pas de traduction de la description</value>
+    <value>Metryka czcionki</value>
   </data>
   <data name="MainFrame_crashToolStripMenuItem_Text" xml:space="preserve">
-    <value>Erreur bloquante (plantage)</value>
+    <value>Awaria</value>
   </data>
   <data name="MainFrame_debugMenu_Text" xml:space="preserve">
-    <value>Déboguer</value>
+    <value>Debugowanie</value>
   </data>
   <data name="MainFrame_addDescriptionLanguageMenu_Text" xml:space="preserve">
-    <value>Ajouter une langue pour les Définitions...</value>
+    <value>Dodaj język opisów PK...</value>
   </data>
   <data name="MainFrame_addTranslatedTextsMenu_Text" xml:space="preserve">
-    <value>Ajouter les textes traduits...</value>
+    <value>Dodaj przetłumaczone teksty...</value>
   </data>
   <data name="MainFrame_mergeSymbolsMenu_Text" xml:space="preserve">
-    <value>Fusionner Symbols.xml...</value>
+    <value>Scal Symbols.xml...</value>
   </data>
   <data name="MainFrame_translateMenu_Text" xml:space="preserve">
-    <value>&amp;Traduire le texte des définitions</value>
+    <value>&amp;Przetłumacz tekst opisu</value>
   </data>
   <data name="MainFrame_helpMenu_Text" xml:space="preserve">
-    <value>&amp;?</value>
+    <value>&amp;Pomoc</value>
   </data>
   <data name="MainFrame_openToolStripButton_Text" xml:space="preserve">
-    <value>Ouvrir</value>
+    <value>Otwórz</value>
   </data>
   <data name="MainFrame_openToolStripButton_ToolTipText" xml:space="preserve">
-    <value>Ouvrir (Ctrl+O)</value>
+    <value>Otwórz (Ctrl+O)</value>
   </data>
   <data name="MainFrame_saveToolStripButton_Text" xml:space="preserve">
-    <value>Enregistrer</value>
+    <value>Zapisz</value>
   </data>
   <data name="MiscText_CrashSave" xml:space="preserve">
-    <value>Enregistrer</value>
+    <value>Zapisz</value>
   </data>
   <data name="MainFrame_saveToolStripButton_ToolTipText" xml:space="preserve">
-    <value>Enregistrer (Ctrl+S)</value>
+    <value>Zapisz (Ctrl+S)</value>
   </data>
   <data name="MainFrame_undoToolStripButton_Text" xml:space="preserve">
-    <value>Annuler</value>
+    <value>Cofnij</value>
   </data>
   <data name="MiscText_Undo" xml:space="preserve">
-    <value>Annuler</value>
+    <value>Cofnij</value>
   </data>
   <data name="MainFrame_undoToolStripButton_ToolTipText" xml:space="preserve">
-    <value>Annuler (Ctrl+Z)</value>
+    <value>Cofnij (Ctrl+Z)</value>
   </data>
   <data name="MainFrame_redoToolStripButton_Text" xml:space="preserve">
-    <value>Refaire</value>
+    <value>Ponów</value>
   </data>
   <data name="MiscText_Redo" xml:space="preserve">
-    <value>Refaire</value>
+    <value>Ponów</value>
   </data>
   <data name="MainFrame_redoToolStripButton_ToolTipText" xml:space="preserve">
-    <value>Refaire (Ctrl+Y)</value>
+    <value>Ponów (Ctrl+Y)</value>
   </data>
   <data name="MainFrame_deleteToolStripButton_Text" xml:space="preserve">
-    <value>Supprimer (Suppr)</value>
+    <value>Usuń (Del)</value>
   </data>
   <data name="MainFrame_addControlToolStripButton_ToolTipText" xml:space="preserve">
-    <value>Ajouter un poste (Ctrl+A)</value>
+    <value>Dodaj PK (Ctrl+A)</value>
   </data>
   <data name="MainFrame_descriptionsToolStripMenuItem_Text" xml:space="preserve">
-    <value>Ajouter les Définitions</value>
-  </data>
-  <data name="MainFrame_mapFlipMenuItem_Text" xml:space="preserve">
-    <value>Retournement de carte au poste</value>
+    <value>Dodaj opisy</value>
   </data>
   <data name="MainFrame_mapExchangeControlToolStripMenuItem_Text" xml:space="preserve">
-    <value>Echange de Carte au Poste</value>
+    <value>Dodaj zmiane mapy na PK</value>
   </data>
   <data name="MainFrame_mapExchangeSeparateToolStripMenuItem_Text" xml:space="preserve">
-    <value>Parcours Balisé vers Echange de Carte</value>
+    <value>Otaśmowany przebieg do zmiany mapy</value>
   </data>
   <data name="MainFrame_mapExchangeToolStripMenu_Text" xml:space="preserve">
-    <value>Ajouter un échange de carte</value>
+    <value>Dodaj zmianę mapy</value>
   </data>
   <data name="MainFrame_specialItemToolStripMenu_Text" xml:space="preserve">
-    <value>Ajouter un Symbole Spécial</value>
+    <value>Dodaj obiekt specjalny</value>
   </data>
   <data name="MainFrame_addBendToolStripButton_ToolTipText" xml:space="preserve">
-    <value>Insérer un Coude (Ctrl+B)</value>
-  </data>
-  <data name="MainFrame_addGapToolStripButton_Text" xml:space="preserve">
-    <value>toolStripButton1</value>
+    <value>Dodaj punkt zgięcia</value>
   </data>
   <data name="MainFrame_addGapToolStripButton_ToolTipText" xml:space="preserve">
-    <value>Ajouter une découpe (Ctrl+G)</value>
+    <value>Dodaj przerwę</value>
   </data>
   <data name="MainFrame_zoomAmountLabel_Text" xml:space="preserve">
-    <value>Zoom : 100%</value>
+    <value>Powiększenie: 100%</value>
   </data>
   <data name="MainFrame_locationDisplay_Text" xml:space="preserve">
-    <value>X : -999.99 Y : -999.99</value>
-  </data>
-  <data name="MainFrame_saveXmlFileDialog_Filter" xml:space="preserve">
-    <value>XML IOF version 2.0.3|*.xml|XML IOF version 3.0|*.xml</value>
+    <value>X:-999.99 Y:-999.99</value>
   </data>
   <data name="MainFrame_saveXmlFileDialog_Title" xml:space="preserve">
-    <value>Créer un fichier d'interchange XML</value>
+    <value>Utwórz plik XML</value>
   </data>
   <data name="MainFrame_openImageDialog_Filter" xml:space="preserve">
-    <value>Fichier image|*.jpg;*.jpeg;*.gif;*.png;*.bmp;*.tif;*.tiff</value>
+    <value>Obraz|*.jpg;*.jpeg;*.gif;*.png;*.bmp;*.tif;*.tiff</value>
   </data>
   <data name="MainFrame_saveGpxFileDialog_Filter" xml:space="preserve">
-    <value>Fichier GPX|*.gpx</value>
+    <value>Plik GPX|*.gpx</value>
   </data>
   <data name="MainFrame_Text" xml:space="preserve">
     <value>Purple Pen</value>
@@ -2206,708 +1822,550 @@
     <value>Ctrl+Y</value>
   </data>
   <data name="MiscText_Esc" xml:space="preserve">
-    <value>Échap</value>
+    <value>Esc</value>
   </data>
   <data name="MiscText_NoSymbol" xml:space="preserve">
-    <value>Pas de symbole</value>
+    <value>Brak symbolu</value>
   </data>
   <data name="MiscText_AllControls" xml:space="preserve">
-    <value>Tous Postes</value>
+    <value>Wszystkie PK</value>
   </data>
   <data name="MiscText_CannotLoadFile" xml:space="preserve">
-    <value>Ne peut pas charger '{0}' pour les raisons suivantes :</value>
+    <value>Nie mogę załadować '{0}' z następującego powodu:</value>
   </data>
   <data name="MiscText_CannotSaveFile" xml:space="preserve">
-    <value>Ne peut pas sauvegarder '{0}' pour les raisons suivantes :</value>
+    <value>Nie mogę zapisać '{0}' z następującego powodu:</value>
   </data>
   <data name="MiscText_CannotLoadMapFile" xml:space="preserve">
-    <value>Ne peut pas charger la carte '{0}' pour les raisons suivantes :</value>
+    <value>Nie mogę załadować pliku mapy '{0}' z następującego powodu:</value>
   </data>
   <data name="MiscText_CannotReadImageFile" xml:space="preserve">
-    <value>Ne peut pas lire le fichier image '{0}'.</value>
+    <value>Nie mogę przeczytać obrazu '{0}'.</value>
   </data>
   <data name="MiscText_CannotPrint" xml:space="preserve">
-    <value>Ne peut pas imprimer '{0}' pour les raisons suivantes :</value>
+    <value>Nie mogę wydrukować '{0}' z następującego powodu:</value>
   </data>
   <data name="MiscText_CannotCreateFile" xml:space="preserve">
-    <value>Ne peut pas créer '{0}' pour les raisons suivantes :</value>
+    <value>Nie mogę utworzyć '{0}' z następującego powodu:</value>
   </data>
   <data name="MiscText_CannotCreateDirectory" xml:space="preserve">
-    <value>Ne peut pas créer le dossier '{0}' pour les raisons suivantes :</value>
-  </data>
-  <data name="MiscText_CannotReadMap" xml:space="preserve">
-    <value>La carte ne peut pas être lue pour la raison suivante: '{0}' Utiliser la fonction Optimiser/Réparer et sauvegarder dans OCAD peut régler le problème.</value>
+    <value>Nie mogę utworzyc folderu '{0}' z następującego powodu:</value>
   </data>
   <data name="MiscText_CannotCreateOcadFiles" xml:space="preserve">
-    <value>Ne peut pas créer les fichiers OCAD pour les raisons suivantes :</value>
+    <value>Nie mogę utworzyć plików OCAD z następującego powodu:</value>
   </data>
   <data name="MiscText_SaveChanges" xml:space="preserve">
-    <value>Voulez-vous sauvegarder les modifications effectuées sur  '{0}' ?</value>
+    <value>Czy na pewno chcesz zapisać zmiany do '{0}'?</value>
   </data>
   <data name="MiscText_FileAlreadyExists" xml:space="preserve">
-    <value>Le fichier '{0}' existe déjà dans le dossier indiqué. Cliquer sur le bouton "Retour" et choisissez un nouveau dossier ou un nouveau nom pour cette course.</value>
+    <value>Plik '{0}' już istnieje w wybranym folderze. Kliknij przycisk "Wstecz" i wybierz inny folder lub inny tytuł zawodów.</value>
   </data>
   <data name="MiscText_CodeInUse" xml:space="preserve">
-    <value>Le numéro du poste '{0}' est déjà utilisé sur autre poste.</value>
+    <value>Kod PK '{0}' jest już używany przez inny PK.</value>
   </data>
   <data name="MiscText_BadScore" xml:space="preserve">
-    <value>Les points affectés à un poste doivent correspondre à un nombre entier compris entre 1 et 999.</value>
+    <value>Liczba punktów dla PK musi być z przedziału 1-999.</value>
   </data>
   <data name="MiscText_BadClimb" xml:space="preserve">
-    <value>Le dénivelé d'un circuit doit être vide ou compris entre 0 et 9999.</value>
+    <value>Przewyższenie musi być liczbą całkowitą z zakresu 0-9999 lub pozostawione puste.</value>
   </data>
   <data name="MiscText_BadLoad" xml:space="preserve">
-    <value>Le nombre de concurrents sur un circuit doit être vide ou un nombre entier compris entre 0 et 999999.</value>
+    <value>Obciążenie musi być liczbą całkowitą z zakresu 0-999999 lub pozostawione puste.</value>
   </data>
   <data name="MiscText_CancelOperationWithShortcut" xml:space="preserve">
-    <value>A&amp;nnuler l'opération</value>
+    <value>A&amp;nuluj operację</value>
   </data>
   <data name="MiscText_CancelOperation" xml:space="preserve">
-    <value>Annuler l'opération</value>
+    <value>Anuluj operację</value>
   </data>
   <data name="MiscText_EnterScore" xml:space="preserve">
-    <value>Entrer le nouveau score</value>
+    <value>Wprowadź nową punktację</value>
   </data>
   <data name="MiscText_EnterCode" xml:space="preserve">
-    <value>Entrer le nouveau numéro</value>
+    <value>Wprowadź nowy kod PK</value>
   </data>
   <data name="MiscText_EnterDimensions" xml:space="preserve">
-    <value>Entrer la taille de l'élément
-Utiliser / pour la hauteur sur une pente
-Utiliser | pour deux éléments</value>
+    <value>Wprowadź rozmiar obiektu
+Użyj / dla wysokości lub nachylenia stoku
+Użyj | dla dwóch obiektów</value>
   </data>
   <data name="MiscText_EnterEventTitle" xml:space="preserve">
-    <value>Entrer le nouveau nom de la course
-Utiliser | pour séparer les lignes
-(affecte tous les circuits)</value>
+    <value>Wprowadź nazwę nowych zawodów
+Użyj | aby rozdzielić linie
+(ma wpływ na wszystkie trasy)</value>
   </data>
   <data name="MiscText_EnterSecondaryTitle" xml:space="preserve">
-    <value>Entrer le nouveau titre secondaire
-Utiliser | pour séparer les lignes</value>
+    <value>Wprowadź drugorzędną nazwę nowych zawodów</value>
   </data>
   <data name="MiscText_EnterCourseName" xml:space="preserve">
-    <value>Entrer un nouveau nom pour le circuit</value>
+    <value>Wprowadź nazwę nowej trasy</value>
   </data>
   <data name="MiscText_EnterClimb" xml:space="preserve">
-    <value>Entrer le nouveau dénivelé en mètres</value>
+    <value>Wprowadź przewyższenie w metrach</value>
   </data>
   <data name="MiscText_EnterSymbolText" xml:space="preserve">
-    <value>Entrer une nouvelle signification pour le symbole
-(affecte tous les circuits)</value>
+    <value>Wprowadź nowe znaczenie symbolu</value>
   </data>
   <data name="MiscText_EnterTextLine" xml:space="preserve">
-    <value>Saisir un nouveau texte
-Utiliser | pour séparer les lignes</value>
+    <value>Wprowadź nowy tekst</value>
   </data>
   <data name="MiscText_DeleteMultipleControlsFromControlsCollection" xml:space="preserve">
-    <value>Les numéros de postes {0} ne sont plus utilisés sur un quelconque circuit. Voulez-vous supprimer ces numéros de la bibliothèque de postes ?</value>
+    <value>PK {0} nie są już używane na żadnej trasie. Czy chcesz usunąć te PK ze zbioru?</value>
   </data>
   <data name="MiscText_DeleteControlFromControlsCollection" xml:space="preserve">
-    <value>Le numéro de poste {0} n'est plus utilisé sur un quelconque circuit. Voulez-vous supprimer ce numéro de la bibliothèque de postes ?</value>
+    <value>PK {0} nie jest już używany na żadnej trasie. Czy chcesz usunąć ten PK ze zbioru?</value>
   </data>
   <data name="MiscText_DeleteControlFromAllControls" xml:space="preserve">
-    <value>Le numéro de poste {0} est actuellement utilisé sur le(s) circuit(s) suivant(s) : {1}. Voulez-vous vraiment le supprimer ?</value>
+    <value>PK {0} jest obecnie używany przez następujące trasy: {1}. Czy mimo wszystko chcesz usunąć ten PK?</value>
   </data>
   <data name="MiscText_CodeBadLength" xml:space="preserve">
-    <value>Un numéro de poste doit correspondre à 1, 2 ou 3 lettres ou chiffres.</value>
+    <value>Kod PK musi składać się z jednej, dwóch lub trzech liter i/lub cyfr.</value>
   </data>
   <data name="MiscText_CodeContainsSpace" xml:space="preserve">
-    <value>Un numéro de poste ne doit pas contenir d'espace.</value>
+    <value>Kod PK nie może zawierać spacji.</value>
   </data>
   <data name="MiscText_CodeBeginsWithZero" xml:space="preserve">
-    <value>Un numéro de poste ne devrait pas commencer par zéro.</value>
+    <value>Kod PK nie może zaczynać się wiodącym zerem.</value>
   </data>
   <data name="MiscText_CodeCouldBeUpsideDown" xml:space="preserve">
-    <value>Un numéro de poste ne devrait pas ressembler à un autre quand on le lit à l'envers.</value>
+    <value>Kod PK nie powinien wyglądać jak inna liczba odczytywana do góry nogami.</value>
   </data>
   <data name="MiscText_DuplicateCode" xml:space="preserve">
-    <value>Le numéro de poste "{0}" est utilisé plus d'une fois.</value>
+    <value>Kod PK "{0}" jest użyty więcej niż raz.</value>
   </data>
   <data name="MiscText_BadScale" xml:space="preserve">
-    <value>L'échelle d'impression doit correspondre à un nombre compris entre 100 et 100,000.</value>
+    <value>Skala wydruku musi być liczbą całkowitą pomiędzy 100 i 100,000.</value>
   </data>
   <data name="MiscText_CoursePropertiesTitle" xml:space="preserve">
-    <value>Propriétés du circuit</value>
+    <value>Właściwości trasy</value>
   </data>
   <data name="MiscText_Landscape" xml:space="preserve">
-    <value>Paysage</value>
+    <value>Układ poziomy</value>
   </data>
   <data name="PrintDescriptions_orientation_Text" xml:space="preserve">
-    <value>Paysage</value>
+    <value>Układ poziomy</value>
   </data>
   <data name="PrinterMargins_radioButtonLandscape_Text" xml:space="preserve">
-    <value>Paysage</value>
+    <value>Układ poziomy</value>
   </data>
   <data name="PrintPunches_orientation_Text" xml:space="preserve">
-    <value>Paysage</value>
+    <value>Układ poziomy</value>
   </data>
   <data name="MiscText_Portrait" xml:space="preserve">
-    <value>Portrait</value>
+    <value>Układ pionowy</value>
   </data>
   <data name="PrinterMargins_radioButtonPortrait_Text" xml:space="preserve">
-    <value>Portrait</value>
+    <value>Układ pionowy</value>
   </data>
   <data name="MiscText_PageTooSmall" xml:space="preserve">
-    <value>La taille de la page est trop petite pour que les définitions soient imprimées.</value>
+    <value>Rozmiar strony jest zbyt mały aby wydrukować jakiekolwiek opisy PK.</value>
   </data>
   <data name="MiscText_VersionLabel" xml:space="preserve">
-    <value>Version {0}</value>
+    <value>Wersja {0}</value>
   </data>
   <data name="MiscText_NewerVersionAvailable" xml:space="preserve">
-    <value>La version {0} de Purple Pen est désormais disponible au téléchargement (vous utilisez actuellement la version {1}).
-
-Souhaitez-vous télécharger et installer la dernière version ?</value>
+    <value>Wersja {0} Purple Pen jest dostępna do pobrania (obecnie używasz wersji {1}).</value>
   </data>
   <data name="MiscText_HelpFileNotFound" xml:space="preserve">
-    <value>Le fichier d'Aide '{0}' n'a pas pu être ouvert.</value>
+    <value>Nie udało się otworzyć pliku pomocy '{0}'.</value>
   </data>
   <data name="MiscText_Zoom" xml:space="preserve">
-    <value>Zoom</value>
+    <value>Powiększenie</value>
   </data>
   <data name="MiscText_MissingMapFile" xml:space="preserve">
-    <value>La carte "{0}" n'a pas été trouvée.
-
-Le fichier de la carte a probablement été déplacé ou supprimé, ou le fichier Purple Pen a été déplacé (éventuellement sur un ordinateur différent). Le fichier de la carte doit être systématiquement présent chaque fois que le fichier Purple Pen de la course est chargé. Si vous envoyez le fichier Purple Pen de la course à une autre personne, assurez-vous que cette personne possède également une copie du fichier de la carte.
-
-Après avoir cliqué sur OK, essayez de trouver une copie du fichier de la carte sur votre ordinateur.</value>
+    <value>Nie udało się odnaleźć pliku mapy "{0}".</value>
   </data>
   <data name="MiscText_NoUnusedControls" xml:space="preserve">
-    <value>Tous les numéros de poste sont utilisés sur un circuit.</value>
+    <value>Wszystkie PK są użyte na trasie.</value>
   </data>
   <data name="MiscText_NextButtonText" xml:space="preserve">
-    <value>&amp;Suivant &gt;</value>
+    <value>&amp;Dalej &gt;</value>
   </data>
   <data name="NewEventWizard_nextButton_Text" xml:space="preserve">
-    <value>&amp;Suivant &gt;</value>
+    <value>&amp;Dalej &gt;</value>
   </data>
   <data name="MiscText_Control_Code" xml:space="preserve">
-    <value>Poste n° {0}</value>
+    <value>PK {0}</value>
   </data>
   <data name="MiscText_Finish" xml:space="preserve">
-    <value>Arrivée</value>
+    <value>Meta</value>
   </data>
   <data name="MiscText_Finish_Short" xml:space="preserve">
-    <value>F</value>
+    <value>M</value>
   </data>
   <data name="MiscText_MandCrossing_Long" xml:space="preserve">
-    <value>Point de passage obligatoire</value>
+    <value>Obowiązkowy punkt przebiegu</value>
   </data>
   <data name="MiscText_MandCrossing_Medium" xml:space="preserve">
-    <value>Passage</value>
+    <value>Punkt przejścia</value>
   </data>
   <data name="MiscText_MandCrossing_Short" xml:space="preserve">
-    <value>C</value>
+    <value>P</value>
   </data>
   <data name="MiscText_Margins_All" xml:space="preserve">
-    <value>Tous : {0}</value>
+    <value>Wszystkie: {0}</value>
   </data>
   <data name="MiscText_Margins_LRTB" xml:space="preserve">
-    <value>Gauche : {0}, Droite : {1}, Haut : {2}, Bas : {3}</value>
+    <value>Lewy: {0}, Prawy: {1}, Górny: {2}, Dolny: {3}</value>
   </data>
   <data name="MiscText_Start" xml:space="preserve">
-    <value>Départ</value>
+    <value>Start</value>
   </data>
   <data name="MiscText_Start_Short" xml:space="preserve">
     <value>S</value>
   </data>
   <data name="MiscText_Version_Alpha" xml:space="preserve">
-    <value>Alpha {0}</value>
+    <value>Alfa {0}</value>
   </data>
   <data name="MiscText_Version_Beta" xml:space="preserve">
-    <value>Béta {0}</value>
+    <value>Beta {0}</value>
   </data>
   <data name="MiscText_Version_RC" xml:space="preserve">
     <value>RC {0}</value>
   </data>
   <data name="MiscText_Plural" xml:space="preserve">
-    <value>pluriel</value>
+    <value>liczba mnoga</value>
   </data>
   <data name="MiscText_Singular" xml:space="preserve">
-    <value>singulier</value>
+    <value>liczba pojedyncza</value>
   </data>
   <data name="MiscText_RequireStar" xml:space="preserve">
-    <value>Le texte personnalisé recquiert une "*" afin d'indiquer l'emplacement de l'objet en cours de modification.</value>
+    <value>Dostosowany tekst wymaga "*" aby podać gdzie modyfikowany obiekt ma być umieszczony.</value>
   </data>
   <data name="MiscText_AppSubtitle" xml:space="preserve">
-    <value>créateur de circuits de course d'orientation</value>
+    <value>budowa tras dla orientacji sportowej</value>
   </data>
   <data name="MiscText_AddTextSpecialExplanation" xml:space="preserve">
-    <value>Entrer le texte que vous souhaitez disposer sur la carte. Cliquez sur OK, puis glisser la souris pour positionner le texte à l'emplacement désiré.</value>
+    <value>Wprowadź tekst, który chcesz umieścić na mapie. Po wciśnięciu OK, przeciągnij mysz aby umieścić tekst w wybranej lokalizacji.</value>
   </data>
   <data name="MiscText_AddTextSpecialTitle" xml:space="preserve">
-    <value>Ajouter du texte</value>
+    <value>Dodaj tekst</value>
   </data>
   <data name="MiscText_ChangeTextSpecialExplanation" xml:space="preserve">
-    <value>Entrer le nouveau texte.</value>
+    <value>Wprowadź nowy tekst.</value>
   </data>
   <data name="MiscText_MapFileChanged" xml:space="preserve">
-    <value>Un autre programme a modifié la carte "{0}". Purple Pen va recharger cette carte maintenant.</value>
+    <value>Inny program zmodyfikował plik mapy "{0}". Purple Pen przeładuje teraz tę mapę.</value>
   </data>
   <data name="MiscText_ChangeDescriptionLanguage" xml:space="preserve">
-    <value>La course actuelle a des définitions de poste en {0}. Voulez vous changer la langue des définitions de poste pour le {1} ?</value>
+    <value>Obecnie otwarte zawody posiadają opisy punktów kontrolnych w {0}. Czy cchesz zmienić ich język na {1}?</value>
   </data>
   <data name="MiscText_OpenLastEvent" xml:space="preserve">
-    <value>Ouvrir "{0}"</value>
+    <value>Otwórz "{0}"</value>
   </data>
   <data name="MiscText_ClosePPBeforeLoadingOCAD" xml:space="preserve">
-    <value>Purple Pen doit être fermé avant de charger les fichiers OCAD créés.</value>
+    <value>Purple Pen musi zostać zamknięty przed załadowanie utworzonych plików OCAD.</value>
   </data>
   <data name="MiscText_NoCoursesSelected" xml:space="preserve">
-    <value>Aucun circuit sélectionné pour l'impression</value>
+    <value>Żadne trasy nie zostały wybrane do druku.</value>
   </data>
   <data name="MiscText_TranslatedHelpWebSite" xml:space="preserve">
-    <value>*** S'il existe un site web en langue française qui propose la documentation traduite de Purple Pen, entrer ici l'adresse URL complète (incluant http://). Sinon, laissez la zone vide.</value>
+    <value>*** Jeżeli istnieje strona WWW w przetłumaczonym języku, która zawiera dokumentację Purple Pen, wprowadź ten URL (poprzedzając go http) jako tłumaczenie. W przeciwnym wypadku pozostaw puste.</value>
   </data>
   <data name="MiscText_MapExchange_Long" xml:space="preserve">
-    <value>Echange de carte</value>
+    <value>Zmiana map</value>
   </data>
   <data name="MiscText_MapExchange_Medium" xml:space="preserve">
-    <value>Echange</value>
+    <value>Wymiana</value>
   </data>
   <data name="MiscText_MapExchange_Short" xml:space="preserve">
-    <value>MX</value>
+    <value>ZM</value>
   </data>
   <data name="MiscText_PartN" xml:space="preserve">
-    <value>Partie {0}</value>
+    <value>Część {0}</value>
   </data>
   <data name="MiscText_AllParts" xml:space="preserve">
-    <value>Toutes les parties</value>
+    <value>Wszystkie części</value>
   </data>
   <data name="MiscText_PartXOfY" xml:space="preserve">
-    <value>Partie {0} (de {1})</value>
+    <value>Część {0} (z {1})</value>
   </data>
   <data name="MiscText_CrashEmail" xml:space="preserve">
-    <value>Contact courriel</value>
+    <value>Kontakt e-mail</value>
   </data>
   <data name="MiscText_CrashIntro" xml:space="preserve">
-    <value>Une erreur est survenue. Afin de nous aider à résoudre le problème, merci d'entrer votre adresse courriel de contact et toutes les informations nécessaires, puis envoyer nous le rapport d'erreur.</value>
+    <value>Wystąpił błąd. Aby pomóc nam naprawić ten błąd, podaj swój adres e-mail oraz dodatkowe informacje. Następnie wyślij raport do nas.</value>
   </data>
   <data name="MiscText_CrashMessage" xml:space="preserve">
-    <value>Merci de nous dire ce que vous étiez en train de faire avec le programme afin de nous aider à résoudre le problème</value>
+    <value>Opisz czynności, które wykonywałeś w programie, aby pomóc zdiagnozować problem.</value>
   </data>
   <data name="MiscText_CrashSend" xml:space="preserve">
-    <value>Envoyer le Rapport</value>
-  </data>
-  <data name="MiscText_PdfConverterNotFound" xml:space="preserve">
-    <value>PdfConverter.exe non trouvé</value>
-  </data>
-  <data name="MiscText_PdfConversionFailed" xml:space="preserve">
-    <value>Pdfium PDF converter a échoué lors de la lecture du fichier PDF</value>
+    <value>Wyślij raport</value>
   </data>
   <data name="MiscText_PdfResultNotReadable" xml:space="preserve">
-    <value>Impossible de lire le résultat de la conversion PDF depuis le fichier '{0}'</value>
+    <value>Nie można przeczytać rezultatu konwersji do PDF z pliku '{0}'</value>
   </data>
   <data name="MiscText_CannotCreatePdfs" xml:space="preserve">
-    <value>Impossible de créer des PDFs pour la raison suivante :</value>
+    <value>Nie udało się utworzyć plików PDF z następującego powodu:</value>
   </data>
   <data name="MiscText_UserDefined" xml:space="preserve">
-    <value>Défini par l'utilisateur</value>
+    <value>Zdefiniowane przez użytkownika</value>
   </data>
   <data name="MiscText_PdfMapSize" xml:space="preserve">
-    <value>Taille de la carte depuis le PDF</value>
+    <value>Rozmiar mapy z PDF</value>
   </data>
   <data name="MiscText_CancelledByUser" xml:space="preserve">
-    <value>Annulé par l'utilisateur</value>
+    <value>Anulowane przez użytkownika</value>
   </data>
   <data name="MiscText_CreatingFile" xml:space="preserve">
-    <value>Création de {0}...</value>
+    <value>Tworzenie {0}...</value>
   </data>
   <data name="MiscText_PrintingPage" xml:space="preserve">
-    <value>Impression de la page {0} (sur {1})</value>
+    <value>Drukowanie strony {0} (z {1})</value>
   </data>
   <data name="MiscText_MapFileDeleted" xml:space="preserve">
-    <value>Le fichier carte "{0}" a été supprimé. Merci d'essayer de restaurer le fichier carte, puis cliquez sur "Ok".</value>
+    <value>Plik mapy "{0}" został skasowany. Spróbuj odzyskać plik mapy, następnie kliknij "OK".</value>
   </data>
   <data name="MiscText_BadDotNetFramework" xml:space="preserve">
-    <value>Le framework .NET ne semble pas correctement installé sur votre ordinateur. Rendez-vous à l'adresse http://microsoft.com/net et installez la dernière version du framework .NET qui correspond à votre système d'exploitation Windows.</value>
+    <value>Instalacja .NET framework na twoim komputerze nie wygląda na poprawną. Odwiedź http://microsoft.com/net i zainstaluj najnowszą wersję.</value>
   </data>
   <data name="MiscText_ChooseOtherColor" xml:space="preserve">
-    <value>Choisir la couleur...</value>
+    <value>Wybierz kolor...</value>
   </data>
   <data name="MiscText_CustomColor" xml:space="preserve">
-    <value>Couleur personnalisée</value>
+    <value>Kolor użytkownika</value>
   </data>
   <data name="MiscText_DarkBlue" xml:space="preserve">
-    <value>Bleu foncé</value>
+    <value>Ciemnoniebieski</value>
   </data>
   <data name="MiscText_Green" xml:space="preserve">
-    <value>Vert</value>
+    <value>Zielony</value>
   </data>
   <data name="MiscText_LightBlue" xml:space="preserve">
-    <value>Bleu clair</value>
+    <value>Jasnoniebieski</value>
   </data>
   <data name="MiscText_Red" xml:space="preserve">
-    <value>Rouge</value>
+    <value>Czerwony</value>
   </data>
   <data name="MiscText_Yellow" xml:space="preserve">
-    <value>Jaune</value>
+    <value>Żółty</value>
   </data>
   <data name="MiscText_AddLineExplanation" xml:space="preserve">
-    <value>Définissez le style de la ligne. Après avoir cliqué sur OK, faîtes glisser votre souris afin de dessiner les segments de ligne à l'emplacement souhaité.</value>
+    <value>Ustaw sposób wyświetlania linii. Po wciśnięciu OK, przeciągnij myszkę aby narysować krzywą w wybranym położeniu.</value>
   </data>
   <data name="MiscText_AddLineTitle" xml:space="preserve">
-    <value>Ajouter ligne</value>
+    <value>Dodaj linię</value>
   </data>
   <data name="MiscText_AddRectangleExplanation" xml:space="preserve">
-    <value>Définissez le style du rectangle. Après avoir cliqué sur OK, faîtes glisser votre souris afin de positionner le rectangle à l'emplacement souhaité.</value>
+    <value>Ustaw wygląd prostokąta. Po wciśnięciu OK, przeciągnij mysz aby umieścić prostokąt w wybranym położeniu.</value>
   </data>
   <data name="MiscText_AddRectangleTitle" xml:space="preserve">
-    <value>Ajouter un rectangle</value>
+    <value>Dodaj prostokąt</value>
   </data>
   <data name="MiscText_ChangeLineAppearanceExplanation" xml:space="preserve">
-    <value>Modifier le style de la ligne ou du rectangle</value>
+    <value>Zmień wygląd linii lub prostokąta.</value>
   </data>
   <data name="MiscText_GpxMustBeOcadMap" xml:space="preserve">
-    <value>Pour utiliser des fichier GPX, le fichier Carte doit obligatoirement être un fichier OCAD.</value>
+    <value>Plik mapy musi być plikiem OCAD aby można było używać plików GPX.</value>
   </data>
   <data name="MiscText_GpxMustHaveCoordSystem" xml:space="preserve">
-    <value>Pour utiliser des fichiers GPX, un système de coordonnées doit obligatoirement être défini pour le fichier OCAD.</value>
+    <value>Plik OCAD musi mieć zdefiniowany układ współrzędnych geograficznych (odniesienia) aby możliwe było użycie plików GPX.</value>
   </data>
   <data name="MiscText_GpxMustHaveRealWorldCoord" xml:space="preserve">
-    <value>Pour utiliser des fichiers GPX, le fichier OCAD doit obligatoirement avoir des coordonnées du monde réel.</value>
-  </data>
-  <data name="MiscText_GpxReprojectFailure" xml:space="preserve">
-    <value>Impossible de re-projeter les points. Le système de coordonnées ou les coordonnées du monde réel de la carte OCAD sont faux.</value>
+    <value>Plik OCAD musi mieć zdefiniowany układ odniesienia z prawdziwymi współrzędnymi geograficznymi (nielokalne) aby można było używać plików GPX.</value>
   </data>
   <data name="MiscText_GpxUnsupportedCoordSystem" xml:space="preserve">
-    <value>Le fichier OCAD utilise un système de coordonnées non supporté par Purple Pen.</value>
+    <value>Plik OCAD używa układu odniesienia, który nie jest wspierany przez Purple Pen.</value>
   </data>
   <data name="MiscText_BadLength" xml:space="preserve">
-    <value>La longueur d'un circuit doit être un nombre compris entre 0.1 et 99.9 ou doit être laissé à blanc afin qu'il soit calculé automatiquement.</value>
+    <value>Długość trasy musi być liczbą z przedziału 0,1 - 99,9 lub pozostać pusty (automatyczna kalkulacja długości trasy).</value>
   </data>
   <data name="MiscText_EnterLength" xml:space="preserve">
-    <value>Saisissez la longueur en km ou laissez la zone à blanc afin qu'elle soit calculée automatiquement.</value>
+    <value>Wprowadź długośc w kilometrach lub pozostaw pole puste aby program przeliczył automatycznie</value>
   </data>
   <data name="MiscText_PausePrinting" xml:space="preserve">
-    <value>Impression de "{0}" terminée. Cliquez sur OK pour démarrer l'impression de "{1}".</value>
-  </data>
-  <data name="MiscText_OCAD" xml:space="preserve">
-    <value>OCAD</value>
-  </data>
-  <data name="MiscText_OpenOrienteeringMapper" xml:space="preserve">
-    <value>OOM</value>
-  </data>
-  <data name="MiscText_AllVariations" xml:space="preserve">
-    <value>Toutes les variations</value>
-  </data>
-  <data name="MiscText_ForkSummary" xml:space="preserve">
-    <value>Adapté pour une utilisation dans des relais avec {0} participants par équipe</value>
-  </data>
-  <data name="MiscText_LoopSummary" xml:space="preserve">
-    <value>Le poste central dans la boucle sera visité {0} fois. Il y a {1} chemins possibles à travers les boucles.</value>
-  </data>
-  <data name="MiscText_CantRearrangeSplitControl" xml:space="preserve">
-    <value>Un contrôle qui débute une fourche ou une boucle ne peut pas être déplacé à un nouvel endroit dans le circuit.</value>
-  </data>
-  <data name="MiscText_TooManyVariations" xml:space="preserve">
-    <value>Le nombre total de variations pour ce circuit est trop élevé. Le nombre de variations distinctes est limité à {0}.</value>
-  </data>
-  <data name="MiscText_CannotAddVariation" xml:space="preserve">
-    <value>Impossible d'ajouter une variation.</value>
-  </data>
-  <data name="MiscText_VariationAlreadyExists" xml:space="preserve">
-    <value>Une variation existe déjà à ce poste.</value>
-  </data>
-  <data name="MiscText_VariationMustSelectControl" xml:space="preserve">
-    <value>Un poste ou un numéro de relais doit être sélectionné pour ajouter une variation.</value>
-  </data>
-  <data name="MiscText_VariationNotFinish" xml:space="preserve">
-    <value>Une variation ne peut pas être ajoutée à un poste Arrivée</value>
-  </data>
-  <data name="MiscText_VariationNotInAllControls" xml:space="preserve">
-    <value>Une variation ne peut pas être ajoutée dans la vue Tous Postes.</value>
-  </data>
-  <data name="MiscText_VariationNotInScoreCourse" xml:space="preserve">
-    <value>Une variation ne peut pas être ajoutée à un circuit Au Score.</value>
-  </data>
-  <data name="MiscText_VariationNotLastControl" xml:space="preserve">
-    <value>Une variation ne peut pas être ajoutée au dernier poste. Ajouter un poste Arrivée d'abord.</value>
-  </data>
-  <data name="MiscText_CannotReadMapOOM" xml:space="preserve">
-    <value>La carte ne peut pas être lue pour la raison suivante: '{0}' Ouvrir et ré-enregistrer la carte dans la dernière version d'Open Orienteering Mapper peut résoudre le problème.</value>
-  </data>
-  <data name="MiscText_CannotCreateImageFiles" xml:space="preserve">
-    <value>Impossible de créer des fichiers image pour la raison suivante :</value>
-  </data>
-  <data name="MiscText_CreatePdf" xml:space="preserve">
-    <value>Créer un fichier PDF</value>
-  </data>
-  <data name="MiscText_PdfFilter" xml:space="preserve">
-    <value>Fichier PDF|*.pdf</value>
-  </data>
-  <data name="MiscText_AddEllipseExplanation" xml:space="preserve">
-    <value>Définissez l'apparence de l'ellipse. Après avoir cliqué sur OK, faites glisser la souris pour placer l'ellipse à l'emplacement souhaité.</value>
-  </data>
-  <data name="MiscText_AddEllipseTitle" xml:space="preserve">
-    <value>Ajouter une éllipse</value>
-  </data>
-  <data name="MiscText_UninstallNonStoreVersion" xml:space="preserve">
-    <value>Définissez l'apparence de l'ellipse. Après avoir cliqué sur OK, faites glisser la souris pour placer l'ellipse à l'emplacement souhaité.</value>
-  </data>
-  <data name="MiscText_RobotoFontsInstallFailed" xml:space="preserve">
-    <value>L'instalation de la police Roboto a échoué</value>
-  </data>
-  <data name="MiscText_LowerPurple" xml:space="preserve">
-    <value>Violine inférieure</value>
+    <value>Zakończono drukowanie "{0}". Naciśnij OK aby rozpocząć drukowanie "{1}".</value>
   </data>
   <data name="MissingFonts_checkBoxDontWarnAgain_Text" xml:space="preserve">
-    <value>Ne plus m'alerter sur les polices manquantes pour cette course</value>
-  </data>
-  <data name="MissingFonts_labelWarning_Text" xml:space="preserve">
-    <value>La carte "{0}" utilise des polices qui ne sont pas installées sur votre ordinateur. Le texte qui utilise ces polices sera affiché et imprimé avec une police par défaut, ce qui pourra le faire apparaitre différemment de ce qu'avait prévu le créateur de la carte. 
-Pour résoudre ce problème, recherchez les polices listées ci-dessous et installez les avec le tableau de bord Windows, puis redémarrer Purple Pen.
-</value>
+    <value>Nie ostrzegaj ponownie o brakujących czcionkach dla tych zawodów</value>
   </data>
   <data name="MissingFonts_Text" xml:space="preserve">
-    <value>Polices manquantes</value>
-  </data>
-  <data name="MoveAllControls_labelDescription_Text" xml:space="preserve">
-    <value>Comment souhaitez-vous déplacer tous les postes sur la carte ?</value>
-  </data>
-  <data name="MoveAllControls_radioButtonMove_Text" xml:space="preserve">
-    <value>Translation</value>
-  </data>
-  <data name="MoveAllControls_radioButtonMoveAndScale_Text" xml:space="preserve">
-    <value>Translation et étirement</value>
-  </data>
-  <data name="MoveAllControls_radioButtonMoveAndRotate_Text" xml:space="preserve">
-    <value>Translation et rotation</value>
-  </data>
-  <data name="MoveAllControls_radioButtonMoveRotateScale_Text" xml:space="preserve">
-    <value>Violine inférieure</value>
-  </data>
-  <data name="NewEventBitmapScale_bitmapScaleLabel_Text" xml:space="preserve">
-    <value>Quand vous utilisez un fichier image comme carte de base, vous devez préciser la résolution de l'image et l'échelle de la carte. 
-La résolution de l'image précise combien l'image comporte de pixels ou de points pour représenter chaque pouce sur la carte papier ; on utilise habituellement la notion de points par pouce ou "ppp".
-L'échelle de la carte précise comment est représenté le monde réel sur la carte papier.
-</value>
+    <value>Brakujące czcionki</value>
   </data>
   <data name="NewEventBitmapScale_resolutionLabel_Text" xml:space="preserve">
-    <value>Résolution de l'image :</value>
+    <value>Rozdzielczość obrazu:</value>
   </data>
   <data name="NewEventBitmapScale_oneToPrefixLabel_Text" xml:space="preserve">
-    <value>1 :</value>
+    <value>1:</value>
   </data>
   <data name="NewEventPrintScale_oneToPrefixLabel1_Text" xml:space="preserve">
-    <value>1 :</value>
+    <value>1:</value>
   </data>
   <data name="NewEventPrintScale_oneToPrefixLabel2_Text" xml:space="preserve">
-    <value>1 :</value>
+    <value>1:</value>
   </data>
   <data name="NewEventBitmapScale_mapScaleLabel_Text" xml:space="preserve">
-    <value>Echelle de la carte :</value>
+    <value>Skala mapy:</value>
   </data>
   <data name="NewEventPrintScale_mapScaleLabel_Text" xml:space="preserve">
-    <value>Echelle de la carte :</value>
+    <value>Skala mapy:</value>
   </data>
   <data name="NewEventBitmapScale_labelTitle_Text" xml:space="preserve">
-    <value>Résolution Bitmap</value>
+    <value>Rozdzielczość bitmapy</value>
   </data>
   <data name="NewEventBitmapScale_pdfScaleLabel_Text" xml:space="preserve">
-    <value>Lorsque vous utilisez un fichier PDF comme carte, vous devez précisez l'échelle de la carte. 
+    <value>Kiedy używasz pliku PDF jako mapy podkładowej, musisz podać jej skalę.
 
-L'échelle de la carte précise la relation qui existe entre la carte "papier" et le monde réel.
+Skala mapy określa powiązanie pomiędzy wydrukiem a rzeczywistością.
 </value>
   </data>
   <data name="NewEventDirectory_newEventDirectoryLabel_Text" xml:space="preserve">
-    <value>Dans quel dossier (répertoire) souhaitez-vous enregister le fichier de votre course ?</value>
+    <value>W jakim katalogu chcesz zapisać plik zawodów?</value>
   </data>
   <data name="NewEventDirectory_useMapDirectory_Text" xml:space="preserve">
-    <value>Dans le dossier où se trouve la carte.</value>
+    <value>W tym samym folderze co plik mapy.</value>
   </data>
   <data name="NewEventDirectory_useOtherFolder_Text" xml:space="preserve">
-    <value>Dans un autre dossier que je choisis.</value>
+    <value>W innym folderze, który wybiorę.</value>
   </data>
   <data name="NewEventDirectory_chooseFolder_Text" xml:space="preserve">
-    <value>Choisir un Dossier...</value>
+    <value>Wybierz folder...</value>
   </data>
   <data name="NewEventDirectory_folderBrowserDialog_Description" xml:space="preserve">
-    <value>Sélectionner le dossier pour le fichier de votre course</value>
+    <value>Wybierz folder dla pliku zawodów</value>
   </data>
   <data name="NewEventDirectory_directoryDisplay_Text" xml:space="preserve">
-    <value>Dossier sélectionné</value>
+    <value>Wybrany folder</value>
   </data>
   <data name="NewEventDirectory_labelTitle_Text" xml:space="preserve">
-    <value>Emplacement Fichier Course</value>
+    <value>Lokalizacja pliku zawodów</value>
   </data>
   <data name="NewEventFinal_newEventFinalLabel_Text" xml:space="preserve">
-    <value>Cliquer sur "Terminer" pour créer votre nouvelle course. Le fichier de votre course sera sauvegardé sous :</value>
+    <value>Kliknij "Zakończ" aby stworzyć nowe zawody. Plik z zawodami będzie zapisany jako:</value>
   </data>
   <data name="NewEventFinal_afterEventCreatedLabel_Text" xml:space="preserve">
-    <value>Après la création de votre course, sélectionner "Nouveau Circuit..." dans le menu Circuit pour créer un ou plusieurs circuits.</value>
+    <value>Po utworzeniu zawodów, wybierz "Nowa trasa..." z menu Trasy aby stworzyć jedną lub więcej tras.</value>
   </data>
   <data name="NewEventFinal_labelTitle_Text" xml:space="preserve">
-    <value>Créer une Course</value>
+    <value>Stwórz zawody</value>
   </data>
   <data name="NewEventMapFile_mapFileDisplay_Text" xml:space="preserve">
-    <value>Carte sélectionnée</value>
+    <value>Wybierz plik mapy</value>
   </data>
   <data name="NewEventMapFile_infoMessage_Text" xml:space="preserve">
-    <value>Le fichier de la carte a été chargé avec succès. Si vous envoyez votre fichier Purple Pen à quelqu'un d'autre, ils devra avoir le fichier de la carte aussi.</value>
+    <value>Podkład mapy został pomyślnie załadowany. Jeżeli prześlesz plik Purple Pen osobie trzeciej, musisz pamiętać aby dołączyć również plik podkładu mapy.</value>
   </data>
   <data name="NewEventNumbering_newEventNumberingLabel_Text" xml:space="preserve">
-    <value>Les nouveaux postes sont numérotés automatiquement. Merci de sélectionner le premier numéro de poste à utiliser.</value>
+    <value>Nowo stworzone PK sa automatycznie numerowane. Podaj kod PK od którego zacząć automatyczne numerowanie.</value>
   </data>
   <data name="NewEventNumbering_changeLaterLabel_Text" xml:space="preserve">
-    <value>(Ce paramètre pourra être modifié ultérieurement en utilisant Course/Numérotation automatique)</value>
+    <value>(To ustawienie może zostać później zmienione przy użyciu Zawody/Automatyczne Numerowanie)</value>
   </data>
   <data name="NewEventNumbering_labelTitle_Text" xml:space="preserve">
-    <value>Numérotation des postes</value>
+    <value>Numerowanie PK</value>
   </data>
   <data name="NewEventPrintScale_newEventPrintScaleLabel_Text" xml:space="preserve">
-    <value>Quelle échelle utiliserez-vous pour imprimer vos circuits ? Dans la plupart des cas, vous souhaiterez utiliser l'échelle actuelle de la carte.
+    <value>W jakiej skali będą drukowane trasy? W większości przypadków będziesz używać skali mapy.
 
 </value>
   </data>
   <data name="NewEventPrintScale_defaultPrintScaleLabel_Text" xml:space="preserve">
-    <value>Echelle d'im&amp;pression par défaut :</value>
+    <value>Domyślna &amp;skala wydruku:</value>
   </data>
   <data name="NewEventPrintScale_changeLaterLabel_Text" xml:space="preserve">
-    <value>(Vous pourrez modifier l'échelle d'impression ultérieurement pour n'importe quel circuit en choisissant Circuit/Propriétés)</value>
-  </data>
-  <data name="NewEventStandards_changeLaterLabel_Text" xml:space="preserve">
-    <value>(Ces paramètres peuvent être modifiés ultérieurement dans l'onglet : course / Normes IOF)</value>
-  </data>
-  <data name="NewEventStandards_labelTitle_Text" xml:space="preserve">
-    <value>Normes IOF</value>
-  </data>
-  <data name="NewEventStandards_radioButtonMapSpr2019_Text" xml:space="preserve">
-    <value>ISSprOM 2019</value>
-  </data>
-  <data name="NewEventStandards_radioButtonMap2017_Text" xml:space="preserve">
-    <value>ISOM 2017</value>
-  </data>
-  <data name="NewEventStandards_radioButtonMap2000_Text" xml:space="preserve">
-    <value>ISOM 2000 / ISSOM 2007</value>
-  </data>
-  <data name="NewEventStandards_groupBoxMapStandard_Text" xml:space="preserve">
-    <value>Norme IOF</value>
-  </data>
-  <data name="NewEventStandards_radioButtonDescriptions2018_Text" xml:space="preserve">
-    <value>Descriptions 2018/2024</value>
-  </data>
-  <data name="NewEventStandards_radioButtonDescriptions2004_Text" xml:space="preserve">
-    <value>Descriptions 2004</value>
-  </data>
-  <data name="NewEventStandards_groupBoxDescriptionStandard_Text" xml:space="preserve">
-    <value>Standard de descriptions IOF</value>
-  </data>
-  <data name="NewEventStandards_labelStandardsIntro_Text" xml:space="preserve">
-    <value>Quelles versions des normes IOF souhaiteriez-vous que Purple Pen suive ?</value>
-  </data>
-  <data name="NewEventTitle_newEventTitleLabel_Text" xml:space="preserve">
-    <value>Le nom de la course sera affiché sur la première ligne de toutes les feuilles de définitions. Il est également utilisé comme nom de fichier pour enregistrer votre course sur le disque.
-Afin de rentrer sur la feuille de définitions, il devrait comporter moins de 25 caractères. Exemples de noms adaptés : "US Champs Day 1" ou "Riverview Park, 12/04/06".</value>
+    <value>(Możesz zmienić skalę wydruku później dla dowolnej trasy wybierając Trasa/Właściwości)</value>
   </data>
   <data name="NewEventTitle_eventTitleLabel_Text" xml:space="preserve">
-    <value>Nom de la course :</value>
+    <value>Tytuł zawodów:</value>
   </data>
   <data name="NewEventWizard_backButton_Text" xml:space="preserve">
-    <value>&lt; &amp;Retour</value>
-  </data>
-  <data name="NonPrintableObjects_labelWarning_Text" xml:space="preserve">
-    <value>La carte "{0}" contient des objets ou des symboles qui ne sont pas complètement supportés par Purple Pen, et qui pourraient ne pas s'imprimer correctement. Ces objets sont listés ci-dessous.
-Afin d'imprimer des cartes de compétition, nous vous suggérons d'exporter les circuits vers des fichiers OCAD (utilisez Fichier/Créer Fichiers OCAD...) afin d'imprimer les cartes à partir d'OCAD.
-</value>
+    <value>&lt; &amp;Wstecz</value>
   </data>
   <data name="NonPrintableObjects_okButton_Text" xml:space="preserve">
-    <value>Continuer</value>
+    <value>Dalej</value>
   </data>
   <data name="NonPrintableObjects_Text" xml:space="preserve">
-    <value>La carte ne peut pas être imprimée de manière fiable</value>
+    <value>Plik mapy nie może zostać wydrukowany wystarczająco dokładnie</value>
   </data>
   <data name="OperationInProgress_Text" xml:space="preserve">
-    <value>Opération en cours</value>
+    <value>Operacja w toku</value>
   </data>
   <data name="OverwritingOcadFilesDialog_confirmReplaceLabel_Text" xml:space="preserve">
-    <value>Les fichiers suivants existent déjà. Si vous poursuivez, ils seront remplacés.</value>
+    <value>Następujący plik już istnieje. Jeżeli będziesz kontynuował, zostanie on zastąpiony.</value>
   </data>
   <data name="OverwritingOcadFilesDialog_buttonOK_Text" xml:space="preserve">
-    <value>Remplacer</value>
+    <value>Zastąp</value>
   </data>
   <data name="OverwritingOcadFilesDialog_Text" xml:space="preserve">
-    <value>Confirmer le remplacement des fichiers</value>
-  </data>
-  <data name="PdfConversionInProgress_labelReadingPDF_Text" xml:space="preserve">
-    <value>PDFium PDF converter est en cours de lecture de votre PDF...</value>
+    <value>Potwierdź zastąpienie plików</value>
   </data>
   <data name="PdfConversionInProgress_labelFailure_Text" xml:space="preserve">
-    <value>La lecture du PDF a échoué. Les erreurs sont affichées ci-dessous.</value>
+    <value>Odczyt pliku PDF zakończył się niepowodzeniem. Błędy poniżej.</value>
   </data>
   <data name="PdfConversionInProgress_Text" xml:space="preserve">
-    <value>Lecture du PDF</value>
+    <value>Czytam PDF</value>
   </data>
   <data name="PrintCourses_okButton_Text" xml:space="preserve">
-    <value>Imprimer</value>
+    <value>Drukuj</value>
   </data>
   <data name="PrintDescriptions_printButton_Text" xml:space="preserve">
-    <value>Imprimer</value>
+    <value>Drukuj</value>
   </data>
   <data name="PrintPunches_printButton_Text" xml:space="preserve">
-    <value>Imprimer</value>
+    <value>Drukuj</value>
   </data>
   <data name="PrintCourses_printerChange_Text" xml:space="preserve">
-    <value>Changer d'imprimante...</value>
+    <value>Zmień Drukarkę...</value>
   </data>
   <data name="PrintDescriptions_printerChange_Text" xml:space="preserve">
-    <value>Changer d'imprimante...</value>
+    <value>Zmień Drukarkę...</value>
   </data>
   <data name="PrintPunches_printerChange_Text" xml:space="preserve">
-    <value>Changer d'imprimante...</value>
+    <value>Zmień Drukarkę...</value>
   </data>
   <data name="PrintCourses_printerName_Text" xml:space="preserve">
-    <value>Nom de l'imprimante</value>
+    <value>Nazwa drukarki</value>
   </data>
   <data name="PrintDescriptions_printerName_Text" xml:space="preserve">
-    <value>Nom de l'imprimante</value>
+    <value>Nazwa drukarki</value>
   </data>
   <data name="PrintPunches_printerName_Text" xml:space="preserve">
-    <value>Nom de l'imprimante</value>
+    <value>Nazwa drukarki</value>
   </data>
   <data name="PrintCourses_printerLabel_Text" xml:space="preserve">
-    <value>Imprimante :</value>
+    <value>Drukarka:</value>
   </data>
   <data name="PrintDescriptions_printerLabel_Text" xml:space="preserve">
-    <value>Imprimante :</value>
+    <value>Drukarka:</value>
   </data>
   <data name="PrintPunches_printerLabel_Text" xml:space="preserve">
-    <value>Imprimante :</value>
+    <value>Drukarka:</value>
   </data>
   <data name="PrintCourses_previewButton_Text" xml:space="preserve">
-    <value>Aperçu...</value>
+    <value>Podgląd...</value>
   </data>
   <data name="PrintDescriptions_previewButton_Text" xml:space="preserve">
-    <value>Aperçu...</value>
+    <value>Podgląd...</value>
   </data>
   <data name="PrintPunches_previewButton_Text" xml:space="preserve">
-    <value>Aperçu...</value>
+    <value>Podgląd...</value>
   </data>
   <data name="PrintCourses_copiesLabel_Text" xml:space="preserve">
-    <value>Nombre de copies de chaque circuit :</value>
+    <value>Liczba kopii każdej trasy:</value>
   </data>
   <data name="PrintCourses_checkBoxPausePrinting_Text" xml:space="preserve">
-    <value>Mettre l'impression en pause après chaque circuit ou chaque partie</value>
+    <value>Wstrzymaj drukowanie po każdej części trasy.</value>
   </data>
   <data name="PrintCourses_copiesGroupBox_Text" xml:space="preserve">
-    <value>Copies</value>
+    <value>Liczba kopii</value>
   </data>
   <data name="PrintDescriptions_copiesGroupBox_Text" xml:space="preserve">
-    <value>Copies</value>
+    <value>Liczba kopii</value>
   </data>
   <data name="PrintPunches_copiesGroupBox_Text" xml:space="preserve">
-    <value>Copies</value>
+    <value>Liczba kopii</value>
   </data>
   <data name="PrintCourses_comboBoxColorModel_Items" xml:space="preserve">
-    <value>Compatible OCAD</value>
+    <value>Kompatybilny z OCAD</value>
   </data>
   <data name="PrintCourses_Text" xml:space="preserve">
-    <value>Imprimer les circuits</value>
+    <value>Drukuj trasy</value>
   </data>
   <data name="PrintDescriptions_marginChange_Text" xml:space="preserve">
-    <value>Modifier les Marges...</value>
+    <value>Zmień marginesy...</value>
   </data>
   <data name="PrintPunches_marginChange_Text" xml:space="preserve">
-    <value>Modifier les Marges...</value>
+    <value>Zmień marginesy...</value>
   </data>
   <data name="PrintDescriptions_paperSize_Text" xml:space="preserve">
     <value>Tabloid (11"x17")</value>
@@ -2916,654 +2374,480 @@ Afin d'imprimer des cartes de compétition, nous vous suggérons d'exporter les 
     <value>Tabloid (11"x17")</value>
   </data>
   <data name="PrintDescriptions_paperSizeLabel_Text" xml:space="preserve">
-    <value>Taille du papier :</value>
+    <value>Rozmiar papieru:</value>
   </data>
   <data name="PrintPunches_paperSizeLabel_Text" xml:space="preserve">
-    <value>Taille du papier :</value>
+    <value>Rozmiar papieru:</value>
   </data>
   <data name="PrintDescriptions_margins_Text" xml:space="preserve">
-    <value>Haut : 0.55", Bas : 0.55", Gauche : 0.55", Droite : 0.55"</value>
+    <value>Góra: 0.55", Dół: 0.55", Lewy: 0.55", Prawy: 0.55"</value>
   </data>
   <data name="PrintPunches_margins_Text" xml:space="preserve">
-    <value>Haut : 0.55", Bas : 0.55", Gauche : 0.55", Droite : 0.55"</value>
+    <value>Góra: 0.55", Dół: 0.55", Lewy: 0.55", Prawy: 0.55"</value>
   </data>
   <data name="PrintDescriptions_marginsLabel_Text" xml:space="preserve">
-    <value>Marges :</value>
+    <value>Marginesy:</value>
   </data>
   <data name="PrintPunches_marginsLabel_Text" xml:space="preserve">
-    <value>Marges :</value>
+    <value>Marginesy:</value>
   </data>
   <data name="PrintDescriptions_orientationLabel_Text" xml:space="preserve">
-    <value>Orientation :</value>
+    <value>Ułożenie papieru:</value>
   </data>
   <data name="PrintPunches_orientationLabel_Text" xml:space="preserve">
-    <value>Orientation :</value>
+    <value>Ułożenie papieru:</value>
   </data>
   <data name="PrintDescriptions_descriptionKindCombo_Items" xml:space="preserve">
-    <value>Valeurs par défaut</value>
+    <value>Domyślne dla trasy</value>
   </data>
   <data name="PrintDescriptions_descriptionKindCombo_Items3" xml:space="preserve">
-    <value>Symboles &amp; Texte</value>
+    <value>Symbole i tekst</value>
   </data>
   <data name="PrintDescriptions_descriptionTypeLabel_Text" xml:space="preserve">
-    <value>Type de définition :</value>
+    <value>Typ opisu:</value>
   </data>
   <data name="PrintDescriptions_lineSizeLabel_Text" xml:space="preserve">
-    <value>Taille de ligne :</value>
+    <value>Rozmiar linii:</value>
   </data>
   <data name="PrintDescriptions_descriptionsLabel_Text" xml:space="preserve">
-    <value>définitions par circuit</value>
+    <value>opisów na trasę</value>
   </data>
   <data name="PrintDescriptions_copiesCombo_Items" xml:space="preserve">
-    <value>une copie de chaque cicuit</value>
+    <value>jedna kopia każdej trasy</value>
   </data>
   <data name="PrintDescriptions_copiesCombo_Items1" xml:space="preserve">
-    <value>une page de chaque circuit</value>
+    <value>jedna strona każdej trasy</value>
   </data>
   <data name="PrintDescriptions_copiesCombo_Items2" xml:space="preserve">
-    <value>plusieurs pages pour chaque circuit</value>
+    <value>wiele stron każdej trasy</value>
   </data>
   <data name="PrintDescriptions_whatToPrintLabel_Text" xml:space="preserve">
-    <value>Imprimer :</value>
+    <value>Drukuj:</value>
   </data>
   <data name="PrintDescriptions_Text" xml:space="preserve">
-    <value>Imprimer les définitions</value>
+    <value>Drukuj opisy</value>
   </data>
   <data name="PrinterMargins_label3_Text" xml:space="preserve">
-    <value>Hauteur :</value>
+    <value>Wysokość:</value>
   </data>
   <data name="PrinterMargins_groupBoxPaperSize_Text" xml:space="preserve">
-    <value>Taille du papier ({0})</value>
+    <value>Rozmiar papieru ({0})</value>
   </data>
   <data name="PrinterMargins_groupBox1_Text" xml:space="preserve">
-    <value>Orientation</value>
+    <value>Ułożenie strony</value>
   </data>
   <data name="PrinterMargins_label1_Text" xml:space="preserve">
-    <value>Gauche :</value>
+    <value>Lewy:</value>
   </data>
   <data name="PrinterMargins_label4_Text" xml:space="preserve">
-    <value>Haute :</value>
+    <value>Górny:</value>
   </data>
   <data name="PrinterMargins_label5_Text" xml:space="preserve">
-    <value>Droite :</value>
+    <value>Prawy:</value>
   </data>
   <data name="PrinterMargins_label6_Text" xml:space="preserve">
-    <value>Basse :</value>
+    <value>Dolny:</value>
   </data>
   <data name="PrinterMargins_groupBoxMargins_Text" xml:space="preserve">
-    <value>Marges ({0})</value>
+    <value>Marginesy ({0})</value>
   </data>
   <data name="PrinterMargins_Text" xml:space="preserve">
-    <value>Mise en page</value>
+    <value>Ustawienia Strony</value>
   </data>
   <data name="PrintPunches_punchCardLayoutButton_Text" xml:space="preserve">
-    <value>Format du carton de contrôle...</value>
+    <value>Układ kart do perforacji...</value>
   </data>
   <data name="PunchPatternDialog_formatButton_Text" xml:space="preserve">
-    <value>Format du carton de contrôle...</value>
+    <value>Układ kart do perforacji...</value>
   </data>
   <data name="PrintPunches_punchBoxSizeLabel_Text" xml:space="preserve">
-    <value>Taille de la case de poinçonnage :</value>
+    <value>Rozmiar kafelka do perforacji:</value>
   </data>
   <data name="PrintPunches_descriptionsLabel_Text" xml:space="preserve">
-    <value>Copies :</value>
+    <value>Kopie:</value>
   </data>
   <data name="PrintPunches_Text" xml:space="preserve">
-    <value>Imprimer les cartons de contrôle</value>
+    <value>Drukuj karty do perforacji</value>
   </data>
   <data name="PunchcardLayoutDialog_boxOrderGroupBox_Text" xml:space="preserve">
-    <value>Ordre des cases</value>
+    <value>Kolejność prostokątów</value>
   </data>
   <data name="PunchcardLayoutDialog_sizeGroupBox_Text" xml:space="preserve">
-    <value>Taille</value>
+    <value>Rozmiar</value>
   </data>
   <data name="PunchcardLayoutDialog_columnsLabel_Text" xml:space="preserve">
-    <value>Colonnes :</value>
+    <value>Kolumny:</value>
   </data>
   <data name="PunchcardLayoutDialog_rowsLabel_Text" xml:space="preserve">
-    <value>Lignes :</value>
+    <value>Wiersze:</value>
   </data>
   <data name="PunchcardLayoutDialog_Text" xml:space="preserve">
-    <value>Format du carton de contrôle</value>
+    <value>Układ karty do perforacji</value>
   </data>
   <data name="PunchPatternDialog_punchPatternsLabel_Text" xml:space="preserve">
-    <value>Cliquer sur un numéro de poste dans la liste de gauche puis indiquer le schéma des poinçons sur le côté droit. Les postes dont les numéros sont en rouge n'ont pas de schéma défini.</value>
+    <value>Kliknij na kod PK na liście po lewej stronie aby zdefiniować wzorzec perforowania po prawej stronie. Czerwonym kolorem oznaczone są PK, które nie mają zdefiniowanego wzorca perforowania.</value>
   </data>
   <data name="PunchPatternDialog_Text" xml:space="preserve">
-    <value>Schéma des poinçons</value>
+    <value>Wzór perforacji</value>
   </data>
   <data name="ReportForm_printButton_Text" xml:space="preserve">
-    <value>Imprimer...</value>
+    <value>Drukuj...</value>
   </data>
   <data name="TeamVariationsForm_buttonPrint_Text" xml:space="preserve">
-    <value>Imprimer...</value>
+    <value>Drukuj...</value>
   </data>
   <data name="ReportForm_previewButton_Text" xml:space="preserve">
-    <value>Aperçu avant impression...</value>
+    <value>Podgląd wydruku...</value>
   </data>
   <data name="TeamVariationsForm_buttonPrintPreview_Text" xml:space="preserve">
-    <value>Aperçu avant impression...</value>
+    <value>Podgląd wydruku...</value>
   </data>
   <data name="ReportForm_okButton_Text" xml:space="preserve">
-    <value>Fermer</value>
+    <value>Zamknij</value>
   </data>
   <data name="TeamVariationsForm_buttonClose_Text" xml:space="preserve">
-    <value>Fermer</value>
+    <value>Zamknij</value>
   </data>
   <data name="ReportText_ColumnHeader_Climb" xml:space="preserve">
-    <value>Dénivelé</value>
+    <value>Przewyższenie</value>
   </data>
   <data name="ReportText_ColumnHeader_Code" xml:space="preserve">
-    <value>Numéro</value>
+    <value>Kod PK</value>
   </data>
   <data name="ReportText_ColumnHeader_Column" xml:space="preserve">
-    <value>Colonne</value>
+    <value>Kolumna</value>
   </data>
   <data name="ReportText_ColumnHeader_Control" xml:space="preserve">
-    <value>Poste</value>
+    <value>PK</value>
   </data>
   <data name="ReportText_ColumnHeader_ControlCodes" xml:space="preserve">
-    <value>Numéros de poste</value>
+    <value>Kody PK</value>
   </data>
   <data name="ReportText_ColumnHeader_Controls" xml:space="preserve">
-    <value>Postes</value>
+    <value>PK</value>
   </data>
   <data name="ReportText_ColumnHeader_Course" xml:space="preserve">
-    <value>Circuit</value>
+    <value>Trasa</value>
   </data>
   <data name="ReportText_ColumnHeader_Distance" xml:space="preserve">
-    <value>Distance</value>
+    <value>Odległość</value>
   </data>
   <data name="ReportText_ColumnHeader_Item" xml:space="preserve">
-    <value>Élément</value>
+    <value>Element</value>
   </data>
   <data name="ReportText_ColumnHeader_Leg" xml:space="preserve">
-    <value>Interposte</value>
+    <value>Przebieg</value>
   </data>
   <data name="ReportText_ColumnHeader_Length" xml:space="preserve">
-    <value>Distance</value>
+    <value>Długość</value>
   </data>
   <data name="ReportText_ColumnHeader_Load" xml:space="preserve">
-    <value>Charge</value>
+    <value>Obłożenie</value>
   </data>
   <data name="ReportText_ColumnHeader_Location" xml:space="preserve">
-    <value>Emplacement(s)</value>
+    <value>Położenie</value>
   </data>
   <data name="ReportText_ColumnHeader_NumberOfCourses" xml:space="preserve">
-    <value>Nombre de circuits</value>
+    <value>Liczba tras</value>
   </data>
   <data name="ReportText_ColumnHeader_Reason" xml:space="preserve">
-    <value>Motif</value>
+    <value>Przyczyna</value>
   </data>
   <data name="ReportText_ColumnHeader_SameSymbol" xml:space="preserve">
-    <value>Symbole identique ?</value>
-  </data>
-  <data name="ReportText_ColumnHeader_Visits" xml:space="preserve">
-    <value>Visites</value>
+    <value>Ten sam symbol?</value>
   </data>
   <data name="ReportText_CourseSummary_Title" xml:space="preserve">
-    <value>Synthèse du circuit pour {0}</value>
+    <value>Podsumowanie trasy dla {0}</value>
   </data>
   <data name="ReportText_CrossRef_Title" xml:space="preserve">
-    <value>Contrôle croisé pour {0}</value>
-  </data>
-  <data name="ReportText_EventAudit_BothDirectionsLegs" xml:space="preserve">
-    <value>poste à postes en contresens</value>
-  </data>
-  <data name="ReportText_EventAudit_CloseTogetherControls" xml:space="preserve">
-    <value>Postes proches</value>
+    <value>Indeks PK dla {0}</value>
   </data>
   <data name="ReportText_EventAudit_CloseTogetherExplanation" xml:space="preserve">
-    <value>Le tableau suivant indique toutes les paires de postes qui sont dans un rayon de {0} mètres. La colonne 'Symbole identique ?' précise si les 2 postes possèdent le même symbole de base (colonne D)</value>
+    <value>Poniższa tabela pokazuje wszystkie pary PK które są w odległości nie większej niż {0} metrów od siebie. Kolumna 'ten sam symbol' pokazuje czy obydwa PK mają ten sam główny obiekt w kolumnie D.</value>
   </data>
   <data name="ReportText_EventAudit_MissingBoxes" xml:space="preserve">
-    <value>Cases de définition manquantes</value>
+    <value>Brakujące pola opisu</value>
   </data>
   <data name="ReportText_EventAudit_MissingClimb" xml:space="preserve">
-    <value>Les circuits standards devraient indiquer le dénivelé positif</value>
+    <value>Trasy na orientację powinny zawierać informację o przewyższeniu</value>
   </data>
   <data name="ReportText_EventAudit_MissingD" xml:space="preserve">
-    <value>Tous les postes doivent posséder un élément principal dans la colonne D</value>
+    <value>Wszystkie PK muszą mieć informację o głównym objekcie w kolumnie D</value>
   </data>
   <data name="ReportText_EventAudit_MissingEBetween" xml:space="preserve">
-    <value>Quand "Entre" est inscrit en colonne G, deux éléments doivent apparaître dans les colonnes D et E</value>
+    <value>Kiedy "pomiędzy" jest użyty w kolumnie G, obydwa obiekty muszą być wypisane w kolumnie D oraz E</value>
   </data>
   <data name="ReportText_EventAudit_MissingEJunction" xml:space="preserve">
-    <value>Quand "jonction" ou "intersection" est inscrit en colonne F, deux éléments doivent apparaître dans les colonnes D et E</value>
+    <value>Jeżeli "rozwidlenie" lub "skrzyżowanie" jest użyte w kolumnie F, obydwa obiekty muszą być pokazane w kolumnie D i E</value>
   </data>
   <data name="ReportText_EventAudit_MissingFinish" xml:space="preserve">
-    <value>Les circuits standards devraient avoir un cercle d'arrivée</value>
+    <value>Trasa na orientację powinna mieć metę</value>
   </data>
   <data name="ReportText_EventAudit_MissingItems" xml:space="preserve">
-    <value>Éléments manquants sur les circuits</value>
+    <value>Brakujące elementy tras</value>
   </data>
   <data name="ReportText_EventAudit_MissingLoad" xml:space="preserve">
-    <value>Le circuit devrait indiquer le nombre prévisionnel de concurrents</value>
+    <value>Trasy powinny mieć oczekiwane obciążenie zawodnikami</value>
   </data>
   <data name="ReportText_EventAudit_MissingPunch" xml:space="preserve">
-    <value>Aucun schéma de poinçons n'est défini</value>
+    <value>Niezdefiniowany żaden wzorzec perforowania</value>
   </data>
   <data name="ReportText_EventAudit_MissingPunchPatterns" xml:space="preserve">
-    <value>Schémas de poinçons manquants</value>
+    <value>Brakujące wzorce perforowania</value>
   </data>
   <data name="ReportText_EventAudit_MissingScore" xml:space="preserve">
-    <value>Une course au score devrait avoir soit un nombre de points définis pour tous les postes, soit aucun poste</value>
+    <value>Bieg scorelauf powinien mieć punkty przypisane do wszystkich PK lub brak jakichkolwiek punktów</value>
   </data>
   <data name="ReportText_EventAudit_MissingScores" xml:space="preserve">
-    <value>Points manquants</value>
+    <value>Brakujące punkty</value>
   </data>
   <data name="ReportText_EventAudit_MissingStart" xml:space="preserve">
-    <value>Les circuits standards devraient avoir un triangle de départ</value>
+    <value>Trasa na orientację powinna mieć punkt startu (trójkąt)</value>
   </data>
   <data name="ReportText_EventAudit_MissingStartScore" xml:space="preserve">
-    <value>Les courses au score devraient avoir un triangle de départ</value>
+    <value>Bieg typu scorelauf powinien mieć punkt startu (trójkąt)</value>
   </data>
   <data name="ReportText_EventAudit_NoProblems" xml:space="preserve">
-    <value>Aucun problème trouvé.</value>
-  </data>
-  <data name="ReportText_EventAudit_RepeatControl" xml:space="preserve">
-    <value>Le circuit "{0}" contient le poste "{1}" deux fois de suite.</value>
-  </data>
-  <data name="ReportText_EventAudit_RepeatedControls" xml:space="preserve">
-    <value>Postes répétés</value>
-  </data>
-  <data name="ReportText_EventAudit_ScoreDuplicateControl" xml:space="preserve">
-    <value>La course au score "{0}" contient le poste "{1}" deux fois. </value>
+    <value>Nie znaleziono problemów.</value>
   </data>
   <data name="ReportText_EventAudit_Title" xml:space="preserve">
-    <value>Audit de la course pour {0}</value>
+    <value>Audyt zawodów dla {0}</value>
   </data>
   <data name="ReportText_EventAudit_UnusedControls" xml:space="preserve">
-    <value>Postes inutilisés</value>
+    <value>Nieużyte PK</value>
   </data>
   <data name="UnusedControls_Text" xml:space="preserve">
-    <value>Postes inutilisés</value>
-  </data>
-  <data name="ReportText_EventAudit_UnusedControlsExplanation" xml:space="preserve">
-    <value>Les numéros de poste qui suivent sont présents dans la bibliothèque Tous Postes, mais ne sont utilisés sur aucun circuit. Pour les supprimer, utiliser la commande "Supprimer les postes inutilisés" dans le menu "Course". Ces postes ne seront plus pris en considération dans ce rapport.</value>
+    <value>Nieużyte PK</value>
   </data>
   <data name="ReportText_LegLength_Average" xml:space="preserve">
-    <value>Moyenne</value>
-  </data>
-  <data name="ReportText_LegLength_CourseInfo" xml:space="preserve">
-    <value>{0} ({1} postes, {2}, {3} m de dénivelée)</value>
-  </data>
-  <data name="ReportText_LegLength_CourseInfoNoClimb" xml:space="preserve">
-    <value>{0} ({1}postes, {2})</value>
+    <value>Średnia</value>
   </data>
   <data name="ReportText_LegLength_Title" xml:space="preserve">
-    <value>Longueur des interpostes pour {0}</value>
+    <value>Raport długości przebiegów dla {0}</value>
   </data>
   <data name="ReportText_Load_ControlLoadSection" xml:space="preserve">
-    <value>Nombre de concurrents passant au poste</value>
+    <value>Obłożenie PK</value>
   </data>
   <data name="ReportText_Load_LegLoadSection" xml:space="preserve">
-    <value>Nombre de concurrents sur l'interposte</value>
-  </data>
-  <data name="ReportText_Load_MissingLoads" xml:space="preserve">
-    <value>Vous n'avez pas défini le nombre de concurrents pour certains circuits (ou pour tous). Pour cette raison, les charges listées ci-dessous peuvent être absentes ou incorrectes. Pour définir le nombre de concurrents, sélectionner "Nombre de Concurrents" dans le menu "Circuit".</value>
+    <value>Obłożenie przebiegów</value>
   </data>
   <data name="ReportText_Load_OnlyLegsMoreThanOnce" xml:space="preserve">
-    <value>(seules les interpostes utilisés sur plus d'un circuit apparaissent dans le tableau suivant)</value>
+    <value>(jedynie przebiegi użyte w więcej niż jednej trasie są zaprezentowane w tabeli poniżej)</value>
   </data>
   <data name="ReportText_Load_Title" xml:space="preserve">
-    <value>Synthèse du nombre de concurrents pour {0}</value>
-  </data>
-  <data name="ReportText_Load_Visit" xml:space="preserve">
-    <value>({0} visites)</value>
+    <value>Podsumowanie obłożenia zawodnikami dla {0}</value>
   </data>
   <data name="ReportText_Load_Warning" xml:space="preserve">
-    <value>ATTENTION :</value>
-  </data>
-  <data name="ReportText_Note" xml:space="preserve">
-    <value>NOTE : </value>
-  </data>
-  <data name="ReportText_RelayVariation_BranchWarning" xml:space="preserve">
-    <value>Attention : compte tenu du nombre de circuits de relais précisé, la fourche au poste {0} ne sera pas utilisée de manière équitable.  {1} circuit(s) de relais utilisera(ont) la(les) branche(s) {2}, alors que {3} circuit(s) de relais utilisera(ont) la(les) branche(s) {4}. </value>
-  </data>
-  <data name="ReportText_RelayVariation_LegHeader" xml:space="preserve">
-    <value>Circuit de relais {0}</value>
-  </data>
-  <data name="ReportText_RelayVariation_NoTeams" xml:space="preserve">
-    <value>Aucune équipe de relais n'a été définie pour le moment. Sélectionnez le nombre d'équipes et de relayeurs désiré et cliquez sur le bouton "Affecter Variation"</value>
-  </data>
-  <data name="ReportText_RelayVariation_TeamNumber" xml:space="preserve">
-    <value>Equipe {0}</value>
-  </data>
-  <data name="ReportText_RelayVariation_Title" xml:space="preserve">
-    <value>Affectation de relais pour {0}</value>
+    <value>UWAGA:</value>
   </data>
   <data name="SelectionDescriptionText_AwayFromControl" xml:space="preserve">
-    <value>éloigné du poste</value>
+    <value>od PK</value>
   </data>
   <data name="SelectionDescriptionText_CompetitorLoad" xml:space="preserve">
-    <value>Nombre de concurrents :</value>
+    <value>Obłożenie zawodnikami:</value>
   </data>
   <data name="SelectionDescriptionText_ControlsInUse" xml:space="preserve">
-    <value>Nombre de postes utilisés :</value>
+    <value>Używane PK:</value>
   </data>
   <data name="SelectionDescriptionText_ControlsNotInUse" xml:space="preserve">
-    <value>Nombre de postes inutilisés :</value>
+    <value>Nieużywane PK:</value>
   </data>
   <data name="SelectionDescriptionText_Control_Plural" xml:space="preserve">
-    <value>postes</value>
+    <value>PK</value>
   </data>
   <data name="SelectionDescriptionText_Control_Singular" xml:space="preserve">
-    <value>poste</value>
+    <value>PK</value>
   </data>
   <data name="SelectionDescriptionText_CourseList_AllCourses" xml:space="preserve">
-    <value>Tous les circuits</value>
+    <value>Wszystkie trasy</value>
   </data>
   <data name="SelectionDescriptionText_CourseName" xml:space="preserve">
-    <value>Circuit "{0}"</value>
+    <value>Trasa "{0}"</value>
   </data>
   <data name="SelectionDescriptionText_CustomizedSymbolDesc" xml:space="preserve">
-    <value>Définition personnalisée du symbole</value>
+    <value>Zmieniony opis symbolu</value>
   </data>
   <data name="SelectionDescriptionText_EntireLeg" xml:space="preserve">
-    <value>interposte complet</value>
+    <value>cały przebieg</value>
   </data>
   <data name="SelectionDescriptionText_FinishFunnel" xml:space="preserve">
-    <value>balisage convergent</value>
-  </data>
-  <data name="SelectionDescriptionText_Finish_Plural" xml:space="preserve">
-    <value>arrivées</value>
+    <value>tunel dobiegowy</value>
   </data>
   <data name="SelectionDescriptionText_Finish_Singular" xml:space="preserve">
-    <value>arrivée</value>
+    <value>meta</value>
   </data>
   <data name="SelectionDescriptionText_Flagging" xml:space="preserve">
-    <value>Jalonnage :</value>
+    <value>Otaśmowanie:</value>
   </data>
   <data name="SelectionDescriptionText_IntoControl" xml:space="preserve">
-    <value>au poste</value>
+    <value>do PK</value>
   </data>
   <data name="SelectionDescriptionText_IntoFinishFunnel" xml:space="preserve">
-    <value>dans le balisage convergent</value>
+    <value>do tunelu dobiegowego</value>
   </data>
   <data name="SelectionDescriptionText_LineHeight" xml:space="preserve">
-    <value>Hauteur de ligne :</value>
+    <value>Wysokość linii:</value>
   </data>
   <data name="SelectionDescriptionText_Location" xml:space="preserve">
-    <value>Emplacement :</value>
+    <value>Położenie:</value>
   </data>
   <data name="SelectionDescriptionText_MandCrossing_Plural" xml:space="preserve">
-    <value>points de passage obligatoires</value>
+    <value>obowiązkowe punkty przebiegu</value>
   </data>
   <data name="SelectionDescriptionText_MandCrossing_Singular" xml:space="preserve">
-    <value>point de passage obligatoire</value>
+    <value>obowiązkowy punkt przebiegu</value>
   </data>
   <data name="SelectionDescriptionText_None" xml:space="preserve">
-    <value>aucun(e)</value>
+    <value>brak</value>
   </data>
   <data name="SelectionDescriptionText_SpecialName_Forbidden" xml:space="preserve">
-    <value>Route interdite</value>
+    <value>Nidozwolony przebieg</value>
   </data>
   <data name="SelectionDescriptionText_SpecialName_OOB" xml:space="preserve">
-    <value>Zone interdite</value>
-  </data>
-  <data name="SelectionDescriptionText_Start_Plural" xml:space="preserve">
-    <value>départs</value>
+    <value>Teren zakazany</value>
   </data>
   <data name="SelectionDescriptionText_Start_Singular" xml:space="preserve">
-    <value>départ</value>
+    <value>start</value>
   </data>
   <data name="SelectionDescriptionText_TextDescription" xml:space="preserve">
-    <value>Description en clair :</value>
-  </data>
-  <data name="SelectionDescriptionText_TextLine" xml:space="preserve">
-    <value>Ligne de texte</value>
+    <value>Opis:</value>
   </data>
   <data name="SelectionDescriptionText_TextLine_AboveAllCourses" xml:space="preserve">
-    <value>Apparaît au dessus de {0}, pour tous les circuits qui contiennent {0}</value>
+    <value>Wyświetla się powyżej {0} we wszystkich trasach zawierających {0}</value>
   </data>
   <data name="SelectionDescriptionText_TextLine_AboveThisCourse" xml:space="preserve">
-    <value>Apparaît au dessus de {0}, pour ce circuit uniquement</value>
+    <value>Wyświetla się powyżej {0} jedynie na tej trasie</value>
   </data>
   <data name="SelectionDescriptionText_TextLine_BelowAllCourses" xml:space="preserve">
-    <value>Apparaît en dessous de {0}, pour tous les circuits qui contiennent {0}</value>
+    <value>Wyświetla się poniżej {0} we wszystkich trasach zawierających {0}</value>
   </data>
   <data name="SelectionDescriptionText_TextLine_BelowThisCourse" xml:space="preserve">
-    <value>Apparaît en dessous de {0}, pour ce circuit uniquement</value>
+    <value>Wyświetla się poniżej {0} jedynie na tej trasie</value>
   </data>
   <data name="SelectionDescriptionText_TotalControls" xml:space="preserve">
-    <value>Nombre total de postes :</value>
+    <value>Liczba PK:</value>
   </data>
   <data name="SelectionDescriptionText_TotalScore" xml:space="preserve">
-    <value>Score total :</value>
+    <value>Całkowita liczba punktów:</value>
   </data>
   <data name="SelectionDescriptionText_UsedInCourses" xml:space="preserve">
-    <value>Utilisé sur les circuits :</value>
+    <value>Użyte w trasach:</value>
   </data>
   <data name="SelectionDescriptionText_FileName" xml:space="preserve">
-    <value>Nom :</value>
+    <value>Nazwa:</value>
   </data>
   <data name="SelectionDescriptionText_MapExchange_Plural" xml:space="preserve">
-    <value>échanges de carte</value>
+    <value>zmiany mapy</value>
   </data>
   <data name="SelectionDescriptionText_MapExchange_Singular" xml:space="preserve">
-    <value>échange de carte</value>
+    <value>zmiana mapy</value>
   </data>
   <data name="SelectionDescriptionText_MapExchangeAtControl" xml:space="preserve">
-    <value>Echange de carte au poste {0}</value>
+    <value>Zmiana mapy na {0}</value>
   </data>
   <data name="SelectionDescriptionText_Load" xml:space="preserve">
-    <value>Charge :</value>
+    <value>Obłożenie:</value>
   </data>
   <data name="SelectionDescriptionText_UsedIn" xml:space="preserve">
-    <value>Utilisé sur :</value>
+    <value>Użyte w:</value>
   </data>
   <data name="SelectionDescriptionText_CourseNameAndPart" xml:space="preserve">
-    <value>Circuit "{0}", Partie {1}</value>
+    <value>Trasa "{0}", Część {1}</value>
   </data>
   <data name="SelectionDescriptionText_CalculatedLength" xml:space="preserve">
-    <value>Longueur calculée :</value>
-  </data>
-  <data name="SelectionDescriptionText_MapIssue_Plural" xml:space="preserve">
-    <value>Points de prise de carte</value>
-  </data>
-  <data name="SelectionDescriptionText_MapIssue_Singular" xml:space="preserve">
-    <value>Point de prise de carte</value>
-  </data>
-  <data name="SelectionDescriptionText_MapFlipAtControl" xml:space="preserve">
-    <value>Retournement de carte au {0}</value>
-  </data>
-  <data name="SelectLocationsForMove_labelConfirmLocations_Text" xml:space="preserve">
-    <value>Confirmer les nouveaux emplacements</value>
-  </data>
-  <data name="SelectLocationsForMove_labelRotation_Text" xml:space="preserve">
-    <value>Rotation:</value>
-  </data>
-  <data name="SelectLocationsForMove_labelYOffset_Text" xml:space="preserve">
-    <value>Décalage en Y :</value>
-  </data>
-  <data name="SelectLocationsForMove_labelXOffset_Text" xml:space="preserve">
-    <value>Décalage en X :</value>
-  </data>
-  <data name="SelectLocationsForMove_buttonBack_Text" xml:space="preserve">
-    <value>Annuler</value>
-  </data>
-  <data name="SelectLocationsForMove_buttonConfirm_Text" xml:space="preserve">
-    <value>Confirmer</value>
-  </data>
-  <data name="SelectVariations_comboBoxVariations_Items" xml:space="preserve">
-    <value>Chaque variation séparemment</value>
-  </data>
-  <data name="SelectVariations_comboBoxVariations_Items1" xml:space="preserve">
-    <value>Chaque circuit de relais séparemment</value>
-  </data>
-  <data name="SelectVariations_comboBoxVariations_Items2" xml:space="preserve">
-    <value>Toutes les variations combinées</value>
-  </data>
-  <data name="SelectVariations_label1_Text" xml:space="preserve">
-    <value>Variations :</value>
-  </data>
-  <data name="SelectVariations_labelAllVariations_Text" xml:space="preserve">
-    <value>Afficher toutes les fourches ensembles sur une seule carte.</value>
-  </data>
-  <data name="SelectVariations_labelSeparateVariations_Text" xml:space="preserve">
-    <value>Une carte pour chaque variation possible durant la totalité du circuit.</value>
-  </data>
-  <data name="SelectVariations_labelByLeg_Text" xml:space="preserve">
-    <value>Une carte pour chaque circuit de relais pour l'équipe de relais choisie.</value>
-  </data>
-  <data name="SelectVariations_labelByLegNotAvailable_Text" xml:space="preserve">
-    <value>Vous devez d'abord définir les équipes de relais en sélectionnant "Variations d'équipes de relais..." dans le menu "Circuit".</value>
-  </data>
-  <data name="SelectVariations_checkBoxSelectIndividualVariations_Text" xml:space="preserve">
-    <value>Sélectionner les variations individuelles</value>
-  </data>
-  <data name="SelectVariations_labelNumberOfTeams_Text" xml:space="preserve">
-    <value>{0} équipe(s) de relais sont affectée(s) à ce circuit. Utilisez "Variations d'équipes de relais..." dans le menu "Circuit" pour modifier le nombre d'équipes.</value>
-  </data>
-  <data name="SelectVariations_label3_Text" xml:space="preserve">
-    <value>à</value>
-  </data>
-  <data name="SelectVariations_label2_Text" xml:space="preserve">
-    <value>Sélectionnez l'équipe à imprimer/exporter</value>
-  </data>
-  <data name="SelectVariations_Text" xml:space="preserve">
-    <value>Choisir les variations</value>
+    <value>Obliczona długość:</value>
   </data>
   <data name="SetPrintAreaDialog_okButton_Text" xml:space="preserve">
-    <value>Terminé</value>
+    <value>Gotowe</value>
   </data>
   <data name="SetPrintAreaDialog_setPrintAreaLabel_Text" xml:space="preserve">
-    <value>Définissez la zone d'impression souhaitée en glissant avec la souris</value>
+    <value>Ustaw pożądany obszar wydruku przeciągając myszką.</value>
   </data>
   <data name="SetPrintAreaDialog_groupBoxPaperSize_Text" xml:space="preserve">
-    <value>Format du papier</value>
+    <value>Rozmiar papieru</value>
   </data>
   <data name="SetPrintAreaDialog_checkBoxAutomatic_Text" xml:space="preserve">
-    <value>Définir la zone d'impression automatiquement</value>
+    <value>Ustaw obszar wydruku automatycznie</value>
   </data>
   <data name="SetPrintAreaDialog_checkBoxFixSizeToPaper_Text" xml:space="preserve">
-    <value>Ajuster la zone d'impression à la taille du papier</value>
+    <value>Ustaw rozmiar obszaru wydruku na rozmiar papieru</value>
   </data>
   <data name="SetUILanguage_introLabel_Text" xml:space="preserve">
-    <value>Choisissez la langue souhaitée pour l'interface utilisateur de Purple Pen (menus, fenêtres, etc.)</value>
+    <value>Wybierz język, którego chceż użyć w interfejsie użytkownika programu Purple Pen (menu, okna, itp.)</value>
   </data>
   <data name="SetUILanguage_Text" xml:space="preserve">
-    <value>Langue par défaut</value>
+    <value>Język programu</value>
   </data>
   <data name="StatusBarText_DefaultStatus" xml:space="preserve">
-    <value>Bouton gauche de la souris : sélectionner un objet ; Bouton droit : déplacer la carte ; Molette : zoom + / -</value>
-  </data>
-  <data name="StatusBarText_DefaultRectangle" xml:space="preserve">
-    <value>Bouton gauche de la souris : déplacer / redimensionner le rectangle ; Bouton droit : déplacer la carte ; Molette : zoom + / -</value>
+    <value>Lewy przycisk myszy: wybierz obiekt; Prawy przycisk myszy: przesuń mapę; Kółko przewijania: powiększ/pomniejsz.</value>
   </data>
   <data name="StatusBarText_DragObject" xml:space="preserve">
-    <value>Appuyer sur le bouton gauche de votre souris et glisser pour déplacer l'objet sélectionné</value>
+    <value>Przytrzymaj lewy przycisk myszy i przeciągnij aby przesunąć wybrany obiekt</value>
   </data>
   <data name="StatusBarText_DragCorner" xml:space="preserve">
-    <value>Appuyer sur le bouton gauche de votre souris et glisser le point de coin pour le déplacer</value>
+    <value>Przytrzymaj lewy przycisk myszy i przeciągnij uchwyt w narożniku aby go przesunąć</value>
   </data>
   <data name="StatusBarText_DraggingObject" xml:space="preserve">
-    <value>Déplacer l'objet à l'emplacement désiré et relâcher le bouton de votre souris</value>
+    <value>Przesuń obiekt w pożądane położenie i zwolnij przycisk myszy</value>
   </data>
   <data name="StatusBarText_DraggingCorner" xml:space="preserve">
-    <value>Déplacer le point de coin à l'emplacement désiré et relâcher le bouton de votre souris</value>
+    <value>Przesuń uchwyt w narożniku do pożądanego położenia i zwolnij przycisk myszy</value>
   </data>
   <data name="StatusBarText_AddingControl" xml:space="preserve">
-    <value>Cliquer sur le bouton gauche de votre souris pour placer un nouveau poste</value>
+    <value>Kliknij lewym przyciskiem myszy aby umieścić nowy PK</value>
   </data>
   <data name="StatusBarText_AddingExistingControl" xml:space="preserve">
-    <value>Cliquer sur le bouton gauche de votre souris pour ajouter le poste existant n° "{0}" au circuit</value>
+    <value>Kliknij lewy przycisk myszy aby dodać istniejący PK "{0}" do trasy</value>
   </data>
   <data name="StatusBarText_AddingStart" xml:space="preserve">
-    <value>Cliquer sur le bouton gauche de votre souris pour placer un nouveau Départ</value>
+    <value>Kliknij lewy przycisk myszy aby umieścic nowy start</value>
   </data>
   <data name="StatusBarText_AddingExistingStart" xml:space="preserve">
-    <value>Cliquer sur le bouton gauche de votre souris pour ajouter un Départ existant au circuit</value>
+    <value>Kliknij lewy przycisk myszy aby dodać istniejący start do trasy</value>
   </data>
   <data name="StatusBarText_AddingFinish" xml:space="preserve">
-    <value>Cliquer sur le bouton gauche de votre souris pour placer une nouvelle Arrivée</value>
+    <value>Kliknij lewy przycisk myszy aby umieścić nową metę</value>
   </data>
   <data name="StatusBarText_AddingExistingFinish" xml:space="preserve">
-    <value>Cliquer sur le bouton gauche de votre souris pour ajouter une Arrivée existante au circuit</value>
+    <value>Kliknij lewy przycisk myszy aby dodać istniejącą metę do trasy</value>
   </data>
   <data name="StatusBarText_AddingCrossingPoint" xml:space="preserve">
-    <value>Cliquer sur le bouton gauche de votre souris pour placer un nouveau point de passage obligatoire</value>
+    <value>Kliknij lewy przycisk myszy aby umieścić nowe obowiązkowe miejsce przejścia</value>
   </data>
   <data name="StatusBarText_AddingExistingCrossingPoint" xml:space="preserve">
-    <value>Cliquer sur le bouton gauche de votre souris pour ajouter au circuit un point de passage obligatoire existant</value>
+    <value>Kliknij lewy przycisk myszy aby dodać istniejące obowiązkowe miejsce przejścia do trasy</value>
   </data>
   <data name="StatusBarText_AddingObject" xml:space="preserve">
-    <value>Cliquer sur le bouton gauche de votre souris pour placer le nouvel objet</value>
+    <value>Kliknij lewy przycisk myszy aby umieścić nowy obiekt</value>
   </data>
   <data name="StatusBarText_AddingBend" xml:space="preserve">
-    <value>Cliquer sur le bouton gauche de votre souris à l'emplacement du coude</value>
+    <value>Kliknij lewy przycisk myszy w miejscu gdzie ma być dodane zgięcie</value>
   </data>
   <data name="StatusBarText_AddingCorner" xml:space="preserve">
-    <value>Cliquer le bouton gauche de votre souris pour insérer un nouveau coin</value>
+    <value>Kliknij lewy przycisk myszy, aby dodać nowy narożnik</value>
   </data>
   <data name="StatusBarText_DeletingBend" xml:space="preserve">
-    <value>Cliquer avec le bouton gauche de votre souris sur un coude pour le supprimer</value>
+    <value>Kliknij lewy przycisk myszy na zgięciu, aby je usunąć</value>
   </data>
   <data name="StatusBarText_DeletingCorner" xml:space="preserve">
-    <value>Cliquer avec le bouton gauche de votre souris sur un coin pour le supprimer</value>
-  </data>
-  <data name="StatusBarText_AddingControlGap" xml:space="preserve">
-    <value>Cliquer avec le bouton gauche de votre souris sur le cercle du poste afin d'ajouter une petite découpe ; garder le bouton appuyé et déplacer la souris pour créer une découpe plus importante.</value>
+    <value>Kliknij lewy przycisk myszy na narożniku, aby go usunąć</value>
   </data>
   <data name="StatusBarText_RemovingControlGap" xml:space="preserve">
-    <value>Cliquer avec le bouton gauche de votre souris sur la découpe existante dans le cercle du poste pour la supprimer</value>
-  </data>
-  <data name="StatusBarText_AddingLegGap" xml:space="preserve">
-    <value>Cliquer sur le bouton gauche de la souris afin de créer une petite découpe ; garder le bouton appuyé et déplacer la souris pour créer une découpe plus important dans le trait d'interposte</value>
+    <value>Kliknij lewy przycisk myszy na przerwie w kółku PK aby ją usunąć</value>
   </data>
   <data name="StatusBarText_RemovingLegGap" xml:space="preserve">
-    <value>Cliquer avec le bouton gauche de votre souris sur la découpe d'un trait d'interposte pour la supprimer</value>
+    <value>Kliknij lewy przycisk myszy na przerwie w przebiegu aby ją usunąć</value>
   </data>
   <data name="StatusBarText_SizeRectangle" xml:space="preserve">
-    <value>Appuyer sur le bouton gauche de votre souris et glisser pour redimensionner l'objet sélectionné</value>
+    <value>Przytrzymaj i przeciągnij lewy przycisk myszy aby zmienić rozmiar zaznaczonego obiektu</value>
   </data>
   <data name="StatusBarText_SizingRectangle" xml:space="preserve">
-    <value>Déplacer le(s) bord(s) à l'emplacement désiré et relâcher le bouton de votre souris</value>
+    <value>Przesuń krawędź (krawędzie) do pożądanego położenia i zwolnij przycisk myszy</value>
   </data>
   <data name="StatusBarText_AddingDescription" xml:space="preserve">
-    <value>Appuyer sur le bouton gauche de votre souris et glisser pour créer des définitions de poste</value>
-  </data>
-  <data name="StatusBarText_RotatingObject" xml:space="preserve">
-    <value>Cliquer le bouton gauche de votre souris une fois que le point de passage a été orienté dans la bonne direction</value>
-  </data>
-  <data name="StatusBarText_AddingLineArea" xml:space="preserve">
-    <value>Appuyer sur le bouton gauche de votre souris et glisser pour ajouter un segment de ligne ; cliquer sur le bouton gauche pour terminer l'ajout d'un objet</value>
-  </data>
-  <data name="StatusBarText_AddingText" xml:space="preserve">
-    <value>Appuyer sur le bouton gauche de votre souris et glisser pour créer le texte</value>
-  </data>
-  <data name="StatusBarText_AddingExistingMapExchange" xml:space="preserve">
-    <value>Cliquer sur le bouton gauche de la souris pour ajouter un échange de carte existant au circuit</value>
-  </data>
-  <data name="StatusBarText_AddingMapExchange" xml:space="preserve">
-    <value>Cliquer sur le bouton gauche de la souris pour positionner un nouvel échange de carte</value>
-  </data>
-  <data name="StatusBarText_AddingMapExchangeToControl" xml:space="preserve">
-    <value>Cliquer sur le bouton gauche de la souris pour ajouter un échange de carte au poste "{0}" </value>
-  </data>
-  <data name="StatusBarText_AddingRectangle" xml:space="preserve">
-    <value>Appuyez sur le bouton principal de votre souris et glissez-la afin de créer l'objet</value>
-  </data>
-  <data name="TeamVariationsForm_buttonExport_Text" xml:space="preserve">
-    <value>Exporter...</value>
-  </data>
-  <data name="TeamVariationsForm_label2_Text" xml:space="preserve">
-    <value>Nombre d'interpostes :</value>
-  </data>
-  <data name="TeamVariationsForm_buttonCalculate_Text" xml:space="preserve">
-    <value>Attribuer les variations</value>
-  </data>
-  <data name="TeamVariationsForm_label1_Text" xml:space="preserve">
-    <value>Nombre d'équipes :</value>
+    <value>Przytrzymaj i przeciągnij lewy przycisk myszy aby stworzyć opisy punktów kontrolnych</value>
   </data>
   <data name="UnusedControls_okButton_Text" xml:space="preserve">
-    <value>Supprimer</value>
-  </data>
-  <data name="UnusedControls_unusedControlsLabel_Text" xml:space="preserve">
-    <value>Les postes suivant sont dans la bibliothèque Tous Postes, mais sont inutilisés. Cliquer Supprimer pour faire disparaître tous les postes cochés.</value>
-  </data>
-  <data name="ViewAdditionalCourses_Text" xml:space="preserve">
-    <value>Afficher les courses supplémentaires</value>
+    <value>Usuń</value>
   </data>
 </root>

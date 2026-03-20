@@ -1,0 +1,1377 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AboutForm_freeLabel_Text" xml:space="preserve">
+    <value>Purple Pen je brezplačen program, ki se lahko kopira in posreduje.</value>
+  </data>
+  <data name="AboutForm_disclaimerLabel_Text" xml:space="preserve">
+    <value>THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED</value>
+  </data>
+  <data name="AboutForm_okButton_Text" xml:space="preserve">
+    <value>Potrdi</value>
+  </data>
+  <data name="InitialScreen_okButton_Text" xml:space="preserve">
+    <value>Potrdi</value>
+  </data>
+  <data name="LicenseForm_okButton_Text" xml:space="preserve">
+    <value>Potrdi</value>
+  </data>
+  <data name="MissingFonts_okButton_Text" xml:space="preserve">
+    <value>Potrdi</value>
+  </data>
+  <data name="OkCancelDialog_okButton_Text" xml:space="preserve">
+    <value>Potrdi</value>
+  </data>
+  <data name="AboutForm_creditsButton_Text" xml:space="preserve">
+    <value>Zasluge</value>
+  </data>
+  <data name="AboutForm_licenseButton_Text" xml:space="preserve">
+    <value>Oglej si celotno licenco</value>
+  </data>
+  <data name="AboutForm_Text" xml:space="preserve">
+    <value>Vizitka</value>
+  </data>
+  <data name="AddCourse_firstControlLabel_Text" xml:space="preserve">
+    <value>Prva kontrolna točka</value>
+  </data>
+  <data name="AddCourse_descriptionAppearanceLabel_Text" xml:space="preserve">
+    <value>predogled opisa</value>
+  </data>
+  <data name="AllControlsProperties_descriptionAppearanceLabel_Text" xml:space="preserve">
+    <value>predogled opisa</value>
+  </data>
+  <data name="AddCourse_mapScaleLabel_Text" xml:space="preserve">
+    <value>Merilo karte</value>
+  </data>
+  <data name="AllControlsProperties_printingScaleLabel_Text" xml:space="preserve">
+    <value>Merilo karte</value>
+  </data>
+  <data name="AddCourse_oneToPrefixLabel_Text" xml:space="preserve">
+    <value>1: </value>
+  </data>
+  <data name="AllControlsProperties_oneToPrefix_Text" xml:space="preserve">
+    <value>1: </value>
+  </data>
+  <data name="AddCourse_descKindCombo_Items" xml:space="preserve">
+    <value>Simboli</value>
+  </data>
+  <data name="AllControlsProperties_descKindCombo_Items" xml:space="preserve">
+    <value>Simboli</value>
+  </data>
+  <data name="PrintDescriptions_descriptionKindCombo_Items1" xml:space="preserve">
+    <value>Simboli</value>
+  </data>
+  <data name="AddCourse_descKindCombo_Items1" xml:space="preserve">
+    <value>Besedilo</value>
+  </data>
+  <data name="AllControlsProperties_descKindCombo_Items1" xml:space="preserve">
+    <value>Besedilo</value>
+  </data>
+  <data name="ChangeText_groupBox3_Text" xml:space="preserve">
+    <value>Besedilo</value>
+  </data>
+  <data name="EnterSymbolText_textColumn_HeaderText" xml:space="preserve">
+    <value>Besedilo</value>
+  </data>
+  <data name="MainFrame_addTextMenu_Text" xml:space="preserve">
+    <value>Besedilo</value>
+  </data>
+  <data name="MainFrame_textToolStripMenuItem_Text" xml:space="preserve">
+    <value>Besedilo</value>
+  </data>
+  <data name="PrintDescriptions_descriptionKindCombo_Items2" xml:space="preserve">
+    <value>Besedilo</value>
+  </data>
+  <data name="SelectionDescriptionText_SpecialName_Text" xml:space="preserve">
+    <value>Besedilo</value>
+  </data>
+  <data name="AddCourse_descKindCombo_Items2" xml:space="preserve">
+    <value>Simboli in besedilo</value>
+  </data>
+  <data name="AllControlsProperties_descKindCombo_Items2" xml:space="preserve">
+    <value>Simboli in besedilo</value>
+  </data>
+  <data name="AddCourse_labelKindLabel_Text" xml:space="preserve">
+    <value>Oznake kontrolnih točk</value>
+  </data>
+  <data name="AddCourse_labelKindCombo_Items" xml:space="preserve">
+    <value>Zaporedna številka</value>
+  </data>
+  <data name="AddCourse_labelKindCombo_Items1" xml:space="preserve">
+    <value>Kodna številka</value>
+  </data>
+  <data name="AddCourse_labelKindCombo_Items2" xml:space="preserve">
+    <value>Zaporedna številka in kodna številka</value>
+  </data>
+  <data name="AddCourse_labelKindCombo_Items3" xml:space="preserve">
+    <value>Zaporedna številka in število točk</value>
+  </data>
+  <data name="AddCourse_labelKindCombo_Items4" xml:space="preserve">
+    <value>kodna številka in število točk</value>
+  </data>
+  <data name="AddCourse_scoreColumnLabel_Text" xml:space="preserve">
+    <value>Pokaži točke v:</value>
+  </data>
+  <data name="AddCourse_scoreColumnCombo_Items" xml:space="preserve">
+    <value>Stolpec A</value>
+  </data>
+  <data name="AddCourse_scoreColumnCombo_Items1" xml:space="preserve">
+    <value>Stolpec B</value>
+  </data>
+  <data name="AddCourse_scoreColumnCombo_Items2" xml:space="preserve">
+    <value>Stolpec H</value>
+  </data>
+  <data name="AddCourse_scoreColumnCombo_Items3" xml:space="preserve">
+    <value>(ne prikaži)</value>
+  </data>
+  <data name="AddCourse_groupBox1_Text" xml:space="preserve">
+    <value>Prikaz</value>
+  </data>
+  <data name="AllControlsProperties_appearanceGroupBox_Text" xml:space="preserve">
+    <value>Prikaz</value>
+  </data>
+  <data name="ChangeText_groupBox1_Text" xml:space="preserve">
+    <value>Prikaz</value>
+  </data>
+  <data name="CreatePdfCourses_groupBoxAppearance_Text" xml:space="preserve">
+    <value>Prikaz</value>
+  </data>
+  <data name="LinePropertiesDialog_groupBox2_Text" xml:space="preserve">
+    <value>Prikaz</value>
+  </data>
+  <data name="PrintCourses_groupBoxAppearance_Text" xml:space="preserve">
+    <value>Prikaz</value>
+  </data>
+  <data name="PrintDescriptions_layoutGroup_Text" xml:space="preserve">
+    <value>Prikaz</value>
+  </data>
+  <data name="PrintPunches_layoutGroup_Text" xml:space="preserve">
+    <value>Prikaz</value>
+  </data>
+  <data name="AddCourse_secondaryTitleDescription_Text" xml:space="preserve">
+    <value>Naslednje (neobvezno) besedilo bo prikazano v drugi vrstici opisa kontrolnih točk:</value>
+  </data>
+  <data name="AddCourse_secondaryTitleGroup_Text" xml:space="preserve">
+    <value>Spisek kategorij/ dodatni naslov</value>
+  </data>
+  <data name="AddCourse_climbLabel_Text" xml:space="preserve">
+    <value>Vzpon:</value>
+  </data>
+  <data name="SelectionDescriptionText_Climb" xml:space="preserve">
+    <value>Vzpon:</value>
+  </data>
+  <data name="AddCourse_courseTypeLabel_Text" xml:space="preserve">
+    <value>Tip proge:</value>
+  </data>
+  <data name="AddCourse_courseNameLabel_Text" xml:space="preserve">
+    <value>Ime proge:</value>
+  </data>
+  <data name="AddCourse_courseKindCombo_Items" xml:space="preserve">
+    <value>Običajna proga</value>
+  </data>
+  <data name="AddCourse_courseKindCombo_Items1" xml:space="preserve">
+    <value>Score proga</value>
+  </data>
+  <data name="AddCourse_metersSuffix_Text" xml:space="preserve">
+    <value>metrov</value>
+  </data>
+  <data name="AddCourse_Text" xml:space="preserve">
+    <value>Nova proga</value>
+  </data>
+  <data name="CommandNameText_NewCourse" xml:space="preserve">
+    <value>Nova proga</value>
+  </data>
+  <data name="AddTextLine_textLineLabel_Text" xml:space="preserve">
+    <value>Vnesi besedilo za dodatno vrstico opisa kontrolnih točk</value>
+  </data>
+  <data name="AddTextLine_coursesLabel_Text" xml:space="preserve">
+    <value>Proge:</value>
+  </data>
+  <data name="AddTextLine_positionLabel_Text" xml:space="preserve">
+    <value>Položaj:</value>
+  </data>
+  <data name="AddTextLine_comboBoxPosition_Items" xml:space="preserve">
+    <value>Nad {0}</value>
+  </data>
+  <data name="AddTextLine_comboBoxPosition_Items1" xml:space="preserve">
+    <value>Pod {0}</value>
+  </data>
+  <data name="AddTextLine_comboBoxCourses_Items" xml:space="preserve">
+    <value>Samo ta proga</value>
+  </data>
+  <data name="AddTextLine_comboBoxCourses_Items1" xml:space="preserve">
+    <value>Vse proge z/s {0}</value>
+  </data>
+  <data name="AddTextLine_Text" xml:space="preserve">
+    <value>Dodaj besedilno vrstico</value>
+  </data>
+  <data name="CommandNameText_AddTextLine" xml:space="preserve">
+    <value>Dodaj besedilno vrstico</value>
+  </data>
+  <data name="AllControlsProperties_allControlsPropertiesLabel_Text" xml:space="preserve">
+    <value>Te nastavitve določajo kako bo natisnjena kart z vsemi KT.</value>
+  </data>
+  <data name="AllControlsProperties_Text" xml:space="preserve">
+    <value>Lastnosti Vse KT</value>
+  </data>
+  <data name="AutoNumbering_disallowInvertibleCheckBox_Text" xml:space="preserve">
+    <value>Onemogoči kodne številke, ki se lahko berejo narobe; npr: "68"/"89"</value>
+  </data>
+  <data name="NewEventNumbering_disallowInvertibleCheckBox_Text" xml:space="preserve">
+    <value>Onemogoči kodne številke, ki se lahko berejo narobe; npr: "68"/"89"</value>
+  </data>
+  <data name="AutoNumbering_renumberExistingRadioButton_Text" xml:space="preserve">
+    <value>Preštevilči tudi obstoječe kontrolne točke</value>
+  </data>
+  <data name="AutoNumbering_newControlsOnlyRadioButton_Text" xml:space="preserve">
+    <value>Uporabi te nastavitve samo na novih kontrolnih točkah</value>
+  </data>
+  <data name="AutoNumbering_existingControlsGroupBox_Text" xml:space="preserve">
+    <value>Obstoječe kontrolne točke</value>
+  </data>
+  <data name="AutoNumbering_automaticNumberingLabel_Text" xml:space="preserve">
+    <value>Na novo ustvarjene kontrolne točke bodo oštevilčene z naslednjimi nastavitvami.</value>
+  </data>
+  <data name="AutoNumbering_startingCodeLabel_Text" xml:space="preserve">
+    <value>Startna kodna številka</value>
+  </data>
+  <data name="NewEventNumbering_startingCodeLabel_Text" xml:space="preserve">
+    <value>Startna kodna številka</value>
+  </data>
+  <data name="AutoNumbering_Text" xml:space="preserve">
+    <value>Avtomatsko številčenje</value>
+  </data>
+  <data name="CommandNameText_AutoNumbering" xml:space="preserve">
+    <value>Avtomatsko številčenje</value>
+  </data>
+  <data name="ChangeAllCodes_OldCode_HeaderText" xml:space="preserve">
+    <value>Prvotna kodna številka</value>
+  </data>
+  <data name="ChangeAllCodes_NewCode_HeaderText" xml:space="preserve">
+    <value>Nova kodna števlika</value>
+  </data>
+  <data name="ChangeAllCodes_changeControlCodesLabel_Text" xml:space="preserve">
+    <value>Za spremembo kodne številke za eno ali več kontrolnih točk, klikni "Nova kodna številka" in vnesi novo kodno številko. </value>
+  </data>
+  <data name="ChangeAllCodes_Text" xml:space="preserve">
+    <value>Spremeni kodne številke</value>
+  </data>
+  <data name="ChangeCourseOrder_moveDownButton_Text" xml:space="preserve">
+    <value>Premakni dol</value>
+  </data>
+  <data name="ChangeCourseOrder_courseOrderLabel_Text" xml:space="preserve">
+    <value>Uporabi "Premakni gor" in "Premakni dol" gumbe za spremembe vrstnega reda prog.</value>
+  </data>
+  <data name="ChangeCourseOrder_moveUpButton_Text" xml:space="preserve">
+    <value>Premakni gor</value>
+  </data>
+  <data name="ChangeCourseOrder_Text" xml:space="preserve">
+    <value>Vrstni red prog</value>
+  </data>
+  <data name="ChangeMapFile_mapFileDisplay_Text" xml:space="preserve">
+    <value>Trenutna datoteka s karto</value>
+  </data>
+  <data name="ChangeMapFile_buttonChooseFile_Text" xml:space="preserve">
+    <value>&amp;Izberi datoteko s karto</value>
+  </data>
+  <data name="NewEventMapFile_chooseMapFileButton_Text" xml:space="preserve">
+    <value>&amp;Izberi datoteko s karto</value>
+  </data>
+  <data name="ChangeMapFile_labelDpi_Text" xml:space="preserve">
+    <value>Ločljivost:</value>
+  </data>
+  <data name="ChangeMapFile_labelScale_Text" xml:space="preserve">
+    <value>Merilo:</value>
+  </data>
+  <data name="SelectLocationsForMove_labelScale_Text" xml:space="preserve">
+    <value>Merilo:</value>
+  </data>
+  <data name="ChangeMapFile_labelOneTo_Text" xml:space="preserve">
+    <value>1 :</value>
+  </data>
+  <data name="ChangeMapFile_labelDpi2_Text" xml:space="preserve">
+    <value>točk na palec</value>
+  </data>
+  <data name="NewEventBitmapScale_dpiLabel_Text" xml:space="preserve">
+    <value>točk na palec</value>
+  </data>
+  <data name="ChangeMapFile_Text" xml:space="preserve">
+    <value>Datoteka s karto</value>
+  </data>
+  <data name="NewEventMapFile_labelTitle_Text" xml:space="preserve">
+    <value>Datoteka s karto</value>
+  </data>
+  <data name="ChangeSpecialCourses_changeDisplayedCoursesLabel_Text" xml:space="preserve">
+    <value>Izberi proge na katerih bo prikazan ta objekt:</value>
+  </data>
+  <data name="ChangeSpecialCourses_Text" xml:space="preserve">
+    <value>Spremeni prikazane proge</value>
+  </data>
+  <data name="CommandNameText_ChangeDisplayedCourses" xml:space="preserve">
+    <value>Spremeni prikazane proge</value>
+  </data>
+  <data name="ChangeText_eventTitleMenuItem_Text" xml:space="preserve">
+    <value>Naslov prireditve</value>
+  </data>
+  <data name="NewEventTitle_labelTitle_Text" xml:space="preserve">
+    <value>Naslov prireditve</value>
+  </data>
+  <data name="ChangeText_courseNameMenuItem_Text" xml:space="preserve">
+    <value>Ime proge</value>
+  </data>
+  <data name="CourseLoad_CourseName_HeaderText" xml:space="preserve">
+    <value>Ime proge</value>
+  </data>
+  <data name="SelectionDescriptionText_SpecialName_CourseName" xml:space="preserve">
+    <value>Ime proge</value>
+  </data>
+  <data name="ChangeText_courseLengthMenuItem_Text" xml:space="preserve">
+    <value>Dolžina proge</value>
+  </data>
+  <data name="ChangeText_courseClimbMenuItem_Text" xml:space="preserve">
+    <value>Vzpon</value>
+  </data>
+  <data name="ChangeText_classListMenuItem_Text" xml:space="preserve">
+    <value>Spisek kategorij</value>
+  </data>
+  <data name="ChangeText_printScaleMenuItem_Text" xml:space="preserve">
+    <value>Merilo tiska</value>
+  </data>
+  <data name="NewEventPrintScale_labelTitle_Text" xml:space="preserve">
+    <value>Merilo tiska</value>
+  </data>
+  <data name="ChangeText_fileNameMenuItem_Text" xml:space="preserve">
+    <value>Ime datoteke</value>
+  </data>
+  <data name="CreateRouteGadget_nameGroupBox_Text" xml:space="preserve">
+    <value>Ime datoteke</value>
+  </data>
+  <data name="ChangeText_checkBoxBold_Text" xml:space="preserve">
+    <value>Krepko</value>
+  </data>
+  <data name="ChangeText_labelFontSizeMm_Text" xml:space="preserve">
+    <value>mm</value>
+  </data>
+  <data name="CourseAppearanceDialog_label12_Text" xml:space="preserve">
+    <value>mm</value>
+  </data>
+  <data name="CourseAppearanceDialog_label10_Text" xml:space="preserve">
+    <value>mm</value>
+  </data>
+  <data name="CourseAppearanceDialog_label8_Text" xml:space="preserve">
+    <value>mm</value>
+  </data>
+  <data name="CourseAppearanceDialog_label4_Text" xml:space="preserve">
+    <value>mm</value>
+  </data>
+  <data name="CourseAppearanceDialog_label2_Text" xml:space="preserve">
+    <value>mm</value>
+  </data>
+  <data name="CourseAppearanceDialog_labelMM1_Text" xml:space="preserve">
+    <value>mm</value>
+  </data>
+  <data name="LinePropertiesDialog_labelWidthMm_Text" xml:space="preserve">
+    <value>mm</value>
+  </data>
+  <data name="LinePropertiesDialog_labelGapSizeMm_Text" xml:space="preserve">
+    <value>mm</value>
+  </data>
+  <data name="LinePropertiesDialog_labelDashSizeMm_Text" xml:space="preserve">
+    <value>mm</value>
+  </data>
+  <data name="LinePropertiesDialog_labelRadiusMm_Text" xml:space="preserve">
+    <value>mm</value>
+  </data>
+  <data name="PrintDescriptions_mmSuffixLabel_Text" xml:space="preserve">
+    <value>mm</value>
+  </data>
+  <data name="PrintPunches_mmSuffixLabel_Text" xml:space="preserve">
+    <value>mm</value>
+  </data>
+  <data name="ChangeText_insertSpecialButton_Text" xml:space="preserve">
+    <value>Vnesi dodaten tekst</value>
+  </data>
+  <data name="ColorChooserDialog_label5_Text" xml:space="preserve">
+    <value>Črna:</value>
+  </data>
+  <data name="CourseAppearanceDialog_label5_Text" xml:space="preserve">
+    <value>Črna:</value>
+  </data>
+  <data name="ColorChooserDialog_label6_Text" xml:space="preserve">
+    <value>Rumena:</value>
+  </data>
+  <data name="CourseAppearanceDialog_label6_Text" xml:space="preserve">
+    <value>Rumena:</value>
+  </data>
+  <data name="ColorChooserDialog_label3_Text" xml:space="preserve">
+    <value>Magenta:</value>
+  </data>
+  <data name="CourseAppearanceDialog_label3_Text" xml:space="preserve">
+    <value>Magenta:</value>
+  </data>
+  <data name="ColorChooserDialog_label1_Text" xml:space="preserve">
+    <value>Cian modra:</value>
+  </data>
+  <data name="CourseAppearanceDialog_label1_Text" xml:space="preserve">
+    <value>Cian modra:</value>
+  </data>
+  <data name="ColorChooserDialog_groupBoxPreview_Text" xml:space="preserve">
+    <value>Predogled</value>
+  </data>
+  <data name="CourseAppearanceDialog_groupBoxPreview_Text" xml:space="preserve">
+    <value>Predogled</value>
+  </data>
+  <data name="CommandNameText_ChangeSymbol" xml:space="preserve">
+    <value>Spremeni simbol</value>
+  </data>
+  <data name="CommandNameText_ChangeCode" xml:space="preserve">
+    <value>Spremeni kodno številko</value>
+  </data>
+  <data name="CommandNameText_ChangeControl" xml:space="preserve">
+    <value>Spremeni kontrolno točko</value>
+  </data>
+  <data name="CommandNameText_ChangeScore" xml:space="preserve">
+    <value>Spremeni kontrolne točke</value>
+  </data>
+  <data name="CommandNameText_ChangeTitle" xml:space="preserve">
+    <value>Spremeni naslov</value>
+  </data>
+  <data name="CommandNameText_ChangeClimb" xml:space="preserve">
+    <value>Spremeni vzpon</value>
+  </data>
+  <data name="CommandNameText_ChangeCourseName" xml:space="preserve">
+    <value>Spremeni ime proge</value>
+  </data>
+  <data name="CommandNameText_ChangeTextLine" xml:space="preserve">
+    <value>Spremeni besedilno vrstico</value>
+  </data>
+  <data name="CommandNameText_ChangeScale" xml:space="preserve">
+    <value>Osveži merilo karte</value>
+  </data>
+  <data name="CommandNameText_MoveControl" xml:space="preserve">
+    <value>Premakni kontrolno točko</value>
+  </data>
+  <data name="CommandNameText_MoveControlNumber" xml:space="preserve">
+    <value>Premakni zaporedno številko kontrolne točke</value>
+  </data>
+  <data name="CommandNameText_MoveObject" xml:space="preserve">
+    <value>Premakni objekt</value>
+  </data>
+  <data name="CommandNameText_DeleteControl" xml:space="preserve">
+    <value>Izbriši kontrolno točko</value>
+  </data>
+  <data name="CommandNameText_DeleteObject" xml:space="preserve">
+    <value>Izbriši objekt</value>
+  </data>
+  <data name="CommandNameText_DeleteTextLine" xml:space="preserve">
+    <value>Izbriši besedilno vrstico</value>
+  </data>
+  <data name="CommandNameText_AddControl" xml:space="preserve">
+    <value>Dodaj kontrolno točko</value>
+  </data>
+  <data name="MainFrame_addControlToolStripButton_Text" xml:space="preserve">
+    <value>Dodaj kontrolno točko</value>
+  </data>
+  <data name="CommandNameText_AddStart" xml:space="preserve">
+    <value>Dodaj start</value>
+  </data>
+  <data name="MainFrame_addStartToolStripButton_Text" xml:space="preserve">
+    <value>Dodaj start</value>
+  </data>
+  <data name="CommandNameText_AddFinish" xml:space="preserve">
+    <value>Dodaj cilj</value>
+  </data>
+  <data name="MainFrame_addFinishToolStripButton_Text" xml:space="preserve">
+    <value>Dodaj cilj</value>
+  </data>
+  <data name="CommandNameText_AddCrossingPoint" xml:space="preserve">
+    <value>Dodaj obvezen prehod</value>
+  </data>
+  <data name="CommandNameText_AddObject" xml:space="preserve">
+    <value>Dodaj objekt</value>
+  </data>
+  <data name="CommandNameText_DeleteCourse" xml:space="preserve">
+    <value>Izbriši progo</value>
+  </data>
+  <data name="CommandNameText_ChangeCourseProperties" xml:space="preserve">
+    <value>Spremeni lastnosti proge</value>
+  </data>
+  <data name="CommandNameText_ChangeAllControlsProperties" xml:space="preserve">
+    <value>Spremeni lastnosti vse kontrolnih točk</value>
+  </data>
+  <data name="CommandNameText_NewEvent" xml:space="preserve">
+    <value>Ustvari novo prireditev</value>
+  </data>
+  <data name="NewEventWizard_Text" xml:space="preserve">
+    <value>Ustvari novo prireditev</value>
+  </data>
+  <data name="CommandNameText_SetLegFlagging" xml:space="preserve">
+    <value>Spremeni označbe predaj</value>
+  </data>
+  <data name="CommandNameText_ChangeCodes" xml:space="preserve">
+    <value>Spremeni kodne številke</value>
+  </data>
+  <data name="CommandNameText_MoveBend" xml:space="preserve">
+    <value>Premakni zavoj predaje</value>
+  </data>
+  <data name="CommandNameText_AddBend" xml:space="preserve">
+    <value>Dodaj zavoj</value>
+  </data>
+  <data name="CommandNameText_AddCorner" xml:space="preserve">
+    <value>Dodaj kot</value>
+  </data>
+  <data name="CommandNameText_DeleteBend" xml:space="preserve">
+    <value>Izbriši zavoj</value>
+  </data>
+  <data name="CommandNameText_DeleteCorner" xml:space="preserve">
+    <value>Izbriši kot</value>
+  </data>
+  <data name="CommandNameText_AddGap" xml:space="preserve">
+    <value>Dodaj razmak</value>
+  </data>
+  <data name="CommandNameText_RemoveGap" xml:space="preserve">
+    <value>Izbriši razmak</value>
+  </data>
+  <data name="CommandNameText_MoveGap" xml:space="preserve">
+    <value>Premakni razmak</value>
+  </data>
+  <data name="CommandNameText_Rotate" xml:space="preserve">
+    <value>Zavrti</value>
+  </data>
+  <data name="CommandNameText_ChangePunchPatterns" xml:space="preserve">
+    <value>Spremeni vzorce luknjic</value>
+  </data>
+  <data name="CommandNameText_ChangePunchcardFormat" xml:space="preserve">
+    <value>Spremeni obliko startnega kartona</value>
+  </data>
+  <data name="CommandNameText_SetPrintArea" xml:space="preserve">
+    <value>Določi območje tiskanja</value>
+  </data>
+  <data name="SetPrintAreaDialog_Text" xml:space="preserve">
+    <value>Določi območje tiskanja</value>
+  </data>
+  <data name="CommandNameText_SetCourseLoad" xml:space="preserve">
+    <value>Spremeni količino tekmovalcev</value>
+  </data>
+  <data name="CommandNameText_SetCustomSymbolText" xml:space="preserve">
+    <value>Prilagodi besedilni opis</value>
+  </data>
+  <data name="CustomSymbolText_Text" xml:space="preserve">
+    <value>Prilagodi besedilni opis</value>
+  </data>
+  <data name="CommandNameText_ChangeCourseOrder" xml:space="preserve">
+    <value>Spremeni vrstni red prog</value>
+  </data>
+  <data name="CommandNameText_ChangeMapFile" xml:space="preserve">
+    <value>Spremeni datoteko s karto</value>
+  </data>
+  <data name="CommandNameText_IgnoreMissingFonts" xml:space="preserve">
+    <value>Spreglej manjkajoče pisave</value>
+  </data>
+  <data name="CommandNameText_RemoveUnusedControls" xml:space="preserve">
+    <value>Izbriši neuporabljene kontrolne točke</value>
+  </data>
+  <data name="CommandNameText_SetDescriptionLanguage" xml:space="preserve">
+    <value>Spremeni jezik opisov kontrolnih točk</value>
+  </data>
+  <data name="CommandNameText_ChangeText" xml:space="preserve">
+    <value>Spremeni besedilo</value>
+  </data>
+  <data name="MiscText_ChangeTextTitle" xml:space="preserve">
+    <value>Spremeni besedilo</value>
+  </data>
+  <data name="CommandNameText_ChangeCourseAppearance" xml:space="preserve">
+    <value>Prilagodi izgled prog</value>
+  </data>
+  <data name="CommandNameText_AddMapExchange" xml:space="preserve">
+    <value>Dodaj menjavo karte</value>
+  </data>
+  <data name="CourseAppearanceDialog_label7_Text" xml:space="preserve">
+    <value>Premer točke v sredi</value>
+  </data>
+  <data name="CourseAppearanceDialog_comboBoxControlNumberStyle_Items" xml:space="preserve">
+    <value>Arial</value>
+  </data>
+  <data name="CourseAppearanceDialog_comboBoxControlNumberStyle_Items1" xml:space="preserve">
+    <value>Arial Krepko</value>
+  </data>
+  <data name="CourseAppearanceDialog_labelControlNumberStyle_Text" xml:space="preserve">
+    <value>Stil zaporedne številke</value>
+  </data>
+  <data name="CourseAppearanceDialog_labelControlNumber_Text" xml:space="preserve">
+    <value>Velikost zaporedne številke</value>
+  </data>
+  <data name="CourseAppearanceDialog_labelLineWidth_Text" xml:space="preserve">
+    <value>Debelina črte:</value>
+  </data>
+  <data name="CourseAppearanceDialog_labelControlCircle_Text" xml:space="preserve">
+    <value>Premer oznake kontrolne točke</value>
+  </data>
+  <data name="CourseAppearanceDialog_checkBoxStandardSizes_Text" xml:space="preserve">
+    <value>Uporabi IOF standardne velikosti</value>
+  </data>
+  <data name="CourseAppearanceDialog_groupBoxSizes_Text" xml:space="preserve">
+    <value>Velikosti objektov</value>
+  </data>
+  <data name="CourseAppearanceDialog_comboBoxBlendPurple_Items" xml:space="preserve">
+    <value>Brez</value>
+  </data>
+  <data name="CourseSelector_selectNone_Text" xml:space="preserve">
+    <value>Brez</value>
+  </data>
+  <data name="SelectionDescriptionText_CourseList_None" xml:space="preserve">
+    <value>Brez</value>
+  </data>
+  <data name="CourseAppearanceDialog_checkBoxDefaultPurple_Text" xml:space="preserve">
+    <value>Uporabi vijolično iz karte</value>
+  </data>
+  <data name="CourseAppearanceDialog_groupBoxPurple_Text" xml:space="preserve">
+    <value>Vijolična barva</value>
+  </data>
+  <data name="CourseLoad_Load_HeaderText" xml:space="preserve">
+    <value>število tekmovalcev na kontrolni točk</value>
+  </data>
+  <data name="CourseLoad_courseLoadLabel_Text" xml:space="preserve">
+    <value>Določi število tekmovalcev na progi s klikom na drugi stolpec in vnosom števila.</value>
+  </data>
+  <data name="CourseLoad_Text" xml:space="preserve">
+    <value>Obremenitev proge</value>
+  </data>
+  <data name="CourseSelector_selectAll_Text" xml:space="preserve">
+    <value>Vse</value>
+  </data>
+  <data name="CreateGpx_coursesGroupBox_Text" xml:space="preserve">
+    <value>Proge</value>
+  </data>
+  <data name="CreateImageFiles_coursesGroupBox_Text" xml:space="preserve">
+    <value>Proge</value>
+  </data>
+  <data name="CreateKmlFiles_coursesGroupBox_Text" xml:space="preserve">
+    <value>Proge</value>
+  </data>
+  <data name="CreateOcadFiles_coursesGroupBox_Text" xml:space="preserve">
+    <value>Proge</value>
+  </data>
+  <data name="CreatePdfCourses_coursesGroupBox_Text" xml:space="preserve">
+    <value>Proge</value>
+  </data>
+  <data name="PrintCourses_coursesGroupBox_Text" xml:space="preserve">
+    <value>Proge</value>
+  </data>
+  <data name="PrintDescriptions_coursesGroupBox_Text" xml:space="preserve">
+    <value>Proge</value>
+  </data>
+  <data name="PrintPunches_coursesGroupBox_Text" xml:space="preserve">
+    <value>Proge</value>
+  </data>
+  <data name="ReportText_ColumnHeader_Courses" xml:space="preserve">
+    <value>Proge</value>
+  </data>
+  <data name="CreateImageFiles_createButton_Text" xml:space="preserve">
+    <value>Ustvari</value>
+  </data>
+  <data name="CreateKmlFiles_createButton_Text" xml:space="preserve">
+    <value>Ustvari</value>
+  </data>
+  <data name="CreateOcadFiles_createButton_Text" xml:space="preserve">
+    <value>Ustvari</value>
+  </data>
+  <data name="CreatePdfCourses_okButton_Text" xml:space="preserve">
+    <value>Ustvari</value>
+  </data>
+  <data name="CreateRouteGadget_createButton_Text" xml:space="preserve">
+    <value>Ustvari</value>
+  </data>
+  <data name="CreateImageFiles_cancelButton_Text" xml:space="preserve">
+    <value>Prekliči</value>
+  </data>
+  <data name="CreateKmlFiles_cancelButton_Text" xml:space="preserve">
+    <value>Prekliči</value>
+  </data>
+  <data name="CreateOcadFiles_cancelButton_Text" xml:space="preserve">
+    <value>Prekliči</value>
+  </data>
+  <data name="CreateRouteGadget_cancelButton_Text" xml:space="preserve">
+    <value>Prekliči</value>
+  </data>
+  <data name="MiscText_CrashCancel" xml:space="preserve">
+    <value>Prekliči</value>
+  </data>
+  <data name="NewEventWizard_cancelButton_Text" xml:space="preserve">
+    <value>Prekliči</value>
+  </data>
+  <data name="NonPrintableObjects_cancelButton_Text" xml:space="preserve">
+    <value>Prekliči</value>
+  </data>
+  <data name="OkCancelDialog_cancelButton_Text" xml:space="preserve">
+    <value>Prekliči</value>
+  </data>
+  <data name="OperationInProgress_cancelButton_Text" xml:space="preserve">
+    <value>Prekliči</value>
+  </data>
+  <data name="OverwritingOcadFilesDialog_buttonCancel_Text" xml:space="preserve">
+    <value>Prekliči</value>
+  </data>
+  <data name="PrintDescriptions_cancelButton_Text" xml:space="preserve">
+    <value>Prekliči</value>
+  </data>
+  <data name="PrintPunches_cancelButton_Text" xml:space="preserve">
+    <value>Prekliči</value>
+  </data>
+  <data name="SelectLocationsForMove_buttonCancel_Text" xml:space="preserve">
+    <value>Prekliči</value>
+  </data>
+  <data name="SetPrintAreaDialog_cancelButton_Text" xml:space="preserve">
+    <value>Prekliči</value>
+  </data>
+  <data name="CreateImageFiles_folderBrowserDialog_Description" xml:space="preserve">
+    <value>Izberi mapo za OCAD datoteke</value>
+  </data>
+  <data name="CreateKmlFiles_folderBrowserDialog_Description" xml:space="preserve">
+    <value>Izberi mapo za OCAD datoteke</value>
+  </data>
+  <data name="CreateOcadFiles_folderBrowserDialog_Description" xml:space="preserve">
+    <value>Izberi mapo za OCAD datoteke</value>
+  </data>
+  <data name="CreateRouteGadget_folderBrowserDialog_Description" xml:space="preserve">
+    <value>Izberi mapo za OCAD datoteke</value>
+  </data>
+  <data name="CreateImageFiles_fileFormatLabel_Text" xml:space="preserve">
+    <value>Format datoteke:</value>
+  </data>
+  <data name="CreateOcadFiles_fileFormatLabel_Text" xml:space="preserve">
+    <value>Format datoteke:</value>
+  </data>
+  <data name="CreateImageFiles_fileNamePrefixLabel_Text" xml:space="preserve">
+    <value>Pripona imena datoteke:</value>
+  </data>
+  <data name="CreateKmlFiles_fileNamePrefixLabel_Text" xml:space="preserve">
+    <value>Pripona imena datoteke:</value>
+  </data>
+  <data name="CreateOcadFiles_fileNamePrefixLabel_Text" xml:space="preserve">
+    <value>Pripona imena datoteke:</value>
+  </data>
+  <data name="CreateImageFiles_outputGroupBox_Text" xml:space="preserve">
+    <value>Izhod</value>
+  </data>
+  <data name="CreateKmlFiles_outputGroupBox_Text" xml:space="preserve">
+    <value>Izhod</value>
+  </data>
+  <data name="CreateOcadFiles_outputGroupBox_Text" xml:space="preserve">
+    <value>Izhod</value>
+  </data>
+  <data name="PrintCourses_printerGroup_Text" xml:space="preserve">
+    <value>Izhod</value>
+  </data>
+  <data name="PrintDescriptions_printerGroup_Text" xml:space="preserve">
+    <value>Izhod</value>
+  </data>
+  <data name="PrintPunches_printerGroup_Text" xml:space="preserve">
+    <value>Izhod</value>
+  </data>
+  <data name="CreateImageFiles_selectOtherDirectoryButton_Text" xml:space="preserve">
+    <value>Izberi mapo...</value>
+  </data>
+  <data name="CreateKmlFiles_selectOtherDirectoryButton_Text" xml:space="preserve">
+    <value>Izberi mapo...</value>
+  </data>
+  <data name="CreateOcadFiles_selectOtherDirectoryButton_Text" xml:space="preserve">
+    <value>Izberi mapo...</value>
+  </data>
+  <data name="CreatePdfCourses_selectOtherDirectoryButton_Text" xml:space="preserve">
+    <value>Izberi mapo...</value>
+  </data>
+  <data name="CreateRouteGadget_selectOtherDirectoryButton_Text" xml:space="preserve">
+    <value>Izberi mapo...</value>
+  </data>
+  <data name="CreateImageFiles_coursesDirectory_Text" xml:space="preserve">
+    <value>Ista mapa kot datoteka Purple Pen</value>
+  </data>
+  <data name="CreateKmlFiles_coursesDirectory_Text" xml:space="preserve">
+    <value>Ista mapa kot datoteka Purple Pen</value>
+  </data>
+  <data name="CreateOcadFiles_coursesDirectory_Text" xml:space="preserve">
+    <value>Ista mapa kot datoteka Purple Pen</value>
+  </data>
+  <data name="CreatePdfCourses_coursesDirectory_Text" xml:space="preserve">
+    <value>Ista mapa kot datoteka Purple Pen</value>
+  </data>
+  <data name="CreateRouteGadget_coursesDirectory_Text" xml:space="preserve">
+    <value>Ista mapa kot datoteka Purple Pen</value>
+  </data>
+  <data name="CreateImageFiles_mapDirectory_Text" xml:space="preserve">
+    <value>Ista mapa kot datoteka s karto</value>
+  </data>
+  <data name="CreateKmlFiles_mapDirectory_Text" xml:space="preserve">
+    <value>Ista mapa kot datoteka s karto</value>
+  </data>
+  <data name="CreateOcadFiles_mapDirectory_Text" xml:space="preserve">
+    <value>Ista mapa kot datoteka s karto</value>
+  </data>
+  <data name="CreatePdfCourses_mapDirectory_Text" xml:space="preserve">
+    <value>Ista mapa kot datoteka s karto</value>
+  </data>
+  <data name="CreateRouteGadget_mapDirectory_Text" xml:space="preserve">
+    <value>Ista mapa kot datoteka s karto</value>
+  </data>
+  <data name="CreateImageFiles_otherDirectory_Text" xml:space="preserve">
+    <value>Druga mapa</value>
+  </data>
+  <data name="CreateKmlFiles_otherDirectory_Text" xml:space="preserve">
+    <value>Druga mapa</value>
+  </data>
+  <data name="CreateOcadFiles_otherDirectory_Text" xml:space="preserve">
+    <value>Druga mapa</value>
+  </data>
+  <data name="CreatePdfCourses_otherDirectory_Text" xml:space="preserve">
+    <value>Druga mapa</value>
+  </data>
+  <data name="CreateRouteGadget_otherDirectory_Text" xml:space="preserve">
+    <value>Druga mapa</value>
+  </data>
+  <data name="CreateImageFiles_folderGroupBox_Text" xml:space="preserve">
+    <value>Mapa</value>
+  </data>
+  <data name="CreateKmlFiles_folderGroupBox_Text" xml:space="preserve">
+    <value>Mapa</value>
+  </data>
+  <data name="CreateOcadFiles_folderGroupBox_Text" xml:space="preserve">
+    <value>Mapa</value>
+  </data>
+  <data name="CreatePdfCourses_folderGroupBox_Text" xml:space="preserve">
+    <value>Mapa</value>
+  </data>
+  <data name="CreateRouteGadget_folderGroupBox_Text" xml:space="preserve">
+    <value>Mapa</value>
+  </data>
+  <data name="CreateOcadFiles_Text" xml:space="preserve">
+    <value>Ustvari OCAD datoteko</value>
+  </data>
+  <data name="CreateRouteGadget_label1_Text" xml:space="preserve">
+    <value>Vnesi ime (brez .xml ali .gif) za obe RouteGadget datoteki:</value>
+  </data>
+  <data name="CreateRouteGadget_learnMoreLink_Text" xml:space="preserve">
+    <value>Več o RouteGadget</value>
+  </data>
+  <data name="CreateRouteGadget_label2_Text" xml:space="preserve">
+    <value>RouteGadget potrebuje slikovno datoteko (.gif) in IOF XML (.xml) datoteko. Izbero ime in mapo za obe datoteki.</value>
+  </data>
+  <data name="CreateRouteGadget_Text" xml:space="preserve">
+    <value>Ustvari RouteGadget datoteko</value>
+  </data>
+  <data name="CustomSymbolText_labelChooseLanguage_Text" xml:space="preserve">
+    <value>Izberi jezika za besedilne opise kontrolnih točk</value>
+  </data>
+  <data name="CustomSymbolText_labelSymbolName_Text" xml:space="preserve">
+    <value>Ime simbola:</value>
+  </data>
+  <data name="CustomSymbolText_labelCustomizedText_Text" xml:space="preserve">
+    <value>Prilagojeno besedilo:</value>
+  </data>
+  <data name="CustomSymbolText_buttonChangeText_Text" xml:space="preserve">
+    <value>Spremeni besedilo....</value>
+  </data>
+  <data name="CustomSymbolText_buttonDefault_Text" xml:space="preserve">
+    <value>Povrni na standardno</value>
+  </data>
+  <data name="CustomSymbolText_labelStandardText_Text" xml:space="preserve">
+    <value>Standardno besedilo</value>
+  </data>
+  <data name="CustomSymbolText_checkBoxShowKey_Text" xml:space="preserve">
+    <value>Pokaži pomen pod opisom simbola</value>
+  </data>
+  <data name="CustomSymbolText_labelCustomizeText_Text" xml:space="preserve">
+    <value>Klikni na simbol za prilagoditev besedilnega opisa kontrolne točke</value>
+  </data>
+  <data name="EnterSymbolText_numberColumn_HeaderText" xml:space="preserve">
+    <value>Številka</value>
+  </data>
+  <data name="EnterSymbolText_genderColumn_HeaderText" xml:space="preserve">
+    <value>Spol</value>
+  </data>
+  <data name="EnterSymbolText_checkBoxPlural_Text" xml:space="preserve">
+    <value>Prikaži množinske obrazce</value>
+  </data>
+  <data name="EnterSymbolText_checkBoxGender_Text" xml:space="preserve">
+    <value>Prikaži obrazce za spol</value>
+  </data>
+  <data name="EnterSymbolText_labelDescription_Text" xml:space="preserve">
+    <value>Vnesi prilagojeno besedilo za simbol v stolpec besedilo</value>
+  </data>
+  <data name="EnterSymbolText_labelGenderChooser_Text" xml:space="preserve">
+    <value>Spol:</value>
+  </data>
+  <data name="EnterSymbolText_Text" xml:space="preserve">
+    <value>Prilagojeno opis simbola</value>
+  </data>
+  <data name="InitialScreen_openLastRadioButton_Text" xml:space="preserve">
+    <value>Odpri zadnjo prireditev</value>
+  </data>
+  <data name="InitialScreen_openSampleRadioButton_Text" xml:space="preserve">
+    <value>Odpri vzorčno prireditev</value>
+  </data>
+  <data name="InitialScreen_createNewRadioButton_Text" xml:space="preserve">
+    <value>Ustvari novo prireditev</value>
+  </data>
+  <data name="InitialScreen_openExistingRadioButton_Text" xml:space="preserve">
+    <value>Odpri obstoječo prireditev</value>
+  </data>
+  <data name="InitialScreen_donationLink_Text" xml:space="preserve">
+    <value>Doniraj</value>
+  </data>
+  <data name="InitialScreen_Text" xml:space="preserve">
+    <value>Dobrodošli v programu Purple Pen</value>
+  </data>
+  <data name="LicenseForm_bsdLicenseLinkLabel_Text" xml:space="preserve">
+    <value>Purple Pen je na voljo z "BSD" uporabniško licenco.</value>
+  </data>
+  <data name="LicenseForm_Text" xml:space="preserve">
+    <value>Purple Pen licenca</value>
+  </data>
+  <data name="MainFrame_tabPage1_Text" xml:space="preserve">
+    <value>Vse kontrolne točke</value>
+  </data>
+  <data name="MainFrame_openFileDialog_Filter" xml:space="preserve">
+    <value>Purple Pen datoteke|*.ppen|Vse datoteke|*.*</value>
+  </data>
+  <data name="MainFrame_saveFileDialog_Filter" xml:space="preserve">
+    <value>Purple Pen datoteke|*.ppen</value>
+  </data>
+  <data name="MainFrame_newEventMenu_Text" xml:space="preserve">
+    <value>&amp;Nova prireditev...</value>
+  </data>
+  <data name="MainFrame_openMenu_Text" xml:space="preserve">
+    <value>&amp;Odpri ...</value>
+  </data>
+  <data name="MainFrame_saveMenu_Text" xml:space="preserve">
+    <value>&amp;Shrani</value>
+  </data>
+  <data name="MainFrame_saveAsMenu_Text" xml:space="preserve">
+    <value>Shrani &amp;kot ...</value>
+  </data>
+  <data name="MainFrame_createOcadFilesMenu_Text" xml:space="preserve">
+    <value>Ustvari OCAD &amp;Datoteke...</value>
+  </data>
+  <data name="MainFrame_createXmlMenu_Text" xml:space="preserve">
+    <value>Ustvari podatkovno &amp;Datoteko za izmenjavo (IOF XML)...</value>
+  </data>
+  <data name="MainFrame_printDescriptionsMenu_Text" xml:space="preserve">
+    <value>&amp;Tiskaj Opise kontrolnih točk...</value>
+  </data>
+  <data name="MainFrame_printCoursesMenu_Text" xml:space="preserve">
+    <value>Tiskaj &amp;Proge...</value>
+  </data>
+  <data name="MainFrame_printAreaThisPartMenu_Text" xml:space="preserve">
+    <value>Izbran &amp;Samo delno</value>
+  </data>
+  <data name="MainFrame_printAreaThisCourseMenu_Text" xml:space="preserve">
+    <value>&amp;Izbrana Proga</value>
+  </data>
+  <data name="MainFrame_printAreaAllCoursesMenu_Text" xml:space="preserve">
+    <value>&amp;Vse proge</value>
+  </data>
+  <data name="MainFrame_setPrintAreaMenu_Text" xml:space="preserve">
+    <value>Določi območje tiskanja</value>
+  </data>
+  <data name="MainFrame_programLanguageMenu_Text" xml:space="preserve">
+    <value>Program &amp;Jezik...</value>
+  </data>
+  <data name="MainFrame_exitMenu_Text" xml:space="preserve">
+    <value>I&amp;zhod</value>
+  </data>
+  <data name="MainFrame_fileMenu_Text" xml:space="preserve">
+    <value>&amp;Datoteka</value>
+  </data>
+  <data name="MainFrame_cancelMenu_Text" xml:space="preserve">
+    <value>&amp;Pobriši izbiro</value>
+  </data>
+  <data name="MiscText_ClearSelectionWithShortcut" xml:space="preserve">
+    <value>&amp;Pobriši izbiro</value>
+  </data>
+  <data name="MainFrame_undoMenu_Text" xml:space="preserve">
+    <value>&amp;Prekliči</value>
+  </data>
+  <data name="MiscText_UndoWithShortcut" xml:space="preserve">
+    <value>&amp;Prekliči</value>
+  </data>
+  <data name="MainFrame_redoMenu_Text" xml:space="preserve">
+    <value>&amp;Obnovi</value>
+  </data>
+  <data name="MiscText_RedoWithShortcut" xml:space="preserve">
+    <value>&amp;Obnovi</value>
+  </data>
+  <data name="MainFrame_deleteMenu_Text" xml:space="preserve">
+    <value>&amp;Izbriši</value>
+  </data>
+  <data name="MainFrame_deleteItemMenu_Text" xml:space="preserve">
+    <value>&amp;Izbriši</value>
+  </data>
+  <data name="MainFrame_editMenu_Text" xml:space="preserve">
+    <value>&amp;Uredi</value>
+  </data>
+  <data name="MainFrame_entireCourseMenu_Text" xml:space="preserve">
+    <value>Celotna &amp;Proga</value>
+  </data>
+  <data name="MainFrame_entireMapMenu_Text" xml:space="preserve">
+    <value>Celotna &amp;Karta</value>
+  </data>
+  <data name="MainFrame_zoom50Menu_Text" xml:space="preserve">
+    <value>50%</value>
+  </data>
+  <data name="MainFrame_zoom100Menu_Text" xml:space="preserve">
+    <value>100%</value>
+  </data>
+  <data name="MainFrame_zoom150Menu_Text" xml:space="preserve">
+    <value>150%</value>
+  </data>
+  <data name="MainFrame_zoom200Menu_Text" xml:space="preserve">
+    <value>200%</value>
+  </data>
+  <data name="MainFrame_zoom300Menu_Text" xml:space="preserve">
+    <value>300%</value>
+  </data>
+  <data name="MainFrame_zoom500Menu_Text" xml:space="preserve">
+    <value>500%</value>
+  </data>
+  <data name="MainFrame_zoom1000Menu_Text" xml:space="preserve">
+    <value>1000%</value>
+  </data>
+  <data name="MainFrame_zoomMenu_Text" xml:space="preserve">
+    <value>&amp;Povečaj</value>
+  </data>
+  <data name="MainFrame_veryLowIntensityMenu_Text" xml:space="preserve">
+    <value>&amp;Zelo nizka</value>
+  </data>
+  <data name="MainFrame_lowIntensityMenu_Text" xml:space="preserve">
+    <value>&amp;Nizka</value>
+  </data>
+  <data name="MainFrame_mediumIntensityMenu_Text" xml:space="preserve">
+    <value>&amp;Srednja</value>
+  </data>
+  <data name="MainFrame_highIntensityMenu_Text" xml:space="preserve">
+    <value>&amp;Visoka</value>
+  </data>
+  <data name="MainFrame_fullIntensityMenu_Text" xml:space="preserve">
+    <value>&amp;Polno</value>
+  </data>
+  <data name="MainFrame_mapIntensityMenu_Text" xml:space="preserve">
+    <value>Karta &amp;Intenzivnost</value>
+  </data>
+  <data name="MainFrame_normalQualityMenu_Text" xml:space="preserve">
+    <value>Nizka</value>
+  </data>
+  <data name="MainFrame_highQualityMenu_Text" xml:space="preserve">
+    <value>Visoko</value>
+  </data>
+  <data name="MainFrame_mapQualityMenu_Text" xml:space="preserve">
+    <value>Karta &amp;Kvaliteta</value>
+  </data>
+  <data name="MainFrame_showPopupsMenu_Text" xml:space="preserve">
+    <value>Prikaži &amp;Pojavna Informacija</value>
+  </data>
+  <data name="MainFrame_allControlsMenu_Text" xml:space="preserve">
+    <value>&amp;Vse kontrolne točke</value>
+  </data>
+  <data name="MainFrame_viewMenu_Text" xml:space="preserve">
+    <value>&amp;Pogled</value>
+  </data>
+  <data name="MainFrame_mapExchangeControlMenuItem_Text" xml:space="preserve">
+    <value>Menjava karte na &amp;kontrolna točka</value>
+  </data>
+  <data name="MainFrame_mapExchangeSeparateMenuItem_Text" xml:space="preserve">
+    <value>&amp;označena pote do menjave karte</value>
+  </data>
+  <data name="MainFrame_addMandatoryCrossingMenu_Text" xml:space="preserve">
+    <value>obvezen prehod</value>
+  </data>
+  <data name="MainFrame_mandatoryCrossingPointToolStripMenuItem_Text" xml:space="preserve">
+    <value>obvezen prehod</value>
+  </data>
+  <data name="MainFrame_addOptCrossingMenu_Text" xml:space="preserve">
+    <value>možnost prehoda</value>
+  </data>
+  <data name="MainFrame_optionalCrossingPointToolStripMenuItem_Text" xml:space="preserve">
+    <value>možnost prehoda</value>
+  </data>
+  <data name="SelectionDescriptionText_SpecialName_OptCrossing" xml:space="preserve">
+    <value>možnost prehoda</value>
+  </data>
+  <data name="MainFrame_addOutOfBoundsMenu_Text" xml:space="preserve">
+    <value>Prepovedano območje</value>
+  </data>
+  <data name="MainFrame_outOfBoundsToolStripMenuItem_Text" xml:space="preserve">
+    <value>Prepovedano območje</value>
+  </data>
+  <data name="MainFrame_addDangerousMenu_Text" xml:space="preserve">
+    <value>Nevarno območje</value>
+  </data>
+  <data name="MainFrame_dangerousToolStripMenuItem_Text" xml:space="preserve">
+    <value>Nevarno območje</value>
+  </data>
+  <data name="SelectionDescriptionText_SpecialName_Dangerous" xml:space="preserve">
+    <value>Nevarno območje</value>
+  </data>
+  <data name="MainFrame_addWaterMenu_Text" xml:space="preserve">
+    <value>Okrepčevalna točka</value>
+  </data>
+  <data name="MainFrame_waterLocationToolStripMenuItem_Text" xml:space="preserve">
+    <value>Okrepčevalna točka</value>
+  </data>
+  <data name="SelectionDescriptionText_SpecialName_Water" xml:space="preserve">
+    <value>Okrepčevalna točka</value>
+  </data>
+  <data name="MainFrame_addFirstAidMenu_Text" xml:space="preserve">
+    <value>Prva pomoč</value>
+  </data>
+  <data name="MainFrame_firstAidLocationToolStripMenuItem_Text" xml:space="preserve">
+    <value>Prva pomoč</value>
+  </data>
+  <data name="SelectionDescriptionText_SpecialName_FirstAid" xml:space="preserve">
+    <value>Prva pomoč</value>
+  </data>
+  <data name="MainFrame_addForbiddenMenu_Text" xml:space="preserve">
+    <value>Oznaka prepovedane poti</value>
+  </data>
+  <data name="MainFrame_forbiddenRouteMarkingToolStripMenuItem_Text" xml:space="preserve">
+    <value>Oznaka prepovedane poti</value>
+  </data>
+  <data name="MainFrame_addBoundaryMenu_Text" xml:space="preserve">
+    <value>Neprehodna meja</value>
+  </data>
+  <data name="MainFrame_boundaryToolStripMenuItem_Text" xml:space="preserve">
+    <value>Neprehodna meja</value>
+  </data>
+  <data name="SelectionDescriptionText_SpecialName_Boundary" xml:space="preserve">
+    <value>Neprehodna meja</value>
+  </data>
+  <data name="MainFrame_addRegMarkMenu_Text" xml:space="preserve">
+    <value>oznaka registra</value>
+  </data>
+  <data name="MainFrame_registrationMarkToolStripMenuItem_Text" xml:space="preserve">
+    <value>oznaka registra</value>
+  </data>
+  <data name="SelectionDescriptionText_SpecialName_RegMark" xml:space="preserve">
+    <value>oznaka registra</value>
+  </data>
+  <data name="MainFrame_changeMapFileMenu_Text" xml:space="preserve">
+    <value>&amp;Datoteka s karto</value>
+  </data>
+  <data name="MainFrame_changeCodesMenu_Text" xml:space="preserve">
+    <value>Spremeni kontrolno točko &amp;kodne številke...</value>
+  </data>
+  <data name="MainFrame_autoNumberingMenu_Text" xml:space="preserve">
+    <value>Avtomatsko &amp;Številčenje</value>
+  </data>
+  <data name="MainFrame_removeUnusedControlsMenu_Text" xml:space="preserve">
+    <value>Odstrani &amp;Neuporabljene kontrolne točke...</value>
+  </data>
+  <data name="MainFrame_punchPatternsMenu_Text" xml:space="preserve">
+    <value>&amp;Vzorci perforacij</value>
+  </data>
+  <data name="MainFrame_customizeDescriptionsMenu_Text" xml:space="preserve">
+    <value>Prilagodi &amp;Besedilni opis</value>
+  </data>
+  <data name="MainFrame_eventMenu_Text" xml:space="preserve">
+    <value>Prire&amp;ditev</value>
+  </data>
+  <data name="MainFrame_addCourseMenu_Text" xml:space="preserve">
+    <value>&amp;Dodaj progo...</value>
+  </data>
+  <data name="MainFrame_deleteCourseMenu_Text" xml:space="preserve">
+    <value>&amp;Izbriši progo</value>
+  </data>
+  <data name="MainFrame_propertiesMenu_Text" xml:space="preserve">
+    <value>&amp;Lastnosti...</value>
+  </data>
+  <data name="MainFrame_courseLoadMenu_Text" xml:space="preserve">
+    <value>Tekmovalec &amp;Obremenitev...</value>
+  </data>
+  <data name="MainFrame_courseMenu_Text" xml:space="preserve">
+    <value>&amp;Proga</value>
+  </data>
+  <data name="MainFrame_addBendMenu_Text" xml:space="preserve">
+    <value>Dodaj &amp;zavoj</value>
+  </data>
+  <data name="MainFrame_removeBendMenu_Text" xml:space="preserve">
+    <value>Izbriši Z&amp;avoj</value>
+  </data>
+  <data name="MainFrame_addGapMenu_Text" xml:space="preserve">
+    <value>Dodaj &amp;Razmak</value>
+  </data>
+  <data name="MainFrame_changeTextMenu_Text" xml:space="preserve">
+    <value>Izbriši &amp;Besedilo...</value>
+  </data>
+  <data name="MainFrame_rotateMenu_Text" xml:space="preserve">
+    <value>Z&amp;avrti</value>
+  </data>
+  <data name="MainFrame_noFlaggingMenu_Text" xml:space="preserve">
+    <value>Ni oznak</value>
+  </data>
+  <data name="MainFrame_entireFlaggingMenu_Text" xml:space="preserve">
+    <value>Celotna etapa označena</value>
+  </data>
+  <data name="MainFrame_beginFlaggingMenu_Text" xml:space="preserve">
+    <value>Začetek oznak na etapi</value>
+  </data>
+  <data name="MainFrame_endFlaggingMenu_Text" xml:space="preserve">
+    <value>Konec oznak na etapi</value>
+  </data>
+  <data name="MainFrame_legFlaggingMenu_Text" xml:space="preserve">
+    <value>&amp;Označena etapa</value>
+  </data>
+  <data name="MainFrame_changeDisplayedCoursesMenu_Text" xml:space="preserve">
+    <value>Spremeni označ&amp;eno progo...</value>
+  </data>
+  <data name="MainFrame_itemMenu_Text" xml:space="preserve">
+    <value>&amp;Objekt</value>
+  </data>
+  <data name="MainFrame_courseSummaryMenu_Text" xml:space="preserve">
+    <value>Proga &amp;Povzetek</value>
+  </data>
+  <data name="MainFrame_eventAuditMenu_Text" xml:space="preserve">
+    <value>Prireditev &amp;Pregled</value>
+  </data>
+  <data name="MainFrame_legLengthsMenu_Text" xml:space="preserve">
+    <value>&amp;Dolžine etap</value>
+  </data>
+  <data name="MainFrame_controlCrossrefMenu_Text" xml:space="preserve">
+    <value>Kontrolna točka &amp;Navzkrižna referenca</value>
+  </data>
+  <data name="MainFrame_controlAndLegLoadMenu_Text" xml:space="preserve">
+    <value>Kontrolna točka in obremenitev et&amp;ap</value>
+  </data>
+  <data name="MainFrame_reportMenu_Text" xml:space="preserve">
+    <value>&amp;Poročila</value>
+  </data>
+  <data name="MainFrame_helpContentsMenu_Text" xml:space="preserve">
+    <value>Purple Pen &amp;Pomoč</value>
+  </data>
+  <data name="MainFrame_helpTranslatedMenu_Text" xml:space="preserve">
+    <value>Purple Pen Pomoč (prevedena)</value>
+  </data>
+  <data name="MainFrame_mainWebSiteToolMenu_Text" xml:space="preserve">
+    <value>Purple Pen &amp;spletna stran</value>
+  </data>
+  <data name="MainFrame_supportWebSiteMenu_Text" xml:space="preserve">
+    <value>&amp;Podpora/sporočanje napak</value>
+  </data>
+  <data name="MainFrame_mapExchangeToolStripMenu_Text" xml:space="preserve">
+    <value>Dodaj menjavo karte</value>
+  </data>
+</root>
