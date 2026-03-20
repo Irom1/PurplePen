@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
 using System.Globalization;
 using System.IO;
+using System.Text;
+using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace TranslateTool
 {
@@ -402,8 +403,70 @@ namespace TranslateTool
         private void convertPOsToResXToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ConvertPOsToResX dialog = new ConvertPOsToResX();
-            dialog.ShowDialog(this);
+            if (dialog.ShowDialog(this) == DialogResult.OK)
+                ConvertPOsToResX(dialog.PODirectory, dialog.ResXFileName);
+
             dialog.Dispose();
+        }
+
+        private void ConvertPOsToResX(string poDirectory, string resXFileName)
+        {
+            TextWriter statusOutput = File.CreateText(Path.Combine(poDirectory, "PoConvertingLog.txt"));
+            statusOutput.WriteLine("Converting POs to RESX at {0}", DateTime.Now);
+            statusOutput.WriteLine();
+
+            string baseName;
+            string potFile = DeterminePotName(poDirectory, out baseName);
+
+            List<CultureInfo> cultures = DetermineCultures(poDirectory, baseName);
+
+            foreach (CultureInfo culture in cultures) {
+                ConvertOnePOToResx(resXFileName, poDirectory, baseName, culture, statusOutput);
+            }
+
+            statusOutput.Close();
+        }
+
+        private void ConvertOnePOToResx(string resXFileName, string poDirectory, string baseName, CultureInfo culture, TextWriter statusOutput)
+        {
+            ResXFile resXFile = new ResXFile(resXFileName, culture);
+            resXFile.Read();
+
+            string cultureName = culture.Name;
+            if (cultureName.EndsWith("-NO"))
+                cultureName = cultureName.Substring(0, 2);
+            cultureName = cultureName.Replace("-", "_");
+
+            string poFileName = Path.Combine(poDirectory, baseName + "-" + cultureName + ".po");
+
+            statusOutput.WriteLine("Reading PO file '{0}' for culture '{1}'", poFileName, culture.Name);
+            PoReader reader = new PoReader(poFileName);
+            List<PoEntry> entries = reader.ReadPo();
+
+            foreach (PoEntry entry in entries) {
+                foreach (PoLocation location in entry.Locations) {
+                    string resourceId = GetConvertedResXName(location);
+                    statusOutput.WriteLine("Adding RESX entry '{0}' from '{1}', '{2}'", resourceId, location.FileName, location.Name);
+                    resXFile.SetString(resourceId, entry.NonLocalized, entry.Localized, null);
+                }
+            }
+
+            resXFile.WriteNonLocalized();
+            resXFile.Write();
+
+        }
+
+        private string GetConvertedResXName(PoLocation location)
+        {
+            string filePart = Path.GetFileNameWithoutExtension(location.FileName);
+            string namePart = location.Name;
+
+            if (namePart.StartsWith("$this.", StringComparison.Ordinal))
+                namePart = namePart.Substring(6);
+
+            namePart = namePart.Replace("$", string.Empty).Replace('.', '_');
+
+            return filePart + "_" + namePart;
         }
     }
 }

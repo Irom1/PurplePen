@@ -34,6 +34,7 @@ namespace TranslateTool
         public readonly CultureInfo Culture;
 
         Dictionary<string, LocString> strings;
+        List<ResXDataNode> nonLocalizedNonStringNodes;
         List<ResXDataNode> nonStringNodes;
 
         static readonly AssemblyName[] noAssemblies = { };
@@ -83,6 +84,7 @@ namespace TranslateTool
         public void Read()
         {
             strings = new Dictionary<string, LocString>();
+            nonLocalizedNonStringNodes = new List<ResXDataNode>();
             nonStringNodes = new List<ResXDataNode>();
 
             ReadNonlocalized();
@@ -105,6 +107,8 @@ namespace TranslateTool
 
                     if (InterestingString(dataNode))
                         AddStringResource(dataNode.Name, (string) dataNode.GetValue(noAssemblies), dataNode.Comment);
+                    else
+                        nonLocalizedNonStringNodes.Add(dataNode);
                 }
             }
         }
@@ -113,6 +117,19 @@ namespace TranslateTool
         void AddStringResource(string name, string value, string comment)
         {
             strings.Add(name, new LocString(this, name, value, comment));
+        }
+
+        public void SetString(string name, string nonLocalized, string localized, string comment)
+        {
+            if (strings == null) {
+                strings = new Dictionary<string, LocString>();
+                nonLocalizedNonStringNodes = new List<ResXDataNode>();
+                nonStringNodes = new List<ResXDataNode>();
+            }
+
+            LocString locString = new LocString(this, name, nonLocalized, comment);
+            locString.Localized = localized;
+            strings[name] = locString;
         }
         
         void ReadLocalized()
@@ -169,6 +186,21 @@ namespace TranslateTool
 
             // Write all the non-string nodes back to the file.
             foreach (ResXDataNode dataNode in nonStringNodes)
+                writer.AddResource(dataNode);
+
+            writer.Generate();
+            writer.Close();
+        }
+
+        public void WriteNonLocalized()
+        {
+            ResXResourceWriter writer = new ResXResourceWriter(NonLocalizedFileName);
+
+            foreach (LocString locstr in AllStrings) {
+                writer.AddResource(new ResXDataNode(locstr.Name, locstr.NonLocalized) { Comment = locstr.Comment });
+            }
+
+            foreach (ResXDataNode dataNode in nonLocalizedNonStringNodes)
                 writer.AddResource(dataNode);
 
             writer.Generate();
