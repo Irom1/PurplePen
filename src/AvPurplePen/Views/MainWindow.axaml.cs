@@ -5,6 +5,7 @@
 // don't fit cleanly into the ViewModel layer.
 
 using System.Globalization;
+using System.Linq;
 using System.Threading;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
@@ -31,6 +32,7 @@ namespace AvPurplePen.Views
         private async void SwitchLanguageButton_Click(object? sender, RoutedEventArgs e)
         {
             SwitchLanguageViewModel viewModel = SwitchLanguageViewModel.CreateTestData();
+            viewModel.SelectedLanguage = viewModel.AvailableLanguages.FirstOrDefault(lang => lang.Code == Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName);
 
             SwitchLanguageDialog dialog = new SwitchLanguageDialog {
                 DataContext = viewModel,

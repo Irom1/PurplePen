@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
+using System.Resources;
 
 namespace AvPurplePen
 {
@@ -32,6 +33,9 @@ namespace AvPurplePen
     /// </summary>
     public class LocalizeExtension : MarkupExtension
     {
+        // The resource manager used to look up localized strings.
+        static internal readonly ResourceManager resourceManager = UIText.ResourceManager;
+
         /// <summary>
         /// The resource key to look up in UIText.resx (e.g. "IncrementButton").
         /// </summary>
@@ -55,7 +59,7 @@ namespace AvPurplePen
         {
             if (Design.IsDesignMode) {
                 // Design time: return the English string so the previewer shows real text.
-                return UIText.ResourceManager.GetString(Key) ?? $"[{Key}]";
+                return resourceManager.GetString(Key) ?? $"[{Key}]";
             }
 
             // Runtime: create a LocalizedString wrapper and bind to its Value property.
@@ -95,7 +99,7 @@ namespace AvPurplePen
         /// Bound to by controls via LocalizeExtension.
         /// </summary>
         public string Value =>
-            UIText.ResourceManager.GetString(_key, CultureInfo.CurrentUICulture) ?? $"[{_key}]";
+            LocalizeExtension.resourceManager.GetString(_key, CultureInfo.CurrentUICulture) ?? $"[{_key}]";
 
         /// <inheritdoc/>
         public event PropertyChangedEventHandler? PropertyChanged;
