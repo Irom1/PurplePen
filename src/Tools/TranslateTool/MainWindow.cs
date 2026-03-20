@@ -398,5 +398,12 @@ namespace TranslateTool
             SynchronizePoFiles(dialog.ResXDirectory, dialog.PODirectory,
                 attributesDialog.nameTextBox.Text, attributesDialog.emailTextBox.Text, attributesDialog.versionTextBox.Text);
         }
+
+        private void convertPOsToResXToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConvertPOsToResX dialog = new ConvertPOsToResX();
+            dialog.ShowDialog(this);
+            dialog.Dispose();
+        }
     }
 }

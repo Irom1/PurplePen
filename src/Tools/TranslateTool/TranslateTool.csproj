@@ -159,6 +159,15 @@
       <DependentUpon>ResolvePoEntry.cs</DependentUpon>
     </Compile>
     <Compile Include="RunProgram.cs" />
+    <Compile Include="ConvertPOsToResX.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConvertPOsToResX.Designer.cs">
+      <DependentUpon>ConvertPOsToResX.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="ConvertPOsToResX.resx">
+      <DependentUpon>ConvertPOsToResX.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

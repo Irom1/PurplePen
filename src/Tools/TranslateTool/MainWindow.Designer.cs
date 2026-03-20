@@ -44,6 +44,7 @@
             this.generateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createPOTToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.readPOToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.convertPOsToResXToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.pseudolocalizeAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -166,6 +167,7 @@
             this.createPOTToolStripMenuItem,
             this.readPOToolStripMenuItem,
             this.synchronizeMenuItem,
+            this.convertPOsToResXToolStripMenuItem,
             this.toolStripMenuItem1,
             this.pseudolocalizeAllToolStripMenuItem,
             this.toolStripSeparator1,
@@ -208,6 +210,13 @@
             this.readPOToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
             this.readPOToolStripMenuItem.Text = "Read PO...";
             this.readPOToolStripMenuItem.Click += new System.EventHandler(this.readPOToolStripMenuItem_Click);
+            // 
+            // convertPOsToResXToolStripMenuItem
+            // 
+            this.convertPOsToResXToolStripMenuItem.Name = "convertPOsToResXToolStripMenuItem";
+            this.convertPOsToResXToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.convertPOsToResXToolStripMenuItem.Text = "Convert POs to RESX...";
+            this.convertPOsToResXToolStripMenuItem.Click += new System.EventHandler(this.convertPOsToResXToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
@@ -435,6 +444,7 @@
         private System.Windows.Forms.ToolStripMenuItem createPOTToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem readPOToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem synchronizeMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem convertPOsToResXToolStripMenuItem;
 
 
     }
