@@ -48,5 +48,16 @@ namespace AvPurplePen.Views
                 LocalizedStringManager.Instance.NotifyLanguageChanged();
             }
         }
+
+        /// <summary>
+        /// Opens the About dialog modally with a new AboutDialogViewModel.
+        /// </summary>
+        private async void AboutButton_Click(object? sender, RoutedEventArgs e)
+        {
+            AboutDialog dialog = new AboutDialog {
+                DataContext = new AboutDialogViewModel(),
+            };
+            await dialog.ShowDialog(this);
+        }
     }
 }

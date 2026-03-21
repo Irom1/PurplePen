@@ -562,12 +562,6 @@ Suchen Sie, nach Klicken auf "OK", nach der Kartendatei auf Ihrem Computer.</val
   <data name="GpxMustBeOcadMap" xml:space="preserve">
     <value>Um GPX-Dateien zu nutzen, muss eine OCAD-Kartendatei verwendet werden.</value>
   </data>
-  <data name="DownloadGhostscript" xml:space="preserve">
-    <value>Um PDF-Dateien laden zu können, muss eine Kopie von GPL Ghostscript installiert sein. Möchten Sie es automatisch herunterladen und installieren lassen?</value>
-  </data>
-  <data name="GhostscriptNotInstalled" xml:space="preserve">
-    <value>GPL Ghostscript ist nicht installiert</value>
-  </data>
   <data name="BadLegNumber" xml:space="preserve">
     <value>'{0}' ist keine gültige Teilstreckennummer für die Verzweigung '{1}'</value>
   </data>
@@ -630,5 +624,11 @@ Suchen Sie, nach Klicken auf "OK", nach der Kartendatei auf Ihrem Computer.</val
   </data>
   <data name="Version_RC" xml:space="preserve">
     <value>RC {0}</value>
+  </data>
+  <data name="DownloadGhostscript" xml:space="preserve">
+    <value>Um PDF-Dateien laden zu können, muss eine Kopie von GPL Ghostscript installiert sein. Möchten Sie es automatisch herunterladen und installieren lassen?</value>
+  </data>
+  <data name="GhostscriptNotInstalled" xml:space="preserve">
+    <value>GPL Ghostscript ist nicht installiert</value>
   </data>
 </root>

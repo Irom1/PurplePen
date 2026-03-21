@@ -1,0 +1,113 @@
+<!--
+    AboutDialog.axaml
+
+    "About Purple Pen" dialog showing the application logo, version info,
+    copyright notice, disclaimer, and buttons for license/credits/OK.
+
+    Migrated from WinForms PurplePen/AboutForm.cs.
+    Original layout: logo panel docked top, labels stacked vertically,
+    button row (License | Credits | spacer | OK) at the bottom.
+-->
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:PurplePen.ViewModels"
+        xmlns:resx="using:AvPurplePen"
+        xmlns:avutil="using:AvUtil"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        d:DesignWidth="447" d:DesignHeight="439"
+        x:Class="AvPurplePen.Views.AboutDialog"
+        x:DataType="vm:AboutDialogViewModel"
+        Title="{resx:Localize AboutForm_Text}"
+        Width="447" Height="439"
+        CanResize="False"
+        WindowStartupLocation="CenterOwner"
+        ShowInTaskbar="False"
+        SystemDecorations="Full">
+
+    <!-- Design-time preview data -->
+    <Design.DataContext>
+        <vm:AboutDialogViewModel/>
+    </Design.DataContext>
+
+    <DockPanel>
+
+        <!-- Logo panel at top: white background, draws the Purple Pen logo.
+             The custom drawing is done in the code-behind Paint handler. -->
+        <avutil:SkiaDrawingView x:Name="logoPanel"
+               DockPanel.Dock="Top"
+               Height="146"
+               Paint="LogoPanel_Paint"/>
+
+        <!-- Button row at bottom: License | Credits | (spacer) | OK -->
+        <Grid DockPanel.Dock="Bottom"
+              Margin="12,8,12,12"
+              ColumnDefinitions="Auto,Auto,*,Auto">
+
+            <Button x:Name="licenseButton"
+                    Grid.Column="0"
+                    Content="{resx:Localize AboutForm_licenseButton_Text}"
+                    MinWidth="85"
+                    HorizontalContentAlignment="Center"
+                    Click="LicenseButton_Click"/>
+
+            <Button x:Name="creditsButton"
+                    Grid.Column="1"
+                    Content="{resx:Localize AboutForm_creditsButton_Text}"
+                    MinWidth="85"
+                    Margin="8,0,0,0"
+                    HorizontalContentAlignment="Center"
+                    Click="CreditsButton_Click"/>
+
+            <Button x:Name="okButton"
+                    Grid.Column="3"
+                    Content="{resx:Localize AboutForm_okButton_Text}"
+                    MinWidth="85"
+                    HorizontalContentAlignment="Center"
+                    IsDefault="True"
+                    Click="OkButton_Click"/>
+        </Grid>
+
+        <!-- Labels stacked vertically in the remaining space -->
+        <StackPanel Margin="88,8,16,0"
+                    Spacing="4">
+
+            <!-- Version label: binds to PrettyVersion on the ViewModel, wrapped
+                 with the localized "Version {0}" format string from UIText.resx. -->
+            <TextBlock x:Name="versionLabel"
+                       FontSize="15">
+                <TextBlock.Text>
+                    <Binding Path="PrettyVersion"
+                             StringFormat="{x:Static resx:UIText.MiscText_VersionLabel}" />
+                </TextBlock.Text>
+            </TextBlock>
+
+            <!-- Bitness label: bound to BitnessText on the ViewModel
+                 (e.g. "64-bit (Standalone Setup)") -->
+            <TextBlock x:Name="bitnessLabel"
+                       Text="{Binding BitnessText}"
+                       FontSize="15"/>
+
+            <TextBlock x:Name="copyrightLabel"
+                       Text="{resx:Localize AboutForm_copyrightLabel_Text}"
+                       FontSize="15"
+                       Margin="0,12,0,0"/>
+
+            <TextBlock x:Name="freeLabel"
+                       Text="{resx:Localize AboutForm_freeLabel_Text}"
+                       FontSize="15"
+                       TextWrapping="Wrap"
+                       Margin="0,8,0,0"/>
+
+            <TextBlock x:Name="disclaimerLabel"
+                       Text="{resx:Localize AboutForm_disclaimerLabel_Text}"
+                       FontSize="11"
+                       TextWrapping="Wrap"
+                       Margin="-75,12,0,0"/>
+
+        </StackPanel>
+
+    </DockPanel>
+
+</Window>

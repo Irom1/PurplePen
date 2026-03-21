@@ -634,4 +634,16 @@ After pressing OK, try to find a copy of the map file on your computer.</value>
   <data name="Version_RC" xml:space="preserve">
     <value>RC {0}</value>
   </data>
+  <data name="SixtyfourBit" xml:space="preserve">
+    <value>64-bit</value>
+  </data>
+  <data name="ThirtytwoBit" xml:space="preserve">
+    <value>32-bit</value>
+  </data>
+  <data name="StandaloneSetup" xml:space="preserve">
+    <value>Standalone Setup</value>
+  </data>
+  <data name="WindowsStore" xml:space="preserve">
+    <value>Windows Store</value>
+  </data>
 </root>

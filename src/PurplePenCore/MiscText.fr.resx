@@ -553,12 +553,6 @@ Après avoir cliqué sur OK, essayez de trouver une copie du fichier de la carte
   <data name="GpxMustBeOcadMap" xml:space="preserve">
     <value>Pour utiliser des fichier GPX, le fichier Carte doit obligatoirement être un fichier OCAD.</value>
   </data>
-  <data name="DownloadGhostscript" xml:space="preserve">
-    <value>Le chargement des fichiers PDF requiert qu'une copie de GPL Ghostscript soit installée. Souhaitez-vous qu'elle soit automatiquement téléchargée et installée maintenant ?</value>
-  </data>
-  <data name="GhostscriptNotInstalled" xml:space="preserve">
-    <value>GPL Ghostscript n'est pas installé</value>
-  </data>
   <data name="CannotCreatePdfs" xml:space="preserve">
     <value>Impossible de créer des PDFs pour la raison suivante :</value>
   </data>
@@ -609,5 +603,11 @@ Après avoir cliqué sur OK, essayez de trouver une copie du fichier de la carte
   </data>
   <data name="Version_RC" xml:space="preserve">
     <value>RC {0}</value>
+  </data>
+  <data name="DownloadGhostscript" xml:space="preserve">
+    <value>Le chargement des fichiers PDF requiert qu'une copie de GPL Ghostscript soit installée. Souhaitez-vous qu'elle soit automatiquement téléchargée et installée maintenant ?</value>
+  </data>
+  <data name="GhostscriptNotInstalled" xml:space="preserve">
+    <value>GPL Ghostscript n'est pas installé</value>
   </data>
 </root>

@@ -96,6 +96,12 @@
                 HorizontalAlignment="Center"
                 Click="SwitchLanguageButton_Click"/>
 
+                <!-- Language switch button -->
+        <Button Content="About"
+                HorizontalAlignment="Center"
+                Click="AboutButton_Click"/>
+
+
     </StackPanel>
 
 </Window>

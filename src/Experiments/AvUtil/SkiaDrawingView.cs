@@ -60,32 +60,36 @@ namespace AvUtil
         {
             repaintQueued = false;
 
-            // WriteableBitmap does not support zero-size dimensions
-            // Therefore, to avoid a crash, exit here if size is zero
-            if (!this.IsVisible || _pixelWidth == 0 || _pixelHeight == 0) {
-                _writeableBitmap?.Dispose();
-                _writeableBitmap = null;
-                return;
+            // Painting in design mode causes problems in the designer.
+
+            if (!Design.IsDesignMode) {
+                // WriteableBitmap does not support zero-size dimensions
+                // Therefore, to avoid a crash, exit here if size is zero
+                if (!this.IsVisible || _pixelWidth == 0 || _pixelHeight == 0) {
+                    _writeableBitmap?.Dispose();
+                    _writeableBitmap = null;
+                    return;
+                }
+
+                if (_writeableBitmap != null && (_writeableBitmap.PixelSize.Width != _pixelWidth || _writeableBitmap.PixelSize.Height != _pixelHeight)) {
+                    _writeableBitmap?.Dispose();
+                    _writeableBitmap = null;
+                }
+
+                _writeableBitmap ??= new WriteableBitmap(
+                    new PixelSize(_pixelWidth, _pixelHeight),
+                    new Vector(96, 96),
+                    PixelFormat.Bgra8888,
+                    AlphaFormat.Premul);
+
+                SkiaWritableBitmap.DrawToBitmap(_writeableBitmap,
+                    (SKCanvas canvas, CancellationToken cancelToken) => {
+                        canvas.Scale(Convert.ToSingle(_scale));
+                        this.OnPaint(new PaintEventArgs(canvas, new SKSizeI(_pixelWidth, _pixelHeight), _scale, cancelToken));
+                    });
+
+                InvalidateVisual();
             }
-
-            if (_writeableBitmap != null && (_writeableBitmap.PixelSize.Width != _pixelWidth || _writeableBitmap.PixelSize.Height != _pixelHeight)) {
-                _writeableBitmap?.Dispose();
-                _writeableBitmap = null;
-            }
-
-            _writeableBitmap ??= new WriteableBitmap(
-                new PixelSize(_pixelWidth, _pixelHeight),
-                new Vector(96, 96),
-                PixelFormat.Bgra8888,
-                AlphaFormat.Premul);
-
-            SkiaWritableBitmap.DrawToBitmap(_writeableBitmap,
-                (SKCanvas canvas, CancellationToken cancelToken) => {
-                    canvas.Scale(Convert.ToSingle(_scale));
-                    this.OnPaint(new PaintEventArgs(canvas, new SKSizeI(_pixelWidth, _pixelHeight), _scale, cancelToken));
-                });
-
-            InvalidateVisual();
 
             return;
         }

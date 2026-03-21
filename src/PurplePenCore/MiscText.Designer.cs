@@ -1388,6 +1388,24 @@ namespace PurplePen {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 64-bit.
+        /// </summary>
+        public static string SixtyfourBit {
+            get {
+                return ResourceManager.GetString("SixtyfourBit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Standalone Setup.
+        /// </summary>
+        public static string StandaloneSetup {
+            get {
+                return ResourceManager.GetString("StandaloneSetup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Start.
         /// </summary>
         public static string Start {
@@ -1402,6 +1420,15 @@ namespace PurplePen {
         public static string Start_Short {
             get {
                 return ResourceManager.GetString("Start_Short", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 32-bit.
+        /// </summary>
+        public static string ThirtytwoBit {
+            get {
+                return ResourceManager.GetString("ThirtytwoBit", resourceCulture);
             }
         }
         
@@ -1546,6 +1573,15 @@ namespace PurplePen {
         public static string VersionLabel {
             get {
                 return ResourceManager.GetString("VersionLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Windows Store.
+        /// </summary>
+        public static string WindowsStore {
+            get {
+                return ResourceManager.GetString("WindowsStore", resourceCulture);
             }
         }
         

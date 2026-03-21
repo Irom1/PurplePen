@@ -472,12 +472,6 @@ Użyj | aby rozdzielić linie
   <data name="GpxMustBeOcadMap" xml:space="preserve">
     <value>Plik mapy musi być plikiem OCAD aby można było używać plików GPX.</value>
   </data>
-  <data name="DownloadGhostscript" xml:space="preserve">
-    <value>Załadowanie plików PDF wymaga zainstalowanego GPL Ghostscript. Czy chciałbyś go automatycznie pobrać i zainstalować?</value>
-  </data>
-  <data name="GhostscriptNotInstalled" xml:space="preserve">
-    <value>GPL Ghostscript nie jest zainstalowany</value>
-  </data>
   <data name="CannotCreatePdfs" xml:space="preserve">
     <value>Nie udało się utworzyć plików PDF z następującego powodu:</value>
   </data>
@@ -513,5 +507,11 @@ Użyj | aby rozdzielić linie
   </data>
   <data name="Version_RC" xml:space="preserve">
     <value>RC {0}</value>
+  </data>
+  <data name="DownloadGhostscript" xml:space="preserve">
+    <value>Załadowanie plików PDF wymaga zainstalowanego GPL Ghostscript. Czy chciałbyś go automatycznie pobrać i zainstalować?</value>
+  </data>
+  <data name="GhostscriptNotInstalled" xml:space="preserve">
+    <value>GPL Ghostscript nie jest zainstalowany</value>
   </data>
 </root>

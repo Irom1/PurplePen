@@ -562,12 +562,6 @@ Tryck OK och försök hitta kartfilen på din dator.</value>
   <data name="GpxMustBeOcadMap" xml:space="preserve">
     <value>Kartfilen måste vara en OCAD-fil för att kunna använda GPX-filer.</value>
   </data>
-  <data name="DownloadGhostscript" xml:space="preserve">
-    <value>För att läsa in PDF-filer krävs det att GPL Ghostscript installeras. Vill du automatiskt ladda ner och installera det nu?</value>
-  </data>
-  <data name="GhostscriptNotInstalled" xml:space="preserve">
-    <value>GPL Ghostscript är inte installerat</value>
-  </data>
   <data name="BadLegNumber" xml:space="preserve">
     <value>'{0}' är inte ett giltigt sträcknummer för gaffling '{1}'</value>
   </data>
@@ -630,5 +624,11 @@ Tryck OK och försök hitta kartfilen på din dator.</value>
   </data>
   <data name="Version_RC" xml:space="preserve">
     <value>RC {0}</value>
+  </data>
+  <data name="DownloadGhostscript" xml:space="preserve">
+    <value>För att läsa in PDF-filer krävs det att GPL Ghostscript installeras. Vill du automatiskt ladda ner och installera det nu?</value>
+  </data>
+  <data name="GhostscriptNotInstalled" xml:space="preserve">
+    <value>GPL Ghostscript är inte installerat</value>
   </data>
 </root>

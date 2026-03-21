@@ -553,9 +553,6 @@ OK - zkus soubor s mapou najít.</value>
   <data name="GpxMustBeOcadMap" xml:space="preserve">
     <value>Mapový soubor musí být z OCADu pro použití GPX.</value>
   </data>
-  <data name="CodeUnder31" xml:space="preserve">
-    <value>Kód kontroly by měl být 31 nebo vyšší.</value>
-  </data>
   <data name="BadLegNumber" xml:space="preserve">
     <value>'{0}' je neplatné číslo farsty '{1}'</value>
   </data>
@@ -618,5 +615,8 @@ OK - zkus soubor s mapou najít.</value>
   </data>
   <data name="Version_RC" xml:space="preserve">
     <value>RC {0}</value>
+  </data>
+  <data name="CodeUnder31" xml:space="preserve">
+    <value>Kód kontroly by měl být 31 nebo vyšší.</value>
   </data>
 </root>

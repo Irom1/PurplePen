@@ -547,12 +547,6 @@ A Rendben lenyomása után próbálja megkeresni a térkép fájlt a számítóg
   <data name="GpxMustBeOcadMap" xml:space="preserve">
     <value>A térképnek OCAD fájlnak kell lennie GPX fájlok használatához.</value>
   </data>
-  <data name="DownloadGhostscript" xml:space="preserve">
-    <value>A PDF fájlok betöltéséhez szükséges a GPL Ghostscript. Kívánja automatikusan letölteni és telepíteni?</value>
-  </data>
-  <data name="GhostscriptNotInstalled" xml:space="preserve">
-    <value>A GPL Ghostscript nincs telepítve.</value>
-  </data>
   <data name="BadLegNumber" xml:space="preserve">
     <value>'{0}' nem egy valós ág a(z)  '{1}' elágazáshoz.</value>
   </data>
@@ -615,5 +609,11 @@ A Rendben lenyomása után próbálja megkeresni a térkép fájlt a számítóg
   </data>
   <data name="Version_RC" xml:space="preserve">
     <value>{0} RC</value>
+  </data>
+  <data name="DownloadGhostscript" xml:space="preserve">
+    <value>A PDF fájlok betöltéséhez szükséges a GPL Ghostscript. Kívánja automatikusan letölteni és telepíteni?</value>
+  </data>
+  <data name="GhostscriptNotInstalled" xml:space="preserve">
+    <value>A GPL Ghostscript nincs telepítve.</value>
   </data>
 </root>

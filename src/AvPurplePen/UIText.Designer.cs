@@ -61,11 +61,3332 @@ namespace AvPurplePen {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Copyright © by Peter Golde.
+        /// </summary>
+        public static string AboutForm_copyrightLabel_Text {
+            get {
+                return ResourceManager.GetString("AboutForm_copyrightLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Credits.
+        /// </summary>
+        public static string AboutForm_creditsButton_Text {
+            get {
+                return ResourceManager.GetString("AboutForm_creditsButton_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED..
+        /// </summary>
+        public static string AboutForm_disclaimerLabel_Text {
+            get {
+                return ResourceManager.GetString("AboutForm_disclaimerLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Purple Pen is free software and may be copied and shared..
+        /// </summary>
+        public static string AboutForm_freeLabel_Text {
+            get {
+                return ResourceManager.GetString("AboutForm_freeLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View Full License.
+        /// </summary>
+        public static string AboutForm_licenseButton_Text {
+            get {
+                return ResourceManager.GetString("AboutForm_licenseButton_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        public static string AboutForm_okButton_Text {
+            get {
+                return ResourceManager.GetString("AboutForm_okButton_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to About Purple Pen.
+        /// </summary>
+        public static string AboutForm_Text {
+            get {
+                return ResourceManager.GetString("AboutForm_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Climb:.
+        /// </summary>
+        public static string AddCourse_climbLabel_Text {
+            get {
+                return ResourceManager.GetString("AddCourse_climbLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Normal Course.
+        /// </summary>
+        public static string AddCourse_courseKindCombo_Items {
+            get {
+                return ResourceManager.GetString("AddCourse_courseKindCombo_Items", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Score Course.
+        /// </summary>
+        public static string AddCourse_courseKindCombo_Items1 {
+            get {
+                return ResourceManager.GetString("AddCourse_courseKindCombo_Items1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Course name:.
+        /// </summary>
+        public static string AddCourse_courseNameLabel_Text {
+            get {
+                return ResourceManager.GetString("AddCourse_courseNameLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Course type:.
+        /// </summary>
+        public static string AddCourse_courseTypeLabel_Text {
+            get {
+                return ResourceManager.GetString("AddCourse_courseTypeLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Symbols.
+        /// </summary>
+        public static string AddCourse_descKindCombo_Items {
+            get {
+                return ResourceManager.GetString("AddCourse_descKindCombo_Items", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Text.
+        /// </summary>
+        public static string AddCourse_descKindCombo_Items1 {
+            get {
+                return ResourceManager.GetString("AddCourse_descKindCombo_Items1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Symbols and text.
+        /// </summary>
+        public static string AddCourse_descKindCombo_Items2 {
+            get {
+                return ResourceManager.GetString("AddCourse_descKindCombo_Items2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description appearance:.
+        /// </summary>
+        public static string AddCourse_descriptionAppearanceLabel_Text {
+            get {
+                return ResourceManager.GetString("AddCourse_descriptionAppearanceLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to First control number:.
+        /// </summary>
+        public static string AddCourse_firstControlLabel_Text {
+            get {
+                return ResourceManager.GetString("AddCourse_firstControlLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Appearance.
+        /// </summary>
+        public static string AddCourse_groupBox1_Text {
+            get {
+                return ResourceManager.GetString("AddCourse_groupBox1_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do not include in reports.
+        /// </summary>
+        public static string AddCourse_hideFromReportsCheckBox_Text {
+            get {
+                return ResourceManager.GetString("AddCourse_hideFromReportsCheckBox_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to km.
+        /// </summary>
+        public static string AddCourse_kmSuffix_Text {
+            get {
+                return ResourceManager.GetString("AddCourse_kmSuffix_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sequence number (3).
+        /// </summary>
+        public static string AddCourse_labelKindCombo_Items {
+            get {
+                return ResourceManager.GetString("AddCourse_labelKindCombo_Items", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Control code (145).
+        /// </summary>
+        public static string AddCourse_labelKindCombo_Items1 {
+            get {
+                return ResourceManager.GetString("AddCourse_labelKindCombo_Items1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sequence and code (3-145).
+        /// </summary>
+        public static string AddCourse_labelKindCombo_Items2 {
+            get {
+                return ResourceManager.GetString("AddCourse_labelKindCombo_Items2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sequence and score (3(30)).
+        /// </summary>
+        public static string AddCourse_labelKindCombo_Items3 {
+            get {
+                return ResourceManager.GetString("AddCourse_labelKindCombo_Items3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Code and score (145(30)).
+        /// </summary>
+        public static string AddCourse_labelKindCombo_Items4 {
+            get {
+                return ResourceManager.GetString("AddCourse_labelKindCombo_Items4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Score (30).
+        /// </summary>
+        public static string AddCourse_labelKindCombo_Items5 {
+            get {
+                return ResourceManager.GetString("AddCourse_labelKindCombo_Items5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Control circle labels:.
+        /// </summary>
+        public static string AddCourse_labelKindLabel_Text {
+            get {
+                return ResourceManager.GetString("AddCourse_labelKindLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Length:.
+        /// </summary>
+        public static string AddCourse_lengthLabel_Text {
+            get {
+                return ResourceManager.GetString("AddCourse_lengthLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Map printing scale:.
+        /// </summary>
+        public static string AddCourse_mapScaleLabel_Text {
+            get {
+                return ResourceManager.GetString("AddCourse_mapScaleLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to meters.
+        /// </summary>
+        public static string AddCourse_metersSuffix_Text {
+            get {
+                return ResourceManager.GetString("AddCourse_metersSuffix_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1 : .
+        /// </summary>
+        public static string AddCourse_oneToPrefixLabel_Text {
+            get {
+                return ResourceManager.GetString("AddCourse_oneToPrefixLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Column A.
+        /// </summary>
+        public static string AddCourse_scoreColumnCombo_Items {
+            get {
+                return ResourceManager.GetString("AddCourse_scoreColumnCombo_Items", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Column B.
+        /// </summary>
+        public static string AddCourse_scoreColumnCombo_Items1 {
+            get {
+                return ResourceManager.GetString("AddCourse_scoreColumnCombo_Items1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Column H.
+        /// </summary>
+        public static string AddCourse_scoreColumnCombo_Items2 {
+            get {
+                return ResourceManager.GetString("AddCourse_scoreColumnCombo_Items2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (do not display).
+        /// </summary>
+        public static string AddCourse_scoreColumnCombo_Items3 {
+            get {
+                return ResourceManager.GetString("AddCourse_scoreColumnCombo_Items3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show points in:.
+        /// </summary>
+        public static string AddCourse_scoreColumnLabel_Text {
+            get {
+                return ResourceManager.GetString("AddCourse_scoreColumnLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The following (optional) text will appear on the second line of the control description sheet:.
+        /// </summary>
+        public static string AddCourse_secondaryTitleDescription_Text {
+            get {
+                return ResourceManager.GetString("AddCourse_secondaryTitleDescription_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Class list / Secondary title.
+        /// </summary>
+        public static string AddCourse_secondaryTitleGroup_Text {
+            get {
+                return ResourceManager.GetString("AddCourse_secondaryTitleGroup_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Course.
+        /// </summary>
+        public static string AddCourse_Text {
+            get {
+                return ResourceManager.GetString("AddCourse_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 2.
+        /// </summary>
+        public static string AddForkDialog_comboBoxNumberBranches_Items {
+            get {
+                return ResourceManager.GetString("AddForkDialog_comboBoxNumberBranches_Items", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 3.
+        /// </summary>
+        public static string AddForkDialog_comboBoxNumberBranches_Items1 {
+            get {
+                return ResourceManager.GetString("AddForkDialog_comboBoxNumberBranches_Items1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 4.
+        /// </summary>
+        public static string AddForkDialog_comboBoxNumberBranches_Items2 {
+            get {
+                return ResourceManager.GetString("AddForkDialog_comboBoxNumberBranches_Items2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 5.
+        /// </summary>
+        public static string AddForkDialog_comboBoxNumberBranches_Items3 {
+            get {
+                return ResourceManager.GetString("AddForkDialog_comboBoxNumberBranches_Items3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 6.
+        /// </summary>
+        public static string AddForkDialog_comboBoxNumberBranches_Items4 {
+            get {
+                return ResourceManager.GetString("AddForkDialog_comboBoxNumberBranches_Items4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 7.
+        /// </summary>
+        public static string AddForkDialog_comboBoxNumberBranches_Items5 {
+            get {
+                return ResourceManager.GetString("AddForkDialog_comboBoxNumberBranches_Items5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 8.
+        /// </summary>
+        public static string AddForkDialog_comboBoxNumberBranches_Items6 {
+            get {
+                return ResourceManager.GetString("AddForkDialog_comboBoxNumberBranches_Items6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 9.
+        /// </summary>
+        public static string AddForkDialog_comboBoxNumberBranches_Items7 {
+            get {
+                return ResourceManager.GetString("AddForkDialog_comboBoxNumberBranches_Items7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 10.
+        /// </summary>
+        public static string AddForkDialog_comboBoxNumberBranches_Items8 {
+            get {
+                return ResourceManager.GetString("AddForkDialog_comboBoxNumberBranches_Items8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of branches:.
+        /// </summary>
+        public static string AddForkDialog_labelNumberBranches_Text {
+            get {
+                return ResourceManager.GetString("AddForkDialog_labelNumberBranches_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of loops:.
+        /// </summary>
+        public static string AddForkDialog_labelNumberLoops_Text {
+            get {
+                return ResourceManager.GetString("AddForkDialog_labelNumberLoops_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The loop control will be visited 4 times. There are 24 different ways through the loops..
+        /// </summary>
+        public static string AddForkDialog_labelSummary_Text {
+            get {
+                return ResourceManager.GetString("AddForkDialog_labelSummary_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to What type of variation would you like to add?.
+        /// </summary>
+        public static string AddForkDialog_labelWhichType_Text {
+            get {
+                return ResourceManager.GetString("AddForkDialog_labelWhichType_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fork.
+        /// </summary>
+        public static string AddForkDialog_radioButtonFork_Text {
+            get {
+                return ResourceManager.GetString("AddForkDialog_radioButtonFork_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Loop.
+        /// </summary>
+        public static string AddForkDialog_radioButtonLoop_Text {
+            get {
+                return ResourceManager.GetString("AddForkDialog_radioButtonLoop_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Variation.
+        /// </summary>
+        public static string AddForkDialog_Text {
+            get {
+                return ResourceManager.GetString("AddForkDialog_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This course only.
+        /// </summary>
+        public static string AddTextLine_comboBoxCourses_Items {
+            get {
+                return ResourceManager.GetString("AddTextLine_comboBoxCourses_Items", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All courses with {0}.
+        /// </summary>
+        public static string AddTextLine_comboBoxCourses_Items1 {
+            get {
+                return ResourceManager.GetString("AddTextLine_comboBoxCourses_Items1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Above {0}.
+        /// </summary>
+        public static string AddTextLine_comboBoxPosition_Items {
+            get {
+                return ResourceManager.GetString("AddTextLine_comboBoxPosition_Items", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Below {0}.
+        /// </summary>
+        public static string AddTextLine_comboBoxPosition_Items1 {
+            get {
+                return ResourceManager.GetString("AddTextLine_comboBoxPosition_Items1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Courses:.
+        /// </summary>
+        public static string AddTextLine_coursesLabel_Text {
+            get {
+                return ResourceManager.GetString("AddTextLine_coursesLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Position:.
+        /// </summary>
+        public static string AddTextLine_positionLabel_Text {
+            get {
+                return ResourceManager.GetString("AddTextLine_positionLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Text Line.
+        /// </summary>
+        public static string AddTextLine_Text {
+            get {
+                return ResourceManager.GetString("AddTextLine_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter text to place on separate line of control descriptions:.
+        /// </summary>
+        public static string AddTextLine_textLineLabel_Text {
+            get {
+                return ResourceManager.GetString("AddTextLine_textLineLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to These settings control how the map and descriptions for All Controls are printed..
+        /// </summary>
+        public static string AllControlsProperties_allControlsPropertiesLabel_Text {
+            get {
+                return ResourceManager.GetString("AllControlsProperties_allControlsPropertiesLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Appearance.
+        /// </summary>
+        public static string AllControlsProperties_appearanceGroupBox_Text {
+            get {
+                return ResourceManager.GetString("AllControlsProperties_appearanceGroupBox_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Symbols.
+        /// </summary>
+        public static string AllControlsProperties_descKindCombo_Items {
+            get {
+                return ResourceManager.GetString("AllControlsProperties_descKindCombo_Items", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Text.
+        /// </summary>
+        public static string AllControlsProperties_descKindCombo_Items1 {
+            get {
+                return ResourceManager.GetString("AllControlsProperties_descKindCombo_Items1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Symbols and text.
+        /// </summary>
+        public static string AllControlsProperties_descKindCombo_Items2 {
+            get {
+                return ResourceManager.GetString("AllControlsProperties_descKindCombo_Items2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description appearance:.
+        /// </summary>
+        public static string AllControlsProperties_descriptionAppearanceLabel_Text {
+            get {
+                return ResourceManager.GetString("AllControlsProperties_descriptionAppearanceLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1 : .
+        /// </summary>
+        public static string AllControlsProperties_oneToPrefix_Text {
+            get {
+                return ResourceManager.GetString("AllControlsProperties_oneToPrefix_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Map printing scale:.
+        /// </summary>
+        public static string AllControlsProperties_printingScaleLabel_Text {
+            get {
+                return ResourceManager.GetString("AllControlsProperties_printingScaleLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All Controls Properties.
+        /// </summary>
+        public static string AllControlsProperties_Text {
+            get {
+                return ResourceManager.GetString("AllControlsProperties_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Newly created controls are automatically numbered according to the following settings..
+        /// </summary>
+        public static string AutoNumbering_automaticNumberingLabel_Text {
+            get {
+                return ResourceManager.GetString("AutoNumbering_automaticNumberingLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disallow codes that could be read upside-down (e.g., &quot;68&quot;/&quot;89&quot;).
+        /// </summary>
+        public static string AutoNumbering_disallowInvertibleCheckBox_Text {
+            get {
+                return ResourceManager.GetString("AutoNumbering_disallowInvertibleCheckBox_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Existing Controls.
+        /// </summary>
+        public static string AutoNumbering_existingControlsGroupBox_Text {
+            get {
+                return ResourceManager.GetString("AutoNumbering_existingControlsGroupBox_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Apply these settings to newly created controls only.
+        /// </summary>
+        public static string AutoNumbering_newControlsOnlyRadioButton_Text {
+            get {
+                return ResourceManager.GetString("AutoNumbering_newControlsOnlyRadioButton_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Renumber existing controls also.
+        /// </summary>
+        public static string AutoNumbering_renumberExistingRadioButton_Text {
+            get {
+                return ResourceManager.GetString("AutoNumbering_renumberExistingRadioButton_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Starting code:.
+        /// </summary>
+        public static string AutoNumbering_startingCodeLabel_Text {
+            get {
+                return ResourceManager.GetString("AutoNumbering_startingCodeLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Automatic Numbering.
+        /// </summary>
+        public static string AutoNumbering_Text {
+            get {
+                return ResourceManager.GetString("AutoNumbering_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string CancelButton {
+            get {
+                return ResourceManager.GetString("CancelButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To change the code for one or more controls,click in the &quot;New Code&quot; column and enter the new code. .
+        /// </summary>
+        public static string ChangeAllCodes_changeControlCodesLabel_Text {
+            get {
+                return ResourceManager.GetString("ChangeAllCodes_changeControlCodesLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Code.
+        /// </summary>
+        public static string ChangeAllCodes_NewCode_HeaderText {
+            get {
+                return ResourceManager.GetString("ChangeAllCodes_NewCode_HeaderText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Original Code.
+        /// </summary>
+        public static string ChangeAllCodes_OldCode_HeaderText {
+            get {
+                return ResourceManager.GetString("ChangeAllCodes_OldCode_HeaderText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change Control Codes.
+        /// </summary>
+        public static string ChangeAllCodes_Text {
+            get {
+                return ResourceManager.GetString("ChangeAllCodes_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use the &quot;Move Up&quot; and &quot;Move Down&quot; buttons to change the order that courses are listed in the user interface, reports, and printing..
+        /// </summary>
+        public static string ChangeCourseOrder_courseOrderLabel_Text {
+            get {
+                return ResourceManager.GetString("ChangeCourseOrder_courseOrderLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move down.
+        /// </summary>
+        public static string ChangeCourseOrder_moveDownButton_Text {
+            get {
+                return ResourceManager.GetString("ChangeCourseOrder_moveDownButton_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move up.
+        /// </summary>
+        public static string ChangeCourseOrder_moveUpButton_Text {
+            get {
+                return ResourceManager.GetString("ChangeCourseOrder_moveUpButton_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Course Order.
+        /// </summary>
+        public static string ChangeCourseOrder_Text {
+            get {
+                return ResourceManager.GetString("ChangeCourseOrder_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Choose map file....
+        /// </summary>
+        public static string ChangeMapFile_buttonChooseFile_Text {
+            get {
+                return ResourceManager.GetString("ChangeMapFile_buttonChooseFile_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Resolution:.
+        /// </summary>
+        public static string ChangeMapFile_labelDpi_Text {
+            get {
+                return ResourceManager.GetString("ChangeMapFile_labelDpi_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to dots per inch.
+        /// </summary>
+        public static string ChangeMapFile_labelDpi2_Text {
+            get {
+                return ResourceManager.GetString("ChangeMapFile_labelDpi2_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1 :.
+        /// </summary>
+        public static string ChangeMapFile_labelOneTo_Text {
+            get {
+                return ResourceManager.GetString("ChangeMapFile_labelOneTo_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Scale:.
+        /// </summary>
+        public static string ChangeMapFile_labelScale_Text {
+            get {
+                return ResourceManager.GetString("ChangeMapFile_labelScale_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Current Map File.
+        /// </summary>
+        public static string ChangeMapFile_mapFileDisplay_Text {
+            get {
+                return ResourceManager.GetString("ChangeMapFile_mapFileDisplay_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All map files|*.ocd;*.omap;*.xmap;*.pdf;*.jpeg;*.jpg;*.tiff;*.tif;*.bmp;*.png;*.gif|OCAD files (*.ocd)|*.ocd|Open Orienteering Mapper Files|*.omap;*.xmap|PDF files (*.pdf)|*.pdf|Image files|*.jpeg;*.jpg;*.tiff;*.tif;*.bmp;*.png;*.gif.
+        /// </summary>
+        public static string ChangeMapFile_openFileDialog_Filter {
+            get {
+                return ResourceManager.GetString("ChangeMapFile_openFileDialog_Filter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Map File.
+        /// </summary>
+        public static string ChangeMapFile_Text {
+            get {
+                return ResourceManager.GetString("ChangeMapFile_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose the courses that this object will be displayed on:.
+        /// </summary>
+        public static string ChangeSpecialCourses_changeDisplayedCoursesLabel_Text {
+            get {
+                return ResourceManager.GetString("ChangeSpecialCourses_changeDisplayedCoursesLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change Displayed Courses.
+        /// </summary>
+        public static string ChangeSpecialCourses_Text {
+            get {
+                return ResourceManager.GetString("ChangeSpecialCourses_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change Color....
+        /// </summary>
+        public static string ChangeText_buttonChangeColor_Text {
+            get {
+                return ResourceManager.GetString("ChangeText_buttonChangeColor_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Automatic.
+        /// </summary>
+        public static string ChangeText_checkBoxAutoFontSize_Text {
+            get {
+                return ResourceManager.GetString("ChangeText_checkBoxAutoFontSize_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bold.
+        /// </summary>
+        public static string ChangeText_checkBoxBold_Text {
+            get {
+                return ResourceManager.GetString("ChangeText_checkBoxBold_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Italic.
+        /// </summary>
+        public static string ChangeText_checkBoxItalic_Text {
+            get {
+                return ResourceManager.GetString("ChangeText_checkBoxItalic_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Class List.
+        /// </summary>
+        public static string ChangeText_classListMenuItem_Text {
+            get {
+                return ResourceManager.GetString("ChangeText_classListMenuItem_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Course Climb.
+        /// </summary>
+        public static string ChangeText_courseClimbMenuItem_Text {
+            get {
+                return ResourceManager.GetString("ChangeText_courseClimbMenuItem_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Course Length.
+        /// </summary>
+        public static string ChangeText_courseLengthMenuItem_Text {
+            get {
+                return ResourceManager.GetString("ChangeText_courseLengthMenuItem_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Course Name.
+        /// </summary>
+        public static string ChangeText_courseNameMenuItem_Text {
+            get {
+                return ResourceManager.GetString("ChangeText_courseNameMenuItem_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Course Part.
+        /// </summary>
+        public static string ChangeText_coursePartMenuItem_Text {
+            get {
+                return ResourceManager.GetString("ChangeText_coursePartMenuItem_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Event Title.
+        /// </summary>
+        public static string ChangeText_eventTitleMenuItem_Text {
+            get {
+                return ResourceManager.GetString("ChangeText_eventTitleMenuItem_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File Name.
+        /// </summary>
+        public static string ChangeText_fileNameMenuItem_Text {
+            get {
+                return ResourceManager.GetString("ChangeText_fileNameMenuItem_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Appearance.
+        /// </summary>
+        public static string ChangeText_groupBox1_Text {
+            get {
+                return ResourceManager.GetString("ChangeText_groupBox1_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sample.
+        /// </summary>
+        public static string ChangeText_groupBox2_Text {
+            get {
+                return ResourceManager.GetString("ChangeText_groupBox2_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Text.
+        /// </summary>
+        public static string ChangeText_groupBox3_Text {
+            get {
+                return ResourceManager.GetString("ChangeText_groupBox3_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Insert Special Text.
+        /// </summary>
+        public static string ChangeText_insertSpecialButton_Text {
+            get {
+                return ResourceManager.GetString("ChangeText_insertSpecialButton_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Font:.
+        /// </summary>
+        public static string ChangeText_label1_Text {
+            get {
+                return ResourceManager.GetString("ChangeText_label1_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Color:.
+        /// </summary>
+        public static string ChangeText_label2_Text {
+            get {
+                return ResourceManager.GetString("ChangeText_label2_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Size:.
+        /// </summary>
+        public static string ChangeText_label3_Text {
+            get {
+                return ResourceManager.GetString("ChangeText_label3_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to mm.
+        /// </summary>
+        public static string ChangeText_labelFontSizeMm_Text {
+            get {
+                return ResourceManager.GetString("ChangeText_labelFontSizeMm_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Map File Name.
+        /// </summary>
+        public static string ChangeText_mapFileNameMenuItem_Text {
+            get {
+                return ResourceManager.GetString("ChangeText_mapFileNameMenuItem_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Print Scale.
+        /// </summary>
+        public static string ChangeText_printScaleMenuItem_Text {
+            get {
+                return ResourceManager.GetString("ChangeText_printScaleMenuItem_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Relay Leg.
+        /// </summary>
+        public static string ChangeText_relayLegMenuItem_Text {
+            get {
+                return ResourceManager.GetString("ChangeText_relayLegMenuItem_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Relay Team.
+        /// </summary>
+        public static string ChangeText_relayTeamMenuItem_Text {
+            get {
+                return ResourceManager.GetString("ChangeText_relayTeamMenuItem_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Course Variation.
+        /// </summary>
+        public static string ChangeText_variationMenuItem_Text {
+            get {
+                return ResourceManager.GetString("ChangeText_variationMenuItem_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Preview.
+        /// </summary>
+        public static string ColorChooserDialog_groupBoxPreview_Text {
+            get {
+                return ResourceManager.GetString("ColorChooserDialog_groupBoxPreview_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cyan:.
+        /// </summary>
+        public static string ColorChooserDialog_label1_Text {
+            get {
+                return ResourceManager.GetString("ColorChooserDialog_label1_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Magenta:.
+        /// </summary>
+        public static string ColorChooserDialog_label3_Text {
+            get {
+                return ResourceManager.GetString("ColorChooserDialog_label3_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Black:.
+        /// </summary>
+        public static string ColorChooserDialog_label5_Text {
+            get {
+                return ResourceManager.GetString("ColorChooserDialog_label5_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yellow:.
+        /// </summary>
+        public static string ColorChooserDialog_label6_Text {
+            get {
+                return ResourceManager.GetString("ColorChooserDialog_label6_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose Color.
+        /// </summary>
+        public static string ColorChooserDialog_Text {
+            get {
+                return ResourceManager.GetString("ColorChooserDialog_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Bend.
+        /// </summary>
+        public static string CommandNameText_AddBend {
+            get {
+                return ResourceManager.GetString("CommandNameText_AddBend", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Control.
+        /// </summary>
+        public static string CommandNameText_AddControl {
+            get {
+                return ResourceManager.GetString("CommandNameText_AddControl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Corner.
+        /// </summary>
+        public static string CommandNameText_AddCorner {
+            get {
+                return ResourceManager.GetString("CommandNameText_AddCorner", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Mandatory Crossing Point.
+        /// </summary>
+        public static string CommandNameText_AddCrossingPoint {
+            get {
+                return ResourceManager.GetString("CommandNameText_AddCrossingPoint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Finish.
+        /// </summary>
+        public static string CommandNameText_AddFinish {
+            get {
+                return ResourceManager.GetString("CommandNameText_AddFinish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Gap.
+        /// </summary>
+        public static string CommandNameText_AddGap {
+            get {
+                return ResourceManager.GetString("CommandNameText_AddGap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Map Exchange.
+        /// </summary>
+        public static string CommandNameText_AddMapExchange {
+            get {
+                return ResourceManager.GetString("CommandNameText_AddMapExchange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Map Flip.
+        /// </summary>
+        public static string CommandNameText_AddMapFlip {
+            get {
+                return ResourceManager.GetString("CommandNameText_AddMapFlip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Map Issue Point.
+        /// </summary>
+        public static string CommandNameText_AddMapIssue {
+            get {
+                return ResourceManager.GetString("CommandNameText_AddMapIssue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Object.
+        /// </summary>
+        public static string CommandNameText_AddObject {
+            get {
+                return ResourceManager.GetString("CommandNameText_AddObject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Start.
+        /// </summary>
+        public static string CommandNameText_AddStart {
+            get {
+                return ResourceManager.GetString("CommandNameText_AddStart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Text Line.
+        /// </summary>
+        public static string CommandNameText_AddTextLine {
+            get {
+                return ResourceManager.GetString("CommandNameText_AddTextLine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Variation.
+        /// </summary>
+        public static string CommandNameText_AddVariation {
+            get {
+                return ResourceManager.GetString("CommandNameText_AddVariation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Automatic Numbering.
+        /// </summary>
+        public static string CommandNameText_AutoNumbering {
+            get {
+                return ResourceManager.GetString("CommandNameText_AutoNumbering", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change All Controls Properties.
+        /// </summary>
+        public static string CommandNameText_ChangeAllControlsProperties {
+            get {
+                return ResourceManager.GetString("CommandNameText_ChangeAllControlsProperties", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change Climb.
+        /// </summary>
+        public static string CommandNameText_ChangeClimb {
+            get {
+                return ResourceManager.GetString("CommandNameText_ChangeClimb", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change Control Code.
+        /// </summary>
+        public static string CommandNameText_ChangeCode {
+            get {
+                return ResourceManager.GetString("CommandNameText_ChangeCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change Codes.
+        /// </summary>
+        public static string CommandNameText_ChangeCodes {
+            get {
+                return ResourceManager.GetString("CommandNameText_ChangeCodes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change Control.
+        /// </summary>
+        public static string CommandNameText_ChangeControl {
+            get {
+                return ResourceManager.GetString("CommandNameText_ChangeControl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Customize Course Appearance.
+        /// </summary>
+        public static string CommandNameText_ChangeCourseAppearance {
+            get {
+                return ResourceManager.GetString("CommandNameText_ChangeCourseAppearance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change Course Name.
+        /// </summary>
+        public static string CommandNameText_ChangeCourseName {
+            get {
+                return ResourceManager.GetString("CommandNameText_ChangeCourseName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change Course Order.
+        /// </summary>
+        public static string CommandNameText_ChangeCourseOrder {
+            get {
+                return ResourceManager.GetString("CommandNameText_ChangeCourseOrder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change Course Properties.
+        /// </summary>
+        public static string CommandNameText_ChangeCourseProperties {
+            get {
+                return ResourceManager.GetString("CommandNameText_ChangeCourseProperties", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set Control Description Standard.
+        /// </summary>
+        public static string CommandNameText_ChangeDescriptionStandard {
+            get {
+                return ResourceManager.GetString("CommandNameText_ChangeDescriptionStandard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change Displayed Courses.
+        /// </summary>
+        public static string CommandNameText_ChangeDisplayedCourses {
+            get {
+                return ResourceManager.GetString("CommandNameText_ChangeDisplayedCourses", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change Line Appearance.
+        /// </summary>
+        public static string CommandNameText_ChangeLineAppearance {
+            get {
+                return ResourceManager.GetString("CommandNameText_ChangeLineAppearance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change Map File.
+        /// </summary>
+        public static string CommandNameText_ChangeMapFile {
+            get {
+                return ResourceManager.GetString("CommandNameText_ChangeMapFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set Map Standard.
+        /// </summary>
+        public static string CommandNameText_ChangeMapStandard {
+            get {
+                return ResourceManager.GetString("CommandNameText_ChangeMapStandard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change Course Part Properties.
+        /// </summary>
+        public static string CommandNameText_ChangePartProperties {
+            get {
+                return ResourceManager.GetString("CommandNameText_ChangePartProperties", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change Punch Card Layout.
+        /// </summary>
+        public static string CommandNameText_ChangePunchcardFormat {
+            get {
+                return ResourceManager.GetString("CommandNameText_ChangePunchcardFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change Punch Patterns.
+        /// </summary>
+        public static string CommandNameText_ChangePunchPatterns {
+            get {
+                return ResourceManager.GetString("CommandNameText_ChangePunchPatterns", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update Map Scale.
+        /// </summary>
+        public static string CommandNameText_ChangeScale {
+            get {
+                return ResourceManager.GetString("CommandNameText_ChangeScale", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change Control Points.
+        /// </summary>
+        public static string CommandNameText_ChangeScore {
+            get {
+                return ResourceManager.GetString("CommandNameText_ChangeScore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change Symbol.
+        /// </summary>
+        public static string CommandNameText_ChangeSymbol {
+            get {
+                return ResourceManager.GetString("CommandNameText_ChangeSymbol", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change Text.
+        /// </summary>
+        public static string CommandNameText_ChangeText {
+            get {
+                return ResourceManager.GetString("CommandNameText_ChangeText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change Text Line.
+        /// </summary>
+        public static string CommandNameText_ChangeTextLine {
+            get {
+                return ResourceManager.GetString("CommandNameText_ChangeTextLine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change Title.
+        /// </summary>
+        public static string CommandNameText_ChangeTitle {
+            get {
+                return ResourceManager.GetString("CommandNameText_ChangeTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create {0} &amp;Files.
+        /// </summary>
+        public static string CommandNameText_CreateMapFiles {
+            get {
+                return ResourceManager.GetString("CommandNameText_CreateMapFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove Bend.
+        /// </summary>
+        public static string CommandNameText_DeleteBend {
+            get {
+                return ResourceManager.GetString("CommandNameText_DeleteBend", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete Control.
+        /// </summary>
+        public static string CommandNameText_DeleteControl {
+            get {
+                return ResourceManager.GetString("CommandNameText_DeleteControl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove Corner.
+        /// </summary>
+        public static string CommandNameText_DeleteCorner {
+            get {
+                return ResourceManager.GetString("CommandNameText_DeleteCorner", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete Course.
+        /// </summary>
+        public static string CommandNameText_DeleteCourse {
+            get {
+                return ResourceManager.GetString("CommandNameText_DeleteCourse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete Fork/Loop.
+        /// </summary>
+        public static string CommandNameText_DeleteFork {
+            get {
+                return ResourceManager.GetString("CommandNameText_DeleteFork", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete Map Exchange.
+        /// </summary>
+        public static string CommandNameText_DeleteMapExchangeAtControl {
+            get {
+                return ResourceManager.GetString("CommandNameText_DeleteMapExchangeAtControl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete Object.
+        /// </summary>
+        public static string CommandNameText_DeleteObject {
+            get {
+                return ResourceManager.GetString("CommandNameText_DeleteObject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete Text Line.
+        /// </summary>
+        public static string CommandNameText_DeleteTextLine {
+            get {
+                return ResourceManager.GetString("CommandNameText_DeleteTextLine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Duplicate Course.
+        /// </summary>
+        public static string CommandNameText_DuplicateCourse {
+            get {
+                return ResourceManager.GetString("CommandNameText_DuplicateCourse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ignore Missing Fonts.
+        /// </summary>
+        public static string CommandNameText_IgnoreMissingFonts {
+            get {
+                return ResourceManager.GetString("CommandNameText_IgnoreMissingFonts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move All Controls.
+        /// </summary>
+        public static string CommandNameText_MoveAllControls {
+            get {
+                return ResourceManager.GetString("CommandNameText_MoveAllControls", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move Leg Bend.
+        /// </summary>
+        public static string CommandNameText_MoveBend {
+            get {
+                return ResourceManager.GetString("CommandNameText_MoveBend", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move Control.
+        /// </summary>
+        public static string CommandNameText_MoveControl {
+            get {
+                return ResourceManager.GetString("CommandNameText_MoveControl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move Control Number.
+        /// </summary>
+        public static string CommandNameText_MoveControlNumber {
+            get {
+                return ResourceManager.GetString("CommandNameText_MoveControlNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move Gap.
+        /// </summary>
+        public static string CommandNameText_MoveGap {
+            get {
+                return ResourceManager.GetString("CommandNameText_MoveGap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move Object.
+        /// </summary>
+        public static string CommandNameText_MoveObject {
+            get {
+                return ResourceManager.GetString("CommandNameText_MoveObject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Course.
+        /// </summary>
+        public static string CommandNameText_NewCourse {
+            get {
+                return ResourceManager.GetString("CommandNameText_NewCourse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create New Event.
+        /// </summary>
+        public static string CommandNameText_NewEvent {
+            get {
+                return ResourceManager.GetString("CommandNameText_NewEvent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Relay Team Variations.
+        /// </summary>
+        public static string CommandNameText_RelayTeamVariations {
+            get {
+                return ResourceManager.GetString("CommandNameText_RelayTeamVariations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove Gap.
+        /// </summary>
+        public static string CommandNameText_RemoveGap {
+            get {
+                return ResourceManager.GetString("CommandNameText_RemoveGap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove Unused Controls.
+        /// </summary>
+        public static string CommandNameText_RemoveUnusedControls {
+            get {
+                return ResourceManager.GetString("CommandNameText_RemoveUnusedControls", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rotate.
+        /// </summary>
+        public static string CommandNameText_Rotate {
+            get {
+                return ResourceManager.GetString("CommandNameText_Rotate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change Competitor Load.
+        /// </summary>
+        public static string CommandNameText_SetCourseLoad {
+            get {
+                return ResourceManager.GetString("CommandNameText_SetCourseLoad", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Customize Description Text.
+        /// </summary>
+        public static string CommandNameText_SetCustomSymbolText {
+            get {
+                return ResourceManager.GetString("CommandNameText_SetCustomSymbolText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change Description Language.
+        /// </summary>
+        public static string CommandNameText_SetDescriptionLanguage {
+            get {
+                return ResourceManager.GetString("CommandNameText_SetDescriptionLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change Leg Flagging.
+        /// </summary>
+        public static string CommandNameText_SetLegFlagging {
+            get {
+                return ResourceManager.GetString("CommandNameText_SetLegFlagging", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Publish to Livelox.
+        /// </summary>
+        public static string CommandNameText_SetLiveloxImportableEventId {
+            get {
+                return ResourceManager.GetString("CommandNameText_SetLiveloxImportableEventId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set Print Area.
+        /// </summary>
+        public static string CommandNameText_SetPrintArea {
+            get {
+                return ResourceManager.GetString("CommandNameText_SetPrintArea", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stretch.
+        /// </summary>
+        public static string CommandNameText_Stretch {
+            get {
+                return ResourceManager.GetString("CommandNameText_Stretch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Counter: {0}.
         /// </summary>
         public static string CounterLabel {
             get {
                 return ResourceManager.GetString("CounterLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use purple color from map.
+        /// </summary>
+        public static string CourseAppearanceDialog_checkBoxDefaultPurple_Text {
+            get {
+                return ResourceManager.GetString("CourseAppearanceDialog_checkBoxDefaultPurple_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use overprint effect for colors marked &quot;overprint&quot;.
+        /// </summary>
+        public static string CourseAppearanceDialog_checkBoxOverprint_Text {
+            get {
+                return ResourceManager.GetString("CourseAppearanceDialog_checkBoxOverprint_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use IOF standard sizes.
+        /// </summary>
+        public static string CourseAppearanceDialog_checkBoxStandardSizes_Text {
+            get {
+                return ResourceManager.GetString("CourseAppearanceDialog_checkBoxStandardSizes_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to None.
+        /// </summary>
+        public static string CourseAppearanceDialog_comboBoxBlendPurple_Items {
+            get {
+                return ResourceManager.GetString("CourseAppearanceDialog_comboBoxBlendPurple_Items", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Blend.
+        /// </summary>
+        public static string CourseAppearanceDialog_comboBoxBlendPurple_Items1 {
+            get {
+                return ResourceManager.GetString("CourseAppearanceDialog_comboBoxBlendPurple_Items1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Layer.
+        /// </summary>
+        public static string CourseAppearanceDialog_comboBoxBlendPurple_Items2 {
+            get {
+                return ResourceManager.GetString("CourseAppearanceDialog_comboBoxBlendPurple_Items2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Arial.
+        /// </summary>
+        public static string CourseAppearanceDialog_comboBoxControlNumberStyle_Items {
+            get {
+                return ResourceManager.GetString("CourseAppearanceDialog_comboBoxControlNumberStyle_Items", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Arial Bold.
+        /// </summary>
+        public static string CourseAppearanceDialog_comboBoxControlNumberStyle_Items1 {
+            get {
+                return ResourceManager.GetString("CourseAppearanceDialog_comboBoxControlNumberStyle_Items1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Roboto.
+        /// </summary>
+        public static string CourseAppearanceDialog_comboBoxControlNumberStyle_Items2 {
+            get {
+                return ResourceManager.GetString("CourseAppearanceDialog_comboBoxControlNumberStyle_Items2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Roboto Bold.
+        /// </summary>
+        public static string CourseAppearanceDialog_comboBoxControlNumberStyle_Items3 {
+            get {
+                return ResourceManager.GetString("CourseAppearanceDialog_comboBoxControlNumberStyle_Items3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Black.
+        /// </summary>
+        public static string CourseAppearanceDialog_comboBoxDescriptionColor_Items {
+            get {
+                return ResourceManager.GetString("CourseAppearanceDialog_comboBoxDescriptionColor_Items", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Purple.
+        /// </summary>
+        public static string CourseAppearanceDialog_comboBoxDescriptionColor_Items1 {
+            get {
+                return ResourceManager.GetString("CourseAppearanceDialog_comboBoxDescriptionColor_Items1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do not scale.
+        /// </summary>
+        public static string CourseAppearanceDialog_comboBoxScaleItemSizes_Items {
+            get {
+                return ResourceManager.GetString("CourseAppearanceDialog_comboBoxScaleItemSizes_Items", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Relative to map scale.
+        /// </summary>
+        public static string CourseAppearanceDialog_comboBoxScaleItemSizes_Items1 {
+            get {
+                return ResourceManager.GetString("CourseAppearanceDialog_comboBoxScaleItemSizes_Items1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Relative to 1:15000.
+        /// </summary>
+        public static string CourseAppearanceDialog_comboBoxScaleItemSizes_Items2 {
+            get {
+                return ResourceManager.GetString("CourseAppearanceDialog_comboBoxScaleItemSizes_Items2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Control Descriptions.
+        /// </summary>
+        public static string CourseAppearanceDialog_groupBox1_Text {
+            get {
+                return ResourceManager.GetString("CourseAppearanceDialog_groupBox1_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Advanced.
+        /// </summary>
+        public static string CourseAppearanceDialog_groupBoxOcadMap_Text {
+            get {
+                return ResourceManager.GetString("CourseAppearanceDialog_groupBoxOcadMap_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Preview.
+        /// </summary>
+        public static string CourseAppearanceDialog_groupBoxPreview_Text {
+            get {
+                return ResourceManager.GetString("CourseAppearanceDialog_groupBoxPreview_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Purple Color.
+        /// </summary>
+        public static string CourseAppearanceDialog_groupBoxPurple_Text {
+            get {
+                return ResourceManager.GetString("CourseAppearanceDialog_groupBoxPurple_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Item Sizes.
+        /// </summary>
+        public static string CourseAppearanceDialog_groupBoxSizes_Text {
+            get {
+                return ResourceManager.GetString("CourseAppearanceDialog_groupBoxSizes_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cyan:.
+        /// </summary>
+        public static string CourseAppearanceDialog_label1_Text {
+            get {
+                return ResourceManager.GetString("CourseAppearanceDialog_label1_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to mm.
+        /// </summary>
+        public static string CourseAppearanceDialog_label10_Text {
+            get {
+                return ResourceManager.GetString("CourseAppearanceDialog_label10_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Scale item sizes:.
+        /// </summary>
+        public static string CourseAppearanceDialog_label11_Text {
+            get {
+                return ResourceManager.GetString("CourseAppearanceDialog_label11_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to mm.
+        /// </summary>
+        public static string CourseAppearanceDialog_label12_Text {
+            get {
+                return ResourceManager.GetString("CourseAppearanceDialog_label12_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to mm.
+        /// </summary>
+        public static string CourseAppearanceDialog_label2_Text {
+            get {
+                return ResourceManager.GetString("CourseAppearanceDialog_label2_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Magenta:.
+        /// </summary>
+        public static string CourseAppearanceDialog_label3_Text {
+            get {
+                return ResourceManager.GetString("CourseAppearanceDialog_label3_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to mm.
+        /// </summary>
+        public static string CourseAppearanceDialog_label4_Text {
+            get {
+                return ResourceManager.GetString("CourseAppearanceDialog_label4_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Black:.
+        /// </summary>
+        public static string CourseAppearanceDialog_label5_Text {
+            get {
+                return ResourceManager.GetString("CourseAppearanceDialog_label5_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yellow:.
+        /// </summary>
+        public static string CourseAppearanceDialog_label6_Text {
+            get {
+                return ResourceManager.GetString("CourseAppearanceDialog_label6_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Center dot diameter:.
+        /// </summary>
+        public static string CourseAppearanceDialog_label7_Text {
+            get {
+                return ResourceManager.GetString("CourseAppearanceDialog_label7_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to mm.
+        /// </summary>
+        public static string CourseAppearanceDialog_label8_Text {
+            get {
+                return ResourceManager.GetString("CourseAppearanceDialog_label8_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Color:.
+        /// </summary>
+        public static string CourseAppearanceDialog_label9_Text {
+            get {
+                return ResourceManager.GetString("CourseAppearanceDialog_label9_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Automatic leg gap size:.
+        /// </summary>
+        public static string CourseAppearanceDialog_labelAutoGapSize_Text {
+            get {
+                return ResourceManager.GetString("CourseAppearanceDialog_labelAutoGapSize_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Blend purple with underlying map colors:.
+        /// </summary>
+        public static string CourseAppearanceDialog_labelBlendPurple_Text {
+            get {
+                return ResourceManager.GetString("CourseAppearanceDialog_labelBlendPurple_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Above map layer:.
+        /// </summary>
+        public static string CourseAppearanceDialog_labelChooseLayer_Text {
+            get {
+                return ResourceManager.GetString("CourseAppearanceDialog_labelChooseLayer_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Control circle diameter:.
+        /// </summary>
+        public static string CourseAppearanceDialog_labelControlCircle_Text {
+            get {
+                return ResourceManager.GetString("CourseAppearanceDialog_labelControlCircle_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Control number height:.
+        /// </summary>
+        public static string CourseAppearanceDialog_labelControlNumber_Text {
+            get {
+                return ResourceManager.GetString("CourseAppearanceDialog_labelControlNumber_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Control number style:.
+        /// </summary>
+        public static string CourseAppearanceDialog_labelControlNumberStyle_Text {
+            get {
+                return ResourceManager.GetString("CourseAppearanceDialog_labelControlNumberStyle_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Line width:.
+        /// </summary>
+        public static string CourseAppearanceDialog_labelLineWidth_Text {
+            get {
+                return ResourceManager.GetString("CourseAppearanceDialog_labelLineWidth_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to mm.
+        /// </summary>
+        public static string CourseAppearanceDialog_labelMM1_Text {
+            get {
+                return ResourceManager.GetString("CourseAppearanceDialog_labelMM1_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to White outline around numbers:.
+        /// </summary>
+        public static string CourseAppearanceDialog_labelOutlineWidth_Text {
+            get {
+                return ResourceManager.GetString("CourseAppearanceDialog_labelOutlineWidth_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Customize Appearance.
+        /// </summary>
+        public static string CourseAppearanceDialog_Text {
+            get {
+                return ResourceManager.GetString("CourseAppearanceDialog_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set the number of competitors on each course by clicking in the second column and typing a number..
+        /// </summary>
+        public static string CourseLoad_courseLoadLabel_Text {
+            get {
+                return ResourceManager.GetString("CourseLoad_courseLoadLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Course Name.
+        /// </summary>
+        public static string CourseLoad_CourseName_HeaderText {
+            get {
+                return ResourceManager.GetString("CourseLoad_CourseName_HeaderText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Competitor Load.
+        /// </summary>
+        public static string CourseLoad_Load_HeaderText {
+            get {
+                return ResourceManager.GetString("CourseLoad_Load_HeaderText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Course Load.
+        /// </summary>
+        public static string CourseLoad_Text {
+            get {
+                return ResourceManager.GetString("CourseLoad_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Properties....
+        /// </summary>
+        public static string CoursePartBanner_buttonProperties_Text {
+            get {
+                return ResourceManager.GetString("CoursePartBanner_buttonProperties_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Course Part: .
+        /// </summary>
+        public static string CoursePartBanner_coursePartLabel_Text {
+            get {
+                return ResourceManager.GetString("CoursePartBanner_coursePartLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Course Variation: .
+        /// </summary>
+        public static string CoursePartBanner_variationsLabel_Text {
+            get {
+                return ResourceManager.GetString("CoursePartBanner_variationsLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Display finish circle on this course part.
+        /// </summary>
+        public static string CoursePartProperties_checkBoxDisplayFinish_Text {
+            get {
+                return ResourceManager.GetString("CoursePartProperties_checkBoxDisplayFinish_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to These settings control the appearance of this part of a multi-part course..
+        /// </summary>
+        public static string CoursePartProperties_label1_Text {
+            get {
+                return ResourceManager.GetString("CoursePartProperties_label1_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Course Part Properties.
+        /// </summary>
+        public static string CoursePartProperties_Text {
+            get {
+                return ResourceManager.GetString("CoursePartProperties_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose Variations....
+        /// </summary>
+        public static string CourseSelector_buttonChooseVariations_Text {
+            get {
+                return ResourceManager.GetString("CourseSelector_buttonChooseVariations_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All.
+        /// </summary>
+        public static string CourseSelector_selectAll_Text {
+            get {
+                return ResourceManager.GetString("CourseSelector_selectAll_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to None.
+        /// </summary>
+        public static string CourseSelector_selectNone_Text {
+            get {
+                return ResourceManager.GetString("CourseSelector_selectNone_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Courses.
+        /// </summary>
+        public static string CreateGpx_coursesGroupBox_Text {
+            get {
+                return ResourceManager.GetString("CreateGpx_coursesGroupBox_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A GPX File contains GPS coordinates for controls, and can be loaded onto a GPS or smartphone to verify the correct location of controls..
+        /// </summary>
+        public static string CreateGpx_headerLabel_Text {
+            get {
+                return ResourceManager.GetString("CreateGpx_headerLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name prefix:.
+        /// </summary>
+        public static string CreateGpx_namePrefixLabel_Text {
+            get {
+                return ResourceManager.GetString("CreateGpx_namePrefixLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create GPX File.
+        /// </summary>
+        public static string CreateGpx_Text {
+            get {
+                return ResourceManager.GetString("CreateGpx_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Waypoints.
+        /// </summary>
+        public static string CreateGpx_waypointGroupBox_Text {
+            get {
+                return ResourceManager.GetString("CreateGpx_waypointGroupBox_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string CreateImageFiles_cancelButton_Text {
+            get {
+                return ResourceManager.GetString("CreateImageFiles_cancelButton_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to RGB.
+        /// </summary>
+        public static string CreateImageFiles_comboBoxColorModel_Items {
+            get {
+                return ResourceManager.GetString("CreateImageFiles_comboBoxColorModel_Items", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CMYK.
+        /// </summary>
+        public static string CreateImageFiles_comboBoxColorModel_Items1 {
+            get {
+                return ResourceManager.GetString("CreateImageFiles_comboBoxColorModel_Items1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 100.
+        /// </summary>
+        public static string CreateImageFiles_comboBoxDpi_Items {
+            get {
+                return ResourceManager.GetString("CreateImageFiles_comboBoxDpi_Items", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 150.
+        /// </summary>
+        public static string CreateImageFiles_comboBoxDpi_Items1 {
+            get {
+                return ResourceManager.GetString("CreateImageFiles_comboBoxDpi_Items1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 200.
+        /// </summary>
+        public static string CreateImageFiles_comboBoxDpi_Items2 {
+            get {
+                return ResourceManager.GetString("CreateImageFiles_comboBoxDpi_Items2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 300.
+        /// </summary>
+        public static string CreateImageFiles_comboBoxDpi_Items3 {
+            get {
+                return ResourceManager.GetString("CreateImageFiles_comboBoxDpi_Items3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 400.
+        /// </summary>
+        public static string CreateImageFiles_comboBoxDpi_Items4 {
+            get {
+                return ResourceManager.GetString("CreateImageFiles_comboBoxDpi_Items4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 500.
+        /// </summary>
+        public static string CreateImageFiles_comboBoxDpi_Items5 {
+            get {
+                return ResourceManager.GetString("CreateImageFiles_comboBoxDpi_Items5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 600.
+        /// </summary>
+        public static string CreateImageFiles_comboBoxDpi_Items6 {
+            get {
+                return ResourceManager.GetString("CreateImageFiles_comboBoxDpi_Items6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Course and map.
+        /// </summary>
+        public static string CreateImageFiles_comboBoxPrintBaseMap_Items {
+            get {
+                return ResourceManager.GetString("CreateImageFiles_comboBoxPrintBaseMap_Items", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Course only.
+        /// </summary>
+        public static string CreateImageFiles_comboBoxPrintBaseMap_Items1 {
+            get {
+                return ResourceManager.GetString("CreateImageFiles_comboBoxPrintBaseMap_Items1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No.
+        /// </summary>
+        public static string CreateImageFiles_comboBoxWorldFile_Items {
+            get {
+                return ResourceManager.GetString("CreateImageFiles_comboBoxWorldFile_Items", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yes.
+        /// </summary>
+        public static string CreateImageFiles_comboBoxWorldFile_Items1 {
+            get {
+                return ResourceManager.GetString("CreateImageFiles_comboBoxWorldFile_Items1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Same folder as Purple Pen file.
+        /// </summary>
+        public static string CreateImageFiles_coursesDirectory_Text {
+            get {
+                return ResourceManager.GetString("CreateImageFiles_coursesDirectory_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Courses.
+        /// </summary>
+        public static string CreateImageFiles_coursesGroupBox_Text {
+            get {
+                return ResourceManager.GetString("CreateImageFiles_coursesGroupBox_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create.
+        /// </summary>
+        public static string CreateImageFiles_createButton_Text {
+            get {
+                return ResourceManager.GetString("CreateImageFiles_createButton_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dpi:.
+        /// </summary>
+        public static string CreateImageFiles_dpiLabel_Text {
+            get {
+                return ResourceManager.GetString("CreateImageFiles_dpiLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PNG.
+        /// </summary>
+        public static string CreateImageFiles_fileFormatCombo_Items {
+            get {
+                return ResourceManager.GetString("CreateImageFiles_fileFormatCombo_Items", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to JPEG.
+        /// </summary>
+        public static string CreateImageFiles_fileFormatCombo_Items1 {
+            get {
+                return ResourceManager.GetString("CreateImageFiles_fileFormatCombo_Items1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to GIF.
+        /// </summary>
+        public static string CreateImageFiles_fileFormatCombo_Items2 {
+            get {
+                return ResourceManager.GetString("CreateImageFiles_fileFormatCombo_Items2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File format:.
+        /// </summary>
+        public static string CreateImageFiles_fileFormatLabel_Text {
+            get {
+                return ResourceManager.GetString("CreateImageFiles_fileFormatLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File name prefix:.
+        /// </summary>
+        public static string CreateImageFiles_fileNamePrefixLabel_Text {
+            get {
+                return ResourceManager.GetString("CreateImageFiles_fileNamePrefixLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a folder for the OCAD files.
+        /// </summary>
+        public static string CreateImageFiles_folderBrowserDialog_Description {
+            get {
+                return ResourceManager.GetString("CreateImageFiles_folderBrowserDialog_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Folder.
+        /// </summary>
+        public static string CreateImageFiles_folderGroupBox_Text {
+            get {
+                return ResourceManager.GetString("CreateImageFiles_folderGroupBox_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to World file:.
+        /// </summary>
+        public static string CreateImageFiles_label1_Text {
+            get {
+                return ResourceManager.GetString("CreateImageFiles_label1_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Color model:.
+        /// </summary>
+        public static string CreateImageFiles_labelColorModel_Text {
+            get {
+                return ResourceManager.GetString("CreateImageFiles_labelColorModel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Include:.
+        /// </summary>
+        public static string CreateImageFiles_labelPrintBaseMap_Text {
+            get {
+                return ResourceManager.GetString("CreateImageFiles_labelPrintBaseMap_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Same folder as map file.
+        /// </summary>
+        public static string CreateImageFiles_mapDirectory_Text {
+            get {
+                return ResourceManager.GetString("CreateImageFiles_mapDirectory_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Other folder.
+        /// </summary>
+        public static string CreateImageFiles_otherDirectory_Text {
+            get {
+                return ResourceManager.GetString("CreateImageFiles_otherDirectory_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Output.
+        /// </summary>
+        public static string CreateImageFiles_outputGroupBox_Text {
+            get {
+                return ResourceManager.GetString("CreateImageFiles_outputGroupBox_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select folder....
+        /// </summary>
+        public static string CreateImageFiles_selectOtherDirectoryButton_Text {
+            get {
+                return ResourceManager.GetString("CreateImageFiles_selectOtherDirectoryButton_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create Image Files.
+        /// </summary>
+        public static string CreateImageFiles_Text {
+            get {
+                return ResourceManager.GetString("CreateImageFiles_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string CreateKmlFiles_cancelButton_Text {
+            get {
+                return ResourceManager.GetString("CreateKmlFiles_cancelButton_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Same folder as Purple Pen file.
+        /// </summary>
+        public static string CreateKmlFiles_coursesDirectory_Text {
+            get {
+                return ResourceManager.GetString("CreateKmlFiles_coursesDirectory_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Courses.
+        /// </summary>
+        public static string CreateKmlFiles_coursesGroupBox_Text {
+            get {
+                return ResourceManager.GetString("CreateKmlFiles_coursesGroupBox_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create.
+        /// </summary>
+        public static string CreateKmlFiles_createButton_Text {
+            get {
+                return ResourceManager.GetString("CreateKmlFiles_createButton_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File name prefix:.
+        /// </summary>
+        public static string CreateKmlFiles_fileNamePrefixLabel_Text {
+            get {
+                return ResourceManager.GetString("CreateKmlFiles_fileNamePrefixLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to One for all courses.
+        /// </summary>
+        public static string CreateKmlFiles_filesCombo_Items {
+            get {
+                return ResourceManager.GetString("CreateKmlFiles_filesCombo_Items", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to One per course.
+        /// </summary>
+        public static string CreateKmlFiles_filesCombo_Items1 {
+            get {
+                return ResourceManager.GetString("CreateKmlFiles_filesCombo_Items1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Files:.
+        /// </summary>
+        public static string CreateKmlFiles_filesLabel_Text {
+            get {
+                return ResourceManager.GetString("CreateKmlFiles_filesLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a folder for the OCAD files.
+        /// </summary>
+        public static string CreateKmlFiles_folderBrowserDialog_Description {
+            get {
+                return ResourceManager.GetString("CreateKmlFiles_folderBrowserDialog_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Folder.
+        /// </summary>
+        public static string CreateKmlFiles_folderGroupBox_Text {
+            get {
+                return ResourceManager.GetString("CreateKmlFiles_folderGroupBox_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Same folder as map file.
+        /// </summary>
+        public static string CreateKmlFiles_mapDirectory_Text {
+            get {
+                return ResourceManager.GetString("CreateKmlFiles_mapDirectory_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Other folder.
+        /// </summary>
+        public static string CreateKmlFiles_otherDirectory_Text {
+            get {
+                return ResourceManager.GetString("CreateKmlFiles_otherDirectory_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Output.
+        /// </summary>
+        public static string CreateKmlFiles_outputGroupBox_Text {
+            get {
+                return ResourceManager.GetString("CreateKmlFiles_outputGroupBox_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select folder....
+        /// </summary>
+        public static string CreateKmlFiles_selectOtherDirectoryButton_Text {
+            get {
+                return ResourceManager.GetString("CreateKmlFiles_selectOtherDirectoryButton_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create KML File.
+        /// </summary>
+        public static string CreateKmlFiles_Text {
+            get {
+                return ResourceManager.GetString("CreateKmlFiles_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string CreateOcadFiles_cancelButton_Text {
+            get {
+                return ResourceManager.GetString("CreateOcadFiles_cancelButton_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Same folder as Purple Pen file.
+        /// </summary>
+        public static string CreateOcadFiles_coursesDirectory_Text {
+            get {
+                return ResourceManager.GetString("CreateOcadFiles_coursesDirectory_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Courses.
+        /// </summary>
+        public static string CreateOcadFiles_coursesGroupBox_Text {
+            get {
+                return ResourceManager.GetString("CreateOcadFiles_coursesGroupBox_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create.
+        /// </summary>
+        public static string CreateOcadFiles_createButton_Text {
+            get {
+                return ResourceManager.GetString("CreateOcadFiles_createButton_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File format:.
+        /// </summary>
+        public static string CreateOcadFiles_fileFormatLabel_Text {
+            get {
+                return ResourceManager.GetString("CreateOcadFiles_fileFormatLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File name prefix:.
+        /// </summary>
+        public static string CreateOcadFiles_fileNamePrefixLabel_Text {
+            get {
+                return ResourceManager.GetString("CreateOcadFiles_fileNamePrefixLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a folder for the OCAD files.
+        /// </summary>
+        public static string CreateOcadFiles_folderBrowserDialog_Description {
+            get {
+                return ResourceManager.GetString("CreateOcadFiles_folderBrowserDialog_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Folder.
+        /// </summary>
+        public static string CreateOcadFiles_folderGroupBox_Text {
+            get {
+                return ResourceManager.GetString("CreateOcadFiles_folderGroupBox_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Same folder as map file.
+        /// </summary>
+        public static string CreateOcadFiles_mapDirectory_Text {
+            get {
+                return ResourceManager.GetString("CreateOcadFiles_mapDirectory_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Other folder.
+        /// </summary>
+        public static string CreateOcadFiles_otherDirectory_Text {
+            get {
+                return ResourceManager.GetString("CreateOcadFiles_otherDirectory_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Output.
+        /// </summary>
+        public static string CreateOcadFiles_outputGroupBox_Text {
+            get {
+                return ResourceManager.GetString("CreateOcadFiles_outputGroupBox_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select folder....
+        /// </summary>
+        public static string CreateOcadFiles_selectOtherDirectoryButton_Text {
+            get {
+                return ResourceManager.GetString("CreateOcadFiles_selectOtherDirectoryButton_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create OCAD Files.
+        /// </summary>
+        public static string CreateOcadFiles_Text {
+            get {
+                return ResourceManager.GetString("CreateOcadFiles_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Print Map Exchanges on Same Map .
+        /// </summary>
+        public static string CreatePdfCourses_checkBoxMergeParts_Text {
+            get {
+                return ResourceManager.GetString("CreatePdfCourses_checkBoxMergeParts_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to RGB.
+        /// </summary>
+        public static string CreatePdfCourses_comboBoxColorModel_Items {
+            get {
+                return ResourceManager.GetString("CreatePdfCourses_comboBoxColorModel_Items", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CMYK.
+        /// </summary>
+        public static string CreatePdfCourses_comboBoxColorModel_Items1 {
+            get {
+                return ResourceManager.GetString("CreatePdfCourses_comboBoxColorModel_Items1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to One for all courses.
+        /// </summary>
+        public static string CreatePdfCourses_comboBoxFileFormat_Items {
+            get {
+                return ResourceManager.GetString("CreatePdfCourses_comboBoxFileFormat_Items", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to One per course.
+        /// </summary>
+        public static string CreatePdfCourses_comboBoxFileFormat_Items1 {
+            get {
+                return ResourceManager.GetString("CreatePdfCourses_comboBoxFileFormat_Items1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to One per course part/variation.
+        /// </summary>
+        public static string CreatePdfCourses_comboBoxFileFormat_Items2 {
+            get {
+                return ResourceManager.GetString("CreatePdfCourses_comboBoxFileFormat_Items2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Crop to a single page.
+        /// </summary>
+        public static string CreatePdfCourses_comboBoxMultiPage_Items {
+            get {
+                return ResourceManager.GetString("CreatePdfCourses_comboBoxMultiPage_Items", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Print on multiple pages.
+        /// </summary>
+        public static string CreatePdfCourses_comboBoxMultiPage_Items1 {
+            get {
+                return ResourceManager.GetString("CreatePdfCourses_comboBoxMultiPage_Items1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Course and map.
+        /// </summary>
+        public static string CreatePdfCourses_comboBoxPrintBaseMap_Items {
+            get {
+                return ResourceManager.GetString("CreatePdfCourses_comboBoxPrintBaseMap_Items", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Course only.
+        /// </summary>
+        public static string CreatePdfCourses_comboBoxPrintBaseMap_Items1 {
+            get {
+                return ResourceManager.GetString("CreatePdfCourses_comboBoxPrintBaseMap_Items1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Same folder as Purple Pen file.
+        /// </summary>
+        public static string CreatePdfCourses_coursesDirectory_Text {
+            get {
+                return ResourceManager.GetString("CreatePdfCourses_coursesDirectory_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Courses.
+        /// </summary>
+        public static string CreatePdfCourses_coursesGroupBox_Text {
+            get {
+                return ResourceManager.GetString("CreatePdfCourses_coursesGroupBox_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name prefix:.
+        /// </summary>
+        public static string CreatePdfCourses_fileNamePrefixLabel_Text {
+            get {
+                return ResourceManager.GetString("CreatePdfCourses_fileNamePrefixLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Files:.
+        /// </summary>
+        public static string CreatePdfCourses_filesLabel_Text {
+            get {
+                return ResourceManager.GetString("CreatePdfCourses_filesLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a folder for the PDF files.
+        /// </summary>
+        public static string CreatePdfCourses_folderBrowserDialog_Description {
+            get {
+                return ResourceManager.GetString("CreatePdfCourses_folderBrowserDialog_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Folder.
+        /// </summary>
+        public static string CreatePdfCourses_folderGroupBox_Text {
+            get {
+                return ResourceManager.GetString("CreatePdfCourses_folderGroupBox_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Appearance.
+        /// </summary>
+        public static string CreatePdfCourses_groupBoxAppearance_Text {
+            get {
+                return ResourceManager.GetString("CreatePdfCourses_groupBoxAppearance_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If the print area is too large to fit on one page:.
+        /// </summary>
+        public static string CreatePdfCourses_labelAppearanceInfo_Text {
+            get {
+                return ResourceManager.GetString("CreatePdfCourses_labelAppearanceInfo_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Color Model:.
+        /// </summary>
+        public static string CreatePdfCourses_labelColorModel_Text {
+            get {
+                return ResourceManager.GetString("CreatePdfCourses_labelColorModel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Include:.
+        /// </summary>
+        public static string CreatePdfCourses_labelPrintBaseMap_Text {
+            get {
+                return ResourceManager.GetString("CreatePdfCourses_labelPrintBaseMap_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Same folder as map file.
+        /// </summary>
+        public static string CreatePdfCourses_mapDirectory_Text {
+            get {
+                return ResourceManager.GetString("CreatePdfCourses_mapDirectory_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create.
+        /// </summary>
+        public static string CreatePdfCourses_okButton_Text {
+            get {
+                return ResourceManager.GetString("CreatePdfCourses_okButton_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Other folder.
+        /// </summary>
+        public static string CreatePdfCourses_otherDirectory_Text {
+            get {
+                return ResourceManager.GetString("CreatePdfCourses_otherDirectory_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Files.
+        /// </summary>
+        public static string CreatePdfCourses_outputGroupBox_Text {
+            get {
+                return ResourceManager.GetString("CreatePdfCourses_outputGroupBox_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select folder....
+        /// </summary>
+        public static string CreatePdfCourses_selectOtherDirectoryButton_Text {
+            get {
+                return ResourceManager.GetString("CreatePdfCourses_selectOtherDirectoryButton_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create PDF Files.
+        /// </summary>
+        public static string CreatePdfCourses_Text {
+            get {
+                return ResourceManager.GetString("CreatePdfCourses_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string CreateRouteGadget_cancelButton_Text {
+            get {
+                return ResourceManager.GetString("CreateRouteGadget_cancelButton_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 2.0.3.
+        /// </summary>
+        public static string CreateRouteGadget_comboBoxIofXml_Items {
+            get {
+                return ResourceManager.GetString("CreateRouteGadget_comboBoxIofXml_Items", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 3.0.
+        /// </summary>
+        public static string CreateRouteGadget_comboBoxIofXml_Items1 {
+            get {
+                return ResourceManager.GetString("CreateRouteGadget_comboBoxIofXml_Items1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Same folder as Purple Pen file.
+        /// </summary>
+        public static string CreateRouteGadget_coursesDirectory_Text {
+            get {
+                return ResourceManager.GetString("CreateRouteGadget_coursesDirectory_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create.
+        /// </summary>
+        public static string CreateRouteGadget_createButton_Text {
+            get {
+                return ResourceManager.GetString("CreateRouteGadget_createButton_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a folder for the OCAD files.
+        /// </summary>
+        public static string CreateRouteGadget_folderBrowserDialog_Description {
+            get {
+                return ResourceManager.GetString("CreateRouteGadget_folderBrowserDialog_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Folder.
+        /// </summary>
+        public static string CreateRouteGadget_folderGroupBox_Text {
+            get {
+                return ResourceManager.GetString("CreateRouteGadget_folderGroupBox_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to IOF XML.
+        /// </summary>
+        public static string CreateRouteGadget_groupBox1_Text {
+            get {
+                return ResourceManager.GetString("CreateRouteGadget_groupBox1_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter the name (without .xml or .gif) for both of the RouteGadget files:.
+        /// </summary>
+        public static string CreateRouteGadget_label1_Text {
+            get {
+                return ResourceManager.GetString("CreateRouteGadget_label1_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to RouteGadget requires both an image file (.gif) and IOF XML file (.xml). Choose the name and folder for both of these files..
+        /// </summary>
+        public static string CreateRouteGadget_label2_Text {
+            get {
+                return ResourceManager.GetString("CreateRouteGadget_label2_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to IOF XML Version:.
+        /// </summary>
+        public static string CreateRouteGadget_labelIofXml_Text {
+            get {
+                return ResourceManager.GetString("CreateRouteGadget_labelIofXml_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Learn more about RouteGadget.
+        /// </summary>
+        public static string CreateRouteGadget_learnMoreLink_Text {
+            get {
+                return ResourceManager.GetString("CreateRouteGadget_learnMoreLink_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Same folder as map file.
+        /// </summary>
+        public static string CreateRouteGadget_mapDirectory_Text {
+            get {
+                return ResourceManager.GetString("CreateRouteGadget_mapDirectory_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File Name.
+        /// </summary>
+        public static string CreateRouteGadget_nameGroupBox_Text {
+            get {
+                return ResourceManager.GetString("CreateRouteGadget_nameGroupBox_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Other folder.
+        /// </summary>
+        public static string CreateRouteGadget_otherDirectory_Text {
+            get {
+                return ResourceManager.GetString("CreateRouteGadget_otherDirectory_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select folder....
+        /// </summary>
+        public static string CreateRouteGadget_selectOtherDirectoryButton_Text {
+            get {
+                return ResourceManager.GetString("CreateRouteGadget_selectOtherDirectoryButton_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create RouteGadget Files.
+        /// </summary>
+        public static string CreateRouteGadget_Text {
+            get {
+                return ResourceManager.GetString("CreateRouteGadget_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change text....
+        /// </summary>
+        public static string CustomSymbolText_buttonChangeText_Text {
+            get {
+                return ResourceManager.GetString("CustomSymbolText_buttonChangeText_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reset to standard.
+        /// </summary>
+        public static string CustomSymbolText_buttonDefault_Text {
+            get {
+                return ResourceManager.GetString("CustomSymbolText_buttonDefault_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Make this the default language for new events.
+        /// </summary>
+        public static string CustomSymbolText_checkBoxDefaultLanguage_Text {
+            get {
+                return ResourceManager.GetString("CustomSymbolText_checkBoxDefaultLanguage_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show meaning below symbolic descriptions.
+        /// </summary>
+        public static string CustomSymbolText_checkBoxShowKey_Text {
+            get {
+                return ResourceManager.GetString("CustomSymbolText_checkBoxShowKey_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose the language used for textual control descriptions:.
+        /// </summary>
+        public static string CustomSymbolText_labelChooseLanguage_Text {
+            get {
+                return ResourceManager.GetString("CustomSymbolText_labelChooseLanguage_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Customized text:.
+        /// </summary>
+        public static string CustomSymbolText_labelCustomizedText_Text {
+            get {
+                return ResourceManager.GetString("CustomSymbolText_labelCustomizedText_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click on a description symbol to customize the text that is used in textual control descriptions..
+        /// </summary>
+        public static string CustomSymbolText_labelCustomizeText_Text {
+            get {
+                return ResourceManager.GetString("CustomSymbolText_labelCustomizeText_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Standard text:.
+        /// </summary>
+        public static string CustomSymbolText_labelStandardText_Text {
+            get {
+                return ResourceManager.GetString("CustomSymbolText_labelStandardText_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Symbol name:.
+        /// </summary>
+        public static string CustomSymbolText_labelSymbolName_Text {
+            get {
+                return ResourceManager.GetString("CustomSymbolText_labelSymbolName_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Customize Description Text.
+        /// </summary>
+        public static string CustomSymbolText_Text {
+            get {
+                return ResourceManager.GetString("CustomSymbolText_Text", resourceCulture);
             }
         }
         
@@ -79,6 +3400,114 @@ namespace AvPurplePen {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Downloading.
+        /// </summary>
+        public static string DownloadProgressDialog_Text {
+            get {
+                return ResourceManager.GetString("DownloadProgressDialog_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Case.
+        /// </summary>
+        public static string EnterSymbolText_caseColumn_HeaderText {
+            get {
+                return ResourceManager.GetString("EnterSymbolText_caseColumn_HeaderText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show case forms.
+        /// </summary>
+        public static string EnterSymbolText_checkBoxCases_Text {
+            get {
+                return ResourceManager.GetString("EnterSymbolText_checkBoxCases_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show gender forms.
+        /// </summary>
+        public static string EnterSymbolText_checkBoxGender_Text {
+            get {
+                return ResourceManager.GetString("EnterSymbolText_checkBoxGender_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show plural forms.
+        /// </summary>
+        public static string EnterSymbolText_checkBoxPlural_Text {
+            get {
+                return ResourceManager.GetString("EnterSymbolText_checkBoxPlural_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gender.
+        /// </summary>
+        public static string EnterSymbolText_genderColumn_HeaderText {
+            get {
+                return ResourceManager.GetString("EnterSymbolText_genderColumn_HeaderText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Case of modified symbol:.
+        /// </summary>
+        public static string EnterSymbolText_labelCaseChooser_Text {
+            get {
+                return ResourceManager.GetString("EnterSymbolText_labelCaseChooser_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter the customized text for the symbol in the &quot;Text&quot; column..
+        /// </summary>
+        public static string EnterSymbolText_labelDescription_Text {
+            get {
+                return ResourceManager.GetString("EnterSymbolText_labelDescription_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gender:.
+        /// </summary>
+        public static string EnterSymbolText_labelGenderChooser_Text {
+            get {
+                return ResourceManager.GetString("EnterSymbolText_labelGenderChooser_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number.
+        /// </summary>
+        public static string EnterSymbolText_numberColumn_HeaderText {
+            get {
+                return ResourceManager.GetString("EnterSymbolText_numberColumn_HeaderText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Customized Symbol Text.
+        /// </summary>
+        public static string EnterSymbolText_Text {
+            get {
+                return ResourceManager.GetString("EnterSymbolText_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Text.
+        /// </summary>
+        public static string EnterSymbolText_textColumn_HeaderText {
+            get {
+                return ResourceManager.GetString("EnterSymbolText_textColumn_HeaderText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Increment.
         /// </summary>
         public static string IncrementButton {
@@ -86,7 +3515,4268 @@ namespace AvPurplePen {
                 return ResourceManager.GetString("IncrementButton", resourceCulture);
             }
         }
-
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create a new event....
+        /// </summary>
+        public static string InitialScreen_createNewRadioButton_Text {
+            get {
+                return ResourceManager.GetString("InitialScreen_createNewRadioButton_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Make a donation.
+        /// </summary>
+        public static string InitialScreen_donationLink_Text {
+            get {
+                return ResourceManager.GetString("InitialScreen_donationLink_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Purple Pen is free software and may be copied and shared. Development of Purple Pen is supported only by your donations..
+        /// </summary>
+        public static string InitialScreen_label1_Text {
+            get {
+                return ResourceManager.GetString("InitialScreen_label1_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        public static string InitialScreen_okButton_Text {
+            get {
+                return ResourceManager.GetString("InitialScreen_okButton_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open an existing event....
+        /// </summary>
+        public static string InitialScreen_openExistingRadioButton_Text {
+            get {
+                return ResourceManager.GetString("InitialScreen_openExistingRadioButton_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open last viewed event.
+        /// </summary>
+        public static string InitialScreen_openLastRadioButton_Text {
+            get {
+                return ResourceManager.GetString("InitialScreen_openLastRadioButton_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open a sample event.
+        /// </summary>
+        public static string InitialScreen_openSampleRadioButton_Text {
+            get {
+                return ResourceManager.GetString("InitialScreen_openSampleRadioButton_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Welcome to Purple Pen.
+        /// </summary>
+        public static string InitialScreen_Text {
+            get {
+                return ResourceManager.GetString("InitialScreen_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Branch.
+        /// </summary>
+        public static string LegAssignmentsDialog_BranchColumn_HeaderText {
+            get {
+                return ResourceManager.GetString("LegAssignmentsDialog_BranchColumn_HeaderText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To assign a specific leg to a specific branch, type the leg number(s) below. Legs not assigned to a branch will be distributed among remaining branches randomly..
+        /// </summary>
+        public static string LegAssignmentsDialog_labelDescription_Text {
+            get {
+                return ResourceManager.GetString("LegAssignmentsDialog_labelDescription_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Legs.
+        /// </summary>
+        public static string LegAssignmentsDialog_LegsColumn_HeaderText {
+            get {
+                return ResourceManager.GetString("LegAssignmentsDialog_LegsColumn_HeaderText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to More information....
+        /// </summary>
+        public static string LegAssignmentsDialog_linkLabel_Text {
+            get {
+                return ResourceManager.GetString("LegAssignmentsDialog_linkLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Leg Assignments.
+        /// </summary>
+        public static string LegAssignmentsDialog_Text {
+            get {
+                return ResourceManager.GetString("LegAssignmentsDialog_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Purple Pen is provided under a &quot;BSD&quot; style license..
+        /// </summary>
+        public static string LicenseForm_bsdLicenseLinkLabel_Text {
+            get {
+                return ResourceManager.GetString("LicenseForm_bsdLicenseLinkLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        public static string LicenseForm_okButton_Text {
+            get {
+                return ResourceManager.GetString("LicenseForm_okButton_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Purple Pen License.
+        /// </summary>
+        public static string LicenseForm_Text {
+            get {
+                return ResourceManager.GetString("LicenseForm_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  Change Color....
+        /// </summary>
+        public static string LinePropertiesDialog_buttonChangeColor_Text {
+            get {
+                return ResourceManager.GetString("LinePropertiesDialog_buttonChangeColor_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Single.
+        /// </summary>
+        public static string LinePropertiesDialog_comboBoxStyle_Items {
+            get {
+                return ResourceManager.GetString("LinePropertiesDialog_comboBoxStyle_Items", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Double.
+        /// </summary>
+        public static string LinePropertiesDialog_comboBoxStyle_Items1 {
+            get {
+                return ResourceManager.GetString("LinePropertiesDialog_comboBoxStyle_Items1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dashed.
+        /// </summary>
+        public static string LinePropertiesDialog_comboBoxStyle_Items2 {
+            get {
+                return ResourceManager.GetString("LinePropertiesDialog_comboBoxStyle_Items2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sample.
+        /// </summary>
+        public static string LinePropertiesDialog_groupBox1_Text {
+            get {
+                return ResourceManager.GetString("LinePropertiesDialog_groupBox1_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Appearance.
+        /// </summary>
+        public static string LinePropertiesDialog_groupBox2_Text {
+            get {
+                return ResourceManager.GetString("LinePropertiesDialog_groupBox2_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Color:.
+        /// </summary>
+        public static string LinePropertiesDialog_label1_Text {
+            get {
+                return ResourceManager.GetString("LinePropertiesDialog_label1_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Style:.
+        /// </summary>
+        public static string LinePropertiesDialog_label2_Text {
+            get {
+                return ResourceManager.GetString("LinePropertiesDialog_label2_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Corner Radius:.
+        /// </summary>
+        public static string LinePropertiesDialog_labelCornerRadius_Text {
+            get {
+                return ResourceManager.GetString("LinePropertiesDialog_labelCornerRadius_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dash Size:.
+        /// </summary>
+        public static string LinePropertiesDialog_labelDashSize_Text {
+            get {
+                return ResourceManager.GetString("LinePropertiesDialog_labelDashSize_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to mm.
+        /// </summary>
+        public static string LinePropertiesDialog_labelDashSizeMm_Text {
+            get {
+                return ResourceManager.GetString("LinePropertiesDialog_labelDashSizeMm_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gap Size:.
+        /// </summary>
+        public static string LinePropertiesDialog_labelGapSize_Text {
+            get {
+                return ResourceManager.GetString("LinePropertiesDialog_labelGapSize_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to mm.
+        /// </summary>
+        public static string LinePropertiesDialog_labelGapSizeMm_Text {
+            get {
+                return ResourceManager.GetString("LinePropertiesDialog_labelGapSizeMm_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to mm.
+        /// </summary>
+        public static string LinePropertiesDialog_labelRadiusMm_Text {
+            get {
+                return ResourceManager.GetString("LinePropertiesDialog_labelRadiusMm_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Width:.
+        /// </summary>
+        public static string LinePropertiesDialog_labelWidth_Text {
+            get {
+                return ResourceManager.GetString("LinePropertiesDialog_labelWidth_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to mm.
+        /// </summary>
+        public static string LinePropertiesDialog_labelWidthMm_Text {
+            get {
+                return ResourceManager.GetString("LinePropertiesDialog_labelWidthMm_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;About Purple Pen.
+        /// </summary>
+        public static string MainFrame_aboutMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_aboutMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add &amp;Bend.
+        /// </summary>
+        public static string MainFrame_addBendMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_addBendMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Bend (Ctrl+B).
+        /// </summary>
+        public static string MainFrame_addBendToolStripButton_ToolTipText {
+            get {
+                return ResourceManager.GetString("MainFrame_addBendToolStripButton_ToolTipText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uncrossable Boundary.
+        /// </summary>
+        public static string MainFrame_addBoundaryMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_addBoundaryMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Temporary Construction.
+        /// </summary>
+        public static string MainFrame_addConstructionMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_addConstructionMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Control.
+        /// </summary>
+        public static string MainFrame_addControlMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_addControlMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Control.
+        /// </summary>
+        public static string MainFrame_addControlToolStripButton_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_addControlToolStripButton_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Control (Ctrl+A).
+        /// </summary>
+        public static string MainFrame_addControlToolStripButton_ToolTipText {
+            get {
+                return ResourceManager.GetString("MainFrame_addControlToolStripButton_ToolTipText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Add Course....
+        /// </summary>
+        public static string MainFrame_addCourseMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_addCourseMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dangerous Area.
+        /// </summary>
+        public static string MainFrame_addDangerousMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_addDangerousMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Description Language....
+        /// </summary>
+        public static string MainFrame_addDescriptionLanguageMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_addDescriptionLanguageMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Descriptions.
+        /// </summary>
+        public static string MainFrame_addDescriptionsMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_addDescriptionsMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ellipse.
+        /// </summary>
+        public static string MainFrame_addEllipseMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_addEllipseMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Finish.
+        /// </summary>
+        public static string MainFrame_addFinishMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_addFinishMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Finish.
+        /// </summary>
+        public static string MainFrame_addFinishToolStripButton_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_addFinishToolStripButton_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to First Aid Location.
+        /// </summary>
+        public static string MainFrame_addFirstAidMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_addFirstAidMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Forbidden Route Marking.
+        /// </summary>
+        public static string MainFrame_addForbiddenMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_addForbiddenMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add &amp;Gap.
+        /// </summary>
+        public static string MainFrame_addGapMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_addGapMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to toolStripButton1.
+        /// </summary>
+        public static string MainFrame_addGapToolStripButton_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_addGapToolStripButton_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Gap (Ctrl+G).
+        /// </summary>
+        public static string MainFrame_addGapToolStripButton_ToolTipText {
+            get {
+                return ResourceManager.GetString("MainFrame_addGapToolStripButton_ToolTipText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Image.
+        /// </summary>
+        public static string MainFrame_addImageMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_addImageMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Line.
+        /// </summary>
+        public static string MainFrame_addLineMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_addLineMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mandatory Crossing Point.
+        /// </summary>
+        public static string MainFrame_addMandatoryCrossingMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_addMandatoryCrossingMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Map Flip/E&amp;xchange.
+        /// </summary>
+        public static string MainFrame_addMapExchangeMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_addMapExchangeMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Map &amp;Flip at Control Point.
+        /// </summary>
+        public static string MainFrame_addMapFlipMenuItem_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_addMapFlipMenuItem_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Timed Start.
+        /// </summary>
+        public static string MainFrame_addMapIssueMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_addMapIssueMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Add.
+        /// </summary>
+        public static string MainFrame_addMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_addMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Optional Crossing Point.
+        /// </summary>
+        public static string MainFrame_addOptCrossingMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_addOptCrossingMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Out Of Bounds Area.
+        /// </summary>
+        public static string MainFrame_addOutOfBoundsMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_addOutOfBoundsMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rectangle.
+        /// </summary>
+        public static string MainFrame_addRectangleMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_addRectangleMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Registration Mark.
+        /// </summary>
+        public static string MainFrame_addRegMarkMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_addRegMarkMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Start.
+        /// </summary>
+        public static string MainFrame_addStartMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_addStartMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Start.
+        /// </summary>
+        public static string MainFrame_addStartToolStripButton_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_addStartToolStripButton_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Text &amp;Line....
+        /// </summary>
+        public static string MainFrame_addTextLineMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_addTextLineMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Text.
+        /// </summary>
+        public static string MainFrame_addTextMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_addTextMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Translated Texts....
+        /// </summary>
+        public static string MainFrame_addTranslatedTextsMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_addTranslatedTextsMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Variation....
+        /// </summary>
+        public static string MainFrame_addVariationMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_addVariationMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Variation.
+        /// </summary>
+        public static string MainFrame_addVariationToolStripButton_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_addVariationToolStripButton_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Water Location.
+        /// </summary>
+        public static string MainFrame_addWaterMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_addWaterMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;All Controls.
+        /// </summary>
+        public static string MainFrame_allControlsMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_allControlsMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Automatic &amp;Numbering....
+        /// </summary>
+        public static string MainFrame_autoNumberingMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_autoNumberingMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Beginning of Leg Flagged.
+        /// </summary>
+        public static string MainFrame_beginFlaggingMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_beginFlaggingMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uncrossable Boundary.
+        /// </summary>
+        public static string MainFrame_boundaryToolStripMenuItem_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_boundaryToolStripMenuItem_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Clear Selection.
+        /// </summary>
+        public static string MainFrame_cancelMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_cancelMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change Control &amp;Codes....
+        /// </summary>
+        public static string MainFrame_changeCodesMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_changeCodesMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change Displa&amp;yed Courses....
+        /// </summary>
+        public static string MainFrame_changeDisplayedCoursesMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_changeDisplayedCoursesMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change Line &amp;Appearance....
+        /// </summary>
+        public static string MainFrame_changeLineAppearanceMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_changeLineAppearanceMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Map File....
+        /// </summary>
+        public static string MainFrame_changeMapFileMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_changeMapFileMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change &amp;Text....
+        /// </summary>
+        public static string MainFrame_changeTextMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_changeTextMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clear Other Courses.
+        /// </summary>
+        public static string MainFrame_clearOtherCoursesMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_clearOtherCoursesMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Temporary Construction.
+        /// </summary>
+        public static string MainFrame_constructionToolStripMenuItem_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_constructionToolStripMenuItem_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Control and Leg Loa&amp;d.
+        /// </summary>
+        public static string MainFrame_controlAndLegLoadMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_controlAndLegLoadMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Control &amp;Cross-reference.
+        /// </summary>
+        public static string MainFrame_controlCrossrefMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_controlCrossrefMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Control Tester.
+        /// </summary>
+        public static string MainFrame_controlTesterMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_controlTesterMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Competitor &amp;Load....
+        /// </summary>
+        public static string MainFrame_courseLoadMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_courseLoadMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Course.
+        /// </summary>
+        public static string MainFrame_courseMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_courseMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Course &amp;Order....
+        /// </summary>
+        public static string MainFrame_courseOrderMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_courseOrderMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Course Selector Tester.
+        /// </summary>
+        public static string MainFrame_courseSelectorTesterMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_courseSelectorTesterMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Course &amp;Summary.
+        /// </summary>
+        public static string MainFrame_courseSummaryMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_courseSummaryMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Relay Team &amp;Variations....
+        /// </summary>
+        public static string MainFrame_courseVariationReportMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_courseVariationReportMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Crash.
+        /// </summary>
+        public static string MainFrame_crashToolStripMenuItem_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_crashToolStripMenuItem_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Courses....
+        /// </summary>
+        public static string MainFrame_createCoursePdfMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_createCoursePdfMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Descriptions....
+        /// </summary>
+        public static string MainFrame_createDescriptionPdfMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_createDescriptionPdfMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create G&amp;PX File....
+        /// </summary>
+        public static string MainFrame_createGPXFileMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_createGPXFileMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create Ima&amp;ge Files....
+        /// </summary>
+        public static string MainFrame_createImageFilesMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_createImageFilesMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create &amp;KML File....
+        /// </summary>
+        public static string MainFrame_createKMLFileMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_createKMLFileMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create OCAD &amp;Files....
+        /// </summary>
+        public static string MainFrame_createOcadFilesMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_createOcadFilesMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create P&amp;DFs.
+        /// </summary>
+        public static string MainFrame_createPDFsMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_createPDFsMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pu&amp;nch Cards....
+        /// </summary>
+        public static string MainFrame_createPunchcardPdfMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_createPunchcardPdfMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create RouteGadget Files....
+        /// </summary>
+        public static string MainFrame_createRouteGadgetFilesMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_createRouteGadgetFilesMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create Route Review Files.
+        /// </summary>
+        public static string MainFrame_createRouteReviewFilesToolStripMenuItem_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_createRouteReviewFilesToolStripMenuItem_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create Data &amp;Interchange File (IOF XML)....
+        /// </summary>
+        public static string MainFrame_createXmlMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_createXmlMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Customize &amp;Appearance....
+        /// </summary>
+        public static string MainFrame_customizeCourseAppearanceMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_customizeCourseAppearanceMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Customize &amp;Description Text....
+        /// </summary>
+        public static string MainFrame_customizeDescriptionsMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_customizeDescriptionsMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dangerous Area.
+        /// </summary>
+        public static string MainFrame_dangerousToolStripMenuItem_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_dangerousToolStripMenuItem_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Debug.
+        /// </summary>
+        public static string MainFrame_debugMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_debugMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Delete Course.
+        /// </summary>
+        public static string MainFrame_deleteCourseMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_deleteCourseMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete For&amp;k/Loop.
+        /// </summary>
+        public static string MainFrame_deleteForkMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_deleteForkMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Delete.
+        /// </summary>
+        public static string MainFrame_deleteItemMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_deleteItemMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Delete.
+        /// </summary>
+        public static string MainFrame_deleteMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_deleteMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete (Del).
+        /// </summary>
+        public static string MainFrame_deleteToolStripButton_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_deleteToolStripButton_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description Browser.
+        /// </summary>
+        public static string MainFrame_descriptionBrowserMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_descriptionBrowserMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 2004 Description Standard.
+        /// </summary>
+        public static string MainFrame_descriptionStd2004Menu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_descriptionStd2004Menu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 2018/2024 Description Standard.
+        /// </summary>
+        public static string MainFrame_descriptionStd2018Menu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_descriptionStd2018Menu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Descriptions.
+        /// </summary>
+        public static string MainFrame_descriptionsToolStripMenuItem_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_descriptionsToolStripMenuItem_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Make a &amp;Donation.
+        /// </summary>
+        public static string MainFrame_donateWebSiteMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_donateWebSiteMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dot Grid Tester.
+        /// </summary>
+        public static string MainFrame_dotGridTesterToolStripMenuItem_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_dotGridTesterToolStripMenuItem_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dump OCAD File.
+        /// </summary>
+        public static string MainFrame_dumpOCADFileMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_dumpOCADFileMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to D&amp;uplicate Course....
+        /// </summary>
+        public static string MainFrame_duplicateCourseMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_duplicateCourseMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Edit.
+        /// </summary>
+        public static string MainFrame_editMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_editMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ellipse.
+        /// </summary>
+        public static string MainFrame_ellipseToolStripMenuItem_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_ellipseToolStripMenuItem_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to End of Leg Flagged.
+        /// </summary>
+        public static string MainFrame_endFlaggingMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_endFlaggingMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Entire &amp;Course.
+        /// </summary>
+        public static string MainFrame_entireCourseMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_entireCourseMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Entire Leg Flagged.
+        /// </summary>
+        public static string MainFrame_entireFlaggingMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_entireFlaggingMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Entire &amp;Map.
+        /// </summary>
+        public static string MainFrame_entireMapMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_entireMapMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Event &amp;Audit.
+        /// </summary>
+        public static string MainFrame_eventAuditMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_eventAuditMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Eve&amp;nt.
+        /// </summary>
+        public static string MainFrame_eventMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_eventMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to E&amp;xit.
+        /// </summary>
+        public static string MainFrame_exitMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_exitMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;File.
+        /// </summary>
+        public static string MainFrame_fileMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_fileMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to First Aid Location.
+        /// </summary>
+        public static string MainFrame_firstAidLocationToolStripMenuItem_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_firstAidLocationToolStripMenuItem_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Font Metrics.
+        /// </summary>
+        public static string MainFrame_fontMetricsToolStripMenuItem_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_fontMetricsToolStripMenuItem_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Forbidden Route Marking.
+        /// </summary>
+        public static string MainFrame_forbiddenRouteMarkingToolStripMenuItem_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_forbiddenRouteMarkingToolStripMenuItem_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Full.
+        /// </summary>
+        public static string MainFrame_fullIntensityMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_fullIntensityMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Purple Pen &amp;Help.
+        /// </summary>
+        public static string MainFrame_helpContentsMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_helpContentsMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Help.
+        /// </summary>
+        public static string MainFrame_helpMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_helpMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Purple Pen Help (Translated).
+        /// </summary>
+        public static string MainFrame_helpTranslatedMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_helpTranslatedMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;High.
+        /// </summary>
+        public static string MainFrame_highIntensityMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_highIntensityMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to High.
+        /// </summary>
+        public static string MainFrame_highQualityMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_highQualityMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Image.
+        /// </summary>
+        public static string MainFrame_imageToolStripMenuItem_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_imageToolStripMenuItem_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to IOF &amp;Standards.
+        /// </summary>
+        public static string MainFrame_iOFStandardsToolStripMenuItem_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_iOFStandardsToolStripMenuItem_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Item.
+        /// </summary>
+        public static string MainFrame_itemMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_itemMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Leg Flagging.
+        /// </summary>
+        public static string MainFrame_legFlaggingMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_legFlaggingMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Leg Lengths.
+        /// </summary>
+        public static string MainFrame_legLengthsMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_legLengthsMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Line.
+        /// </summary>
+        public static string MainFrame_lineToolStripMenuItem_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_lineToolStripMenuItem_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to X:-999.99 Y:-999.99.
+        /// </summary>
+        public static string MainFrame_locationDisplay_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_locationDisplay_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Low.
+        /// </summary>
+        public static string MainFrame_lowIntensityMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_lowIntensityMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Purple Pen &amp;Web Site.
+        /// </summary>
+        public static string MainFrame_mainWebSiteToolMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_mainWebSiteToolMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mandatory Crossing Point.
+        /// </summary>
+        public static string MainFrame_mandatoryCrossingPointToolStripMenuItem_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_mandatoryCrossingPointToolStripMenuItem_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Map Exchange at &amp;Control Point.
+        /// </summary>
+        public static string MainFrame_mapExchangeControlMenuItem_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_mapExchangeControlMenuItem_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Map Exchange at Control Point.
+        /// </summary>
+        public static string MainFrame_mapExchangeControlToolStripMenuItem_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_mapExchangeControlToolStripMenuItem_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Flagged &amp;Route to Map Exchange.
+        /// </summary>
+        public static string MainFrame_mapExchangeSeparateMenuItem_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_mapExchangeSeparateMenuItem_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Flagged Route to Map Exchange.
+        /// </summary>
+        public static string MainFrame_mapExchangeSeparateToolStripMenuItem_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_mapExchangeSeparateToolStripMenuItem_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Map Flip/Exchange.
+        /// </summary>
+        public static string MainFrame_mapExchangeToolStripMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_mapExchangeToolStripMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Map Flip at Control Point.
+        /// </summary>
+        public static string MainFrame_mapFlipMenuItem_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_mapFlipMenuItem_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Map &amp;Intensity.
+        /// </summary>
+        public static string MainFrame_mapIntensityMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_mapIntensityMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Timed Start.
+        /// </summary>
+        public static string MainFrame_mapIssuePointToolStripMenuItem_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_mapIssuePointToolStripMenuItem_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Map &amp;Quality.
+        /// </summary>
+        public static string MainFrame_mapQualityMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_mapQualityMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ISOM2000 Map Standard.
+        /// </summary>
+        public static string MainFrame_mapStd2000Menu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_mapStd2000Menu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ISOM2017 Map Standard.
+        /// </summary>
+        public static string MainFrame_mapStd2017Menu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_mapStd2017Menu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ISSprOM 2019 Map Standard.
+        /// </summary>
+        public static string MainFrame_mapStdSpr2019Menu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_mapStdSpr2019Menu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Map Tester.
+        /// </summary>
+        public static string MainFrame_mapTesterMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_mapTesterMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to mapViewerTopology.
+        /// </summary>
+        public static string MainFrame_mapViewerTopology_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_mapViewerTopology_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Medium.
+        /// </summary>
+        public static string MainFrame_mediumIntensityMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_mediumIntensityMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Merge Symbols.xml....
+        /// </summary>
+        public static string MainFrame_mergeSymbolsMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_mergeSymbolsMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Missing Description Translations.
+        /// </summary>
+        public static string MainFrame_missingTranslationsMenuItem_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_missingTranslationsMenuItem_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mo&amp;ve All Controls....
+        /// </summary>
+        public static string MainFrame_moveAllControlsMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_moveAllControlsMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;New Event....
+        /// </summary>
+        public static string MainFrame_newEventMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_newEventMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No Flagging.
+        /// </summary>
+        public static string MainFrame_noFlaggingMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_noFlaggingMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Low.
+        /// </summary>
+        public static string MainFrame_normalQualityMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_normalQualityMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Purple Pen files|*.ppen|All files|*.*.
+        /// </summary>
+        public static string MainFrame_openFileDialog_Filter {
+            get {
+                return ResourceManager.GetString("MainFrame_openFileDialog_Filter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Image file|*.jpg;*.jpeg;*.gif;*.png;*.bmp;*.tif;*.tiff.
+        /// </summary>
+        public static string MainFrame_openImageDialog_Filter {
+            get {
+                return ResourceManager.GetString("MainFrame_openImageDialog_Filter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Open....
+        /// </summary>
+        public static string MainFrame_openMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_openMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open.
+        /// </summary>
+        public static string MainFrame_openToolStripButton_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_openToolStripButton_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open (Ctrl+O).
+        /// </summary>
+        public static string MainFrame_openToolStripButton_ToolTipText {
+            get {
+                return ResourceManager.GetString("MainFrame_openToolStripButton_ToolTipText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Optional Crossing Point.
+        /// </summary>
+        public static string MainFrame_optionalCrossingPointToolStripMenuItem_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_optionalCrossingPointToolStripMenuItem_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Other Courses....
+        /// </summary>
+        public static string MainFrame_otherCoursesMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_otherCoursesMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Out Of Bounds Area.
+        /// </summary>
+        public static string MainFrame_outOfBoundsToolStripMenuItem_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_outOfBoundsToolStripMenuItem_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;All Courses.
+        /// </summary>
+        public static string MainFrame_printAreaAllCoursesMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_printAreaAllCoursesMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;This Course.
+        /// </summary>
+        public static string MainFrame_printAreaThisCourseMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_printAreaThisCourseMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This &amp;Part Only.
+        /// </summary>
+        public static string MainFrame_printAreaThisPartMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_printAreaThisPartMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Print &amp;Courses....
+        /// </summary>
+        public static string MainFrame_printCoursesMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_printCoursesMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Print Descriptions....
+        /// </summary>
+        public static string MainFrame_printDescriptionsMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_printDescriptionsMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Print Pu&amp;nch Cards....
+        /// </summary>
+        public static string MainFrame_printPunchCardsMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_printPunchCardsMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Program &amp;Language....
+        /// </summary>
+        public static string MainFrame_programLanguageMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_programLanguageMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Properties....
+        /// </summary>
+        public static string MainFrame_propertiesMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_propertiesMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Punch Patterns....
+        /// </summary>
+        public static string MainFrame_punchPatternsMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_punchPatternsMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Descriptions.
+        /// </summary>
+        public static string MainFrame_radioButtonDescriptions_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_radioButtonDescriptions_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ordering.
+        /// </summary>
+        public static string MainFrame_radioButtonTopology_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_radioButtonTopology_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rectangle.
+        /// </summary>
+        public static string MainFrame_rectangleToolStripMenuItem_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_rectangleToolStripMenuItem_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Redo.
+        /// </summary>
+        public static string MainFrame_redoMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_redoMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Redo.
+        /// </summary>
+        public static string MainFrame_redoToolStripButton_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_redoToolStripButton_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Redo (Ctrl+Y).
+        /// </summary>
+        public static string MainFrame_redoToolStripButton_ToolTipText {
+            get {
+                return ResourceManager.GetString("MainFrame_redoToolStripButton_ToolTipText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Registration Mark.
+        /// </summary>
+        public static string MainFrame_registrationMarkToolStripMenuItem_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_registrationMarkToolStripMenuItem_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove B&amp;end.
+        /// </summary>
+        public static string MainFrame_removeBendMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_removeBendMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove Ga&amp;p.
+        /// </summary>
+        public static string MainFrame_removeGapMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_removeGapMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove &amp;Unused Controls....
+        /// </summary>
+        public static string MainFrame_removeUnusedControlsMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_removeUnusedControlsMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Reports.
+        /// </summary>
+        public static string MainFrame_reportMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_reportMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Report Tester.
+        /// </summary>
+        public static string MainFrame_reportTesterToolStripMenuItem_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_reportTesterToolStripMenuItem_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to R&amp;otate.
+        /// </summary>
+        public static string MainFrame_rotateMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_rotateMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save &amp;As....
+        /// </summary>
+        public static string MainFrame_saveAsMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_saveAsMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Purple Pen file|*.ppen.
+        /// </summary>
+        public static string MainFrame_saveFileDialog_Filter {
+            get {
+                return ResourceManager.GetString("MainFrame_saveFileDialog_Filter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to GPX file|*.gpx.
+        /// </summary>
+        public static string MainFrame_saveGpxFileDialog_Filter {
+            get {
+                return ResourceManager.GetString("MainFrame_saveGpxFileDialog_Filter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create GPX File.
+        /// </summary>
+        public static string MainFrame_saveGpxFileDialog_Title {
+            get {
+                return ResourceManager.GetString("MainFrame_saveGpxFileDialog_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Save.
+        /// </summary>
+        public static string MainFrame_saveMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_saveMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string MainFrame_saveToolStripButton_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_saveToolStripButton_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save (Ctrl+S).
+        /// </summary>
+        public static string MainFrame_saveToolStripButton_ToolTipText {
+            get {
+                return ResourceManager.GetString("MainFrame_saveToolStripButton_ToolTipText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to IOF XML version 2.0.3|*.xml|IOF XML version 3.0|*.xml.
+        /// </summary>
+        public static string MainFrame_saveXmlFileDialog_Filter {
+            get {
+                return ResourceManager.GetString("MainFrame_saveXmlFileDialog_Filter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create XML Interchange File.
+        /// </summary>
+        public static string MainFrame_saveXmlFileDialog_Title {
+            get {
+                return ResourceManager.GetString("MainFrame_saveXmlFileDialog_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set Print A&amp;rea.
+        /// </summary>
+        public static string MainFrame_setPrintAreaMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_setPrintAreaMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show &amp;Popup Information.
+        /// </summary>
+        public static string MainFrame_showPopupsMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_showPopupsMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show P&amp;rint Area.
+        /// </summary>
+        public static string MainFrame_showPrintAreaMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_showPrintAreaMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Special Item.
+        /// </summary>
+        public static string MainFrame_specialItemToolStripMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_specialItemToolStripMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Stretch.
+        /// </summary>
+        public static string MainFrame_stretchMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_stretchMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Support/Bug Reporting.
+        /// </summary>
+        public static string MainFrame_supportWebSiteMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_supportWebSiteMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Symbol Browser.
+        /// </summary>
+        public static string MainFrame_symbolBrowserMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_symbolBrowserMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All Controls.
+        /// </summary>
+        public static string MainFrame_tabPage1_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_tabPage1_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Purple Pen.
+        /// </summary>
+        public static string MainFrame_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Text.
+        /// </summary>
+        public static string MainFrame_textToolStripMenuItem_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_textToolStripMenuItem_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Translate Description Text.
+        /// </summary>
+        public static string MainFrame_translateMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_translateMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Undo.
+        /// </summary>
+        public static string MainFrame_undoMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_undoMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Undo.
+        /// </summary>
+        public static string MainFrame_undoToolStripButton_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_undoToolStripButton_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Undo (Ctrl+Z).
+        /// </summary>
+        public static string MainFrame_undoToolStripButton_ToolTipText {
+            get {
+                return ResourceManager.GetString("MainFrame_undoToolStripButton_ToolTipText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Very Low.
+        /// </summary>
+        public static string MainFrame_veryLowIntensityMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_veryLowIntensityMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;View.
+        /// </summary>
+        public static string MainFrame_viewMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_viewMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Water Location.
+        /// </summary>
+        public static string MainFrame_waterLocationToolStripMenuItem_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_waterLocationToolStripMenuItem_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to White Out Area.
+        /// </summary>
+        public static string MainFrame_whiteOutMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_whiteOutMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to White Out Area.
+        /// </summary>
+        public static string MainFrame_whiteOutToolStripMenuItem_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_whiteOutToolStripMenuItem_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1000%.
+        /// </summary>
+        public static string MainFrame_zoom1000Menu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_zoom1000Menu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 100%.
+        /// </summary>
+        public static string MainFrame_zoom100Menu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_zoom100Menu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 150%.
+        /// </summary>
+        public static string MainFrame_zoom150Menu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_zoom150Menu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 200%.
+        /// </summary>
+        public static string MainFrame_zoom200Menu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_zoom200Menu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 300%.
+        /// </summary>
+        public static string MainFrame_zoom300Menu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_zoom300Menu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 500%.
+        /// </summary>
+        public static string MainFrame_zoom500Menu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_zoom500Menu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 50%.
+        /// </summary>
+        public static string MainFrame_zoom50Menu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_zoom50Menu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zoom: 100%.
+        /// </summary>
+        public static string MainFrame_zoomAmountLabel_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_zoomAmountLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Zoom.
+        /// </summary>
+        public static string MainFrame_zoomMenu_Text {
+            get {
+                return ResourceManager.GetString("MainFrame_zoomMenu_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set the appearance of the ellipse. After pressing OK, drag the mouse to place the ellipse in the desired location..
+        /// </summary>
+        public static string MiscText_AddEllipseExplanation {
+            get {
+                return ResourceManager.GetString("MiscText_AddEllipseExplanation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Ellipse.
+        /// </summary>
+        public static string MiscText_AddEllipseTitle {
+            get {
+                return ResourceManager.GetString("MiscText_AddEllipseTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set the appearance of the line. After pressing OK, drag the mouse to draw the line segments in the desired location..
+        /// </summary>
+        public static string MiscText_AddLineExplanation {
+            get {
+                return ResourceManager.GetString("MiscText_AddLineExplanation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Line.
+        /// </summary>
+        public static string MiscText_AddLineTitle {
+            get {
+                return ResourceManager.GetString("MiscText_AddLineTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set the appearance of the rectangle. After pressing OK, drag the mouse to place the rectangle in the desired location..
+        /// </summary>
+        public static string MiscText_AddRectangleExplanation {
+            get {
+                return ResourceManager.GetString("MiscText_AddRectangleExplanation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Rectangle.
+        /// </summary>
+        public static string MiscText_AddRectangleTitle {
+            get {
+                return ResourceManager.GetString("MiscText_AddRectangleTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter the text you wish to place on the map. After pressing OK, drag the mouse to place the text in the desired location..
+        /// </summary>
+        public static string MiscText_AddTextSpecialExplanation {
+            get {
+                return ResourceManager.GetString("MiscText_AddTextSpecialExplanation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Text.
+        /// </summary>
+        public static string MiscText_AddTextSpecialTitle {
+            get {
+                return ResourceManager.GetString("MiscText_AddTextSpecialTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All controls.
+        /// </summary>
+        public static string MiscText_AllControls {
+            get {
+                return ResourceManager.GetString("MiscText_AllControls", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All Parts.
+        /// </summary>
+        public static string MiscText_AllParts {
+            get {
+                return ResourceManager.GetString("MiscText_AllParts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All Variations.
+        /// </summary>
+        public static string MiscText_AllVariations {
+            get {
+                return ResourceManager.GetString("MiscText_AllVariations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to course setting for orienteering.
+        /// </summary>
+        public static string MiscText_AppSubtitle {
+            get {
+                return ResourceManager.GetString("MiscText_AppSubtitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Purple Pen.
+        /// </summary>
+        public static string MiscText_AppTitle {
+            get {
+                return ResourceManager.GetString("MiscText_AppTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In order for OCAD or OpenOrienteering Mapper to correctly display the control descriptions, the &quot;Roboto&quot; and &quot;Roboto Condensed&quot; fonts must be installed on your system. Would you like to install those fonts now (strongly recommended)?.
+        /// </summary>
+        public static string MiscText_AskInstallRobotoFonts {
+            get {
+                return ResourceManager.GetString("MiscText_AskInstallRobotoFonts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Automatic.
+        /// </summary>
+        public static string MiscText_AutomaticLength {
+            get {
+                return ResourceManager.GetString("MiscText_AutomaticLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The climb for a course must be a number 0-9999, or blank..
+        /// </summary>
+        public static string MiscText_BadClimb {
+            get {
+                return ResourceManager.GetString("MiscText_BadClimb", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The  .NET framework on your computer does not appear to be correctly installed. Please visit http://microsoft.com/net and install the latest version of the .NET framework for your Windows operating system..
+        /// </summary>
+        public static string MiscText_BadDotNetFramework {
+            get {
+                return ResourceManager.GetString("MiscText_BadDotNetFramework", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &apos;{0}&apos; is not a valid leg number for branch &apos;{1}&apos;.
+        /// </summary>
+        public static string MiscText_BadLegNumber {
+            get {
+                return ResourceManager.GetString("MiscText_BadLegNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The length for a course must be a number 0.1 - 99.9, or blank to calculate length automatically..
+        /// </summary>
+        public static string MiscText_BadLength {
+            get {
+                return ResourceManager.GetString("MiscText_BadLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The load for a course must be an integer 0-999999, or blank..
+        /// </summary>
+        public static string MiscText_BadLoad {
+            get {
+                return ResourceManager.GetString("MiscText_BadLoad", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The print scale must be a number between 100 and 100,000..
+        /// </summary>
+        public static string MiscText_BadScale {
+            get {
+                return ResourceManager.GetString("MiscText_BadScale", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The points for a control must be an integer 1-999..
+        /// </summary>
+        public static string MiscText_BadScore {
+            get {
+                return ResourceManager.GetString("MiscText_BadScore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The underlying OCAD map has visible template files. In OCAD 8 and below, these templates may not appear due to limitations in OCAD..
+        /// </summary>
+        public static string MiscText_BaseMapHasVisibleTemplatesThatMayNotAppear {
+            get {
+                return ResourceManager.GetString("MiscText_BaseMapHasVisibleTemplatesThatMayNotAppear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Black.
+        /// </summary>
+        public static string MiscText_Black {
+            get {
+                return ResourceManager.GetString("MiscText_Black", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancelled by user.
+        /// </summary>
+        public static string MiscText_CancelledByUser {
+            get {
+                return ResourceManager.GetString("MiscText_CancelledByUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel Operation.
+        /// </summary>
+        public static string MiscText_CancelOperation {
+            get {
+                return ResourceManager.GetString("MiscText_CancelOperation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ca&amp;ncel Operation.
+        /// </summary>
+        public static string MiscText_CancelOperationWithShortcut {
+            get {
+                return ResourceManager.GetString("MiscText_CancelOperationWithShortcut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot add variation..
+        /// </summary>
+        public static string MiscText_CannotAddVariation {
+            get {
+                return ResourceManager.GetString("MiscText_CannotAddVariation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot create folder &apos;{0}&apos; for the following reason:.
+        /// </summary>
+        public static string MiscText_CannotCreateDirectory {
+            get {
+                return ResourceManager.GetString("MiscText_CannotCreateDirectory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot create &apos;{0}&apos; for the following reason:.
+        /// </summary>
+        public static string MiscText_CannotCreateFile {
+            get {
+                return ResourceManager.GetString("MiscText_CannotCreateFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot create image files for the following reason:.
+        /// </summary>
+        public static string MiscText_CannotCreateImageFiles {
+            get {
+                return ResourceManager.GetString("MiscText_CannotCreateImageFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot create OCAD files for the following reason:.
+        /// </summary>
+        public static string MiscText_CannotCreateOcadFiles {
+            get {
+                return ResourceManager.GetString("MiscText_CannotCreateOcadFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot create PDFs for the following reason:.
+        /// </summary>
+        public static string MiscText_CannotCreatePdfs {
+            get {
+                return ResourceManager.GetString("MiscText_CannotCreatePdfs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot load &apos;{0}&apos; for the following reason:.
+        /// </summary>
+        public static string MiscText_CannotLoadFile {
+            get {
+                return ResourceManager.GetString("MiscText_CannotLoadFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot load map file &apos;{0}&apos; for the following reason:.
+        /// </summary>
+        public static string MiscText_CannotLoadMapFile {
+            get {
+                return ResourceManager.GetString("MiscText_CannotLoadMapFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot print &apos;{0}&apos; for the following reason:.
+        /// </summary>
+        public static string MiscText_CannotPrint {
+            get {
+                return ResourceManager.GetString("MiscText_CannotPrint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot read image file &apos;{0}&apos;..
+        /// </summary>
+        public static string MiscText_CannotReadImageFile {
+            get {
+                return ResourceManager.GetString("MiscText_CannotReadImageFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot read map for the following reason: &apos;{0}&apos; Using Optimize/Repair and re-saving in OCAD may fix problems..
+        /// </summary>
+        public static string MiscText_CannotReadMap {
+            get {
+                return ResourceManager.GetString("MiscText_CannotReadMap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot read map for the following reason: &apos;{0}&apos; Opening and re-saving the map in the latest version of OpenOrienteering Mapper may fix problems..
+        /// </summary>
+        public static string MiscText_CannotReadMapOOM {
+            get {
+                return ResourceManager.GetString("MiscText_CannotReadMapOOM", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot save &apos;{0}&apos; for the following reason:.
+        /// </summary>
+        public static string MiscText_CannotSaveFile {
+            get {
+                return ResourceManager.GetString("MiscText_CannotSaveFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A control that starts a fork or loop cannot be dragged to a new place in the course..
+        /// </summary>
+        public static string MiscText_CantRearrangeSplitControl {
+            get {
+                return ResourceManager.GetString("MiscText_CantRearrangeSplitControl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The current event has textual control descriptions in {0}. Would you like to change the language of control descriptions to {1}?.
+        /// </summary>
+        public static string MiscText_ChangeDescriptionLanguage {
+            get {
+                return ResourceManager.GetString("MiscText_ChangeDescriptionLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change the appearance of the line or rectangle..
+        /// </summary>
+        public static string MiscText_ChangeLineAppearanceExplanation {
+            get {
+                return ResourceManager.GetString("MiscText_ChangeLineAppearanceExplanation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change Line Appearance.
+        /// </summary>
+        public static string MiscText_ChangeLineAppearanceTitle {
+            get {
+                return ResourceManager.GetString("MiscText_ChangeLineAppearanceTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter the new text..
+        /// </summary>
+        public static string MiscText_ChangeTextSpecialExplanation {
+            get {
+                return ResourceManager.GetString("MiscText_ChangeTextSpecialExplanation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change Text.
+        /// </summary>
+        public static string MiscText_ChangeTextTitle {
+            get {
+                return ResourceManager.GetString("MiscText_ChangeTextTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose Color....
+        /// </summary>
+        public static string MiscText_ChooseOtherColor {
+            get {
+                return ResourceManager.GetString("MiscText_ChooseOtherColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Clear Selection.
+        /// </summary>
+        public static string MiscText_ClearSelectionWithShortcut {
+            get {
+                return ResourceManager.GetString("MiscText_ClearSelectionWithShortcut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Purple Pen must be closed before loading the created OCAD files..
+        /// </summary>
+        public static string MiscText_ClosePPBeforeLoadingOCAD {
+            get {
+                return ResourceManager.GetString("MiscText_ClosePPBeforeLoadingOCAD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A control code must be one, two, or three letters or digits..
+        /// </summary>
+        public static string MiscText_CodeBadLength {
+            get {
+                return ResourceManager.GetString("MiscText_CodeBadLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A control code should not begin with zero..
+        /// </summary>
+        public static string MiscText_CodeBeginsWithZero {
+            get {
+                return ResourceManager.GetString("MiscText_CodeBeginsWithZero", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A control code must not contain a space..
+        /// </summary>
+        public static string MiscText_CodeContainsSpace {
+            get {
+                return ResourceManager.GetString("MiscText_CodeContainsSpace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A control code should not look like another number when upside-down..
+        /// </summary>
+        public static string MiscText_CodeCouldBeUpsideDown {
+            get {
+                return ResourceManager.GetString("MiscText_CodeCouldBeUpsideDown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The control code &apos;{0}&apos; is already used by another control..
+        /// </summary>
+        public static string MiscText_CodeInUse {
+            get {
+                return ResourceManager.GetString("MiscText_CodeInUse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Control {0}.
+        /// </summary>
+        public static string MiscText_Control_Code {
+            get {
+                return ResourceManager.GetString("MiscText_Control_Code", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Course Properties.
+        /// </summary>
+        public static string MiscText_CoursePropertiesTitle {
+            get {
+                return ResourceManager.GetString("MiscText_CoursePropertiesTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string MiscText_CrashCancel {
+            get {
+                return ResourceManager.GetString("MiscText_CrashCancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contact Email.
+        /// </summary>
+        public static string MiscText_CrashEmail {
+            get {
+                return ResourceManager.GetString("MiscText_CrashEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error has occurred. In order to help us fix the problem, please enter your email address and additional information, and send us an error report..
+        /// </summary>
+        public static string MiscText_CrashIntro {
+            get {
+                return ResourceManager.GetString("MiscText_CrashIntro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please tell us what you were doing in the program, to help fix the problem.
+        /// </summary>
+        public static string MiscText_CrashMessage {
+            get {
+                return ResourceManager.GetString("MiscText_CrashMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string MiscText_CrashSave {
+            get {
+                return ResourceManager.GetString("MiscText_CrashSave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Send Report.
+        /// </summary>
+        public static string MiscText_CrashSend {
+            get {
+                return ResourceManager.GetString("MiscText_CrashSend", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create PDF.
+        /// </summary>
+        public static string MiscText_CreatePdf {
+            get {
+                return ResourceManager.GetString("MiscText_CreatePdf", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Creating {0}....
+        /// </summary>
+        public static string MiscText_CreatingFile {
+            get {
+                return ResourceManager.GetString("MiscText_CreatingFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ctrl+Y.
+        /// </summary>
+        public static string MiscText_CtrlY {
+            get {
+                return ResourceManager.GetString("MiscText_CtrlY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ctrl+Z.
+        /// </summary>
+        public static string MiscText_CtrlZ {
+            get {
+                return ResourceManager.GetString("MiscText_CtrlZ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Custom Color.
+        /// </summary>
+        public static string MiscText_CustomColor {
+            get {
+                return ResourceManager.GetString("MiscText_CustomColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dark Blue.
+        /// </summary>
+        public static string MiscText_DarkBlue {
+            get {
+                return ResourceManager.GetString("MiscText_DarkBlue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Control {0} is currently used by the following courses: {1}. Do you want to delete this control anyway?.
+        /// </summary>
+        public static string MiscText_DeleteControlFromAllControls {
+            get {
+                return ResourceManager.GetString("MiscText_DeleteControlFromAllControls", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Control {0} is no longer used by any course. Do you want to delete this control from the control collection?.
+        /// </summary>
+        public static string MiscText_DeleteControlFromControlsCollection {
+            get {
+                return ResourceManager.GetString("MiscText_DeleteControlFromControlsCollection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Controls {0} are no longer used by any course. Do you want to delete these controls from the control collection?.
+        /// </summary>
+        public static string MiscText_DeleteMultipleControlsFromControlsCollection {
+            get {
+                return ResourceManager.GetString("MiscText_DeleteMultipleControlsFromControlsCollection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The code &quot;{0}&quot; is used more than once..
+        /// </summary>
+        public static string MiscText_DuplicateCode {
+            get {
+                return ResourceManager.GetString("MiscText_DuplicateCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Duplicate Course.
+        /// </summary>
+        public static string MiscText_DuplicateCourseTitle {
+            get {
+                return ResourceManager.GetString("MiscText_DuplicateCourseTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter new climb in meters.
+        /// </summary>
+        public static string MiscText_EnterClimb {
+            get {
+                return ResourceManager.GetString("MiscText_EnterClimb", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter new code.
+        /// </summary>
+        public static string MiscText_EnterCode {
+            get {
+                return ResourceManager.GetString("MiscText_EnterCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter new course name.
+        /// </summary>
+        public static string MiscText_EnterCourseName {
+            get {
+                return ResourceManager.GetString("MiscText_EnterCourseName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter feature size
+        ///Use / for height on a slope
+        ///Use | for two features.
+        /// </summary>
+        public static string MiscText_EnterDimensions {
+            get {
+                return ResourceManager.GetString("MiscText_EnterDimensions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter new event title
+        ///Use | to separate lines
+        ///(affects all courses).
+        /// </summary>
+        public static string MiscText_EnterEventTitle {
+            get {
+                return ResourceManager.GetString("MiscText_EnterEventTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter length in km, or leave blank to calculate automatically.
+        /// </summary>
+        public static string MiscText_EnterLength {
+            get {
+                return ResourceManager.GetString("MiscText_EnterLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter new score.
+        /// </summary>
+        public static string MiscText_EnterScore {
+            get {
+                return ResourceManager.GetString("MiscText_EnterScore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter new secondary title
+        ///Use | to separate lines.
+        /// </summary>
+        public static string MiscText_EnterSecondaryTitle {
+            get {
+                return ResourceManager.GetString("MiscText_EnterSecondaryTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter new symbol meaning
+        ///(affects all courses).
+        /// </summary>
+        public static string MiscText_EnterSymbolText {
+            get {
+                return ResourceManager.GetString("MiscText_EnterSymbolText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter new text
+        ///Use | to separate lines.
+        /// </summary>
+        public static string MiscText_EnterTextLine {
+            get {
+                return ResourceManager.GetString("MiscText_EnterTextLine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Esc.
+        /// </summary>
+        public static string MiscText_Esc {
+            get {
+                return ResourceManager.GetString("MiscText_Esc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File &apos;{0}&apos; already exists in the specified folder. Click the &quot;Back&quot; button and choose a new folder or a new event title..
+        /// </summary>
+        public static string MiscText_FileAlreadyExists {
+            get {
+                return ResourceManager.GetString("MiscText_FileAlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Finish.
+        /// </summary>
+        public static string MiscText_Finish {
+            get {
+                return ResourceManager.GetString("MiscText_Finish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to F.
+        /// </summary>
+        public static string MiscText_Finish_Short {
+            get {
+                return ResourceManager.GetString("MiscText_Finish_Short", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Finish.
+        /// </summary>
+        public static string MiscText_FinishButtonText {
+            get {
+                return ResourceManager.GetString("MiscText_FinishButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Suitable for use in relays with {0} participants per team..
+        /// </summary>
+        public static string MiscText_ForkSummary {
+            get {
+                return ResourceManager.GetString("MiscText_ForkSummary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The map file must be an OCAD file to use GPX files..
+        /// </summary>
+        public static string MiscText_GpxMustBeOcadMap {
+            get {
+                return ResourceManager.GetString("MiscText_GpxMustBeOcadMap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The OCAD file must have a coordinate system defined to use GPX files..
+        /// </summary>
+        public static string MiscText_GpxMustHaveCoordSystem {
+            get {
+                return ResourceManager.GetString("MiscText_GpxMustHaveCoordSystem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The OCAD file must have real world coordinates defined to use GPX files..
+        /// </summary>
+        public static string MiscText_GpxMustHaveRealWorldCoord {
+            get {
+                return ResourceManager.GetString("MiscText_GpxMustHaveRealWorldCoord", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Could not reproject points; either the coordinate system or the real world coordinates in the OCAD map are wrong..
+        /// </summary>
+        public static string MiscText_GpxReprojectFailure {
+            get {
+                return ResourceManager.GetString("MiscText_GpxReprojectFailure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The OCAD file uses a coordinate system that is not supported by Purple Pen..
+        /// </summary>
+        public static string MiscText_GpxUnsupportedCoordSystem {
+            get {
+                return ResourceManager.GetString("MiscText_GpxUnsupportedCoordSystem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Green.
+        /// </summary>
+        public static string MiscText_Green {
+            get {
+                return ResourceManager.GetString("MiscText_Green", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Help file &apos;{0}&apos; could not be opened..
+        /// </summary>
+        public static string MiscText_HelpFileNotFound {
+            get {
+                return ResourceManager.GetString("MiscText_HelpFileNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Due to limitations of the OCAD file format (in OCAD 10 and below), image objects will appear underneath courses and white out areas in the exported OCAD files. Please check the OCAD files to make sure your images appear as desired..
+        /// </summary>
+        public static string MiscText_ImagesMayAppearBadlyLayeredInOcad10Below {
+            get {
+                return ResourceManager.GetString("MiscText_ImagesMayAppearBadlyLayeredInOcad10Below", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Landscape.
+        /// </summary>
+        public static string MiscText_Landscape {
+            get {
+                return ResourceManager.GetString("MiscText_Landscape", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Leg {0} never reaches branch &apos;{1}&apos;: it was assigned to go a different way in a containing fork..
+        /// </summary>
+        public static string MiscText_LegAssignedOuterBranch {
+            get {
+                return ResourceManager.GetString("MiscText_LegAssignedOuterBranch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Leg {0} should be assigned to one of branches {1}.
+        /// </summary>
+        public static string MiscText_LegNotAssigned {
+            get {
+                return ResourceManager.GetString("MiscText_LegNotAssigned", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Leg {0} is assigned to both branch &apos;{1}&apos; and branch &apos;{2}&apos;.
+        /// </summary>
+        public static string MiscText_LegUsedTwice {
+            get {
+                return ResourceManager.GetString("MiscText_LegUsedTwice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Light Blue.
+        /// </summary>
+        public static string MiscText_LightBlue {
+            get {
+                return ResourceManager.GetString("MiscText_LightBlue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The central control in the loop will be visited {0} times. There are {1} possible paths through the loops..
+        /// </summary>
+        public static string MiscText_LoopSummary {
+            get {
+                return ResourceManager.GetString("MiscText_LoopSummary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lower Purple.
+        /// </summary>
+        public static string MiscText_LowerPurple {
+            get {
+                return ResourceManager.GetString("MiscText_LowerPurple", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mandatory crossing point.
+        /// </summary>
+        public static string MiscText_MandCrossing_Long {
+            get {
+                return ResourceManager.GetString("MiscText_MandCrossing_Long", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Crossing.
+        /// </summary>
+        public static string MiscText_MandCrossing_Medium {
+            get {
+                return ResourceManager.GetString("MiscText_MandCrossing_Medium", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to C.
+        /// </summary>
+        public static string MiscText_MandCrossing_Short {
+            get {
+                return ResourceManager.GetString("MiscText_MandCrossing_Short", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Map exchange.
+        /// </summary>
+        public static string MiscText_MapExchange_Long {
+            get {
+                return ResourceManager.GetString("MiscText_MapExchange_Long", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exchange.
+        /// </summary>
+        public static string MiscText_MapExchange_Medium {
+            get {
+                return ResourceManager.GetString("MiscText_MapExchange_Medium", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MX.
+        /// </summary>
+        public static string MiscText_MapExchange_Short {
+            get {
+                return ResourceManager.GetString("MiscText_MapExchange_Short", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Another program has changed the map file &quot;{0}&quot;. Purple Pen will now reload the map..
+        /// </summary>
+        public static string MiscText_MapFileChanged {
+            get {
+                return ResourceManager.GetString("MiscText_MapFileChanged", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The map file &quot;{0}&quot; has been deleted. Please try to restore the map file, then press &quot;Ok&quot;..
+        /// </summary>
+        public static string MiscText_MapFileDeleted {
+            get {
+                return ResourceManager.GetString("MiscText_MapFileDeleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Timed Start.
+        /// </summary>
+        public static string MiscText_MapIssue_Long {
+            get {
+                return ResourceManager.GetString("MiscText_MapIssue_Long", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Timed Start.
+        /// </summary>
+        public static string MiscText_MapIssue_Medium {
+            get {
+                return ResourceManager.GetString("MiscText_MapIssue_Medium", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TS.
+        /// </summary>
+        public static string MiscText_MapIssue_Short {
+            get {
+                return ResourceManager.GetString("MiscText_MapIssue_Short", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All: {0}.
+        /// </summary>
+        public static string MiscText_Margins_All {
+            get {
+                return ResourceManager.GetString("MiscText_Margins_All", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Left: {0}, Right: {1}, Top: {2}, Bottom: {3}.
+        /// </summary>
+        public static string MiscText_Margins_LRTB {
+            get {
+                return ResourceManager.GetString("MiscText_Margins_LRTB", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The map file &quot;{0}&quot; could not be found.
+        ///
+        ///Most likely, the map file has been moved or deleted, or the Purple Pen file has been moved (possibly to a different computer). The map file must be present every time the Purple Pen event file is loaded. If you send a Purple Pen event file to another person, be sure that person has a copy of the map file also.
+        ///
+        ///After pressing OK, try to find a copy of the map file on your computer..
+        /// </summary>
+        public static string MiscText_MissingMapFile {
+            get {
+                return ResourceManager.GetString("MiscText_MissingMapFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Version {0} of Purple Pen is now available for download. (You are currently running version {1}.)
+        ///
+        ///Would you like to download and install the latest version?.
+        /// </summary>
+        public static string MiscText_NewerVersionAvailable {
+            get {
+                return ResourceManager.GetString("MiscText_NewerVersionAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Next &gt;.
+        /// </summary>
+        public static string MiscText_NextButtonText {
+            get {
+                return ResourceManager.GetString("MiscText_NextButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No courses were selected to print..
+        /// </summary>
+        public static string MiscText_NoCoursesSelected {
+            get {
+                return ResourceManager.GetString("MiscText_NoCoursesSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No symbol.
+        /// </summary>
+        public static string MiscText_NoSymbol {
+            get {
+                return ResourceManager.GetString("MiscText_NoSymbol", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All controls are used in a course..
+        /// </summary>
+        public static string MiscText_NoUnusedControls {
+            get {
+                return ResourceManager.GetString("MiscText_NoUnusedControls", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OCAD.
+        /// </summary>
+        public static string MiscText_OCAD {
+            get {
+                return ResourceManager.GetString("MiscText_OCAD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open &quot;{0}&quot;.
+        /// </summary>
+        public static string MiscText_OpenLastEvent {
+            get {
+                return ResourceManager.GetString("MiscText_OpenLastEvent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OOM.
+        /// </summary>
+        public static string MiscText_OpenOrienteeringMapper {
+            get {
+                return ResourceManager.GetString("MiscText_OpenOrienteeringMapper", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The page size is too small for any descriptions to be printed..
+        /// </summary>
+        public static string MiscText_PageTooSmall {
+            get {
+                return ResourceManager.GetString("MiscText_PageTooSmall", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Part {0}.
+        /// </summary>
+        public static string MiscText_PartN {
+            get {
+                return ResourceManager.GetString("MiscText_PartN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Part {0} (of {1}).
+        /// </summary>
+        public static string MiscText_PartXOfY {
+            get {
+                return ResourceManager.GetString("MiscText_PartXOfY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Finished printing &quot;{0}&quot;. Press OK to begin printing &quot;{1}&quot;..
+        /// </summary>
+        public static string MiscText_PausePrinting {
+            get {
+                return ResourceManager.GetString("MiscText_PausePrinting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pdfium PDF converter failed to read PDF file successfully.
+        /// </summary>
+        public static string MiscText_PdfConversionFailed {
+            get {
+                return ResourceManager.GetString("MiscText_PdfConversionFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PdfConverter.exe not found.
+        /// </summary>
+        public static string MiscText_PdfConverterNotFound {
+            get {
+                return ResourceManager.GetString("MiscText_PdfConverterNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PDF File|*.pdf.
+        /// </summary>
+        public static string MiscText_PdfFilter {
+            get {
+                return ResourceManager.GetString("MiscText_PdfFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Map size from PDF.
+        /// </summary>
+        public static string MiscText_PdfMapSize {
+            get {
+                return ResourceManager.GetString("MiscText_PdfMapSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Could not read result of PDF conversion from file &apos;{0}&apos;.
+        /// </summary>
+        public static string MiscText_PdfResultNotReadable {
+            get {
+                return ResourceManager.GetString("MiscText_PdfResultNotReadable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to plural.
+        /// </summary>
+        public static string MiscText_Plural {
+            get {
+                return ResourceManager.GetString("MiscText_Plural", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Portrait.
+        /// </summary>
+        public static string MiscText_Portrait {
+            get {
+                return ResourceManager.GetString("MiscText_Portrait", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Printing page {0} (of {1}).
+        /// </summary>
+        public static string MiscText_PrintingPage {
+            get {
+                return ResourceManager.GetString("MiscText_PrintingPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Purple.
+        /// </summary>
+        public static string MiscText_Purple {
+            get {
+                return ResourceManager.GetString("MiscText_Purple", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Red.
+        /// </summary>
+        public static string MiscText_Red {
+            get {
+                return ResourceManager.GetString("MiscText_Red", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Redo.
+        /// </summary>
+        public static string MiscText_Redo {
+            get {
+                return ResourceManager.GetString("MiscText_Redo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Redo.
+        /// </summary>
+        public static string MiscText_RedoWithShortcut {
+            get {
+                return ResourceManager.GetString("MiscText_RedoWithShortcut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The customized text requires a &quot;*&quot; to indicate where the object being modified is placed..
+        /// </summary>
+        public static string MiscText_RequireStar {
+            get {
+                return ResourceManager.GetString("MiscText_RequireStar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Installing Roboto Fonts failed..
+        /// </summary>
+        public static string MiscText_RobotoFontsInstallFailed {
+            get {
+                return ResourceManager.GetString("MiscText_RobotoFontsInstallFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you want to save the changes you made to &apos;{0}&apos;?.
+        /// </summary>
+        public static string MiscText_SaveChanges {
+            get {
+                return ResourceManager.GetString("MiscText_SaveChanges", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to singular.
+        /// </summary>
+        public static string MiscText_Singular {
+            get {
+                return ResourceManager.GetString("MiscText_Singular", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start.
+        /// </summary>
+        public static string MiscText_Start {
+            get {
+                return ResourceManager.GetString("MiscText_Start", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to S.
+        /// </summary>
+        public static string MiscText_Start_Short {
+            get {
+                return ResourceManager.GetString("MiscText_Start_Short", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Too many total variations in this course. The number of distinct variations is limited to {0}..
+        /// </summary>
+        public static string MiscText_TooManyVariations {
+            get {
+                return ResourceManager.GetString("MiscText_TooManyVariations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to *** If there exists a web site in the translated language that contains documentation for Purple Pen, enter the URL (including http) as the translation of this item. Otherwise leave it alone..
+        /// </summary>
+        public static string MiscText_TranslatedHelpWebSite {
+            get {
+                return ResourceManager.GetString("MiscText_TranslatedHelpWebSite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Undo.
+        /// </summary>
+        public static string MiscText_Undo {
+            get {
+                return ResourceManager.GetString("MiscText_Undo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Undo.
+        /// </summary>
+        public static string MiscText_UndoWithShortcut {
+            get {
+                return ResourceManager.GetString("MiscText_UndoWithShortcut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An older version of Purple Pen is still installed. To prevent confusion caused by having two versions of Purple Pen installed, it is strongly recommended that the older version be removed. Remove it now?.
+        /// </summary>
+        public static string MiscText_UninstallNonStoreVersion {
+            get {
+                return ResourceManager.GetString("MiscText_UninstallNonStoreVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User Defined.
+        /// </summary>
+        public static string MiscText_UserDefined {
+            get {
+                return ResourceManager.GetString("MiscText_UserDefined", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A variation already exists at this control..
+        /// </summary>
+        public static string MiscText_VariationAlreadyExists {
+            get {
+                return ResourceManager.GetString("MiscText_VariationAlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A control or leg must be selected to add a variation..
+        /// </summary>
+        public static string MiscText_VariationMustSelectControl {
+            get {
+                return ResourceManager.GetString("MiscText_VariationMustSelectControl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A variation cannot be added to a finish control..
+        /// </summary>
+        public static string MiscText_VariationNotFinish {
+            get {
+                return ResourceManager.GetString("MiscText_VariationNotFinish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A variation cannot be added to the All Controls view..
+        /// </summary>
+        public static string MiscText_VariationNotInAllControls {
+            get {
+                return ResourceManager.GetString("MiscText_VariationNotInAllControls", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A variation cannot be added to a score course..
+        /// </summary>
+        public static string MiscText_VariationNotInScoreCourse {
+            get {
+                return ResourceManager.GetString("MiscText_VariationNotInScoreCourse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A variation cannot be added to the last control. Add a finish control first..
+        /// </summary>
+        public static string MiscText_VariationNotLastControl {
+            get {
+                return ResourceManager.GetString("MiscText_VariationNotLastControl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alpha {0}.
+        /// </summary>
+        public static string MiscText_Version_Alpha {
+            get {
+                return ResourceManager.GetString("MiscText_Version_Alpha", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Beta {0}.
+        /// </summary>
+        public static string MiscText_Version_Beta {
+            get {
+                return ResourceManager.GetString("MiscText_Version_Beta", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to RC {0}.
+        /// </summary>
+        public static string MiscText_Version_RC {
+            get {
+                return ResourceManager.GetString("MiscText_Version_RC", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Version {0}.
+        /// </summary>
+        public static string MiscText_VersionLabel {
+            get {
+                return ResourceManager.GetString("MiscText_VersionLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yellow.
+        /// </summary>
+        public static string MiscText_Yellow {
+            get {
+                return ResourceManager.GetString("MiscText_Yellow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zoom.
+        /// </summary>
+        public static string MiscText_Zoom {
+            get {
+                return ResourceManager.GetString("MiscText_Zoom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Don&apos;t warn about missing fonts for this event again.
+        /// </summary>
+        public static string MissingFonts_checkBoxDontWarnAgain_Text {
+            get {
+                return ResourceManager.GetString("MissingFonts_checkBoxDontWarnAgain_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Map file &quot;{0}&quot; uses fonts that are not installed on your computer. Text using these fonts will be drawn and printed with a default font, which may cause text to appear differently than the map designer intended. 
+        ///
+        ///To fix this problem, find and install the fonts listed below with the Windows control panel, then start Purple Pen again.
+        ///.
+        /// </summary>
+        public static string MissingFonts_labelWarning_Text {
+            get {
+                return ResourceManager.GetString("MissingFonts_labelWarning_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        public static string MissingFonts_okButton_Text {
+            get {
+                return ResourceManager.GetString("MissingFonts_okButton_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Missing Fonts.
+        /// </summary>
+        public static string MissingFonts_Text {
+            get {
+                return ResourceManager.GetString("MissingFonts_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Which way would you like to move all controls on the map?.
+        /// </summary>
+        public static string MoveAllControls_labelDescription_Text {
+            get {
+                return ResourceManager.GetString("MoveAllControls_labelDescription_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move Only.
+        /// </summary>
+        public static string MoveAllControls_radioButtonMove_Text {
+            get {
+                return ResourceManager.GetString("MoveAllControls_radioButtonMove_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move and Rotate.
+        /// </summary>
+        public static string MoveAllControls_radioButtonMoveAndRotate_Text {
+            get {
+                return ResourceManager.GetString("MoveAllControls_radioButtonMoveAndRotate_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move and Scale.
+        /// </summary>
+        public static string MoveAllControls_radioButtonMoveAndScale_Text {
+            get {
+                return ResourceManager.GetString("MoveAllControls_radioButtonMoveAndScale_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move, Scale, and Rotate.
+        /// </summary>
+        public static string MoveAllControls_radioButtonMoveRotateScale_Text {
+            get {
+                return ResourceManager.GetString("MoveAllControls_radioButtonMoveRotateScale_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move All Controls.
+        /// </summary>
+        public static string MoveAllControls_Text {
+            get {
+                return ResourceManager.GetString("MoveAllControls_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to When using an image file as a map, you must specify the resolution of the image and the map scale. 
+        ///
+        ///The resolution of the image indicates how may pixels or dots are in the image for each inch on the paper map; usually termed dots per inch or &quot;dpi&quot;.
+        ///
+        ///The scale of the map indicates the relationship between the paper map and the real world.
+        ///.
+        /// </summary>
+        public static string NewEventBitmapScale_bitmapScaleLabel_Text {
+            get {
+                return ResourceManager.GetString("NewEventBitmapScale_bitmapScaleLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to dots per inch.
+        /// </summary>
+        public static string NewEventBitmapScale_dpiLabel_Text {
+            get {
+                return ResourceManager.GetString("NewEventBitmapScale_dpiLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bitmap Resolution.
+        /// </summary>
+        public static string NewEventBitmapScale_labelTitle_Text {
+            get {
+                return ResourceManager.GetString("NewEventBitmapScale_labelTitle_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Map scale:.
+        /// </summary>
+        public static string NewEventBitmapScale_mapScaleLabel_Text {
+            get {
+                return ResourceManager.GetString("NewEventBitmapScale_mapScaleLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1:.
+        /// </summary>
+        public static string NewEventBitmapScale_oneToPrefixLabel_Text {
+            get {
+                return ResourceManager.GetString("NewEventBitmapScale_oneToPrefixLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to When using an PDF file as a map, you must specify the map scale. 
+        ///
+        ///The scale of the map indicates the relationship between the paper map and the real world.
+        ///.
+        /// </summary>
+        public static string NewEventBitmapScale_pdfScaleLabel_Text {
+            get {
+                return ResourceManager.GetString("NewEventBitmapScale_pdfScaleLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Image resolution:.
+        /// </summary>
+        public static string NewEventBitmapScale_resolutionLabel_Text {
+            get {
+                return ResourceManager.GetString("NewEventBitmapScale_resolutionLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose Folder....
+        /// </summary>
+        public static string NewEventDirectory_chooseFolder_Text {
+            get {
+                return ResourceManager.GetString("NewEventDirectory_chooseFolder_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Selected Folder.
+        /// </summary>
+        public static string NewEventDirectory_directoryDisplay_Text {
+            get {
+                return ResourceManager.GetString("NewEventDirectory_directoryDisplay_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select the folder for your event file.
+        /// </summary>
+        public static string NewEventDirectory_folderBrowserDialog_Description {
+            get {
+                return ResourceManager.GetString("NewEventDirectory_folderBrowserDialog_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Event File Location.
+        /// </summary>
+        public static string NewEventDirectory_labelTitle_Text {
+            get {
+                return ResourceManager.GetString("NewEventDirectory_labelTitle_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to What folder (directory) do you want to save your course event file in?.
+        /// </summary>
+        public static string NewEventDirectory_newEventDirectoryLabel_Text {
+            get {
+                return ResourceManager.GetString("NewEventDirectory_newEventDirectoryLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In the same folder as the map file..
+        /// </summary>
+        public static string NewEventDirectory_useMapDirectory_Text {
+            get {
+                return ResourceManager.GetString("NewEventDirectory_useMapDirectory_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In another folder I choose..
+        /// </summary>
+        public static string NewEventDirectory_useOtherFolder_Text {
+            get {
+                return ResourceManager.GetString("NewEventDirectory_useOtherFolder_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to After your event is created, select &quot;New Course...&quot; from the Course menu to create one or more courses..
+        /// </summary>
+        public static string NewEventFinal_afterEventCreatedLabel_Text {
+            get {
+                return ResourceManager.GetString("NewEventFinal_afterEventCreatedLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create Event.
+        /// </summary>
+        public static string NewEventFinal_labelTitle_Text {
+            get {
+                return ResourceManager.GetString("NewEventFinal_labelTitle_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click &quot;Finish&quot; to create your new event. Your event file will be saved as:.
+        /// </summary>
+        public static string NewEventFinal_newEventFinalLabel_Text {
+            get {
+                return ResourceManager.GetString("NewEventFinal_newEventFinalLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Choose map file....
+        /// </summary>
+        public static string NewEventMapFile_chooseMapFileButton_Text {
+            get {
+                return ResourceManager.GetString("NewEventMapFile_chooseMapFileButton_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The map file was successfully loaded. If you send your Purple Pen file to someone else, they must have the map file also..
+        /// </summary>
+        public static string NewEventMapFile_infoMessage_Text {
+            get {
+                return ResourceManager.GetString("NewEventMapFile_infoMessage_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Map File.
+        /// </summary>
+        public static string NewEventMapFile_labelTitle_Text {
+            get {
+                return ResourceManager.GetString("NewEventMapFile_labelTitle_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Selected Map File.
+        /// </summary>
+        public static string NewEventMapFile_mapFileDisplay_Text {
+            get {
+                return ResourceManager.GetString("NewEventMapFile_mapFileDisplay_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In order to design your courses, you must select the map file you will be using. Typically this is an OCAD or OpenOrienteering Mapper file (although PDFs and image files like JPEGs can be used instead). Click the &quot;Choose...&quot; button to select a map file..
+        /// </summary>
+        public static string NewEventMapFile_newEventMapFileLabel_Text {
+            get {
+                return ResourceManager.GetString("NewEventMapFile_newEventMapFileLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All map files|*.ocd;*.omap;*.xmap;*.pdf;*.jpeg;*.jpg;*.tiff;*.tif;*.bmp;*.png;*.gif|OCAD files (*.ocd)|*.ocd|Open Orienteering Mapper Files|*.omap;*.xmap|PDF files (*.pdf)|*.pdf|Image files|*.jpeg;*.jpg;*.tiff;*.tif;*.bmp;*.png;*.gif.
+        /// </summary>
+        public static string NewEventMapFile_openFileDialog_Filter {
+            get {
+                return ResourceManager.GetString("NewEventMapFile_openFileDialog_Filter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (This setting can be changed later using Event/Automatic Numbering).
+        /// </summary>
+        public static string NewEventNumbering_changeLaterLabel_Text {
+            get {
+                return ResourceManager.GetString("NewEventNumbering_changeLaterLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disallow codes that could be read upside-down (e.g., &quot;68&quot;/&quot;89&quot;).
+        /// </summary>
+        public static string NewEventNumbering_disallowInvertibleCheckBox_Text {
+            get {
+                return ResourceManager.GetString("NewEventNumbering_disallowInvertibleCheckBox_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Control Numbering.
+        /// </summary>
+        public static string NewEventNumbering_labelTitle_Text {
+            get {
+                return ResourceManager.GetString("NewEventNumbering_labelTitle_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Newly created controls are automatically numbered. Please choose the starting control number to use..
+        /// </summary>
+        public static string NewEventNumbering_newEventNumberingLabel_Text {
+            get {
+                return ResourceManager.GetString("NewEventNumbering_newEventNumberingLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Starting code:.
+        /// </summary>
+        public static string NewEventNumbering_startingCodeLabel_Text {
+            get {
+                return ResourceManager.GetString("NewEventNumbering_startingCodeLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (You can change the printing scale later for any course by choosing Course/Properties.).
+        /// </summary>
+        public static string NewEventPrintScale_changeLaterLabel_Text {
+            get {
+                return ResourceManager.GetString("NewEventPrintScale_changeLaterLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Default &amp;printing scale:.
+        /// </summary>
+        public static string NewEventPrintScale_defaultPrintScaleLabel_Text {
+            get {
+                return ResourceManager.GetString("NewEventPrintScale_defaultPrintScaleLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Print Scale.
+        /// </summary>
+        public static string NewEventPrintScale_labelTitle_Text {
+            get {
+                return ResourceManager.GetString("NewEventPrintScale_labelTitle_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Map scale:.
+        /// </summary>
+        public static string NewEventPrintScale_mapScaleLabel_Text {
+            get {
+                return ResourceManager.GetString("NewEventPrintScale_mapScaleLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to What scale will you be using to print your courses? In most cases, you will want to use the existing scale of the map.
+        ///
+        ///.
+        /// </summary>
+        public static string NewEventPrintScale_newEventPrintScaleLabel_Text {
+            get {
+                return ResourceManager.GetString("NewEventPrintScale_newEventPrintScaleLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1:.
+        /// </summary>
+        public static string NewEventPrintScale_oneToPrefixLabel1_Text {
+            get {
+                return ResourceManager.GetString("NewEventPrintScale_oneToPrefixLabel1_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1:.
+        /// </summary>
+        public static string NewEventPrintScale_oneToPrefixLabel2_Text {
+            get {
+                return ResourceManager.GetString("NewEventPrintScale_oneToPrefixLabel2_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (These settings can be changed later using Event/IOF Standards).
+        /// </summary>
+        public static string NewEventStandards_changeLaterLabel_Text {
+            get {
+                return ResourceManager.GetString("NewEventStandards_changeLaterLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to IOF Description Standard.
+        /// </summary>
+        public static string NewEventStandards_groupBoxDescriptionStandard_Text {
+            get {
+                return ResourceManager.GetString("NewEventStandards_groupBoxDescriptionStandard_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to IOF Map Standard.
+        /// </summary>
+        public static string NewEventStandards_groupBoxMapStandard_Text {
+            get {
+                return ResourceManager.GetString("NewEventStandards_groupBoxMapStandard_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Which versions of IOF standards would you like Purple Pen to follow?.
+        /// </summary>
+        public static string NewEventStandards_labelStandardsIntro_Text {
+            get {
+                return ResourceManager.GetString("NewEventStandards_labelStandardsIntro_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to IOF Standards.
+        /// </summary>
+        public static string NewEventStandards_labelTitle_Text {
+            get {
+                return ResourceManager.GetString("NewEventStandards_labelTitle_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Descriptions 2004.
+        /// </summary>
+        public static string NewEventStandards_radioButtonDescriptions2004_Text {
+            get {
+                return ResourceManager.GetString("NewEventStandards_radioButtonDescriptions2004_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Descriptions 2018 or 2024.
+        /// </summary>
+        public static string NewEventStandards_radioButtonDescriptions2018_Text {
+            get {
+                return ResourceManager.GetString("NewEventStandards_radioButtonDescriptions2018_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ISOM 2000 / ISSOM 2007.
+        /// </summary>
+        public static string NewEventStandards_radioButtonMap2000_Text {
+            get {
+                return ResourceManager.GetString("NewEventStandards_radioButtonMap2000_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ISOM 2017.
+        /// </summary>
+        public static string NewEventStandards_radioButtonMap2017_Text {
+            get {
+                return ResourceManager.GetString("NewEventStandards_radioButtonMap2017_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ISSprOM 2019.
+        /// </summary>
+        public static string NewEventStandards_radioButtonMapSpr2019_Text {
+            get {
+                return ResourceManager.GetString("NewEventStandards_radioButtonMapSpr2019_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Event Title:.
+        /// </summary>
+        public static string NewEventTitle_eventTitleLabel_Text {
+            get {
+                return ResourceManager.GetString("NewEventTitle_eventTitleLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Event Title.
+        /// </summary>
+        public static string NewEventTitle_labelTitle_Text {
+            get {
+                return ResourceManager.GetString("NewEventTitle_labelTitle_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The event title will be displayed on the first line of every control description sheet. It is also used as the file name for storing your event on disk.
+        ///
+        ///To fit on the description sheet, it should be less than 25 characters in length. Examples of good event titles are &quot;US Champs Day 1&quot; or &quot;Riverview Park, 4/12/06&quot;..
+        /// </summary>
+        public static string NewEventTitle_newEventTitleLabel_Text {
+            get {
+                return ResourceManager.GetString("NewEventTitle_newEventTitleLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt; &amp;Back.
+        /// </summary>
+        public static string NewEventWizard_backButton_Text {
+            get {
+                return ResourceManager.GetString("NewEventWizard_backButton_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string NewEventWizard_cancelButton_Text {
+            get {
+                return ResourceManager.GetString("NewEventWizard_cancelButton_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Next &gt;.
+        /// </summary>
+        public static string NewEventWizard_nextButton_Text {
+            get {
+                return ResourceManager.GetString("NewEventWizard_nextButton_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create New Event.
+        /// </summary>
+        public static string NewEventWizard_Text {
+            get {
+                return ResourceManager.GetString("NewEventWizard_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string NonPrintableObjects_cancelButton_Text {
+            get {
+                return ResourceManager.GetString("NonPrintableObjects_cancelButton_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Map file &quot;{0}&quot; contains objects or symbols that are not fully supported by Purple Pen, and may not print correctly. The objects that may not print correctly are listed below.
+        ///
+        ///For printing competition maps, it is suggested that courses be exported to OCAD files (use File/Create OCAD Files...) and to print the maps from OCAD.
+        ///.
+        /// </summary>
+        public static string NonPrintableObjects_labelWarning_Text {
+            get {
+                return ResourceManager.GetString("NonPrintableObjects_labelWarning_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Continue.
+        /// </summary>
+        public static string NonPrintableObjects_okButton_Text {
+            get {
+                return ResourceManager.GetString("NonPrintableObjects_okButton_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Map File Cannot Be Printed Accurately.
+        /// </summary>
+        public static string NonPrintableObjects_Text {
+            get {
+                return ResourceManager.GetString("NonPrintableObjects_Text", resourceCulture);
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized string similar to OK.
         /// </summary>
@@ -95,16 +7785,2815 @@ namespace AvPurplePen {
                 return ResourceManager.GetString("OKButton", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
-        public static string CancelButton {
+        public static string OkCancelDialog_cancelButton_Text {
             get {
-                return ResourceManager.GetString("CancelButton", resourceCulture);
+                return ResourceManager.GetString("OkCancelDialog_cancelButton_Text", resourceCulture);
             }
         }
-
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        public static string OkCancelDialog_okButton_Text {
+            get {
+                return ResourceManager.GetString("OkCancelDialog_okButton_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string OperationInProgress_cancelButton_Text {
+            get {
+                return ResourceManager.GetString("OperationInProgress_cancelButton_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Operation In Progress.
+        /// </summary>
+        public static string OperationInProgress_Text {
+            get {
+                return ResourceManager.GetString("OperationInProgress_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string OverwritingOcadFilesDialog_buttonCancel_Text {
+            get {
+                return ResourceManager.GetString("OverwritingOcadFilesDialog_buttonCancel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Replace.
+        /// </summary>
+        public static string OverwritingOcadFilesDialog_buttonOK_Text {
+            get {
+                return ResourceManager.GetString("OverwritingOcadFilesDialog_buttonOK_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The following files already exist. If you continue, they will be replaced..
+        /// </summary>
+        public static string OverwritingOcadFilesDialog_confirmReplaceLabel_Text {
+            get {
+                return ResourceManager.GetString("OverwritingOcadFilesDialog_confirmReplaceLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirm Replace Files.
+        /// </summary>
+        public static string OverwritingOcadFilesDialog_Text {
+            get {
+                return ResourceManager.GetString("OverwritingOcadFilesDialog_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PDF reading has failed. The errors are shown below..
+        /// </summary>
+        public static string PdfConversionInProgress_labelFailure_Text {
+            get {
+                return ResourceManager.GetString("PdfConversionInProgress_labelFailure_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PDFium PDF converter is reading your PDF....
+        /// </summary>
+        public static string PdfConversionInProgress_labelReadingPDF_Text {
+            get {
+                return ResourceManager.GetString("PdfConversionInProgress_labelReadingPDF_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reading PDF.
+        /// </summary>
+        public static string PdfConversionInProgress_Text {
+            get {
+                return ResourceManager.GetString("PdfConversionInProgress_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Print Map Exchanges on Same Map .
+        /// </summary>
+        public static string PrintCourses_checkBoxMergeParts_Text {
+            get {
+                return ResourceManager.GetString("PrintCourses_checkBoxMergeParts_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pause printing after each course or part.
+        /// </summary>
+        public static string PrintCourses_checkBoxPausePrinting_Text {
+            get {
+                return ResourceManager.GetString("PrintCourses_checkBoxPausePrinting_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OCAD Compatible.
+        /// </summary>
+        public static string PrintCourses_comboBoxColorModel_Items {
+            get {
+                return ResourceManager.GetString("PrintCourses_comboBoxColorModel_Items", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to RGB.
+        /// </summary>
+        public static string PrintCourses_comboBoxColorModel_Items1 {
+            get {
+                return ResourceManager.GetString("PrintCourses_comboBoxColorModel_Items1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CMYK.
+        /// </summary>
+        public static string PrintCourses_comboBoxColorModel_Items2 {
+            get {
+                return ResourceManager.GetString("PrintCourses_comboBoxColorModel_Items2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Crop to a single page.
+        /// </summary>
+        public static string PrintCourses_comboBoxMultiPage_Items {
+            get {
+                return ResourceManager.GetString("PrintCourses_comboBoxMultiPage_Items", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Print on multiple pages.
+        /// </summary>
+        public static string PrintCourses_comboBoxMultiPage_Items1 {
+            get {
+                return ResourceManager.GetString("PrintCourses_comboBoxMultiPage_Items1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copies.
+        /// </summary>
+        public static string PrintCourses_copiesGroupBox_Text {
+            get {
+                return ResourceManager.GetString("PrintCourses_copiesGroupBox_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copies of each course:.
+        /// </summary>
+        public static string PrintCourses_copiesLabel_Text {
+            get {
+                return ResourceManager.GetString("PrintCourses_copiesLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Courses.
+        /// </summary>
+        public static string PrintCourses_coursesGroupBox_Text {
+            get {
+                return ResourceManager.GetString("PrintCourses_coursesGroupBox_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Appearance.
+        /// </summary>
+        public static string PrintCourses_groupBoxAppearance_Text {
+            get {
+                return ResourceManager.GetString("PrintCourses_groupBoxAppearance_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If the print area is too large to fit on one page:.
+        /// </summary>
+        public static string PrintCourses_labelAppearanceInfo_Text {
+            get {
+                return ResourceManager.GetString("PrintCourses_labelAppearanceInfo_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Color Model:.
+        /// </summary>
+        public static string PrintCourses_labelColorModel_Text {
+            get {
+                return ResourceManager.GetString("PrintCourses_labelColorModel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Print.
+        /// </summary>
+        public static string PrintCourses_okButton_Text {
+            get {
+                return ResourceManager.GetString("PrintCourses_okButton_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Preview....
+        /// </summary>
+        public static string PrintCourses_previewButton_Text {
+            get {
+                return ResourceManager.GetString("PrintCourses_previewButton_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change Printer....
+        /// </summary>
+        public static string PrintCourses_printerChange_Text {
+            get {
+                return ResourceManager.GetString("PrintCourses_printerChange_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Output.
+        /// </summary>
+        public static string PrintCourses_printerGroup_Text {
+            get {
+                return ResourceManager.GetString("PrintCourses_printerGroup_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Printer:.
+        /// </summary>
+        public static string PrintCourses_printerLabel_Text {
+            get {
+                return ResourceManager.GetString("PrintCourses_printerLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Printer Name.
+        /// </summary>
+        public static string PrintCourses_printerName_Text {
+            get {
+                return ResourceManager.GetString("PrintCourses_printerName_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Print Courses.
+        /// </summary>
+        public static string PrintCourses_Text {
+            get {
+                return ResourceManager.GetString("PrintCourses_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string PrintDescriptions_cancelButton_Text {
+            get {
+                return ResourceManager.GetString("PrintDescriptions_cancelButton_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to one copy of each course.
+        /// </summary>
+        public static string PrintDescriptions_copiesCombo_Items {
+            get {
+                return ResourceManager.GetString("PrintDescriptions_copiesCombo_Items", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to one page of each course.
+        /// </summary>
+        public static string PrintDescriptions_copiesCombo_Items1 {
+            get {
+                return ResourceManager.GetString("PrintDescriptions_copiesCombo_Items1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to multiple pages of each course.
+        /// </summary>
+        public static string PrintDescriptions_copiesCombo_Items2 {
+            get {
+                return ResourceManager.GetString("PrintDescriptions_copiesCombo_Items2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copies.
+        /// </summary>
+        public static string PrintDescriptions_copiesGroupBox_Text {
+            get {
+                return ResourceManager.GetString("PrintDescriptions_copiesGroupBox_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Courses.
+        /// </summary>
+        public static string PrintDescriptions_coursesGroupBox_Text {
+            get {
+                return ResourceManager.GetString("PrintDescriptions_coursesGroupBox_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Course default.
+        /// </summary>
+        public static string PrintDescriptions_descriptionKindCombo_Items {
+            get {
+                return ResourceManager.GetString("PrintDescriptions_descriptionKindCombo_Items", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Symbols.
+        /// </summary>
+        public static string PrintDescriptions_descriptionKindCombo_Items1 {
+            get {
+                return ResourceManager.GetString("PrintDescriptions_descriptionKindCombo_Items1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Text.
+        /// </summary>
+        public static string PrintDescriptions_descriptionKindCombo_Items2 {
+            get {
+                return ResourceManager.GetString("PrintDescriptions_descriptionKindCombo_Items2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Symbols &amp; Text.
+        /// </summary>
+        public static string PrintDescriptions_descriptionKindCombo_Items3 {
+            get {
+                return ResourceManager.GetString("PrintDescriptions_descriptionKindCombo_Items3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to descriptions per course.
+        /// </summary>
+        public static string PrintDescriptions_descriptionsLabel_Text {
+            get {
+                return ResourceManager.GetString("PrintDescriptions_descriptionsLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description type:.
+        /// </summary>
+        public static string PrintDescriptions_descriptionTypeLabel_Text {
+            get {
+                return ResourceManager.GetString("PrintDescriptions_descriptionTypeLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Appearance.
+        /// </summary>
+        public static string PrintDescriptions_layoutGroup_Text {
+            get {
+                return ResourceManager.GetString("PrintDescriptions_layoutGroup_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Line size:.
+        /// </summary>
+        public static string PrintDescriptions_lineSizeLabel_Text {
+            get {
+                return ResourceManager.GetString("PrintDescriptions_lineSizeLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change Margins....
+        /// </summary>
+        public static string PrintDescriptions_marginChange_Text {
+            get {
+                return ResourceManager.GetString("PrintDescriptions_marginChange_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Top: 0.55&quot;, Bottom: 0.55&quot;, Left: 0.55&quot;, Right: 0.55&quot;.
+        /// </summary>
+        public static string PrintDescriptions_margins_Text {
+            get {
+                return ResourceManager.GetString("PrintDescriptions_margins_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Margins:.
+        /// </summary>
+        public static string PrintDescriptions_marginsLabel_Text {
+            get {
+                return ResourceManager.GetString("PrintDescriptions_marginsLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to mm.
+        /// </summary>
+        public static string PrintDescriptions_mmSuffixLabel_Text {
+            get {
+                return ResourceManager.GetString("PrintDescriptions_mmSuffixLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Landscape.
+        /// </summary>
+        public static string PrintDescriptions_orientation_Text {
+            get {
+                return ResourceManager.GetString("PrintDescriptions_orientation_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Orientation:.
+        /// </summary>
+        public static string PrintDescriptions_orientationLabel_Text {
+            get {
+                return ResourceManager.GetString("PrintDescriptions_orientationLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tabloid (11&quot;x17&quot;).
+        /// </summary>
+        public static string PrintDescriptions_paperSize_Text {
+            get {
+                return ResourceManager.GetString("PrintDescriptions_paperSize_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Paper Size:.
+        /// </summary>
+        public static string PrintDescriptions_paperSizeLabel_Text {
+            get {
+                return ResourceManager.GetString("PrintDescriptions_paperSizeLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Preview....
+        /// </summary>
+        public static string PrintDescriptions_previewButton_Text {
+            get {
+                return ResourceManager.GetString("PrintDescriptions_previewButton_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Print.
+        /// </summary>
+        public static string PrintDescriptions_printButton_Text {
+            get {
+                return ResourceManager.GetString("PrintDescriptions_printButton_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change Printer....
+        /// </summary>
+        public static string PrintDescriptions_printerChange_Text {
+            get {
+                return ResourceManager.GetString("PrintDescriptions_printerChange_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Output.
+        /// </summary>
+        public static string PrintDescriptions_printerGroup_Text {
+            get {
+                return ResourceManager.GetString("PrintDescriptions_printerGroup_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Printer:.
+        /// </summary>
+        public static string PrintDescriptions_printerLabel_Text {
+            get {
+                return ResourceManager.GetString("PrintDescriptions_printerLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Printer Name.
+        /// </summary>
+        public static string PrintDescriptions_printerName_Text {
+            get {
+                return ResourceManager.GetString("PrintDescriptions_printerName_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Print Descriptions.
+        /// </summary>
+        public static string PrintDescriptions_Text {
+            get {
+                return ResourceManager.GetString("PrintDescriptions_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Print:.
+        /// </summary>
+        public static string PrintDescriptions_whatToPrintLabel_Text {
+            get {
+                return ResourceManager.GetString("PrintDescriptions_whatToPrintLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Orientation.
+        /// </summary>
+        public static string PrinterMargins_groupBox1_Text {
+            get {
+                return ResourceManager.GetString("PrinterMargins_groupBox1_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Margins ({0}).
+        /// </summary>
+        public static string PrinterMargins_groupBoxMargins_Text {
+            get {
+                return ResourceManager.GetString("PrinterMargins_groupBoxMargins_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Paper Size ({0}).
+        /// </summary>
+        public static string PrinterMargins_groupBoxPaperSize_Text {
+            get {
+                return ResourceManager.GetString("PrinterMargins_groupBoxPaperSize_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Left:.
+        /// </summary>
+        public static string PrinterMargins_label1_Text {
+            get {
+                return ResourceManager.GetString("PrinterMargins_label1_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Width:.
+        /// </summary>
+        public static string PrinterMargins_label2_Text {
+            get {
+                return ResourceManager.GetString("PrinterMargins_label2_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Height:.
+        /// </summary>
+        public static string PrinterMargins_label3_Text {
+            get {
+                return ResourceManager.GetString("PrinterMargins_label3_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Top:.
+        /// </summary>
+        public static string PrinterMargins_label4_Text {
+            get {
+                return ResourceManager.GetString("PrinterMargins_label4_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Right:.
+        /// </summary>
+        public static string PrinterMargins_label5_Text {
+            get {
+                return ResourceManager.GetString("PrinterMargins_label5_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bottom:.
+        /// </summary>
+        public static string PrinterMargins_label6_Text {
+            get {
+                return ResourceManager.GetString("PrinterMargins_label6_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Size:.
+        /// </summary>
+        public static string PrinterMargins_labelPaper_Text {
+            get {
+                return ResourceManager.GetString("PrinterMargins_labelPaper_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Landscape.
+        /// </summary>
+        public static string PrinterMargins_radioButtonLandscape_Text {
+            get {
+                return ResourceManager.GetString("PrinterMargins_radioButtonLandscape_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Portrait.
+        /// </summary>
+        public static string PrinterMargins_radioButtonPortrait_Text {
+            get {
+                return ResourceManager.GetString("PrinterMargins_radioButtonPortrait_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Page Setup.
+        /// </summary>
+        public static string PrinterMargins_Text {
+            get {
+                return ResourceManager.GetString("PrinterMargins_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string PrintPunches_cancelButton_Text {
+            get {
+                return ResourceManager.GetString("PrintPunches_cancelButton_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copies.
+        /// </summary>
+        public static string PrintPunches_copiesGroupBox_Text {
+            get {
+                return ResourceManager.GetString("PrintPunches_copiesGroupBox_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Courses.
+        /// </summary>
+        public static string PrintPunches_coursesGroupBox_Text {
+            get {
+                return ResourceManager.GetString("PrintPunches_coursesGroupBox_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copies:.
+        /// </summary>
+        public static string PrintPunches_descriptionsLabel_Text {
+            get {
+                return ResourceManager.GetString("PrintPunches_descriptionsLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Appearance.
+        /// </summary>
+        public static string PrintPunches_layoutGroup_Text {
+            get {
+                return ResourceManager.GetString("PrintPunches_layoutGroup_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change Margins....
+        /// </summary>
+        public static string PrintPunches_marginChange_Text {
+            get {
+                return ResourceManager.GetString("PrintPunches_marginChange_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Top: 0.55&quot;, Bottom: 0.55&quot;, Left: 0.55&quot;, Right: 0.55&quot;.
+        /// </summary>
+        public static string PrintPunches_margins_Text {
+            get {
+                return ResourceManager.GetString("PrintPunches_margins_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Margins:.
+        /// </summary>
+        public static string PrintPunches_marginsLabel_Text {
+            get {
+                return ResourceManager.GetString("PrintPunches_marginsLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to mm.
+        /// </summary>
+        public static string PrintPunches_mmSuffixLabel_Text {
+            get {
+                return ResourceManager.GetString("PrintPunches_mmSuffixLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Landscape.
+        /// </summary>
+        public static string PrintPunches_orientation_Text {
+            get {
+                return ResourceManager.GetString("PrintPunches_orientation_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Orientation:.
+        /// </summary>
+        public static string PrintPunches_orientationLabel_Text {
+            get {
+                return ResourceManager.GetString("PrintPunches_orientationLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tabloid (11&quot;x17&quot;).
+        /// </summary>
+        public static string PrintPunches_paperSize_Text {
+            get {
+                return ResourceManager.GetString("PrintPunches_paperSize_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Paper Size:.
+        /// </summary>
+        public static string PrintPunches_paperSizeLabel_Text {
+            get {
+                return ResourceManager.GetString("PrintPunches_paperSizeLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Preview....
+        /// </summary>
+        public static string PrintPunches_previewButton_Text {
+            get {
+                return ResourceManager.GetString("PrintPunches_previewButton_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Print.
+        /// </summary>
+        public static string PrintPunches_printButton_Text {
+            get {
+                return ResourceManager.GetString("PrintPunches_printButton_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change Printer....
+        /// </summary>
+        public static string PrintPunches_printerChange_Text {
+            get {
+                return ResourceManager.GetString("PrintPunches_printerChange_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Output.
+        /// </summary>
+        public static string PrintPunches_printerGroup_Text {
+            get {
+                return ResourceManager.GetString("PrintPunches_printerGroup_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Printer:.
+        /// </summary>
+        public static string PrintPunches_printerLabel_Text {
+            get {
+                return ResourceManager.GetString("PrintPunches_printerLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Printer Name.
+        /// </summary>
+        public static string PrintPunches_printerName_Text {
+            get {
+                return ResourceManager.GetString("PrintPunches_printerName_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Punch box size:.
+        /// </summary>
+        public static string PrintPunches_punchBoxSizeLabel_Text {
+            get {
+                return ResourceManager.GetString("PrintPunches_punchBoxSizeLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Punch Card Layout....
+        /// </summary>
+        public static string PrintPunches_punchCardLayoutButton_Text {
+            get {
+                return ResourceManager.GetString("PrintPunches_punchCardLayoutButton_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Print Punch Cards.
+        /// </summary>
+        public static string PrintPunches_Text {
+            get {
+                return ResourceManager.GetString("PrintPunches_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Box Order.
+        /// </summary>
+        public static string PunchcardLayoutDialog_boxOrderGroupBox_Text {
+            get {
+                return ResourceManager.GetString("PunchcardLayoutDialog_boxOrderGroupBox_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Columns:.
+        /// </summary>
+        public static string PunchcardLayoutDialog_columnsLabel_Text {
+            get {
+                return ResourceManager.GetString("PunchcardLayoutDialog_columnsLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rows:.
+        /// </summary>
+        public static string PunchcardLayoutDialog_rowsLabel_Text {
+            get {
+                return ResourceManager.GetString("PunchcardLayoutDialog_rowsLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Size.
+        /// </summary>
+        public static string PunchcardLayoutDialog_sizeGroupBox_Text {
+            get {
+                return ResourceManager.GetString("PunchcardLayoutDialog_sizeGroupBox_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Punch Card Layout.
+        /// </summary>
+        public static string PunchcardLayoutDialog_Text {
+            get {
+                return ResourceManager.GetString("PunchcardLayoutDialog_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Punch Card Layout....
+        /// </summary>
+        public static string PunchPatternDialog_formatButton_Text {
+            get {
+                return ResourceManager.GetString("PunchPatternDialog_formatButton_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click on a control code in the left-side list, and design the punch pattern in the right side. Red codes indicate controls that have no punch pattern defined..
+        /// </summary>
+        public static string PunchPatternDialog_punchPatternsLabel_Text {
+            get {
+                return ResourceManager.GetString("PunchPatternDialog_punchPatternsLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Punch Patterns.
+        /// </summary>
+        public static string PunchPatternDialog_Text {
+            get {
+                return ResourceManager.GetString("PunchPatternDialog_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close.
+        /// </summary>
+        public static string ReportForm_okButton_Text {
+            get {
+                return ResourceManager.GetString("ReportForm_okButton_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Print Preview....
+        /// </summary>
+        public static string ReportForm_previewButton_Text {
+            get {
+                return ResourceManager.GetString("ReportForm_previewButton_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Print....
+        /// </summary>
+        public static string ReportForm_printButton_Text {
+            get {
+                return ResourceManager.GetString("ReportForm_printButton_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Climb.
+        /// </summary>
+        public static string ReportText_ColumnHeader_Climb {
+            get {
+                return ResourceManager.GetString("ReportText_ColumnHeader_Climb", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Code.
+        /// </summary>
+        public static string ReportText_ColumnHeader_Code {
+            get {
+                return ResourceManager.GetString("ReportText_ColumnHeader_Code", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Column.
+        /// </summary>
+        public static string ReportText_ColumnHeader_Column {
+            get {
+                return ResourceManager.GetString("ReportText_ColumnHeader_Column", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Control.
+        /// </summary>
+        public static string ReportText_ColumnHeader_Control {
+            get {
+                return ResourceManager.GetString("ReportText_ColumnHeader_Control", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Control codes.
+        /// </summary>
+        public static string ReportText_ColumnHeader_ControlCodes {
+            get {
+                return ResourceManager.GetString("ReportText_ColumnHeader_ControlCodes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Controls.
+        /// </summary>
+        public static string ReportText_ColumnHeader_Controls {
+            get {
+                return ResourceManager.GetString("ReportText_ColumnHeader_Controls", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Course.
+        /// </summary>
+        public static string ReportText_ColumnHeader_Course {
+            get {
+                return ResourceManager.GetString("ReportText_ColumnHeader_Course", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Courses.
+        /// </summary>
+        public static string ReportText_ColumnHeader_Courses {
+            get {
+                return ResourceManager.GetString("ReportText_ColumnHeader_Courses", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Distance.
+        /// </summary>
+        public static string ReportText_ColumnHeader_Distance {
+            get {
+                return ResourceManager.GetString("ReportText_ColumnHeader_Distance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Item.
+        /// </summary>
+        public static string ReportText_ColumnHeader_Item {
+            get {
+                return ResourceManager.GetString("ReportText_ColumnHeader_Item", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Leg.
+        /// </summary>
+        public static string ReportText_ColumnHeader_Leg {
+            get {
+                return ResourceManager.GetString("ReportText_ColumnHeader_Leg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Length.
+        /// </summary>
+        public static string ReportText_ColumnHeader_Length {
+            get {
+                return ResourceManager.GetString("ReportText_ColumnHeader_Length", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Load.
+        /// </summary>
+        public static string ReportText_ColumnHeader_Load {
+            get {
+                return ResourceManager.GetString("ReportText_ColumnHeader_Load", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Location.
+        /// </summary>
+        public static string ReportText_ColumnHeader_Location {
+            get {
+                return ResourceManager.GetString("ReportText_ColumnHeader_Location", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to # Courses.
+        /// </summary>
+        public static string ReportText_ColumnHeader_NumberOfCourses {
+            get {
+                return ResourceManager.GetString("ReportText_ColumnHeader_NumberOfCourses", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reason.
+        /// </summary>
+        public static string ReportText_ColumnHeader_Reason {
+            get {
+                return ResourceManager.GetString("ReportText_ColumnHeader_Reason", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Same symbol?.
+        /// </summary>
+        public static string ReportText_ColumnHeader_SameSymbol {
+            get {
+                return ResourceManager.GetString("ReportText_ColumnHeader_SameSymbol", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Visits.
+        /// </summary>
+        public static string ReportText_ColumnHeader_Visits {
+            get {
+                return ResourceManager.GetString("ReportText_ColumnHeader_Visits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Course Summary for {0}.
+        /// </summary>
+        public static string ReportText_CourseSummary_Title {
+            get {
+                return ResourceManager.GetString("ReportText_CourseSummary_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Control cross-reference for {0}.
+        /// </summary>
+        public static string ReportText_CrossRef_Title {
+            get {
+                return ResourceManager.GetString("ReportText_CrossRef_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Legs Run in Both Directions.
+        /// </summary>
+        public static string ReportText_EventAudit_BothDirectionsLegs {
+            get {
+                return ResourceManager.GetString("ReportText_EventAudit_BothDirectionsLegs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close Together Controls.
+        /// </summary>
+        public static string ReportText_EventAudit_CloseTogetherControls {
+            get {
+                return ResourceManager.GetString("ReportText_EventAudit_CloseTogetherControls", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The following table shows all control pairs that are within {0} meters of each other. The same symbol column shows whether the two controls have the same primary symbol (column D)..
+        /// </summary>
+        public static string ReportText_EventAudit_CloseTogetherExplanation {
+            get {
+                return ResourceManager.GetString("ReportText_EventAudit_CloseTogetherExplanation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Missing Description Boxes.
+        /// </summary>
+        public static string ReportText_EventAudit_MissingBoxes {
+            get {
+                return ResourceManager.GetString("ReportText_EventAudit_MissingBoxes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Regular courses should indicate the amount of climb.
+        /// </summary>
+        public static string ReportText_EventAudit_MissingClimb {
+            get {
+                return ResourceManager.GetString("ReportText_EventAudit_MissingClimb", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All controls must have a main feature in column D.
+        /// </summary>
+        public static string ReportText_EventAudit_MissingD {
+            get {
+                return ResourceManager.GetString("ReportText_EventAudit_MissingD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to When &quot;between&quot; is in column G, two features must be shown in columns D and E.
+        /// </summary>
+        public static string ReportText_EventAudit_MissingEBetween {
+            get {
+                return ResourceManager.GetString("ReportText_EventAudit_MissingEBetween", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to When &quot;junction&quot; or &quot;crossing&quot; is in column F, two features must be shown in columns D and E.
+        /// </summary>
+        public static string ReportText_EventAudit_MissingEJunction {
+            get {
+                return ResourceManager.GetString("ReportText_EventAudit_MissingEJunction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Regular courses should have a finish circle.
+        /// </summary>
+        public static string ReportText_EventAudit_MissingFinish {
+            get {
+                return ResourceManager.GetString("ReportText_EventAudit_MissingFinish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Missing Items in Courses.
+        /// </summary>
+        public static string ReportText_EventAudit_MissingItems {
+            get {
+                return ResourceManager.GetString("ReportText_EventAudit_MissingItems", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Course should have expected competitor load.
+        /// </summary>
+        public static string ReportText_EventAudit_MissingLoad {
+            get {
+                return ResourceManager.GetString("ReportText_EventAudit_MissingLoad", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No punch pattern defined.
+        /// </summary>
+        public static string ReportText_EventAudit_MissingPunch {
+            get {
+                return ResourceManager.GetString("ReportText_EventAudit_MissingPunch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Missing Punch Patterns.
+        /// </summary>
+        public static string ReportText_EventAudit_MissingPunchPatterns {
+            get {
+                return ResourceManager.GetString("ReportText_EventAudit_MissingPunchPatterns", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Score course should have score set for all controls or no controls.
+        /// </summary>
+        public static string ReportText_EventAudit_MissingScore {
+            get {
+                return ResourceManager.GetString("ReportText_EventAudit_MissingScore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Missing Scores.
+        /// </summary>
+        public static string ReportText_EventAudit_MissingScores {
+            get {
+                return ResourceManager.GetString("ReportText_EventAudit_MissingScores", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Regular courses should have a start triangle.
+        /// </summary>
+        public static string ReportText_EventAudit_MissingStart {
+            get {
+                return ResourceManager.GetString("ReportText_EventAudit_MissingStart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Score courses should have a start triangle.
+        /// </summary>
+        public static string ReportText_EventAudit_MissingStartScore {
+            get {
+                return ResourceManager.GetString("ReportText_EventAudit_MissingStartScore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No.
+        /// </summary>
+        public static string ReportText_EventAudit_No {
+            get {
+                return ResourceManager.GetString("ReportText_EventAudit_No", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No problems found..
+        /// </summary>
+        public static string ReportText_EventAudit_NoProblems {
+            get {
+                return ResourceManager.GetString("ReportText_EventAudit_NoProblems", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Course &quot;{0}&quot; contains control &quot;{1}&quot; twice in a row..
+        /// </summary>
+        public static string ReportText_EventAudit_RepeatControl {
+            get {
+                return ResourceManager.GetString("ReportText_EventAudit_RepeatControl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Repeated Controls.
+        /// </summary>
+        public static string ReportText_EventAudit_RepeatedControls {
+            get {
+                return ResourceManager.GetString("ReportText_EventAudit_RepeatedControls", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Score course &quot;{0}&quot; contains control &quot;{1}&quot; twice. .
+        /// </summary>
+        public static string ReportText_EventAudit_ScoreDuplicateControl {
+            get {
+                return ResourceManager.GetString("ReportText_EventAudit_ScoreDuplicateControl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Event Audit for {0}.
+        /// </summary>
+        public static string ReportText_EventAudit_Title {
+            get {
+                return ResourceManager.GetString("ReportText_EventAudit_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unused Controls.
+        /// </summary>
+        public static string ReportText_EventAudit_UnusedControls {
+            get {
+                return ResourceManager.GetString("ReportText_EventAudit_UnusedControls", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The following controls are present in the All Controls collection but are not used in any course. To remove them, use the &quot;Remove Unused Controls&quot; command on the &quot;Event&quot; menu. These controls will not be considered further in this report..
+        /// </summary>
+        public static string ReportText_EventAudit_UnusedControlsExplanation {
+            get {
+                return ResourceManager.GetString("ReportText_EventAudit_UnusedControlsExplanation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yes.
+        /// </summary>
+        public static string ReportText_EventAudit_Yes {
+            get {
+                return ResourceManager.GetString("ReportText_EventAudit_Yes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Average.
+        /// </summary>
+        public static string ReportText_LegLength_Average {
+            get {
+                return ResourceManager.GetString("ReportText_LegLength_Average", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} ({1} controls, {2}, {3} m climb).
+        /// </summary>
+        public static string ReportText_LegLength_CourseInfo {
+            get {
+                return ResourceManager.GetString("ReportText_LegLength_CourseInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} ({1} controls, {2}).
+        /// </summary>
+        public static string ReportText_LegLength_CourseInfoNoClimb {
+            get {
+                return ResourceManager.GetString("ReportText_LegLength_CourseInfoNoClimb", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Leg Length Report for {0}.
+        /// </summary>
+        public static string ReportText_LegLength_Title {
+            get {
+                return ResourceManager.GetString("ReportText_LegLength_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Some controls are visited multiple times on the same course. The second load number counts each visit to a control separately..
+        /// </summary>
+        public static string ReportText_Load_ButterflyExists {
+            get {
+                return ResourceManager.GetString("ReportText_Load_ButterflyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Control load.
+        /// </summary>
+        public static string ReportText_Load_ControlLoadSection {
+            get {
+                return ResourceManager.GetString("ReportText_Load_ControlLoadSection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Leg load.
+        /// </summary>
+        public static string ReportText_Load_LegLoadSection {
+            get {
+                return ResourceManager.GetString("ReportText_Load_LegLoadSection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Some or all courses do not have competitor loads set for them. The loads listed below may be incorrect or missing for this reason. To set competitor loads, select &quot;Competitor Load&quot; from the &quot;Course&quot; menu..
+        /// </summary>
+        public static string ReportText_Load_MissingLoads {
+            get {
+                return ResourceManager.GetString("ReportText_Load_MissingLoads", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (only legs used by more than one course appear in the following table).
+        /// </summary>
+        public static string ReportText_Load_OnlyLegsMoreThanOnce {
+            get {
+                return ResourceManager.GetString("ReportText_Load_OnlyLegsMoreThanOnce", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Competitor Load Summary for {0}.
+        /// </summary>
+        public static string ReportText_Load_Title {
+            get {
+                return ResourceManager.GetString("ReportText_Load_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to One or more courses has variations. Load numbers will be computed assuming that competitors are evenly distributed between forks..
+        /// </summary>
+        public static string ReportText_Load_VariationsExist {
+            get {
+                return ResourceManager.GetString("ReportText_Load_VariationsExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ({0} visits).
+        /// </summary>
+        public static string ReportText_Load_Visit {
+            get {
+                return ResourceManager.GetString("ReportText_Load_Visit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to WARNING:.
+        /// </summary>
+        public static string ReportText_Load_Warning {
+            get {
+                return ResourceManager.GetString("ReportText_Load_Warning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NOTE: .
+        /// </summary>
+        public static string ReportText_Note {
+            get {
+                return ResourceManager.GetString("ReportText_Note", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Warning: due to the number of legs specified, the fork at control {0} will not be used evenly. {1} leg(s) will use branch(es) {2}, while {3} leg(s) will use branch(es) {4}. .
+        /// </summary>
+        public static string ReportText_RelayVariation_BranchWarning {
+            get {
+                return ResourceManager.GetString("ReportText_RelayVariation_BranchWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Leg {0}.
+        /// </summary>
+        public static string ReportText_RelayVariation_LegHeader {
+            get {
+                return ResourceManager.GetString("ReportText_RelayVariation_LegHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No relay teams have been defined yet. Selected the desired number of teams and legs and press the &quot;Assign Variations&quot; button..
+        /// </summary>
+        public static string ReportText_RelayVariation_NoTeams {
+            get {
+                return ResourceManager.GetString("ReportText_RelayVariation_NoTeams", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Team {0}.
+        /// </summary>
+        public static string ReportText_RelayVariation_TeamNumber {
+            get {
+                return ResourceManager.GetString("ReportText_RelayVariation_TeamNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Relay Assignments for {0}.
+        /// </summary>
+        public static string ReportText_RelayVariation_Title {
+            get {
+                return ResourceManager.GetString("ReportText_RelayVariation_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to away from control.
+        /// </summary>
+        public static string SelectionDescriptionText_AwayFromControl {
+            get {
+                return ResourceManager.GetString("SelectionDescriptionText_AwayFromControl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Calculated Length:.
+        /// </summary>
+        public static string SelectionDescriptionText_CalculatedLength {
+            get {
+                return ResourceManager.GetString("SelectionDescriptionText_CalculatedLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Climb:.
+        /// </summary>
+        public static string SelectionDescriptionText_Climb {
+            get {
+                return ResourceManager.GetString("SelectionDescriptionText_Climb", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Competitor load:.
+        /// </summary>
+        public static string SelectionDescriptionText_CompetitorLoad {
+            get {
+                return ResourceManager.GetString("SelectionDescriptionText_CompetitorLoad", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to controls.
+        /// </summary>
+        public static string SelectionDescriptionText_Control_Plural {
+            get {
+                return ResourceManager.GetString("SelectionDescriptionText_Control_Plural", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to control.
+        /// </summary>
+        public static string SelectionDescriptionText_Control_Singular {
+            get {
+                return ResourceManager.GetString("SelectionDescriptionText_Control_Singular", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Controls in use:.
+        /// </summary>
+        public static string SelectionDescriptionText_ControlsInUse {
+            get {
+                return ResourceManager.GetString("SelectionDescriptionText_ControlsInUse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Controls not in use:.
+        /// </summary>
+        public static string SelectionDescriptionText_ControlsNotInUse {
+            get {
+                return ResourceManager.GetString("SelectionDescriptionText_ControlsNotInUse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All courses.
+        /// </summary>
+        public static string SelectionDescriptionText_CourseList_AllCourses {
+            get {
+                return ResourceManager.GetString("SelectionDescriptionText_CourseList_AllCourses", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to None.
+        /// </summary>
+        public static string SelectionDescriptionText_CourseList_None {
+            get {
+                return ResourceManager.GetString("SelectionDescriptionText_CourseList_None", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Course &quot;{0}&quot;.
+        /// </summary>
+        public static string SelectionDescriptionText_CourseName {
+            get {
+                return ResourceManager.GetString("SelectionDescriptionText_CourseName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Course &quot;{0}&quot;, Part {1}.
+        /// </summary>
+        public static string SelectionDescriptionText_CourseNameAndPart {
+            get {
+                return ResourceManager.GetString("SelectionDescriptionText_CourseNameAndPart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Customized symbol description.
+        /// </summary>
+        public static string SelectionDescriptionText_CustomizedSymbolDesc {
+            get {
+                return ResourceManager.GetString("SelectionDescriptionText_CustomizedSymbolDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to entire leg.
+        /// </summary>
+        public static string SelectionDescriptionText_EntireLeg {
+            get {
+                return ResourceManager.GetString("SelectionDescriptionText_EntireLeg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name:.
+        /// </summary>
+        public static string SelectionDescriptionText_FileName {
+            get {
+                return ResourceManager.GetString("SelectionDescriptionText_FileName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to finishes.
+        /// </summary>
+        public static string SelectionDescriptionText_Finish_Plural {
+            get {
+                return ResourceManager.GetString("SelectionDescriptionText_Finish_Plural", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to finish.
+        /// </summary>
+        public static string SelectionDescriptionText_Finish_Singular {
+            get {
+                return ResourceManager.GetString("SelectionDescriptionText_Finish_Singular", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to finish funnel.
+        /// </summary>
+        public static string SelectionDescriptionText_FinishFunnel {
+            get {
+                return ResourceManager.GetString("SelectionDescriptionText_FinishFunnel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Flagging:.
+        /// </summary>
+        public static string SelectionDescriptionText_Flagging {
+            get {
+                return ResourceManager.GetString("SelectionDescriptionText_Flagging", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to into control.
+        /// </summary>
+        public static string SelectionDescriptionText_IntoControl {
+            get {
+                return ResourceManager.GetString("SelectionDescriptionText_IntoControl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to into finish funnel.
+        /// </summary>
+        public static string SelectionDescriptionText_IntoFinishFunnel {
+            get {
+                return ResourceManager.GetString("SelectionDescriptionText_IntoFinishFunnel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Length:.
+        /// </summary>
+        public static string SelectionDescriptionText_Length {
+            get {
+                return ResourceManager.GetString("SelectionDescriptionText_Length", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Line height:.
+        /// </summary>
+        public static string SelectionDescriptionText_LineHeight {
+            get {
+                return ResourceManager.GetString("SelectionDescriptionText_LineHeight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Load:.
+        /// </summary>
+        public static string SelectionDescriptionText_Load {
+            get {
+                return ResourceManager.GetString("SelectionDescriptionText_Load", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Location:.
+        /// </summary>
+        public static string SelectionDescriptionText_Location {
+            get {
+                return ResourceManager.GetString("SelectionDescriptionText_Location", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to mandatory crossing points.
+        /// </summary>
+        public static string SelectionDescriptionText_MandCrossing_Plural {
+            get {
+                return ResourceManager.GetString("SelectionDescriptionText_MandCrossing_Plural", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to mandatory crossing point.
+        /// </summary>
+        public static string SelectionDescriptionText_MandCrossing_Singular {
+            get {
+                return ResourceManager.GetString("SelectionDescriptionText_MandCrossing_Singular", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to map exchanges.
+        /// </summary>
+        public static string SelectionDescriptionText_MapExchange_Plural {
+            get {
+                return ResourceManager.GetString("SelectionDescriptionText_MapExchange_Plural", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to map exchange.
+        /// </summary>
+        public static string SelectionDescriptionText_MapExchange_Singular {
+            get {
+                return ResourceManager.GetString("SelectionDescriptionText_MapExchange_Singular", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Map exchange at {0}.
+        /// </summary>
+        public static string SelectionDescriptionText_MapExchangeAtControl {
+            get {
+                return ResourceManager.GetString("SelectionDescriptionText_MapExchangeAtControl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Map flip at {0}.
+        /// </summary>
+        public static string SelectionDescriptionText_MapFlipAtControl {
+            get {
+                return ResourceManager.GetString("SelectionDescriptionText_MapFlipAtControl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to map issue points.
+        /// </summary>
+        public static string SelectionDescriptionText_MapIssue_Plural {
+            get {
+                return ResourceManager.GetString("SelectionDescriptionText_MapIssue_Plural", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to map issue point.
+        /// </summary>
+        public static string SelectionDescriptionText_MapIssue_Singular {
+            get {
+                return ResourceManager.GetString("SelectionDescriptionText_MapIssue_Singular", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to none.
+        /// </summary>
+        public static string SelectionDescriptionText_None {
+            get {
+                return ResourceManager.GetString("SelectionDescriptionText_None", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uncrossable Boundary.
+        /// </summary>
+        public static string SelectionDescriptionText_SpecialName_Boundary {
+            get {
+                return ResourceManager.GetString("SelectionDescriptionText_SpecialName_Boundary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Course Name.
+        /// </summary>
+        public static string SelectionDescriptionText_SpecialName_CourseName {
+            get {
+                return ResourceManager.GetString("SelectionDescriptionText_SpecialName_CourseName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dangerous Area.
+        /// </summary>
+        public static string SelectionDescriptionText_SpecialName_Dangerous {
+            get {
+                return ResourceManager.GetString("SelectionDescriptionText_SpecialName_Dangerous", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Control Descriptions.
+        /// </summary>
+        public static string SelectionDescriptionText_SpecialName_Descriptions {
+            get {
+                return ResourceManager.GetString("SelectionDescriptionText_SpecialName_Descriptions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to First Aid Location.
+        /// </summary>
+        public static string SelectionDescriptionText_SpecialName_FirstAid {
+            get {
+                return ResourceManager.GetString("SelectionDescriptionText_SpecialName_FirstAid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Forbidden Route.
+        /// </summary>
+        public static string SelectionDescriptionText_SpecialName_Forbidden {
+            get {
+                return ResourceManager.GetString("SelectionDescriptionText_SpecialName_Forbidden", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Image.
+        /// </summary>
+        public static string SelectionDescriptionText_SpecialName_Image {
+            get {
+                return ResourceManager.GetString("SelectionDescriptionText_SpecialName_Image", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Line.
+        /// </summary>
+        public static string SelectionDescriptionText_SpecialName_Line {
+            get {
+                return ResourceManager.GetString("SelectionDescriptionText_SpecialName_Line", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Out-of-bounds Area.
+        /// </summary>
+        public static string SelectionDescriptionText_SpecialName_OOB {
+            get {
+                return ResourceManager.GetString("SelectionDescriptionText_SpecialName_OOB", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Optional Crossing Point.
+        /// </summary>
+        public static string SelectionDescriptionText_SpecialName_OptCrossing {
+            get {
+                return ResourceManager.GetString("SelectionDescriptionText_SpecialName_OptCrossing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rectangle.
+        /// </summary>
+        public static string SelectionDescriptionText_SpecialName_Rectangle {
+            get {
+                return ResourceManager.GetString("SelectionDescriptionText_SpecialName_Rectangle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Registration Mark.
+        /// </summary>
+        public static string SelectionDescriptionText_SpecialName_RegMark {
+            get {
+                return ResourceManager.GetString("SelectionDescriptionText_SpecialName_RegMark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Text.
+        /// </summary>
+        public static string SelectionDescriptionText_SpecialName_Text {
+            get {
+                return ResourceManager.GetString("SelectionDescriptionText_SpecialName_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Water Location.
+        /// </summary>
+        public static string SelectionDescriptionText_SpecialName_Water {
+            get {
+                return ResourceManager.GetString("SelectionDescriptionText_SpecialName_Water", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to White Out Area.
+        /// </summary>
+        public static string SelectionDescriptionText_SpecialName_WhiteOut {
+            get {
+                return ResourceManager.GetString("SelectionDescriptionText_SpecialName_WhiteOut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to starts.
+        /// </summary>
+        public static string SelectionDescriptionText_Start_Plural {
+            get {
+                return ResourceManager.GetString("SelectionDescriptionText_Start_Plural", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to start.
+        /// </summary>
+        public static string SelectionDescriptionText_Start_Singular {
+            get {
+                return ResourceManager.GetString("SelectionDescriptionText_Start_Singular", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Text description:.
+        /// </summary>
+        public static string SelectionDescriptionText_TextDescription {
+            get {
+                return ResourceManager.GetString("SelectionDescriptionText_TextDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Text line.
+        /// </summary>
+        public static string SelectionDescriptionText_TextLine {
+            get {
+                return ResourceManager.GetString("SelectionDescriptionText_TextLine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Appears above {0}, in all courses that contain {0}.
+        /// </summary>
+        public static string SelectionDescriptionText_TextLine_AboveAllCourses {
+            get {
+                return ResourceManager.GetString("SelectionDescriptionText_TextLine_AboveAllCourses", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Appears above {0}, in this course only.
+        /// </summary>
+        public static string SelectionDescriptionText_TextLine_AboveThisCourse {
+            get {
+                return ResourceManager.GetString("SelectionDescriptionText_TextLine_AboveThisCourse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Appears below {0}, in all courses that contain {0}.
+        /// </summary>
+        public static string SelectionDescriptionText_TextLine_BelowAllCourses {
+            get {
+                return ResourceManager.GetString("SelectionDescriptionText_TextLine_BelowAllCourses", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Appears below {0}, in this course only.
+        /// </summary>
+        public static string SelectionDescriptionText_TextLine_BelowThisCourse {
+            get {
+                return ResourceManager.GetString("SelectionDescriptionText_TextLine_BelowThisCourse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total controls:.
+        /// </summary>
+        public static string SelectionDescriptionText_TotalControls {
+            get {
+                return ResourceManager.GetString("SelectionDescriptionText_TotalControls", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total score:.
+        /// </summary>
+        public static string SelectionDescriptionText_TotalScore {
+            get {
+                return ResourceManager.GetString("SelectionDescriptionText_TotalScore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Used in:.
+        /// </summary>
+        public static string SelectionDescriptionText_UsedIn {
+            get {
+                return ResourceManager.GetString("SelectionDescriptionText_UsedIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Used in courses:.
+        /// </summary>
+        public static string SelectionDescriptionText_UsedInCourses {
+            get {
+                return ResourceManager.GetString("SelectionDescriptionText_UsedInCourses", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Back.
+        /// </summary>
+        public static string SelectLocationsForMove_buttonBack_Text {
+            get {
+                return ResourceManager.GetString("SelectLocationsForMove_buttonBack_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string SelectLocationsForMove_buttonCancel_Text {
+            get {
+                return ResourceManager.GetString("SelectLocationsForMove_buttonCancel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirm.
+        /// </summary>
+        public static string SelectLocationsForMove_buttonConfirm_Text {
+            get {
+                return ResourceManager.GetString("SelectLocationsForMove_buttonConfirm_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to è.
+        /// </summary>
+        public static string SelectLocationsForMove_labelArrowConfirmLocations_Text {
+            get {
+                return ResourceManager.GetString("SelectLocationsForMove_labelArrowConfirmLocations_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to è.
+        /// </summary>
+        public static string SelectLocationsForMove_labelArrowFirstControl_Text {
+            get {
+                return ResourceManager.GetString("SelectLocationsForMove_labelArrowFirstControl_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to è.
+        /// </summary>
+        public static string SelectLocationsForMove_labelArrowFirstNewLocation_Text {
+            get {
+                return ResourceManager.GetString("SelectLocationsForMove_labelArrowFirstNewLocation_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to è.
+        /// </summary>
+        public static string SelectLocationsForMove_labelArrowSecondControl_Text {
+            get {
+                return ResourceManager.GetString("SelectLocationsForMove_labelArrowSecondControl_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to è.
+        /// </summary>
+        public static string SelectLocationsForMove_labelArrowSecondNewLocation_Text {
+            get {
+                return ResourceManager.GetString("SelectLocationsForMove_labelArrowSecondNewLocation_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirm new locations.
+        /// </summary>
+        public static string SelectLocationsForMove_labelConfirmLocations_Text {
+            get {
+                return ResourceManager.GetString("SelectLocationsForMove_labelConfirmLocations_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select first control or registration mark to move.
+        /// </summary>
+        public static string SelectLocationsForMove_labelFirstControl_Text {
+            get {
+                return ResourceManager.GetString("SelectLocationsForMove_labelFirstControl_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose new location for first control/mark.
+        /// </summary>
+        public static string SelectLocationsForMove_labelFirstNewLocation_Text {
+            get {
+                return ResourceManager.GetString("SelectLocationsForMove_labelFirstNewLocation_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rotation:.
+        /// </summary>
+        public static string SelectLocationsForMove_labelRotation_Text {
+            get {
+                return ResourceManager.GetString("SelectLocationsForMove_labelRotation_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Scale:.
+        /// </summary>
+        public static string SelectLocationsForMove_labelScale_Text {
+            get {
+                return ResourceManager.GetString("SelectLocationsForMove_labelScale_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select second control or registration mark to move.
+        /// </summary>
+        public static string SelectLocationsForMove_labelSecondControl_Text {
+            get {
+                return ResourceManager.GetString("SelectLocationsForMove_labelSecondControl_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose new location for second control/mark.
+        /// </summary>
+        public static string SelectLocationsForMove_labelSecondNewLocation_Text {
+            get {
+                return ResourceManager.GetString("SelectLocationsForMove_labelSecondNewLocation_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to X Offset:.
+        /// </summary>
+        public static string SelectLocationsForMove_labelXOffset_Text {
+            get {
+                return ResourceManager.GetString("SelectLocationsForMove_labelXOffset_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Y Offset:.
+        /// </summary>
+        public static string SelectLocationsForMove_labelYOffset_Text {
+            get {
+                return ResourceManager.GetString("SelectLocationsForMove_labelYOffset_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move All Controls.
+        /// </summary>
+        public static string SelectLocationsForMove_Text {
+            get {
+                return ResourceManager.GetString("SelectLocationsForMove_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select Individual Variations.
+        /// </summary>
+        public static string SelectVariations_checkBoxSelectIndividualVariations_Text {
+            get {
+                return ResourceManager.GetString("SelectVariations_checkBoxSelectIndividualVariations_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Each Variation Separately.
+        /// </summary>
+        public static string SelectVariations_comboBoxVariations_Items {
+            get {
+                return ResourceManager.GetString("SelectVariations_comboBoxVariations_Items", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Each Relay Leg Separately.
+        /// </summary>
+        public static string SelectVariations_comboBoxVariations_Items1 {
+            get {
+                return ResourceManager.GetString("SelectVariations_comboBoxVariations_Items1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All Variations Combined.
+        /// </summary>
+        public static string SelectVariations_comboBoxVariations_Items2 {
+            get {
+                return ResourceManager.GetString("SelectVariations_comboBoxVariations_Items2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Variations:.
+        /// </summary>
+        public static string SelectVariations_label1_Text {
+            get {
+                return ResourceManager.GetString("SelectVariations_label1_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select which teams to print/export:.
+        /// </summary>
+        public static string SelectVariations_label2_Text {
+            get {
+                return ResourceManager.GetString("SelectVariations_label2_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to to.
+        /// </summary>
+        public static string SelectVariations_label3_Text {
+            get {
+                return ResourceManager.GetString("SelectVariations_label3_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Display all the forks together on a single map..
+        /// </summary>
+        public static string SelectVariations_labelAllVariations_Text {
+            get {
+                return ResourceManager.GetString("SelectVariations_labelAllVariations_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to One map for each leg on the relay teams that you choose..
+        /// </summary>
+        public static string SelectVariations_labelByLeg_Text {
+            get {
+                return ResourceManager.GetString("SelectVariations_labelByLeg_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You must first define relay teams by selecting Relay Team Variations... from the Course menu..
+        /// </summary>
+        public static string SelectVariations_labelByLegNotAvailable_Text {
+            get {
+                return ResourceManager.GetString("SelectVariations_labelByLegNotAvailable_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This course has {0} relay teams assigned. Use Relay Team Variations... from the Course menu to change the number of teams..
+        /// </summary>
+        public static string SelectVariations_labelNumberOfTeams_Text {
+            get {
+                return ResourceManager.GetString("SelectVariations_labelNumberOfTeams_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to One map for each possible variation through the course..
+        /// </summary>
+        public static string SelectVariations_labelSeparateVariations_Text {
+            get {
+                return ResourceManager.GetString("SelectVariations_labelSeparateVariations_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose Variations.
+        /// </summary>
+        public static string SelectVariations_Text {
+            get {
+                return ResourceManager.GetString("SelectVariations_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string SetPrintAreaDialog_cancelButton_Text {
+            get {
+                return ResourceManager.GetString("SetPrintAreaDialog_cancelButton_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set Print Area Automatically.
+        /// </summary>
+        public static string SetPrintAreaDialog_checkBoxAutomatic_Text {
+            get {
+                return ResourceManager.GetString("SetPrintAreaDialog_checkBoxAutomatic_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fix Print Area Size to Paper Size.
+        /// </summary>
+        public static string SetPrintAreaDialog_checkBoxFixSizeToPaper_Text {
+            get {
+                return ResourceManager.GetString("SetPrintAreaDialog_checkBoxFixSizeToPaper_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Paper Size.
+        /// </summary>
+        public static string SetPrintAreaDialog_groupBoxPaperSize_Text {
+            get {
+                return ResourceManager.GetString("SetPrintAreaDialog_groupBoxPaperSize_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Done.
+        /// </summary>
+        public static string SetPrintAreaDialog_okButton_Text {
+            get {
+                return ResourceManager.GetString("SetPrintAreaDialog_okButton_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set the desired printing area by dragging with the mouse..
+        /// </summary>
+        public static string SetPrintAreaDialog_setPrintAreaLabel_Text {
+            get {
+                return ResourceManager.GetString("SetPrintAreaDialog_setPrintAreaLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set Print Area.
+        /// </summary>
+        public static string SetPrintAreaDialog_Text {
+            get {
+                return ResourceManager.GetString("SetPrintAreaDialog_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select the language that you would like to use for the user interface of Purple Pen (menus, windows, etc.).
+        /// </summary>
+        public static string SetUILanguage_introLabel_Text {
+            get {
+                return ResourceManager.GetString("SetUILanguage_introLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Program Language.
+        /// </summary>
+        public static string SetUILanguage_Text {
+            get {
+                return ResourceManager.GetString("SetUILanguage_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click left mouse button at the location of the bend.
+        /// </summary>
+        public static string StatusBarText_AddingBend {
+            get {
+                return ResourceManager.GetString("StatusBarText_AddingBend", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click left mouse button to place new control.
+        /// </summary>
+        public static string StatusBarText_AddingControl {
+            get {
+                return ResourceManager.GetString("StatusBarText_AddingControl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click left mouse button on the control circle to add a small gap; hold down left mouse button and drag to create a large gap.
+        /// </summary>
+        public static string StatusBarText_AddingControlGap {
+            get {
+                return ResourceManager.GetString("StatusBarText_AddingControlGap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click left mouse button to add a new corner.
+        /// </summary>
+        public static string StatusBarText_AddingCorner {
+            get {
+                return ResourceManager.GetString("StatusBarText_AddingCorner", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click left mouse button to place new mandatory crossing point.
+        /// </summary>
+        public static string StatusBarText_AddingCrossingPoint {
+            get {
+                return ResourceManager.GetString("StatusBarText_AddingCrossingPoint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hold down left mouse button and drag to create control descriptions.
+        /// </summary>
+        public static string StatusBarText_AddingDescription {
+            get {
+                return ResourceManager.GetString("StatusBarText_AddingDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click left mouse button to add existing control &quot;{0}&quot; to course.
+        /// </summary>
+        public static string StatusBarText_AddingExistingControl {
+            get {
+                return ResourceManager.GetString("StatusBarText_AddingExistingControl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click left mouse button to add existing mandatory crossing point to course.
+        /// </summary>
+        public static string StatusBarText_AddingExistingCrossingPoint {
+            get {
+                return ResourceManager.GetString("StatusBarText_AddingExistingCrossingPoint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click left mouse button to add existing finish to course.
+        /// </summary>
+        public static string StatusBarText_AddingExistingFinish {
+            get {
+                return ResourceManager.GetString("StatusBarText_AddingExistingFinish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click left mouse button to add existing map exchange to course.
+        /// </summary>
+        public static string StatusBarText_AddingExistingMapExchange {
+            get {
+                return ResourceManager.GetString("StatusBarText_AddingExistingMapExchange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click left mouse button to add existing map issue point to course.
+        /// </summary>
+        public static string StatusBarText_AddingExistingMapIssue {
+            get {
+                return ResourceManager.GetString("StatusBarText_AddingExistingMapIssue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click left mouse button to add existing start to course.
+        /// </summary>
+        public static string StatusBarText_AddingExistingStart {
+            get {
+                return ResourceManager.GetString("StatusBarText_AddingExistingStart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click left mouse button to place new finish.
+        /// </summary>
+        public static string StatusBarText_AddingFinish {
+            get {
+                return ResourceManager.GetString("StatusBarText_AddingFinish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click left mouse button to create small gap; hold down left mouse button and drag to create a large gap in the leg.
+        /// </summary>
+        public static string StatusBarText_AddingLegGap {
+            get {
+                return ResourceManager.GetString("StatusBarText_AddingLegGap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hold down left mouse button and drag to add a line segment; click the left mouse button to finish adding object.
+        /// </summary>
+        public static string StatusBarText_AddingLineArea {
+            get {
+                return ResourceManager.GetString("StatusBarText_AddingLineArea", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click left mouse button to place new map exchange.
+        /// </summary>
+        public static string StatusBarText_AddingMapExchange {
+            get {
+                return ResourceManager.GetString("StatusBarText_AddingMapExchange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click left mouse button to add map exchange at control &quot;{0}&quot; .
+        /// </summary>
+        public static string StatusBarText_AddingMapExchangeToControl {
+            get {
+                return ResourceManager.GetString("StatusBarText_AddingMapExchangeToControl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click left mouse button to place new map issue point.
+        /// </summary>
+        public static string StatusBarText_AddingMapIssue {
+            get {
+                return ResourceManager.GetString("StatusBarText_AddingMapIssue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click left mouse button to place new object.
+        /// </summary>
+        public static string StatusBarText_AddingObject {
+            get {
+                return ResourceManager.GetString("StatusBarText_AddingObject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hold down left mouse button and drag to create object.
+        /// </summary>
+        public static string StatusBarText_AddingRectangle {
+            get {
+                return ResourceManager.GetString("StatusBarText_AddingRectangle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click left mouse button to place new start.
+        /// </summary>
+        public static string StatusBarText_AddingStart {
+            get {
+                return ResourceManager.GetString("StatusBarText_AddingStart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hold down left mouse button and drag to create text.
+        /// </summary>
+        public static string StatusBarText_AddingText {
+            get {
+                return ResourceManager.GetString("StatusBarText_AddingText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click the left mouse button on a control or registration mark to move to a new location.
+        /// </summary>
+        public static string StatusBarText_ControlForMoveAllControls {
+            get {
+                return ResourceManager.GetString("StatusBarText_ControlForMoveAllControls", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Left mouse button: move/size rectangle;   Right mouse button: move map;   Scroll wheel: zoom in/out.
+        /// </summary>
+        public static string StatusBarText_DefaultRectangle {
+            get {
+                return ResourceManager.GetString("StatusBarText_DefaultRectangle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Left mouse button: select object;   Right mouse button: move map;   Scroll wheel: zoom in/out.
+        /// </summary>
+        public static string StatusBarText_DefaultStatus {
+            get {
+                return ResourceManager.GetString("StatusBarText_DefaultStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click left mouse button on a bend to remove it.
+        /// </summary>
+        public static string StatusBarText_DeletingBend {
+            get {
+                return ResourceManager.GetString("StatusBarText_DeletingBend", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click left mouse button on a corner to remove it.
+        /// </summary>
+        public static string StatusBarText_DeletingCorner {
+            get {
+                return ResourceManager.GetString("StatusBarText_DeletingCorner", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hold down left mouse button and drag corner point to move it.
+        /// </summary>
+        public static string StatusBarText_DragCorner {
+            get {
+                return ResourceManager.GetString("StatusBarText_DragCorner", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move corner point to desired location and release mouse button.
+        /// </summary>
+        public static string StatusBarText_DraggingCorner {
+            get {
+                return ResourceManager.GetString("StatusBarText_DraggingCorner", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move object to desired location and release mouse button.
+        /// </summary>
+        public static string StatusBarText_DraggingObject {
+            get {
+                return ResourceManager.GetString("StatusBarText_DraggingObject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Drag control number to reorder it in the course (hold shift to duplicate).
+        /// </summary>
+        public static string StatusBarText_DraggingTopologyObject {
+            get {
+                return ResourceManager.GetString("StatusBarText_DraggingTopologyObject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hold down left mouse button and drag to move selected object.
+        /// </summary>
+        public static string StatusBarText_DragObject {
+            get {
+                return ResourceManager.GetString("StatusBarText_DragObject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click the left mouse button on the new location for the control or registration mark.
+        /// </summary>
+        public static string StatusBarText_NewLocationForMoveAllControls {
+            get {
+                return ResourceManager.GetString("StatusBarText_NewLocationForMoveAllControls", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click left mouse button on a gap in the control circle to remove it.
+        /// </summary>
+        public static string StatusBarText_RemovingControlGap {
+            get {
+                return ResourceManager.GetString("StatusBarText_RemovingControlGap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click left mouse button on a gap in the leg to remove it.
+        /// </summary>
+        public static string StatusBarText_RemovingLegGap {
+            get {
+                return ResourceManager.GetString("StatusBarText_RemovingLegGap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click left mouse button when the crossing point is rotated to the correct angle.
+        /// </summary>
+        public static string StatusBarText_RotatingObject {
+            get {
+                return ResourceManager.GetString("StatusBarText_RotatingObject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hold down left mouse button and drag to size the selected object.
+        /// </summary>
+        public static string StatusBarText_SizeRectangle {
+            get {
+                return ResourceManager.GetString("StatusBarText_SizeRectangle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move edge(s) to desired location and release mouse button.
+        /// </summary>
+        public static string StatusBarText_SizingRectangle {
+            get {
+                return ResourceManager.GetString("StatusBarText_SizingRectangle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hold down left mouse button and drag to stretch the stretch the crossing point.
+        /// </summary>
+        public static string StatusBarText_StretchingObject {
+            get {
+                return ResourceManager.GetString("StatusBarText_StretchingObject", resourceCulture);
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized string similar to Switch Language....
         /// </summary>
@@ -113,7 +10602,16 @@ namespace AvPurplePen {
                 return ResourceManager.GetString("SwitchLanguageButton", resourceCulture);
             }
         }
-
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a language:.
+        /// </summary>
+        public static string SwitchLanguageDialog_Prompt {
+            get {
+                return ResourceManager.GetString("SwitchLanguageDialog_Prompt", resourceCulture);
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized string similar to Switch Language.
         /// </summary>
@@ -122,13 +10620,157 @@ namespace AvPurplePen {
                 return ResourceManager.GetString("SwitchLanguageDialog_Title", resourceCulture);
             }
         }
-
+        
         /// <summary>
-        ///   Looks up a localized string similar to Select a language:.
+        ///   Looks up a localized string similar to Assign Variations.
         /// </summary>
-        public static string SwitchLanguageDialog_Prompt {
+        public static string TeamVariationsForm_buttonCalculate_Text {
             get {
-                return ResourceManager.GetString("SwitchLanguageDialog_Prompt", resourceCulture);
+                return ResourceManager.GetString("TeamVariationsForm_buttonCalculate_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close.
+        /// </summary>
+        public static string TeamVariationsForm_buttonClose_Text {
+            get {
+                return ResourceManager.GetString("TeamVariationsForm_buttonClose_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Export....
+        /// </summary>
+        public static string TeamVariationsForm_buttonExport_Text {
+            get {
+                return ResourceManager.GetString("TeamVariationsForm_buttonExport_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Print....
+        /// </summary>
+        public static string TeamVariationsForm_buttonPrint_Text {
+            get {
+                return ResourceManager.GetString("TeamVariationsForm_buttonPrint_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Print Preview....
+        /// </summary>
+        public static string TeamVariationsForm_buttonPrintPreview_Text {
+            get {
+                return ResourceManager.GetString("TeamVariationsForm_buttonPrintPreview_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hide variation codes on map.
+        /// </summary>
+        public static string TeamVariationsForm_checkBoxHideVariationsFromMap_Text {
+            get {
+                return ResourceManager.GetString("TeamVariationsForm_checkBoxHideVariationsFromMap_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Assign fixed legs to branches....
+        /// </summary>
+        public static string TeamVariationsForm_fixedLegsLink_Text {
+            get {
+                return ResourceManager.GetString("TeamVariationsForm_fixedLegsLink_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of teams:.
+        /// </summary>
+        public static string TeamVariationsForm_label1_Text {
+            get {
+                return ResourceManager.GetString("TeamVariationsForm_label1_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of legs:.
+        /// </summary>
+        public static string TeamVariationsForm_label2_Text {
+            get {
+                return ResourceManager.GetString("TeamVariationsForm_label2_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Team numbers start at: .
+        /// </summary>
+        public static string TeamVariationsForm_label3_Text {
+            get {
+                return ResourceManager.GetString("TeamVariationsForm_label3_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to IOF XML 3.0|*.xml|Spreadsheet (CSV)|*.csv.
+        /// </summary>
+        public static string TeamVariationsForm_saveFileDialog_Filter {
+            get {
+                return ResourceManager.GetString("TeamVariationsForm_saveFileDialog_Filter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Relay Team Variations.
+        /// </summary>
+        public static string TeamVariationsForm_Text {
+            get {
+                return ResourceManager.GetString("TeamVariationsForm_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        public static string UnusedControls_okButton_Text {
+            get {
+                return ResourceManager.GetString("UnusedControls_okButton_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unused Controls.
+        /// </summary>
+        public static string UnusedControls_Text {
+            get {
+                return ResourceManager.GetString("UnusedControls_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The following controls are in the All Controls collection, but not used in any course. Click Delete to remove all checked controls..
+        /// </summary>
+        public static string UnusedControls_unusedControlsLabel_Text {
+            get {
+                return ResourceManager.GetString("UnusedControls_unusedControlsLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose additional courses to view with course &quot;{0}&quot;..
+        /// </summary>
+        public static string ViewAdditionalCourses_labelInstructions_Text {
+            get {
+                return ResourceManager.GetString("ViewAdditionalCourses_labelInstructions_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View Additional Courses.
+        /// </summary>
+        public static string ViewAdditionalCourses_Text {
+            get {
+                return ResourceManager.GetString("ViewAdditionalCourses_Text", resourceCulture);
             }
         }
     }

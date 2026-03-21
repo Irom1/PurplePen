@@ -523,12 +523,6 @@ OKを押し、コンピュータ上で地図ファイルのコピーを探して
   <data name="GpxMustBeOcadMap" xml:space="preserve">
     <value>GPXファイルを使用するためには、地図ファイルがOCADファイルである必要があります。</value>
   </data>
-  <data name="DownloadGhostscript" xml:space="preserve">
-    <value>PDF ファイルのロードにはGPL Ghostscript がインストールされている必要があります。今すぐ自動でダウンロードおよびインストールしますか?</value>
-  </data>
-  <data name="GhostscriptNotInstalled" xml:space="preserve">
-    <value>GPL Ghostscript がインストールされていません</value>
-  </data>
   <data name="CannotCreatePdfs" xml:space="preserve">
     <value>PDF '{0}' を作成できません。以下の理由:</value>
   </data>
@@ -573,5 +567,11 @@ OKを押し、コンピュータ上で地図ファイルのコピーを探して
   </data>
   <data name="Version_RC" xml:space="preserve">
     <value>RC {0}</value>
+  </data>
+  <data name="DownloadGhostscript" xml:space="preserve">
+    <value>PDF ファイルのロードにはGPL Ghostscript がインストールされている必要があります。今すぐ自動でダウンロードおよびインストールしますか?</value>
+  </data>
+  <data name="GhostscriptNotInstalled" xml:space="preserve">
+    <value>GPL Ghostscript がインストールされていません</value>
   </data>
 </root>
