@@ -9,6 +9,11 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
+  <Folder Name="/Avalonia/">
+    <Project Path="Avalonia/AvUtil/AvUtil.csproj">
+      <BuildType Solution="StorePkg|*" Project="Release" />
+    </Project>
+  </Folder>
   <Folder Name="/DotSpatialProjectionsLite/">
     <Project Path="DotSpatialProjectionsLite/DotSpatial.Projections.CoordinateSystems/DotSpatial.Projections.CoordinateSystems.csproj" />
     <Project Path="DotSpatialProjectionsLite/DotSpatial.Projections.Tests/DotSpatial.Projections.Tests.csproj">
@@ -18,9 +23,6 @@
   </Folder>
   <Folder Name="/Experiments/">
     <Project Path="Experiments/AvMapViewer/AvMapViewer.csproj" Id="de407518-5e86-4883-a949-e8d7d2fc09e8">
-      <BuildType Solution="StorePkg|*" Project="Release" />
-    </Project>
-    <Project Path="Experiments/AvUtil/AvUtil.csproj" Id="8504dec6-e8f8-4eb1-bcbc-c3899f424935">
       <BuildType Solution="StorePkg|*" Project="Release" />
     </Project>
     <Project Path="MapModel/HtmlGraphicsTarget/HtmlGraphicsTarget.csproj" />
@@ -105,10 +107,10 @@
     <Project Path="PurplePenCore/PurplePenCore.csproj" Id="130fb09c-b6f6-45ab-b374-1f0457cfffb0">
       <BuildType Solution="StorePkg|*" Project="Release" />
     </Project>
-    <Project Path="PurplePenViewModels/PurplePenViewModels.csproj" Id="689dd20f-9b33-49ec-b92e-5c8ab79ad765">
+    <Project Path="PurplePenViewModels.Tests/PurplePenViewModels.Tests.csproj">
       <BuildType Solution="StorePkg|*" Project="Release" />
     </Project>
-    <Project Path="PurplePenViewModels.Tests/PurplePenViewModels.Tests.csproj">
+    <Project Path="PurplePenViewModels/PurplePenViewModels.csproj" Id="689dd20f-9b33-49ec-b92e-5c8ab79ad765">
       <BuildType Solution="StorePkg|*" Project="Release" />
     </Project>
     <Project Path="PurplePen_Tests/PurplePen_Tests.csproj" Id="0690d25c-7696-4b7a-9aab-fbbcafd0eef5">

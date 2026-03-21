@@ -29,6 +29,7 @@ namespace AvUtil
         private WriteableBitmap? _writeableBitmap = null;
         private int _pixelWidth;
         private int _pixelHeight;
+        private Size _logicalSize;
         private double _scale = 1;
 
         // This is set to write when posting a repaint event, and set back to false when
@@ -85,7 +86,7 @@ namespace AvUtil
                 SkiaWritableBitmap.DrawToBitmap(_writeableBitmap,
                     (SKCanvas canvas, CancellationToken cancelToken) => {
                         canvas.Scale(Convert.ToSingle(_scale));
-                        this.OnPaint(new PaintEventArgs(canvas, new SKSizeI(_pixelWidth, _pixelHeight), _scale, cancelToken));
+                        this.OnPaint(new PaintEventArgs(canvas, _logicalSize, new SKSizeI(_pixelWidth, _pixelHeight), _scale, cancelToken));
                     });
 
                 InvalidateVisual();
@@ -135,6 +136,7 @@ namespace AvUtil
 
                 _scale = LayoutHelper.GetLayoutScale(this);
                 var bounds = change.GetNewValue<Rect>();
+                _logicalSize = bounds.Size;
                 _pixelWidth = Convert.ToInt32(bounds.Width * _scale);
                 _pixelHeight = Convert.ToInt32(bounds.Height * _scale);
                 this.InvalidateSurface();
@@ -144,15 +146,17 @@ namespace AvUtil
 
         public sealed class PaintEventArgs : EventArgs
         {
-            public PaintEventArgs(SKCanvas canvas, SKSizeI size, double scale, CancellationToken cancelToken)
+            public PaintEventArgs(SKCanvas canvas, Size logicalSize, SKSizeI pixelSize, double scale, CancellationToken cancelToken)
             {
                 Canvas = canvas;
-                PixelSize = size;
+                LogicalSize = logicalSize;
+                PixelSize = pixelSize;
                 Scale = scale;
                 CancellationToken = cancelToken;
             }
 
             public SKCanvas Canvas { get; }
+            public Size LogicalSize { get; }
 
             public SKSizeI PixelSize { get; }
 

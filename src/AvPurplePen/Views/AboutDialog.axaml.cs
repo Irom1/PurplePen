@@ -6,14 +6,15 @@
 //
 // Migrated from WinForms PurplePen/AboutForm.cs.
 
+using System;
+using System.Drawing;
+using System.Runtime.InteropServices;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using AvUtil;
 using PurplePen;
 using PurplePen.MapModel;
 using SkiaSharp;
-using System;
-using System.Drawing;
 
 namespace AvPurplePen.Views
 {
@@ -68,7 +69,7 @@ namespace AvPurplePen.Views
         {
             // Drawing in design mode causes the designer to crash.
             e.Canvas.Clear(SKColors.White);
-            LogoDrawing.DrawPurplePenLogo(new Skia_GraphicsTarget(e.Canvas), new RectangleF(0, 0, Convert.ToInt32(logoPanel.Bounds.Width), Convert.ToInt32(logoPanel.Bounds.Height)));
+            LogoDrawing.DrawPurplePenLogo(new Skia_GraphicsTarget(e.Canvas), new RectangleF(0, 0, Convert.ToSingle(e.LogicalSize.Width), Convert.ToSingle(e.LogicalSize.Height)));
         }
     }
 }

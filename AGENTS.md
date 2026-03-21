@@ -387,8 +387,11 @@ Every ported dialog AXAML should follow this template:
         x:Class="AvPurplePen.Views.FormNameDialog"
         x:DataType="vm:FormNameDialogViewModel"
         Title="{resx:Localize FormName_Text}"
+        Icon="/Assets/transparent.ico"
         Width="..." Height="..."
         CanResize="False"
+        CanMinimize="False"
+        CanMaximize="False"
         WindowStartupLocation="CenterOwner"
         ShowInTaskbar="False">
 

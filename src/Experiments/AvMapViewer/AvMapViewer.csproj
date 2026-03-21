@@ -20,9 +20,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Avalonia\AvUtil\AvUtil.csproj" />
     <ProjectReference Include="..\..\MapModel\Graphics2D\Graphics2D.csproj" />
     <ProjectReference Include="..\..\MapModel\MapModel\MapModel.csproj" />
     <ProjectReference Include="..\..\MapModel\Map_SkiaStd\Map_SkiaStd.csproj" />
-    <ProjectReference Include="..\AvUtil\AvUtil.csproj" />
   </ItemGroup>
 </Project>

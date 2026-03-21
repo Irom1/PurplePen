@@ -22,6 +22,9 @@
         Title="{resx:Localize AboutForm_Text}"
         Width="447" Height="439"
         CanResize="False"
+        CanMaximize="False"
+        CanMinimize="False"
+        Icon="/Assets/transparent.ico"
         WindowStartupLocation="CenterOwner"
         ShowInTaskbar="False"
         SystemDecorations="Full">
