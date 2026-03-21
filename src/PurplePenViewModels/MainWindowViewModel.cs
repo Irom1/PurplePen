@@ -24,34 +24,5 @@ namespace PurplePen.ViewModels
     /// </summary>
     public partial class MainWindowViewModel : ViewModelBase
     {
-        // The [ObservableProperty] attribute tells the MVVM Toolkit source generator
-        // to create a public property named "Counter" (capital C) backed by this field.
-        // The generated property automatically calls OnPropertyChanged() when set,
-        // which notifies the UI to update any bindings that reference "Counter".
-        //
-        // Naming convention: the field must be camelCase (or _camelCase).
-        // The generator strips the underscore/lowercases and creates a PascalCase property.
-        //   field: counter  -->  generated property: Counter
-        [ObservableProperty]
-        private int counter = 0;
-
-        // The [RelayCommand] attribute tells the source generator to create an ICommand
-        // property named "IncrementCounterCommand" (method name + "Command" suffix).
-        // In the XAML, we bind a Button's Command property to "IncrementCounterCommand".
-        //
-        // When the button is clicked, Avalonia invokes the command, which calls this method.
-        // Because we set Counter (the generated property), the UI automatically updates.
-        [RelayCommand]
-        private void IncrementCounter()
-        {
-            Counter++;
-        }
-
-        // Same pattern: generates a "DecrementCounterCommand" ICommand property.
-        [RelayCommand]
-        private void DecrementCounter()
-        {
-            Counter--;
-        }
     }
 }
