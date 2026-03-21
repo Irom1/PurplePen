@@ -168,6 +168,9 @@
   <data name="BadClimb" xml:space="preserve">
     <value>The climb for a course must be a number 0-9999, or blank.</value>
   </data>
+  <data name="CourseNameRequired" xml:space="preserve">
+    <value>A course name is required.</value>
+  </data>
   <data name="BadLoad" xml:space="preserve">
     <value>The load for a course must be an integer 0-999999, or blank.</value>
   </data>

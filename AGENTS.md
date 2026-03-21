@@ -358,6 +358,32 @@ Resulting Avalonia Grid:
 </Grid>
 ```
 
+### Hiding Controls Without Layout Shift (Opacity Pattern)
+
+In Avalonia, `IsVisible="False"` collapses the element entirely — a Grid row with `Auto` height shrinks to zero when all its children are invisible. This causes the dialog to visually jump when toggling visibility.
+
+**Use Opacity instead of IsVisible** when you want to hide controls but keep their layout space:
+
+1. Add computed `double` opacity properties in the ViewModel (compiled bindings require the correct type — `bool` cannot bind to `Opacity`):
+   ```csharp
+   public double NormalCourseOpacity => IsNormalCourse ? 1.0 : 0.0;
+   public double ScoreCourseOpacity => IsScoreCourse ? 1.0 : 0.0;
+   ```
+   Remember to add `[NotifyPropertyChangedFor(nameof(NormalCourseOpacity))]` on the source field.
+
+2. In AXAML, use `Opacity` + `IsHitTestVisible` (to block mouse interaction):
+   ```xml
+   <TextBlock Opacity="{Binding NormalCourseOpacity}" .../>
+   <StackPanel Opacity="{Binding NormalCourseOpacity}"
+               IsHitTestVisible="{Binding IsNormalCourse}" ...>
+       <TextBox Text="{Binding MyField, Mode=TwoWay}" .../>
+   </StackPanel>
+   ```
+
+**When to use which:**
+- `IsVisible` — for ComboBox dropdown items or elements where collapsing is desired
+- `Opacity` + `IsHitTestVisible` — for Grid rows that should keep stable height when hidden
+
 ### Localization Mapping
 
 WinForms forms use `resources.ApplyResources(this.controlName, "controlName")` which loads properties from `.resx`. In Avalonia, all localizable strings go into `AvPurplePen/UIText.resx` (English) and satellite files (UIText.fr.resx, etc.), referenced via `{resx:Localize}`.
@@ -407,6 +433,14 @@ Every ported dialog AXAML should follow this template:
 
 - Constructor only calls `InitializeComponent()`. No data initialization.
 - DataContext is set by the caller, not the dialog itself.
+- Set initial focus in an `Opened` event handler (not the constructor — too early):
+  ```csharp
+  public MyDialog()
+  {
+      InitializeComponent();
+      Opened += (s, e) => myTextBox.Focus();
+  }
+  ```
 - OK/Cancel button handlers call `Close(true)` / `Close(false)`.
 - Use `#if PORTING` blocks for functionality not yet migrated (e.g. sub-dialogs, help system).
 - Event handlers that need logic beyond simple Close() are fine in code-behind; move complex business logic to the ViewModel.
@@ -417,7 +451,53 @@ Every ported dialog AXAML should follow this template:
 - Must have a parameterless constructor for the designer.
 - Does NOT contain localized strings — all UI text is in UIText.resx.
 - Use `[ObservableProperty]` for bindable properties, `[RelayCommand]` for commands.
+- Use `[NotifyPropertyChangedFor(nameof(ComputedProp))]` on a field to auto-raise `PropertyChanged` for dependent computed properties when that field changes. Prefer this over writing `partial void OnXChanged` methods just to call `OnPropertyChanged`.
 - Class must be `partial` for source generators to work.
+
+### Validation in ViewModels
+
+ViewModelBase inherits from `ObservableValidator`, which provides `INotifyDataErrorInfo` support. Avalonia's `TextBox` displays validation errors as a red border with the error message in a tooltip (customized in App.axaml — the default Fluent theme shows inline error text below the control, which disrupts layout).
+
+**How to add validation to a field:**
+```csharp
+// Custom validation (e.g. range checks):
+[ObservableProperty]
+[NotifyDataErrorInfo]                    // REQUIRED: makes source generator emit ValidateProperty() in setter
+[CustomValidation(typeof(MyViewModel), nameof(ValidateMyField))]
+private string myField = "";
+
+public static ValidationResult? ValidateMyField(string value, ValidationContext context)
+{
+    if (string.IsNullOrEmpty(value))
+        return ValidationResult.Success;
+    if (!float.TryParse(value, out float v) || v < 0 || v > 100)
+        return new ValidationResult(MiscText.BadMyField);
+    return ValidationResult.Success;
+}
+
+// Required field validation (using [Required] attribute):
+[ObservableProperty]
+[NotifyDataErrorInfo]
+[Required(ErrorMessageResourceName = "MyFieldRequired", ErrorMessageResourceType = typeof(MiscText))]
+private string myRequiredField = "";
+```
+
+**Validation error display:**
+App.axaml overrides the default `DataValidationErrors` template to suppress inline error text. Instead, a `TextBox:error` style shows the error message as a tooltip on hover. This keeps dialog layout stable. The red border comes from the Fluent theme's built-in `:error` pseudo-class on TextBox.
+
+**Key rules:**
+- `[NotifyDataErrorInfo]` must be on each field that has validation attributes. It is NOT inherited and cannot be placed on the base class. Without it, the source generator does not emit `ValidateProperty()` calls, so validation never fires.
+- `[NotifyDataErrorInfo]` must NOT be placed on fields without validation attributes (causes MVVMTK0026 error).
+- `[Required]` on a field that starts empty will NOT show an error on dialog open — CommunityToolkit only validates when the setter fires (i.e., when the value changes). So a field starting as `""` won't show an error until the user types and then clears it.
+- Only `TextBox.Text` supports inline validation display. `ComboBox.Text` (editable ComboBox) does NOT — its `TextProperty` lacks `enableDataValidation` in metadata. Validate editable ComboBox values in the OK button click handler instead.
+- To make an OK button depend on validation state, subscribe to `ErrorsChanged` in the constructor:
+  ```csharp
+  public bool IsOkEnabled => !string.IsNullOrEmpty(SomeRequiredField) && !HasErrors;
+
+  // In constructor:
+  ErrorsChanged += (s, e) => OnPropertyChanged(nameof(IsOkEnabled));
+  ```
+  `ObservableValidator` does not raise `PropertyChanged` for `HasErrors` automatically, so the manual subscription is needed.
 
 ### Porting Workflow
 

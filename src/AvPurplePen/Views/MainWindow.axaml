@@ -96,11 +96,15 @@
                 HorizontalAlignment="Center"
                 Click="SwitchLanguageButton_Click"/>
 
-                <!-- Language switch button -->
+                <!-- About button -->
         <Button Content="About"
                 HorizontalAlignment="Center"
                 Click="AboutButton_Click"/>
 
+        <!-- Add Course button (test) -->
+        <Button Content="Add Course"
+                HorizontalAlignment="Center"
+                Click="AddCourseButton_Click"/>
 
     </StackPanel>
 

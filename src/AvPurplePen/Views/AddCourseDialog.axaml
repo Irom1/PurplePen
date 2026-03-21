@@ -1,0 +1,260 @@
+<!--
+    AddCourseDialog.axaml
+
+    Dialog for adding a new course or editing an existing course.
+    Contains fields for course name, type, scale, climb/length,
+    secondary title, description appearance, label kind, and
+    score course options.
+
+    Migrated from WinForms PurplePen/AddCourse.cs.
+-->
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:PurplePen.ViewModels"
+        xmlns:resx="using:AvPurplePen"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        x:Class="AvPurplePen.Views.AddCourseDialog"
+        x:DataType="vm:AddCourseDialogViewModel"
+        Title="{resx:Localize AddCourse_Text}"
+        Icon="/Assets/transparent.ico"
+        d:DesignWidth="500" d:DesignHeight="620"
+        Width="500" 
+        SizeToContent="Height"
+        CanResize="False"
+        CanMinimize="False"
+        CanMaximize="False"
+        WindowStartupLocation="CenterOwner"
+        ShowInTaskbar="False">
+
+    <!-- Design-time preview data -->
+    <Design.DataContext>
+        <vm:AddCourseDialogViewModel/>
+    </Design.DataContext>
+
+    <DockPanel Margin="12">
+
+        <!-- OK / Cancel buttons at the bottom -->
+        <StackPanel DockPanel.Dock="Bottom"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    Spacing="8"
+                    Margin="0,20,0,0">
+            <Button x:Name="okButton"
+                    Content="{resx:Localize OKButton}"
+                    Width="85"
+                    HorizontalContentAlignment="Center"
+                    IsEnabled="{Binding IsOkEnabled}"
+                    IsDefault="True"
+                    Click="OkButton_Click"/>
+            <Button x:Name="cancelButton"
+                    Content="{resx:Localize CancelButton}"
+                    Width="85"
+                    HorizontalContentAlignment="Center"
+                    IsCancel="True"
+                    Click="CancelButton_Click"/>
+        </StackPanel>
+
+        <!-- Main content area: scrollable in case of DPI scaling -->
+        <StackPanel Spacing="12">
+
+            <!-- === Top section: Course basics (tableLayoutPanel1) === -->
+            <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto"
+                  Margin="0,0,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" MinWidth="120"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Row 0: Course name -->
+                <TextBlock Grid.Row="0" Grid.Column="0"
+                           Text="{resx:Localize AddCourse_courseNameLabel_Text}"
+                           VerticalAlignment="Center"
+                           Margin="0,0,8,6"/>
+                <TextBox x:Name="nameTextBox"
+                         Grid.Row="0" Grid.Column="1"
+                         Text="{Binding CourseName, Mode=TwoWay}"
+                         Margin="0,0,0,6"/>
+
+                <!-- Row 1: Course type -->
+                <TextBlock Grid.Row="1" Grid.Column="0"
+                           Text="{resx:Localize AddCourse_courseTypeLabel_Text}"
+                           VerticalAlignment="Center"
+                           Margin="0,0,8,6"/>
+                <ComboBox x:Name="courseKindCombo"
+                          Grid.Row="1" Grid.Column="1"
+                          SelectedIndex="{Binding CourseKind, Converter={x:Static resx:EnumToIndexConverter.Instance}}"
+                          IsEnabled="{Binding CanChangeCourseKind}"
+                          HorizontalAlignment="Stretch"
+                          Margin="0,0,0,6">
+                    <ComboBoxItem Content="{resx:Localize AddCourse_courseKindCombo_Items}"/>
+                    <ComboBoxItem Content="{resx:Localize AddCourse_courseKindCombo_Items1}"/>
+                </ComboBox>
+
+                <!-- Rows 2-3: Climb and Length (Normal course only).
+                     Use Opacity+IsHitTestVisible instead of IsVisible so the
+                     grid rows keep their height when switching to Score course. -->
+                <TextBlock x:Name="climbLabel"
+                           Grid.Row="2" Grid.Column="0"
+                           Text="{resx:Localize AddCourse_climbLabel_Text}"
+                           VerticalAlignment="Center"
+                           Opacity="{Binding NormalCourseOpacity}"
+                           Margin="0,0,8,6"/>
+                <StackPanel Grid.Row="2" Grid.Column="1"
+                            Orientation="Horizontal"
+                            Spacing="4"
+                            Opacity="{Binding NormalCourseOpacity}"
+                            IsHitTestVisible="{Binding IsNormalCourse}"
+                            Margin="0,0,0,6">
+                    <TextBox x:Name="climbTextBox"
+                             Text="{Binding ClimbText, Mode=TwoWay}"
+                             Width="120"/>
+                    <TextBlock x:Name="metersSuffix"
+                               Text="{resx:Localize AddCourse_metersSuffix_Text}"
+                               VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <TextBlock x:Name="lengthLabel"
+                           Grid.Row="3" Grid.Column="0"
+                           Text="{resx:Localize AddCourse_lengthLabel_Text}"
+                           VerticalAlignment="Center"
+                           Opacity="{Binding NormalCourseOpacity}"
+                           Margin="0,0,8,6"/>
+                <StackPanel Grid.Row="3" Grid.Column="1"
+                            Orientation="Horizontal"
+                            Spacing="4"
+                            Opacity="{Binding NormalCourseOpacity}"
+                            IsHitTestVisible="{Binding IsNormalCourse}"
+                            Margin="0,0,0,6">
+                    <TextBox x:Name="lengthTextBox"
+                             Text="{Binding LengthText, Mode=TwoWay}"
+                             Width="120"/>
+                    <TextBlock x:Name="kmSuffix"
+                               Text="{resx:Localize AddCourse_kmSuffix_Text}"
+                               VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <!-- Row 2: Hide from reports -->
+                <CheckBox x:Name="hideFromReportsCheckBox"
+                          Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"
+                          Content="{resx:Localize AddCourse_hideFromReportsCheckBox_Text}"
+                          IsChecked="{Binding HideFromReports}"
+                          Margin="0,0,0,0"/>
+            </Grid>
+
+            <!-- === Middle section: Secondary title === -->
+            <HeaderedContentControl Header="{resx:Localize AddCourse_secondaryTitleGroup_Text}"
+                                    Padding="8">
+                <StackPanel Spacing="8">
+                    <TextBlock x:Name="secondaryTitleDescription"
+                               Text="{resx:Localize AddCourse_secondaryTitleDescription_Text}"
+                               TextWrapping="Wrap"/>
+                    <TextBox x:Name="secondaryTitleTextBox"
+                             Text="{Binding SecondaryTitle, Mode=TwoWay}"
+                             AcceptsReturn="True"
+                             Height="50"
+                             TextWrapping="Wrap"/>
+                </StackPanel>
+            </HeaderedContentControl>
+
+            <!-- === Bottom section: Appearance === -->
+            <HeaderedContentControl Header="{resx:Localize AddCourse_groupBox1_Text}"
+                                    Padding="8">
+                <Grid ColumnDefinitions="Auto,*"
+                      RowDefinitions="Auto,Auto,Auto,Auto,Auto">
+
+                    <!-- Row 0: Map printing scale -->
+                    <TextBlock Grid.Row="0" Grid.Column="0"
+                               Text="{resx:Localize AddCourse_mapScaleLabel_Text}"
+                               VerticalAlignment="Center"
+                               Margin="0,0,8,6"/>
+                    <DockPanel Grid.Row="0" Grid.Column="1" Margin="0,0,0,6">
+                        <TextBlock x:Name="oneToPrefixLabel"
+                                   DockPanel.Dock="Left"
+                                   Text="{resx:Localize AddCourse_oneToPrefixLabel_Text}"
+                                   VerticalAlignment="Center"/>
+                        <ComboBox x:Name="scaleCombo"
+                                  IsEditable="True"
+                                  ItemsSource="{Binding AvailablePrintScales}"
+                                  Text="{Binding PrintScaleText, Mode=TwoWay}"
+                                  HorizontalAlignment="Stretch"/>
+                    </DockPanel>
+
+                    <!-- Row 1: Description appearance -->
+                    <TextBlock Grid.Row="1" Grid.Column="0"
+                               Text="{resx:Localize AddCourse_descriptionAppearanceLabel_Text}"
+                               VerticalAlignment="Center"
+                               Margin="0,0,8,6"/>
+                    <ComboBox x:Name="descKindCombo"
+                              Grid.Row="1" Grid.Column="1"
+                              SelectedIndex="{Binding DescKind, Converter={x:Static resx:EnumToIndexConverter.Instance}}"
+                              HorizontalAlignment="Stretch"
+                              Margin="0,0,0,6">
+                        <ComboBoxItem Content="{resx:Localize AddCourse_descKindCombo_Items}"/>
+                        <ComboBoxItem Content="{resx:Localize AddCourse_descKindCombo_Items1}"/>
+                        <ComboBoxItem Content="{resx:Localize AddCourse_descKindCombo_Items2}"/>
+                    </ComboBox>
+
+                    <!-- Row 2: Control circle labels -->
+                    <TextBlock Grid.Row="2" Grid.Column="0"
+                               Text="{resx:Localize AddCourse_labelKindLabel_Text}"
+                               VerticalAlignment="Center"
+                               Margin="0,0,8,6"/>
+                    <ComboBox x:Name="labelKindCombo"
+                              Grid.Row="2" Grid.Column="1"
+                              SelectedIndex="{Binding ControlLabelKind, Converter={x:Static resx:EnumToIndexConverter.Instance}}"
+                              HorizontalAlignment="Stretch"
+                              Margin="0,0,0,6">
+                        <ComboBoxItem Content="{resx:Localize AddCourse_labelKindCombo_Items}"/>
+                        <ComboBoxItem Content="{resx:Localize AddCourse_labelKindCombo_Items1}"/>
+                        <ComboBoxItem Content="{resx:Localize AddCourse_labelKindCombo_Items2}"/>
+                        <!-- Score-only items -->
+                        <ComboBoxItem Content="{resx:Localize AddCourse_labelKindCombo_Items3}"
+                                      IsVisible="{Binding IsScoreCourse}"/>
+                        <ComboBoxItem Content="{resx:Localize AddCourse_labelKindCombo_Items4}"
+                                      IsVisible="{Binding IsScoreCourse}"/>
+                        <ComboBoxItem Content="{resx:Localize AddCourse_labelKindCombo_Items5}"
+                                      IsVisible="{Binding IsScoreCourse}"/>
+                    </ComboBox>
+
+                    <!-- Row 3: First control number -->
+                    <TextBlock Grid.Row="3" Grid.Column="0"
+                               Text="{resx:Localize AddCourse_firstControlLabel_Text}"
+                               VerticalAlignment="Center"
+                               Margin="0,0,8,6"/>
+                    <NumericUpDown x:Name="firstControlUpDown"
+                                   Grid.Row="3" Grid.Column="1"
+                                   Value="{Binding FirstControlOrdinal}"
+                                   Minimum="1"
+                                   Maximum="99"
+                                   FormatString="0"
+                                   HorizontalAlignment="Stretch"
+                                   Margin="0,0,0,6"/>
+
+                    <!-- Row 4: Score column (Score course only) -->
+                    <TextBlock x:Name="scoreColumnLabel"
+                               Grid.Row="4" Grid.Column="0"
+                               Text="{resx:Localize AddCourse_scoreColumnLabel_Text}"
+                               VerticalAlignment="Center"
+                               Opacity="{Binding ScoreCourseOpacity}"
+                               Margin="0,0,8,6"/>
+                    <ComboBox x:Name="scoreColumnCombo"
+                              Grid.Row="4" Grid.Column="1"
+                              SelectedIndex="{Binding ScoreColumnIndex}"
+                              Opacity="{Binding ScoreCourseOpacity}"
+                              IsHitTestVisible="{Binding IsScoreCourse}"
+                              HorizontalAlignment="Stretch"
+                              Margin="0,0,0,6">
+                        <ComboBoxItem Content="{resx:Localize AddCourse_scoreColumnCombo_Items}"/>
+                        <ComboBoxItem Content="{resx:Localize AddCourse_scoreColumnCombo_Items1}"/>
+                        <ComboBoxItem Content="{resx:Localize AddCourse_scoreColumnCombo_Items2}"/>
+                        <ComboBoxItem Content="{resx:Localize AddCourse_scoreColumnCombo_Items3}"/>
+                    </ComboBox>
+                </Grid>
+            </HeaderedContentControl>
+
+        </StackPanel>
+    </DockPanel>
+
+</Window>

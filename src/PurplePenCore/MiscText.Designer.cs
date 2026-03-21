@@ -556,6 +556,15 @@ namespace PurplePen {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to A course name is required..
+        /// </summary>
+        public static string CourseNameRequired {
+            get {
+                return ResourceManager.GetString("CourseNameRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Course Properties.
         /// </summary>
         public static string CoursePropertiesTitle {

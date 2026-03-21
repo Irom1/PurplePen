@@ -59,5 +59,26 @@ namespace AvPurplePen.Views
             };
             await dialog.ShowDialog(this);
         }
+
+        /// <summary>
+        /// Opens the Add Course dialog modally with test data.
+        /// </summary>
+        private async void AddCourseButton_Click(object? sender, RoutedEventArgs e)
+        {
+            AddCourseDialogViewModel viewModel = new AddCourseDialogViewModel();
+            viewModel.InitializePrintScales(15000);
+            viewModel.PrintScale = 10000;
+            viewModel.Length = null;
+
+            AddCourseDialog dialog = new AddCourseDialog {
+                DataContext = viewModel,
+            };
+
+            bool? result = await dialog.ShowDialog<bool?>(this);
+
+            if (result == true) {
+                Title = $"Course: {viewModel.CourseName}, Scale: 1:{viewModel.PrintScale}";
+            }
+        }
     }
 }

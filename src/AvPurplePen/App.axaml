@@ -11,5 +11,64 @@
   
     <Application.Styles>
         <FluentTheme />
+
+        <!-- Style HeaderedContentControl to look like a Windows GroupBox:
+             bordered rectangle with the header text overlapping the top border. -->
+        <Style Selector="HeaderedContentControl">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource SystemControlForegroundBaseMediumBrush}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="4"/>
+            <Setter Property="Padding" Value="8,4,8,8"/>
+            <Setter Property="Template">
+                <ControlTemplate>
+                    <Grid>
+                        <!-- The border, pushed down slightly so the header overlaps it -->
+                        <Border BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="{TemplateBinding CornerRadius}"
+                                Margin="0,10,0,0">
+                            <ContentPresenter Name="PART_ContentPresenter"
+                                              Content="{TemplateBinding Content}"
+                                              ContentTemplate="{TemplateBinding ContentTemplate}"
+                                              Margin="{TemplateBinding Padding}"/>
+                        </Border>
+                        <!-- Header text with an opaque background to "cut" the border -->
+                        <ContentPresenter Name="PART_HeaderPresenter"
+                                          Content="{TemplateBinding Header}"
+                                          HorizontalAlignment="Left"
+                                          VerticalAlignment="Top"
+                                          Margin="12,0,0,0"
+                                          Padding="4,0"
+                                          Background="{DynamicResource SystemControlBackgroundAltHighBrush}"
+                                          FontWeight="SemiBold"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter>
+        </Style>
+        <!-- Override DataValidationErrors to show only a red border + tooltip
+             instead of the default inline error text that disrupts layout. -->
+        <Style Selector="DataValidationErrors">
+            <Setter Property="Template">
+                <ControlTemplate>
+                    <DockPanel>
+                        <ContentPresenter Name="PART_ContentPresenter"
+                                          Content="{TemplateBinding Content}"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}"/>
+                    </DockPanel>
+                </ControlTemplate>
+            </Setter>
+        </Style>
+
+        <!-- When a TextBox has a validation error, show the error as a tooltip. -->
+        <Style Selector="TextBox:error">
+            <Setter Property="ToolTip.Tip">
+                <Template>
+                    <ItemsControl ItemsSource="{Binding $parent[TextBox].(DataValidationErrors.Errors)}"
+                                  Foreground="Red"
+                                  FontSize="12"/>
+                </Template>
+            </Setter>
+        </Style>
     </Application.Styles>
 </Application>
