@@ -616,4 +616,7 @@ A Rendben lenyomása után próbálja megkeresni a térkép fájlt a számítóg
   <data name="GhostscriptNotInstalled" xml:space="preserve">
     <value>A GPL Ghostscript nincs telepítve.</value>
   </data>
+  <data name="OpenFileDialog_PurplePenFilter" xml:space="preserve">
+    <value>Purple Pen fájlok|*.ppen|Minden fájl|*.*</value>
+  </data>
 </root>

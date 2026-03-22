@@ -5,6 +5,7 @@
 // then shows the View as a modal dialog.
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
@@ -12,6 +13,7 @@ using System.Threading.Tasks;
 using Avalonia.Controls;
 using Avalonia.Platform.Storage;
 using PurplePen;
+using PurplePen.ViewModels;
 
 namespace AvPurplePen
 {
@@ -43,6 +45,12 @@ namespace AvPurplePen
         /// </summary>
         public async Task<bool> ShowDialogAsync<TViewModel>(TViewModel viewModel) where TViewModel : class
         {
+            // Special case: FileOpenSingleViewModel uses the platform file-open dialog
+            // rather than a custom View.
+            if (viewModel is FileOpenSingleViewModel fileOpenVm) {
+                return await ShowFileOpenSingleAsync(fileOpenVm);
+            }
+
             // Resolve the View type from the ViewModel type using the same convention as ViewLocator.
             string viewModelName = typeof(TViewModel).FullName!;
             string viewName = viewModelName
@@ -64,30 +72,69 @@ namespace AvPurplePen
         }
 
         /// <summary>
-        /// Shows a file or folder picker dialog.
-        /// Dispatches to the appropriate Avalonia StorageProvider method based on the options type.
+        /// Shows the platform file-open dialog for selecting a single file.
+        /// Translates <see cref="FileOpenSingleViewModel"/> options into Avalonia's
+        /// <see cref="FilePickerOpenOptions"/> and writes the result back to the ViewModel.
         /// </summary>
-        public async Task<string?> ShowFileDialogAsync<TOptions>(TOptions options) where TOptions : class
+        private async Task<bool> ShowFileOpenSingleAsync(FileOpenSingleViewModel viewModel)
         {
             IStorageProvider storage = ownerWindow.StorageProvider;
 
-            if (options is FilePickerOpenOptions openOptions) {
-                var files = await storage.OpenFilePickerAsync(openOptions);
-                return files.FirstOrDefault()?.Path.LocalPath;
+            FilePickerOpenOptions options = new FilePickerOpenOptions {
+                AllowMultiple = false,
+                Title = viewModel.Title,
+                FileTypeFilter = ParseFileFilters(viewModel.FileFilters)
+            };
+
+            // Set the initially selected filter (1-based index).
+            int zeroBasedIndex = viewModel.InitialFileFilterIndex - 1;
+            if (zeroBasedIndex >= 0 && zeroBasedIndex < options.FileTypeFilter.Count) {
+                options.SuggestedFileType = options.FileTypeFilter[zeroBasedIndex];
             }
 
-            if (options is FilePickerSaveOptions saveOptions) {
-                IStorageFile? file = await storage.SaveFilePickerAsync(saveOptions);
-                return file?.Path.LocalPath;
+            if (viewModel.InitialDirectory != null) {
+                options.SuggestedStartLocation = await storage.TryGetFolderFromPathAsync(viewModel.InitialDirectory);
             }
 
-            if (options is FolderPickerOpenOptions folderOptions) {
-                var folders = await storage.OpenFolderPickerAsync(folderOptions);
-                return folders.FirstOrDefault()?.Path.LocalPath;
+            IReadOnlyList<IStorageFile> files = await storage.OpenFilePickerAsync(options);
+
+            if (files.Count > 0) {
+                viewModel.SelectedFile = files[0].Path.LocalPath;
+                return true;
             }
 
-            throw new ArgumentException($"Unsupported file dialog options type: {typeof(TOptions).Name}. " +
-                "Expected FilePickerOpenOptions, FilePickerSaveOptions, or FolderPickerOpenOptions.");
+            viewModel.SelectedFile = null;
+            return false;
+        }
+
+        /// <summary>
+        /// Parses a Windows-style file filter string (e.g. "Purple Pen files|*.ppen|All files|*.*")
+        /// into a list of <see cref="FilePickerFileType"/> for Avalonia's file picker.
+        /// The filters are returned in the same order as specified in the string.
+        /// </summary>
+        /// <param name="filterString">
+        /// Pipe-delimited pairs of display name and pattern, e.g. "Name1|*.ext1|Name2|*.ext2".
+        /// </param>
+        /// <returns>A list of file type filters for the Avalonia file picker.</returns>
+        internal static List<FilePickerFileType> ParseFileFilters(string filterString)
+        {
+            List<FilePickerFileType> filters = new List<FilePickerFileType>();
+
+            if (string.IsNullOrEmpty(filterString)) {
+                return filters;
+            }
+
+            string[] parts = filterString.Split('|');
+
+            // Each filter is a pair: display name, then pattern(s).
+            for (int i = 0; i + 1 < parts.Length; i += 2) {
+                string name = parts[i];
+                // Patterns can be semicolon-separated (e.g. "*.jpg;*.png").
+                string[] patterns = parts[i + 1].Split(';');
+                filters.Add(new FilePickerFileType(name) { Patterns = patterns });
+            }
+
+            return filters;
         }
     }
 }

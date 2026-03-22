@@ -630,4 +630,7 @@ Abrir e salvar novamente o mapa na versão mais recente do OpenOrienteering Mapp
   <data name="Version_RC" xml:space="preserve">
     <value>RC {0}</value>
   </data>
+  <data name="OpenFileDialog_PurplePenFilter" xml:space="preserve">
+    <value>Ficheiros Purple Pen|*.ppen|Todos os ficheiros|*.*</value>
+  </data>
 </root>

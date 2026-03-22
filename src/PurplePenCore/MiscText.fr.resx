@@ -610,4 +610,7 @@ Après avoir cliqué sur OK, essayez de trouver une copie du fichier de la carte
   <data name="GhostscriptNotInstalled" xml:space="preserve">
     <value>GPL Ghostscript n'est pas installé</value>
   </data>
+  <data name="OpenFileDialog_PurplePenFilter" xml:space="preserve">
+    <value>Fichiers Purple Pen|*.ppen|Tous les fichiers|*.*</value>
+  </data>
 </root>

@@ -1199,6 +1199,15 @@ namespace PurplePen {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Purple Pen files|*.ppen|All files|*.*.
+        /// </summary>
+        public static string OpenFileDialog_PurplePenFilter {
+            get {
+                return ResourceManager.GetString("OpenFileDialog_PurplePenFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Open &quot;{0}&quot;.
         /// </summary>
         public static string OpenLastEvent {

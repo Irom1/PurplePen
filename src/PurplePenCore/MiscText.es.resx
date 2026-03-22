@@ -607,4 +607,7 @@ Presione Aceptar, e intente encontrar una copia del mapa en su ordenador.</value
   <data name="Version_RC" xml:space="preserve">
     <value>RC {0}</value>
   </data>
+  <data name="OpenFileDialog_PurplePenFilter" xml:space="preserve">
+    <value>Archivos Purple Pen|*.ppen|Todos los archivos|*.*</value>
+  </data>
 </root>

@@ -619,4 +619,7 @@ OK - zkus soubor s mapou najít.</value>
   <data name="CodeUnder31" xml:space="preserve">
     <value>Kód kontroly by měl být 31 nebo vyšší.</value>
   </data>
+  <data name="OpenFileDialog_PurplePenFilter" xml:space="preserve">
+    <value>Soubory Purple Pen|*.ppen|Všechny soubory|*.*</value>
+  </data>
 </root>

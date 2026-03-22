@@ -31,7 +31,16 @@ namespace PurplePen.ViewModels
         [RelayCommand]
         private async Task FileOpenPurplePenFile()
         {
+            FileOpenSingleViewModel fileOpenVM = new FileOpenSingleViewModel {
+                FileFilters = MiscText.OpenFileDialog_PurplePenFilter,
+                InitialFileFilterIndex = 1
+            };
 
+            bool result = await Services.DialogService.ShowDialogAsync(fileOpenVM);
+
+            if (result && fileOpenVM.SelectedFile != null) {
+                // TODO: Open the selected file.
+            }
         }
 
         /// <summary>

@@ -616,4 +616,7 @@
   <data name="Version_RC" xml:space="preserve">
     <value>RC {0}</value>
   </data>
+  <data name="OpenFileDialog_PurplePenFilter" xml:space="preserve">
+    <value>Purple Pen 檔案|*.ppen|All files|*.*</value>
+  </data>
 </root>

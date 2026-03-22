@@ -26,15 +26,5 @@ namespace PurplePen
         /// <param name="viewModel">The ViewModel instance, pre-configured by the caller.</param>
         /// <returns>True if the dialog was accepted (OK), false if cancelled.</returns>
         Task<bool> ShowDialogAsync<TViewModel>(TViewModel viewModel) where TViewModel : class;
-
-        /// <summary>
-        /// Shows a file or folder picker dialog.
-        /// Supports Avalonia's FilePickerOpenOptions, FilePickerSaveOptions,
-        /// and FolderPickerOpenOptions as the options parameter.
-        /// </summary>
-        /// <typeparam name="TOptions">One of the Avalonia file picker options types.</typeparam>
-        /// <param name="options">The picker options (title, filters, etc.).</param>
-        /// <returns>The selected file/folder path, or null if cancelled.</returns>
-        Task<string> ShowFileDialogAsync<TOptions>(TOptions options) where TOptions : class;
     }
 }

@@ -379,4 +379,7 @@ După ce apăsați OK, încercați să localizați o copie a fișierului hartă 
   <data name="Version_RC" xml:space="preserve">
     <value>RC {0}</value>
   </data>
+  <data name="OpenFileDialog_PurplePenFilter" xml:space="preserve">
+    <value>Fișiere Purple Pen|*.ppen|Toate fișierele|*.*</value>
+  </data>
 </root>

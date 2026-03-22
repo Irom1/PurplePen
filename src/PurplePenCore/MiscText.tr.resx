@@ -628,4 +628,7 @@ Tamam düğmesine bastıktan sonra, bilgisayarınızda harita dosyasının bir k
   <data name="Version_RC" xml:space="preserve">
     <value>RC {0}</value>
   </data>
+  <data name="OpenFileDialog_PurplePenFilter" xml:space="preserve">
+    <value>Purple Pen dosyası|*.ppen|Tüm dosyalar|*.*</value>
+  </data>
 </root>
