@@ -1606,34 +1606,34 @@
     <value>Purple Pen file|*.ppen</value>
   </data>
   <data name="MainFrame_newEventMenu_Text" xml:space="preserve">
-    <value>&amp;New Event...</value>
+    <value>_New Event...</value>
   </data>
   <data name="MainFrame_openMenu_Text" xml:space="preserve">
-    <value>&amp;Open...</value>
+    <value>_Open...</value>
   </data>
   <data name="MainFrame_saveMenu_Text" xml:space="preserve">
-    <value>&amp;Save</value>
+    <value>_Save</value>
   </data>
   <data name="MainFrame_saveAsMenu_Text" xml:space="preserve">
-    <value>Save &amp;As...</value>
+    <value>Save _As...</value>
   </data>
   <data name="MainFrame_createOcadFilesMenu_Text" xml:space="preserve">
-    <value>Create OCAD &amp;Files...</value>
+    <value>Create OCAD _Files...</value>
   </data>
   <data name="MainFrame_createImageFilesMenu_Text" xml:space="preserve">
-    <value>Create Ima&amp;ge Files...</value>
+    <value>Create Ima_ge Files...</value>
   </data>
   <data name="MainFrame_createDescriptionPdfMenu_Text" xml:space="preserve">
-    <value>&amp;Descriptions...</value>
+    <value>_Descriptions...</value>
   </data>
   <data name="MainFrame_createPunchcardPdfMenu_Text" xml:space="preserve">
-    <value>Pu&amp;nch Cards...</value>
+    <value>Pu_nch Cards...</value>
   </data>
   <data name="MainFrame_createCoursePdfMenu_Text" xml:space="preserve">
-    <value>&amp;Courses...</value>
+    <value>_Courses...</value>
   </data>
   <data name="MainFrame_createPDFsMenu_Text" xml:space="preserve">
-    <value>Create P&amp;DFs</value>
+    <value>Create P_DFs</value>
   </data>
   <data name="MainFrame_createRouteGadgetFilesMenu_Text" xml:space="preserve">
     <value>Create RouteGadget Files...</value>
@@ -1642,76 +1642,76 @@
     <value>Create Route Review Files</value>
   </data>
   <data name="MainFrame_createXmlMenu_Text" xml:space="preserve">
-    <value>Create Data &amp;Interchange File (IOF XML)...</value>
+    <value>Create Data _Interchange File (IOF XML)...</value>
   </data>
   <data name="MainFrame_createGPXFileMenu_Text" xml:space="preserve">
-    <value>Create G&amp;PX File...</value>
+    <value>Create G_PX File...</value>
   </data>
   <data name="MainFrame_createKMLFileMenu_Text" xml:space="preserve">
-    <value>Create &amp;KML File...</value>
+    <value>Create _KML File...</value>
   </data>
   <data name="MainFrame_printDescriptionsMenu_Text" xml:space="preserve">
-    <value>&amp;Print Descriptions...</value>
+    <value>_Print Descriptions...</value>
   </data>
   <data name="MainFrame_printPunchCardsMenu_Text" xml:space="preserve">
-    <value>Print Pu&amp;nch Cards...</value>
+    <value>Print Pu_nch Cards...</value>
   </data>
   <data name="MainFrame_printCoursesMenu_Text" xml:space="preserve">
-    <value>Print &amp;Courses...</value>
+    <value>Print _Courses...</value>
   </data>
   <data name="MainFrame_printAreaThisPartMenu_Text" xml:space="preserve">
-    <value>This &amp;Part Only</value>
+    <value>This _Part Only</value>
   </data>
   <data name="MainFrame_printAreaThisCourseMenu_Text" xml:space="preserve">
-    <value>&amp;This Course</value>
+    <value>_This Course</value>
   </data>
   <data name="MainFrame_printAreaAllCoursesMenu_Text" xml:space="preserve">
-    <value>&amp;All Courses</value>
+    <value>_All Courses</value>
   </data>
   <data name="MainFrame_setPrintAreaMenu_Text" xml:space="preserve">
-    <value>Set Print A&amp;rea</value>
+    <value>Set Print A_rea</value>
   </data>
   <data name="MainFrame_programLanguageMenu_Text" xml:space="preserve">
-    <value>Program &amp;Language...</value>
+    <value>Program _Language...</value>
   </data>
   <data name="MainFrame_exitMenu_Text" xml:space="preserve">
-    <value>E&amp;xit</value>
+    <value>E_xit</value>
   </data>
   <data name="MainFrame_fileMenu_Text" xml:space="preserve">
-    <value>&amp;File</value>
+    <value>_File</value>
   </data>
   <data name="MainFrame_cancelMenu_Text" xml:space="preserve">
-    <value>&amp;Clear Selection</value>
+    <value>_Clear Selection</value>
   </data>
   <data name="MiscText_ClearSelectionWithShortcut" xml:space="preserve">
     <value>&amp;Clear Selection</value>
   </data>
   <data name="MainFrame_undoMenu_Text" xml:space="preserve">
-    <value>&amp;Undo</value>
+    <value>_Undo</value>
   </data>
   <data name="MiscText_UndoWithShortcut" xml:space="preserve">
     <value>&amp;Undo</value>
   </data>
   <data name="MainFrame_redoMenu_Text" xml:space="preserve">
-    <value>&amp;Redo</value>
+    <value>_Redo</value>
   </data>
   <data name="MiscText_RedoWithShortcut" xml:space="preserve">
     <value>&amp;Redo</value>
   </data>
   <data name="MainFrame_deleteMenu_Text" xml:space="preserve">
-    <value>&amp;Delete</value>
+    <value>_Delete</value>
   </data>
   <data name="MainFrame_deleteItemMenu_Text" xml:space="preserve">
-    <value>&amp;Delete</value>
+    <value>_Delete</value>
   </data>
   <data name="MainFrame_editMenu_Text" xml:space="preserve">
-    <value>&amp;Edit</value>
+    <value>_Edit</value>
   </data>
   <data name="MainFrame_entireCourseMenu_Text" xml:space="preserve">
-    <value>Entire &amp;Course</value>
+    <value>Entire _Course</value>
   </data>
   <data name="MainFrame_entireMapMenu_Text" xml:space="preserve">
-    <value>Entire &amp;Map</value>
+    <value>Entire _Map</value>
   </data>
   <data name="MainFrame_zoom50Menu_Text" xml:space="preserve">
     <value>50%</value>
@@ -1735,25 +1735,25 @@
     <value>1000%</value>
   </data>
   <data name="MainFrame_zoomMenu_Text" xml:space="preserve">
-    <value>&amp;Zoom</value>
+    <value>_Zoom</value>
   </data>
   <data name="MainFrame_veryLowIntensityMenu_Text" xml:space="preserve">
-    <value>&amp;Very Low</value>
+    <value>_Very Low</value>
   </data>
   <data name="MainFrame_lowIntensityMenu_Text" xml:space="preserve">
-    <value>&amp;Low</value>
+    <value>_Low</value>
   </data>
   <data name="MainFrame_mediumIntensityMenu_Text" xml:space="preserve">
-    <value>&amp;Medium</value>
+    <value>_Medium</value>
   </data>
   <data name="MainFrame_highIntensityMenu_Text" xml:space="preserve">
-    <value>&amp;High</value>
+    <value>_High</value>
   </data>
   <data name="MainFrame_fullIntensityMenu_Text" xml:space="preserve">
-    <value>&amp;Full</value>
+    <value>_Full</value>
   </data>
   <data name="MainFrame_mapIntensityMenu_Text" xml:space="preserve">
-    <value>Map &amp;Intensity</value>
+    <value>Map _Intensity</value>
   </data>
   <data name="MainFrame_normalQualityMenu_Text" xml:space="preserve">
     <value>Low</value>
@@ -1762,16 +1762,16 @@
     <value>High</value>
   </data>
   <data name="MainFrame_mapQualityMenu_Text" xml:space="preserve">
-    <value>Map &amp;Quality</value>
+    <value>Map _Quality</value>
   </data>
   <data name="MainFrame_showPrintAreaMenu_Text" xml:space="preserve">
-    <value>Show P&amp;rint Area</value>
+    <value>Show P_rint Area</value>
   </data>
   <data name="MainFrame_showPopupsMenu_Text" xml:space="preserve">
-    <value>Show &amp;Popup Information</value>
+    <value>Show _Popup Information</value>
   </data>
   <data name="MainFrame_allControlsMenu_Text" xml:space="preserve">
-    <value>&amp;All Controls</value>
+    <value>_All Controls</value>
   </data>
   <data name="MainFrame_otherCoursesMenu_Text" xml:space="preserve">
     <value>Other Courses...</value>
@@ -1780,40 +1780,40 @@
     <value>Clear Other Courses</value>
   </data>
   <data name="MainFrame_viewMenu_Text" xml:space="preserve">
-    <value>&amp;View</value>
+    <value>_View</value>
   </data>
   <data name="MainFrame_addStartMenu_Text" xml:space="preserve">
-    <value>&amp;Start</value>
+    <value>_Start</value>
   </data>
   <data name="MainFrame_addControlMenu_Text" xml:space="preserve">
-    <value>&amp;Control</value>
+    <value>_Control</value>
   </data>
   <data name="MainFrame_addFinishMenu_Text" xml:space="preserve">
-    <value>&amp;Finish</value>
+    <value>_Finish</value>
   </data>
   <data name="MiscText_FinishButtonText" xml:space="preserve">
     <value>&amp;Finish</value>
   </data>
   <data name="MainFrame_addDescriptionsMenu_Text" xml:space="preserve">
-    <value>&amp;Descriptions</value>
+    <value>_Descriptions</value>
   </data>
   <data name="MainFrame_addMapFlipMenuItem_Text" xml:space="preserve">
-    <value>Map &amp;Flip at Control Point</value>
+    <value>Map _Flip at Control Point</value>
   </data>
   <data name="MainFrame_mapExchangeControlMenuItem_Text" xml:space="preserve">
-    <value>Map Exchange at &amp;Control Point</value>
+    <value>Map Exchange at _Control Point</value>
   </data>
   <data name="MainFrame_mapExchangeSeparateMenuItem_Text" xml:space="preserve">
-    <value>Flagged &amp;Route to Map Exchange</value>
+    <value>Flagged _Route to Map Exchange</value>
   </data>
   <data name="MainFrame_addMapExchangeMenu_Text" xml:space="preserve">
-    <value>Map Flip/E&amp;xchange</value>
+    <value>Map Flip/E_xchange</value>
   </data>
   <data name="MainFrame_addVariationMenu_Text" xml:space="preserve">
-    <value>&amp;Variation...</value>
+    <value>_Variation...</value>
   </data>
   <data name="MainFrame_addTextLineMenu_Text" xml:space="preserve">
-    <value>Text &amp;Line...</value>
+    <value>Text _Line...</value>
   </data>
   <data name="MainFrame_addMapIssueMenu_Text" xml:space="preserve">
     <value>Timed Start</value>
@@ -1948,25 +1948,25 @@
     <value>Ellipse</value>
   </data>
   <data name="MainFrame_addMenu_Text" xml:space="preserve">
-    <value>&amp;Add</value>
+    <value>_Add</value>
   </data>
   <data name="MainFrame_changeMapFileMenu_Text" xml:space="preserve">
-    <value>&amp;Map File...</value>
+    <value>_Map File...</value>
   </data>
   <data name="MainFrame_changeCodesMenu_Text" xml:space="preserve">
-    <value>Change Control &amp;Codes...</value>
+    <value>Change Control _Codes...</value>
   </data>
   <data name="MainFrame_autoNumberingMenu_Text" xml:space="preserve">
-    <value>Automatic &amp;Numbering...</value>
+    <value>Automatic _Numbering...</value>
   </data>
   <data name="MainFrame_removeUnusedControlsMenu_Text" xml:space="preserve">
-    <value>Remove &amp;Unused Controls...</value>
+    <value>Remove _Unused Controls...</value>
   </data>
   <data name="MainFrame_moveAllControlsMenu_Text" xml:space="preserve">
-    <value>Mo&amp;ve All Controls...</value>
+    <value>Mo_ve All Controls...</value>
   </data>
   <data name="MainFrame_punchPatternsMenu_Text" xml:space="preserve">
-    <value>&amp;Punch Patterns...</value>
+    <value>_Punch Patterns...</value>
   </data>
   <data name="MainFrame_descriptionStd2004Menu_Text" xml:space="preserve">
     <value>2004 Description Standard</value>
@@ -1984,67 +1984,67 @@
     <value>ISSprOM 2019 Map Standard</value>
   </data>
   <data name="MainFrame_iOFStandardsToolStripMenuItem_Text" xml:space="preserve">
-    <value>IOF &amp;Standards</value>
+    <value>IOF _Standards</value>
   </data>
   <data name="MainFrame_customizeDescriptionsMenu_Text" xml:space="preserve">
-    <value>Customize &amp;Description Text...</value>
+    <value>Customize _Description Text...</value>
   </data>
   <data name="MainFrame_customizeCourseAppearanceMenu_Text" xml:space="preserve">
-    <value>Customize &amp;Appearance...</value>
+    <value>Customize _Appearance...</value>
   </data>
   <data name="MainFrame_eventMenu_Text" xml:space="preserve">
-    <value>Eve&amp;nt</value>
+    <value>Eve_nt</value>
   </data>
   <data name="MainFrame_addCourseMenu_Text" xml:space="preserve">
-    <value>&amp;Add Course...</value>
+    <value>_Add Course...</value>
   </data>
   <data name="MainFrame_deleteCourseMenu_Text" xml:space="preserve">
-    <value>&amp;Delete Course</value>
+    <value>_Delete Course</value>
   </data>
   <data name="MainFrame_duplicateCourseMenu_Text" xml:space="preserve">
-    <value>D&amp;uplicate Course...</value>
+    <value>D_uplicate Course...</value>
   </data>
   <data name="MainFrame_propertiesMenu_Text" xml:space="preserve">
-    <value>&amp;Properties...</value>
+    <value>_Properties...</value>
   </data>
   <data name="MainFrame_courseOrderMenu_Text" xml:space="preserve">
-    <value>Course &amp;Order...</value>
+    <value>Course _Order...</value>
   </data>
   <data name="MainFrame_courseLoadMenu_Text" xml:space="preserve">
-    <value>Competitor &amp;Load...</value>
+    <value>Competitor _Load...</value>
   </data>
   <data name="MainFrame_courseVariationReportMenu_Text" xml:space="preserve">
-    <value>Relay Team &amp;Variations...</value>
+    <value>Relay Team _Variations...</value>
   </data>
   <data name="MainFrame_courseMenu_Text" xml:space="preserve">
-    <value>&amp;Course</value>
+    <value>_Course</value>
   </data>
   <data name="MainFrame_deleteForkMenu_Text" xml:space="preserve">
-    <value>Delete For&amp;k/Loop</value>
+    <value>Delete For_k/Loop</value>
   </data>
   <data name="MainFrame_addBendMenu_Text" xml:space="preserve">
-    <value>Add &amp;Bend</value>
+    <value>Add _Bend</value>
   </data>
   <data name="MainFrame_removeBendMenu_Text" xml:space="preserve">
-    <value>Remove B&amp;end</value>
+    <value>Remove B_end</value>
   </data>
   <data name="MainFrame_addGapMenu_Text" xml:space="preserve">
-    <value>Add &amp;Gap</value>
+    <value>Add _Gap</value>
   </data>
   <data name="MainFrame_removeGapMenu_Text" xml:space="preserve">
-    <value>Remove Ga&amp;p</value>
+    <value>Remove Ga_p</value>
   </data>
   <data name="MainFrame_changeTextMenu_Text" xml:space="preserve">
-    <value>Change &amp;Text...</value>
+    <value>Change _Text...</value>
   </data>
   <data name="MainFrame_changeLineAppearanceMenu_Text" xml:space="preserve">
-    <value>Change Line &amp;Appearance...</value>
+    <value>Change Line _Appearance...</value>
   </data>
   <data name="MainFrame_rotateMenu_Text" xml:space="preserve">
-    <value>R&amp;otate</value>
+    <value>R_otate</value>
   </data>
   <data name="MainFrame_stretchMenu_Text" xml:space="preserve">
-    <value>&amp;Stretch</value>
+    <value>_Stretch</value>
   </data>
   <data name="MainFrame_noFlaggingMenu_Text" xml:space="preserve">
     <value>No Flagging</value>
@@ -2059,49 +2059,49 @@
     <value>End of Leg Flagged</value>
   </data>
   <data name="MainFrame_legFlaggingMenu_Text" xml:space="preserve">
-    <value>&amp;Leg Flagging</value>
+    <value>_Leg Flagging</value>
   </data>
   <data name="MainFrame_changeDisplayedCoursesMenu_Text" xml:space="preserve">
-    <value>Change Displa&amp;yed Courses...</value>
+    <value>Change Displa_yed Courses...</value>
   </data>
   <data name="MainFrame_itemMenu_Text" xml:space="preserve">
-    <value>&amp;Item</value>
+    <value>_Item</value>
   </data>
   <data name="MainFrame_courseSummaryMenu_Text" xml:space="preserve">
-    <value>Course &amp;Summary</value>
+    <value>Course _Summary</value>
   </data>
   <data name="MainFrame_eventAuditMenu_Text" xml:space="preserve">
-    <value>Event &amp;Audit</value>
+    <value>Event _Audit</value>
   </data>
   <data name="MainFrame_legLengthsMenu_Text" xml:space="preserve">
-    <value>&amp;Leg Lengths</value>
+    <value>_Leg Lengths</value>
   </data>
   <data name="MainFrame_controlCrossrefMenu_Text" xml:space="preserve">
-    <value>Control &amp;Cross-reference</value>
+    <value>Control _Cross-reference</value>
   </data>
   <data name="MainFrame_controlAndLegLoadMenu_Text" xml:space="preserve">
-    <value>Control and Leg Loa&amp;d</value>
+    <value>Control and Leg Loa_d</value>
   </data>
   <data name="MainFrame_reportMenu_Text" xml:space="preserve">
-    <value>&amp;Reports</value>
+    <value>_Reports</value>
   </data>
   <data name="MainFrame_helpContentsMenu_Text" xml:space="preserve">
-    <value>Purple Pen &amp;Help</value>
+    <value>Purple Pen _Help</value>
   </data>
   <data name="MainFrame_helpTranslatedMenu_Text" xml:space="preserve">
     <value>Purple Pen Help (Translated)</value>
   </data>
   <data name="MainFrame_mainWebSiteToolMenu_Text" xml:space="preserve">
-    <value>Purple Pen &amp;Web Site</value>
+    <value>Purple Pen _Web Site</value>
   </data>
   <data name="MainFrame_supportWebSiteMenu_Text" xml:space="preserve">
-    <value>&amp;Support/Bug Reporting</value>
+    <value>_Support/Bug Reporting</value>
   </data>
   <data name="MainFrame_donateWebSiteMenu_Text" xml:space="preserve">
-    <value>Make a &amp;Donation</value>
+    <value>Make a _Donation</value>
   </data>
   <data name="MainFrame_aboutMenu_Text" xml:space="preserve">
-    <value>&amp;About Purple Pen</value>
+    <value>_About Purple Pen</value>
   </data>
   <data name="MainFrame_symbolBrowserMenu_Text" xml:space="preserve">
     <value>Symbol Browser</value>
@@ -2149,10 +2149,10 @@
     <value>Merge Symbols.xml...</value>
   </data>
   <data name="MainFrame_translateMenu_Text" xml:space="preserve">
-    <value>&amp;Translate Description Text</value>
+    <value>_Translate Description Text</value>
   </data>
   <data name="MainFrame_helpMenu_Text" xml:space="preserve">
-    <value>&amp;Help</value>
+    <value>_Help</value>
   </data>
   <data name="MainFrame_openToolStripButton_Text" xml:space="preserve">
     <value>Open</value>

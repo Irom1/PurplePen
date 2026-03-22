@@ -1,34 +1,22 @@
 <!--
     MainWindow.axaml
+    Main application window for Purple Pen.
+    Migrated from WinForms PurplePen/MainFrame.cs.
 
-    This is the "View" in the MVVM pattern — it defines the UI layout using XAML.
-
-    Key concepts for newcomers:
-
-    1. DATA CONTEXT: The Window's DataContext is set to a MainWindowViewModel instance
-       (done in App.axaml.cs at startup). This means all {Binding ...} expressions
-       in this file look for properties on that ViewModel.
-
-    2. COMPILED BINDINGS: The x:DataType="vm:MainWindowViewModel" attribute enables
-       compiled bindings, which are checked at compile time (typos become build errors
-       instead of silent runtime failures). This is an Avalonia feature.
-
-    3. COMMAND BINDING: Button.Command="{Binding SomeCommand}" connects the button
-       click to an ICommand on the ViewModel. The [RelayCommand] source generator
-       creates these commands automatically from methods in the ViewModel.
-
-    4. PROPERTY BINDING: Text="{Binding Counter}" displays the value of the Counter
-       property. When Counter changes, the UI updates automatically because the
-       [ObservableProperty] generator fires PropertyChanged notifications.
-
-    5. x:Static: References a static property on a class at compile time.
-       We use it to pull localized strings from the UIText resource class
-       (generated from UIText.resx). This keeps all user-visible text in the View
-       layer (resource files), not in the ViewModel.
-
-    6. StringFormat: Formats a bound value into a string. We use it with the
-       Counter binding so the display reads "Counter: 5". The format string itself
-       comes from UIText.resx via x:Static, enabling localization.
+    Layout structure:
+      DockPanel (root)
+        ├── Menu (mainMenu) — docked Top
+        ├── Toolbar panel — docked Top
+        ├── TabControl (courseTabs) — docked Top
+        ├── Status bar Grid — docked Bottom
+        └── Main content Grid with GridSplitter — fills remaining space
+              ├── Left panel (splitDescription equivalent)
+              │     ├── Description/Topology area with radio buttons
+              │     ├── GridSplitter (horizontal)
+              │     └── Selection panel
+              └── Right panel
+                    ├── coursePartBanner (top)
+                    └── Map viewer with scroll bars
 -->
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -36,17 +24,643 @@
         xmlns:resx="using:AvPurplePen"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        mc:Ignorable="d" d:DesignWidth="958" d:DesignHeight="600"
         x:Class="AvPurplePen.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
-        Title="AvPurplePen">
+        Title="{resx:Localize MainFrame_Text}">
 
-    <!-- Design.DataContext sets a dummy ViewModel for the XAML previewer in the IDE.
-         It does NOT affect the runtime DataContext (that's set in App.axaml.cs). -->
     <Design.DataContext>
         <vm:MainWindowViewModel/>
     </Design.DataContext>
 
+    <DockPanel LastChildFill="True">
 
+        <!-- ==================== MAIN MENU ==================== -->
+        <Menu x:Name="mainMenu" DockPanel.Dock="Top">
+
+            <!-- === File Menu === -->
+            <MenuItem x:Name="fileMenu" Header="{resx:Localize MainFrame_fileMenu_Text}">
+                <MenuItem x:Name="newEventMenu" Header="{resx:Localize MainFrame_newEventMenu_Text}"/>
+                <MenuItem x:Name="openMenu" Header="{resx:Localize MainFrame_openMenu_Text}" InputGesture="Ctrl+O"/>
+                <Separator/>
+                <MenuItem x:Name="saveMenu" Header="{resx:Localize MainFrame_saveMenu_Text}" InputGesture="Ctrl+S"/>
+                <MenuItem x:Name="saveAsMenu" Header="{resx:Localize MainFrame_saveAsMenu_Text}"/>
+                <Separator/>
+                <MenuItem x:Name="createOcadFilesMenu" Header="{resx:Localize MainFrame_createOcadFilesMenu_Text}"/>
+                <MenuItem x:Name="createImageFilesMenu" Header="{resx:Localize MainFrame_createImageFilesMenu_Text}"/>
+                <MenuItem x:Name="createPDFsMenu" Header="{resx:Localize MainFrame_createPDFsMenu_Text}">
+                    <MenuItem x:Name="createDescriptionPdfMenu" Header="{resx:Localize MainFrame_createDescriptionPdfMenu_Text}"/>
+                    <MenuItem x:Name="createPunchcardPdfMenu" Header="{resx:Localize MainFrame_createPunchcardPdfMenu_Text}"/>
+                    <MenuItem x:Name="createCoursePdfMenu" Header="{resx:Localize MainFrame_createCoursePdfMenu_Text}"/>
+                </MenuItem>
+                <MenuItem x:Name="createRouteReviewFilesToolStripMenuItem" Header="{resx:Localize MainFrame_createRouteReviewFilesToolStripMenuItem_Text}">
+                    <MenuItem x:Name="createRouteGadgetFilesMenu" Header="{resx:Localize MainFrame_createRouteGadgetFilesMenu_Text}"/>
+                </MenuItem>
+                <MenuItem x:Name="createXmlMenu" Header="{resx:Localize MainFrame_createXmlMenu_Text}"/>
+                <MenuItem x:Name="createGPXFileMenu" Header="{resx:Localize MainFrame_createGPXFileMenu_Text}"/>
+                <MenuItem x:Name="createKMLFileMenu" Header="{resx:Localize MainFrame_createKMLFileMenu_Text}"/>
+                <Separator/>
+                <MenuItem x:Name="printDescriptionsMenu" Header="{resx:Localize MainFrame_printDescriptionsMenu_Text}" InputGesture="Ctrl+P"/>
+                <MenuItem x:Name="printPunchCardsMenu" Header="{resx:Localize MainFrame_printPunchCardsMenu_Text}"/>
+                <MenuItem x:Name="printCoursesMenu" Header="{resx:Localize MainFrame_printCoursesMenu_Text}"/>
+                <MenuItem x:Name="setPrintAreaMenu" Header="{resx:Localize MainFrame_setPrintAreaMenu_Text}">
+                    <MenuItem x:Name="printAreaThisPartMenu" Header="{resx:Localize MainFrame_printAreaThisPartMenu_Text}"/>
+                    <MenuItem x:Name="printAreaThisCourseMenu" Header="{resx:Localize MainFrame_printAreaThisCourseMenu_Text}"/>
+                    <MenuItem x:Name="printAreaAllCoursesMenu" Header="{resx:Localize MainFrame_printAreaAllCoursesMenu_Text}"/>
+                </MenuItem>
+                <Separator/>
+                <MenuItem x:Name="programLanguageMenu" Header="{resx:Localize MainFrame_programLanguageMenu_Text}"/>
+                <Separator/>
+                <MenuItem x:Name="exitMenu" Header="{resx:Localize MainFrame_exitMenu_Text}"/>
+            </MenuItem>
+
+            <!-- === Edit Menu === -->
+            <MenuItem x:Name="editMenu" Header="{resx:Localize MainFrame_editMenu_Text}">
+                <MenuItem x:Name="cancelMenu" Header="{resx:Localize MainFrame_cancelMenu_Text}"/>
+                <Separator/>
+                <MenuItem x:Name="undoMenu" Header="{resx:Localize MainFrame_undoMenu_Text}" InputGesture="Ctrl+Z"/>
+                <MenuItem x:Name="redoMenu" Header="{resx:Localize MainFrame_redoMenu_Text}" InputGesture="Ctrl+Y"/>
+                <Separator/>
+                <MenuItem x:Name="deleteMenu" Header="{resx:Localize MainFrame_deleteMenu_Text}" InputGesture="Delete"/>
+            </MenuItem>
+
+            <!-- === View Menu === -->
+            <MenuItem x:Name="viewMenu" Header="{resx:Localize MainFrame_viewMenu_Text}">
+                <MenuItem x:Name="entireCourseMenu" Header="{resx:Localize MainFrame_entireCourseMenu_Text}" InputGesture="F2"/>
+                <MenuItem x:Name="entireMapMenu" Header="{resx:Localize MainFrame_entireMapMenu_Text}" InputGesture="F3"/>
+                <MenuItem x:Name="zoomMenu" Header="{resx:Localize MainFrame_zoomMenu_Text}">
+                    <MenuItem x:Name="zoom50Menu" Header="{resx:Localize MainFrame_zoom50Menu_Text}" Tag="0.5"/>
+                    <MenuItem x:Name="zoom100Menu" Header="{resx:Localize MainFrame_zoom100Menu_Text}" Tag="1"/>
+                    <MenuItem x:Name="zoom150Menu" Header="{resx:Localize MainFrame_zoom150Menu_Text}" Tag="1.5"/>
+                    <MenuItem x:Name="zoom200Menu" Header="{resx:Localize MainFrame_zoom200Menu_Text}" Tag="2"/>
+                    <MenuItem x:Name="zoom300Menu" Header="{resx:Localize MainFrame_zoom300Menu_Text}" Tag="3"/>
+                    <MenuItem x:Name="zoom500Menu" Header="{resx:Localize MainFrame_zoom500Menu_Text}" Tag="5"/>
+                    <MenuItem x:Name="zoom1000Menu" Header="{resx:Localize MainFrame_zoom1000Menu_Text}" Tag="10"/>
+                </MenuItem>
+                <Separator/>
+                <MenuItem x:Name="mapIntensityMenu" Header="{resx:Localize MainFrame_mapIntensityMenu_Text}">
+                    <MenuItem x:Name="veryLowIntensityMenu" Header="{resx:Localize MainFrame_veryLowIntensityMenu_Text}" Tag="0.2"/>
+                    <MenuItem x:Name="lowIntensityMenu" Header="{resx:Localize MainFrame_lowIntensityMenu_Text}" Tag="0.4"/>
+                    <MenuItem x:Name="mediumIntensityMenu" Header="{resx:Localize MainFrame_mediumIntensityMenu_Text}" Tag="0.6"/>
+                    <MenuItem x:Name="highIntensityMenu" Header="{resx:Localize MainFrame_highIntensityMenu_Text}" Tag="0.8"/>
+                    <MenuItem x:Name="fullIntensityMenu" Header="{resx:Localize MainFrame_fullIntensityMenu_Text}" Tag="1"/>
+                </MenuItem>
+                <MenuItem x:Name="mapQualityMenu" Header="{resx:Localize MainFrame_mapQualityMenu_Text}">
+                    <MenuItem x:Name="normalQualityMenu" Header="{resx:Localize MainFrame_normalQualityMenu_Text}"/>
+                    <MenuItem x:Name="highQualityMenu" Header="{resx:Localize MainFrame_highQualityMenu_Text}"/>
+                </MenuItem>
+                <MenuItem x:Name="showPrintAreaMenu" Header="{resx:Localize MainFrame_showPrintAreaMenu_Text}"/>
+                <MenuItem x:Name="showPopupsMenu" Header="{resx:Localize MainFrame_showPopupsMenu_Text}"/>
+                <Separator/>
+                <MenuItem x:Name="allControlsMenu" Header="{resx:Localize MainFrame_allControlsMenu_Text}" InputGesture="F4"/>
+                <MenuItem x:Name="otherCoursesMenu" Header="{resx:Localize MainFrame_otherCoursesMenu_Text}" InputGesture="F5"/>
+                <MenuItem x:Name="clearOtherCoursesMenu" Header="{resx:Localize MainFrame_clearOtherCoursesMenu_Text}" InputGesture="Shift+F5"/>
+            </MenuItem>
+
+            <!-- === Add Menu === -->
+            <MenuItem x:Name="addMenu" Header="{resx:Localize MainFrame_addMenu_Text}">
+                <MenuItem x:Name="addStartMenu" Header="{resx:Localize MainFrame_addStartMenu_Text}"/>
+                <MenuItem x:Name="addControlMenu" Header="{resx:Localize MainFrame_addControlMenu_Text}" InputGesture="Ctrl+A"/>
+                <MenuItem x:Name="addFinishMenu" Header="{resx:Localize MainFrame_addFinishMenu_Text}"/>
+                <MenuItem x:Name="addDescriptionsMenu" Header="{resx:Localize MainFrame_addDescriptionsMenu_Text}"/>
+                <MenuItem x:Name="addMapExchangeMenu" Header="{resx:Localize MainFrame_addMapExchangeMenu_Text}">
+                    <MenuItem x:Name="addMapFlipMenuItem" Header="{resx:Localize MainFrame_addMapFlipMenuItem_Text}"/>
+                    <MenuItem x:Name="mapExchangeControlMenuItem" Header="{resx:Localize MainFrame_mapExchangeControlMenuItem_Text}"/>
+                    <MenuItem x:Name="mapExchangeSeparateMenuItem" Header="{resx:Localize MainFrame_mapExchangeSeparateMenuItem_Text}"/>
+                </MenuItem>
+                <MenuItem x:Name="addVariationMenu" Header="{resx:Localize MainFrame_addVariationMenu_Text}"/>
+                <MenuItem x:Name="addTextLineMenu" Header="{resx:Localize MainFrame_addTextLineMenu_Text}"/>
+                <Separator/>
+                <MenuItem x:Name="addMapIssueMenu" Header="{resx:Localize MainFrame_addMapIssueMenu_Text}"/>
+                <MenuItem x:Name="addMandatoryCrossingMenu" Header="{resx:Localize MainFrame_addMandatoryCrossingMenu_Text}"/>
+                <MenuItem x:Name="addOptCrossingMenu" Header="{resx:Localize MainFrame_addOptCrossingMenu_Text}"/>
+                <MenuItem x:Name="addOutOfBoundsMenu" Header="{resx:Localize MainFrame_addOutOfBoundsMenu_Text}"/>
+                <MenuItem x:Name="addDangerousMenu" Header="{resx:Localize MainFrame_addDangerousMenu_Text}"/>
+                <MenuItem x:Name="addConstructionMenu" Header="{resx:Localize MainFrame_addConstructionMenu_Text}"/>
+                <MenuItem x:Name="addWaterMenu" Header="{resx:Localize MainFrame_addWaterMenu_Text}"/>
+                <MenuItem x:Name="addFirstAidMenu" Header="{resx:Localize MainFrame_addFirstAidMenu_Text}"/>
+                <MenuItem x:Name="addForbiddenMenu" Header="{resx:Localize MainFrame_addForbiddenMenu_Text}"/>
+                <MenuItem x:Name="addBoundaryMenu" Header="{resx:Localize MainFrame_addBoundaryMenu_Text}"/>
+                <MenuItem x:Name="addRegMarkMenu" Header="{resx:Localize MainFrame_addRegMarkMenu_Text}"/>
+                <Separator/>
+                <MenuItem x:Name="whiteOutMenu" Header="{resx:Localize MainFrame_whiteOutMenu_Text}"/>
+                <MenuItem x:Name="addTextMenu" Header="{resx:Localize MainFrame_addTextMenu_Text}"/>
+                <MenuItem x:Name="addImageMenu" Header="{resx:Localize MainFrame_addImageMenu_Text}"/>
+                <MenuItem x:Name="addLineMenu" Header="{resx:Localize MainFrame_addLineMenu_Text}"/>
+                <MenuItem x:Name="addRectangleMenu" Header="{resx:Localize MainFrame_addRectangleMenu_Text}"/>
+                <MenuItem x:Name="addEllipseMenu" Header="{resx:Localize MainFrame_addEllipseMenu_Text}"/>
+            </MenuItem>
+
+            <!-- === Event Menu === -->
+            <MenuItem x:Name="eventMenu" Header="{resx:Localize MainFrame_eventMenu_Text}">
+                <MenuItem x:Name="changeMapFileMenu" Header="{resx:Localize MainFrame_changeMapFileMenu_Text}"/>
+                <Separator/>
+                <MenuItem x:Name="changeCodesMenu" Header="{resx:Localize MainFrame_changeCodesMenu_Text}"/>
+                <MenuItem x:Name="autoNumberingMenu" Header="{resx:Localize MainFrame_autoNumberingMenu_Text}"/>
+                <MenuItem x:Name="removeUnusedControlsMenu" Header="{resx:Localize MainFrame_removeUnusedControlsMenu_Text}"/>
+                <MenuItem x:Name="moveAllControlsMenu" Header="{resx:Localize MainFrame_moveAllControlsMenu_Text}"/>
+                <Separator/>
+                <MenuItem x:Name="punchPatternsMenu" Header="{resx:Localize MainFrame_punchPatternsMenu_Text}"/>
+                <Separator/>
+                <MenuItem x:Name="iOFStandardsToolStripMenuItem" Header="{resx:Localize MainFrame_iOFStandardsToolStripMenuItem_Text}">
+                    <MenuItem x:Name="descriptionStd2004Menu" Header="{resx:Localize MainFrame_descriptionStd2004Menu_Text}"/>
+                    <MenuItem x:Name="descriptionStd2018Menu" Header="{resx:Localize MainFrame_descriptionStd2018Menu_Text}"/>
+                    <Separator/>
+                    <MenuItem x:Name="mapStd2000Menu" Header="{resx:Localize MainFrame_mapStd2000Menu_Text}"/>
+                    <MenuItem x:Name="mapStd2017Menu" Header="{resx:Localize MainFrame_mapStd2017Menu_Text}"/>
+                    <MenuItem x:Name="mapStdSpr2019Menu" Header="{resx:Localize MainFrame_mapStdSpr2019Menu_Text}"/>
+                </MenuItem>
+                <MenuItem x:Name="customizeDescriptionsMenu" Header="{resx:Localize MainFrame_customizeDescriptionsMenu_Text}"/>
+                <MenuItem x:Name="customizeCourseAppearanceMenu" Header="{resx:Localize MainFrame_customizeCourseAppearanceMenu_Text}"/>
+            </MenuItem>
+
+            <!-- === Course Menu === -->
+            <MenuItem x:Name="courseMenu" Header="{resx:Localize MainFrame_courseMenu_Text}">
+                <MenuItem x:Name="addCourseMenu" Header="{resx:Localize MainFrame_addCourseMenu_Text}"/>
+                <MenuItem x:Name="deleteCourseMenu" Header="{resx:Localize MainFrame_deleteCourseMenu_Text}"/>
+                <MenuItem x:Name="duplicateCourseMenu" Header="{resx:Localize MainFrame_duplicateCourseMenu_Text}"/>
+                <MenuItem x:Name="propertiesMenu" Header="{resx:Localize MainFrame_propertiesMenu_Text}"/>
+                <Separator/>
+                <MenuItem x:Name="courseOrderMenu" Header="{resx:Localize MainFrame_courseOrderMenu_Text}"/>
+                <MenuItem x:Name="courseLoadMenu" Header="{resx:Localize MainFrame_courseLoadMenu_Text}"/>
+                <Separator/>
+                <MenuItem x:Name="courseVariationReportMenu" Header="{resx:Localize MainFrame_courseVariationReportMenu_Text}"/>
+            </MenuItem>
+
+            <!-- === Item Menu === -->
+            <MenuItem x:Name="itemMenu" Header="{resx:Localize MainFrame_itemMenu_Text}">
+                <MenuItem x:Name="deleteItemMenu" Header="{resx:Localize MainFrame_deleteItemMenu_Text}" InputGesture="Delete"/>
+                <MenuItem x:Name="deleteForkMenu" Header="{resx:Localize MainFrame_deleteForkMenu_Text}"/>
+                <Separator/>
+                <MenuItem x:Name="addBendMenu" Header="{resx:Localize MainFrame_addBendMenu_Text}" InputGesture="Ctrl+B"/>
+                <MenuItem x:Name="removeBendMenu" Header="{resx:Localize MainFrame_removeBendMenu_Text}" InputGesture="Ctrl+Shift+B"/>
+                <MenuItem x:Name="addGapMenu" Header="{resx:Localize MainFrame_addGapMenu_Text}" InputGesture="Ctrl+G"/>
+                <MenuItem x:Name="removeGapMenu" Header="{resx:Localize MainFrame_removeGapMenu_Text}" InputGesture="Ctrl+Shift+G"/>
+                <Separator/>
+                <MenuItem x:Name="changeTextMenu" Header="{resx:Localize MainFrame_changeTextMenu_Text}"/>
+                <MenuItem x:Name="changeLineAppearanceMenu" Header="{resx:Localize MainFrame_changeLineAppearanceMenu_Text}"/>
+                <MenuItem x:Name="rotateMenu" Header="{resx:Localize MainFrame_rotateMenu_Text}"/>
+                <MenuItem x:Name="stretchMenu" Header="{resx:Localize MainFrame_stretchMenu_Text}"/>
+                <MenuItem x:Name="legFlaggingMenu" Header="{resx:Localize MainFrame_legFlaggingMenu_Text}">
+                    <MenuItem x:Name="noFlaggingMenu" Header="{resx:Localize MainFrame_noFlaggingMenu_Text}"/>
+                    <MenuItem x:Name="entireFlaggingMenu" Header="{resx:Localize MainFrame_entireFlaggingMenu_Text}"/>
+                    <MenuItem x:Name="beginFlaggingMenu" Header="{resx:Localize MainFrame_beginFlaggingMenu_Text}"/>
+                    <MenuItem x:Name="endFlaggingMenu" Header="{resx:Localize MainFrame_endFlaggingMenu_Text}"/>
+                </MenuItem>
+                <Separator/>
+                <MenuItem x:Name="changeDisplayedCoursesMenu" Header="{resx:Localize MainFrame_changeDisplayedCoursesMenu_Text}"/>
+            </MenuItem>
+
+            <!-- === Reports Menu === -->
+            <MenuItem x:Name="reportMenu" Header="{resx:Localize MainFrame_reportMenu_Text}">
+                <MenuItem x:Name="courseSummaryMenu" Header="{resx:Localize MainFrame_courseSummaryMenu_Text}"/>
+                <MenuItem x:Name="eventAuditMenu" Header="{resx:Localize MainFrame_eventAuditMenu_Text}"/>
+                <MenuItem x:Name="legLengthsMenu" Header="{resx:Localize MainFrame_legLengthsMenu_Text}"/>
+                <MenuItem x:Name="controlCrossrefMenu" Header="{resx:Localize MainFrame_controlCrossrefMenu_Text}"/>
+                <MenuItem x:Name="controlAndLegLoadMenu" Header="{resx:Localize MainFrame_controlAndLegLoadMenu_Text}"/>
+            </MenuItem>
+
+            <!-- === Help Menu === -->
+            <MenuItem x:Name="helpMenu" Header="{resx:Localize MainFrame_helpMenu_Text}">
+                <MenuItem x:Name="helpContentsMenu" Header="{resx:Localize MainFrame_helpContentsMenu_Text}" InputGesture="F1"/>
+                <MenuItem x:Name="helpTranslatedMenu" Header="{resx:Localize MainFrame_helpTranslatedMenu_Text}"/>
+                <Separator/>
+                <MenuItem x:Name="mainWebSiteToolMenu" Header="{resx:Localize MainFrame_mainWebSiteToolMenu_Text}"/>
+                <MenuItem x:Name="supportWebSiteMenu" Header="{resx:Localize MainFrame_supportWebSiteMenu_Text}"/>
+                <MenuItem x:Name="donateWebSiteMenu" Header="{resx:Localize MainFrame_donateWebSiteMenu_Text}"/>
+                <Separator/>
+                <MenuItem x:Name="aboutMenu" Header="{resx:Localize MainFrame_aboutMenu_Text}"/>
+                <!-- Debug submenu — only visible in debug builds -->
+                <MenuItem x:Name="debugMenu" Header="{resx:Localize MainFrame_debugMenu_Text}">
+                    <MenuItem x:Name="symbolBrowserMenu" Header="{resx:Localize MainFrame_symbolBrowserMenu_Text}"/>
+                    <MenuItem x:Name="descriptionBrowserMenu" Header="{resx:Localize MainFrame_descriptionBrowserMenu_Text}"/>
+                    <MenuItem x:Name="controlTesterMenu" Header="{resx:Localize MainFrame_controlTesterMenu_Text}"/>
+                    <MenuItem x:Name="mapTesterMenu" Header="{resx:Localize MainFrame_mapTesterMenu_Text}"/>
+                    <MenuItem x:Name="courseSelectorTesterMenu" Header="{resx:Localize MainFrame_courseSelectorTesterMenu_Text}"/>
+                    <MenuItem x:Name="dotGridTesterToolStripMenuItem" Header="{resx:Localize MainFrame_dotGridTesterToolStripMenuItem_Text}"/>
+                    <MenuItem x:Name="dumpOCADFileMenu" Header="{resx:Localize MainFrame_dumpOCADFileMenu_Text}"/>
+                    <MenuItem x:Name="reportTesterToolStripMenuItem" Header="{resx:Localize MainFrame_reportTesterToolStripMenuItem_Text}"/>
+                    <MenuItem x:Name="fontMetricsToolStripMenuItem" Header="{resx:Localize MainFrame_fontMetricsToolStripMenuItem_Text}"/>
+                    <MenuItem x:Name="missingTranslationsMenuItem" Header="{resx:Localize MainFrame_missingTranslationsMenuItem_Text}"/>
+                    <MenuItem x:Name="crashToolStripMenuItem" Header="{resx:Localize MainFrame_crashToolStripMenuItem_Text}"/>
+                </MenuItem>
+                <!-- Translate submenu -->
+                <MenuItem x:Name="translateMenu" Header="{resx:Localize MainFrame_translateMenu_Text}">
+                    <MenuItem x:Name="addDescriptionLanguageMenu" Header="{resx:Localize MainFrame_addDescriptionLanguageMenu_Text}"/>
+                    <MenuItem x:Name="addTranslatedTextsMenu" Header="{resx:Localize MainFrame_addTranslatedTextsMenu_Text}"/>
+                    <MenuItem x:Name="mergeSymbolsMenu" Header="{resx:Localize MainFrame_mergeSymbolsMenu_Text}"/>
+                </MenuItem>
+            </MenuItem>
+        </Menu>
+
+        <!-- ==================== TOOLBAR ==================== -->
+        <!-- Toolbar buttons arranged in a horizontal StackPanel.
+             Image-only buttons show just an icon with a tooltip.
+             Image+text buttons show icon and label side by side.
+             Dropdown buttons use SplitButton with MenuFlyout. -->
+        <StackPanel x:Name="toolbar" Classes="toolbar" DockPanel.Dock="Top" Orientation="Horizontal"
+                    Spacing="2" Height="28">
+
+            <!-- Open (image only) -->
+            <Button x:Name="openToolStripButton"
+                    ToolTip.Tip="{resx:Localize MainFrame_openToolStripButton_ToolTipText}"
+                    Padding="4,2">
+                <Image Source="/Assets/Toolbar/open.png" Width="16" Height="16"/>
+            </Button>
+
+            <!-- Save (image only) -->
+            <Button x:Name="saveToolStripButton"
+                    ToolTip.Tip="{resx:Localize MainFrame_saveToolStripButton_ToolTipText}"
+                    Padding="4,2">
+                <Image Source="/Assets/Toolbar/save.png" Width="16" Height="16"/>
+            </Button>
+            <Separator Width="1" Margin="4,2"/>
+
+            <!-- Undo (image only) -->
+            <Button x:Name="undoToolStripButton"
+                    ToolTip.Tip="{resx:Localize MainFrame_undoToolStripButton_ToolTipText}"
+                    Padding="4,2">
+                <Image Source="/Assets/Toolbar/undo.png" Width="16" Height="16"/>
+            </Button>
+
+            <!-- Redo (image only) -->
+            <Button x:Name="redoToolStripButton"
+                    ToolTip.Tip="{resx:Localize MainFrame_redoToolStripButton_ToolTipText}"
+                    Padding="4,2">
+                <Image Source="/Assets/Toolbar/redo.png" Width="16" Height="16"/>
+            </Button>
+            <Separator Width="1" Margin="4,2"/>
+
+            <!-- Delete (image only) -->
+            <Button x:Name="deleteToolStripButton"
+                    ToolTip.Tip="{resx:Localize MainFrame_deleteToolStripButton_Text}"
+                    Padding="4,2">
+                <Image Source="/Assets/Toolbar/delete.png" Width="16" Height="16"/>
+            </Button>
+            <Separator Width="1" Margin="4,2"/>
+
+            <!-- Add Start (image + text) -->
+            <Button x:Name="addStartToolStripButton" Padding="4,2">
+                <StackPanel Orientation="Horizontal" Spacing="4">
+                    <Image Source="/Assets/Toolbar/addStart.png" Width="16" Height="16"/>
+                    <TextBlock Text="{resx:Localize MainFrame_addStartToolStripButton_Text}"
+                               VerticalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+
+            <!-- Add Control (image + text) -->
+            <Button x:Name="addControlToolStripButton"
+                    ToolTip.Tip="{resx:Localize MainFrame_addControlToolStripButton_ToolTipText}"
+                    Padding="4,2">
+                <StackPanel Orientation="Horizontal" Spacing="4">
+                    <Image Source="/Assets/Toolbar/addControl.png" Width="16" Height="16"/>
+                    <TextBlock Text="{resx:Localize MainFrame_addControlToolStripButton_Text}"
+                               VerticalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+
+            <!-- Add Finish (image + text) -->
+            <Button x:Name="addFinishToolStripButton" Padding="4,2">
+                <StackPanel Orientation="Horizontal" Spacing="4">
+                    <Image Source="/Assets/Toolbar/addFinish.png" Width="16" Height="16"/>
+                    <TextBlock Text="{resx:Localize MainFrame_addFinishToolStripButton_Text}"
+                               VerticalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+            <Separator Width="1" Margin="4,2"/>
+
+            <!-- Descriptions (image + text) -->
+            <Button x:Name="descriptionsToolStripMenuItem" Padding="4,2">
+                <StackPanel Orientation="Horizontal" Spacing="4">
+                    <Image Source="/Assets/Toolbar/descriptionsItem.png" Width="16" Height="16"/>
+                    <TextBlock Text="{resx:Localize MainFrame_descriptionsToolStripMenuItem_Text}"
+                               VerticalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+
+            <!-- Map Exchange dropdown (image + text, click opens flyout menu) -->
+            <Button x:Name="mapExchangeToolStripMenu" Padding="3,2">
+                <StackPanel Orientation="Horizontal" Spacing="4">
+                    <Image Source="/Assets/Toolbar/mapExchange.png" Width="16" Height="16"/>
+                    <TextBlock Text="{resx:Localize MainFrame_mapExchangeToolStripMenu_Text}"
+                               VerticalAlignment="Center"/>
+                    <TextBlock Text="▾" VerticalAlignment="Center" FontSize="14"/>
+                </StackPanel>
+                <Button.Flyout>
+                    <MenuFlyout>
+                        <MenuItem x:Name="mapFlipMenuItem" Header="{resx:Localize MainFrame_mapFlipMenuItem_Text}">
+                            <MenuItem.Icon>
+                                <Image Source="/Assets/Toolbar/mapFlipMenuItem.png" Width="16" Height="16"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem x:Name="mapExchangeControlToolStripMenuItem" Header="{resx:Localize MainFrame_mapExchangeControlToolStripMenuItem_Text}">
+                            <MenuItem.Icon>
+                                <Image Source="/Assets/Toolbar/mapExchangeControlItem.png" Width="16" Height="16"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem x:Name="mapExchangeSeparateToolStripMenuItem" Header="{resx:Localize MainFrame_mapExchangeSeparateToolStripMenuItem_Text}">
+                            <MenuItem.Icon>
+                                <Image Source="/Assets/Toolbar/mapExchangeSeparateItem.png" Width="16" Height="16"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                    </MenuFlyout>
+                </Button.Flyout>
+            </Button>
+
+            <!-- Add Variation (image + text) -->
+            <Button x:Name="addVariationToolStripButton" Padding="4,2">
+                <StackPanel Orientation="Horizontal" Spacing="4">
+                    <Image Source="/Assets/Toolbar/addVariation.png" Width="16" Height="16"/>
+                    <TextBlock Text="{resx:Localize MainFrame_addVariationToolStripButton_Text}"
+                               VerticalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+
+            <!-- Special Items dropdown (image + text, click opens flyout menu) -->
+            <Button x:Name="specialItemToolStripMenu" Padding="3,2">
+                <StackPanel Orientation="Horizontal" Spacing="4">
+                    <Image Source="/Assets/Toolbar/specialItem.png" Width="16" Height="16"/>
+                    <TextBlock Text="{resx:Localize MainFrame_specialItemToolStripMenu_Text}"
+                               VerticalAlignment="Center"/>
+                    <TextBlock Text="▾" VerticalAlignment="Center" FontSize="14"/>
+                </StackPanel>
+                <Button.Flyout>
+                    <MenuFlyout>
+                        <MenuItem x:Name="mapIssuePointToolStripMenuItem" Header="{resx:Localize MainFrame_mapIssuePointToolStripMenuItem_Text}">
+                            <MenuItem.Icon>
+                                <Image Source="/Assets/Toolbar/mapIssuePointItem.png" Width="16" Height="16"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem x:Name="mandatoryCrossingPointToolStripMenuItem" Header="{resx:Localize MainFrame_mandatoryCrossingPointToolStripMenuItem_Text}">
+                            <MenuItem.Icon>
+                                <Image Source="/Assets/Toolbar/mandatoryCrossingPointItem.png" Width="16" Height="16"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem x:Name="optionalCrossingPointToolStripMenuItem" Header="{resx:Localize MainFrame_optionalCrossingPointToolStripMenuItem_Text}">
+                            <MenuItem.Icon>
+                                <Image Source="/Assets/Toolbar/optionalCrossingPointItem.png" Width="16" Height="16"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem x:Name="outOfBoundsToolStripMenuItem" Header="{resx:Localize MainFrame_outOfBoundsToolStripMenuItem_Text}">
+                            <MenuItem.Icon>
+                                <Image Source="/Assets/Toolbar/outOfBoundsItem.png" Width="16" Height="16"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem x:Name="dangerousToolStripMenuItem" Header="{resx:Localize MainFrame_dangerousToolStripMenuItem_Text}">
+                            <MenuItem.Icon>
+                                <Image Source="/Assets/Toolbar/dangerousItem.png" Width="16" Height="16"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem x:Name="constructionToolStripMenuItem" Header="{resx:Localize MainFrame_constructionToolStripMenuItem_Text}">
+                            <MenuItem.Icon>
+                                <Image Source="/Assets/Toolbar/specialItem.png" Width="16" Height="16"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem x:Name="waterLocationToolStripMenuItem" Header="{resx:Localize MainFrame_waterLocationToolStripMenuItem_Text}">
+                            <MenuItem.Icon>
+                                <Image Source="/Assets/Toolbar/waterLocationItem.png" Width="16" Height="16"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem x:Name="firstAidLocationToolStripMenuItem" Header="{resx:Localize MainFrame_firstAidLocationToolStripMenuItem_Text}">
+                            <MenuItem.Icon>
+                                <Image Source="/Assets/Toolbar/firstAidLocationItem.png" Width="16" Height="16"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem x:Name="forbiddenRouteMarkingToolStripMenuItem" Header="{resx:Localize MainFrame_forbiddenRouteMarkingToolStripMenuItem_Text}">
+                            <MenuItem.Icon>
+                                <Image Source="/Assets/Toolbar/forbiddenRouteMarkingItem.png" Width="16" Height="16"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem x:Name="boundaryToolStripMenuItem" Header="{resx:Localize MainFrame_boundaryToolStripMenuItem_Text}">
+                            <MenuItem.Icon>
+                                <Image Source="/Assets/Toolbar/boundaryItem.png" Width="16" Height="16"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem x:Name="registrationMarkToolStripMenuItem" Header="{resx:Localize MainFrame_registrationMarkToolStripMenuItem_Text}">
+                            <MenuItem.Icon>
+                                <Image Source="/Assets/Toolbar/registrationMarkItem.png" Width="16" Height="16"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <Separator/>
+                        <MenuItem x:Name="whiteOutToolStripMenuItem" Header="{resx:Localize MainFrame_whiteOutToolStripMenuItem_Text}">
+                            <MenuItem.Icon>
+                                <Image Source="/Assets/Toolbar/whiteOutItem.png" Width="16" Height="16"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem x:Name="textToolStripMenuItem" Header="{resx:Localize MainFrame_textToolStripMenuItem_Text}">
+                            <MenuItem.Icon>
+                                <Image Source="/Assets/Toolbar/textItem.png" Width="16" Height="16"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem x:Name="imageToolStripMenuItem" Header="{resx:Localize MainFrame_imageToolStripMenuItem_Text}">
+                            <MenuItem.Icon>
+                                <Image Source="/Assets/Toolbar/imageItem.png" Width="16" Height="16"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem x:Name="lineToolStripMenuItem" Header="{resx:Localize MainFrame_lineToolStripMenuItem_Text}">
+                            <MenuItem.Icon>
+                                <Image Source="/Assets/Toolbar/lineItem.png" Width="16" Height="16"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem x:Name="rectangleToolStripMenuItem" Header="{resx:Localize MainFrame_rectangleToolStripMenuItem_Text}">
+                            <MenuItem.Icon>
+                                <Image Source="/Assets/Toolbar/rectangleItem.png" Width="16" Height="16"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem x:Name="ellipseToolStripMenuItem" Header="{resx:Localize MainFrame_ellipseToolStripMenuItem_Text}">
+                            <MenuItem.Icon>
+                                <Image Source="/Assets/Toolbar/ellipseItem.png" Width="16" Height="16"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                    </MenuFlyout>
+                </Button.Flyout>
+            </Button>
+            <Separator Width="1" Margin="4,2"/>
+
+            <!-- Add Bend (image only) -->
+            <Button x:Name="addBendToolStripButton"
+                    ToolTip.Tip="{resx:Localize MainFrame_addBendToolStripButton_ToolTipText}"
+                    Padding="4,2">
+                <Image Source="/Assets/Toolbar/addBend.png" Width="16" Height="16"/>
+            </Button>
+
+            <!-- Add Gap (image only) -->
+            <Button x:Name="addGapToolStripButton"
+                    ToolTip.Tip="{resx:Localize MainFrame_addGapToolStripButton_ToolTipText}"
+                    Padding="4,2">
+                <Image Source="/Assets/Toolbar/addGap.png" Width="16" Height="16"/>
+            </Button>
+        </StackPanel>
+
+        <!-- ==================== COURSE TABS ==================== -->
+        <!-- TabControl for course selection. Tabs are populated dynamically at runtime. -->
+        <TabControl x:Name="courseTabs" DockPanel.Dock="Top" Height="30" Padding="0">
+            <TabItem x:Name="tabPage1" Header="{resx:Localize MainFrame_tabPage1_Text}"/>
+        </TabControl>
+
+        <!-- ==================== STATUS BAR ==================== -->
+        <!-- Status bar at the bottom with status text, zoom controls, and coordinate display. -->
+        <Grid x:Name="statusBar" DockPanel.Dock="Bottom" Height="26"
+              ColumnDefinitions="*,Auto,Auto,Auto,Auto"
+              Background="{DynamicResource SystemControlBackgroundChromeMediumLowBrush}">
+
+            <!-- Status message (Spring = fills available space) -->
+            <TextBlock x:Name="statusLabel" Grid.Column="0"
+                       VerticalAlignment="Center" Margin="4,0"
+                       TextTrimming="CharacterEllipsis"/>
+
+            <Separator Grid.Column="1" Width="1" Margin="2,2"/>
+
+            <!-- Zoom percentage label -->
+            <TextBlock x:Name="zoomAmountLabel" Grid.Column="2"
+                       Text="{resx:Localize MainFrame_zoomAmountLabel_Text}"
+                       VerticalAlignment="Center" Margin="4,0"/>
+
+            <!-- Zoom slider (replaces WinForms ToolStripTrackBar) -->
+            <Slider x:Name="zoomTracker" Grid.Column="3"
+                    Width="94" VerticalAlignment="Center"
+                    Minimum="0" Maximum="100"/>
+
+            <!-- Coordinate display -->
+            <Border Grid.Column="4" BorderBrush="Gray" BorderThickness="1" Margin="2,2"
+                    CornerRadius="2" Padding="4,0">
+                <TextBlock x:Name="locationDisplay"
+                           Text="{resx:Localize MainFrame_locationDisplay_Text}"
+                           VerticalAlignment="Center" MinWidth="120"/>
+            </Border>
+        </Grid>
+
+        <!-- ==================== MAIN CONTENT AREA ==================== -->
+        <!-- Horizontal split: left panel (descriptions/selection) | right panel (map viewer).
+             Replaces WinForms splitContainer. Left panel is fixed width. -->
+        <Grid x:Name="splitContainer" ColumnDefinitions="250,Auto,*">
+
+            <!-- === LEFT PANEL (splitDescription equivalent) === -->
+            <!-- Vertical split: top (description/topology) | bottom (selection panel).
+                 Replaces WinForms splitDescription. Bottom panel is fixed height. -->
+            <Grid Grid.Column="0" RowDefinitions="*,Auto,150">
+
+                <!-- Description/Topology area with radio button toggle -->
+                <Grid x:Name="leftColumnPanel" Grid.Row="0" Background="White"
+                      RowDefinitions="*,Auto">
+
+                    <!-- Panel that overlays descriptionControl and panelTopology.
+                         In WinForms, radio buttons toggle visibility between these two. -->
+                    <Panel x:Name="panelDescriptionAndTopology" Grid.Row="0">
+
+                        <!-- PLACEHOLDER: descriptionControl
+                             WinForms type: PurplePen.DescriptionControl
+                             Displays the IOF course description table (control descriptions).
+                             This is a custom control that renders the description grid,
+                             supports selection, and fires Change/SelectedIndexChange events.
+                             TODO: Implement as a custom Avalonia control. -->
+                        <Border x:Name="descriptionControl" Background="White"
+                                BorderBrush="LightGray" BorderThickness="1">
+                            <TextBlock Text="[descriptionControl placeholder]"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center"
+                                       Foreground="Gray" FontStyle="Italic"/>
+                        </Border>
+
+                        <!-- Topology view panel (hidden by default, shown when radio button selected) -->
+                        <Grid x:Name="panelTopology" IsVisible="False"
+                              ColumnDefinitions="*,Auto">
+
+                            <!-- PLACEHOLDER: mapViewerTopology
+                                 WinForms type: PurplePen.MapView.MapViewer
+                                 Displays the topology/ordering view of the course.
+                                 Configured with: ConstrainedScrolling=PinTop, MaxZoom=1,
+                                 MouseWheel=Scroll, MiddleButtonAutoDrag=false.
+                                 TODO: Implement as a custom Avalonia control sharing
+                                 the MapViewer rendering infrastructure. -->
+                            <Border x:Name="mapViewerTopology" Grid.Column="0"
+                                    Background="White" BorderBrush="LightGray" BorderThickness="1">
+                                <TextBlock Text="[mapViewerTopology placeholder]"
+                                           HorizontalAlignment="Center" VerticalAlignment="Center"
+                                           Foreground="Gray" FontStyle="Italic"/>
+                            </Border>
+
+                            <!-- Vertical scroll bar for topology view -->
+                            <ScrollBar x:Name="topologyScrollBar" Grid.Column="1"
+                                       Orientation="Vertical"/>
+                        </Grid>
+                    </Panel>
+
+                    <!-- Radio buttons to toggle between Descriptions and Topology/Ordering views -->
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="4,2">
+                        <RadioButton x:Name="radioButtonDescriptions"
+                                     Content="{resx:Localize MainFrame_radioButtonDescriptions_Text}"
+                                     IsChecked="True" Margin="0,0,8,0"/>
+                        <RadioButton x:Name="radioButtonTopology"
+                                     Content="{resx:Localize MainFrame_radioButtonTopology_Text}"/>
+                    </StackPanel>
+                </Grid>
+
+                <!-- GridSplitter between description area and selection panel -->
+                <GridSplitter Grid.Row="1" Height="4" ResizeDirection="Rows"
+                              Background="{DynamicResource SystemControlBackgroundBaseMediumBrush}"/>
+
+                <!-- PLACEHOLDER: selectionPanel
+                     WinForms type: FlowLayoutPanel
+                     Displays context-sensitive selection controls (properties panel).
+                     Dynamically populated with controls based on the current selection
+                     (control properties, leg properties, special object properties, etc.).
+                     Background is white. Controls flow vertically.
+                     TODO: Implement as a dynamic panel that hosts selection-specific views. -->
+                <Border x:Name="selectionPanel" Grid.Row="2" Background="White"
+                        BorderBrush="LightGray" BorderThickness="1">
+                    <TextBlock Text="[selectionPanel placeholder]"
+                               HorizontalAlignment="Center" VerticalAlignment="Center"
+                               Foreground="Gray" FontStyle="Italic"/>
+                </Border>
+            </Grid>
+
+            <!-- GridSplitter between left and right panels -->
+            <GridSplitter Grid.Column="1" Width="4" ResizeDirection="Columns"
+                          Background="{DynamicResource SystemControlBackgroundBaseMediumBrush}"/>
+
+            <!-- === RIGHT PANEL (map viewer area) === -->
+            <Grid Grid.Column="2" RowDefinitions="Auto,*,Auto" ColumnDefinitions="*,Auto">
+
+                <!-- Course part banner (top of map area) — shows course parts, variations, properties -->
+                <!-- TODO: Implement CoursePartBanner as a custom Avalonia control.
+                     WinForms type: PurplePen.CoursePartBanner
+                     Properties: NumberOfParts, SelectedPart, EnableParts, EnableVariations,
+                     EnableProperties, AvailableVariations, CurrentVariation.
+                     Events: SelectedVariationChanged, SelectedPartChanged, PropertiesClicked. -->
+                <Border x:Name="coursePartBanner" Grid.Row="0" Grid.ColumnSpan="2"
+                        Background="{DynamicResource SystemControlBackgroundListMediumBrush}"
+                        Height="24">
+                    <TextBlock Text="[coursePartBanner placeholder]"
+                               HorizontalAlignment="Center" VerticalAlignment="Center"
+                               Foreground="Gray" FontStyle="Italic" FontSize="11"/>
+                </Border>
+
+                <!-- PLACEHOLDER: mapViewer
+                     WinForms type: PurplePen.MapView.MapViewer
+                     The main map display control. This is the largest and most complex custom control.
+                     Configured with: ConstrainedScrolling=KeepSome, MaxZoom=100,
+                     MouseWheel=Zoom, MiddleButtonAutoDrag=true, HoverDelay=400ms.
+                     Renders the orienteering map with course overlays using MapDisplay.
+                     Handles mouse events for course editing (adding controls, moving items, etc.).
+                     Scroll bars are external (horizScroll, vertScroll below).
+                     TODO: Implement as a custom Avalonia control using Skia rendering backend. -->
+                <Border x:Name="mapViewer" Grid.Row="1" Grid.Column="0"
+                        Background="White" BorderBrush="LightGray" BorderThickness="1"
+                        ClipToBounds="True">
+                    <TextBlock Text="[mapViewer placeholder]"
+                               HorizontalAlignment="Center" VerticalAlignment="Center"
+                               Foreground="Gray" FontStyle="Italic"/>
+                </Border>
+
+                <!-- Vertical scroll bar for map viewer -->
+                <ScrollBar x:Name="vertScroll" Grid.Row="1" Grid.Column="1"
+                           Orientation="Vertical"/>
+
+                <!-- Horizontal scroll bar for map viewer -->
+                <ScrollBar x:Name="horizScroll" Grid.Row="2" Grid.Column="0"
+                           Orientation="Horizontal"/>
+            </Grid>
+        </Grid>
+    </DockPanel>
 </Window>
