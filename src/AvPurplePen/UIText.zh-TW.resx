@@ -457,10 +457,10 @@
     <value>目前的地圖檔案</value>
   </data>
   <data name="ChangeMapFile_buttonChooseFile_Text" xml:space="preserve">
-    <value>選擇地圖檔案(&amp;C)...</value>
+    <value>選擇地圖檔案(_C)...</value>
   </data>
   <data name="NewEventMapFile_chooseMapFileButton_Text" xml:space="preserve">
-    <value>選擇地圖檔案(&amp;C)...</value>
+    <value>選擇地圖檔案(_C)...</value>
   </data>
   <data name="ChangeMapFile_openFileDialog_Filter" xml:space="preserve">
     <value>所有的地圖檔案|*.ocd;*.omap;*.xmap;*.pdf;*.jpeg;*.jpg;*.tiff;*.tif;*.bmp;*.png;*.gif|OCAD 檔案 (*.ocd)|*.ocd|OOM檔案|*.omap;*.xmap|PDF 檔案 (*.pdf)|*.pdf|圖片檔案|*.jpeg;*.jpg;*.tiff;*.tif;*.bmp;*.png;*.gif</value>
@@ -850,7 +850,7 @@
     <value>直接複製相同的賽程</value>
   </data>
   <data name="CommandNameText_CreateMapFiles" xml:space="preserve">
-    <value>建立 {0} 檔案(&amp;F)</value>
+    <value>建立 {0} 檔案(_F)</value>
   </data>
   <data name="CommandNameText_DeleteFork" xml:space="preserve">
     <value>刪除賽段分叉/賽環</value>
@@ -1531,67 +1531,67 @@
     <value>Purple Pen 檔案|*.ppen</value>
   </data>
   <data name="MainFrame_newEventMenu_Text" xml:space="preserve">
-    <value>新增賽事(&amp;N)...</value>
+    <value>新增賽事(_N)...</value>
   </data>
   <data name="MainFrame_openMenu_Text" xml:space="preserve">
-    <value>開啟(&amp;O)...</value>
+    <value>開啟(_O)...</value>
   </data>
   <data name="MainFrame_saveMenu_Text" xml:space="preserve">
-    <value>儲存(&amp;S)</value>
+    <value>儲存(_S)</value>
   </data>
   <data name="MainFrame_saveAsMenu_Text" xml:space="preserve">
-    <value>另存新檔(&amp;A)...</value>
+    <value>另存新檔(_A)...</value>
   </data>
   <data name="MainFrame_createOcadFilesMenu_Text" xml:space="preserve">
-    <value>建立OCAD &amp;檔案(&amp;F)...</value>
+    <value>建立OCAD &amp;檔案(_F)...</value>
   </data>
   <data name="MainFrame_createImageFilesMenu_Text" xml:space="preserve">
     <value>建立圖片檔案...</value>
   </data>
   <data name="MainFrame_createDescriptionPdfMenu_Text" xml:space="preserve">
-    <value>檢查點說明(&amp;D)...</value>
+    <value>檢查點說明(_D)...</value>
   </data>
   <data name="MainFrame_createPunchcardPdfMenu_Text" xml:space="preserve">
-    <value>核對卡(&amp;n)...</value>
+    <value>核對卡(_n)...</value>
   </data>
   <data name="MainFrame_createCoursePdfMenu_Text" xml:space="preserve">
-    <value>賽程(&amp;C)...</value>
+    <value>賽程(_C)...</value>
   </data>
   <data name="MainFrame_createPDFsMenu_Text" xml:space="preserve">
-    <value>建立PDFs(&amp;D)</value>
+    <value>建立PDFs(_D)</value>
   </data>
   <data name="MainFrame_createRouteGadgetFilesMenu_Text" xml:space="preserve">
-    <value>建立 RouteGadget 檔案(&amp;G)...</value>
+    <value>建立 RouteGadget 檔案(_G)...</value>
   </data>
   <data name="MainFrame_createRouteReviewFilesToolStripMenuItem_Text" xml:space="preserve">
     <value>建立路線審查檔案</value>
   </data>
   <data name="MainFrame_createXmlMenu_Text" xml:space="preserve">
-    <value>建立資料交換檔案 (IOF XML)(&amp;I)...</value>
+    <value>建立資料交換檔案 (IOF XML)(_I)...</value>
   </data>
   <data name="MainFrame_createGPXFileMenu_Text" xml:space="preserve">
-    <value>建立 GPX 檔案(&amp;P)...</value>
+    <value>建立 GPX 檔案(_P)...</value>
   </data>
   <data name="MainFrame_createKMLFileMenu_Text" xml:space="preserve">
     <value>建立KML檔案</value>
   </data>
   <data name="MainFrame_printDescriptionsMenu_Text" xml:space="preserve">
-    <value>列印檢查點說明(&amp;P)...</value>
+    <value>列印檢查點說明(_P)...</value>
   </data>
   <data name="MainFrame_printPunchCardsMenu_Text" xml:space="preserve">
-    <value>列印核對卡(&amp;n)...</value>
+    <value>列印核對卡(_n)...</value>
   </data>
   <data name="MainFrame_printCoursesMenu_Text" xml:space="preserve">
-    <value>列印賽程(&amp;C)...</value>
+    <value>列印賽程(_C)...</value>
   </data>
   <data name="MainFrame_printAreaThisPartMenu_Text" xml:space="preserve">
-    <value>只有此部分(&amp;P)</value>
+    <value>只有此部分(_P)</value>
   </data>
   <data name="MainFrame_printAreaThisCourseMenu_Text" xml:space="preserve">
-    <value>此賽程(&amp;T)</value>
+    <value>此賽程(_T)</value>
   </data>
   <data name="MainFrame_printAreaAllCoursesMenu_Text" xml:space="preserve">
-    <value>所有賽程(&amp;A)</value>
+    <value>所有賽程(_A)</value>
   </data>
   <data name="MainFrame_setPrintAreaMenu_Text" xml:space="preserve">
     <value>設定列印範圍</value>
@@ -1600,37 +1600,37 @@
     <value>程式語言...</value>
   </data>
   <data name="MainFrame_exitMenu_Text" xml:space="preserve">
-    <value>離開(&amp;x)</value>
+    <value>離開(_x)</value>
   </data>
   <data name="MainFrame_fileMenu_Text" xml:space="preserve">
-    <value>檔案(&amp;F)</value>
+    <value>檔案(_F)</value>
   </data>
   <data name="MainFrame_cancelMenu_Text" xml:space="preserve">
-    <value>清除選擇(&amp;C)</value>
+    <value>清除選擇(_C)</value>
   </data>
   <data name="MiscText_ClearSelectionWithShortcut" xml:space="preserve">
-    <value>清除選擇(&amp;C)</value>
+    <value>清除選擇(_C)</value>
   </data>
   <data name="MainFrame_undoMenu_Text" xml:space="preserve">
-    <value>復原(&amp;U)</value>
+    <value>復原(_U)</value>
   </data>
   <data name="MiscText_UndoWithShortcut" xml:space="preserve">
-    <value>復原(&amp;U)</value>
+    <value>復原(_U)</value>
   </data>
   <data name="MainFrame_redoMenu_Text" xml:space="preserve">
-    <value>取消復原(&amp;R)</value>
+    <value>取消復原(_R)</value>
   </data>
   <data name="MiscText_RedoWithShortcut" xml:space="preserve">
-    <value>取消復原(&amp;R)</value>
+    <value>取消復原(_R)</value>
   </data>
   <data name="MainFrame_deleteMenu_Text" xml:space="preserve">
-    <value>刪除(&amp;D)</value>
+    <value>刪除(_D)</value>
   </data>
   <data name="MainFrame_deleteItemMenu_Text" xml:space="preserve">
-    <value>刪除(&amp;D)</value>
+    <value>刪除(_D)</value>
   </data>
   <data name="MainFrame_editMenu_Text" xml:space="preserve">
-    <value>編輯(&amp;E)</value>
+    <value>編輯(_E)</value>
   </data>
   <data name="MainFrame_entireCourseMenu_Text" xml:space="preserve">
     <value>整個賽程</value>
@@ -1660,22 +1660,22 @@
     <value>1000%</value>
   </data>
   <data name="MainFrame_zoomMenu_Text" xml:space="preserve">
-    <value>縮放(&amp;Z)</value>
+    <value>縮放(_Z)</value>
   </data>
   <data name="MainFrame_veryLowIntensityMenu_Text" xml:space="preserve">
-    <value>非常低(&amp;V)</value>
+    <value>非常低(_V)</value>
   </data>
   <data name="MainFrame_lowIntensityMenu_Text" xml:space="preserve">
-    <value>低(&amp;L)</value>
+    <value>低(_L)</value>
   </data>
   <data name="MainFrame_mediumIntensityMenu_Text" xml:space="preserve">
-    <value>中(&amp;M)</value>
+    <value>中(_M)</value>
   </data>
   <data name="MainFrame_highIntensityMenu_Text" xml:space="preserve">
-    <value>高(&amp;H)</value>
+    <value>高(_H)</value>
   </data>
   <data name="MainFrame_fullIntensityMenu_Text" xml:space="preserve">
-    <value>完整的(&amp;F)</value>
+    <value>完整的(_F)</value>
   </data>
   <data name="MainFrame_mapIntensityMenu_Text" xml:space="preserve">
     <value>地圖明暗度</value>
@@ -1687,7 +1687,7 @@
     <value>高</value>
   </data>
   <data name="MainFrame_mapQualityMenu_Text" xml:space="preserve">
-    <value>地圖品質(&amp;Q)</value>
+    <value>地圖品質(_Q)</value>
   </data>
   <data name="MainFrame_showPrintAreaMenu_Text" xml:space="preserve">
     <value>顯示列印範圍</value>

@@ -394,10 +394,10 @@
     <value>Plik Aktualnej Mapy</value>
   </data>
   <data name="ChangeMapFile_buttonChooseFile_Text" xml:space="preserve">
-    <value>&amp;Wybierz plik mapy...</value>
+    <value>_Wybierz plik mapy...</value>
   </data>
   <data name="NewEventMapFile_chooseMapFileButton_Text" xml:space="preserve">
-    <value>&amp;Wybierz plik mapy...</value>
+    <value>_Wybierz plik mapy...</value>
   </data>
   <data name="ChangeMapFile_labelDpi_Text" xml:space="preserve">
     <value>Rozdzielczość:</value>
@@ -1306,85 +1306,85 @@
     <value>Plik Purple Pen|*.ppen</value>
   </data>
   <data name="MainFrame_newEventMenu_Text" xml:space="preserve">
-    <value>&amp;Nowe zawody...</value>
+    <value>_Nowe zawody...</value>
   </data>
   <data name="MainFrame_openMenu_Text" xml:space="preserve">
-    <value>&amp;Otwórz...</value>
+    <value>_Otwórz...</value>
   </data>
   <data name="MainFrame_saveMenu_Text" xml:space="preserve">
-    <value>&amp;Zapisz</value>
+    <value>_Zapisz</value>
   </data>
   <data name="MainFrame_saveAsMenu_Text" xml:space="preserve">
-    <value>Zapisz &amp;jako...</value>
+    <value>Zapisz _jako...</value>
   </data>
   <data name="MainFrame_createOcadFilesMenu_Text" xml:space="preserve">
-    <value>Utwórz &amp;pliki OCAD</value>
+    <value>Utwórz _pliki OCAD</value>
   </data>
   <data name="MainFrame_createXmlMenu_Text" xml:space="preserve">
-    <value>Utwórz plik I&amp;OF XML</value>
+    <value>Utwórz plik I_OF XML</value>
   </data>
   <data name="MainFrame_printDescriptionsMenu_Text" xml:space="preserve">
-    <value>&amp;Drukuj opisy PK...</value>
+    <value>_Drukuj opisy PK...</value>
   </data>
   <data name="MainFrame_printPunchCardsMenu_Text" xml:space="preserve">
-    <value>Wydrukuj &amp;perforowane karty startowe</value>
+    <value>Wydrukuj _perforowane karty startowe</value>
   </data>
   <data name="MainFrame_printCoursesMenu_Text" xml:space="preserve">
-    <value>Drukuj &amp;trasy...</value>
+    <value>Drukuj _trasy...</value>
   </data>
   <data name="MainFrame_printAreaThisPartMenu_Text" xml:space="preserve">
-    <value>Tylko ta &amp;część</value>
+    <value>Tylko ta _część</value>
   </data>
   <data name="MainFrame_printAreaThisCourseMenu_Text" xml:space="preserve">
-    <value>&amp;Ta trasa</value>
+    <value>_Ta trasa</value>
   </data>
   <data name="MainFrame_printAreaAllCoursesMenu_Text" xml:space="preserve">
-    <value>&amp;Wszystkie trasy</value>
+    <value>_Wszystkie trasy</value>
   </data>
   <data name="MainFrame_setPrintAreaMenu_Text" xml:space="preserve">
-    <value>Ustaw &amp;obszar wydruku</value>
+    <value>Ustaw _obszar wydruku</value>
   </data>
   <data name="MainFrame_programLanguageMenu_Text" xml:space="preserve">
-    <value>&amp;Język programu</value>
+    <value>_Język programu</value>
   </data>
   <data name="MainFrame_exitMenu_Text" xml:space="preserve">
-    <value>&amp;Wyjście</value>
+    <value>_Wyjście</value>
   </data>
   <data name="MainFrame_fileMenu_Text" xml:space="preserve">
-    <value>&amp;Plik</value>
+    <value>_Plik</value>
   </data>
   <data name="MainFrame_cancelMenu_Text" xml:space="preserve">
-    <value>U&amp;suń zaznaczenie</value>
+    <value>U_suń zaznaczenie</value>
   </data>
   <data name="MiscText_ClearSelectionWithShortcut" xml:space="preserve">
-    <value>U&amp;suń zaznaczenie</value>
+    <value>U_suń zaznaczenie</value>
   </data>
   <data name="MainFrame_undoMenu_Text" xml:space="preserve">
-    <value>&amp;Cofnij</value>
+    <value>_Cofnij</value>
   </data>
   <data name="MiscText_UndoWithShortcut" xml:space="preserve">
-    <value>&amp;Cofnij</value>
+    <value>_Cofnij</value>
   </data>
   <data name="MainFrame_redoMenu_Text" xml:space="preserve">
-    <value>&amp;Ponów</value>
+    <value>_Ponów</value>
   </data>
   <data name="MiscText_RedoWithShortcut" xml:space="preserve">
-    <value>&amp;Ponów</value>
+    <value>_Ponów</value>
   </data>
   <data name="MainFrame_deleteMenu_Text" xml:space="preserve">
-    <value>&amp;Usuń</value>
+    <value>_Usuń</value>
   </data>
   <data name="MainFrame_deleteItemMenu_Text" xml:space="preserve">
-    <value>&amp;Usuń</value>
+    <value>_Usuń</value>
   </data>
   <data name="MainFrame_editMenu_Text" xml:space="preserve">
-    <value>&amp;Edycja</value>
+    <value>_Edycja</value>
   </data>
   <data name="MainFrame_entireCourseMenu_Text" xml:space="preserve">
-    <value>&amp;Cała trasa</value>
+    <value>_Cała trasa</value>
   </data>
   <data name="MainFrame_entireMapMenu_Text" xml:space="preserve">
-    <value>Cała &amp;mapa</value>
+    <value>Cała _mapa</value>
   </data>
   <data name="MainFrame_zoom50Menu_Text" xml:space="preserve">
     <value>50%</value>
@@ -1408,25 +1408,25 @@
     <value>1000%</value>
   </data>
   <data name="MainFrame_zoomMenu_Text" xml:space="preserve">
-    <value>&amp;Powiększ</value>
+    <value>_Powiększ</value>
   </data>
   <data name="MainFrame_veryLowIntensityMenu_Text" xml:space="preserve">
-    <value>&amp;Bardzo niska</value>
+    <value>_Bardzo niska</value>
   </data>
   <data name="MainFrame_lowIntensityMenu_Text" xml:space="preserve">
-    <value>&amp;Niska</value>
+    <value>_Niska</value>
   </data>
   <data name="MainFrame_mediumIntensityMenu_Text" xml:space="preserve">
-    <value>Ś&amp;rednia</value>
+    <value>Ś_rednia</value>
   </data>
   <data name="MainFrame_highIntensityMenu_Text" xml:space="preserve">
-    <value>&amp;Wysoka</value>
+    <value>_Wysoka</value>
   </data>
   <data name="MainFrame_fullIntensityMenu_Text" xml:space="preserve">
-    <value>&amp;Pełna</value>
+    <value>_Pełna</value>
   </data>
   <data name="MainFrame_mapIntensityMenu_Text" xml:space="preserve">
-    <value>&amp;Nieprzezroczystość mapy</value>
+    <value>_Nieprzezroczystość mapy</value>
   </data>
   <data name="MainFrame_normalQualityMenu_Text" xml:space="preserve">
     <value>Niska</value>
@@ -1435,28 +1435,28 @@
     <value>Wysoka</value>
   </data>
   <data name="MainFrame_mapQualityMenu_Text" xml:space="preserve">
-    <value>Jak&amp;ość mapy</value>
+    <value>Jak_ość mapy</value>
   </data>
   <data name="MainFrame_showPrintAreaMenu_Text" xml:space="preserve">
-    <value>Pokaż obszar &amp;wydruku</value>
+    <value>Pokaż obszar _wydruku</value>
   </data>
   <data name="MainFrame_allControlsMenu_Text" xml:space="preserve">
-    <value>&amp;Wszystkie  PK</value>
+    <value>_Wszystkie  PK</value>
   </data>
   <data name="MainFrame_viewMenu_Text" xml:space="preserve">
-    <value>&amp;Widok</value>
+    <value>_Widok</value>
   </data>
   <data name="MainFrame_addFinishMenu_Text" xml:space="preserve">
-    <value>&amp;Zakończ</value>
+    <value>_Zakończ</value>
   </data>
   <data name="MiscText_FinishButtonText" xml:space="preserve">
-    <value>&amp;Zakończ</value>
+    <value>_Zakończ</value>
   </data>
   <data name="MainFrame_mapExchangeControlMenuItem_Text" xml:space="preserve">
-    <value>Zmiana &amp;mapy na PK</value>
+    <value>Zmiana _mapy na PK</value>
   </data>
   <data name="MainFrame_mapExchangeSeparateMenuItem_Text" xml:space="preserve">
-    <value>O&amp;taśmowany przebieg do zmiany mapy</value>
+    <value>O_taśmowany przebieg do zmiany mapy</value>
   </data>
   <data name="MainFrame_addMandatoryCrossingMenu_Text" xml:space="preserve">
     <value>Obowiązkowy punkt przebiegu</value>
@@ -1567,67 +1567,67 @@
     <value>Prostokąt</value>
   </data>
   <data name="MainFrame_changeMapFileMenu_Text" xml:space="preserve">
-    <value>Plik &amp;mapy</value>
+    <value>Plik _mapy</value>
   </data>
   <data name="MainFrame_changeCodesMenu_Text" xml:space="preserve">
-    <value>Zmień &amp;kody PK</value>
+    <value>Zmień _kody PK</value>
   </data>
   <data name="MainFrame_autoNumberingMenu_Text" xml:space="preserve">
-    <value>Automatyczne &amp;numerowanie</value>
+    <value>Automatyczne _numerowanie</value>
   </data>
   <data name="MainFrame_removeUnusedControlsMenu_Text" xml:space="preserve">
-    <value>Usuń nie&amp;używane PK</value>
+    <value>Usuń nie_używane PK</value>
   </data>
   <data name="MainFrame_punchPatternsMenu_Text" xml:space="preserve">
-    <value>Wzorce &amp;perforowania...</value>
+    <value>Wzorce _perforowania...</value>
   </data>
   <data name="MainFrame_customizeDescriptionsMenu_Text" xml:space="preserve">
-    <value>Dostosuj tekst &amp;opisu...</value>
+    <value>Dostosuj tekst _opisu...</value>
   </data>
   <data name="MainFrame_customizeCourseAppearanceMenu_Text" xml:space="preserve">
-    <value>Dostosuj &amp;wygląd</value>
+    <value>Dostosuj _wygląd</value>
   </data>
   <data name="MainFrame_eventMenu_Text" xml:space="preserve">
-    <value>&amp;Zawody</value>
+    <value>_Zawody</value>
   </data>
   <data name="MainFrame_addCourseMenu_Text" xml:space="preserve">
-    <value>&amp;Dodaj trasę...</value>
+    <value>_Dodaj trasę...</value>
   </data>
   <data name="MainFrame_deleteCourseMenu_Text" xml:space="preserve">
-    <value>&amp;Usuń trasę...</value>
+    <value>_Usuń trasę...</value>
   </data>
   <data name="MainFrame_duplicateCourseMenu_Text" xml:space="preserve">
-    <value>&amp;Zduplikuj trasę...</value>
+    <value>_Zduplikuj trasę...</value>
   </data>
   <data name="MainFrame_propertiesMenu_Text" xml:space="preserve">
-    <value>&amp;Właściwości...</value>
+    <value>_Właściwości...</value>
   </data>
   <data name="MainFrame_courseOrderMenu_Text" xml:space="preserve">
-    <value>&amp;Kolejność trasy...</value>
+    <value>_Kolejność trasy...</value>
   </data>
   <data name="MainFrame_courseLoadMenu_Text" xml:space="preserve">
-    <value>&amp;Obciążenie zawodnikami...</value>
+    <value>_Obciążenie zawodnikami...</value>
   </data>
   <data name="MainFrame_courseMenu_Text" xml:space="preserve">
-    <value>&amp;Trasa</value>
+    <value>_Trasa</value>
   </data>
   <data name="MainFrame_addBendMenu_Text" xml:space="preserve">
-    <value>&amp;Dodaj punkt zgięcia</value>
+    <value>_Dodaj punkt zgięcia</value>
   </data>
   <data name="MainFrame_removeBendMenu_Text" xml:space="preserve">
-    <value>&amp;Usuń punkt zgięcia</value>
+    <value>_Usuń punkt zgięcia</value>
   </data>
   <data name="MainFrame_addGapMenu_Text" xml:space="preserve">
-    <value>&amp;Dodaj przerwę</value>
+    <value>_Dodaj przerwę</value>
   </data>
   <data name="MainFrame_changeTextMenu_Text" xml:space="preserve">
-    <value>Zmień &amp;tekst...</value>
+    <value>Zmień _tekst...</value>
   </data>
   <data name="MainFrame_changeLineAppearanceMenu_Text" xml:space="preserve">
-    <value>Zmień wygląd &amp;linii...</value>
+    <value>Zmień wygląd _linii...</value>
   </data>
   <data name="MainFrame_rotateMenu_Text" xml:space="preserve">
-    <value>&amp;Obróć</value>
+    <value>_Obróć</value>
   </data>
   <data name="MainFrame_noFlaggingMenu_Text" xml:space="preserve">
     <value>Brak otaśmowania</value>
@@ -1642,49 +1642,49 @@
     <value>Otaśmowany koniec przebiegu</value>
   </data>
   <data name="MainFrame_legFlaggingMenu_Text" xml:space="preserve">
-    <value>&amp;Otaśmowanie przebiegu</value>
+    <value>_Otaśmowanie przebiegu</value>
   </data>
   <data name="MainFrame_changeDisplayedCoursesMenu_Text" xml:space="preserve">
-    <value>Zmień w&amp;yświetlane trasy...</value>
+    <value>Zmień w_yświetlane trasy...</value>
   </data>
   <data name="MainFrame_itemMenu_Text" xml:space="preserve">
-    <value>&amp;Obiekt</value>
+    <value>_Obiekt</value>
   </data>
   <data name="MainFrame_courseSummaryMenu_Text" xml:space="preserve">
-    <value>&amp;Podsumowanie trasy</value>
+    <value>_Podsumowanie trasy</value>
   </data>
   <data name="MainFrame_eventAuditMenu_Text" xml:space="preserve">
-    <value>&amp;Audyt zawodów</value>
+    <value>_Audyt zawodów</value>
   </data>
   <data name="MainFrame_legLengthsMenu_Text" xml:space="preserve">
-    <value>&amp;Długości przebiegów</value>
+    <value>_Długości przebiegów</value>
   </data>
   <data name="MainFrame_controlCrossrefMenu_Text" xml:space="preserve">
-    <value>&amp;Indeks PK</value>
+    <value>_Indeks PK</value>
   </data>
   <data name="MainFrame_controlAndLegLoadMenu_Text" xml:space="preserve">
-    <value>O&amp;bciążenie PK oraz przebiegów</value>
+    <value>O_bciążenie PK oraz przebiegów</value>
   </data>
   <data name="MainFrame_reportMenu_Text" xml:space="preserve">
-    <value>&amp;Raporty</value>
+    <value>_Raporty</value>
   </data>
   <data name="MainFrame_helpContentsMenu_Text" xml:space="preserve">
-    <value>&amp;Pomoc Purple Pen</value>
+    <value>_Pomoc Purple Pen</value>
   </data>
   <data name="MainFrame_helpTranslatedMenu_Text" xml:space="preserve">
     <value>Pomoc Purple Pen (przetłumaczone)</value>
   </data>
   <data name="MainFrame_mainWebSiteToolMenu_Text" xml:space="preserve">
-    <value>Strona &amp;domowa Purple Pen</value>
+    <value>Strona _domowa Purple Pen</value>
   </data>
   <data name="MainFrame_supportWebSiteMenu_Text" xml:space="preserve">
-    <value>&amp;Wsparcie/Zgłaszanie błędów</value>
+    <value>_Wsparcie/Zgłaszanie błędów</value>
   </data>
   <data name="MainFrame_donateWebSiteMenu_Text" xml:space="preserve">
     <value>Złóź darowiznę</value>
   </data>
   <data name="MainFrame_aboutMenu_Text" xml:space="preserve">
-    <value>&amp;O Purple Pen</value>
+    <value>_O Purple Pen</value>
   </data>
   <data name="MainFrame_symbolBrowserMenu_Text" xml:space="preserve">
     <value>Przeglądarka symboli</value>
@@ -1729,10 +1729,10 @@
     <value>Scal Symbols.xml...</value>
   </data>
   <data name="MainFrame_translateMenu_Text" xml:space="preserve">
-    <value>&amp;Przetłumacz tekst opisu</value>
+    <value>_Przetłumacz tekst opisu</value>
   </data>
   <data name="MainFrame_helpMenu_Text" xml:space="preserve">
-    <value>&amp;Pomoc</value>
+    <value>_Pomoc</value>
   </data>
   <data name="MainFrame_openToolStripButton_Text" xml:space="preserve">
     <value>Otwórz</value>
@@ -1873,7 +1873,7 @@
     <value>Obciążenie musi być liczbą całkowitą z zakresu 0-999999 lub pozostawione puste.</value>
   </data>
   <data name="MiscText_CancelOperationWithShortcut" xml:space="preserve">
-    <value>A&amp;nuluj operację</value>
+    <value>A_nuluj operację</value>
   </data>
   <data name="MiscText_CancelOperation" xml:space="preserve">
     <value>Anuluj operację</value>
@@ -1979,10 +1979,10 @@ Użyj | aby rozdzielić linie
     <value>Wszystkie PK są użyte na trasie.</value>
   </data>
   <data name="MiscText_NextButtonText" xml:space="preserve">
-    <value>&amp;Dalej &gt;</value>
+    <value>_Dalej &gt;</value>
   </data>
   <data name="NewEventWizard_nextButton_Text" xml:space="preserve">
-    <value>&amp;Dalej &gt;</value>
+    <value>_Dalej &gt;</value>
   </data>
   <data name="MiscText_Control_Code" xml:space="preserve">
     <value>PK {0}</value>
@@ -2260,7 +2260,7 @@ Skala mapy określa powiązanie pomiędzy wydrukiem a rzeczywistością.
 </value>
   </data>
   <data name="NewEventPrintScale_defaultPrintScaleLabel_Text" xml:space="preserve">
-    <value>Domyślna &amp;skala wydruku:</value>
+    <value>Domyślna _skala wydruku:</value>
   </data>
   <data name="NewEventPrintScale_changeLaterLabel_Text" xml:space="preserve">
     <value>(Możesz zmienić skalę wydruku później dla dowolnej trasy wybierając Trasa/Właściwości)</value>
@@ -2269,7 +2269,7 @@ Skala mapy określa powiązanie pomiędzy wydrukiem a rzeczywistością.
     <value>Tytuł zawodów:</value>
   </data>
   <data name="NewEventWizard_backButton_Text" xml:space="preserve">
-    <value>&lt; &amp;Wstecz</value>
+    <value>&lt; _Wstecz</value>
   </data>
   <data name="NonPrintableObjects_okButton_Text" xml:space="preserve">
     <value>Dalej</value>

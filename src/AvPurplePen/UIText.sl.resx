@@ -388,10 +388,10 @@
     <value>Trenutna datoteka s karto</value>
   </data>
   <data name="ChangeMapFile_buttonChooseFile_Text" xml:space="preserve">
-    <value>&amp;Izberi datoteko s karto</value>
+    <value>_Izberi datoteko s karto</value>
   </data>
   <data name="NewEventMapFile_chooseMapFileButton_Text" xml:space="preserve">
-    <value>&amp;Izberi datoteko s karto</value>
+    <value>_Izberi datoteko s karto</value>
   </data>
   <data name="ChangeMapFile_labelDpi_Text" xml:space="preserve">
     <value>Ločljivost:</value>
@@ -1054,82 +1054,82 @@
     <value>Purple Pen datoteke|*.ppen</value>
   </data>
   <data name="MainFrame_newEventMenu_Text" xml:space="preserve">
-    <value>&amp;Nova prireditev...</value>
+    <value>_Nova prireditev...</value>
   </data>
   <data name="MainFrame_openMenu_Text" xml:space="preserve">
-    <value>&amp;Odpri ...</value>
+    <value>_Odpri ...</value>
   </data>
   <data name="MainFrame_saveMenu_Text" xml:space="preserve">
-    <value>&amp;Shrani</value>
+    <value>_Shrani</value>
   </data>
   <data name="MainFrame_saveAsMenu_Text" xml:space="preserve">
-    <value>Shrani &amp;kot ...</value>
+    <value>Shrani _kot ...</value>
   </data>
   <data name="MainFrame_createOcadFilesMenu_Text" xml:space="preserve">
-    <value>Ustvari OCAD &amp;Datoteke...</value>
+    <value>Ustvari OCAD _Datoteke...</value>
   </data>
   <data name="MainFrame_createXmlMenu_Text" xml:space="preserve">
-    <value>Ustvari podatkovno &amp;Datoteko za izmenjavo (IOF XML)...</value>
+    <value>Ustvari podatkovno _Datoteko za izmenjavo (IOF XML)...</value>
   </data>
   <data name="MainFrame_printDescriptionsMenu_Text" xml:space="preserve">
-    <value>&amp;Tiskaj Opise kontrolnih točk...</value>
+    <value>_Tiskaj Opise kontrolnih točk...</value>
   </data>
   <data name="MainFrame_printCoursesMenu_Text" xml:space="preserve">
-    <value>Tiskaj &amp;Proge...</value>
+    <value>Tiskaj _Proge...</value>
   </data>
   <data name="MainFrame_printAreaThisPartMenu_Text" xml:space="preserve">
-    <value>Izbran &amp;Samo delno</value>
+    <value>Izbran _Samo delno</value>
   </data>
   <data name="MainFrame_printAreaThisCourseMenu_Text" xml:space="preserve">
-    <value>&amp;Izbrana Proga</value>
+    <value>_Izbrana Proga</value>
   </data>
   <data name="MainFrame_printAreaAllCoursesMenu_Text" xml:space="preserve">
-    <value>&amp;Vse proge</value>
+    <value>_Vse proge</value>
   </data>
   <data name="MainFrame_setPrintAreaMenu_Text" xml:space="preserve">
     <value>Določi območje tiskanja</value>
   </data>
   <data name="MainFrame_programLanguageMenu_Text" xml:space="preserve">
-    <value>Program &amp;Jezik...</value>
+    <value>Program _Jezik...</value>
   </data>
   <data name="MainFrame_exitMenu_Text" xml:space="preserve">
-    <value>I&amp;zhod</value>
+    <value>I_zhod</value>
   </data>
   <data name="MainFrame_fileMenu_Text" xml:space="preserve">
-    <value>&amp;Datoteka</value>
+    <value>_Datoteka</value>
   </data>
   <data name="MainFrame_cancelMenu_Text" xml:space="preserve">
-    <value>&amp;Pobriši izbiro</value>
+    <value>_Pobriši izbiro</value>
   </data>
   <data name="MiscText_ClearSelectionWithShortcut" xml:space="preserve">
-    <value>&amp;Pobriši izbiro</value>
+    <value>_Pobriši izbiro</value>
   </data>
   <data name="MainFrame_undoMenu_Text" xml:space="preserve">
-    <value>&amp;Prekliči</value>
+    <value>_Prekliči</value>
   </data>
   <data name="MiscText_UndoWithShortcut" xml:space="preserve">
-    <value>&amp;Prekliči</value>
+    <value>_Prekliči</value>
   </data>
   <data name="MainFrame_redoMenu_Text" xml:space="preserve">
-    <value>&amp;Obnovi</value>
+    <value>_Obnovi</value>
   </data>
   <data name="MiscText_RedoWithShortcut" xml:space="preserve">
-    <value>&amp;Obnovi</value>
+    <value>_Obnovi</value>
   </data>
   <data name="MainFrame_deleteMenu_Text" xml:space="preserve">
-    <value>&amp;Izbriši</value>
+    <value>_Izbriši</value>
   </data>
   <data name="MainFrame_deleteItemMenu_Text" xml:space="preserve">
-    <value>&amp;Izbriši</value>
+    <value>_Izbriši</value>
   </data>
   <data name="MainFrame_editMenu_Text" xml:space="preserve">
-    <value>&amp;Uredi</value>
+    <value>_Uredi</value>
   </data>
   <data name="MainFrame_entireCourseMenu_Text" xml:space="preserve">
-    <value>Celotna &amp;Proga</value>
+    <value>Celotna _Proga</value>
   </data>
   <data name="MainFrame_entireMapMenu_Text" xml:space="preserve">
-    <value>Celotna &amp;Karta</value>
+    <value>Celotna _Karta</value>
   </data>
   <data name="MainFrame_zoom50Menu_Text" xml:space="preserve">
     <value>50%</value>
@@ -1153,25 +1153,25 @@
     <value>1000%</value>
   </data>
   <data name="MainFrame_zoomMenu_Text" xml:space="preserve">
-    <value>&amp;Povečaj</value>
+    <value>_Povečaj</value>
   </data>
   <data name="MainFrame_veryLowIntensityMenu_Text" xml:space="preserve">
-    <value>&amp;Zelo nizka</value>
+    <value>_Zelo nizka</value>
   </data>
   <data name="MainFrame_lowIntensityMenu_Text" xml:space="preserve">
-    <value>&amp;Nizka</value>
+    <value>_Nizka</value>
   </data>
   <data name="MainFrame_mediumIntensityMenu_Text" xml:space="preserve">
-    <value>&amp;Srednja</value>
+    <value>_Srednja</value>
   </data>
   <data name="MainFrame_highIntensityMenu_Text" xml:space="preserve">
-    <value>&amp;Visoka</value>
+    <value>_Visoka</value>
   </data>
   <data name="MainFrame_fullIntensityMenu_Text" xml:space="preserve">
-    <value>&amp;Polno</value>
+    <value>_Polno</value>
   </data>
   <data name="MainFrame_mapIntensityMenu_Text" xml:space="preserve">
-    <value>Karta &amp;Intenzivnost</value>
+    <value>Karta _Intenzivnost</value>
   </data>
   <data name="MainFrame_normalQualityMenu_Text" xml:space="preserve">
     <value>Nizka</value>
@@ -1180,22 +1180,22 @@
     <value>Visoko</value>
   </data>
   <data name="MainFrame_mapQualityMenu_Text" xml:space="preserve">
-    <value>Karta &amp;Kvaliteta</value>
+    <value>Karta _Kvaliteta</value>
   </data>
   <data name="MainFrame_showPopupsMenu_Text" xml:space="preserve">
-    <value>Prikaži &amp;Pojavna Informacija</value>
+    <value>Prikaži _Pojavna Informacija</value>
   </data>
   <data name="MainFrame_allControlsMenu_Text" xml:space="preserve">
-    <value>&amp;Vse kontrolne točke</value>
+    <value>_Vse kontrolne točke</value>
   </data>
   <data name="MainFrame_viewMenu_Text" xml:space="preserve">
-    <value>&amp;Pogled</value>
+    <value>_Pogled</value>
   </data>
   <data name="MainFrame_mapExchangeControlMenuItem_Text" xml:space="preserve">
-    <value>Menjava karte na &amp;kontrolna točka</value>
+    <value>Menjava karte na _kontrolna točka</value>
   </data>
   <data name="MainFrame_mapExchangeSeparateMenuItem_Text" xml:space="preserve">
-    <value>&amp;označena pote do menjave karte</value>
+    <value>_označena pote do menjave karte</value>
   </data>
   <data name="MainFrame_addMandatoryCrossingMenu_Text" xml:space="preserve">
     <value>obvezen prehod</value>
@@ -1270,55 +1270,55 @@
     <value>oznaka registra</value>
   </data>
   <data name="MainFrame_changeMapFileMenu_Text" xml:space="preserve">
-    <value>&amp;Datoteka s karto</value>
+    <value>_Datoteka s karto</value>
   </data>
   <data name="MainFrame_changeCodesMenu_Text" xml:space="preserve">
-    <value>Spremeni kontrolno točko &amp;kodne številke...</value>
+    <value>Spremeni kontrolno točko _kodne številke...</value>
   </data>
   <data name="MainFrame_autoNumberingMenu_Text" xml:space="preserve">
     <value>Avtomatsko &amp;Številčenje</value>
   </data>
   <data name="MainFrame_removeUnusedControlsMenu_Text" xml:space="preserve">
-    <value>Odstrani &amp;Neuporabljene kontrolne točke...</value>
+    <value>Odstrani _Neuporabljene kontrolne točke...</value>
   </data>
   <data name="MainFrame_punchPatternsMenu_Text" xml:space="preserve">
-    <value>&amp;Vzorci perforacij</value>
+    <value>_Vzorci perforacij</value>
   </data>
   <data name="MainFrame_customizeDescriptionsMenu_Text" xml:space="preserve">
-    <value>Prilagodi &amp;Besedilni opis</value>
+    <value>Prilagodi _Besedilni opis</value>
   </data>
   <data name="MainFrame_eventMenu_Text" xml:space="preserve">
-    <value>Prire&amp;ditev</value>
+    <value>Prire_ditev</value>
   </data>
   <data name="MainFrame_addCourseMenu_Text" xml:space="preserve">
-    <value>&amp;Dodaj progo...</value>
+    <value>_Dodaj progo...</value>
   </data>
   <data name="MainFrame_deleteCourseMenu_Text" xml:space="preserve">
-    <value>&amp;Izbriši progo</value>
+    <value>_Izbriši progo</value>
   </data>
   <data name="MainFrame_propertiesMenu_Text" xml:space="preserve">
-    <value>&amp;Lastnosti...</value>
+    <value>_Lastnosti...</value>
   </data>
   <data name="MainFrame_courseLoadMenu_Text" xml:space="preserve">
-    <value>Tekmovalec &amp;Obremenitev...</value>
+    <value>Tekmovalec _Obremenitev...</value>
   </data>
   <data name="MainFrame_courseMenu_Text" xml:space="preserve">
-    <value>&amp;Proga</value>
+    <value>_Proga</value>
   </data>
   <data name="MainFrame_addBendMenu_Text" xml:space="preserve">
-    <value>Dodaj &amp;zavoj</value>
+    <value>Dodaj _zavoj</value>
   </data>
   <data name="MainFrame_removeBendMenu_Text" xml:space="preserve">
-    <value>Izbriši Z&amp;avoj</value>
+    <value>Izbriši Z_avoj</value>
   </data>
   <data name="MainFrame_addGapMenu_Text" xml:space="preserve">
-    <value>Dodaj &amp;Razmak</value>
+    <value>Dodaj _Razmak</value>
   </data>
   <data name="MainFrame_changeTextMenu_Text" xml:space="preserve">
-    <value>Izbriši &amp;Besedilo...</value>
+    <value>Izbriši _Besedilo...</value>
   </data>
   <data name="MainFrame_rotateMenu_Text" xml:space="preserve">
-    <value>Z&amp;avrti</value>
+    <value>Z_avrti</value>
   </data>
   <data name="MainFrame_noFlaggingMenu_Text" xml:space="preserve">
     <value>Ni oznak</value>
@@ -1333,43 +1333,43 @@
     <value>Konec oznak na etapi</value>
   </data>
   <data name="MainFrame_legFlaggingMenu_Text" xml:space="preserve">
-    <value>&amp;Označena etapa</value>
+    <value>_Označena etapa</value>
   </data>
   <data name="MainFrame_changeDisplayedCoursesMenu_Text" xml:space="preserve">
-    <value>Spremeni označ&amp;eno progo...</value>
+    <value>Spremeni označ_eno progo...</value>
   </data>
   <data name="MainFrame_itemMenu_Text" xml:space="preserve">
-    <value>&amp;Objekt</value>
+    <value>_Objekt</value>
   </data>
   <data name="MainFrame_courseSummaryMenu_Text" xml:space="preserve">
-    <value>Proga &amp;Povzetek</value>
+    <value>Proga _Povzetek</value>
   </data>
   <data name="MainFrame_eventAuditMenu_Text" xml:space="preserve">
-    <value>Prireditev &amp;Pregled</value>
+    <value>Prireditev _Pregled</value>
   </data>
   <data name="MainFrame_legLengthsMenu_Text" xml:space="preserve">
-    <value>&amp;Dolžine etap</value>
+    <value>_Dolžine etap</value>
   </data>
   <data name="MainFrame_controlCrossrefMenu_Text" xml:space="preserve">
-    <value>Kontrolna točka &amp;Navzkrižna referenca</value>
+    <value>Kontrolna točka _Navzkrižna referenca</value>
   </data>
   <data name="MainFrame_controlAndLegLoadMenu_Text" xml:space="preserve">
-    <value>Kontrolna točka in obremenitev et&amp;ap</value>
+    <value>Kontrolna točka in obremenitev et_ap</value>
   </data>
   <data name="MainFrame_reportMenu_Text" xml:space="preserve">
-    <value>&amp;Poročila</value>
+    <value>_Poročila</value>
   </data>
   <data name="MainFrame_helpContentsMenu_Text" xml:space="preserve">
-    <value>Purple Pen &amp;Pomoč</value>
+    <value>Purple Pen _Pomoč</value>
   </data>
   <data name="MainFrame_helpTranslatedMenu_Text" xml:space="preserve">
     <value>Purple Pen Pomoč (prevedena)</value>
   </data>
   <data name="MainFrame_mainWebSiteToolMenu_Text" xml:space="preserve">
-    <value>Purple Pen &amp;spletna stran</value>
+    <value>Purple Pen _spletna stran</value>
   </data>
   <data name="MainFrame_supportWebSiteMenu_Text" xml:space="preserve">
-    <value>&amp;Podpora/sporočanje napak</value>
+    <value>_Podpora/sporočanje napak</value>
   </data>
   <data name="MainFrame_mapExchangeToolStripMenu_Text" xml:space="preserve">
     <value>Dodaj menjavo karte</value>

@@ -478,10 +478,10 @@
     <value>Carte active</value>
   </data>
   <data name="ChangeMapFile_buttonChooseFile_Text" xml:space="preserve">
-    <value>&amp;Choisir une carte...</value>
+    <value>_Choisir une carte...</value>
   </data>
   <data name="NewEventMapFile_chooseMapFileButton_Text" xml:space="preserve">
-    <value>&amp;Choisir une carte...</value>
+    <value>_Choisir une carte...</value>
   </data>
   <data name="ChangeMapFile_openFileDialog_Filter" xml:space="preserve">
     <value>Tous les fichiers cartes|*.ocd;*.omap;*.xmap;*.pdf;*.jpeg;*.jpg;*.tiff;*.tif;*.bmp;*.png;*.gif|fichiers OCAD (*.ocd)|*.ocd|fichiers Open Orienteering Mapper|*.omap;*.xmap|fichiers PDF (*.pdf)|*.pdf|fichiers Image|*.jpeg;*.jpg;*.tiff;*.tif;*.bmp;*.png;*.gif</value>
@@ -871,7 +871,7 @@
     <value>Dupliquer le circuit</value>
   </data>
   <data name="CommandNameText_CreateMapFiles" xml:space="preserve">
-    <value>Créer {0} &amp;Fichier(s)</value>
+    <value>Créer {0} _Fichier(s)</value>
   </data>
   <data name="CommandNameText_DeleteFork" xml:space="preserve">
     <value>Supprimer Fourche/Boucle</value>
@@ -1573,34 +1573,34 @@
     <value>Fichier Purple Pen|*.ppen</value>
   </data>
   <data name="MainFrame_newEventMenu_Text" xml:space="preserve">
-    <value>&amp;Nouvelle Course...</value>
+    <value>_Nouvelle Course...</value>
   </data>
   <data name="MainFrame_openMenu_Text" xml:space="preserve">
-    <value>&amp;Ouvrir...</value>
+    <value>_Ouvrir...</value>
   </data>
   <data name="MainFrame_saveMenu_Text" xml:space="preserve">
-    <value>&amp;Enregistrer</value>
+    <value>_Enregistrer</value>
   </data>
   <data name="MainFrame_saveAsMenu_Text" xml:space="preserve">
-    <value>Enregistrer &amp;Sous...</value>
+    <value>Enregistrer _Sous...</value>
   </data>
   <data name="MainFrame_createOcadFilesMenu_Text" xml:space="preserve">
-    <value>Créer des &amp;Fichiers OCAD...</value>
+    <value>Créer des _Fichiers OCAD...</value>
   </data>
   <data name="MainFrame_createImageFilesMenu_Text" xml:space="preserve">
-    <value>Créer des fichiers Ima&amp;ge...</value>
+    <value>Créer des fichiers Ima_ge...</value>
   </data>
   <data name="MainFrame_createDescriptionPdfMenu_Text" xml:space="preserve">
-    <value>&amp;Descriptions...</value>
+    <value>_Descriptions...</value>
   </data>
   <data name="MainFrame_createPunchcardPdfMenu_Text" xml:space="preserve">
     <value>Poinçons...</value>
   </data>
   <data name="MainFrame_createCoursePdfMenu_Text" xml:space="preserve">
-    <value>&amp;Courses...</value>
+    <value>_Courses...</value>
   </data>
   <data name="MainFrame_createPDFsMenu_Text" xml:space="preserve">
-    <value>Créer des P&amp;DF</value>
+    <value>Créer des P_DF</value>
   </data>
   <data name="MainFrame_createRouteGadgetFilesMenu_Text" xml:space="preserve">
     <value>Créer un fichier RouteGadget...</value>
@@ -1609,76 +1609,76 @@
     <value>Créer des fichiers pour l'analyse de course</value>
   </data>
   <data name="MainFrame_createXmlMenu_Text" xml:space="preserve">
-    <value>Créer Fichier &amp;Interchange XML...</value>
+    <value>Créer Fichier _Interchange XML...</value>
   </data>
   <data name="MainFrame_createGPXFileMenu_Text" xml:space="preserve">
-    <value>Créer Fichier G&amp;PX...</value>
+    <value>Créer Fichier G_PX...</value>
   </data>
   <data name="MainFrame_createKMLFileMenu_Text" xml:space="preserve">
-    <value>Créer &amp;KML File...</value>
+    <value>Créer _KML File...</value>
   </data>
   <data name="MainFrame_printDescriptionsMenu_Text" xml:space="preserve">
-    <value>&amp;Imprimer les Définitions...</value>
+    <value>_Imprimer les Définitions...</value>
   </data>
   <data name="MainFrame_printPunchCardsMenu_Text" xml:space="preserve">
-    <value>Imprimer les Car&amp;tons de Contrôle...</value>
+    <value>Imprimer les Car_tons de Contrôle...</value>
   </data>
   <data name="MainFrame_printCoursesMenu_Text" xml:space="preserve">
-    <value>Imprimer les &amp;Circuits...</value>
+    <value>Imprimer les _Circuits...</value>
   </data>
   <data name="MainFrame_printAreaThisPartMenu_Text" xml:space="preserve">
-    <value>Cette &amp;Partie Uniquement</value>
+    <value>Cette _Partie Uniquement</value>
   </data>
   <data name="MainFrame_printAreaThisCourseMenu_Text" xml:space="preserve">
-    <value>&amp;Ce circuit</value>
+    <value>_Ce circuit</value>
   </data>
   <data name="MainFrame_printAreaAllCoursesMenu_Text" xml:space="preserve">
-    <value>&amp;Tous les circuits</value>
+    <value>_Tous les circuits</value>
   </data>
   <data name="MainFrame_setPrintAreaMenu_Text" xml:space="preserve">
-    <value>Définir la &amp;Zone d'Impression</value>
+    <value>Définir la _Zone d'Impression</value>
   </data>
   <data name="MainFrame_programLanguageMenu_Text" xml:space="preserve">
-    <value>Choisir &amp;Langue par défaut...</value>
+    <value>Choisir _Langue par défaut...</value>
   </data>
   <data name="MainFrame_exitMenu_Text" xml:space="preserve">
-    <value>&amp;Quitter</value>
+    <value>_Quitter</value>
   </data>
   <data name="MainFrame_fileMenu_Text" xml:space="preserve">
-    <value>&amp;Fichier</value>
+    <value>_Fichier</value>
   </data>
   <data name="MainFrame_cancelMenu_Text" xml:space="preserve">
-    <value>&amp;Désélectionner</value>
+    <value>_Désélectionner</value>
   </data>
   <data name="MiscText_ClearSelectionWithShortcut" xml:space="preserve">
-    <value>&amp;Désélectionner</value>
+    <value>_Désélectionner</value>
   </data>
   <data name="MainFrame_undoMenu_Text" xml:space="preserve">
-    <value>&amp;Annuler</value>
+    <value>_Annuler</value>
   </data>
   <data name="MiscText_UndoWithShortcut" xml:space="preserve">
-    <value>&amp;Annuler</value>
+    <value>_Annuler</value>
   </data>
   <data name="MainFrame_redoMenu_Text" xml:space="preserve">
-    <value>&amp;Refaire</value>
+    <value>_Refaire</value>
   </data>
   <data name="MiscText_RedoWithShortcut" xml:space="preserve">
-    <value>&amp;Refaire</value>
+    <value>_Refaire</value>
   </data>
   <data name="MainFrame_deleteMenu_Text" xml:space="preserve">
-    <value>&amp;Supprimer</value>
+    <value>_Supprimer</value>
   </data>
   <data name="MainFrame_deleteItemMenu_Text" xml:space="preserve">
-    <value>&amp;Supprimer</value>
+    <value>_Supprimer</value>
   </data>
   <data name="MainFrame_editMenu_Text" xml:space="preserve">
     <value>&amp;Édition</value>
   </data>
   <data name="MainFrame_entireCourseMenu_Text" xml:space="preserve">
-    <value>&amp;Circuit Complet</value>
+    <value>_Circuit Complet</value>
   </data>
   <data name="MainFrame_entireMapMenu_Text" xml:space="preserve">
-    <value>C&amp;arte Entière</value>
+    <value>C_arte Entière</value>
   </data>
   <data name="MainFrame_zoom50Menu_Text" xml:space="preserve">
     <value>50%</value>
@@ -1702,25 +1702,25 @@
     <value>1000%</value>
   </data>
   <data name="MainFrame_zoomMenu_Text" xml:space="preserve">
-    <value>&amp;Zoom</value>
+    <value>_Zoom</value>
   </data>
   <data name="MainFrame_veryLowIntensityMenu_Text" xml:space="preserve">
-    <value>&amp;Très faible</value>
+    <value>_Très faible</value>
   </data>
   <data name="MainFrame_lowIntensityMenu_Text" xml:space="preserve">
-    <value>&amp;Faible</value>
+    <value>_Faible</value>
   </data>
   <data name="MainFrame_mediumIntensityMenu_Text" xml:space="preserve">
-    <value>&amp;Moyenne</value>
+    <value>_Moyenne</value>
   </data>
   <data name="MainFrame_highIntensityMenu_Text" xml:space="preserve">
-    <value>&amp;Haute</value>
+    <value>_Haute</value>
   </data>
   <data name="MainFrame_fullIntensityMenu_Text" xml:space="preserve">
-    <value>&amp;Totale</value>
+    <value>_Totale</value>
   </data>
   <data name="MainFrame_mapIntensityMenu_Text" xml:space="preserve">
-    <value>&amp;Opacité de la Carte</value>
+    <value>_Opacité de la Carte</value>
   </data>
   <data name="MainFrame_normalQualityMenu_Text" xml:space="preserve">
     <value>Basse</value>
@@ -1729,16 +1729,16 @@
     <value>Haute</value>
   </data>
   <data name="MainFrame_mapQualityMenu_Text" xml:space="preserve">
-    <value>&amp;Qualité de la Carte</value>
+    <value>_Qualité de la Carte</value>
   </data>
   <data name="MainFrame_showPrintAreaMenu_Text" xml:space="preserve">
-    <value>Afficher la zone d'imp&amp;ression</value>
+    <value>Afficher la zone d'imp_ression</value>
   </data>
   <data name="MainFrame_showPopupsMenu_Text" xml:space="preserve">
-    <value>Afficher les &amp;Popup</value>
+    <value>Afficher les _Popup</value>
   </data>
   <data name="MainFrame_allControlsMenu_Text" xml:space="preserve">
-    <value>&amp;Tous Postes</value>
+    <value>_Tous Postes</value>
   </data>
   <data name="MainFrame_otherCoursesMenu_Text" xml:space="preserve">
     <value>Autres courses...</value>
@@ -1747,40 +1747,40 @@
     <value>Effacer les autres courses</value>
   </data>
   <data name="MainFrame_viewMenu_Text" xml:space="preserve">
-    <value>&amp;Affichage</value>
+    <value>_Affichage</value>
   </data>
   <data name="MainFrame_addStartMenu_Text" xml:space="preserve">
-    <value>&amp;Démarrer</value>
+    <value>_Démarrer</value>
   </data>
   <data name="MainFrame_addControlMenu_Text" xml:space="preserve">
-    <value>&amp;Poste</value>
+    <value>_Poste</value>
   </data>
   <data name="MainFrame_addFinishMenu_Text" xml:space="preserve">
-    <value>&amp;Terminer</value>
+    <value>_Terminer</value>
   </data>
   <data name="MiscText_FinishButtonText" xml:space="preserve">
-    <value>&amp;Terminer</value>
+    <value>_Terminer</value>
   </data>
   <data name="MainFrame_addDescriptionsMenu_Text" xml:space="preserve">
-    <value>&amp;Descriptions</value>
+    <value>_Descriptions</value>
   </data>
   <data name="MainFrame_addMapFlipMenuItem_Text" xml:space="preserve">
     <value>Retournement de carte au poste</value>
   </data>
   <data name="MainFrame_mapExchangeControlMenuItem_Text" xml:space="preserve">
-    <value>Echange de Carte au &amp;Poste</value>
+    <value>Echange de Carte au _Poste</value>
   </data>
   <data name="MainFrame_mapExchangeSeparateMenuItem_Text" xml:space="preserve">
-    <value>Parcours &amp;Balisé vers Echange de Carte</value>
+    <value>Parcours _Balisé vers Echange de Carte</value>
   </data>
   <data name="MainFrame_addMapExchangeMenu_Text" xml:space="preserve">
-    <value>E&amp;change de carte</value>
+    <value>E_change de carte</value>
   </data>
   <data name="MainFrame_addVariationMenu_Text" xml:space="preserve">
-    <value>&amp;Variation...</value>
+    <value>_Variation...</value>
   </data>
   <data name="MainFrame_addTextLineMenu_Text" xml:space="preserve">
-    <value>Texte &amp;Ligne...</value>
+    <value>Texte _Ligne...</value>
   </data>
   <data name="MainFrame_addMapIssueMenu_Text" xml:space="preserve">
     <value>Départ chronométré</value>
@@ -1915,25 +1915,25 @@
     <value>Ovale</value>
   </data>
   <data name="MainFrame_addMenu_Text" xml:space="preserve">
-    <value>&amp;Ajouter</value>
+    <value>_Ajouter</value>
   </data>
   <data name="MainFrame_changeMapFileMenu_Text" xml:space="preserve">
-    <value>&amp;Carte...</value>
+    <value>_Carte...</value>
   </data>
   <data name="MainFrame_changeCodesMenu_Text" xml:space="preserve">
-    <value>&amp;Modifier Numéros de Poste...</value>
+    <value>_Modifier Numéros de Poste...</value>
   </data>
   <data name="MainFrame_autoNumberingMenu_Text" xml:space="preserve">
-    <value>&amp;Numérotation automatique...</value>
+    <value>_Numérotation automatique...</value>
   </data>
   <data name="MainFrame_removeUnusedControlsMenu_Text" xml:space="preserve">
-    <value>&amp;Supprimer les Postes Inutilisés...</value>
+    <value>_Supprimer les Postes Inutilisés...</value>
   </data>
   <data name="MainFrame_moveAllControlsMenu_Text" xml:space="preserve">
     <value>Déplacer tous les postes...</value>
   </data>
   <data name="MainFrame_punchPatternsMenu_Text" xml:space="preserve">
-    <value>&amp;Poinçons...</value>
+    <value>_Poinçons...</value>
   </data>
   <data name="MainFrame_mapStd2000Menu_Text" xml:space="preserve">
     <value>Norme ISOM2000</value>
@@ -1942,64 +1942,64 @@
     <value>Norme ISOM2017</value>
   </data>
   <data name="MainFrame_iOFStandardsToolStripMenuItem_Text" xml:space="preserve">
-    <value>&amp;Normes IOF</value>
+    <value>_Normes IOF</value>
   </data>
   <data name="MainFrame_customizeDescriptionsMenu_Text" xml:space="preserve">
     <value>Personnaliser Description en Clair...</value>
   </data>
   <data name="MainFrame_customizeCourseAppearanceMenu_Text" xml:space="preserve">
-    <value>Personnaliser l'&amp;apparence...</value>
+    <value>Personnaliser l'_apparence...</value>
   </data>
   <data name="MainFrame_eventMenu_Text" xml:space="preserve">
-    <value>C&amp;ourse</value>
+    <value>C_ourse</value>
   </data>
   <data name="MainFrame_addCourseMenu_Text" xml:space="preserve">
-    <value>&amp;Ajouter un Circuit...</value>
+    <value>_Ajouter un Circuit...</value>
   </data>
   <data name="MainFrame_deleteCourseMenu_Text" xml:space="preserve">
-    <value>&amp;Supprimer un Circuit</value>
+    <value>_Supprimer un Circuit</value>
   </data>
   <data name="MainFrame_duplicateCourseMenu_Text" xml:space="preserve">
-    <value>D&amp;upliquerCircuit...</value>
+    <value>D_upliquerCircuit...</value>
   </data>
   <data name="MainFrame_propertiesMenu_Text" xml:space="preserve">
-    <value>&amp;Propriétés...</value>
+    <value>_Propriétés...</value>
   </data>
   <data name="MainFrame_courseOrderMenu_Text" xml:space="preserve">
-    <value>&amp;Ordre des Circuits...</value>
+    <value>_Ordre des Circuits...</value>
   </data>
   <data name="MainFrame_courseLoadMenu_Text" xml:space="preserve">
-    <value>&amp;Nombre de Concurrents...</value>
+    <value>_Nombre de Concurrents...</value>
   </data>
   <data name="MainFrame_courseVariationReportMenu_Text" xml:space="preserve">
     <value>Variations équipe de relais</value>
   </data>
   <data name="MainFrame_courseMenu_Text" xml:space="preserve">
-    <value>&amp;Circuit</value>
+    <value>_Circuit</value>
   </data>
   <data name="MainFrame_deleteForkMenu_Text" xml:space="preserve">
     <value>Supprimer Fourche/Boucle</value>
   </data>
   <data name="MainFrame_addBendMenu_Text" xml:space="preserve">
-    <value>Insérer un &amp;Coude</value>
+    <value>Insérer un _Coude</value>
   </data>
   <data name="MainFrame_removeBendMenu_Text" xml:space="preserve">
-    <value>Supprimer un C&amp;oude</value>
+    <value>Supprimer un C_oude</value>
   </data>
   <data name="MainFrame_addGapMenu_Text" xml:space="preserve">
-    <value>Insérer &amp;Découpe</value>
+    <value>Insérer _Découpe</value>
   </data>
   <data name="MainFrame_removeGapMenu_Text" xml:space="preserve">
     <value>Supprimer une découpe</value>
   </data>
   <data name="MainFrame_changeTextMenu_Text" xml:space="preserve">
-    <value>Modifier &amp;Texte...</value>
+    <value>Modifier _Texte...</value>
   </data>
   <data name="MainFrame_changeLineAppearanceMenu_Text" xml:space="preserve">
     <value>Modifier le style de ligne...</value>
   </data>
   <data name="MainFrame_rotateMenu_Text" xml:space="preserve">
-    <value>&amp;Rotation</value>
+    <value>_Rotation</value>
   </data>
   <data name="MainFrame_noFlaggingMenu_Text" xml:space="preserve">
     <value>Sans Jalon</value>
@@ -2014,46 +2014,46 @@
     <value>Fin d'interposte jalonné</value>
   </data>
   <data name="MainFrame_legFlaggingMenu_Text" xml:space="preserve">
-    <value>&amp;Jalonnage de l'interposte</value>
+    <value>_Jalonnage de l'interposte</value>
   </data>
   <data name="MainFrame_changeDisplayedCoursesMenu_Text" xml:space="preserve">
-    <value>&amp;Modifier Affichage Circuits...</value>
+    <value>_Modifier Affichage Circuits...</value>
   </data>
   <data name="MainFrame_itemMenu_Text" xml:space="preserve">
-    <value>Élémen&amp;t</value>
+    <value>Élémen_t</value>
   </data>
   <data name="MainFrame_courseSummaryMenu_Text" xml:space="preserve">
-    <value>&amp;Synthèse Circuit</value>
+    <value>_Synthèse Circuit</value>
   </data>
   <data name="MainFrame_eventAuditMenu_Text" xml:space="preserve">
-    <value>&amp;Audit Course</value>
+    <value>_Audit Course</value>
   </data>
   <data name="MainFrame_legLengthsMenu_Text" xml:space="preserve">
-    <value>&amp;Longueurs interpostes</value>
+    <value>_Longueurs interpostes</value>
   </data>
   <data name="MainFrame_controlCrossrefMenu_Text" xml:space="preserve">
-    <value>Contrôle C&amp;roisé</value>
+    <value>Contrôle C_roisé</value>
   </data>
   <data name="MainFrame_controlAndLegLoadMenu_Text" xml:space="preserve">
-    <value>&amp;Charger les postes et interpostes</value>
+    <value>_Charger les postes et interpostes</value>
   </data>
   <data name="MainFrame_reportMenu_Text" xml:space="preserve">
-    <value>&amp;Rapports</value>
+    <value>_Rapports</value>
   </data>
   <data name="MainFrame_helpContentsMenu_Text" xml:space="preserve">
-    <value>&amp;Aide Purple Pen</value>
+    <value>_Aide Purple Pen</value>
   </data>
   <data name="MainFrame_helpTranslatedMenu_Text" xml:space="preserve">
     <value>Aide de Purple Pen (traduite)</value>
   </data>
   <data name="MainFrame_mainWebSiteToolMenu_Text" xml:space="preserve">
-    <value>Site &amp;Web Purple Pen</value>
+    <value>Site _Web Purple Pen</value>
   </data>
   <data name="MainFrame_supportWebSiteMenu_Text" xml:space="preserve">
-    <value>&amp;Support/Remonter un bogue</value>
+    <value>_Support/Remonter un bogue</value>
   </data>
   <data name="MainFrame_donateWebSiteMenu_Text" xml:space="preserve">
-    <value>Faire un &amp;Don</value>
+    <value>Faire un _Don</value>
   </data>
   <data name="MainFrame_aboutMenu_Text" xml:space="preserve">
     <value>&amp;À Propos de Purple Pen</value>
@@ -2104,7 +2104,7 @@
     <value>Fusionner Symbols.xml...</value>
   </data>
   <data name="MainFrame_translateMenu_Text" xml:space="preserve">
-    <value>&amp;Traduire le texte des définitions</value>
+    <value>_Traduire le texte des définitions</value>
   </data>
   <data name="MainFrame_helpMenu_Text" xml:space="preserve">
     <value>&amp;?</value>
@@ -2260,7 +2260,7 @@
     <value>Le nombre de concurrents sur un circuit doit être vide ou un nombre entier compris entre 0 et 999999.</value>
   </data>
   <data name="MiscText_CancelOperationWithShortcut" xml:space="preserve">
-    <value>A&amp;nnuler l'opération</value>
+    <value>A_nnuler l'opération</value>
   </data>
   <data name="MiscText_CancelOperation" xml:space="preserve">
     <value>Annuler l'opération</value>
@@ -2375,10 +2375,10 @@ Après avoir cliqué sur OK, essayez de trouver une copie du fichier de la carte
     <value>Tous les numéros de poste sont utilisés sur un circuit.</value>
   </data>
   <data name="MiscText_NextButtonText" xml:space="preserve">
-    <value>&amp;Suivant &gt;</value>
+    <value>_Suivant &gt;</value>
   </data>
   <data name="NewEventWizard_nextButton_Text" xml:space="preserve">
-    <value>&amp;Suivant &gt;</value>
+    <value>_Suivant &gt;</value>
   </data>
   <data name="MiscText_Control_Code" xml:space="preserve">
     <value>Poste n° {0}</value>
@@ -2760,7 +2760,7 @@ L'échelle de la carte précise la relation qui existe entre la carte "papier" e
 </value>
   </data>
   <data name="NewEventPrintScale_defaultPrintScaleLabel_Text" xml:space="preserve">
-    <value>Echelle d'im&amp;pression par défaut :</value>
+    <value>Echelle d'im_pression par défaut :</value>
   </data>
   <data name="NewEventPrintScale_changeLaterLabel_Text" xml:space="preserve">
     <value>(Vous pourrez modifier l'échelle d'impression ultérieurement pour n'importe quel circuit en choisissant Circuit/Propriétés)</value>
@@ -2803,7 +2803,7 @@ Afin de rentrer sur la feuille de définitions, il devrait comporter moins de 25
     <value>Nom de la course :</value>
   </data>
   <data name="NewEventWizard_backButton_Text" xml:space="preserve">
-    <value>&lt; &amp;Retour</value>
+    <value>&lt; _Retour</value>
   </data>
   <data name="NonPrintableObjects_labelWarning_Text" xml:space="preserve">
     <value>La carte "{0}" contient des objets ou des symboles qui ne sont pas complètement supportés par Purple Pen, et qui pourraient ne pas s'imprimer correctement. Ces objets sont listés ci-dessous.

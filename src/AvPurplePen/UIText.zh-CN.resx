@@ -1543,13 +1543,13 @@
     <value>紫笔文件|*.ppen</value>
   </data>
   <data name="MainFrame_newEventMenu_Text" xml:space="preserve">
-    <value>新的赛事(&amp;N)</value>
+    <value>新的赛事(_N)</value>
   </data>
   <data name="MainFrame_openMenu_Text" xml:space="preserve">
-    <value>打开(&amp;O)</value>
+    <value>打开(_O)</value>
   </data>
   <data name="MainFrame_saveMenu_Text" xml:space="preserve">
-    <value>保存(&amp;S)</value>
+    <value>保存(_S)</value>
   </data>
   <data name="MainFrame_saveAsMenu_Text" xml:space="preserve">
     <value>保存为…</value>
@@ -1585,7 +1585,7 @@
     <value>创建GPX文件...</value>
   </data>
   <data name="MainFrame_createKMLFileMenu_Text" xml:space="preserve">
-    <value>创建&amp;KML文件</value>
+    <value>创建_KML文件</value>
   </data>
   <data name="MainFrame_printDescriptionsMenu_Text" xml:space="preserve">
     <value>打印说明</value>
@@ -1615,7 +1615,7 @@
     <value>退出</value>
   </data>
   <data name="MainFrame_fileMenu_Text" xml:space="preserve">
-    <value>文件(&amp;F)</value>
+    <value>文件(_F)</value>
   </data>
   <data name="MainFrame_cancelMenu_Text" xml:space="preserve">
     <value>清除选择</value>
@@ -1726,16 +1726,16 @@
     <value>检查点</value>
   </data>
   <data name="MainFrame_addFinishMenu_Text" xml:space="preserve">
-    <value>完成(&amp;F)</value>
+    <value>完成(_F)</value>
   </data>
   <data name="MiscText_FinishButtonText" xml:space="preserve">
-    <value>完成(&amp;F)</value>
+    <value>完成(_F)</value>
   </data>
   <data name="MainFrame_addDescriptionsMenu_Text" xml:space="preserve">
     <value>说明</value>
   </data>
   <data name="MainFrame_addMapFlipMenuItem_Text" xml:space="preserve">
-    <value>在这个检查点进行地图切换（&amp;F）</value>
+    <value>在这个检查点进行地图切换（_F）</value>
   </data>
   <data name="MainFrame_mapExchangeControlMenuItem_Text" xml:space="preserve">
     <value>在检查点换图</value>
@@ -1879,7 +1879,7 @@
     <value>椭圆</value>
   </data>
   <data name="MainFrame_addMenu_Text" xml:space="preserve">
-    <value>添加 (&amp;A)...</value>
+    <value>添加 (_A)...</value>
   </data>
   <data name="MainFrame_changeMapFileMenu_Text" xml:space="preserve">
     <value>地图文件</value>
@@ -1894,7 +1894,7 @@
     <value>删除未使用的检查点…</value>
   </data>
   <data name="MainFrame_moveAllControlsMenu_Text" xml:space="preserve">
-    <value>移动所有检查点（&amp;v）</value>
+    <value>移动所有检查点（_v）</value>
   </data>
   <data name="MainFrame_punchPatternsMenu_Text" xml:space="preserve">
     <value>&amp;机械打卡器针脚排列...</value>
@@ -2011,7 +2011,7 @@
     <value>检查点和路段通过量</value>
   </data>
   <data name="MainFrame_reportMenu_Text" xml:space="preserve">
-    <value>报表(&amp;R)</value>
+    <value>报表(_R)</value>
   </data>
   <data name="MainFrame_helpContentsMenu_Text" xml:space="preserve">
     <value>紫笔使用手册</value>
@@ -2080,7 +2080,7 @@
     <value>翻译说明文本</value>
   </data>
   <data name="MainFrame_helpMenu_Text" xml:space="preserve">
-    <value>帮助(&amp;H)</value>
+    <value>帮助(_H)</value>
   </data>
   <data name="MainFrame_openToolStripButton_Text" xml:space="preserve">
     <value>打开</value>
@@ -2347,10 +2347,10 @@
     <value>所有检查点都在一个线路中使用。</value>
   </data>
   <data name="MiscText_NextButtonText" xml:space="preserve">
-    <value>下一步(&amp;N) &gt;</value>
+    <value>下一步(_N) &gt;</value>
   </data>
   <data name="NewEventWizard_nextButton_Text" xml:space="preserve">
-    <value>下一步(&amp;N) &gt;</value>
+    <value>下一步(_N) &gt;</value>
   </data>
   <data name="MiscText_Control_Code" xml:space="preserve">
     <value>检查点{0}</value>
@@ -2787,7 +2787,7 @@
     <value>赛事标题：</value>
   </data>
   <data name="NewEventWizard_backButton_Text" xml:space="preserve">
-    <value>&lt; 上一步(&amp;B)</value>
+    <value>&lt; 上一步(_B)</value>
   </data>
   <data name="NonPrintableObjects_labelWarning_Text" xml:space="preserve">
     <value>地图文件{0}包含紫笔不完全支持的对象或符号，并且可能无法正确打印。下面列出了可能无法正确打印的对象。

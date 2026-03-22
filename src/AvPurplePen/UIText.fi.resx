@@ -457,10 +457,10 @@
     <value>Nykyinen karttatiedosto</value>
   </data>
   <data name="ChangeMapFile_buttonChooseFile_Text" xml:space="preserve">
-    <value>&amp;Valitse karttatiedosto...</value>
+    <value>_Valitse karttatiedosto...</value>
   </data>
   <data name="NewEventMapFile_chooseMapFileButton_Text" xml:space="preserve">
-    <value>&amp;Valitse karttatiedosto...</value>
+    <value>_Valitse karttatiedosto...</value>
   </data>
   <data name="ChangeMapFile_openFileDialog_Filter" xml:space="preserve">
     <value>Kaikki karttatiedostot|*.ocd;*.omap;*.xmap;*.pdf;*.jpeg;*.jpg;*.tiff;*.tif;*.bmp;*.png;*.gif|OCAD-tiedostot (*.ocd)|*.ocd|Open Orienteering Mapper -tiedostot|*.omap;*.xmap|PDF-tiedostot (*.pdf)|*.pdf|Kuvatiedostot|*.jpeg;*.jpg;*.tiff;*.tif;*.bmp;*.png;*.gif</value>
@@ -850,7 +850,7 @@
     <value>Kopioi rata</value>
   </data>
   <data name="CommandNameText_CreateMapFiles" xml:space="preserve">
-    <value>&amp;Luo {0} tiedostoja</value>
+    <value>_Luo {0} tiedostoja</value>
   </data>
   <data name="CommandNameText_DeleteFork" xml:space="preserve">
     <value>Poista hajonta</value>
@@ -1549,34 +1549,34 @@
     <value>Purple Pen tiedosto|*.ppen</value>
   </data>
   <data name="MainFrame_newEventMenu_Text" xml:space="preserve">
-    <value>&amp;Uusi tapahtuma...</value>
+    <value>_Uusi tapahtuma...</value>
   </data>
   <data name="MainFrame_openMenu_Text" xml:space="preserve">
-    <value>&amp;Avaa...</value>
+    <value>_Avaa...</value>
   </data>
   <data name="MainFrame_saveMenu_Text" xml:space="preserve">
-    <value>&amp;Tallenna</value>
+    <value>_Tallenna</value>
   </data>
   <data name="MainFrame_saveAsMenu_Text" xml:space="preserve">
-    <value>Tallenna &amp;nimellä...</value>
+    <value>Tallenna _nimellä...</value>
   </data>
   <data name="MainFrame_createOcadFilesMenu_Text" xml:space="preserve">
-    <value>Vie &amp;OCAD-tiedostoihin...</value>
+    <value>Vie _OCAD-tiedostoihin...</value>
   </data>
   <data name="MainFrame_createImageFilesMenu_Text" xml:space="preserve">
-    <value>Luo ku&amp;vatiedostoja...</value>
+    <value>Luo ku_vatiedostoja...</value>
   </data>
   <data name="MainFrame_createDescriptionPdfMenu_Text" xml:space="preserve">
-    <value>Rastin&amp;määritteet...</value>
+    <value>Rastin_määritteet...</value>
   </data>
   <data name="MainFrame_createPunchcardPdfMenu_Text" xml:space="preserve">
-    <value>&amp;Leimauskuviot...</value>
+    <value>_Leimauskuviot...</value>
   </data>
   <data name="MainFrame_createCoursePdfMenu_Text" xml:space="preserve">
-    <value>&amp;Radat...</value>
+    <value>_Radat...</value>
   </data>
   <data name="MainFrame_createPDFsMenu_Text" xml:space="preserve">
-    <value>Luo P&amp;DF-tiedostoja</value>
+    <value>Luo P_DF-tiedostoja</value>
   </data>
   <data name="MainFrame_createRouteGadgetFilesMenu_Text" xml:space="preserve">
     <value>Luo Reittihärveli-tiedostoja...</value>
@@ -1585,76 +1585,76 @@
     <value>Luo reitintarkastelutiedostoja</value>
   </data>
   <data name="MainFrame_createXmlMenu_Text" xml:space="preserve">
-    <value>Vie &amp;XML-tiedostoon...</value>
+    <value>Vie _XML-tiedostoon...</value>
   </data>
   <data name="MainFrame_createGPXFileMenu_Text" xml:space="preserve">
-    <value>Luo &amp;GPX-tiedosto...</value>
+    <value>Luo _GPX-tiedosto...</value>
   </data>
   <data name="MainFrame_createKMLFileMenu_Text" xml:space="preserve">
-    <value>Luo &amp;KML-tiedosto...</value>
+    <value>Luo _KML-tiedosto...</value>
   </data>
   <data name="MainFrame_printDescriptionsMenu_Text" xml:space="preserve">
-    <value>Tulosta rastin&amp;määritteet...</value>
+    <value>Tulosta rastin_määritteet...</value>
   </data>
   <data name="MainFrame_printPunchCardsMenu_Text" xml:space="preserve">
-    <value>Tulosta &amp;leimauskuviot...</value>
+    <value>Tulosta _leimauskuviot...</value>
   </data>
   <data name="MainFrame_printCoursesMenu_Text" xml:space="preserve">
-    <value>Tulosta &amp;ratoja...</value>
+    <value>Tulosta _ratoja...</value>
   </data>
   <data name="MainFrame_printAreaThisPartMenu_Text" xml:space="preserve">
-    <value>Vain tälle &amp;osalle</value>
+    <value>Vain tälle _osalle</value>
   </data>
   <data name="MainFrame_printAreaThisCourseMenu_Text" xml:space="preserve">
-    <value>&amp;Tälle radalle</value>
+    <value>_Tälle radalle</value>
   </data>
   <data name="MainFrame_printAreaAllCoursesMenu_Text" xml:space="preserve">
-    <value>&amp;Kaikille radoille</value>
+    <value>_Kaikille radoille</value>
   </data>
   <data name="MainFrame_setPrintAreaMenu_Text" xml:space="preserve">
-    <value>A&amp;seta tulostusalue</value>
+    <value>A_seta tulostusalue</value>
   </data>
   <data name="MainFrame_programLanguageMenu_Text" xml:space="preserve">
-    <value>Ohjelman &amp;kieli...</value>
+    <value>Ohjelman _kieli...</value>
   </data>
   <data name="MainFrame_exitMenu_Text" xml:space="preserve">
-    <value>Lo&amp;peta</value>
+    <value>Lo_peta</value>
   </data>
   <data name="MainFrame_fileMenu_Text" xml:space="preserve">
-    <value>&amp;Tiedosto</value>
+    <value>_Tiedosto</value>
   </data>
   <data name="MainFrame_cancelMenu_Text" xml:space="preserve">
-    <value>Tyhjennä &amp;valinta</value>
+    <value>Tyhjennä _valinta</value>
   </data>
   <data name="MiscText_ClearSelectionWithShortcut" xml:space="preserve">
-    <value>Tyhjennä &amp;valinta</value>
+    <value>Tyhjennä _valinta</value>
   </data>
   <data name="MainFrame_undoMenu_Text" xml:space="preserve">
-    <value>&amp;Kumoa</value>
+    <value>_Kumoa</value>
   </data>
   <data name="MiscText_UndoWithShortcut" xml:space="preserve">
-    <value>&amp;Kumoa</value>
+    <value>_Kumoa</value>
   </data>
   <data name="MainFrame_redoMenu_Text" xml:space="preserve">
-    <value>&amp;Tee uudelleen</value>
+    <value>_Tee uudelleen</value>
   </data>
   <data name="MiscText_RedoWithShortcut" xml:space="preserve">
-    <value>&amp;Tee uudelleen</value>
+    <value>_Tee uudelleen</value>
   </data>
   <data name="MainFrame_deleteMenu_Text" xml:space="preserve">
-    <value>&amp;Poista</value>
+    <value>_Poista</value>
   </data>
   <data name="MainFrame_deleteItemMenu_Text" xml:space="preserve">
-    <value>&amp;Poista</value>
+    <value>_Poista</value>
   </data>
   <data name="MainFrame_editMenu_Text" xml:space="preserve">
-    <value>&amp;Muokkaa</value>
+    <value>_Muokkaa</value>
   </data>
   <data name="MainFrame_entireCourseMenu_Text" xml:space="preserve">
-    <value>Koko &amp;rata</value>
+    <value>Koko _rata</value>
   </data>
   <data name="MainFrame_entireMapMenu_Text" xml:space="preserve">
-    <value>Koko &amp;kartta</value>
+    <value>Koko _kartta</value>
   </data>
   <data name="MainFrame_zoom50Menu_Text" xml:space="preserve">
     <value>50 %</value>
@@ -1678,25 +1678,25 @@
     <value>1000 %</value>
   </data>
   <data name="MainFrame_zoomMenu_Text" xml:space="preserve">
-    <value>&amp;Zoomaa</value>
+    <value>_Zoomaa</value>
   </data>
   <data name="MainFrame_veryLowIntensityMenu_Text" xml:space="preserve">
-    <value>&amp;Hyvin matala</value>
+    <value>_Hyvin matala</value>
   </data>
   <data name="MainFrame_lowIntensityMenu_Text" xml:space="preserve">
-    <value>&amp;Matala</value>
+    <value>_Matala</value>
   </data>
   <data name="MainFrame_mediumIntensityMenu_Text" xml:space="preserve">
-    <value>Keski&amp;suuri</value>
+    <value>Keski_suuri</value>
   </data>
   <data name="MainFrame_highIntensityMenu_Text" xml:space="preserve">
-    <value>&amp;Korkea</value>
+    <value>_Korkea</value>
   </data>
   <data name="MainFrame_fullIntensityMenu_Text" xml:space="preserve">
-    <value>&amp;Täysi</value>
+    <value>_Täysi</value>
   </data>
   <data name="MainFrame_mapIntensityMenu_Text" xml:space="preserve">
-    <value>Kartan &amp;intensiteetti</value>
+    <value>Kartan _intensiteetti</value>
   </data>
   <data name="MainFrame_normalQualityMenu_Text" xml:space="preserve">
     <value>Matala</value>
@@ -1705,16 +1705,16 @@
     <value>Korkea</value>
   </data>
   <data name="MainFrame_mapQualityMenu_Text" xml:space="preserve">
-    <value>Kartan &amp;laatu</value>
+    <value>Kartan _laatu</value>
   </data>
   <data name="MainFrame_showPrintAreaMenu_Text" xml:space="preserve">
-    <value>Nä&amp;ytä tulostusalue</value>
+    <value>Nä_ytä tulostusalue</value>
   </data>
   <data name="MainFrame_showPopupsMenu_Text" xml:space="preserve">
-    <value>Näytä &amp;ponnahdustiedot</value>
+    <value>Näytä _ponnahdustiedot</value>
   </data>
   <data name="MainFrame_allControlsMenu_Text" xml:space="preserve">
-    <value>K&amp;aikki rastit</value>
+    <value>K_aikki rastit</value>
   </data>
   <data name="MainFrame_otherCoursesMenu_Text" xml:space="preserve">
     <value>Muut radat...</value>
@@ -1723,40 +1723,40 @@
     <value>Tyhjennä muut radat</value>
   </data>
   <data name="MainFrame_viewMenu_Text" xml:space="preserve">
-    <value>&amp;Näytä</value>
+    <value>_Näytä</value>
   </data>
   <data name="MainFrame_addStartMenu_Text" xml:space="preserve">
-    <value>&amp;Lähtö</value>
+    <value>_Lähtö</value>
   </data>
   <data name="MainFrame_addControlMenu_Text" xml:space="preserve">
-    <value>&amp;Rasti</value>
+    <value>_Rasti</value>
   </data>
   <data name="MainFrame_addFinishMenu_Text" xml:space="preserve">
-    <value>&amp;Maali</value>
+    <value>_Maali</value>
   </data>
   <data name="MiscText_FinishButtonText" xml:space="preserve">
-    <value>&amp;Maali</value>
+    <value>_Maali</value>
   </data>
   <data name="MainFrame_addDescriptionsMenu_Text" xml:space="preserve">
-    <value>Rasti&amp;nmääritteet</value>
+    <value>Rasti_nmääritteet</value>
   </data>
   <data name="MainFrame_addMapFlipMenuItem_Text" xml:space="preserve">
-    <value>&amp;Kartankääntö rastilla</value>
+    <value>_Kartankääntö rastilla</value>
   </data>
   <data name="MainFrame_mapExchangeControlMenuItem_Text" xml:space="preserve">
-    <value>Kartanvaihto &amp;rastilla</value>
+    <value>Kartanvaihto _rastilla</value>
   </data>
   <data name="MainFrame_mapExchangeSeparateMenuItem_Text" xml:space="preserve">
-    <value>&amp;Viitoitettu reitti kartanvaihtoon</value>
+    <value>_Viitoitettu reitti kartanvaihtoon</value>
   </data>
   <data name="MainFrame_addMapExchangeMenu_Text" xml:space="preserve">
-    <value>&amp;Kartanvaihto</value>
+    <value>_Kartanvaihto</value>
   </data>
   <data name="MainFrame_addVariationMenu_Text" xml:space="preserve">
-    <value>&amp;Hajonta...</value>
+    <value>_Hajonta...</value>
   </data>
   <data name="MainFrame_addTextLineMenu_Text" xml:space="preserve">
-    <value>&amp;Tekstirivi...</value>
+    <value>_Tekstirivi...</value>
   </data>
   <data name="MainFrame_addMapIssueMenu_Text" xml:space="preserve">
     <value>Aikalähtö</value>
@@ -1885,25 +1885,25 @@
     <value>Ellipsi</value>
   </data>
   <data name="MainFrame_addMenu_Text" xml:space="preserve">
-    <value>&amp;Lisää</value>
+    <value>_Lisää</value>
   </data>
   <data name="MainFrame_changeMapFileMenu_Text" xml:space="preserve">
-    <value>&amp;Karttatiedosto...</value>
+    <value>_Karttatiedosto...</value>
   </data>
   <data name="MainFrame_changeCodesMenu_Text" xml:space="preserve">
-    <value>&amp;Vaihda rastikoodeja...</value>
+    <value>_Vaihda rastikoodeja...</value>
   </data>
   <data name="MainFrame_autoNumberingMenu_Text" xml:space="preserve">
-    <value>&amp;Automaattinen numerointi...</value>
+    <value>_Automaattinen numerointi...</value>
   </data>
   <data name="MainFrame_removeUnusedControlsMenu_Text" xml:space="preserve">
-    <value>&amp;Poista käyttämättömät rastit...</value>
+    <value>_Poista käyttämättömät rastit...</value>
   </data>
   <data name="MainFrame_moveAllControlsMenu_Text" xml:space="preserve">
-    <value>Siirrä kaikkia &amp;rasteja...</value>
+    <value>Siirrä kaikkia _rasteja...</value>
   </data>
   <data name="MainFrame_punchPatternsMenu_Text" xml:space="preserve">
-    <value>&amp;Leimauskuviot...</value>
+    <value>_Leimauskuviot...</value>
   </data>
   <data name="MainFrame_descriptionStd2004Menu_Text" xml:space="preserve">
     <value>Rastinmääritteet 2004</value>
@@ -1921,67 +1921,67 @@
     <value>ISSprOM 2019 -kuvausohje</value>
   </data>
   <data name="MainFrame_iOFStandardsToolStripMenuItem_Text" xml:space="preserve">
-    <value>&amp;IOF:n standardit</value>
+    <value>_IOF:n standardit</value>
   </data>
   <data name="MainFrame_customizeDescriptionsMenu_Text" xml:space="preserve">
-    <value>Muokkaa &amp;sanallisia rastinmääritteitä...</value>
+    <value>Muokkaa _sanallisia rastinmääritteitä...</value>
   </data>
   <data name="MainFrame_customizeCourseAppearanceMenu_Text" xml:space="preserve">
-    <value>Muokkaa &amp;ulkoasua...</value>
+    <value>Muokkaa _ulkoasua...</value>
   </data>
   <data name="MainFrame_eventMenu_Text" xml:space="preserve">
-    <value>Tapa&amp;htuma</value>
+    <value>Tapa_htuma</value>
   </data>
   <data name="MainFrame_addCourseMenu_Text" xml:space="preserve">
-    <value>&amp;Lisää rata...</value>
+    <value>_Lisää rata...</value>
   </data>
   <data name="MainFrame_deleteCourseMenu_Text" xml:space="preserve">
-    <value>&amp;Poista rata</value>
+    <value>_Poista rata</value>
   </data>
   <data name="MainFrame_duplicateCourseMenu_Text" xml:space="preserve">
-    <value>&amp;Kopioi rata...</value>
+    <value>_Kopioi rata...</value>
   </data>
   <data name="MainFrame_propertiesMenu_Text" xml:space="preserve">
-    <value>&amp;Ominaisuudet...</value>
+    <value>_Ominaisuudet...</value>
   </data>
   <data name="MainFrame_courseOrderMenu_Text" xml:space="preserve">
-    <value>Ratojen &amp;järjestys...</value>
+    <value>Ratojen _järjestys...</value>
   </data>
   <data name="MainFrame_courseLoadMenu_Text" xml:space="preserve">
-    <value>&amp;Aseta kuormitus...</value>
+    <value>_Aseta kuormitus...</value>
   </data>
   <data name="MainFrame_courseVariationReportMenu_Text" xml:space="preserve">
-    <value>Viestin joukkue&amp;hajonnat...</value>
+    <value>Viestin joukkue_hajonnat...</value>
   </data>
   <data name="MainFrame_courseMenu_Text" xml:space="preserve">
-    <value>&amp;Rata</value>
+    <value>_Rata</value>
   </data>
   <data name="MainFrame_deleteForkMenu_Text" xml:space="preserve">
-    <value>Poista &amp;hajonta</value>
+    <value>Poista _hajonta</value>
   </data>
   <data name="MainFrame_addBendMenu_Text" xml:space="preserve">
-    <value>Lisää k&amp;ulmapiste</value>
+    <value>Lisää k_ulmapiste</value>
   </data>
   <data name="MainFrame_removeBendMenu_Text" xml:space="preserve">
-    <value>Poista ku&amp;lmapiste</value>
+    <value>Poista ku_lmapiste</value>
   </data>
   <data name="MainFrame_addGapMenu_Text" xml:space="preserve">
-    <value>Lisää k&amp;atko</value>
+    <value>Lisää k_atko</value>
   </data>
   <data name="MainFrame_removeGapMenu_Text" xml:space="preserve">
-    <value>Poista katk&amp;o</value>
+    <value>Poista katk_o</value>
   </data>
   <data name="MainFrame_changeTextMenu_Text" xml:space="preserve">
-    <value>Muokkaa tek&amp;stiä...</value>
+    <value>Muokkaa tek_stiä...</value>
   </data>
   <data name="MainFrame_changeLineAppearanceMenu_Text" xml:space="preserve">
-    <value>Muuta v&amp;iivan ulkoasua...</value>
+    <value>Muuta v_iivan ulkoasua...</value>
   </data>
   <data name="MainFrame_rotateMenu_Text" xml:space="preserve">
-    <value>&amp;Kierrä</value>
+    <value>_Kierrä</value>
   </data>
   <data name="MainFrame_stretchMenu_Text" xml:space="preserve">
-    <value>&amp;Venytä</value>
+    <value>_Venytä</value>
   </data>
   <data name="MainFrame_noFlaggingMenu_Text" xml:space="preserve">
     <value>Ei viitoitusta</value>
@@ -1996,49 +1996,49 @@
     <value>Loppu rastivälistä viitoitettu</value>
   </data>
   <data name="MainFrame_legFlaggingMenu_Text" xml:space="preserve">
-    <value>&amp;Viitoitus</value>
+    <value>_Viitoitus</value>
   </data>
   <data name="MainFrame_changeDisplayedCoursesMenu_Text" xml:space="preserve">
-    <value>Muuta näk&amp;ymisasetuksia...</value>
+    <value>Muuta näk_ymisasetuksia...</value>
   </data>
   <data name="MainFrame_itemMenu_Text" xml:space="preserve">
-    <value>&amp;Kohde</value>
+    <value>_Kohde</value>
   </data>
   <data name="MainFrame_courseSummaryMenu_Text" xml:space="preserve">
-    <value>Rata&amp;yhteenveto</value>
+    <value>Rata_yhteenveto</value>
   </data>
   <data name="MainFrame_eventAuditMenu_Text" xml:space="preserve">
-    <value>&amp;Virheraportti</value>
+    <value>_Virheraportti</value>
   </data>
   <data name="MainFrame_legLengthsMenu_Text" xml:space="preserve">
-    <value>Rastivälien &amp;pituudet</value>
+    <value>Rastivälien _pituudet</value>
   </data>
   <data name="MainFrame_controlCrossrefMenu_Text" xml:space="preserve">
-    <value>&amp;Rastien ristiviiteraportti</value>
+    <value>_Rastien ristiviiteraportti</value>
   </data>
   <data name="MainFrame_controlAndLegLoadMenu_Text" xml:space="preserve">
-    <value>&amp;Kuormitusraportti</value>
+    <value>_Kuormitusraportti</value>
   </data>
   <data name="MainFrame_reportMenu_Text" xml:space="preserve">
-    <value>Ra&amp;portit</value>
+    <value>Ra_portit</value>
   </data>
   <data name="MainFrame_helpContentsMenu_Text" xml:space="preserve">
-    <value>Purple Pen -&amp;ohje</value>
+    <value>Purple Pen -_ohje</value>
   </data>
   <data name="MainFrame_helpTranslatedMenu_Text" xml:space="preserve">
     <value>Purple Pen -ohje (suomi)</value>
   </data>
   <data name="MainFrame_mainWebSiteToolMenu_Text" xml:space="preserve">
-    <value>&amp;Purple Pen -kotisivu</value>
+    <value>_Purple Pen -kotisivu</value>
   </data>
   <data name="MainFrame_supportWebSiteMenu_Text" xml:space="preserve">
-    <value>Tuki/&amp;Virheraportointi</value>
+    <value>Tuki/_Virheraportointi</value>
   </data>
   <data name="MainFrame_donateWebSiteMenu_Text" xml:space="preserve">
-    <value>Make a &amp;Donation</value>
+    <value>Make a _Donation</value>
   </data>
   <data name="MainFrame_aboutMenu_Text" xml:space="preserve">
-    <value>&amp;Tietoja ohjelmasta</value>
+    <value>_Tietoja ohjelmasta</value>
   </data>
   <data name="MainFrame_symbolBrowserMenu_Text" xml:space="preserve">
     <value>Symbol Browser</value>
@@ -2086,10 +2086,10 @@
     <value>Merge Symbols.xml...</value>
   </data>
   <data name="MainFrame_translateMenu_Text" xml:space="preserve">
-    <value>&amp;Käännä</value>
+    <value>_Käännä</value>
   </data>
   <data name="MainFrame_helpMenu_Text" xml:space="preserve">
-    <value>&amp;Ohje</value>
+    <value>_Ohje</value>
   </data>
   <data name="MainFrame_openToolStripButton_Text" xml:space="preserve">
     <value>Avaa</value>
@@ -2242,7 +2242,7 @@
     <value>Suunnistajien lukumäärän pitää olla kokonaisluku väliltä 0-999999 (tai tyhjä).</value>
   </data>
   <data name="MiscText_CancelOperationWithShortcut" xml:space="preserve">
-    <value>P&amp;eru toiminto</value>
+    <value>P_eru toiminto</value>
   </data>
   <data name="MiscText_CancelOperation" xml:space="preserve">
     <value>Peru toiminto</value>
@@ -2357,10 +2357,10 @@ Paina OK ja yritä etsiä karttatiedoston kopio tietokoneeltasi.</value>
     <value>Kaikki rastit ovat käytössä radalla.</value>
   </data>
   <data name="MiscText_NextButtonText" xml:space="preserve">
-    <value>&amp;Seuraava &gt;</value>
+    <value>_Seuraava &gt;</value>
   </data>
   <data name="NewEventWizard_nextButton_Text" xml:space="preserve">
-    <value>&amp;Seuraava &gt;</value>
+    <value>_Seuraava &gt;</value>
   </data>
   <data name="MiscText_Control_Code" xml:space="preserve">
     <value>Rasti {0}</value>
@@ -2763,7 +2763,7 @@ Mittakaava ilmaisee kartan ja sen kuvaaman todellisen maaston mittojen välisen 
 </value>
   </data>
   <data name="NewEventPrintScale_defaultPrintScaleLabel_Text" xml:space="preserve">
-    <value>Tulostus&amp;mittakaava (oletus):</value>
+    <value>Tulostus_mittakaava (oletus):</value>
   </data>
   <data name="NewEventPrintScale_changeLaterLabel_Text" xml:space="preserve">
     <value>(Voit myöhemmin muuttaa tulostusmittakaavaa valitsemalla Rata/Ominaisuudet)</value>
@@ -2807,7 +2807,7 @@ Jotta nimi mahtuu rastinmääritteisiin, sen pitää olla alle 25 merkkiä pitk�
     <value>Tapahtuman nimi:</value>
   </data>
   <data name="NewEventWizard_backButton_Text" xml:space="preserve">
-    <value>&lt; &amp;Edellinen</value>
+    <value>&lt; _Edellinen</value>
   </data>
   <data name="NonPrintableObjects_labelWarning_Text" xml:space="preserve">
     <value>Karttatiedostossa "{0}" on kohteita tai symboleita, joita Purple Pen ei täysin tue ja siksi ne eivät ehkä tulostu kunnolla. Kohteet, jotka eivät ehkä tulostu kunnolla, on listattu alla.

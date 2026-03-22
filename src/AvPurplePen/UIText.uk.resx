@@ -1516,7 +1516,7 @@
     <value>&amp;Дистанції...</value>
   </data>
   <data name="MainFrame_createPDFsMenu_Text" xml:space="preserve">
-    <value>Створити P&amp;DF</value>
+    <value>Створити P_DF</value>
   </data>
   <data name="MainFrame_createRouteGadgetFilesMenu_Text" xml:space="preserve">
     <value>Створити файли RouteGadget...</value>
@@ -1528,10 +1528,10 @@
     <value>Створити файл для &amp;обміну даними (IOF XML)...</value>
   </data>
   <data name="MainFrame_createGPXFileMenu_Text" xml:space="preserve">
-    <value>Створити файл G&amp;PX...</value>
+    <value>Створити файл G_PX...</value>
   </data>
   <data name="MainFrame_createKMLFileMenu_Text" xml:space="preserve">
-    <value>Сворити файл &amp;KML...</value>
+    <value>Сворити файл _KML...</value>
   </data>
   <data name="MainFrame_printDescriptionsMenu_Text" xml:space="preserve">
     <value>&amp;Друкувати легенди...</value>
@@ -1963,7 +1963,7 @@
     <value>Довідка Purple Pen (переклад)</value>
   </data>
   <data name="MainFrame_mainWebSiteToolMenu_Text" xml:space="preserve">
-    <value>Purple Pen &amp;Web сайт</value>
+    <value>Purple Pen _Web сайт</value>
   </data>
   <data name="MainFrame_supportWebSiteMenu_Text" xml:space="preserve">
     <value>П&amp;ідтримка/Звітувати про помилку</value>

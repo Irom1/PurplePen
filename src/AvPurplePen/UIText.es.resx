@@ -454,10 +454,10 @@
     <value>Archivo de mapa actual</value>
   </data>
   <data name="ChangeMapFile_buttonChooseFile_Text" xml:space="preserve">
-    <value>&amp;Seleccionar otro archivo de mapa...</value>
+    <value>_Seleccionar otro archivo de mapa...</value>
   </data>
   <data name="NewEventMapFile_chooseMapFileButton_Text" xml:space="preserve">
-    <value>&amp;Seleccionar otro archivo de mapa...</value>
+    <value>_Seleccionar otro archivo de mapa...</value>
   </data>
   <data name="ChangeMapFile_openFileDialog_Filter" xml:space="preserve">
     <value>Todos los archivos de mapa|*.ocd;*.omap;*.xmap;*.pdf;*.jpeg;*.jpg;*.tiff;*.tif;*.bmp;*.png;*.gif|Ficheros de OCAD (*.ocd)|*.ocd|Archivos de Open Orienteering Mapper|*.omap;*.xmap|Archivos PDF (*.pdf)|*.pdf|Archivos de imágenes|*.jpeg;*.jpg;*.tiff;*.tif;*.bmp;*.png;*.gif</value>
@@ -847,7 +847,7 @@
     <value>Duplicar el recorrido</value>
   </data>
   <data name="CommandNameText_CreateMapFiles" xml:space="preserve">
-    <value>Crear {0} &amp;archivos</value>
+    <value>Crear {0} _archivos</value>
   </data>
   <data name="CommandNameText_DeleteFork" xml:space="preserve">
     <value>Eliminar la bifurcación/bucle</value>
@@ -1504,103 +1504,103 @@
     <value>Archivo Purple Pen|*.ppen</value>
   </data>
   <data name="MainFrame_newEventMenu_Text" xml:space="preserve">
-    <value>Evento &amp;nuevo…</value>
+    <value>Evento _nuevo…</value>
   </data>
   <data name="MainFrame_openMenu_Text" xml:space="preserve">
-    <value>&amp;Abrir…</value>
+    <value>_Abrir…</value>
   </data>
   <data name="MainFrame_saveMenu_Text" xml:space="preserve">
-    <value>&amp;Guardar</value>
+    <value>_Guardar</value>
   </data>
   <data name="MainFrame_saveAsMenu_Text" xml:space="preserve">
-    <value>Guardar &amp;como…</value>
+    <value>Guardar _como…</value>
   </data>
   <data name="MainFrame_createOcadFilesMenu_Text" xml:space="preserve">
-    <value>&amp;Crear archivos OCAD...</value>
+    <value>_Crear archivos OCAD...</value>
   </data>
   <data name="MainFrame_createImageFilesMenu_Text" xml:space="preserve">
-    <value>Crear archivos de &amp;imagen...</value>
+    <value>Crear archivos de _imagen...</value>
   </data>
   <data name="MainFrame_createDescriptionPdfMenu_Text" xml:space="preserve">
-    <value>&amp;Descripciones...</value>
+    <value>_Descripciones...</value>
   </data>
   <data name="MainFrame_createPunchcardPdfMenu_Text" xml:space="preserve">
-    <value>&amp;Tarjetas de controles...</value>
+    <value>_Tarjetas de controles...</value>
   </data>
   <data name="MainFrame_createCoursePdfMenu_Text" xml:space="preserve">
-    <value>&amp;Recorridos...</value>
+    <value>_Recorridos...</value>
   </data>
   <data name="MainFrame_createPDFsMenu_Text" xml:space="preserve">
-    <value>Crear &amp;PDF...</value>
+    <value>Crear _PDF...</value>
   </data>
   <data name="MainFrame_createXmlMenu_Text" xml:space="preserve">
-    <value>Crear archivos de &amp;intercambio de datos (IOF XML)...</value>
+    <value>Crear archivos de _intercambio de datos (IOF XML)...</value>
   </data>
   <data name="MainFrame_createGPXFileMenu_Text" xml:space="preserve">
-    <value>Crear un archivo GP&amp;X...</value>
+    <value>Crear un archivo GP_X...</value>
   </data>
   <data name="MainFrame_printDescriptionsMenu_Text" xml:space="preserve">
-    <value>&amp;Imprimir descripciones…</value>
+    <value>_Imprimir descripciones…</value>
   </data>
   <data name="MainFrame_printPunchCardsMenu_Text" xml:space="preserve">
-    <value>&amp;Imprimir tarjetas de control...</value>
+    <value>_Imprimir tarjetas de control...</value>
   </data>
   <data name="MainFrame_printCoursesMenu_Text" xml:space="preserve">
-    <value>&amp;Imprimir recorridos...</value>
+    <value>_Imprimir recorridos...</value>
   </data>
   <data name="MainFrame_printAreaThisPartMenu_Text" xml:space="preserve">
-    <value>Solo esta &amp;sección</value>
+    <value>Solo esta _sección</value>
   </data>
   <data name="MainFrame_printAreaThisCourseMenu_Text" xml:space="preserve">
-    <value>Este &amp;recorrido</value>
+    <value>Este _recorrido</value>
   </data>
   <data name="MainFrame_printAreaAllCoursesMenu_Text" xml:space="preserve">
-    <value>&amp;Todos los recorridos</value>
+    <value>_Todos los recorridos</value>
   </data>
   <data name="MainFrame_setPrintAreaMenu_Text" xml:space="preserve">
-    <value>&amp;Definir área de impresión</value>
+    <value>_Definir área de impresión</value>
   </data>
   <data name="MainFrame_programLanguageMenu_Text" xml:space="preserve">
-    <value>&amp;Lenguaje del programa...</value>
+    <value>_Lenguaje del programa...</value>
   </data>
   <data name="MainFrame_exitMenu_Text" xml:space="preserve">
-    <value>&amp;Salir</value>
+    <value>_Salir</value>
   </data>
   <data name="MainFrame_fileMenu_Text" xml:space="preserve">
-    <value>&amp;Archivo</value>
+    <value>_Archivo</value>
   </data>
   <data name="MainFrame_cancelMenu_Text" xml:space="preserve">
-    <value>&amp;Borrar selección</value>
+    <value>_Borrar selección</value>
   </data>
   <data name="MiscText_ClearSelectionWithShortcut" xml:space="preserve">
-    <value>&amp;Borrar selección</value>
+    <value>_Borrar selección</value>
   </data>
   <data name="MainFrame_undoMenu_Text" xml:space="preserve">
-    <value>&amp;Deshacer</value>
+    <value>_Deshacer</value>
   </data>
   <data name="MiscText_UndoWithShortcut" xml:space="preserve">
-    <value>&amp;Deshacer</value>
+    <value>_Deshacer</value>
   </data>
   <data name="MainFrame_redoMenu_Text" xml:space="preserve">
-    <value>&amp;Rehacer</value>
+    <value>_Rehacer</value>
   </data>
   <data name="MiscText_RedoWithShortcut" xml:space="preserve">
-    <value>&amp;Rehacer</value>
+    <value>_Rehacer</value>
   </data>
   <data name="MainFrame_deleteMenu_Text" xml:space="preserve">
-    <value>&amp;Borrar</value>
+    <value>_Borrar</value>
   </data>
   <data name="MainFrame_deleteItemMenu_Text" xml:space="preserve">
-    <value>&amp;Borrar</value>
+    <value>_Borrar</value>
   </data>
   <data name="MainFrame_editMenu_Text" xml:space="preserve">
-    <value>&amp;Editar</value>
+    <value>_Editar</value>
   </data>
   <data name="MainFrame_entireCourseMenu_Text" xml:space="preserve">
-    <value>&amp;Recorrido al completo</value>
+    <value>_Recorrido al completo</value>
   </data>
   <data name="MainFrame_entireMapMenu_Text" xml:space="preserve">
-    <value>&amp;Mapa al completo</value>
+    <value>_Mapa al completo</value>
   </data>
   <data name="MainFrame_zoom50Menu_Text" xml:space="preserve">
     <value>50%</value>
@@ -1624,22 +1624,22 @@
     <value>1000%</value>
   </data>
   <data name="MainFrame_zoomMenu_Text" xml:space="preserve">
-    <value>&amp;Zoom</value>
+    <value>_Zoom</value>
   </data>
   <data name="MainFrame_veryLowIntensityMenu_Text" xml:space="preserve">
-    <value>&amp;Muy baja</value>
+    <value>_Muy baja</value>
   </data>
   <data name="MainFrame_lowIntensityMenu_Text" xml:space="preserve">
-    <value>&amp;Baja</value>
+    <value>_Baja</value>
   </data>
   <data name="MainFrame_mediumIntensityMenu_Text" xml:space="preserve">
-    <value>&amp;Media</value>
+    <value>_Media</value>
   </data>
   <data name="MainFrame_highIntensityMenu_Text" xml:space="preserve">
-    <value>&amp;Alta</value>
+    <value>_Alta</value>
   </data>
   <data name="MainFrame_fullIntensityMenu_Text" xml:space="preserve">
-    <value>&amp;Total</value>
+    <value>_Total</value>
   </data>
   <data name="MainFrame_mapIntensityMenu_Text" xml:space="preserve">
     <value>Intensidad de mapa</value>
@@ -1651,16 +1651,16 @@
     <value>Alta</value>
   </data>
   <data name="MainFrame_mapQualityMenu_Text" xml:space="preserve">
-    <value>&amp;Calidad del mapa</value>
+    <value>_Calidad del mapa</value>
   </data>
   <data name="MainFrame_showPrintAreaMenu_Text" xml:space="preserve">
-    <value>Mostrar área de &amp;impresión</value>
+    <value>Mostrar área de _impresión</value>
   </data>
   <data name="MainFrame_showPopupsMenu_Text" xml:space="preserve">
-    <value>Mostrar información &amp;emergente</value>
+    <value>Mostrar información _emergente</value>
   </data>
   <data name="MainFrame_allControlsMenu_Text" xml:space="preserve">
-    <value>&amp;Todos los controles</value>
+    <value>_Todos los controles</value>
   </data>
   <data name="MainFrame_otherCoursesMenu_Text" xml:space="preserve">
     <value>Otros recorridos...</value>
@@ -1669,37 +1669,37 @@
     <value>Limpiar los otros recorridos</value>
   </data>
   <data name="MainFrame_viewMenu_Text" xml:space="preserve">
-    <value>&amp;Vista</value>
+    <value>_Vista</value>
   </data>
   <data name="MainFrame_addStartMenu_Text" xml:space="preserve">
-    <value>&amp;Salida</value>
+    <value>_Salida</value>
   </data>
   <data name="MainFrame_addControlMenu_Text" xml:space="preserve">
-    <value>&amp;Control</value>
+    <value>_Control</value>
   </data>
   <data name="MainFrame_addFinishMenu_Text" xml:space="preserve">
-    <value>&amp;Meta</value>
+    <value>_Meta</value>
   </data>
   <data name="MiscText_FinishButtonText" xml:space="preserve">
-    <value>&amp;Meta</value>
+    <value>_Meta</value>
   </data>
   <data name="MainFrame_addDescriptionsMenu_Text" xml:space="preserve">
-    <value>&amp;Descripciones</value>
+    <value>_Descripciones</value>
   </data>
   <data name="MainFrame_mapExchangeControlMenuItem_Text" xml:space="preserve">
-    <value>Intercambio de mapas en &amp;punto de control</value>
+    <value>Intercambio de mapas en _punto de control</value>
   </data>
   <data name="MainFrame_mapExchangeSeparateMenuItem_Text" xml:space="preserve">
-    <value>Ruta &amp;marcada a un intercambio de mapa</value>
+    <value>Ruta _marcada a un intercambio de mapa</value>
   </data>
   <data name="MainFrame_addMapExchangeMenu_Text" xml:space="preserve">
-    <value>&amp;Intercambio de mapas</value>
+    <value>_Intercambio de mapas</value>
   </data>
   <data name="MainFrame_addVariationMenu_Text" xml:space="preserve">
-    <value>&amp;Variante...</value>
+    <value>_Variante...</value>
   </data>
   <data name="MainFrame_addTextLineMenu_Text" xml:space="preserve">
-    <value>&amp;Línea de texto...</value>
+    <value>_Línea de texto...</value>
   </data>
   <data name="MainFrame_addMapIssueMenu_Text" xml:space="preserve">
     <value>Punto de inicio cronometrado</value>
@@ -1822,22 +1822,22 @@
     <value>Rectángulo</value>
   </data>
   <data name="MainFrame_addMenu_Text" xml:space="preserve">
-    <value>&amp;Añadir</value>
+    <value>_Añadir</value>
   </data>
   <data name="MainFrame_changeMapFileMenu_Text" xml:space="preserve">
-    <value>&amp;Archivo del mapa...</value>
+    <value>_Archivo del mapa...</value>
   </data>
   <data name="MainFrame_changeCodesMenu_Text" xml:space="preserve">
-    <value>&amp;Cambiar códigos de controles...</value>
+    <value>_Cambiar códigos de controles...</value>
   </data>
   <data name="MainFrame_autoNumberingMenu_Text" xml:space="preserve">
-    <value>&amp;Numeración automática</value>
+    <value>_Numeración automática</value>
   </data>
   <data name="MainFrame_removeUnusedControlsMenu_Text" xml:space="preserve">
-    <value>&amp;Eliminar controles no usados...</value>
+    <value>_Eliminar controles no usados...</value>
   </data>
   <data name="MainFrame_punchPatternsMenu_Text" xml:space="preserve">
-    <value>&amp;Patrones de perforación...</value>
+    <value>_Patrones de perforación...</value>
   </data>
   <data name="MainFrame_descriptionStd2004Menu_Text" xml:space="preserve">
     <value>Estándar de descripciones de 2004</value>
@@ -1852,61 +1852,61 @@
     <value>Estándar de mapa ISOM2017</value>
   </data>
   <data name="MainFrame_iOFStandardsToolStripMenuItem_Text" xml:space="preserve">
-    <value>&amp;Estándares IOF</value>
+    <value>_Estándares IOF</value>
   </data>
   <data name="MainFrame_customizeDescriptionsMenu_Text" xml:space="preserve">
-    <value>&amp;Personalizar texto de descripciones...</value>
+    <value>_Personalizar texto de descripciones...</value>
   </data>
   <data name="MainFrame_customizeCourseAppearanceMenu_Text" xml:space="preserve">
-    <value>Personalizar la &amp;apariencia...</value>
+    <value>Personalizar la _apariencia...</value>
   </data>
   <data name="MainFrame_eventMenu_Text" xml:space="preserve">
-    <value>Eve&amp;nto</value>
+    <value>Eve_nto</value>
   </data>
   <data name="MainFrame_addCourseMenu_Text" xml:space="preserve">
-    <value>&amp;Añadir recorrido</value>
+    <value>_Añadir recorrido</value>
   </data>
   <data name="MainFrame_deleteCourseMenu_Text" xml:space="preserve">
-    <value>&amp;Borrar recorrido</value>
+    <value>_Borrar recorrido</value>
   </data>
   <data name="MainFrame_duplicateCourseMenu_Text" xml:space="preserve">
-    <value>&amp;Duplicar el recorrido...</value>
+    <value>_Duplicar el recorrido...</value>
   </data>
   <data name="MainFrame_propertiesMenu_Text" xml:space="preserve">
-    <value>&amp;Propiedades...</value>
+    <value>_Propiedades...</value>
   </data>
   <data name="MainFrame_courseOrderMenu_Text" xml:space="preserve">
-    <value>&amp;Orden de los recorridos...</value>
+    <value>_Orden de los recorridos...</value>
   </data>
   <data name="MainFrame_courseLoadMenu_Text" xml:space="preserve">
-    <value>Densidad de &amp;corredores...</value>
+    <value>Densidad de _corredores...</value>
   </data>
   <data name="MainFrame_courseVariationReportMenu_Text" xml:space="preserve">
-    <value>&amp;Variantes para equipos de relevos...</value>
+    <value>_Variantes para equipos de relevos...</value>
   </data>
   <data name="MainFrame_courseMenu_Text" xml:space="preserve">
-    <value>&amp;Recorrido</value>
+    <value>_Recorrido</value>
   </data>
   <data name="MainFrame_deleteForkMenu_Text" xml:space="preserve">
-    <value>Eliminar la &amp;bifurcación/bucle</value>
+    <value>Eliminar la _bifurcación/bucle</value>
   </data>
   <data name="MainFrame_addBendMenu_Text" xml:space="preserve">
-    <value>&amp;Añadir ángulo</value>
+    <value>_Añadir ángulo</value>
   </data>
   <data name="MainFrame_removeBendMenu_Text" xml:space="preserve">
-    <value>&amp;Eliminar ángulo</value>
+    <value>_Eliminar ángulo</value>
   </data>
   <data name="MainFrame_addGapMenu_Text" xml:space="preserve">
-    <value>Hacer un &amp;recorte</value>
+    <value>Hacer un _recorte</value>
   </data>
   <data name="MainFrame_changeTextMenu_Text" xml:space="preserve">
-    <value>Cambiar &amp;texto</value>
+    <value>Cambiar _texto</value>
   </data>
   <data name="MainFrame_changeLineAppearanceMenu_Text" xml:space="preserve">
-    <value>Cambiar la &amp;apariencia de la línea...</value>
+    <value>Cambiar la _apariencia de la línea...</value>
   </data>
   <data name="MainFrame_rotateMenu_Text" xml:space="preserve">
-    <value>R&amp;otar</value>
+    <value>R_otar</value>
   </data>
   <data name="MainFrame_noFlaggingMenu_Text" xml:space="preserve">
     <value>Sin balizado</value>
@@ -1921,49 +1921,49 @@
     <value>Balizado al final</value>
   </data>
   <data name="MainFrame_legFlaggingMenu_Text" xml:space="preserve">
-    <value>&amp;Tramo balizado</value>
+    <value>_Tramo balizado</value>
   </data>
   <data name="MainFrame_changeDisplayedCoursesMenu_Text" xml:space="preserve">
-    <value>&amp;Cambiar rutas en que aparece...</value>
+    <value>_Cambiar rutas en que aparece...</value>
   </data>
   <data name="MainFrame_itemMenu_Text" xml:space="preserve">
-    <value>&amp;Elementos</value>
+    <value>_Elementos</value>
   </data>
   <data name="MainFrame_courseSummaryMenu_Text" xml:space="preserve">
-    <value>&amp;Resumen por recorridos</value>
+    <value>_Resumen por recorridos</value>
   </data>
   <data name="MainFrame_eventAuditMenu_Text" xml:space="preserve">
-    <value>&amp;Auditoría del evento</value>
+    <value>_Auditoría del evento</value>
   </data>
   <data name="MainFrame_legLengthsMenu_Text" xml:space="preserve">
-    <value>&amp;Longitudes por tramos</value>
+    <value>_Longitudes por tramos</value>
   </data>
   <data name="MainFrame_controlCrossrefMenu_Text" xml:space="preserve">
-    <value>Referencias &amp;cruzadas por controles</value>
+    <value>Referencias _cruzadas por controles</value>
   </data>
   <data name="MainFrame_controlAndLegLoadMenu_Text" xml:space="preserve">
-    <value>Densidad de competidores por controles y &amp;tramos</value>
+    <value>Densidad de competidores por controles y _tramos</value>
   </data>
   <data name="MainFrame_reportMenu_Text" xml:space="preserve">
-    <value>&amp;Informes</value>
+    <value>_Informes</value>
   </data>
   <data name="MainFrame_helpContentsMenu_Text" xml:space="preserve">
-    <value>&amp;Ayuda de Purple Pen</value>
+    <value>_Ayuda de Purple Pen</value>
   </data>
   <data name="MainFrame_helpTranslatedMenu_Text" xml:space="preserve">
     <value>Ayuda de Purple Pen (Traducida)</value>
   </data>
   <data name="MainFrame_mainWebSiteToolMenu_Text" xml:space="preserve">
-    <value>Página &amp;web de Purple Pen</value>
+    <value>Página _web de Purple Pen</value>
   </data>
   <data name="MainFrame_supportWebSiteMenu_Text" xml:space="preserve">
-    <value>&amp;Soporte / Informar de errores</value>
+    <value>_Soporte / Informar de errores</value>
   </data>
   <data name="MainFrame_donateWebSiteMenu_Text" xml:space="preserve">
-    <value>Hacer una &amp;donación</value>
+    <value>Hacer una _donación</value>
   </data>
   <data name="MainFrame_aboutMenu_Text" xml:space="preserve">
-    <value>A&amp;cerca de Purple Pen</value>
+    <value>A_cerca de Purple Pen</value>
   </data>
   <data name="MainFrame_symbolBrowserMenu_Text" xml:space="preserve">
     <value>Navegador de símbolos</value>
@@ -2008,10 +2008,10 @@
     <value>Mezclar Symbols.xml...</value>
   </data>
   <data name="MainFrame_translateMenu_Text" xml:space="preserve">
-    <value>&amp;Traducir textos de la descripción</value>
+    <value>_Traducir textos de la descripción</value>
   </data>
   <data name="MainFrame_helpMenu_Text" xml:space="preserve">
-    <value>Ay&amp;uda</value>
+    <value>Ay_uda</value>
   </data>
   <data name="MainFrame_openToolStripButton_Text" xml:space="preserve">
     <value>Abrir</value>
@@ -2161,7 +2161,7 @@
     <value>La densidad de corredores para un recorrido debe ser un entero de 0-999999, o blanco.</value>
   </data>
   <data name="MiscText_CancelOperationWithShortcut" xml:space="preserve">
-    <value>&amp;Cancelar operación</value>
+    <value>_Cancelar operación</value>
   </data>
   <data name="MiscText_CancelOperation" xml:space="preserve">
     <value>Cancelar operación</value>
@@ -2276,10 +2276,10 @@ Presione Aceptar, e intente encontrar una copia del mapa en su ordenador.</value
     <value>Todos los controles se usan en algún recorrido.</value>
   </data>
   <data name="MiscText_NextButtonText" xml:space="preserve">
-    <value>&amp;Siguiente &gt;</value>
+    <value>_Siguiente &gt;</value>
   </data>
   <data name="NewEventWizard_nextButton_Text" xml:space="preserve">
-    <value>&amp;Siguiente &gt;</value>
+    <value>_Siguiente &gt;</value>
   </data>
   <data name="MiscText_Control_Code" xml:space="preserve">
     <value>Control {0}</value>
@@ -2655,7 +2655,7 @@ La escala indica la relación entre el mapa de papel y el mundo real.
 </value>
   </data>
   <data name="NewEventPrintScale_defaultPrintScaleLabel_Text" xml:space="preserve">
-    <value>Escala de &amp;impresión predeterminada:</value>
+    <value>Escala de _impresión predeterminada:</value>
   </data>
   <data name="NewEventPrintScale_changeLaterLabel_Text" xml:space="preserve">
     <value>(Puede cambiar la escala de impresión después para cualquier recorrido seleccionando: menú Recorridos-&gt;Propiedades).</value>
@@ -2696,7 +2696,7 @@ Para que entre en la descripción debe tener menos de 25 caracteres. Ejemplos de
     <value>Título del evento:</value>
   </data>
   <data name="NewEventWizard_backButton_Text" xml:space="preserve">
-    <value>&lt; &amp;Anterior</value>
+    <value>&lt; _Anterior</value>
   </data>
   <data name="NonPrintableObjects_labelWarning_Text" xml:space="preserve">
     <value>El archivo del mapa «{0}» contiene objetos o símbolos no soportados por Purple Pen, y puede que no se impriman correctamente. Los objetos que se imprimirán correctamente se señalan debajo.

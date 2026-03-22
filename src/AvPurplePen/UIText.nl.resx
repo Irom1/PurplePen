@@ -454,10 +454,10 @@
     <value>Huidig kaart bestand</value>
   </data>
   <data name="ChangeMapFile_buttonChooseFile_Text" xml:space="preserve">
-    <value>&amp;Kies kaart bestand...</value>
+    <value>_Kies kaart bestand...</value>
   </data>
   <data name="NewEventMapFile_chooseMapFileButton_Text" xml:space="preserve">
-    <value>&amp;Kies kaart bestand...</value>
+    <value>_Kies kaart bestand...</value>
   </data>
   <data name="ChangeMapFile_openFileDialog_Filter" xml:space="preserve">
     <value>Alle kaart bestanden|*.ocd;*.omap;*.xmap;*.pdf;*.jpeg;*.jpg;*.tiff;*.tif;*.bmp;*.png;*.gif|OCAD bestanden (*.ocd)|*.ocd|Open Orienteering Mapper bestanden|*.omap;*.xmap|PDF bestanden (*.pdf)|*.pdf|Afbeeldingen|*.jpeg;*.jpg;*.tiff;*.tif;*.bmp;*.png;*.gif</value>
@@ -829,7 +829,7 @@
     <value>Dupliceer route</value>
   </data>
   <data name="CommandNameText_CreateMapFiles" xml:space="preserve">
-    <value>Creëer {0} &amp;bestanden</value>
+    <value>Creëer {0} _bestanden</value>
   </data>
   <data name="CommandNameText_DeleteFork" xml:space="preserve">
     <value>Verwijder afsplitsing/lus</value>
@@ -1225,37 +1225,37 @@
     <value>mapViewerTopology</value>
   </data>
   <data name="MainFrame_openMenu_Text" xml:space="preserve">
-    <value>&amp;Open...</value>
+    <value>_Open...</value>
   </data>
   <data name="MainFrame_saveMenu_Text" xml:space="preserve">
-    <value>Op&amp;slaan</value>
+    <value>Op_slaan</value>
   </data>
   <data name="MainFrame_saveAsMenu_Text" xml:space="preserve">
-    <value>Opslaan &amp;als...</value>
+    <value>Opslaan _als...</value>
   </data>
   <data name="MainFrame_createOcadFilesMenu_Text" xml:space="preserve">
-    <value>Creëer OCAD &amp;bestanden...</value>
+    <value>Creëer OCAD _bestanden...</value>
   </data>
   <data name="MainFrame_createCoursePdfMenu_Text" xml:space="preserve">
     <value>Creëer PDF's...</value>
   </data>
   <data name="MainFrame_createRouteGadgetFilesMenu_Text" xml:space="preserve">
-    <value>Creëer Route&amp;Gadget bestanden...</value>
+    <value>Creëer Route_Gadget bestanden...</value>
   </data>
   <data name="MainFrame_createXmlMenu_Text" xml:space="preserve">
-    <value>Creëer Data &amp;Uitwisselings bestand (IOF XML)...</value>
+    <value>Creëer Data _Uitwisselings bestand (IOF XML)...</value>
   </data>
   <data name="MainFrame_createGPXFileMenu_Text" xml:space="preserve">
-    <value>Creëer G&amp;PX bestand...</value>
+    <value>Creëer G_PX bestand...</value>
   </data>
   <data name="MainFrame_printDescriptionsMenu_Text" xml:space="preserve">
-    <value>&amp;Postomschrijvingen afrdukken...</value>
+    <value>_Postomschrijvingen afrdukken...</value>
   </data>
   <data name="MainFrame_printCoursesMenu_Text" xml:space="preserve">
-    <value>&amp;Routes afdrukken...</value>
+    <value>_Routes afdrukken...</value>
   </data>
   <data name="MainFrame_setPrintAreaMenu_Text" xml:space="preserve">
-    <value>Afdruk&amp;gebied instellen</value>
+    <value>Afdruk_gebied instellen</value>
   </data>
   <data name="MainFrame_zoom50Menu_Text" xml:space="preserve">
     <value>50%</value>
@@ -1279,7 +1279,7 @@
     <value>1000%</value>
   </data>
   <data name="MainFrame_zoomMenu_Text" xml:space="preserve">
-    <value>&amp;Zoom</value>
+    <value>_Zoom</value>
   </data>
   <data name="MainFrame_normalQualityMenu_Text" xml:space="preserve">
     <value>Laag</value>
@@ -1315,31 +1315,31 @@
     <value>Rechthoek</value>
   </data>
   <data name="MainFrame_deleteForkMenu_Text" xml:space="preserve">
-    <value>Verwijder a&amp;fsplitsing/lus</value>
+    <value>Verwijder a_fsplitsing/lus</value>
   </data>
   <data name="MainFrame_addBendMenu_Text" xml:space="preserve">
-    <value>Voeg &amp;bocht toe</value>
+    <value>Voeg _bocht toe</value>
   </data>
   <data name="MainFrame_removeBendMenu_Text" xml:space="preserve">
-    <value>Verwijder b&amp;ocht</value>
+    <value>Verwijder b_ocht</value>
   </data>
   <data name="MainFrame_addGapMenu_Text" xml:space="preserve">
-    <value>Voeg &amp;gat toe</value>
+    <value>Voeg _gat toe</value>
   </data>
   <data name="MainFrame_removeGapMenu_Text" xml:space="preserve">
-    <value>Verwijder g&amp;at</value>
+    <value>Verwijder g_at</value>
   </data>
   <data name="MainFrame_changeTextMenu_Text" xml:space="preserve">
-    <value>Wijzig &amp;tekst...</value>
+    <value>Wijzig _tekst...</value>
   </data>
   <data name="MainFrame_changeLineAppearanceMenu_Text" xml:space="preserve">
-    <value>Wijzig lijn &amp;weergave...</value>
+    <value>Wijzig lijn _weergave...</value>
   </data>
   <data name="MainFrame_rotateMenu_Text" xml:space="preserve">
-    <value>&amp;Draai</value>
+    <value>_Draai</value>
   </data>
   <data name="MainFrame_helpMenu_Text" xml:space="preserve">
-    <value>&amp;Help</value>
+    <value>_Help</value>
   </data>
   <data name="MainFrame_openToolStripButton_ToolTipText" xml:space="preserve">
     <value>Open (Ctrl+O)</value>
@@ -1495,7 +1495,7 @@
     <value>Nieuwe posten worden automatisch genummerd. Kies het laagst te gebruiken postnummer.</value>
   </data>
   <data name="NewEventPrintScale_defaultPrintScaleLabel_Text" xml:space="preserve">
-    <value>S&amp;tandaard afdrukschaal:</value>
+    <value>S_tandaard afdrukschaal:</value>
   </data>
   <data name="NonPrintableObjects_labelWarning_Text" xml:space="preserve">
     <value>Kaartbestand "{0}" bevat (OCAD) objecten of symbolen die niet volledig worden ondersteund door Purple Pen, en worden misschien niet goed afgedrukt. De objecten die wellicht niet goed worden afgedrukt worden hier onder genoemd.

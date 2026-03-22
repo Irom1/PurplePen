@@ -484,10 +484,10 @@
     <value>Current Map File</value>
   </data>
   <data name="ChangeMapFile_buttonChooseFile_Text" xml:space="preserve">
-    <value>&amp;Choose map file...</value>
+    <value>_Choose map file...</value>
   </data>
   <data name="NewEventMapFile_chooseMapFileButton_Text" xml:space="preserve">
-    <value>&amp;Choose map file...</value>
+    <value>_Choose map file...</value>
   </data>
   <data name="ChangeMapFile_openFileDialog_Filter" xml:space="preserve">
     <value>All map files|*.ocd;*.omap;*.xmap;*.pdf;*.jpeg;*.jpg;*.tiff;*.tif;*.bmp;*.png;*.gif|OCAD files (*.ocd)|*.ocd|Open Orienteering Mapper Files|*.omap;*.xmap|PDF files (*.pdf)|*.pdf|Image files|*.jpeg;*.jpg;*.tiff;*.tif;*.bmp;*.png;*.gif</value>
@@ -877,7 +877,7 @@
     <value>Duplicate Course</value>
   </data>
   <data name="CommandNameText_CreateMapFiles" xml:space="preserve">
-    <value>Create {0} &amp;Files</value>
+    <value>Create {0} _Files</value>
   </data>
   <data name="CommandNameText_DeleteFork" xml:space="preserve">
     <value>Delete Fork/Loop</value>
@@ -1684,19 +1684,19 @@
     <value>_Clear Selection</value>
   </data>
   <data name="MiscText_ClearSelectionWithShortcut" xml:space="preserve">
-    <value>&amp;Clear Selection</value>
+    <value>_Clear Selection</value>
   </data>
   <data name="MainFrame_undoMenu_Text" xml:space="preserve">
     <value>_Undo</value>
   </data>
   <data name="MiscText_UndoWithShortcut" xml:space="preserve">
-    <value>&amp;Undo</value>
+    <value>_Undo</value>
   </data>
   <data name="MainFrame_redoMenu_Text" xml:space="preserve">
     <value>_Redo</value>
   </data>
   <data name="MiscText_RedoWithShortcut" xml:space="preserve">
-    <value>&amp;Redo</value>
+    <value>_Redo</value>
   </data>
   <data name="MainFrame_deleteMenu_Text" xml:space="preserve">
     <value>_Delete</value>
@@ -1792,7 +1792,7 @@
     <value>_Finish</value>
   </data>
   <data name="MiscText_FinishButtonText" xml:space="preserve">
-    <value>&amp;Finish</value>
+    <value>_Finish</value>
   </data>
   <data name="MainFrame_addDescriptionsMenu_Text" xml:space="preserve">
     <value>_Descriptions</value>
@@ -2305,7 +2305,7 @@
     <value>The load for a course must be an integer 0-999999, or blank.</value>
   </data>
   <data name="MiscText_CancelOperationWithShortcut" xml:space="preserve">
-    <value>Ca&amp;ncel Operation</value>
+    <value>Ca_ncel Operation</value>
   </data>
   <data name="MiscText_CancelOperation" xml:space="preserve">
     <value>Cancel Operation</value>
@@ -2420,10 +2420,10 @@ After pressing OK, try to find a copy of the map file on your computer.</value>
     <value>All controls are used in a course.</value>
   </data>
   <data name="MiscText_NextButtonText" xml:space="preserve">
-    <value>&amp;Next &gt;</value>
+    <value>_Next &gt;</value>
   </data>
   <data name="NewEventWizard_nextButton_Text" xml:space="preserve">
-    <value>&amp;Next &gt;</value>
+    <value>_Next &gt;</value>
   </data>
   <data name="MiscText_Control_Code" xml:space="preserve">
     <value>Control {0}</value>
@@ -2835,7 +2835,7 @@ The scale of the map indicates the relationship between the paper map and the re
 </value>
   </data>
   <data name="NewEventPrintScale_defaultPrintScaleLabel_Text" xml:space="preserve">
-    <value>Default &amp;printing scale:</value>
+    <value>Default _printing scale:</value>
   </data>
   <data name="NewEventPrintScale_changeLaterLabel_Text" xml:space="preserve">
     <value>(You can change the printing scale later for any course by choosing Course/Properties.)</value>
@@ -2879,7 +2879,7 @@ To fit on the description sheet, it should be less than 25 characters in length.
     <value>Event Title:</value>
   </data>
   <data name="NewEventWizard_backButton_Text" xml:space="preserve">
-    <value>&lt; &amp;Back</value>
+    <value>&lt; _Back</value>
   </data>
   <data name="NonPrintableObjects_labelWarning_Text" xml:space="preserve">
     <value>Map file "{0}" contains objects or symbols that are not fully supported by Purple Pen, and may not print correctly. The objects that may not print correctly are listed below.

@@ -1591,7 +1591,7 @@
     <value>&amp;Маршрути...</value>
   </data>
   <data name="MainFrame_createPDFsMenu_Text" xml:space="preserve">
-    <value>Create P&amp;DFs</value>
+    <value>Create P_DFs</value>
   </data>
   <data name="MainFrame_createRouteGadgetFilesMenu_Text" xml:space="preserve">
     <value>Създай RouteGadget файлове...</value>
@@ -1603,10 +1603,10 @@
     <value>Създай &amp;файл за обмен на данни (IOF XML)...</value>
   </data>
   <data name="MainFrame_createGPXFileMenu_Text" xml:space="preserve">
-    <value>Създай G&amp;PX файл...</value>
+    <value>Създай G_PX файл...</value>
   </data>
   <data name="MainFrame_createKMLFileMenu_Text" xml:space="preserve">
-    <value>Създай &amp;KML файл...</value>
+    <value>Създай _KML файл...</value>
   </data>
   <data name="MainFrame_printDescriptionsMenu_Text" xml:space="preserve">
     <value>&amp;Отпечатай описания...</value>
@@ -1645,10 +1645,10 @@
     <value>&amp;Изчисти избора</value>
   </data>
   <data name="MainFrame_undoMenu_Text" xml:space="preserve">
-    <value>&amp;Undo</value>
+    <value>_Undo</value>
   </data>
   <data name="MiscText_UndoWithShortcut" xml:space="preserve">
-    <value>&amp;Undo</value>
+    <value>_Undo</value>
   </data>
   <data name="MainFrame_redoMenu_Text" xml:space="preserve">
     <value>&amp;Повтори</value>

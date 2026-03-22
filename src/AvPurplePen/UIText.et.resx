@@ -457,10 +457,10 @@
     <value>Kasutatav kaardi fail</value>
   </data>
   <data name="ChangeMapFile_buttonChooseFile_Text" xml:space="preserve">
-    <value>&amp;Vali kaardi fail...</value>
+    <value>_Vali kaardi fail...</value>
   </data>
   <data name="NewEventMapFile_chooseMapFileButton_Text" xml:space="preserve">
-    <value>&amp;Vali kaardi fail...</value>
+    <value>_Vali kaardi fail...</value>
   </data>
   <data name="ChangeMapFile_openFileDialog_Filter" xml:space="preserve">
     <value>Kõik kaardi failid|*.ocd;*.omap;*.xmap;*.pdf;*.jpeg;*.jpg;*.tiff;*.tif;*.bmp;*.png;*.gif|OCAD failid (*.ocd)|*.ocd|Open Orienteering Mapper Failid|*.omap;*.xmap|PDF files (*.pdf)|*.pdf|Image files|*.jpeg;*.jpg;*.tiff;*.tif;*.bmp;*.png;*.gif</value>
@@ -850,7 +850,7 @@
     <value>Dublikeeri rada</value>
   </data>
   <data name="CommandNameText_CreateMapFiles" xml:space="preserve">
-    <value>Loo {0} &amp;Failid</value>
+    <value>Loo {0} _Failid</value>
   </data>
   <data name="CommandNameText_DeleteFork" xml:space="preserve">
     <value>Kustuta hajutus/ring</value>
@@ -1531,34 +1531,34 @@
     <value>Purple Pen fail|*.ppen</value>
   </data>
   <data name="MainFrame_newEventMenu_Text" xml:space="preserve">
-    <value>&amp;Uus võistlus...</value>
+    <value>_Uus võistlus...</value>
   </data>
   <data name="MainFrame_openMenu_Text" xml:space="preserve">
-    <value>&amp;Ava...</value>
+    <value>_Ava...</value>
   </data>
   <data name="MainFrame_saveMenu_Text" xml:space="preserve">
-    <value>&amp;Salvesta</value>
+    <value>_Salvesta</value>
   </data>
   <data name="MainFrame_saveAsMenu_Text" xml:space="preserve">
-    <value>Salvesta &amp;nimega...</value>
+    <value>Salvesta _nimega...</value>
   </data>
   <data name="MainFrame_createOcadFilesMenu_Text" xml:space="preserve">
-    <value>Tee OCADi &amp;failid...</value>
+    <value>Tee OCADi _failid...</value>
   </data>
   <data name="MainFrame_createImageFilesMenu_Text" xml:space="preserve">
-    <value>Salvesta pil&amp;difaild ...</value>
+    <value>Salvesta pil_difaild ...</value>
   </data>
   <data name="MainFrame_createDescriptionPdfMenu_Text" xml:space="preserve">
-    <value>&amp;Legendid...</value>
+    <value>_Legendid...</value>
   </data>
   <data name="MainFrame_createPunchcardPdfMenu_Text" xml:space="preserve">
     <value>Kompostri kaardid...</value>
   </data>
   <data name="MainFrame_createCoursePdfMenu_Text" xml:space="preserve">
-    <value>&amp;Rajad...</value>
+    <value>_Rajad...</value>
   </data>
   <data name="MainFrame_createPDFsMenu_Text" xml:space="preserve">
-    <value>Salvesta P&amp;DF'id</value>
+    <value>Salvesta P_DF'id</value>
   </data>
   <data name="MainFrame_createRouteGadgetFilesMenu_Text" xml:space="preserve">
     <value>Loo RouteGadget failid...</value>
@@ -1570,73 +1570,73 @@
     <value>Tee IOF-XML rajakirjelduse fail...</value>
   </data>
   <data name="MainFrame_createGPXFileMenu_Text" xml:space="preserve">
-    <value>Salvesta G&amp;PX fail...</value>
+    <value>Salvesta G_PX fail...</value>
   </data>
   <data name="MainFrame_createKMLFileMenu_Text" xml:space="preserve">
-    <value>Salvesta &amp;KML fail...</value>
+    <value>Salvesta _KML fail...</value>
   </data>
   <data name="MainFrame_printDescriptionsMenu_Text" xml:space="preserve">
-    <value>&amp;Trüki legendid...</value>
+    <value>_Trüki legendid...</value>
   </data>
   <data name="MainFrame_printPunchCardsMenu_Text" xml:space="preserve">
     <value>Trüki kompostri kaardid</value>
   </data>
   <data name="MainFrame_printCoursesMenu_Text" xml:space="preserve">
-    <value>Trüki &amp;Rajad</value>
+    <value>Trüki _Rajad</value>
   </data>
   <data name="MainFrame_printAreaThisPartMenu_Text" xml:space="preserve">
-    <value>See &amp;osa ainult</value>
+    <value>See _osa ainult</value>
   </data>
   <data name="MainFrame_printAreaThisCourseMenu_Text" xml:space="preserve">
-    <value>See &amp;rada</value>
+    <value>See _rada</value>
   </data>
   <data name="MainFrame_printAreaAllCoursesMenu_Text" xml:space="preserve">
-    <value>&amp;Kõik rajad</value>
+    <value>_Kõik rajad</value>
   </data>
   <data name="MainFrame_setPrintAreaMenu_Text" xml:space="preserve">
-    <value>Määra trüki&amp;ala</value>
+    <value>Määra trüki_ala</value>
   </data>
   <data name="MainFrame_programLanguageMenu_Text" xml:space="preserve">
-    <value>Programm &amp;Keel</value>
+    <value>Programm _Keel</value>
   </data>
   <data name="MainFrame_exitMenu_Text" xml:space="preserve">
     <value>V&amp;älju</value>
   </data>
   <data name="MainFrame_fileMenu_Text" xml:space="preserve">
-    <value>&amp;Fail</value>
+    <value>_Fail</value>
   </data>
   <data name="MainFrame_cancelMenu_Text" xml:space="preserve">
-    <value>&amp;Puhasta valik</value>
+    <value>_Puhasta valik</value>
   </data>
   <data name="MiscText_ClearSelectionWithShortcut" xml:space="preserve">
-    <value>&amp;Puhasta valik</value>
+    <value>_Puhasta valik</value>
   </data>
   <data name="MainFrame_undoMenu_Text" xml:space="preserve">
-    <value>&amp;Võta tagasi</value>
+    <value>_Võta tagasi</value>
   </data>
   <data name="MiscText_UndoWithShortcut" xml:space="preserve">
-    <value>&amp;Võta tagasi</value>
+    <value>_Võta tagasi</value>
   </data>
   <data name="MainFrame_redoMenu_Text" xml:space="preserve">
-    <value>&amp;Tee uuesti</value>
+    <value>_Tee uuesti</value>
   </data>
   <data name="MiscText_RedoWithShortcut" xml:space="preserve">
-    <value>&amp;Tee uuesti</value>
+    <value>_Tee uuesti</value>
   </data>
   <data name="MainFrame_deleteMenu_Text" xml:space="preserve">
-    <value>&amp;Kustuta</value>
+    <value>_Kustuta</value>
   </data>
   <data name="MainFrame_deleteItemMenu_Text" xml:space="preserve">
-    <value>&amp;Kustuta</value>
+    <value>_Kustuta</value>
   </data>
   <data name="MainFrame_editMenu_Text" xml:space="preserve">
-    <value>&amp;Muuda</value>
+    <value>_Muuda</value>
   </data>
   <data name="MainFrame_entireCourseMenu_Text" xml:space="preserve">
-    <value>Kogu &amp;rada</value>
+    <value>Kogu _rada</value>
   </data>
   <data name="MainFrame_entireMapMenu_Text" xml:space="preserve">
-    <value>Kogu &amp;kaart</value>
+    <value>Kogu _kaart</value>
   </data>
   <data name="MainFrame_zoom50Menu_Text" xml:space="preserve">
     <value>50%</value>
@@ -1660,25 +1660,25 @@
     <value>1000%</value>
   </data>
   <data name="MainFrame_zoomMenu_Text" xml:space="preserve">
-    <value>&amp;Suurendus</value>
+    <value>_Suurendus</value>
   </data>
   <data name="MainFrame_veryLowIntensityMenu_Text" xml:space="preserve">
-    <value>&amp;Väga madal</value>
+    <value>_Väga madal</value>
   </data>
   <data name="MainFrame_lowIntensityMenu_Text" xml:space="preserve">
-    <value>&amp;Madal</value>
+    <value>_Madal</value>
   </data>
   <data name="MainFrame_mediumIntensityMenu_Text" xml:space="preserve">
-    <value>&amp;Keskmine</value>
+    <value>_Keskmine</value>
   </data>
   <data name="MainFrame_highIntensityMenu_Text" xml:space="preserve">
-    <value>&amp;Kõrge</value>
+    <value>_Kõrge</value>
   </data>
   <data name="MainFrame_fullIntensityMenu_Text" xml:space="preserve">
-    <value>&amp;Täielik</value>
+    <value>_Täielik</value>
   </data>
   <data name="MainFrame_mapIntensityMenu_Text" xml:space="preserve">
-    <value>Kaardi &amp;intensiivsus</value>
+    <value>Kaardi _intensiivsus</value>
   </data>
   <data name="MainFrame_normalQualityMenu_Text" xml:space="preserve">
     <value>Madal</value>
@@ -1687,16 +1687,16 @@
     <value>Kõrge</value>
   </data>
   <data name="MainFrame_mapQualityMenu_Text" xml:space="preserve">
-    <value>Kaardi &amp;kvaliteet</value>
+    <value>Kaardi _kvaliteet</value>
   </data>
   <data name="MainFrame_showPrintAreaMenu_Text" xml:space="preserve">
-    <value>Näita &amp;trükiala</value>
+    <value>Näita _trükiala</value>
   </data>
   <data name="MainFrame_showPopupsMenu_Text" xml:space="preserve">
     <value>Kuva hüpik infot</value>
   </data>
   <data name="MainFrame_allControlsMenu_Text" xml:space="preserve">
-    <value>&amp;Kõik KPd</value>
+    <value>_Kõik KPd</value>
   </data>
   <data name="MainFrame_otherCoursesMenu_Text" xml:space="preserve">
     <value>Teised rajad...</value>
@@ -1705,37 +1705,37 @@
     <value>Puhasta teised rajad</value>
   </data>
   <data name="MainFrame_viewMenu_Text" xml:space="preserve">
-    <value>&amp;Vaade</value>
+    <value>_Vaade</value>
   </data>
   <data name="MainFrame_addStartMenu_Text" xml:space="preserve">
-    <value>&amp;Start</value>
+    <value>_Start</value>
   </data>
   <data name="MainFrame_addControlMenu_Text" xml:space="preserve">
-    <value>&amp;Kontrollpunkt</value>
+    <value>_Kontrollpunkt</value>
   </data>
   <data name="MainFrame_addFinishMenu_Text" xml:space="preserve">
-    <value>&amp;Finiš</value>
+    <value>_Finiš</value>
   </data>
   <data name="MiscText_FinishButtonText" xml:space="preserve">
-    <value>&amp;Finiš</value>
+    <value>_Finiš</value>
   </data>
   <data name="MainFrame_addDescriptionsMenu_Text" xml:space="preserve">
-    <value>&amp;Legendid</value>
+    <value>_Legendid</value>
   </data>
   <data name="MainFrame_mapExchangeControlMenuItem_Text" xml:space="preserve">
-    <value>Kaardivahetus on &amp;kontrollpunktis</value>
+    <value>Kaardivahetus on _kontrollpunktis</value>
   </data>
   <data name="MainFrame_mapExchangeSeparateMenuItem_Text" xml:space="preserve">
-    <value>&amp;Märgitud rada kaardivahetusse</value>
+    <value>_Märgitud rada kaardivahetusse</value>
   </data>
   <data name="MainFrame_addMapExchangeMenu_Text" xml:space="preserve">
     <value>Kaardivahetus</value>
   </data>
   <data name="MainFrame_addVariationMenu_Text" xml:space="preserve">
-    <value>&amp;Variandid</value>
+    <value>_Variandid</value>
   </data>
   <data name="MainFrame_addTextLineMenu_Text" xml:space="preserve">
-    <value>Teksti &amp;rida...</value>
+    <value>Teksti _rida...</value>
   </data>
   <data name="MainFrame_addMapIssueMenu_Text" xml:space="preserve">
     <value>Stardijoon</value>
@@ -1864,22 +1864,22 @@
     <value>Ellips</value>
   </data>
   <data name="MainFrame_addMenu_Text" xml:space="preserve">
-    <value>&amp;Lisa</value>
+    <value>_Lisa</value>
   </data>
   <data name="MainFrame_changeMapFileMenu_Text" xml:space="preserve">
-    <value>&amp;Kaardi fail</value>
+    <value>_Kaardi fail</value>
   </data>
   <data name="MainFrame_changeCodesMenu_Text" xml:space="preserve">
-    <value>Muuda KP &amp;tunnusnumbreid</value>
+    <value>Muuda KP _tunnusnumbreid</value>
   </data>
   <data name="MainFrame_autoNumberingMenu_Text" xml:space="preserve">
-    <value>Automaatne &amp;nummerdamine</value>
+    <value>Automaatne _nummerdamine</value>
   </data>
   <data name="MainFrame_removeUnusedControlsMenu_Text" xml:space="preserve">
-    <value>Eemalda &amp;kasutamata KPd...</value>
+    <value>Eemalda _kasutamata KPd...</value>
   </data>
   <data name="MainFrame_punchPatternsMenu_Text" xml:space="preserve">
-    <value>&amp;Kompostri jäljendid...</value>
+    <value>_Kompostri jäljendid...</value>
   </data>
   <data name="MainFrame_descriptionStd2004Menu_Text" xml:space="preserve">
     <value>2004 a legendi standard</value>
@@ -1897,19 +1897,19 @@
     <value>ISSprOM 2019 Kaardi standard</value>
   </data>
   <data name="MainFrame_iOFStandardsToolStripMenuItem_Text" xml:space="preserve">
-    <value>IOFi &amp;Standardid</value>
+    <value>IOFi _Standardid</value>
   </data>
   <data name="MainFrame_customizeDescriptionsMenu_Text" xml:space="preserve">
-    <value>Muuda &amp;selgituse teksti</value>
+    <value>Muuda _selgituse teksti</value>
   </data>
   <data name="MainFrame_customizeCourseAppearanceMenu_Text" xml:space="preserve">
-    <value>Muuda &amp;väljanägemist</value>
+    <value>Muuda _väljanägemist</value>
   </data>
   <data name="MainFrame_eventMenu_Text" xml:space="preserve">
-    <value>Võ&amp;istlus</value>
+    <value>Võ_istlus</value>
   </data>
   <data name="MainFrame_addCourseMenu_Text" xml:space="preserve">
-    <value>&amp;Lisa rada...</value>
+    <value>_Lisa rada...</value>
   </data>
   <data name="MainFrame_deleteCourseMenu_Text" xml:space="preserve">
     <value>Kustuta rada</value>
@@ -1918,43 +1918,43 @@
     <value>Kopeeri rada...</value>
   </data>
   <data name="MainFrame_propertiesMenu_Text" xml:space="preserve">
-    <value>O&amp;madused...</value>
+    <value>O_madused...</value>
   </data>
   <data name="MainFrame_courseOrderMenu_Text" xml:space="preserve">
-    <value>Radade &amp;järjekod...</value>
+    <value>Radade _järjekod...</value>
   </data>
   <data name="MainFrame_courseLoadMenu_Text" xml:space="preserve">
-    <value>Osalejate &amp;arv...</value>
+    <value>Osalejate _arv...</value>
   </data>
   <data name="MainFrame_courseVariationReportMenu_Text" xml:space="preserve">
-    <value>Teate võistkonna &amp;variandid...</value>
+    <value>Teate võistkonna _variandid...</value>
   </data>
   <data name="MainFrame_courseMenu_Text" xml:space="preserve">
-    <value>&amp;Rada</value>
+    <value>_Rada</value>
   </data>
   <data name="MainFrame_deleteForkMenu_Text" xml:space="preserve">
     <value>Kustuta hajutus/ring</value>
   </data>
   <data name="MainFrame_addBendMenu_Text" xml:space="preserve">
-    <value>Lisa &amp;murd</value>
+    <value>Lisa _murd</value>
   </data>
   <data name="MainFrame_removeBendMenu_Text" xml:space="preserve">
-    <value>Eemalda &amp;murded</value>
+    <value>Eemalda _murded</value>
   </data>
   <data name="MainFrame_addGapMenu_Text" xml:space="preserve">
-    <value>Lisa &amp;katkestus</value>
+    <value>Lisa _katkestus</value>
   </data>
   <data name="MainFrame_removeGapMenu_Text" xml:space="preserve">
     <value>Eemalda katkestus</value>
   </data>
   <data name="MainFrame_changeTextMenu_Text" xml:space="preserve">
-    <value>Muuda &amp;teksti</value>
+    <value>Muuda _teksti</value>
   </data>
   <data name="MainFrame_changeLineAppearanceMenu_Text" xml:space="preserve">
-    <value>Muuda joone &amp;omadusi</value>
+    <value>Muuda joone _omadusi</value>
   </data>
   <data name="MainFrame_rotateMenu_Text" xml:space="preserve">
-    <value>&amp;Pööra</value>
+    <value>_Pööra</value>
   </data>
   <data name="MainFrame_stretchMenu_Text" xml:space="preserve">
     <value>Venita</value>
@@ -1972,7 +1972,7 @@
     <value>Etapi lõpp on tähistatud</value>
   </data>
   <data name="MainFrame_legFlaggingMenu_Text" xml:space="preserve">
-    <value>&amp;Tähistatud etapp</value>
+    <value>_Tähistatud etapp</value>
   </data>
   <data name="MainFrame_changeDisplayedCoursesMenu_Text" xml:space="preserve">
     <value>Muuda valitud radade...</value>
@@ -1984,37 +1984,37 @@
     <value>Raja kokkuvõte</value>
   </data>
   <data name="MainFrame_eventAuditMenu_Text" xml:space="preserve">
-    <value>Võistluse &amp;kontroll</value>
+    <value>Võistluse _kontroll</value>
   </data>
   <data name="MainFrame_legLengthsMenu_Text" xml:space="preserve">
-    <value>&amp;Etappide pikkused</value>
+    <value>_Etappide pikkused</value>
   </data>
   <data name="MainFrame_controlCrossrefMenu_Text" xml:space="preserve">
-    <value>KPde &amp;risttabel</value>
+    <value>KPde _risttabel</value>
   </data>
   <data name="MainFrame_controlAndLegLoadMenu_Text" xml:space="preserve">
     <value>KPde ja etappide koormused</value>
   </data>
   <data name="MainFrame_reportMenu_Text" xml:space="preserve">
-    <value>&amp;Aruanded</value>
+    <value>_Aruanded</value>
   </data>
   <data name="MainFrame_helpContentsMenu_Text" xml:space="preserve">
-    <value>Purple Pen &amp;Abi</value>
+    <value>Purple Pen _Abi</value>
   </data>
   <data name="MainFrame_helpTranslatedMenu_Text" xml:space="preserve">
     <value>Purple Pen Abi (Tõlgitud)</value>
   </data>
   <data name="MainFrame_mainWebSiteToolMenu_Text" xml:space="preserve">
-    <value>Purpe Pen &amp;Kodulehekülg</value>
+    <value>Purpe Pen _Kodulehekülg</value>
   </data>
   <data name="MainFrame_supportWebSiteMenu_Text" xml:space="preserve">
-    <value>&amp;Tugi ja vigadest teadaandmine</value>
+    <value>_Tugi ja vigadest teadaandmine</value>
   </data>
   <data name="MainFrame_donateWebSiteMenu_Text" xml:space="preserve">
-    <value>Tee &amp;annetus</value>
+    <value>Tee _annetus</value>
   </data>
   <data name="MainFrame_aboutMenu_Text" xml:space="preserve">
-    <value>&amp;Programmist Purple Pen</value>
+    <value>_Programmist Purple Pen</value>
   </data>
   <data name="MainFrame_symbolBrowserMenu_Text" xml:space="preserve">
     <value>Sümbolite brauser</value>
@@ -2059,10 +2059,10 @@
     <value>Liida Symbols.xml...</value>
   </data>
   <data name="MainFrame_translateMenu_Text" xml:space="preserve">
-    <value>&amp;Tõlgi legendi tekst</value>
+    <value>_Tõlgi legendi tekst</value>
   </data>
   <data name="MainFrame_helpMenu_Text" xml:space="preserve">
-    <value>&amp;Abi</value>
+    <value>_Abi</value>
   </data>
   <data name="MainFrame_openToolStripButton_Text" xml:space="preserve">
     <value>Ava</value>
@@ -2212,7 +2212,7 @@
     <value>Raja osalejate arv peab olema numbrites vahemikus 0-999999, või tühi.</value>
   </data>
   <data name="MiscText_CancelOperationWithShortcut" xml:space="preserve">
-    <value>K&amp;atkesta tegevus</value>
+    <value>K_atkesta tegevus</value>
   </data>
   <data name="MiscText_CancelOperation" xml:space="preserve">
     <value>Toimingu tühistamine</value>
@@ -2325,10 +2325,10 @@ Peale OK vajutamist, otsi kaardi fail arvutist..</value>
     <value>Kõik KPd on radadel kasutuses.</value>
   </data>
   <data name="MiscText_NextButtonText" xml:space="preserve">
-    <value>&amp;Edasi &gt;</value>
+    <value>_Edasi &gt;</value>
   </data>
   <data name="NewEventWizard_nextButton_Text" xml:space="preserve">
-    <value>&amp;Edasi &gt;</value>
+    <value>_Edasi &gt;</value>
   </data>
   <data name="MiscText_Control_Code" xml:space="preserve">
     <value>KP {0}</value>
@@ -2753,7 +2753,7 @@ Nimetus peaks olema lühem kui 25 märki, et ta mahuks legendilehele. Näiteks h
     <value>Võistluse nimetus:</value>
   </data>
   <data name="NewEventWizard_backButton_Text" xml:space="preserve">
-    <value>&lt; &amp;Tagasi</value>
+    <value>&lt; _Tagasi</value>
   </data>
   <data name="NonPrintableObjects_labelWarning_Text" xml:space="preserve">
     <value>Kaardifail "{0}" sisaldab sümboleid, mida Purple Pen ei toeta ja võib trükkida valesti. Nimekiri sümbolitest mis võivad puududa väljatrükil on toodud allpool.

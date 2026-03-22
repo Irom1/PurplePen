@@ -388,10 +388,10 @@
     <value>Fișierul Hărții Curente</value>
   </data>
   <data name="ChangeMapFile_buttonChooseFile_Text" xml:space="preserve">
-    <value>&amp;Alege fișierul de hartă...</value>
+    <value>_Alege fișierul de hartă...</value>
   </data>
   <data name="NewEventMapFile_chooseMapFileButton_Text" xml:space="preserve">
-    <value>&amp;Alege fișierul de hartă...</value>
+    <value>_Alege fișierul de hartă...</value>
   </data>
   <data name="ChangeMapFile_labelDpi_Text" xml:space="preserve">
     <value>Rezoluție:</value>
@@ -1078,64 +1078,64 @@
     <value>Fișier Purple Pen|*.ppen</value>
   </data>
   <data name="MainFrame_newEventMenu_Text" xml:space="preserve">
-    <value>Evniment &amp;Nou...</value>
+    <value>Evniment _Nou...</value>
   </data>
   <data name="MainFrame_openMenu_Text" xml:space="preserve">
-    <value>&amp;Deschidere...</value>
+    <value>_Deschidere...</value>
   </data>
   <data name="MainFrame_saveMenu_Text" xml:space="preserve">
-    <value>&amp;Salvare</value>
+    <value>_Salvare</value>
   </data>
   <data name="MainFrame_saveAsMenu_Text" xml:space="preserve">
-    <value>Salv&amp;are ca...</value>
+    <value>Salv_are ca...</value>
   </data>
   <data name="MainFrame_createOcadFilesMenu_Text" xml:space="preserve">
-    <value>Creare Fișiere &amp;OCAD...</value>
+    <value>Creare Fișiere _OCAD...</value>
   </data>
   <data name="MainFrame_printDescriptionsMenu_Text" xml:space="preserve">
-    <value>&amp;Tipărire Descriere...</value>
+    <value>_Tipărire Descriere...</value>
   </data>
   <data name="MainFrame_printPunchCardsMenu_Text" xml:space="preserve">
-    <value>Tipărire Fișe de &amp;Control...</value>
+    <value>Tipărire Fișe de _Control...</value>
   </data>
   <data name="MainFrame_printCoursesMenu_Text" xml:space="preserve">
-    <value>Tipărire &amp;Trasee...</value>
+    <value>Tipărire _Trasee...</value>
   </data>
   <data name="MainFrame_printAreaThisCourseMenu_Text" xml:space="preserve">
-    <value>&amp;Acest Traseu</value>
+    <value>_Acest Traseu</value>
   </data>
   <data name="MainFrame_printAreaAllCoursesMenu_Text" xml:space="preserve">
-    <value>&amp;Toate Traseele</value>
+    <value>_Toate Traseele</value>
   </data>
   <data name="MainFrame_setPrintAreaMenu_Text" xml:space="preserve">
-    <value>Setare &amp;Zonă de Tipărire</value>
+    <value>Setare _Zonă de Tipărire</value>
   </data>
   <data name="MainFrame_programLanguageMenu_Text" xml:space="preserve">
-    <value>&amp;Limba programului...</value>
+    <value>_Limba programului...</value>
   </data>
   <data name="MainFrame_exitMenu_Text" xml:space="preserve">
-    <value>&amp;Ieșire</value>
+    <value>_Ieșire</value>
   </data>
   <data name="MainFrame_fileMenu_Text" xml:space="preserve">
-    <value>&amp;Fişier</value>
+    <value>_Fişier</value>
   </data>
   <data name="MainFrame_cancelMenu_Text" xml:space="preserve">
-    <value>&amp;Golește selecția</value>
+    <value>_Golește selecția</value>
   </data>
   <data name="MiscText_ClearSelectionWithShortcut" xml:space="preserve">
-    <value>&amp;Golește selecția</value>
+    <value>_Golește selecția</value>
   </data>
   <data name="MainFrame_undoMenu_Text" xml:space="preserve">
-    <value>An&amp;ulare</value>
+    <value>An_ulare</value>
   </data>
   <data name="MiscText_UndoWithShortcut" xml:space="preserve">
-    <value>An&amp;ulare</value>
+    <value>An_ulare</value>
   </data>
   <data name="MainFrame_redoMenu_Text" xml:space="preserve">
-    <value>&amp;Refacere</value>
+    <value>_Refacere</value>
   </data>
   <data name="MiscText_RedoWithShortcut" xml:space="preserve">
-    <value>&amp;Refacere</value>
+    <value>_Refacere</value>
   </data>
   <data name="MainFrame_deleteMenu_Text" xml:space="preserve">
     <value>&amp;Ștergere</value>
@@ -1144,13 +1144,13 @@
     <value>&amp;Ștergere</value>
   </data>
   <data name="MainFrame_editMenu_Text" xml:space="preserve">
-    <value>&amp;Editare</value>
+    <value>_Editare</value>
   </data>
   <data name="MainFrame_entireCourseMenu_Text" xml:space="preserve">
-    <value>Tot &amp;Traseul</value>
+    <value>Tot _Traseul</value>
   </data>
   <data name="MainFrame_entireMapMenu_Text" xml:space="preserve">
-    <value>Toată &amp;Harta</value>
+    <value>Toată _Harta</value>
   </data>
   <data name="MainFrame_zoom50Menu_Text" xml:space="preserve">
     <value>50%</value>
@@ -1174,25 +1174,25 @@
     <value>1000%</value>
   </data>
   <data name="MainFrame_zoomMenu_Text" xml:space="preserve">
-    <value>&amp;Zoom</value>
+    <value>_Zoom</value>
   </data>
   <data name="MainFrame_veryLowIntensityMenu_Text" xml:space="preserve">
-    <value>Foarte s&amp;căzută</value>
+    <value>Foarte s_căzută</value>
   </data>
   <data name="MainFrame_lowIntensityMenu_Text" xml:space="preserve">
-    <value>&amp;Scăzută</value>
+    <value>_Scăzută</value>
   </data>
   <data name="MainFrame_mediumIntensityMenu_Text" xml:space="preserve">
-    <value>&amp;Medie</value>
+    <value>_Medie</value>
   </data>
   <data name="MainFrame_highIntensityMenu_Text" xml:space="preserve">
-    <value>&amp;Ridicată</value>
+    <value>_Ridicată</value>
   </data>
   <data name="MainFrame_fullIntensityMenu_Text" xml:space="preserve">
-    <value>&amp;Maximă</value>
+    <value>_Maximă</value>
   </data>
   <data name="MainFrame_mapIntensityMenu_Text" xml:space="preserve">
-    <value>&amp;Intensitate Hartă</value>
+    <value>_Intensitate Hartă</value>
   </data>
   <data name="MainFrame_normalQualityMenu_Text" xml:space="preserve">
     <value>Scăzută</value>
@@ -1201,19 +1201,19 @@
     <value>Ridicată</value>
   </data>
   <data name="MainFrame_mapQualityMenu_Text" xml:space="preserve">
-    <value>&amp;Calitate hartă</value>
+    <value>_Calitate hartă</value>
   </data>
   <data name="MainFrame_allControlsMenu_Text" xml:space="preserve">
-    <value>&amp;Toate Posturile</value>
+    <value>_Toate Posturile</value>
   </data>
   <data name="MainFrame_viewMenu_Text" xml:space="preserve">
-    <value>&amp;Vizualizare</value>
+    <value>_Vizualizare</value>
   </data>
   <data name="MainFrame_addFinishMenu_Text" xml:space="preserve">
-    <value>&amp;Finalizare</value>
+    <value>_Finalizare</value>
   </data>
   <data name="MiscText_FinishButtonText" xml:space="preserve">
-    <value>&amp;Finalizare</value>
+    <value>_Finalizare</value>
   </data>
   <data name="MainFrame_addMandatoryCrossingMenu_Text" xml:space="preserve">
     <value>Punct Trecere Obligatoriu</value>
@@ -1297,55 +1297,55 @@
     <value>Spațiu Alb</value>
   </data>
   <data name="MainFrame_changeMapFileMenu_Text" xml:space="preserve">
-    <value>Fișier &amp;Hartă...</value>
+    <value>Fișier _Hartă...</value>
   </data>
   <data name="MainFrame_changeCodesMenu_Text" xml:space="preserve">
     <value>Schimbare Coduri Posturi...</value>
   </data>
   <data name="MainFrame_autoNumberingMenu_Text" xml:space="preserve">
-    <value>&amp;Numerotare automată...</value>
+    <value>_Numerotare automată...</value>
   </data>
   <data name="MainFrame_removeUnusedControlsMenu_Text" xml:space="preserve">
-    <value>Șterge Posturile &amp;Nefolosite...</value>
+    <value>Șterge Posturile _Nefolosite...</value>
   </data>
   <data name="MainFrame_punchPatternsMenu_Text" xml:space="preserve">
     <value>Modele de Compostare...</value>
   </data>
   <data name="MainFrame_customizeDescriptionsMenu_Text" xml:space="preserve">
-    <value>Personalizare Text &amp;Descriere...</value>
+    <value>Personalizare Text _Descriere...</value>
   </data>
   <data name="MainFrame_eventMenu_Text" xml:space="preserve">
-    <value>Eve&amp;niment</value>
+    <value>Eve_niment</value>
   </data>
   <data name="MainFrame_addCourseMenu_Text" xml:space="preserve">
-    <value>&amp;Adaugare Traseu...</value>
+    <value>_Adaugare Traseu...</value>
   </data>
   <data name="MainFrame_deleteCourseMenu_Text" xml:space="preserve">
     <value>&amp;Ștergere Traseu</value>
   </data>
   <data name="MainFrame_propertiesMenu_Text" xml:space="preserve">
-    <value>&amp;Proprietăți...</value>
+    <value>_Proprietăți...</value>
   </data>
   <data name="MainFrame_courseLoadMenu_Text" xml:space="preserve">
     <value>&amp;Încărcare Participanți...</value>
   </data>
   <data name="MainFrame_courseMenu_Text" xml:space="preserve">
-    <value>&amp;Traseu</value>
+    <value>_Traseu</value>
   </data>
   <data name="MainFrame_addBendMenu_Text" xml:space="preserve">
-    <value>Adăugare &amp;Curbă</value>
+    <value>Adăugare _Curbă</value>
   </data>
   <data name="MainFrame_removeBendMenu_Text" xml:space="preserve">
-    <value>Ștergere C&amp;urbă</value>
+    <value>Ștergere C_urbă</value>
   </data>
   <data name="MainFrame_addGapMenu_Text" xml:space="preserve">
-    <value>Adăugare Spațiu &amp;Gol</value>
+    <value>Adăugare Spațiu _Gol</value>
   </data>
   <data name="MainFrame_changeTextMenu_Text" xml:space="preserve">
-    <value>Schimbare &amp;Text...</value>
+    <value>Schimbare _Text...</value>
   </data>
   <data name="MainFrame_rotateMenu_Text" xml:space="preserve">
-    <value>&amp;Rotire</value>
+    <value>_Rotire</value>
   </data>
   <data name="MainFrame_noFlaggingMenu_Text" xml:space="preserve">
     <value>Fără Semnalizare</value>
@@ -1360,13 +1360,13 @@
     <value>Semnalizare doar Sfârșit de Secțiune</value>
   </data>
   <data name="MainFrame_legFlaggingMenu_Text" xml:space="preserve">
-    <value>Semnalizare &amp;Secțiune</value>
+    <value>Semnalizare _Secțiune</value>
   </data>
   <data name="MainFrame_changeDisplayedCoursesMenu_Text" xml:space="preserve">
     <value>Schimbare Trasee Afișate...</value>
   </data>
   <data name="MainFrame_itemMenu_Text" xml:space="preserve">
-    <value>&amp;Element</value>
+    <value>_Element</value>
   </data>
   <data name="MainFrame_courseSummaryMenu_Text" xml:space="preserve">
     <value>Rezumat Traseu</value>
@@ -1375,7 +1375,7 @@
     <value>Verificare Eveniment</value>
   </data>
   <data name="MainFrame_legLengthsMenu_Text" xml:space="preserve">
-    <value>&amp;Lungimi Secțiuni</value>
+    <value>_Lungimi Secțiuni</value>
   </data>
   <data name="MainFrame_controlCrossrefMenu_Text" xml:space="preserve">
     <value>Referințe Încrucișate Posturi</value>
@@ -1384,10 +1384,10 @@
     <value>&amp;Încărcare Post de control si Secțiune</value>
   </data>
   <data name="MainFrame_reportMenu_Text" xml:space="preserve">
-    <value>&amp;Rapoarte</value>
+    <value>_Rapoarte</value>
   </data>
   <data name="MainFrame_helpContentsMenu_Text" xml:space="preserve">
-    <value>&amp;Asistență Purple Pen</value>
+    <value>_Asistență Purple Pen</value>
   </data>
   <data name="MainFrame_helpTranslatedMenu_Text" xml:space="preserve">
     <value>Asistență Purple Pen (Tradus)</value>
@@ -1396,10 +1396,10 @@
     <value>Site-ul web Purple Pen</value>
   </data>
   <data name="MainFrame_supportWebSiteMenu_Text" xml:space="preserve">
-    <value>Asistență/&amp;Raportare erori</value>
+    <value>Asistență/_Raportare erori</value>
   </data>
   <data name="MainFrame_aboutMenu_Text" xml:space="preserve">
-    <value>&amp;Despre Purple Pen</value>
+    <value>_Despre Purple Pen</value>
   </data>
   <data name="MainFrame_symbolBrowserMenu_Text" xml:space="preserve">
     <value>Fruzărire Simboluri</value>
@@ -1441,10 +1441,10 @@
     <value>Îmbină Symbol.xml...</value>
   </data>
   <data name="MainFrame_translateMenu_Text" xml:space="preserve">
-    <value>&amp;Traducere text descriere</value>
+    <value>_Traducere text descriere</value>
   </data>
   <data name="MainFrame_helpMenu_Text" xml:space="preserve">
-    <value>&amp;Asistență</value>
+    <value>_Asistență</value>
   </data>
   <data name="MainFrame_openToolStripButton_Text" xml:space="preserve">
     <value>Deschidere</value>
@@ -1679,10 +1679,10 @@ După ce apăsați OK, încercați să localizați o copie a fișierului hartă 
     <value>Toate posturile sunt folosite într-un traseu.</value>
   </data>
   <data name="MiscText_NextButtonText" xml:space="preserve">
-    <value>&amp;Următor &gt;</value>
+    <value>_Următor &gt;</value>
   </data>
   <data name="NewEventWizard_nextButton_Text" xml:space="preserve">
-    <value>&amp;Următor &gt;</value>
+    <value>_Următor &gt;</value>
   </data>
   <data name="MiscText_Control_Code" xml:space="preserve">
     <value>Postul {0}</value>
@@ -1836,7 +1836,7 @@ Scara hărții indică relația dintre harta tipărită pe hârtie si realitatea
 </value>
   </data>
   <data name="NewEventPrintScale_defaultPrintScaleLabel_Text" xml:space="preserve">
-    <value>Scara de &amp;tipărire Implicită:</value>
+    <value>Scara de _tipărire Implicită:</value>
   </data>
   <data name="NewEventPrintScale_changeLaterLabel_Text" xml:space="preserve">
     <value>(Puteți schimba scara de tipărire mai târziu pentru orice traseu accesând Traseu/Proprietăți.)</value>
