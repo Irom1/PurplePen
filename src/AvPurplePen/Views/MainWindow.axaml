@@ -74,7 +74,8 @@
                     <MenuItem x:Name="printAreaAllCoursesMenu" Header="{resx:Localize MainFrame_printAreaAllCoursesMenu_Text}"/>
                 </MenuItem>
                 <Separator/>
-                <MenuItem x:Name="programLanguageMenu" Header="{resx:Localize MainFrame_programLanguageMenu_Text}"/>
+                <MenuItem x:Name="programLanguageMenu" Header="{resx:Localize MainFrame_programLanguageMenu_Text}"
+                          Command="{Binding ShowSwitchLanguageDialogCommand}"/>
                 <Separator/>
                 <MenuItem x:Name="exitMenu" Header="{resx:Localize MainFrame_exitMenu_Text}"/>
             </MenuItem>

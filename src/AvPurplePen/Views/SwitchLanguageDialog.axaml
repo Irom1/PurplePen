@@ -17,7 +17,7 @@
         mc:Ignorable="d"
         d:DesignWidth="350" d:DesignHeight="450"
         x:Class="AvPurplePen.Views.SwitchLanguageDialog"
-        x:DataType="vm:SwitchLanguageViewModel"
+        x:DataType="vm:SwitchLanguageDialogViewModel"
         Title="{x:Static resx:UIText.SwitchLanguageDialog_Title}"
         Width="350" Height="450"
         CanResize="False"
@@ -27,7 +27,7 @@
 
     <!-- Design-time preview data -->
     <Design.DataContext>
-        <vm:SwitchLanguageViewModel/>
+        <vm:SwitchLanguageDialogViewModel/>
     </Design.DataContext>
 
     <!-- Main layout: list fills available space, buttons anchored at bottom -->

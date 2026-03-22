@@ -33,5 +33,20 @@ namespace PurplePen.ViewModels
             AboutDialogViewModel aboutViewModel = new AboutDialogViewModel();
             await Services.DialogService.ShowDialogAsync(aboutViewModel);
         }
+
+        /// <summary>
+        /// Shows the Switch Language dialog and applies the selected language.
+        /// </summary>
+        [RelayCommand]
+        private async Task ShowSwitchLanguageDialog()
+        {
+            string currentCode = Services.UILanguage.LanguageCode;
+            SwitchLanguageDialogViewModel vm = new SwitchLanguageDialogViewModel(currentCode, SwitchLanguageDialogViewModel.CreateDefaultLanguages());
+            bool result = await Services.DialogService.ShowDialogAsync(vm);
+
+            if (result && vm.SelectedLanguage != null) {
+                Services.UILanguage.LanguageCode = vm.SelectedLanguage.Code;
+            }
+        }
     }
 }

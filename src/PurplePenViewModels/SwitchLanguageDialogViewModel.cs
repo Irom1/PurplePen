@@ -5,7 +5,10 @@
 // Each language is represented by a LanguageItem with a code (e.g. "fr")
 // and a display name (e.g. "Français").
 
+using System;
 using System.Collections.ObjectModel;
+using System.Globalization;
+using System.IO;
 using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace PurplePen.ViewModels
@@ -46,7 +49,7 @@ namespace PurplePen.ViewModels
     /// ViewModel for the Switch Language dialog. Contains the list of
     /// available languages and tracks which one is currently selected.
     /// </summary>
-    public partial class SwitchLanguageViewModel : ViewModelBase
+    public partial class SwitchLanguageDialogViewModel : ViewModelBase
     {
         /// <summary>
         /// The list of languages available for selection.
@@ -65,8 +68,8 @@ namespace PurplePen.ViewModels
         /// Populates the ViewModel with sample data so the previewer
         /// can render the dialog with realistic content.
         /// </summary>
-        public SwitchLanguageViewModel()
-            : this("en", CreateSampleLanguages())
+        public SwitchLanguageDialogViewModel()
+            : this("en", CreateDefaultLanguages())
         {
         }
 
@@ -76,7 +79,7 @@ namespace PurplePen.ViewModels
         /// </summary>
         /// <param name="currentLanguageCode">The language code currently in use, e.g. "en".</param>
         /// <param name="availableLanguages">The list of languages to offer.</param>
-        public SwitchLanguageViewModel(string currentLanguageCode, ObservableCollection<LanguageItem> availableLanguages)
+        public SwitchLanguageDialogViewModel(string currentLanguageCode, ObservableCollection<LanguageItem> availableLanguages)
         {
             AvailableLanguages = availableLanguages;
 
@@ -90,38 +93,72 @@ namespace PurplePen.ViewModels
         }
 
         /// <summary>
-        /// Creates a sample list of languages for design-time and prototyping.
+        /// Discovers available languages by scanning subdirectories of the application
+        /// directory for satellite resource assemblies (directories named with valid culture codes).
+        /// Always includes English, which has no satellite directory.
         /// </summary>
-        /// <returns>A collection of sample LanguageItems.</returns>
-        private static ObservableCollection<LanguageItem> CreateSampleLanguages()
+        /// <returns>A collection of discovered LanguageItems, sorted by display name.</returns>
+        public static ObservableCollection<LanguageItem> CreateDefaultLanguages()
         {
-            return new ObservableCollection<LanguageItem> {
-                new LanguageItem("en", "English"),
-                new LanguageItem("fr", "Français"),
-                new LanguageItem("de", "Deutsch"),
-                new LanguageItem("es", "Español"),
-                new LanguageItem("it", "Italiano"),
-                new LanguageItem("ja", "日本語"),
-                new LanguageItem("pt", "Português"),
-                new LanguageItem("pt-BR", "Português (Brasil)"),
-                new LanguageItem("zh-CN", "中文 (简体)"),
-                new LanguageItem("zh-TW", "中文 (繁體)"),
-                new LanguageItem("ko", "한국어"),
-                new LanguageItem("ru", "Русский"),
-                new LanguageItem("sv", "Svenska"),
-                new LanguageItem("fi", "Suomi"),
-                new LanguageItem("nb", "Norsk (Bokmål)"),
-                new LanguageItem("da", "Dansk"),
-            };
+            ObservableCollection<LanguageItem> languages = new ObservableCollection<LanguageItem>();
+
+            try {
+                string baseDirectory = AppContext.BaseDirectory;
+
+                foreach (string subdir in Directory.GetDirectories(baseDirectory)) {
+                    string dirName = Path.GetFileName(subdir);
+
+                    if (IsValidCultureName(dirName)) {
+                        CultureInfo culture = CultureInfo.GetCultureInfo(dirName);
+                        string displayName = culture.TextInfo.ToTitleCase(culture.NativeName);
+                        languages.Add(new LanguageItem(dirName, displayName));
+                    }
+                }
+            }
+            catch (Exception) {
+                // If directory scanning fails (e.g. in designer), fall through to add English only.
+            }
+
+            // Always include English, which doesn't have a satellite resource directory.
+            languages.Add(new LanguageItem("en", "English"));
+
+            // Sort alphabetically by display name.
+            ObservableCollection<LanguageItem> sorted = new ObservableCollection<LanguageItem>();
+            foreach (LanguageItem item in languages) {
+                int insertIndex = 0;
+                while (insertIndex < sorted.Count &&
+                       string.Compare(sorted[insertIndex].DisplayName, item.DisplayName, StringComparison.CurrentCulture) < 0) {
+                    insertIndex++;
+                }
+                sorted.Insert(insertIndex, item);
+            }
+
+            return sorted;
+        }
+
+        /// <summary>
+        /// Checks whether the given string is a valid culture name.
+        /// </summary>
+        /// <param name="cultureName">The string to test.</param>
+        /// <returns>True if the string is a recognized culture name.</returns>
+        private static bool IsValidCultureName(string cultureName)
+        {
+            try {
+                CultureInfo.GetCultureInfo(cultureName);
+                return true;
+            }
+            catch (Exception) {
+                return false;
+            }
         }
 
         /// <summary>
         /// Creates test data for design-time and prototyping.
         /// </summary>
-        /// <returns>A SwitchLanguageViewModel populated with sample languages.</returns>
-        public static SwitchLanguageViewModel CreateTestData()
+        /// <returns>A SwitchLanguageDialogViewModel populated with discovered languages.</returns>
+        public static SwitchLanguageDialogViewModel CreateTestData()
         {
-            return new SwitchLanguageViewModel("en", CreateSampleLanguages());
+            return new SwitchLanguageDialogViewModel("en", CreateDefaultLanguages());
         }
     }
 }
