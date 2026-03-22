@@ -42,9 +42,13 @@
             <!-- === File Menu === -->
             <MenuItem x:Name="fileMenu" Header="{resx:Localize MainFrame_fileMenu_Text}">
                 <MenuItem x:Name="newEventMenu" Header="{resx:Localize MainFrame_newEventMenu_Text}"/>
-                <MenuItem x:Name="openMenu" Header="{resx:Localize MainFrame_openMenu_Text}" InputGesture="Ctrl+O"/>
+                <MenuItem x:Name="openMenu" Header="{resx:Localize MainFrame_openMenu_Text}" InputGesture="Ctrl+O">
+                    <MenuItem.Icon><Image Source="/Assets/Toolbar/open.png" Width="16" Height="16"/></MenuItem.Icon>
+                </MenuItem>
                 <Separator/>
-                <MenuItem x:Name="saveMenu" Header="{resx:Localize MainFrame_saveMenu_Text}" InputGesture="Ctrl+S"/>
+                <MenuItem x:Name="saveMenu" Header="{resx:Localize MainFrame_saveMenu_Text}" InputGesture="Ctrl+S">
+                    <MenuItem.Icon><Image Source="/Assets/Toolbar/save.png" Width="16" Height="16"/></MenuItem.Icon>
+                </MenuItem>
                 <MenuItem x:Name="saveAsMenu" Header="{resx:Localize MainFrame_saveAsMenu_Text}"/>
                 <Separator/>
                 <MenuItem x:Name="createOcadFilesMenu" Header="{resx:Localize MainFrame_createOcadFilesMenu_Text}"/>
@@ -79,10 +83,16 @@
             <MenuItem x:Name="editMenu" Header="{resx:Localize MainFrame_editMenu_Text}">
                 <MenuItem x:Name="cancelMenu" Header="{resx:Localize MainFrame_cancelMenu_Text}"/>
                 <Separator/>
-                <MenuItem x:Name="undoMenu" Header="{resx:Localize MainFrame_undoMenu_Text}" InputGesture="Ctrl+Z"/>
-                <MenuItem x:Name="redoMenu" Header="{resx:Localize MainFrame_redoMenu_Text}" InputGesture="Ctrl+Y"/>
+                <MenuItem x:Name="undoMenu" Header="{resx:Localize MainFrame_undoMenu_Text}" InputGesture="Ctrl+Z">
+                    <MenuItem.Icon><Image Source="/Assets/Toolbar/undo.png" Width="16" Height="16"/></MenuItem.Icon>
+                </MenuItem>
+                <MenuItem x:Name="redoMenu" Header="{resx:Localize MainFrame_redoMenu_Text}" InputGesture="Ctrl+Y">
+                    <MenuItem.Icon><Image Source="/Assets/Toolbar/redo.png" Width="16" Height="16"/></MenuItem.Icon>
+                </MenuItem>
                 <Separator/>
-                <MenuItem x:Name="deleteMenu" Header="{resx:Localize MainFrame_deleteMenu_Text}" InputGesture="Delete"/>
+                <MenuItem x:Name="deleteMenu" Header="{resx:Localize MainFrame_deleteMenu_Text}" InputGesture="Delete">
+                    <MenuItem.Icon><Image Source="/Assets/Toolbar/delete.png" Width="16" Height="16"/></MenuItem.Icon>
+                </MenuItem>
             </MenuItem>
 
             <!-- === View Menu === -->
@@ -120,36 +130,87 @@
 
             <!-- === Add Menu === -->
             <MenuItem x:Name="addMenu" Header="{resx:Localize MainFrame_addMenu_Text}">
-                <MenuItem x:Name="addStartMenu" Header="{resx:Localize MainFrame_addStartMenu_Text}"/>
-                <MenuItem x:Name="addControlMenu" Header="{resx:Localize MainFrame_addControlMenu_Text}" InputGesture="Ctrl+A"/>
-                <MenuItem x:Name="addFinishMenu" Header="{resx:Localize MainFrame_addFinishMenu_Text}"/>
-                <MenuItem x:Name="addDescriptionsMenu" Header="{resx:Localize MainFrame_addDescriptionsMenu_Text}"/>
-                <MenuItem x:Name="addMapExchangeMenu" Header="{resx:Localize MainFrame_addMapExchangeMenu_Text}">
-                    <MenuItem x:Name="addMapFlipMenuItem" Header="{resx:Localize MainFrame_addMapFlipMenuItem_Text}"/>
-                    <MenuItem x:Name="mapExchangeControlMenuItem" Header="{resx:Localize MainFrame_mapExchangeControlMenuItem_Text}"/>
-                    <MenuItem x:Name="mapExchangeSeparateMenuItem" Header="{resx:Localize MainFrame_mapExchangeSeparateMenuItem_Text}"/>
+                <MenuItem x:Name="addStartMenu" Header="{resx:Localize MainFrame_addStartMenu_Text}">
+                    <MenuItem.Icon><Image Source="/Assets/Toolbar/addStart.png" Width="16" Height="16"/></MenuItem.Icon>
                 </MenuItem>
-                <MenuItem x:Name="addVariationMenu" Header="{resx:Localize MainFrame_addVariationMenu_Text}"/>
+                <MenuItem x:Name="addControlMenu" Header="{resx:Localize MainFrame_addControlMenu_Text}" InputGesture="Ctrl+A">
+                    <MenuItem.Icon><Image Source="/Assets/Toolbar/addControl.png" Width="16" Height="16"/></MenuItem.Icon>
+                </MenuItem>
+                <MenuItem x:Name="addFinishMenu" Header="{resx:Localize MainFrame_addFinishMenu_Text}">
+                    <MenuItem.Icon><Image Source="/Assets/Toolbar/addFinish.png" Width="16" Height="16"/></MenuItem.Icon>
+                </MenuItem>
+                <MenuItem x:Name="addDescriptionsMenu" Header="{resx:Localize MainFrame_addDescriptionsMenu_Text}">
+                    <MenuItem.Icon><Image Source="/Assets/Toolbar/descriptionsItem.png" Width="16" Height="16"/></MenuItem.Icon>
+                </MenuItem>
+                <MenuItem x:Name="addMapExchangeMenu" Header="{resx:Localize MainFrame_addMapExchangeMenu_Text}">
+                    <MenuItem.Icon><Image Source="/Assets/Toolbar/mapExchange.png" Width="16" Height="16"/></MenuItem.Icon>
+                    <MenuItem x:Name="addMapFlipMenuItem" Header="{resx:Localize MainFrame_addMapFlipMenuItem_Text}">
+                        <MenuItem.Icon><Image Source="/Assets/Toolbar/mapFlipMenuItem.png" Width="16" Height="16"/></MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem x:Name="mapExchangeControlMenuItem" Header="{resx:Localize MainFrame_mapExchangeControlMenuItem_Text}">
+                        <MenuItem.Icon><Image Source="/Assets/Toolbar/mapExchangeControlItem.png" Width="16" Height="16"/></MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem x:Name="mapExchangeSeparateMenuItem" Header="{resx:Localize MainFrame_mapExchangeSeparateMenuItem_Text}">
+                        <MenuItem.Icon><Image Source="/Assets/Toolbar/mapExchangeSeparateItem.png" Width="16" Height="16"/></MenuItem.Icon>
+                    </MenuItem>
+                </MenuItem>
+                <MenuItem x:Name="addVariationMenu" Header="{resx:Localize MainFrame_addVariationMenu_Text}">
+                    <MenuItem.Icon><Image Source="/Assets/Toolbar/addVariation.png" Width="16" Height="16"/></MenuItem.Icon>
+                </MenuItem>
                 <MenuItem x:Name="addTextLineMenu" Header="{resx:Localize MainFrame_addTextLineMenu_Text}"/>
                 <Separator/>
-                <MenuItem x:Name="addMapIssueMenu" Header="{resx:Localize MainFrame_addMapIssueMenu_Text}"/>
-                <MenuItem x:Name="addMandatoryCrossingMenu" Header="{resx:Localize MainFrame_addMandatoryCrossingMenu_Text}"/>
-                <MenuItem x:Name="addOptCrossingMenu" Header="{resx:Localize MainFrame_addOptCrossingMenu_Text}"/>
-                <MenuItem x:Name="addOutOfBoundsMenu" Header="{resx:Localize MainFrame_addOutOfBoundsMenu_Text}"/>
-                <MenuItem x:Name="addDangerousMenu" Header="{resx:Localize MainFrame_addDangerousMenu_Text}"/>
-                <MenuItem x:Name="addConstructionMenu" Header="{resx:Localize MainFrame_addConstructionMenu_Text}"/>
-                <MenuItem x:Name="addWaterMenu" Header="{resx:Localize MainFrame_addWaterMenu_Text}"/>
-                <MenuItem x:Name="addFirstAidMenu" Header="{resx:Localize MainFrame_addFirstAidMenu_Text}"/>
-                <MenuItem x:Name="addForbiddenMenu" Header="{resx:Localize MainFrame_addForbiddenMenu_Text}"/>
-                <MenuItem x:Name="addBoundaryMenu" Header="{resx:Localize MainFrame_addBoundaryMenu_Text}"/>
-                <MenuItem x:Name="addRegMarkMenu" Header="{resx:Localize MainFrame_addRegMarkMenu_Text}"/>
+                <MenuItem x:Name="addMapIssueMenu" Header="{resx:Localize MainFrame_addMapIssueMenu_Text}">
+                    <MenuItem.Icon><Image Source="/Assets/Toolbar/mapIssuePointItem.png" Width="16" Height="16"/></MenuItem.Icon>
+                </MenuItem>
+                <MenuItem x:Name="addMandatoryCrossingMenu" Header="{resx:Localize MainFrame_addMandatoryCrossingMenu_Text}">
+                    <MenuItem.Icon><Image Source="/Assets/Toolbar/mandatoryCrossingPointItem.png" Width="16" Height="16"/></MenuItem.Icon>
+                </MenuItem>
+                <MenuItem x:Name="addOptCrossingMenu" Header="{resx:Localize MainFrame_addOptCrossingMenu_Text}">
+                    <MenuItem.Icon><Image Source="/Assets/Toolbar/optionalCrossingPointItem.png" Width="16" Height="16"/></MenuItem.Icon>
+                </MenuItem>
+                <MenuItem x:Name="addOutOfBoundsMenu" Header="{resx:Localize MainFrame_addOutOfBoundsMenu_Text}">
+                    <MenuItem.Icon><Image Source="/Assets/Toolbar/outOfBoundsItem.png" Width="16" Height="16"/></MenuItem.Icon>
+                </MenuItem>
+                <MenuItem x:Name="addDangerousMenu" Header="{resx:Localize MainFrame_addDangerousMenu_Text}">
+                    <MenuItem.Icon><Image Source="/Assets/Toolbar/dangerousItem.png" Width="16" Height="16"/></MenuItem.Icon>
+                </MenuItem>
+                <MenuItem x:Name="addConstructionMenu" Header="{resx:Localize MainFrame_addConstructionMenu_Text}">
+                    <MenuItem.Icon><Image Source="/Assets/Toolbar/constructionItem.png" Width="16" Height="16"/></MenuItem.Icon>
+                </MenuItem>
+                <MenuItem x:Name="addWaterMenu" Header="{resx:Localize MainFrame_addWaterMenu_Text}">
+                    <MenuItem.Icon><Image Source="/Assets/Toolbar/waterLocationItem.png" Width="16" Height="16"/></MenuItem.Icon>
+                </MenuItem>
+                <MenuItem x:Name="addFirstAidMenu" Header="{resx:Localize MainFrame_addFirstAidMenu_Text}">
+                    <MenuItem.Icon><Image Source="/Assets/Toolbar/firstAidLocationItem.png" Width="16" Height="16"/></MenuItem.Icon>
+                </MenuItem>
+                <MenuItem x:Name="addForbiddenMenu" Header="{resx:Localize MainFrame_addForbiddenMenu_Text}">
+                    <MenuItem.Icon><Image Source="/Assets/Toolbar/forbiddenRouteMarkingItem.png" Width="16" Height="16"/></MenuItem.Icon>
+                </MenuItem>
+                <MenuItem x:Name="addBoundaryMenu" Header="{resx:Localize MainFrame_addBoundaryMenu_Text}">
+                    <MenuItem.Icon><Image Source="/Assets/Toolbar/boundaryItem.png" Width="16" Height="16"/></MenuItem.Icon>
+                </MenuItem>
+                <MenuItem x:Name="addRegMarkMenu" Header="{resx:Localize MainFrame_addRegMarkMenu_Text}">
+                    <MenuItem.Icon><Image Source="/Assets/Toolbar/registrationMarkItem.png" Width="16" Height="16"/></MenuItem.Icon>
+                </MenuItem>
                 <Separator/>
-                <MenuItem x:Name="whiteOutMenu" Header="{resx:Localize MainFrame_whiteOutMenu_Text}"/>
-                <MenuItem x:Name="addTextMenu" Header="{resx:Localize MainFrame_addTextMenu_Text}"/>
-                <MenuItem x:Name="addImageMenu" Header="{resx:Localize MainFrame_addImageMenu_Text}"/>
-                <MenuItem x:Name="addLineMenu" Header="{resx:Localize MainFrame_addLineMenu_Text}"/>
-                <MenuItem x:Name="addRectangleMenu" Header="{resx:Localize MainFrame_addRectangleMenu_Text}"/>
-                <MenuItem x:Name="addEllipseMenu" Header="{resx:Localize MainFrame_addEllipseMenu_Text}"/>
+                <MenuItem x:Name="whiteOutMenu" Header="{resx:Localize MainFrame_whiteOutMenu_Text}">
+                    <MenuItem.Icon><Image Source="/Assets/Toolbar/whiteOutItem.png" Width="16" Height="16"/></MenuItem.Icon>
+                </MenuItem>
+                <MenuItem x:Name="addTextMenu" Header="{resx:Localize MainFrame_addTextMenu_Text}">
+                    <MenuItem.Icon><Image Source="/Assets/Toolbar/textItem.png" Width="16" Height="16"/></MenuItem.Icon>
+                </MenuItem>
+                <MenuItem x:Name="addImageMenu" Header="{resx:Localize MainFrame_addImageMenu_Text}">
+                    <MenuItem.Icon><Image Source="/Assets/Toolbar/imageItem.png" Width="16" Height="16"/></MenuItem.Icon>
+                </MenuItem>
+                <MenuItem x:Name="addLineMenu" Header="{resx:Localize MainFrame_addLineMenu_Text}">
+                    <MenuItem.Icon><Image Source="/Assets/Toolbar/lineItem.png" Width="16" Height="16"/></MenuItem.Icon>
+                </MenuItem>
+                <MenuItem x:Name="addRectangleMenu" Header="{resx:Localize MainFrame_addRectangleMenu_Text}">
+                    <MenuItem.Icon><Image Source="/Assets/Toolbar/rectangleItem.png" Width="16" Height="16"/></MenuItem.Icon>
+                </MenuItem>
+                <MenuItem x:Name="addEllipseMenu" Header="{resx:Localize MainFrame_addEllipseMenu_Text}">
+                    <MenuItem.Icon><Image Source="/Assets/Toolbar/ellipseItem.png" Width="16" Height="16"/></MenuItem.Icon>
+                </MenuItem>
             </MenuItem>
 
             <!-- === Event Menu === -->
@@ -190,12 +251,18 @@
 
             <!-- === Item Menu === -->
             <MenuItem x:Name="itemMenu" Header="{resx:Localize MainFrame_itemMenu_Text}">
-                <MenuItem x:Name="deleteItemMenu" Header="{resx:Localize MainFrame_deleteItemMenu_Text}" InputGesture="Delete"/>
+                <MenuItem x:Name="deleteItemMenu" Header="{resx:Localize MainFrame_deleteItemMenu_Text}" InputGesture="Delete">
+                    <MenuItem.Icon><Image Source="/Assets/Toolbar/delete.png" Width="16" Height="16"/></MenuItem.Icon>
+                </MenuItem>
                 <MenuItem x:Name="deleteForkMenu" Header="{resx:Localize MainFrame_deleteForkMenu_Text}"/>
                 <Separator/>
-                <MenuItem x:Name="addBendMenu" Header="{resx:Localize MainFrame_addBendMenu_Text}" InputGesture="Ctrl+B"/>
+                <MenuItem x:Name="addBendMenu" Header="{resx:Localize MainFrame_addBendMenu_Text}" InputGesture="Ctrl+B">
+                    <MenuItem.Icon><Image Source="/Assets/Toolbar/addBend.png" Width="16" Height="16"/></MenuItem.Icon>
+                </MenuItem>
                 <MenuItem x:Name="removeBendMenu" Header="{resx:Localize MainFrame_removeBendMenu_Text}" InputGesture="Ctrl+Shift+B"/>
-                <MenuItem x:Name="addGapMenu" Header="{resx:Localize MainFrame_addGapMenu_Text}" InputGesture="Ctrl+G"/>
+                <MenuItem x:Name="addGapMenu" Header="{resx:Localize MainFrame_addGapMenu_Text}" InputGesture="Ctrl+G">
+                    <MenuItem.Icon><Image Source="/Assets/Toolbar/addGap.png" Width="16" Height="16"/></MenuItem.Icon>
+                </MenuItem>
                 <MenuItem x:Name="removeGapMenu" Header="{resx:Localize MainFrame_removeGapMenu_Text}" InputGesture="Ctrl+Shift+G"/>
                 <Separator/>
                 <MenuItem x:Name="changeTextMenu" Header="{resx:Localize MainFrame_changeTextMenu_Text}"/>
@@ -518,8 +585,8 @@
                        VerticalAlignment="Center" Margin="4,0"/>
 
             <!-- Zoom slider (replaces WinForms ToolStripTrackBar) -->
-            <Slider x:Name="zoomTracker" Grid.Column="3"
-                    Width="94" VerticalAlignment="Center"
+            <Slider x:Name="zoomTracker" Grid.Column="3" Classes="statusBarSlider"
+                    Width="140" Height="20" VerticalAlignment="Center"
                     Minimum="0" Maximum="100"/>
 
             <!-- Coordinate display -->
@@ -582,7 +649,9 @@
 
                             <!-- Vertical scroll bar for topology view -->
                             <ScrollBar x:Name="topologyScrollBar" Grid.Column="1"
-                                       Orientation="Vertical"/>
+                                       Orientation="Vertical"
+                                       AllowAutoHide="False"
+                                       Minimum="0" Maximum="100" ViewportSize="20"/>
                         </Grid>
                     </Panel>
 
@@ -655,11 +724,15 @@
 
                 <!-- Vertical scroll bar for map viewer -->
                 <ScrollBar x:Name="vertScroll" Grid.Row="1" Grid.Column="1"
-                           Orientation="Vertical"/>
+                           Orientation="Vertical"
+                           AllowAutoHide="False"
+                           Minimum="0" Maximum="100" ViewportSize="20"/>
 
                 <!-- Horizontal scroll bar for map viewer -->
                 <ScrollBar x:Name="horizScroll" Grid.Row="2" Grid.Column="0"
-                           Orientation="Horizontal"/>
+                           Orientation="Horizontal"
+                           AllowAutoHide="False"
+                           Minimum="0" Maximum="100" ViewportSize="20"/>
             </Grid>
         </Grid>
     </DockPanel>
