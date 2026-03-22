@@ -15,14 +15,23 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using System.Threading.Tasks;
 
 namespace PurplePen.ViewModels
 {
     /// <summary>
-    /// ViewModel for the main window. Contains a counter value and
-    /// commands to increment and decrement it.
+    /// ViewModel for the main application window.
     /// </summary>
     public partial class MainWindowViewModel : ViewModelBase
     {
+        /// <summary>
+        /// Shows the About dialog.
+        /// </summary>
+        [RelayCommand]
+        private async Task ShowAboutDialog()
+        {
+            AboutDialogViewModel aboutViewModel = new AboutDialogViewModel();
+            await Services.DialogService.ShowDialogAsync(aboutViewModel);
+        }
     }
 }

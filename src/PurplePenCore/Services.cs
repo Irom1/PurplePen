@@ -28,6 +28,7 @@ namespace PurplePen
         public static IFileLoaderProvider FileLoaderProvider => serviceProvider.GetRequiredService<IFileLoaderProvider>();
         public static IPdfLoadingStatus PdfLoadingUI => serviceProvider.GetRequiredService<IPdfLoadingStatus>();
         public static IPdfWriter PdfWriter => serviceProvider.GetRequiredService<IPdfWriter>();
+        public static IDialogService DialogService => serviceProvider.GetRequiredService<IDialogService>();
     }
 
 }

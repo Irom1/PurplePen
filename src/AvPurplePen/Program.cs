@@ -46,6 +46,10 @@ namespace AvPurplePen
             services.AddSingleton<IPdfWriter, PdfWriter>();
             //services.AddSingleton<IPdfLoadingStatus, PdfLoadingUI>();
 
+            // IDialogService depends on the MainWindow, which is created later by App.
+            // The factory defers construction until first use, by which time App.MainWindow is set.
+            services.AddSingleton<IDialogService>(sp => new DialogService(App.MainWindow!));
+
             serviceProvider = services.BuildServiceProvider();
             Services.RegisterServiceProvider(serviceProvider);
         }

@@ -297,7 +297,8 @@
                 <MenuItem x:Name="supportWebSiteMenu" Header="{resx:Localize MainFrame_supportWebSiteMenu_Text}"/>
                 <MenuItem x:Name="donateWebSiteMenu" Header="{resx:Localize MainFrame_donateWebSiteMenu_Text}"/>
                 <Separator/>
-                <MenuItem x:Name="aboutMenu" Header="{resx:Localize MainFrame_aboutMenu_Text}"/>
+                <MenuItem x:Name="aboutMenu" Header="{resx:Localize MainFrame_aboutMenu_Text}"
+                          Command="{Binding ShowAboutDialogCommand}"/>
                 <!-- Debug submenu — only visible in debug builds -->
                 <MenuItem x:Name="debugMenu" Header="{resx:Localize MainFrame_debugMenu_Text}">
                     <MenuItem x:Name="symbolBrowserMenu" Header="{resx:Localize MainFrame_symbolBrowserMenu_Text}"/>
