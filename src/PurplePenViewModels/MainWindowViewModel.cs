@@ -25,6 +25,16 @@ namespace PurplePen.ViewModels
     public partial class MainWindowViewModel : ViewModelBase
     {
         /// <summary>
+        /// Shows the Open File dialog filtered to Purple Pen files (.ppen),
+        /// and opens the selected file.
+        /// </summary>
+        [RelayCommand]
+        private async Task FileOpenPurplePenFile()
+        {
+
+        }
+
+        /// <summary>
         /// Shows the About dialog.
         /// </summary>
         [RelayCommand]

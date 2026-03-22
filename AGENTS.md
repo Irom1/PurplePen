@@ -151,6 +151,7 @@ PurplePen is being ported from WinForms (PurplePen/) to Avalonia (AvPurplePen/) 
 - ViewModels do NOT contain localized strings or UI text — that belongs in the View layer (UIText.resx).
 - ViewModels must have a parameterless constructor (or a parameterless constructor in addition to others) so the Avalonia designer can instantiate them in `<Design.DataContext>`.
 - References PurplePenCore but NOT AvPurplePen (ViewModels must not depend on Views).
+- **Only allowed dependencies**: PurplePenCore (project) and CommunityToolkit.Mvvm (package). Do NOT add Avalonia or any other package/project references. Platform-specific types (e.g., Avalonia.Platform.Storage) must not be used in ViewModels.
 
 **PurplePenViewModels.Tests/** - NUnit tests for ViewModels
 - Uses NUnit framework (`[TestFixture]`, `[Test]`, `[SetUp]`)

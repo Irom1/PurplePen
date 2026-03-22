@@ -42,7 +42,7 @@
             <!-- === File Menu === -->
             <MenuItem x:Name="fileMenu" Header="{resx:Localize MainFrame_fileMenu_Text}">
                 <MenuItem x:Name="newEventMenu" Header="{resx:Localize MainFrame_newEventMenu_Text}"/>
-                <MenuItem x:Name="openMenu" Header="{resx:Localize MainFrame_openMenu_Text}" InputGesture="Ctrl+O">
+                <MenuItem x:Name="openMenu" Header="{resx:Localize MainFrame_openMenu_Text}" InputGesture="Ctrl+O" Command="{Binding FileOpenPurplePenFileCommand}">
                     <MenuItem.Icon><Image Source="/Assets/Toolbar/open.png" Width="16" Height="16"/></MenuItem.Icon>
                 </MenuItem>
                 <Separator/>
@@ -334,6 +334,7 @@
             <!-- Open (image only) -->
             <Button x:Name="openToolStripButton"
                     ToolTip.Tip="{resx:Localize MainFrame_openToolStripButton_ToolTipText}"
+                    Command="{Binding FileOpenPurplePenFileCommand}"
                     Padding="4,2">
                 <Image Source="/Assets/Toolbar/open.png" Width="16" Height="16"/>
             </Button>
