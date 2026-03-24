@@ -45,7 +45,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>UIText.resx</DependentUpon>
     </Compile>
-    <Compile Update="Views\SwitchLanguageDialog.axaml.cs">
+    <Compile Update="Views\Dialogs\SwitchLanguageDialog.axaml.cs">
       <DependentUpon>SwitchLanguageDialog.axaml</DependentUpon>
     </Compile>
     <Compile Update="UIText.*.Designer.cs">

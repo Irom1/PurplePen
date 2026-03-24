@@ -22,6 +22,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="using:PurplePen.ViewModels"
         xmlns:resx="using:AvPurplePen"
+        xmlns:views="using:AvPurplePen"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="958" d:DesignHeight="600"
@@ -339,14 +340,14 @@
             <Button x:Name="openToolStripButton"
                     ToolTip.Tip="{resx:Localize MainFrame_openToolStripButton_ToolTipText}"
                     Command="{Binding FileOpenPurplePenFileCommand}"
-                    Padding="4,2">
+                    Padding="2,2">
                 <Image Source="/Assets/Toolbar/open.png" Width="16" Height="16"/>
             </Button>
 
             <!-- Save (image only) -->
             <Button x:Name="saveToolStripButton"
                     ToolTip.Tip="{resx:Localize MainFrame_saveToolStripButton_ToolTipText}"
-                    Padding="4,2">
+                    Padding="2,2">
                 <Image Source="/Assets/Toolbar/save.png" Width="16" Height="16"/>
             </Button>
             <Separator Width="1" Margin="4,2"/>
@@ -354,14 +355,14 @@
             <!-- Undo (image only) -->
             <Button x:Name="undoToolStripButton"
                     ToolTip.Tip="{resx:Localize MainFrame_undoToolStripButton_ToolTipText}"
-                    Padding="4,2">
+                    Padding="2,2">
                 <Image Source="/Assets/Toolbar/undo.png" Width="16" Height="16"/>
             </Button>
 
             <!-- Redo (image only) -->
             <Button x:Name="redoToolStripButton"
                     ToolTip.Tip="{resx:Localize MainFrame_redoToolStripButton_ToolTipText}"
-                    Padding="4,2">
+                    Padding="2,2">
                 <Image Source="/Assets/Toolbar/redo.png" Width="16" Height="16"/>
             </Button>
             <Separator Width="1" Margin="4,2"/>
@@ -369,13 +370,13 @@
             <!-- Delete (image only) -->
             <Button x:Name="deleteToolStripButton"
                     ToolTip.Tip="{resx:Localize MainFrame_deleteToolStripButton_Text}"
-                    Padding="4,2">
+                    Padding="2,2">
                 <Image Source="/Assets/Toolbar/delete.png" Width="16" Height="16"/>
             </Button>
             <Separator Width="1" Margin="4,2"/>
 
             <!-- Add Start (image + text) -->
-            <Button x:Name="addStartToolStripButton" Padding="4,2">
+            <Button x:Name="addStartToolStripButton" Padding="2,2">
                 <StackPanel Orientation="Horizontal" Spacing="4">
                     <Image Source="/Assets/Toolbar/addStart.png" Width="16" Height="16"/>
                     <TextBlock Text="{resx:Localize MainFrame_addStartToolStripButton_Text}"
@@ -386,7 +387,7 @@
             <!-- Add Control (image + text) -->
             <Button x:Name="addControlToolStripButton"
                     ToolTip.Tip="{resx:Localize MainFrame_addControlToolStripButton_ToolTipText}"
-                    Padding="4,2">
+                    Padding="2,2">
                 <StackPanel Orientation="Horizontal" Spacing="4">
                     <Image Source="/Assets/Toolbar/addControl.png" Width="16" Height="16"/>
                     <TextBlock Text="{resx:Localize MainFrame_addControlToolStripButton_Text}"
@@ -395,7 +396,7 @@
             </Button>
 
             <!-- Add Finish (image + text) -->
-            <Button x:Name="addFinishToolStripButton" Padding="4,2">
+            <Button x:Name="addFinishToolStripButton" Padding="2,2">
                 <StackPanel Orientation="Horizontal" Spacing="4">
                     <Image Source="/Assets/Toolbar/addFinish.png" Width="16" Height="16"/>
                     <TextBlock Text="{resx:Localize MainFrame_addFinishToolStripButton_Text}"
@@ -405,7 +406,7 @@
             <Separator Width="1" Margin="4,2"/>
 
             <!-- Descriptions (image + text) -->
-            <Button x:Name="descriptionsToolStripMenuItem" Padding="4,2">
+            <Button x:Name="descriptionsToolStripMenuItem" Padding="2,2">
                 <StackPanel Orientation="Horizontal" Spacing="4">
                     <Image Source="/Assets/Toolbar/descriptionsItem.png" Width="16" Height="16"/>
                     <TextBlock Text="{resx:Localize MainFrame_descriptionsToolStripMenuItem_Text}"
@@ -414,7 +415,7 @@
             </Button>
 
             <!-- Map Exchange dropdown (image + text, click opens flyout menu) -->
-            <Button x:Name="mapExchangeToolStripMenu" Padding="3,2">
+            <Button x:Name="mapExchangeToolStripMenu" Padding="2,2">
                 <StackPanel Orientation="Horizontal" Spacing="4">
                     <Image Source="/Assets/Toolbar/mapExchange.png" Width="16" Height="16"/>
                     <TextBlock Text="{resx:Localize MainFrame_mapExchangeToolStripMenu_Text}"
@@ -443,7 +444,7 @@
             </Button>
 
             <!-- Add Variation (image + text) -->
-            <Button x:Name="addVariationToolStripButton" Padding="4,2">
+            <Button x:Name="addVariationToolStripButton" Padding="2,2">
                 <StackPanel Orientation="Horizontal" Spacing="4">
                     <Image Source="/Assets/Toolbar/addVariation.png" Width="16" Height="16"/>
                     <TextBlock Text="{resx:Localize MainFrame_addVariationToolStripButton_Text}"
@@ -452,7 +453,7 @@
             </Button>
 
             <!-- Special Items dropdown (image + text, click opens flyout menu) -->
-            <Button x:Name="specialItemToolStripMenu" Padding="3,2">
+            <Button x:Name="specialItemToolStripMenu" Padding="2,2">
                 <StackPanel Orientation="Horizontal" Spacing="4">
                     <Image Source="/Assets/Toolbar/specialItem.png" Width="16" Height="16"/>
                     <TextBlock Text="{resx:Localize MainFrame_specialItemToolStripMenu_Text}"
@@ -555,14 +556,14 @@
             <!-- Add Bend (image only) -->
             <Button x:Name="addBendToolStripButton"
                     ToolTip.Tip="{resx:Localize MainFrame_addBendToolStripButton_ToolTipText}"
-                    Padding="4,2">
+                    Padding="2,2">
                 <Image Source="/Assets/Toolbar/addBend.png" Width="16" Height="16"/>
             </Button>
 
             <!-- Add Gap (image only) -->
             <Button x:Name="addGapToolStripButton"
                     ToolTip.Tip="{resx:Localize MainFrame_addGapToolStripButton_ToolTipText}"
-                    Padding="4,2">
+                    Padding="2,2">
                 <Image Source="/Assets/Toolbar/addGap.png" Width="16" Height="16"/>
             </Button>
         </StackPanel>
@@ -724,9 +725,9 @@
                 <Border x:Name="mapViewer" Grid.Row="1" Grid.Column="0"
                         Background="White" BorderBrush="LightGray" BorderThickness="1"
                         ClipToBounds="True">
-                    <TextBlock Text="[mapViewer placeholder]"
-                               HorizontalAlignment="Center" VerticalAlignment="Center"
-                               Foreground="Gray" FontStyle="Italic"/>
+                    <resx:MapViewer
+						DataContext="{Binding MapViewerViewModel}">
+                    </resx:MapViewer>
                 </Border>
 
                 <!-- Vertical scroll bar for map viewer -->

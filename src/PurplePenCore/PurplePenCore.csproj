@@ -32,6 +32,13 @@
   </ItemGroup>
   
   <ItemGroup>
+    <Content Include="symbols.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  
+  <ItemGroup>
     <EmbeddedResource Include="..\PurplePen\Images\ConstructionBoundary_OcadToolbox.png" Link="Resources\OcadToolbox\ConstructionBoundary_OcadToolbox.png" />
     <EmbeddedResource Include="..\PurplePen\Images\Construction_OcadToolbox.png" Link="Resources\OcadToolbox\Construction_OcadToolbox.png" />
     <EmbeddedResource Include="..\PurplePen\Images\Control_OcadToolbox.png" Link="Resources\OcadToolbox\Control_OcadToolbox.png" />

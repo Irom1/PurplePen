@@ -6,6 +6,7 @@ using Avalonia.Data.Core.Plugins;
 using Avalonia.Markup.Xaml;
 using AvPurplePen.Views;
 using System.Linq;
+using PurplePen;
 using PurplePen.ViewModels;
 
 namespace AvPurplePen
@@ -30,8 +31,12 @@ namespace AvPurplePen
                 // More info: https://docs.avaloniaui.net/docs/guides/development-guides/data-validation#manage-validationplugins
                 DisableAvaloniaDataAnnotationValidation();
 
+
+                MainWindowViewModel mainWindowViewModel = new MainWindowViewModel();
+                Controller controller = new Controller(mainWindowViewModel);
+
                 MainWindow mainWindow = new MainWindow {
-                    DataContext = new MainWindowViewModel(),
+                    DataContext = mainWindowViewModel,
                 };
                 desktop.MainWindow = mainWindow;
                 App.MainWindow = mainWindow;

@@ -82,3 +82,10 @@ Pain points:
 	   - Check GIF quantization settings. Should maybe disable dithering?
 	   - Handling count in printing courses.
 	   - Crash reporter. Needs a full rewrite to be cross platform and use web requests instead of email.
+
+Possible fonts to use for UI:
+Inter Tight
+Didact Gothic
+Sofia Sans
+Fira Sans
+

@@ -15,6 +15,7 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using System.Drawing;
 using System.Threading.Tasks;
 
 namespace PurplePen.ViewModels
@@ -22,8 +23,102 @@ namespace PurplePen.ViewModels
     /// <summary>
     /// ViewModel for the main application window.
     /// </summary>
-    public partial class MainWindowViewModel : ViewModelBase
+    public partial class MainWindowViewModel : ViewModelBase, IUserInterface
     {
+        Controller controller = null!;
+        SymbolDB symbolDB = null!;
+
+        [ObservableProperty]
+        MapViewerViewModel mapViewerViewModel = new MapViewerViewModel();
+
+        public void Initialize(Controller controller, SymbolDB symbolDB)
+        {
+            this.controller = controller;
+            this.symbolDB = symbolDB;
+        }
+
+        public Size Size => throw new NotImplementedException();
+
+        public void EndProgressDialog()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ErrorMessage(string message)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool FindMissingMapFile(string missingMapFile)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool GetCurrentLocation(out PointF location, out float pixelSize)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string GetOpenFileName()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void InfoMessage(string message)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void InitiateMapDragging(PointF initialPos, PointerButton buttonEnd)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int LogicalToDeviceUnits(int value)
+        {
+            throw new NotImplementedException();
+        }
+
+        public YesNoCancel MovingSharedControl(string controlCode, string otherCourses)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool OKCancelMessage(string message, bool okDefault)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ShowProgressDialog(bool knownDuration, Action onCancelPressed)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool UpdateProgressDialog(string info, double fractionDone)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ShowTopologyView()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void WarningMessage(string message)
+        {
+            throw new NotImplementedException();
+        }
+
+        public YesNoCancel YesNoCancelQuestion(string message, bool yesDefault)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool YesNoQuestion(string message, bool yesDefault)
+        {
+            throw new NotImplementedException();
+        }
+
         /// <summary>
         /// Shows the Open File dialog filtered to Purple Pen files (.ppen),
         /// and opens the selected file.
@@ -31,6 +126,9 @@ namespace PurplePen.ViewModels
         [RelayCommand]
         private async Task FileOpenPurplePenFile()
         {
+#if PORTING
+            // Not all functionality ported from MainFrame.openMenu_Click.
+#endif
             FileOpenSingleViewModel fileOpenVM = new FileOpenSingleViewModel {
                 FileFilters = MiscText.OpenFileDialog_PurplePenFilter,
                 InitialFileFilterIndex = 1
@@ -39,7 +137,8 @@ namespace PurplePen.ViewModels
             bool result = await Services.DialogService.ShowDialogAsync(fileOpenVM);
 
             if (result && fileOpenVM.SelectedFile != null) {
-                // TODO: Open the selected file.
+                string newFilename = fileOpenVM.SelectedFile;
+                bool success = controller.LoadNewFile(newFilename);
             }
         }
 
