@@ -39,12 +39,38 @@ namespace PurplePen.ViewModels
 
         public Size Size => throw new NotImplementedException();
 
-        public void EndProgressDialog()
+
+        public void InfoMessage(string message)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void WarningMessage(string message)
         {
             throw new NotImplementedException();
         }
 
         public void ErrorMessage(string message)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool OKCancelMessage(string message, bool okDefault)
+        {
+            throw new NotImplementedException();
+        }
+
+        public YesNoCancel YesNoCancelQuestion(string message, bool yesDefault)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool YesNoQuestion(string message, bool yesDefault)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string GetOpenFileName()
         {
             throw new NotImplementedException();
         }
@@ -55,16 +81,6 @@ namespace PurplePen.ViewModels
         }
 
         public bool GetCurrentLocation(out PointF location, out float pixelSize)
-        {
-            throw new NotImplementedException();
-        }
-
-        public string GetOpenFileName()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void InfoMessage(string message)
         {
             throw new NotImplementedException();
         }
@@ -84,11 +100,6 @@ namespace PurplePen.ViewModels
             throw new NotImplementedException();
         }
 
-        public bool OKCancelMessage(string message, bool okDefault)
-        {
-            throw new NotImplementedException();
-        }
-
         public void ShowProgressDialog(bool knownDuration, Action onCancelPressed)
         {
             throw new NotImplementedException();
@@ -99,22 +110,12 @@ namespace PurplePen.ViewModels
             throw new NotImplementedException();
         }
 
+        public void EndProgressDialog()
+        {
+            throw new NotImplementedException();
+        }
+
         public void ShowTopologyView()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void WarningMessage(string message)
-        {
-            throw new NotImplementedException();
-        }
-
-        public YesNoCancel YesNoCancelQuestion(string message, bool yesDefault)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool YesNoQuestion(string message, bool yesDefault)
         {
             throw new NotImplementedException();
         }
