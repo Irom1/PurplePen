@@ -143,6 +143,20 @@ namespace PurplePen.ViewModels
         }
 
         /// <summary>
+        /// Shows the Add Course dialog.
+        /// </summary>
+        [RelayCommand]
+        private async Task ShowAddCourseDialog()
+        {
+#if PORTING
+            // TODO: Initialize ViewModel from current event data (map scale, etc.)
+            // and process the result to actually add the course.
+#endif
+            AddCourseDialogViewModel vm = new AddCourseDialogViewModel();
+            await Services.DialogService.ShowDialogAsync(vm);
+        }
+
+        /// <summary>
         /// Shows the About dialog.
         /// </summary>
         [RelayCommand]

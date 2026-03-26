@@ -244,7 +244,7 @@
 
             <!-- === Course Menu === -->
             <MenuItem x:Name="courseMenu" Header="{resx:Localize MainFrame_courseMenu_Text}">
-                <MenuItem x:Name="addCourseMenu" Header="{resx:Localize MainFrame_addCourseMenu_Text}"/>
+                <MenuItem x:Name="addCourseMenu" Header="{resx:Localize MainFrame_addCourseMenu_Text}" Command="{Binding ShowAddCourseDialogCommand}"/>
                 <MenuItem x:Name="deleteCourseMenu" Header="{resx:Localize MainFrame_deleteCourseMenu_Text}"/>
                 <MenuItem x:Name="duplicateCourseMenu" Header="{resx:Localize MainFrame_duplicateCourseMenu_Text}"/>
                 <MenuItem x:Name="propertiesMenu" Header="{resx:Localize MainFrame_propertiesMenu_Text}"/>
