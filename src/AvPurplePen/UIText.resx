@@ -132,6 +132,12 @@
   <data name="CancelButton" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="YesButton" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="NoButton" xml:space="preserve">
+    <value>No</value>
+  </data>
   <data name="SwitchLanguageButton" xml:space="preserve">
     <value>Switch Language...</value>
   </data>

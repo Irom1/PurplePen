@@ -1,0 +1,71 @@
+<!--
+    MessageBoxDialog.axaml
+    Standard message box dialog with configurable buttons (OK, OK/Cancel,
+    Yes/No, Yes/No/Cancel), icon, and default button.
+    Replaces the code-only MessageBoxes.ShowErrorAsync approach.
+-->
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:PurplePen.ViewModels"
+        xmlns:resx="using:AvPurplePen"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        d:DesignWidth="400" d:DesignHeight="180"
+        x:Class="AvPurplePen.Views.MessageBoxDialog"
+        x:DataType="vm:MessageBoxDialogViewModel"
+        Title="Purple Pen"
+        Icon="/Assets/transparent.ico"
+        Width="400"
+        SizeToContent="Height"
+        CanResize="False"
+        CanMinimize="False"
+        CanMaximize="False"
+        WindowStartupLocation="CenterOwner"
+        ShowInTaskbar="False">
+
+    <Design.DataContext>
+        <vm:MessageBoxDialogViewModel/>
+    </Design.DataContext>
+
+    <Grid Margin="20" ColumnDefinitions="Auto,*" RowDefinitions="*,Auto">
+
+        <!-- Icon (set in code-behind based on ViewModel.Icon) -->
+        <Viewbox x:Name="iconViewbox" Grid.Row="0" Grid.Column="0"
+                 Width="36" Height="36"
+                 Margin="0,0,16,0" VerticalAlignment="Top"
+                 IsVisible="False">
+            <Canvas Width="24" Height="24">
+                <Path x:Name="iconPath"/>
+            </Canvas>
+        </Viewbox>
+
+        <!-- Message text -->
+        <TextBlock Grid.Row="0" Grid.Column="1"
+                   Text="{Binding Message}"
+                   TextWrapping="Wrap"
+                   VerticalAlignment="Center"
+                   Margin="0,0,0,16"/>
+
+        <!-- Button row -->
+        <StackPanel x:Name="buttonPanel" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    Spacing="10">
+
+            <!-- Buttons are created in code-behind based on ViewModel.Buttons -->
+            <Button x:Name="okButton" Content="{resx:Localize OKButton}"
+                    Width="85" HorizontalContentAlignment="Center"
+                    Click="OkButton_Click" IsVisible="False"/>
+            <Button x:Name="yesButton" Content="{resx:Localize YesButton}"
+                    Width="85" HorizontalContentAlignment="Center"
+                    Click="YesButton_Click" IsVisible="False"/>
+            <Button x:Name="noButton" Content="{resx:Localize NoButton}"
+                    Width="85" HorizontalContentAlignment="Center"
+                    Click="NoButton_Click" IsVisible="False"/>
+            <Button x:Name="cancelButton" Content="{resx:Localize CancelButton}"
+                    Width="85" HorizontalContentAlignment="Center"
+                    Click="CancelButton_Click" IsVisible="False"/>
+        </StackPanel>
+    </Grid>
+</Window>

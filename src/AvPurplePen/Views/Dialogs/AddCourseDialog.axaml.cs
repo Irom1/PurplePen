@@ -41,7 +41,14 @@ namespace AvPurplePen.Views
 
             // Validate scale (editable ComboBox doesn't support inline validation).
             if (!float.TryParse(vm.PrintScaleText, out float enteredScale) || enteredScale < 100 || enteredScale > 100000) {
-                await MessageBoxes.ShowErrorAsync(this, MiscText.BadScale);
+                MessageBoxDialogViewModel errorVm = new MessageBoxDialogViewModel {
+                    Message = MiscText.BadScale,
+                    Icon = MessageBoxIcon.Error,
+                    Buttons = MessageBoxButtons.Ok,
+                    DefaultButton = MessageBoxButton.Ok
+                };
+                MessageBoxDialog errorDialog = new MessageBoxDialog { DataContext = errorVm };
+                await errorDialog.ShowDialog(this);
                 scaleCombo.Focus();
                 return;
             }

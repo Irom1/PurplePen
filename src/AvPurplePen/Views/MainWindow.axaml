@@ -318,6 +318,12 @@
                     <MenuItem x:Name="fontMetricsToolStripMenuItem" Header="{resx:Localize MainFrame_fontMetricsToolStripMenuItem_Text}"/>
                     <MenuItem x:Name="missingTranslationsMenuItem" Header="{resx:Localize MainFrame_missingTranslationsMenuItem_Text}"/>
                     <MenuItem x:Name="crashToolStripMenuItem" Header="{resx:Localize MainFrame_crashToolStripMenuItem_Text}"/>
+                    <MenuItem Header="MessageBox">
+                        <MenuItem Header="OK" Command="{Binding TestMessageBoxOkCommand}"/>
+                        <MenuItem Header="OK / Cancel" Command="{Binding TestMessageBoxOkCancelCommand}"/>
+                        <MenuItem Header="Yes / No" Command="{Binding TestMessageBoxYesNoCommand}"/>
+                        <MenuItem Header="Yes / No / Cancel" Command="{Binding TestMessageBoxYesNoCancelCommand}"/>
+                    </MenuItem>
                 </MenuItem>
                 <!-- Translate submenu -->
                 <MenuItem x:Name="translateMenu" Header="{resx:Localize MainFrame_translateMenu_Text}">
