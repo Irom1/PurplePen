@@ -5,13 +5,13 @@
 // This works for any enum whose values are sequential starting from 0.
 //
 // Usage in AXAML:
-//   <ComboBox SelectedIndex="{Binding MyEnumProp, Converter={x:Static resx:EnumToIndexConverter.Instance}}" />
+//   <ComboBox SelectedIndex="{Binding MyEnumProp, Converter={x:Static avutil:EnumToIndexConverter.Instance}}" />
 
 using System;
 using System.Globalization;
 using Avalonia.Data.Converters;
 
-namespace AvPurplePen
+namespace AvUtil
 {
     /// <summary>
     /// Converts between an enum value and its integer index (ordinal position).

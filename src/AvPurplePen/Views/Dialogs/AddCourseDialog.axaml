@@ -12,6 +12,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="using:PurplePen.ViewModels"
         xmlns:resx="using:AvPurplePen"
+        xmlns:avutil="using:AvUtil"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
@@ -84,7 +85,7 @@
                            Margin="0,0,8,6"/>
                 <ComboBox x:Name="courseKindCombo"
                           Grid.Row="1" Grid.Column="1"
-                          SelectedIndex="{Binding CourseKind, Converter={x:Static resx:EnumToIndexConverter.Instance}}"
+                          SelectedIndex="{Binding CourseKind, Converter={x:Static avutil:EnumToIndexConverter.Instance}}"
                           IsEnabled="{Binding CanChangeCourseKind}"
                           HorizontalAlignment="Stretch"
                           Margin="0,0,0,6">
@@ -188,7 +189,7 @@
                                Margin="0,0,8,6"/>
                     <ComboBox x:Name="descKindCombo"
                               Grid.Row="1" Grid.Column="1"
-                              SelectedIndex="{Binding DescKind, Converter={x:Static resx:EnumToIndexConverter.Instance}}"
+                              SelectedIndex="{Binding DescKind, Converter={x:Static avutil:EnumToIndexConverter.Instance}}"
                               HorizontalAlignment="Stretch"
                               Margin="0,0,0,6">
                         <ComboBoxItem Content="{resx:Localize AddCourse_descKindCombo_Items}"/>
@@ -203,7 +204,7 @@
                                Margin="0,0,8,6"/>
                     <ComboBox x:Name="labelKindCombo"
                               Grid.Row="2" Grid.Column="1"
-                              SelectedIndex="{Binding ControlLabelKind, Converter={x:Static resx:EnumToIndexConverter.Instance}}"
+                              SelectedIndex="{Binding ControlLabelKind, Converter={x:Static avutil:EnumToIndexConverter.Instance}}"
                               HorizontalAlignment="Stretch"
                               Margin="0,0,0,6">
                         <ComboBoxItem Content="{resx:Localize AddCourse_labelKindCombo_Items}"/>
