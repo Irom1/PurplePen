@@ -140,6 +140,13 @@ namespace PurplePen.ViewModels
             if (result && fileOpenVM.SelectedFile != null) {
                 string newFilename = fileOpenVM.SelectedFile;
                 bool success = controller.LoadNewFile(newFilename);
+
+#if PORTING
+                // Perhaps this should be done in the Idle handler instead, but for now just do it here.
+                this.MapViewerViewModel.MapDisplay = controller.MapDisplay;
+                controller.MapDisplay.MapIntensity = 0.7F;
+                controller.MapDisplay.AntiAlias = true;
+#endif
             }
         }
 

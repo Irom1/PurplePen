@@ -53,6 +53,7 @@ namespace PurplePen
     {
         RectangleF Bounds { get; }
         void Draw(IGraphicsBitmap bitmap, Matrix transform, RectangleF? clipRect);
+        void Draw(IGraphicsTarget grTarget, RectangleF visRect, float minResolution, Action throwOnCancel);
 
         event MapDisplayChanged Changed;
     }
@@ -606,10 +607,10 @@ namespace PurplePen
 
 
         // Draw the ocad map part.
-        void DrawOcadMap(IGraphicsTarget grTarget, RectangleF visRect, RenderOptions renderOptions)
+        void DrawOcadMap(IGraphicsTarget grTarget, RectangleF visRect, RenderOptions renderOptions, Action throwOnCancel)
         {
             using (map.Write()) {
-                map.Draw(grTarget, visRect, renderOptions, null);
+                map.Draw(grTarget, visRect, renderOptions, throwOnCancel);
             }
         }
 
@@ -674,12 +675,12 @@ namespace PurplePen
             }
         }
 
-        // Draw the map and course onto a graphics target. The color model is ignored. The intensity
-        // must be 1, and purple blending is never performed.
-        public void Draw(IGraphicsTarget grTarget, RectangleF visRect, float minResolution)
+        // Draw the map and course onto a graphics target. The color model is ignored, because the color model
+        // in the IGraphicsTarget is used. The graphics target should support blending to get the right purple
+        // blending to be performed.
+        public void Draw(IGraphicsTarget grTarget, RectangleF visRect, float minResolution, Action throwOnCancel)
         {
-            Debug.Assert(MapIntensity == 1.0F);
-            DrawHelper(grTarget, visRect, minResolution);
+            DrawHelper(grTarget, visRect, minResolution, throwOnCancel);
         }
 
 
@@ -711,7 +712,7 @@ namespace PurplePen
                 transformInverse.Invert();
                 RectangleF clipBounds = Geometry.TransformRectangle(transformInverse, new RectangleF(0, 0, bitmap.PixelWidth, bitmap.PixelHeight));
 
-                DrawHelper(grTarget, clipBounds, minResolution);
+                DrawHelper(grTarget, clipBounds, minResolution, null);
 
                 grTarget.FinishBitmap();
             }
@@ -719,8 +720,10 @@ namespace PurplePen
 
         // Draw the map and course onto a graphics. A helper for the other two draw methods.
 
-        private void DrawHelper(IGraphicsTarget grTarget, RectangleF visRect, float minResolution)
+        private void DrawHelper(IGraphicsTarget grTarget, RectangleF visRect, float minResolution, Action throwOnCancel)
         {
+            if (throwOnCancel != null) { throwOnCancel(); }
+
             RenderOptions renderOptions = new RenderOptions();
             renderOptions.minResolution = minResolution;
             short? colorIdBelowWhiteOut = null;
@@ -757,7 +760,7 @@ namespace PurplePen
                     renderOptions.colorEndDrawInclusive = LowerPurpleMapLayer;
                 }
 
-                DrawOcadMap(grTarget, visRect, renderOptions);
+                DrawOcadMap(grTarget, visRect, renderOptions, throwOnCancel);
                 grTarget.PopAntiAliasing();
                 grTarget.Intensity = saveIntensity;
                 break;
@@ -795,16 +798,18 @@ namespace PurplePen
                     renderOptions.colorEndDrawInclusive = null;
                 }
 
-                DrawOcadMap(grTarget, visRect, renderOptions);
+                DrawOcadMap(grTarget, visRect, renderOptions, throwOnCancel);
                 grTarget.PopAntiAliasing();
                 grTarget.Intensity = saveIntensity;
 
                 // Draw the rest of the course map on top.
+                if (throwOnCancel != null) { throwOnCancel(); }
                 renderOptions.colorBeginDrawExclusive = colorIdBelowWhiteOut;
                 renderOptions.colorEndDrawInclusive = null;
                 DrawCourseMap(grTarget, visRect, renderOptions);
             }
 
+            if (throwOnCancel != null) { throwOnCancel(); }
             DrawPrintAreaOutline(grTarget, visRect);
         }
 

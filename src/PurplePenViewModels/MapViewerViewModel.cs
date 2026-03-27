@@ -1,10 +1,14 @@
-﻿using System;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace PurplePen.ViewModels
 {
-    public class MapViewerViewModel: ViewModelBase
+    public partial class MapViewerViewModel: ViewModelBase
     {
+        [ObservableProperty]
+        private IMapDisplay? mapDisplay;
+
     }
 }

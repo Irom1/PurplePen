@@ -298,7 +298,7 @@ namespace PurplePen
             float minResolutionMap = Geometry.TransformDistance(minResolutionPage, inverseTransform);
 
             // And draw.
-            mapDisplay.Draw(graphicsTarget, page.mapRectangle, minResolutionMap);
+            mapDisplay.Draw(graphicsTarget, page.mapRectangle, minResolutionMap, null);
 
             graphicsTarget.PopTransform();
             graphicsTarget.PopClip();
