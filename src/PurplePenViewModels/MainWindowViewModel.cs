@@ -146,6 +146,8 @@ namespace PurplePen.ViewModels
                 this.MapViewerViewModel.MapDisplay = controller.MapDisplay;
                 controller.MapDisplay.MapIntensity = 0.7F;
                 controller.MapDisplay.AntiAlias = true;
+                controller.MapDisplay.SetCourse(controller.GetCourseLayout());
+
 #endif
             }
         }
