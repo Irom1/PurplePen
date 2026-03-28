@@ -43,6 +43,7 @@ Pain points:
    by launching a browser and printing from there. This should be doable. We can use PuppeteerSharp for printing
    or maybe Chrome (if installed) or AppleScript for Mac. cups can also print HTML but may not handle
    the pagination well. I think PuppeteerSharp is probably the best bet, and we can use it on Windows too. 
+   Here's a Gemini conversation that covers these options: https://gemini.google.com/share/8fdeb8d0cfa5
    
    Or maybe just do our own rendering implementation for reports. HTML does have some nice styling and word-wrapping features in 
    tables that would take some work, but it would be more self-contained and not require a browser. We could use SkiaSharp to do 
