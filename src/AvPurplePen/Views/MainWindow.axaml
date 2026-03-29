@@ -643,18 +643,16 @@
                          In WinForms, radio buttons toggle visibility between these two. -->
                     <Panel x:Name="panelDescriptionAndTopology" Grid.Row="0">
 
-                        <!-- PLACEHOLDER: descriptionControl
+                        <!-- 
                              WinForms type: PurplePen.DescriptionControl
                              Displays the IOF course description table (control descriptions).
                              This is a custom control that renders the description grid,
                              supports selection, and fires Change/SelectedIndexChange events.
-                             TODO: Implement as a custom Avalonia control. -->
-                        <Border x:Name="descriptionControl" Background="White"
-                                BorderBrush="LightGray" BorderThickness="1">
-                            <TextBlock Text="[descriptionControl placeholder]"
-                                       HorizontalAlignment="Center" VerticalAlignment="Center"
-                                       Foreground="Gray" FontStyle="Italic"/>
-                        </Border>
+                        -->
+                        <views:DescriptionViewer 
+                            x:Name="descriptionViewer"
+                            DataContext="{Binding DescriptionViewerViewModel}"
+                        />
 
                         <!-- Topology view panel (hidden by default, shown when radio button selected) -->
                         <Grid x:Name="panelTopology" IsVisible="False"

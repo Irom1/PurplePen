@@ -36,6 +36,9 @@ namespace PurplePen.ViewModels
         [ObservableProperty]
         private IMapDisplay? mapDisplay;
 
+        [ObservableProperty]
+        private DescriptionViewerViewModel descriptionViewerViewModel = new DescriptionViewerViewModel();
+
         /// <summary>
         /// The names of the course tabs displayed in the tab strip.
         /// </summary>
@@ -52,6 +55,8 @@ namespace PurplePen.ViewModels
         {
             this.controller = controller;
             this.symbolDB = symbolDB;
+
+            DescriptionViewerViewModel.SymbolDB = symbolDB;
         }
 
         public Size Size => throw new NotImplementedException();
@@ -152,11 +157,11 @@ namespace PurplePen.ViewModels
                 UpdateMapFile();
                 UpdateTabs();
                 UpdateCourse();
+                UpdateDescription();
 #if !PORTING
                 UpdateTopology();
                 UpdatePrintArea();
                 UpdatePartBanner();
-                UpdateDescription();
                 UpdateSelection();
                 UpdateHighlight();
                 UpdateTopologyHighlight();
@@ -272,6 +277,26 @@ namespace PurplePen.ViewModels
             controller.MapDisplay.SetCourse(controller.GetCourseLayout());
         }
 
+
+        // Update the description with data from the controller.
+        void UpdateDescription()
+        {
+            CourseView.CourseViewKind kind;
+            DescriptionLine[] description;
+            bool isCoursePart, hasCustomLength;
+
+            description = controller.GetDescription(out kind, out isCoursePart, out hasCustomLength);
+
+            DescriptionData descriptionData = new DescriptionData(
+                Description: description,
+                CourseKind: kind,
+                ScoreColumn: controller.GetScoreColumn(),
+                HasCustomLength: hasCustomLength,
+                LangId: controller.GetDescriptionLanguage()
+            );
+
+            DescriptionViewerViewModel.DescriptionData = descriptionData;
+        }
 
 
         /// <summary>

@@ -183,7 +183,6 @@ namespace AvUtil
 
                 SkiaWritableBitmap.DrawToBitmap(_writeableBitmap,
                     (SKCanvas canvas, CancellationToken cancelToken) => {
-                        using var restore = new SKAutoCanvasRestore(canvas, true);
                         canvas.SetMatrix(SKMatrix.CreateScaleTranslation(Convert.ToSingle(_scale), Convert.ToSingle(_scale), Convert.ToSingle(-_offset.X * _scale), Convert.ToSingle(-_offset.Y * _scale)));
                         this.OnPaint(new PaintEventArgs(canvas, new Rect(new Point(_offset.X, _offset.Y), Viewport), new SKSizeI(_pixelWidth, _pixelHeight), _scale, cancelToken));
                     });
