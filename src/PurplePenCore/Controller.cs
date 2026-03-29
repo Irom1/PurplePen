@@ -3957,9 +3957,9 @@ namespace PurplePen
 
 #if DEBUG
             eventDB.Validate();
+#endif
             return true;
 
-#endif
         }
 
 

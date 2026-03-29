@@ -14,7 +14,7 @@ namespace AvUtil
     // Pans and zooms a drawing. This displays an IAvaloniaDrawing that applies a pan and zoom transform to it.
     public class PanAndZoom : Control, ICustomHitTest
     {
-        IAvaloniaDrawing? cachedDrawing;
+        IAvaloniaDrawing? drawing;
 
         // Defines what part of the map we are viewing.
         private Point centerPoint = new Point(0, 0);			// center point in world coordinates.
@@ -41,16 +41,16 @@ namespace AvUtil
         }
 
         public IAvaloniaDrawing? Drawing {
-            get { return cachedDrawing; }
+            get { return drawing; }
             set {
-                if (cachedDrawing != value) {
-                    if (cachedDrawing != null)
-                        cachedDrawing.DrawingChanged -= CachedDrawing_NewDrawingAvailable;
+                if (drawing != value) {
+                    if (drawing != null)
+                        drawing.DrawingChanged -= Drawing_NewDrawingAvailable;
 
-                    cachedDrawing = value;
+                    drawing = value;
 
-                    if (cachedDrawing != null)
-                        cachedDrawing.DrawingChanged += CachedDrawing_NewDrawingAvailable;
+                    if (drawing != null)
+                        drawing.DrawingChanged += Drawing_NewDrawingAvailable;
 
                     ViewportChanged();
                 }
@@ -90,7 +90,7 @@ namespace AvUtil
         {
             Rect bounds = new Rect(Bounds.Size);  // Bounds in my coordinates, starting at 0,0
 
-            if (cachedDrawing != null) {
+            if (drawing != null) {
                 ++renderNumber;
                 //Debug.WriteLine($"Beginning Render {renderNumber}");
 
@@ -103,7 +103,7 @@ namespace AvUtil
                 PixelSize pixelSize = new PixelSize(pixelWidth, pixelHeight);
 
                 context.PushTransform(xformWorldToPixel);
-                cachedDrawing.Draw(context, viewport, pixelSize);
+                drawing.Draw(context, viewport, pixelSize);
 
                 watch.Stop();
 
@@ -111,11 +111,11 @@ namespace AvUtil
 
             }
             else {
-                context.FillRectangle(Brushes.Aqua, bounds);
+                context.FillRectangle(Brushes.White, bounds);
             }
         }
 
-        private void CachedDrawing_NewDrawingAvailable(object? sender, EventArgs e)
+        private void Drawing_NewDrawingAvailable(object? sender, EventArgs e)
         {
             //Debug.WriteLine("New Drawing Available");
             InvalidateVisual();
