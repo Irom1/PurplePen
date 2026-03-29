@@ -205,5 +205,4 @@ public partial class DescriptionViewer : UserControl
     }
 }
 
-public record class SelectedLines(int FirstLine, int LastLine);
 

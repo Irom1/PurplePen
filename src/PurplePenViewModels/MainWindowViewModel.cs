@@ -39,6 +39,10 @@ namespace PurplePen.ViewModels
         [ObservableProperty]
         private DescriptionViewerViewModel descriptionViewerViewModel = new DescriptionViewerViewModel();
 
+        // Which lines (if any) are selected in the description viewer. 
+        [ObservableProperty]
+        private SelectedLines? descriptionSelection = null;
+
         /// <summary>
         /// The names of the course tabs displayed in the tab strip.
         /// </summary>
@@ -269,6 +273,14 @@ namespace PurplePen.ViewModels
             }
         }
 
+
+        // The used has seleccted new line(s) in the description control.
+        partial void OnDescriptionSelectionChanged(SelectedLines? value)
+        {
+            if (controller != null) {
+                controller.SelectDescriptionLine((value == null) ? -1 : value.FirstLine);
+            }
+        }
 
 
         // Update the course in the map pane.

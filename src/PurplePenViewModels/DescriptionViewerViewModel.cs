@@ -36,4 +36,8 @@ namespace PurplePen.ViewModels
         int ScoreColumn,
         bool HasCustomLength,
         string LangId);
+
+    // Describes the selected lines in the description viewer. FirstLine and LastLine are inclusive, and are 0-based line numbers.
+    public record class SelectedLines(int FirstLine, int LastLine);
+
 }
