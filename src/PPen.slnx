@@ -25,6 +25,9 @@
     <Project Path="Experiments/AvMapViewer/AvMapViewer.csproj" Id="de407518-5e86-4883-a949-e8d7d2fc09e8">
       <BuildType Solution="StorePkg|*" Project="Release" />
     </Project>
+    <Project Path="Experiments/SkiaDrawingViewTester/SkiaDrawingViewTester.csproj" Id="93e331a2-90fe-4eb6-9a8e-b208d1a051f5">
+      <BuildType Solution="StorePkg|*" Project="Release" />
+    </Project>
     <Project Path="MapModel/HtmlGraphicsTarget/HtmlGraphicsTarget.csproj" />
     <Project Path="MapModel/WpfMap/WpfMap.csproj" Id="3d9ab499-d11f-4c43-b3f0-f598091985ea" />
   </Folder>
