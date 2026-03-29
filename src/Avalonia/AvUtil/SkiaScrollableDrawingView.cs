@@ -10,8 +10,6 @@ using Avalonia.Skia;
 using Avalonia.Threading;
 using SkiaSharp;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace AvUtil
 {
@@ -27,6 +25,24 @@ namespace AvUtil
     public class SkiaScrollableDrawingView: Control, ILogicalScrollable
     {
         /// <summary>
+        /// Defines the <see cref="LogicalExtent"/> property.
+        /// </summary>
+        public static readonly StyledProperty<Size> LogicalExtentProperty =
+            AvaloniaProperty.Register<SkiaScrollableDrawingView, Size>(
+                nameof(LogicalExtent),
+                defaultValue: default,
+                coerce: CoerceLogicalExtent);
+
+        /// <summary>
+        /// Defines the <see cref="ScrollChangeFraction"/> property.
+        /// </summary>
+        public static readonly StyledProperty<double> ScrollChangeFractionProperty =
+            AvaloniaProperty.Register<SkiaScrollableDrawingView, double>(
+                nameof(ScrollChangeFraction),
+                defaultValue: 0.05,
+                coerce: CoerceScrollChangeFraction);
+
+        /// <summary>
         /// Event that is fired when the view should be painted.
         /// </summary>
         public event EventHandler<PaintEventArgs>? Paint;
@@ -35,7 +51,6 @@ namespace AvUtil
         private int _pixelWidth;
         private int _pixelHeight;
         private Size _logicalSize;
-        private Size _logicalExtent;
         private Vector _offset;
         private bool _canHorizontallyScroll = true;
         private bool _canVerticallyScroll = true;
@@ -51,17 +66,30 @@ namespace AvUtil
         /// </summary>
         public Size CanvasSize => new Size(_pixelWidth, _pixelHeight);
 
+        /// <summary>
+        /// Gets or sets the logical extent (total scrollable content size) of the drawing surface.
+        /// </summary>
         public Size LogicalExtent {
-            get => _logicalExtent;
-            set {
-                var coercedExtent = new Size(Math.Max(0, value.Width), Math.Max(0, value.Height));
-                if (_logicalExtent != coercedExtent) {
-                    _logicalExtent = coercedExtent;
-                    Offset = CoerceOffset(_offset);
-                    RaiseScrollInvalidated(EventArgs.Empty);
-                    InvalidateSurface();
-                }
-            }
+            get => GetValue(LogicalExtentProperty);
+            set => SetValue(LogicalExtentProperty, value);
+        }
+
+        /// <summary>
+        /// Gets or sets the fraction of the viewport used for logical scroll changes.
+        /// </summary>
+        public double ScrollChangeFraction {
+            get => GetValue(ScrollChangeFractionProperty);
+            set => SetValue(ScrollChangeFractionProperty, value);
+        }
+
+        private static Size CoerceLogicalExtent(AvaloniaObject obj, Size value)
+        {
+            return new Size(Math.Max(0, value.Width), Math.Max(0, value.Height));
+        }
+
+        private static double CoerceScrollChangeFraction(AvaloniaObject obj, double value)
+        {
+            return Math.Max(0, value);
         }
 
         public bool CanHorizontallyScroll {
@@ -88,7 +116,9 @@ namespace AvUtil
 
         public bool IsLogicalScrollEnabled => true;
 
-        public Size ScrollSize => new Size(CanHorizontallyScroll ? 16 : 0, CanVerticallyScroll ? 16 : 0);
+        public Size ScrollSize => new Size(
+            CanHorizontallyScroll ? Viewport.Width * ScrollChangeFraction : 0,
+            CanVerticallyScroll ? Viewport.Height * ScrollChangeFraction : 0);
 
         public Size PageScrollSize => Viewport;
 
@@ -112,7 +142,7 @@ namespace AvUtil
 
         /// <summary>
         /// Invalidates the canvas causing the surface to be repainted.
-        /// This will fire the <see cref="PaintSurface"/> event.
+        /// This will fire the <see cref="Paint"/> event.
         /// </summary>
         public void InvalidateSurface()
         {
@@ -213,6 +243,13 @@ namespace AvUtil
             ScrollInvalidated?.Invoke(this, e);
         }
 
+        protected override void OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs e)
+        {
+            base.OnDetachedFromVisualTree(e);
+            _writeableBitmap?.Dispose();
+            _writeableBitmap = null;
+        }
+
         public sealed override void Render(DrawingContext context)
         {
             if (_writeableBitmap != null) {
@@ -220,7 +257,7 @@ namespace AvUtil
                 int currentPixelWidth = Convert.ToInt32(bounds.Width * _scale);
                 int currentPixelHeight = Convert.ToInt32(bounds.Height * _scale);
 
-                context.DrawImage(_writeableBitmap, new Rect(0, 0, currentPixelWidth, currentPixelHeight), Bounds);
+                context.DrawImage(_writeableBitmap, new Rect(0, 0, currentPixelWidth, currentPixelHeight), new Rect(Bounds.Size));
             }
         }
 
@@ -230,6 +267,14 @@ namespace AvUtil
 
             if (change.Property == IsVisibleProperty) {
                 this.InvalidateSurface();
+            }
+            if (change.Property == LogicalExtentProperty) {
+                Offset = CoerceOffset(_offset);
+                RaiseScrollInvalidated(EventArgs.Empty);
+                InvalidateSurface();
+            }
+            if (change.Property == ScrollChangeFractionProperty) {
+                RaiseScrollInvalidated(EventArgs.Empty);
             }
             if (change.Property == BoundsProperty) {
                 // Display scaling is important to consider here:

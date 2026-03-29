@@ -51,13 +51,11 @@ namespace AvUtil
                     colorType,
                     SKAlphaType.Premul);
 
-                var properties = new SKSurfaceProperties(SKPixelGeometry.Unknown);
+                using var properties = new SKSurfaceProperties(SKPixelGeometry.Unknown);
 
                 using (var surface = SKSurface.Create(info, framebuffer.Address, framebuffer.RowBytes, properties)) {
                     await draw(surface.Canvas, token);
                 }
-
-                properties.Dispose(); 
             }
 
             return bitmap;
@@ -73,7 +71,7 @@ namespace AvUtil
                     framebuffer.Format.ToSkColorType(),
                     SKAlphaType.Premul);
 
-                var properties = new SKSurfaceProperties(SKPixelGeometry.Unknown);
+                using var properties = new SKSurfaceProperties(SKPixelGeometry.Unknown);
 
                 // It is not too expensive to re-create the SKSurface on each re-paint.
                 // See: https://groups.google.com/g/skia-discuss/c/3c10MvyaSug/m/UOr238asCgAJ
@@ -84,8 +82,6 @@ namespace AvUtil
                 using (var surface = SKSurface.Create(info, framebuffer.Address, framebuffer.RowBytes, properties)) {
                     draw(surface.Canvas, token);
                 }
-
-                properties.Dispose();
             }
         }
     }

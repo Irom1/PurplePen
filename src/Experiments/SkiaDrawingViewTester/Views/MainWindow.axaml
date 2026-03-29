@@ -19,7 +19,7 @@
     <ScrollViewer HorizontalScrollBarVisibility="Auto"
                   VerticalScrollBarVisibility="Auto">
         <avutil:SkiaScrollableDrawingView x:Name="drawingView"
-                                          LogicalExtent="3000,3000" />
+                                          LogicalExtent="1000,1000" />
     </ScrollViewer>
 
 </Window>

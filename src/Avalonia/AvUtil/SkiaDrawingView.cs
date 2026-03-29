@@ -8,8 +8,6 @@ using Avalonia.Skia;
 using Avalonia.Threading;
 using SkiaSharp;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace AvUtil
 {
@@ -44,7 +42,7 @@ namespace AvUtil
 
         /// <summary>
         /// Invalidates the canvas causing the surface to be repainted.
-        /// This will fire the <see cref="PaintSurface"/> event.
+        /// This will fire the <see cref="Paint"/> event.
         /// </summary>
         public void InvalidateSurface()
         {
@@ -104,6 +102,13 @@ namespace AvUtil
             this.Paint?.Invoke(this, e);
         }
 
+        protected override void OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs e)
+        {
+            base.OnDetachedFromVisualTree(e);
+            _writeableBitmap?.Dispose();
+            _writeableBitmap = null;
+        }
+
         public sealed override void Render(DrawingContext context)
         {
             if (_writeableBitmap != null) {
@@ -111,7 +116,7 @@ namespace AvUtil
                 int currentPixelWidth = Convert.ToInt32(bounds.Width * _scale);
                 int currentPixelHeight = Convert.ToInt32(bounds.Height * _scale);
 
-                context.DrawImage(_writeableBitmap, new Rect(0, 0, currentPixelWidth, currentPixelHeight), Bounds);
+                context.DrawImage(_writeableBitmap, new Rect(0, 0, currentPixelWidth, currentPixelHeight), new Rect(Bounds.Size));
             }
         }
 
