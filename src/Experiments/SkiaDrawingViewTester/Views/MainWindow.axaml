@@ -16,6 +16,10 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
 
-    <avutil:SkiaScrollableDrawingView x:Name="drawingView" />
+    <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                  VerticalScrollBarVisibility="Auto">
+        <avutil:SkiaScrollableDrawingView x:Name="drawingView"
+                                          LogicalExtent="3000,3000" />
+    </ScrollViewer>
 
 </Window>

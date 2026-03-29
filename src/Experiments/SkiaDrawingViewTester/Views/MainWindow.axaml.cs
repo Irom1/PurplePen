@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using Avalonia.Controls;
 using AvUtil;
 using SkiaSharp;
@@ -7,7 +8,7 @@ namespace SkiaDrawingViewTester.Views
 {
     public partial class MainWindow : Window
     {
-        private const float STARSIZE = 800f;
+        private const float STARSIZE = 1500f;
         private const float InnerRadiusRatio = 0.38196602f;
 
         public MainWindow()
@@ -19,15 +20,25 @@ namespace SkiaDrawingViewTester.Views
 
         private void DrawingView_Paint(object? sender, SkiaScrollableDrawingView.PaintEventArgs e)
         {
+            Debug.WriteLine($"Paint event: LogicalViewPort={e.LogicalViewPort}, PixelSize={e.PixelSize}, Scale={e.Scale}");
+
             var canvas = e.Canvas;
             canvas.Clear(SKColors.White);
 
+            var drawingView = (SkiaScrollableDrawingView)sender!;
+            var logicalExtent = drawingView.LogicalExtent;
+
             var center = new SKPoint(
-                (float)e.LogicalSize.Width / 2f,
-                (float)e.LogicalSize.Height / 2f);
-            var largestStarSize = MathF.Min(STARSIZE, MathF.Min((float)e.LogicalSize.Width, (float)e.LogicalSize.Height) * 0.9f);
+                (float)logicalExtent.Width / 2f,
+                (float)logicalExtent.Height / 2f);
+            var largestStarSize = MathF.Min(STARSIZE, MathF.Min((float)logicalExtent.Width, (float)logicalExtent.Height) * 0.4f);
             var starSize = largestStarSize;
             var colors = new[] { SKColors.RoyalBlue, SKColors.Gold, SKColors.Crimson };
+
+            using (var extentPaint = new SKPaint { Color = SKColors.LightGray, Style = SKPaintStyle.Stroke, StrokeWidth = 4, IsAntialias = true })
+            {
+                canvas.DrawRect(SKRect.Create(0, 0, (float)logicalExtent.Width, (float)logicalExtent.Height), extentPaint);
+            }
 
             foreach (var color in colors)
             {

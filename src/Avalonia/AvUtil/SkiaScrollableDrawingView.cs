@@ -1,5 +1,7 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.Primitives;
+using Avalonia.Input;
 using Avalonia.Layout;
 using Avalonia.Media;
 using Avalonia.Media.Imaging;
@@ -22,7 +24,7 @@ namespace AvUtil
     //
     // Adapted from the Avalonia Labs SKCanvasView.
     // (https://github.com/AvaloniaUI/Avalonia.Labs/tree/main/src/Avalonia.Labs.Controls/SKCanvasView)
-    public class SkiaScrollableDrawingView: Control
+    public class SkiaScrollableDrawingView: Control, ILogicalScrollable
     {
         /// <summary>
         /// Event that is fired when the view should be painted.
@@ -33,6 +35,10 @@ namespace AvUtil
         private int _pixelWidth;
         private int _pixelHeight;
         private Size _logicalSize;
+        private Size _logicalExtent;
+        private Vector _offset;
+        private bool _canHorizontallyScroll = true;
+        private bool _canVerticallyScroll = true;
         private double _scale = 1;
 
         // This is set to write when posting a repaint event, and set back to false when
@@ -44,6 +50,65 @@ namespace AvUtil
         /// Any scaling factor is already applied.
         /// </summary>
         public Size CanvasSize => new Size(_pixelWidth, _pixelHeight);
+
+        public Size LogicalExtent {
+            get => _logicalExtent;
+            set {
+                var coercedExtent = new Size(Math.Max(0, value.Width), Math.Max(0, value.Height));
+                if (_logicalExtent != coercedExtent) {
+                    _logicalExtent = coercedExtent;
+                    Offset = CoerceOffset(_offset);
+                    RaiseScrollInvalidated(EventArgs.Empty);
+                    InvalidateSurface();
+                }
+            }
+        }
+
+        public bool CanHorizontallyScroll {
+            get => _canHorizontallyScroll;
+            set {
+                if (_canHorizontallyScroll != value) {
+                    _canHorizontallyScroll = value;
+                    Offset = CoerceOffset(_offset);
+                    RaiseScrollInvalidated(EventArgs.Empty);
+                }
+            }
+        }
+
+        public bool CanVerticallyScroll {
+            get => _canVerticallyScroll;
+            set {
+                if (_canVerticallyScroll != value) {
+                    _canVerticallyScroll = value;
+                    Offset = CoerceOffset(_offset);
+                    RaiseScrollInvalidated(EventArgs.Empty);
+                }
+            }
+        }
+
+        public bool IsLogicalScrollEnabled => true;
+
+        public Size ScrollSize => new Size(CanHorizontallyScroll ? 16 : 0, CanVerticallyScroll ? 16 : 0);
+
+        public Size PageScrollSize => Viewport;
+
+        public Size Extent => LogicalExtent;
+
+        public Vector Offset {
+            get => _offset;
+            set {
+                var coercedOffset = CoerceOffset(value);
+                if (_offset != coercedOffset) {
+                    _offset = coercedOffset;
+                    RaiseScrollInvalidated(EventArgs.Empty);
+                    InvalidateSurface();
+                }
+            }
+        }
+
+        public Size Viewport => _logicalSize;
+
+        public event EventHandler? ScrollInvalidated;
 
         /// <summary>
         /// Invalidates the canvas causing the surface to be repainted.
@@ -88,8 +153,9 @@ namespace AvUtil
 
                 SkiaWritableBitmap.DrawToBitmap(_writeableBitmap,
                     (SKCanvas canvas, CancellationToken cancelToken) => {
-                        canvas.Scale(Convert.ToSingle(_scale));
-                        this.OnPaint(new PaintEventArgs(canvas, _logicalSize, new SKSizeI(_pixelWidth, _pixelHeight), _scale, cancelToken));
+                        using var restore = new SKAutoCanvasRestore(canvas, true);
+                        canvas.SetMatrix(SKMatrix.CreateScaleTranslation(Convert.ToSingle(_scale), Convert.ToSingle(_scale), Convert.ToSingle(-_offset.X * _scale), Convert.ToSingle(-_offset.Y * _scale)));
+                        this.OnPaint(new PaintEventArgs(canvas, new Rect(new Point(_offset.X, _offset.Y), Viewport), new SKSizeI(_pixelWidth, _pixelHeight), _scale, cancelToken));
                     });
 
                 InvalidateVisual();
@@ -105,6 +171,46 @@ namespace AvUtil
         protected virtual void OnPaint(PaintEventArgs e)
         {
             this.Paint?.Invoke(this, e);
+        }
+
+        public bool BringIntoView(Control target, Rect targetRect)
+        {
+            if (target != this) {
+                return false;
+            }
+
+            var newOffset = _offset;
+
+            if (CanHorizontallyScroll) {
+                if (targetRect.Left < newOffset.X) {
+                    newOffset = new Vector(targetRect.Left, newOffset.Y);
+                }
+                else if (targetRect.Right > newOffset.X + Viewport.Width) {
+                    newOffset = new Vector(targetRect.Right - Viewport.Width, newOffset.Y);
+                }
+            }
+
+            if (CanVerticallyScroll) {
+                if (targetRect.Top < newOffset.Y) {
+                    newOffset = new Vector(newOffset.X, targetRect.Top);
+                }
+                else if (targetRect.Bottom > newOffset.Y + Viewport.Height) {
+                    newOffset = new Vector(newOffset.X, targetRect.Bottom - Viewport.Height);
+                }
+            }
+
+            Offset = newOffset;
+            return true;
+        }
+
+        public Control? GetControlInDirection(NavigationDirection direction, Control? from)
+        {
+            return null;
+        }
+
+        public void RaiseScrollInvalidated(EventArgs e)
+        {
+            ScrollInvalidated?.Invoke(this, e);
         }
 
         public sealed override void Render(DrawingContext context)
@@ -142,24 +248,36 @@ namespace AvUtil
                 _logicalSize = bounds.Size;
                 _pixelWidth = Convert.ToInt32(bounds.Width * _scale);
                 _pixelHeight = Convert.ToInt32(bounds.Height * _scale);
+                Offset = CoerceOffset(_offset);
+                RaiseScrollInvalidated(EventArgs.Empty);
                 this.InvalidateSurface();
             }
             return;
         }
 
+        private Vector CoerceOffset(Vector offset)
+        {
+            double maxX = CanHorizontallyScroll ? Math.Max(0, Extent.Width - Viewport.Width) : 0;
+            double maxY = CanVerticallyScroll ? Math.Max(0, Extent.Height - Viewport.Height) : 0;
+
+            return new Vector(
+                Math.Clamp(offset.X, 0, maxX),
+                Math.Clamp(offset.Y, 0, maxY));
+        }
+
         public sealed class PaintEventArgs : EventArgs
         {
-            public PaintEventArgs(SKCanvas canvas, Size logicalSize, SKSizeI pixelSize, double scale, CancellationToken cancelToken)
+            public PaintEventArgs(SKCanvas canvas, Rect logicalViewPort, SKSizeI pixelSize, double scale, CancellationToken cancelToken)
             {
                 Canvas = canvas;
-                LogicalSize = logicalSize;
+                LogicalViewPort = logicalViewPort;
                 PixelSize = pixelSize;
                 Scale = scale;
                 CancellationToken = cancelToken;
             }
 
             public SKCanvas Canvas { get; }
-            public Size LogicalSize { get; }
+            public Rect LogicalViewPort { get; }
 
             public SKSizeI PixelSize { get; }
 
