@@ -1,6 +1,7 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
+using Avalonia.Threading;
 using AvUtil;
 using PurplePen;
 
@@ -23,22 +24,28 @@ public partial class MapViewer : UserControl
         set => SetValue(MapDisplayProperty, value);
     }
 
+    private void MapDisplayChanged(IMapDisplay? newMapDisplay)
+    {
+        // The map to display has changed. Create a new CacheableMapDisplay
+        // for the new map and set it as the drawing for the pan and zoom control.
+
+        if (newMapDisplay != null) {
+            IAsyncSkiaDrawing skiaDrawing = new CacheableMapDisplay(newMapDisplay);
+            panAndZoom.Drawing = new CachedDrawing(skiaDrawing);
+        }
+        else {
+            panAndZoom.Drawing = null;
+        }
+    }
+
     protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
     {
         base.OnPropertyChanged(change);
 
         if (change.Property == MapDisplayProperty) {
-            // The map to display has changed. Create a new CacheableMapDisplay
-            // for the new map and set it as the drawing for the pan and zoom control.
-
-            IMapDisplay? mapDisplay = change.GetNewValue<IMapDisplay?>();
-            if (mapDisplay != null) {
-                IAsyncSkiaDrawing skiaDrawing = new CacheableMapDisplay(mapDisplay);
-                panAndZoom.Drawing = new CachedDrawing(skiaDrawing);
-            }
-            else {
-                panAndZoom.Drawing = null;
-            }
+            IMapDisplay? newMapDisplay = change.GetNewValue<IMapDisplay?>();
+            MapDisplayChanged(newMapDisplay);   
         }
+
     }
 }

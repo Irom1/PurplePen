@@ -15,6 +15,7 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using System.Data;
 using System.Drawing;
 using System.Threading.Tasks;
 
@@ -27,9 +28,11 @@ namespace PurplePen.ViewModels
     {
         Controller controller = null!;
         SymbolDB symbolDB = null!;
+        long changeNum = 0;         // When this changes, state information needs to be updated in the UI.
+
 
         [ObservableProperty]
-        MapViewerViewModel mapViewerViewModel = new MapViewerViewModel();
+        private IMapDisplay? mapDisplay;
 
         public void Initialize(Controller controller, SymbolDB symbolDB)
         {
@@ -120,6 +123,87 @@ namespace PurplePen.ViewModels
             throw new NotImplementedException();
         }
 
+
+        // This is called when the application becomes idle after processing input.
+        // We can use this to update the UI in response to changes that may have occurred.
+        public void UpdateStateOnIdle()
+        {
+#if !PORTING
+            UpdateMenusToolbarButtons();   // This needs updating even if other things haven't changed.
+            UpdateStatusText();
+#endif
+
+            if (controller.HasStateChanged(ref changeNum)) {
+                UpdateWindowTitle();
+                UpdateMapFile();
+#if !PORTING
+                UpdateTabs();
+                UpdateCourse();
+                UpdateTopology();
+                UpdatePrintArea();
+                UpdatePartBanner();
+                UpdateDescription();
+                UpdateSelection();
+                UpdateHighlight();
+                UpdateTopologyHighlight();
+                UpdateSelectionPanel();
+                UpdateCustomSymbolText();
+                CheckForMissingFonts();
+                CheckForNonRenderableObjects(true, false);
+#endif
+            }
+
+#if !PORTING
+            if (checkForUpdatedMapFile) {
+                checkForUpdatedMapFile = false;
+                controller.CheckForChangedMapFile();
+            }
+#endif
+        }
+
+        // Update the window title with the current file name.
+        private void UpdateWindowTitle()
+        {
+#if !PORTING
+#endif
+        }
+
+        // Update the map file on Display.
+        private void UpdateMapFile()
+        {
+            if (MapDisplay != controller.MapDisplay) {
+                // The mapDisplay object is new. This currently o`nly happens on startup.
+                MapDisplay = controller.MapDisplay;
+                controller.MapDisplay.MapIntensity = UserSettings.Current.MapIntensity;
+                controller.MapDisplay.AntiAlias = UserSettings.Current.MapHighQuality;
+                controller.ShowAllControls = UserSettings.Current.ViewAllControls;
+            }
+
+            if (controller.MapDisplay.MapType != controller.MapType || controller.MapDisplay.FileName != controller.MapFileName || (controller.MapType == MapType.Bitmap && controller.MapDisplay.Dpi != controller.MapDpi)) {
+                // A new map file has been loaded, or the DPI has changed.
+#if !PORTING
+                mapViewer.ZoomFactor = 1.0F;   // used if the map bounds are empty, then this zoom factor is preserved.
+                ShowRectangle(mapDisplay.MapBounds);
+
+                // Reset the OCAD file creating settings dialog to default settings.
+                ocadCreationSettingsPrevious = null;
+                bitmapCreationSettingsPrevious = null;
+#endif
+            }
+
+#if PORTING
+            // Why is this logic in MainFrame/MainWindow instead of in the Controller?
+            if (controller.MapDisplay.OcadOverprintEffect != controller.OcadOverprintEffect) {
+                controller.MapDisplay.OcadOverprintEffect = controller.OcadOverprintEffect;
+            }
+
+            if (controller.MapDisplay.LowerPurpleMapLayer != controller.LowerPurpleMapLayer) {
+                controller.MapDisplay.LowerPurpleMapLayer = controller.LowerPurpleMapLayer;
+            }
+#endif
+        }
+
+
         /// <summary>
         /// Shows the Open File dialog filtered to Purple Pen files (.ppen),
         /// and opens the selected file.
@@ -140,15 +224,6 @@ namespace PurplePen.ViewModels
             if (result && fileOpenVM.SelectedFile != null) {
                 string newFilename = fileOpenVM.SelectedFile;
                 bool success = controller.LoadNewFile(newFilename);
-
-#if PORTING
-                // Perhaps this should be done in the Idle handler instead, but for now just do it here.
-                this.MapViewerViewModel.MapDisplay = controller.MapDisplay;
-                controller.MapDisplay.MapIntensity = 0.7F;
-                controller.MapDisplay.AntiAlias = true;
-                controller.MapDisplay.SetCourse(controller.GetCourseLayout());
-
-#endif
             }
         }
 

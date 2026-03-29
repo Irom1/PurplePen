@@ -161,7 +161,9 @@ namespace AvUtil
             CancelInProgressRenders(currentRenders);
 
             // Start a new detailed render for the exactly bounds and resolution requested.
-            currentRenders.Add(new InProgressRender(underlyingDrawing, drawingVersion, renderVersion, rectToDraw, pixelSize, NotifyNewDrawingAvailable));
+            if (pixelSize.Width > 0 && pixelSize.Height > 0) {
+                currentRenders.Add(new InProgressRender(underlyingDrawing, drawingVersion, renderVersion, rectToDraw, pixelSize, NotifyNewDrawingAvailable));
+            }
             ++renderVersion;
         }
 

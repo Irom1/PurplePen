@@ -89,4 +89,6 @@ Inter Tight
 Didact Gothic
 Sofia Sans
 Fira Sans
+Source Sans 3
+Lato
 

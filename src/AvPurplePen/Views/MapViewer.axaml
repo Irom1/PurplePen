@@ -6,9 +6,6 @@
              xmlns:avutil="using:AvUtil"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="AvPurplePen.MapViewer"
-             x:DataType="vm:MapViewerViewModel"
-
-             MapDisplay="{Binding MapDisplay}"
 >
         <avutil:PanAndZoom  
             Name="panAndZoom"
