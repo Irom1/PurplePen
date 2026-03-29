@@ -152,6 +152,14 @@ namespace AvUtil
             }
         }
 
+        public PointerPoint GetPointerPoint(PointerEventArgs pointerEventArgs)
+        {
+            PointerPoint pointerPoint = pointerEventArgs.GetCurrentPoint(this);
+            Point position = pointerPoint.Position;
+            Point scrolledPosition = new Point(position.X + _offset.X, position.Y + _offset.Y);
+            return new PointerPoint(pointerPoint.Pointer, scrolledPosition, pointerPoint.Properties);
+        }
+
         /// <summary>
         /// Repaints the Skia surface and canvas.
         /// </summary>
