@@ -15,6 +15,7 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using System.Collections.ObjectModel;
 using System.Data;
 using System.Drawing;
 using System.Threading.Tasks;
@@ -29,10 +30,23 @@ namespace PurplePen.ViewModels
         Controller controller = null!;
         SymbolDB symbolDB = null!;
         long changeNum = 0;         // When this changes, state information needs to be updated in the UI.
+        bool updatingTabs = false;  // Guard to prevent re-entrant controller calls during UpdateTabs.
 
 
         [ObservableProperty]
         private IMapDisplay? mapDisplay;
+
+        /// <summary>
+        /// The names of the course tabs displayed in the tab strip.
+        /// </summary>
+        public ObservableCollection<string> TabNames { get; } = new();
+
+        /// <summary>
+        /// The index of the currently selected course tab.
+        /// Setting this notifies the controller of the tab change.
+        /// </summary>
+        [ObservableProperty]
+        private int selectedTabIndex;
 
         public void Initialize(Controller controller, SymbolDB symbolDB)
         {
@@ -136,9 +150,9 @@ namespace PurplePen.ViewModels
             if (controller.HasStateChanged(ref changeNum)) {
                 UpdateWindowTitle();
                 UpdateMapFile();
-#if !PORTING
                 UpdateTabs();
                 UpdateCourse();
+#if !PORTING
                 UpdateTopology();
                 UpdatePrintArea();
                 UpdatePartBanner();
@@ -202,6 +216,62 @@ namespace PurplePen.ViewModels
             }
 #endif
         }
+
+        // Update the tab strip to match the current set of courses.
+        // Avoids unnecessary collection changes when the tab names haven't changed.
+        private void UpdateTabs()
+        {
+            updatingTabs = true;
+            try {
+                UpdateTabsCore();
+            }
+            finally {
+                updatingTabs = false;
+            }
+        }
+
+        private void UpdateTabsCore()
+        {
+            string[] tabNames = controller.GetTabNames();
+
+            // Update or add tab names.
+            for (int i = 0; i < tabNames.Length; i++) {
+                if (i >= TabNames.Count) {
+                    TabNames.Add(tabNames[i]);
+                }
+                else if (TabNames[i] != tabNames[i]) {
+                    TabNames[i] = tabNames[i];
+                }
+            }
+
+            // Remove any extra tabs.
+            while (TabNames.Count > tabNames.Length) {
+                TabNames.RemoveAt(TabNames.Count - 1);
+            }
+
+            // Sync the selected tab from the controller.
+            SelectedTabIndex = controller.ActiveTab;
+        }
+
+        /// <summary>
+        /// Called when the selected tab index changes.
+        /// Notifies the controller so it can update the active course.
+        /// </summary>
+        partial void OnSelectedTabIndexChanged(int value)
+        {
+            if (!updatingTabs && controller != null && value >= 0 && value < TabNames.Count) {
+                controller.SelectTab(value);
+            }
+        }
+
+
+
+        // Update the course in the map pane.
+        void UpdateCourse()
+        {
+            controller.MapDisplay.SetCourse(controller.GetCourseLayout());
+        }
+
 
 
         /// <summary>
