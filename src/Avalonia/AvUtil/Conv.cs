@@ -112,6 +112,16 @@ namespace AvUtil
         }
 
         /// <summary>
+        /// Converts a System.Drawing.SizeF to an Avalonia.Size.
+        /// </summary>
+        /// <param name="size">The size to convert.</param>
+        /// <returns>An Avalonia.Size representation of the input size.</returns>
+        public static Avalonia.Size ToAvSize(SizeF size)
+        {
+            return new Avalonia.Size(size.Width, size.Height);
+        }
+
+        /// <summary>
         /// Converts a SkiaSharp.SKRect to an Avalonia.Rect.
         /// </summary>
         /// <param name="rect">The rectangle to convert.</param>

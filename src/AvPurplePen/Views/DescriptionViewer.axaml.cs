@@ -8,6 +8,7 @@ using PurplePen.MapModel;
 using PurplePen.ViewModels;
 using SkiaSharp;
 using System;
+using System.Drawing;
 
 namespace AvPurplePen;
 
@@ -19,6 +20,7 @@ public partial class DescriptionViewer : UserControl
     private DescriptionRenderer? renderer;
 
     private const int margin = 3;            // margin size in logical pixels
+    private const int minCellSize = 20;      // minimum cell size in logical pixels
 
 
     public DescriptionData? DescriptionData
@@ -31,15 +33,19 @@ public partial class DescriptionViewer : UserControl
     {
         InitializeComponent();
         drawingView.Paint += DrawingView_Paint;
-        drawingView.InvalidateSurface();
+        UpdateView();
     }
 
     protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
     {
         base.OnPropertyChanged(change);
 
-        if (change.Property == DescriptionDataProperty && drawingView is not null)
-            drawingView.InvalidateSurface();
+        if (change.Property == DescriptionDataProperty && drawingView is not null) {
+            UpdateView();
+        }
+        else if (change.Property == BoundsProperty && drawingView is not null) {
+            UpdateView();
+        }
     }
 
     protected override void OnDataContextChanged(EventArgs e)
@@ -51,16 +57,37 @@ public partial class DescriptionViewer : UserControl
                 renderer = new DescriptionRenderer(vm.SymbolDB);
                 renderer.Margin = margin;
                 renderer.DescriptionKind = DescriptionKind.Symbols;     // control always shows symbols.
-                renderer.CellSize = 40;     // cell size in logical pixels -- this will actually need to change.
             }
+        }
+    }
+
+    // Called when something requires the view to be redrawn.
+    private void UpdateView()
+    {
+        if (renderer != null && drawingView  != null && DescriptionData != null) { 
+            Avalonia.Size size = Bounds.Size;
+            float boxSize = Math.Max(minCellSize, (float) (size.Width - (margin * 2)) / 8F);
+
+            if (DescriptionData.Description != null) {
+                renderer.Description = DescriptionData.Description;
+            }
+            else {
+                renderer.Description = new DescriptionLine[0];
+            }
+
+            renderer.CellSize = boxSize;
+            SizeF descriptionSize = renderer.Measure();
+            drawingView.LogicalExtent = Conv.ToAvSize(descriptionSize);
+
+            drawingView.InvalidateSurface();
         }
     }
 
     private void DrawingView_Paint(object? sender, SkiaScrollableDrawingView.PaintEventArgs e)
     {
-        if (renderer != null && DescriptionData != null) {
-            e.Canvas.Clear(SKColors.White);
+        e.Canvas.Clear(SKColors.White);
 
+        if (renderer != null && DescriptionData != null) {
             using (Skia_GraphicsTarget grTarget = new Skia_GraphicsTarget(e.Canvas)) {
                 renderer.Description = DescriptionData.Description;
 

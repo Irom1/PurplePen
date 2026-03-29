@@ -122,7 +122,7 @@ namespace AvUtil
 
         public Size PageScrollSize => Viewport;
 
-        public Size Extent => LogicalExtent;
+        public Size     Extent => LogicalExtent;
 
         public Vector Offset {
             get => _offset;
