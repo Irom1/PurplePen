@@ -426,7 +426,8 @@
                     <Image Source="/Assets/Toolbar/mapExchange.png" Width="16" Height="16"/>
                     <TextBlock Text="{resx:Localize MainFrame_mapExchangeToolStripMenu_Text}"
                                VerticalAlignment="Center"/>
-                    <TextBlock Text="▾" VerticalAlignment="Center" FontSize="14"/>
+                    <PathIcon Data="M1939 486L2029 576L1024 1581L19 576L109 486L1024 1401L1939 486Z"
+                             Width="8" Height="8" VerticalAlignment="Center"/>
                 </StackPanel>
                 <Button.Flyout>
                     <MenuFlyout>
@@ -464,7 +465,8 @@
                     <Image Source="/Assets/Toolbar/specialItem.png" Width="16" Height="16"/>
                     <TextBlock Text="{resx:Localize MainFrame_specialItemToolStripMenu_Text}"
                                VerticalAlignment="Center"/>
-                    <TextBlock Text="▾" VerticalAlignment="Center" FontSize="14"/>
+                    <PathIcon Data="M1939 486L2029 576L1024 1581L19 576L109 486L1024 1401L1939 486Z"
+                             Width="8" Height="8" VerticalAlignment="Center"/>
                 </StackPanel>
                 <Button.Flyout>
                     <MenuFlyout>
