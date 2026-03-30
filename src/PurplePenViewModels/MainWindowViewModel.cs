@@ -55,6 +55,11 @@ namespace PurplePen.ViewModels
         [ObservableProperty]
         private int selectedTabIndex;
 
+        [ObservableProperty]
+        private TextPart[] selectedObjectDescription = new TextPart[0];
+
+#region IUserInterface implementation
+
         public void Initialize(Controller controller, SymbolDB symbolDB)
         {
             this.controller = controller;
@@ -146,6 +151,9 @@ namespace PurplePen.ViewModels
             throw new NotImplementedException();
         }
 
+        #endregion // IUserInterface implementation
+
+        #region State updating on idle
 
         // This is called when the application becomes idle after processing input.
         // We can use this to update the UI in response to changes that may have occurred.
@@ -162,14 +170,14 @@ namespace PurplePen.ViewModels
                 UpdateTabs();
                 UpdateCourse();
                 UpdateDescription();
+                UpdateSelection();
+                UpdateSelectionPanel();
 #if !PORTING
                 UpdateTopology();
                 UpdatePrintArea();
                 UpdatePartBanner();
-                UpdateSelection();
                 UpdateHighlight();
                 UpdateTopologyHighlight();
-                UpdateSelectionPanel();
                 UpdateCustomSymbolText();
                 CheckForMissingFonts();
                 CheckForNonRenderableObjects(true, false);
@@ -274,14 +282,6 @@ namespace PurplePen.ViewModels
         }
 
 
-        // The used has seleccted new line(s) in the description control.
-        partial void OnDescriptionSelectionChanged(SelectedLines? value)
-        {
-            if (controller != null) {
-                controller.SelectDescriptionLine((value == null) ? -1 : value.FirstLine);
-            }
-        }
-
 
         // Update the course in the map pane.
         void UpdateCourse()
@@ -310,6 +310,36 @@ namespace PurplePen.ViewModels
             DescriptionViewerViewModel.DescriptionData = descriptionData;
         }
 
+        // Update the selected line.
+        void UpdateSelection()
+        {
+            int firstLine, lastLine;
+            controller.GetHighlightedDescriptionLines(out firstLine, out lastLine);
+            this.DescriptionSelection = new SelectedLines(firstLine, lastLine);
+        }
+
+        // Update the selection panel with a description of the selection.
+        void UpdateSelectionPanel()
+        {
+            this.SelectedObjectDescription = controller.GetSelectionDescription();
+        }
+
+        #endregion // State updating on idle.
+
+        #region Description control handling
+
+        // The used has selected new line(s) in the description control.
+        partial void OnDescriptionSelectionChanged(SelectedLines? value)
+        {
+            if (controller != null) {
+                controller.SelectDescriptionLine((value == null) ? -1 : value.FirstLine);
+            }
+        }
+
+
+        #endregion
+
+        #region Commands for menu items and toolbar buttons.
 
         /// <summary>
         /// Shows the Open File dialog filtered to Purple Pen files (.ppen),
@@ -432,5 +462,7 @@ namespace PurplePen.ViewModels
                 Services.UILanguage.LanguageCode = vm.SelectedLanguage.Code;
             }
         }
+
+        #endregion //Commands
     }
 }

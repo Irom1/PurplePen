@@ -694,19 +694,14 @@
                 <GridSplitter Grid.Row="1" Height="4" ResizeDirection="Rows"
                               Background="{DynamicResource SystemControlBackgroundBaseMediumBrush}"/>
 
-                <!-- PLACEHOLDER: selectionPanel
-                     WinForms type: FlowLayoutPanel
+                <!-- SelectionPanel
                      Displays context-sensitive selection controls (properties panel).
                      Dynamically populated with controls based on the current selection
                      (control properties, leg properties, special object properties, etc.).
-                     Background is white. Controls flow vertically.
-                     TODO: Implement as a dynamic panel that hosts selection-specific views. -->
-                <Border x:Name="selectionPanel" Grid.Row="2" Background="White"
-                        BorderBrush="LightGray" BorderThickness="1">
-                    <TextBlock Text="[selectionPanel placeholder]"
-                               HorizontalAlignment="Center" VerticalAlignment="Center"
-                               Foreground="Gray" FontStyle="Italic"/>
-                </Border>
+                     Background is white. Controls flow vertically. -->
+
+                    <views:SelectionPanel Grid.Row="2"
+                                          SelectionDescription="{Binding SelectedObjectDescription}"/>
             </Grid>
 
             <!-- GridSplitter between left and right panels -->

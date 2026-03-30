@@ -40,11 +40,11 @@ namespace AvPurplePen
                 };
                 desktop.MainWindow = mainWindow;
                 App.MainWindow = mainWindow;
-
-                ApplicationIdleService.Initialize();
             }
 
             base.OnFrameworkInitializationCompleted();
+
+            ApplicationIdleService.Initialize();
         }
 
         private void DisableAvaloniaDataAnnotationValidation()
