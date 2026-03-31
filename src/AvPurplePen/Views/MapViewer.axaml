@@ -9,6 +9,7 @@
 >
         <avutil:PanAndZoom  
             Name="panAndZoom"
+            MouseActivity="panAndZoom_MouseActivity"
          />    
 
 </UserControl>

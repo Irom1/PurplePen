@@ -4509,6 +4509,25 @@ namespace PurplePen
 
     public enum PointerButton { Left, Right, Middle }
 
+    // Types of mouse actions.
+    public enum PointerAction
+    {
+        Down,	   // mouse button pressed down
+        Move,      // mouse was moved
+        Drag,      // mouse was dragged with a button down, occurs together with (and after) MouseMove if dragging enabled
+
+        // When mouse button is released, exactly one of the follow three occurs.
+        Up,        // mouse button released (dragging disabled) 
+        DragEnd,   // mouse button released (if dragging enabled)
+        Click,     // mouse button release after no/little movement 
+
+        // If a drag is started, but the mouse is taken away before finishing, a DragCancel event occurs
+        DragCancel,
+
+        // Mouse hovers a certain length of time without moving
+        Hover,
+    }
+
     public enum VariationExportFileType { Xml, Csv };
 
 

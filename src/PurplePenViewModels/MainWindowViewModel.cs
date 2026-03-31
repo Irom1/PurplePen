@@ -214,7 +214,7 @@ namespace PurplePen.ViewModels
                 // The mapDisplay object is new. This currently o`nly happens on startup.
                 MapDisplay = controller.MapDisplay;
                 controller.MapDisplay.MapIntensity = UserSettings.Current.MapIntensity;
-                controller.MapDisplay.AntiAlias = false; // UserSettings.Current.MapHighQuality;
+                controller.MapDisplay.AntiAlias = UserSettings.Current.MapHighQuality;
                 controller.ShowAllControls = UserSettings.Current.ViewAllControls;
             }
 

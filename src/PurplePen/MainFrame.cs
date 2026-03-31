@@ -181,7 +181,9 @@ namespace PurplePen
         {
             // Schedule a dummy method to run as soon as possible.
             // This forces the message loop to cycle and return to Idle state.
-            this.BeginInvoke(new Action(() => { }));
+            if (this.IsHandleCreated) {
+                this.BeginInvoke(new Action(() => { }));
+            }
         }
 
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]

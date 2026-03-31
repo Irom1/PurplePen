@@ -68,11 +68,22 @@ public partial class MapViewer : UserControl
 
         if (change.Property == MapDisplayProperty) {
             IMapDisplay? newMapDisplay = change.GetNewValue<IMapDisplay?>();
-            MapDisplayChanged(newMapDisplay);   
+            MapDisplayChanged(newMapDisplay);
         }
         else if (change.Property == MapHighlightsProperty) {
             IMapViewerHighlight[]? newMapHighlights = change.GetNewValue<IMapViewerHighlight[]?>();
             HighlightsChanged(newMapHighlights);
+        }
+    }
+
+    // A mouse event has occurred.
+    private void panAndZoom_MouseActivity(object? sender, PanAndZoom.MouseEventArgs e)
+    {
+        if (e.Action == PanAndZoom.MouseAction.Down && 
+            (e.Button == PanAndZoom.MouseButton.RightButton || e.Button == PanAndZoom.MouseButton.MiddleButton)) 
+        {
+            // Middle and right mouse buttons always pan the map.
+            e.MouseDownResult = PanAndZoom.MouseDownResult.BeginPanning;
         }
     }
 }
