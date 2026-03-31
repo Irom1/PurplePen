@@ -2,6 +2,7 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 using Avalonia.Threading;
+using AvPurplePen.Views;
 using AvUtil;
 using PurplePen;
 
@@ -14,6 +15,12 @@ public partial class MapViewer : UserControl
     public static readonly StyledProperty<IMapDisplay?> MapDisplayProperty =
             AvaloniaProperty.Register<MapViewer, IMapDisplay?>(nameof(MapDisplay));
 
+    // Has the map highlights that this map viewer should display.
+    public static readonly StyledProperty<IMapViewerHighlight[]?> MapHighlightsProperty =
+            AvaloniaProperty.Register<MainWindow, IMapViewerHighlight[]?>(nameof(MapHighlights));
+
+    private HighlightDrawing highlightDrawing = new HighlightDrawing();
+
     public MapViewer()
     {
         InitializeComponent();
@@ -24,18 +31,35 @@ public partial class MapViewer : UserControl
         set => SetValue(MapDisplayProperty, value);
     }
 
+    public IMapViewerHighlight[]? MapHighlights {
+        get => GetValue(MapHighlightsProperty);
+        set => SetValue(MapHighlightsProperty, value);
+    }
+
+
     private void MapDisplayChanged(IMapDisplay? newMapDisplay)
     {
         // The map to display has changed. Create a new CacheableMapDisplay
         // for the new map and set it as the drawing for the pan and zoom control.
 
         if (newMapDisplay != null) {
+            // The PanAndZoom control should display the merging of the map and the highlights.
             IAsyncSkiaDrawing skiaDrawing = new CacheableMapDisplay(newMapDisplay);
-            panAndZoom.Drawing = new CachedDrawing(skiaDrawing);
+            IAvaloniaDrawing mapDrawing = new CachedDrawing(skiaDrawing);
+            IAvaloniaDrawing mergedDrawing = new AvaloniaDrawingMerge(mapDrawing, highlightDrawing);
+
+            panAndZoom.Drawing = mergedDrawing;
         }
         else {
             panAndZoom.Drawing = null;
         }
+    }
+
+    private void HighlightsChanged(IMapViewerHighlight[]? newMapHighlights)
+    {
+        // The highlights to display have changed. Update the highlight drawing.
+        // This will automatically cause a redraw.
+        highlightDrawing.SetHighlights(newMapHighlights);
     }
 
     protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
@@ -46,6 +70,9 @@ public partial class MapViewer : UserControl
             IMapDisplay? newMapDisplay = change.GetNewValue<IMapDisplay?>();
             MapDisplayChanged(newMapDisplay);   
         }
-
+        else if (change.Property == MapHighlightsProperty) {
+            IMapViewerHighlight[]? newMapHighlights = change.GetNewValue<IMapViewerHighlight[]?>();
+            HighlightsChanged(newMapHighlights);
+        }
     }
 }

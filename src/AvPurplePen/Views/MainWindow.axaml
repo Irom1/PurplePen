@@ -727,22 +727,19 @@
                                Foreground="Gray" FontStyle="Italic" FontSize="11"/>
                 </Border>
 
-                <!-- PLACEHOLDER: mapViewer
+                <!-- MapViewer
                      WinForms type: PurplePen.MapView.MapViewer
                      The main map display control. This is the largest and most complex custom control.
                      Configured with: ConstrainedScrolling=KeepSome, MaxZoom=100,
                      MouseWheel=Zoom, MiddleButtonAutoDrag=true, HoverDelay=400ms.
                      Renders the orienteering map with course overlays using MapDisplay.
                      Handles mouse events for course editing (adding controls, moving items, etc.).
-                     Scroll bars are external (horizScroll, vertScroll below).
-                     TODO: Implement as a custom Avalonia control using Skia rendering backend. -->
-                <Border x:Name="mapViewer" Grid.Row="1" Grid.Column="0"
-                        Background="White" BorderBrush="LightGray" BorderThickness="1"
-                        ClipToBounds="True">
-                    <resx:MapViewer
-                        MapDisplay="{Binding MapDisplay}"
-                    />
-                </Border>
+                     Scroll bars are external (horizScroll, vertScroll below). -->
+                <resx:MapViewer
+                    Grid.Row="1" Grid.Column="0"
+                    MapDisplay="{Binding MapDisplay}"
+                    MapHighlights="{Binding MapHighlights}"
+                />
 
                 <!-- Vertical scroll bar for map viewer -->
                 <ScrollBar x:Name="vertScroll" Grid.Row="1" Grid.Column="1"

@@ -16,7 +16,7 @@ namespace AvUtil
 
         // Create a merged drawing from the given sub-drawings.
         // The drawings are drawn in order: index 0 is the bottom layer.
-        public AvaloniaDrawingMerge(IEnumerable<IAvaloniaDrawing> drawings)
+        public AvaloniaDrawingMerge(params IEnumerable<IAvaloniaDrawing> drawings)
         {
             this.drawings = drawings.ToArray();
 
@@ -39,10 +39,10 @@ namespace AvUtil
         }
 
         // Draw each sub-drawing in order.
-        public void Draw(DrawingContext drawingContext, Rect rectToDraw, PixelSize pixelSize)
+        public void Draw(DrawingContext drawingContext, Rect rectToDraw, PixelSize pixelSize, Matrix transformWorldToPixel)
         {
             foreach (IAvaloniaDrawing drawing in drawings) {
-                drawing.Draw(drawingContext, rectToDraw, pixelSize);
+                drawing.Draw(drawingContext, rectToDraw, pixelSize, transformWorldToPixel);
             }
         }
 

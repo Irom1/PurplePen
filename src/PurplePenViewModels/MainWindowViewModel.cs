@@ -37,6 +37,9 @@ namespace PurplePen.ViewModels
         private IMapDisplay? mapDisplay;
 
         [ObservableProperty]
+        private IMapViewerHighlight[]? mapHighlights;
+
+        [ObservableProperty]
         private DescriptionViewerViewModel descriptionViewerViewModel = new DescriptionViewerViewModel();
 
         // Which lines (if any) are selected in the description viewer. 
@@ -172,11 +175,11 @@ namespace PurplePen.ViewModels
                 UpdateDescription();
                 UpdateSelection();
                 UpdateSelectionPanel();
+                UpdateHighlight();
 #if !PORTING
                 UpdateTopology();
                 UpdatePrintArea();
                 UpdatePartBanner();
-                UpdateHighlight();
                 UpdateTopologyHighlight();
                 UpdateCustomSymbolText();
                 CheckForMissingFonts();
@@ -206,7 +209,7 @@ namespace PurplePen.ViewModels
                 // The mapDisplay object is new. This currently o`nly happens on startup.
                 MapDisplay = controller.MapDisplay;
                 controller.MapDisplay.MapIntensity = UserSettings.Current.MapIntensity;
-                controller.MapDisplay.AntiAlias = UserSettings.Current.MapHighQuality;
+                controller.MapDisplay.AntiAlias = false; // UserSettings.Current.MapHighQuality;
                 controller.ShowAllControls = UserSettings.Current.ViewAllControls;
             }
 
@@ -322,6 +325,12 @@ namespace PurplePen.ViewModels
         void UpdateSelectionPanel()
         {
             this.SelectedObjectDescription = controller.GetSelectionDescription();
+        }
+
+        // Update the highlights
+        void UpdateHighlight()
+        {
+            this.MapHighlights = controller.GetHighlights(Pane.Map);
         }
 
         #endregion // State updating on idle.

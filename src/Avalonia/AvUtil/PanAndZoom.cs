@@ -20,8 +20,10 @@ namespace AvUtil
         private Point centerPoint = new Point(0, 0);			// center point in world coordinates.
         private float zoom = 1.0F;							    // zoom, 1.0 == approx real world size.
         private readonly float pixelPerMm;						// number of pixel/mm on this display
-        private Matrix xformWorldToPixel;						// transformation world->pixel coord
-        private Matrix xformPixelToWorld;						// transformation pixel->world coord
+        private Matrix xformWorldToLogPixel;					// transformation world->logical pixel coord
+        private Matrix xformLogPixelToWorld;				    // transformation logical pixel->world coord
+        private Matrix xformWorldToPhysPixel;					// transformation world->physical pixel coord
+        private Matrix xformPhysPixelToWorld;				    // transformation physical pixel->world coord
         private Rect viewport;							        // visible area in world coordinates
 
         private float minZoom = 0.1F, maxZoom = 100F;           // limits of zoom.
@@ -33,8 +35,8 @@ namespace AvUtil
         public PanAndZoom()
         {
             pixelPerMm = 96 / 25.4F;  // 96 pixels is the standard DPI, which is what is used everywhere in Avalonia.
-            xformPixelToWorld = new Matrix();
-            xformWorldToPixel = new Matrix();
+            xformLogPixelToWorld = new Matrix();
+            xformWorldToLogPixel = new Matrix();
 
 
             this.IsHitTestVisible = true;
@@ -102,8 +104,8 @@ namespace AvUtil
                 int pixelHeight = (int)Math.Ceiling(bounds.Height * scale);
                 PixelSize pixelSize = new PixelSize(pixelWidth, pixelHeight);
 
-                context.PushTransform(xformWorldToPixel);
-                drawing.Draw(context, viewport, pixelSize);
+                context.PushTransform(xformWorldToLogPixel);
+                drawing.Draw(context, viewport, pixelSize, xformWorldToPhysPixel);
 
                 watch.Stop();
 
@@ -135,7 +137,10 @@ namespace AvUtil
             PointerPoint pointer = e.GetCurrentPoint(this);
             PointerPointProperties props = pointer.Properties;
 
-            Debug.WriteLine("Pointer Pressed " + props.PointerUpdateKind);
+            Point worldPos = PixelToWorld(pointer.Position);
+            Point physPos = xformWorldToPhysPixel.Transform(worldPos);
+
+            Debug.WriteLine("Pointer Pressed " + props.PointerUpdateKind + $" logpixel({pointer.Position.X},{pointer.Position.Y}) world({worldPos.X},{worldPos.Y}) physpixel({physPos.X},{physPos.Y})");
 
             if (props.PointerUpdateKind == PointerUpdateKind.RightButtonPressed) {
                 BeginMapDragging(pointer.Position, MouseButton.RightButton);
@@ -211,31 +216,41 @@ namespace AvUtil
 
         void CalculateWorldTransform()
         {
+            double layoutScale = LayoutHelper.GetLayoutScale(this);  // ratio between logical and physical pixels.
+
             // Get size, midpoint of the window .
             Size sizeInPixels = this.Bounds.Size;  
             Point midpoint = new Point(sizeInPixels.Width / 2.0F, sizeInPixels.Height / 2.0F);
 
             // Calculate the world->window transform.
             float scaleFactor = ScaleFactor;
-            xformWorldToPixel = Matrix.CreateTranslation(-centerPoint.X, -centerPoint.Y) * 
+            xformWorldToLogPixel = Matrix.CreateTranslation(-centerPoint.X, -centerPoint.Y) * 
                                 Matrix.CreateScale(scaleFactor, -scaleFactor) * 
                                 Matrix.CreateTranslation(midpoint.X, midpoint.Y);
 
             // Invert it to get the window->world transform.
-            xformPixelToWorld = xformWorldToPixel.Invert();
+            xformLogPixelToWorld = xformWorldToLogPixel.Invert();
+
+            // Calculate the world->physical pixels transform.
+            xformWorldToPhysPixel = Matrix.CreateTranslation(-centerPoint.X, -centerPoint.Y) *
+                                Matrix.CreateScale(scaleFactor * layoutScale, -scaleFactor * layoutScale) *
+                                Matrix.CreateTranslation(midpoint.X * layoutScale, midpoint.Y * layoutScale);
+
+            // Invert it to get the physical pixel->world transform.
+            xformPhysPixelToWorld = xformWorldToPhysPixel.Invert();
 
             // Calculate the viewport in world coordinates.
             Point[] pts = { new Point(0.0F, (float)sizeInPixels.Height), new Point((float)sizeInPixels.Width, 0.0F) };
-            Point pt0 = xformPixelToWorld.Transform(new Point(0.0, sizeInPixels.Height));
-            Point pt1 = xformPixelToWorld.Transform(new Point(sizeInPixels.Width, 0.0));
+            Point pt0 = xformLogPixelToWorld.Transform(new Point(0.0, sizeInPixels.Height));
+            Point pt1 = xformLogPixelToWorld.Transform(new Point(sizeInPixels.Width, 0.0));
             viewport = new Rect(pt0.X, pt0.Y, pt1.X - pt0.X, pt1.Y - pt0.Y);
         }
 
         // Transform rectangle from world to pixel coordinates. 
         public Rect WorldToPixel(Rect rectWorld)
         {
-            Point pt0 = xformWorldToPixel.Transform(new Point(rectWorld.Left, rectWorld.Top));
-            Point pt1 = xformWorldToPixel.Transform(new Point(rectWorld.Right, rectWorld.Bottom));
+            Point pt0 = xformWorldToLogPixel.Transform(new Point(rectWorld.Left, rectWorld.Top));
+            Point pt1 = xformWorldToLogPixel.Transform(new Point(rectWorld.Right, rectWorld.Bottom));
             
             // Note that Y's are reversed, so we reverse the rectangle to make the rect height always positive.
             return new Rect(new Point(pt0.X, pt1.Y), new Size(pt1.X - pt0.X, pt0.Y - pt1.Y));
@@ -244,8 +259,8 @@ namespace AvUtil
         // Transform rectangle from pixel to world coordinates. 
         public Rect PixelToWorld(Rect rectPixel)
         {
-            Point pt0 = xformPixelToWorld.Transform(new Point(rectPixel.Left, rectPixel.Top));
-            Point pt1 = xformPixelToWorld.Transform(new Point(rectPixel.Right, rectPixel.Bottom));
+            Point pt0 = xformLogPixelToWorld.Transform(new Point(rectPixel.Left, rectPixel.Top));
+            Point pt1 = xformLogPixelToWorld.Transform(new Point(rectPixel.Right, rectPixel.Bottom));
 
             // Note that Y's are reversed, so we reverse the rectangle to make the rect height always positive.
             return new Rect(new Point(pt0.X, pt1.Y), new Size(pt1.X - pt0.X, pt0.Y - pt1.Y));
@@ -254,27 +269,27 @@ namespace AvUtil
         // Transform one point from world to pixel coordinates. 
         public Point WorldToPixel(Point ptWorld)
         {
-            return xformWorldToPixel.Transform(ptWorld);
+            return xformWorldToLogPixel.Transform(ptWorld);
         }
 
         // Transform one point from pixel to world coordinates. 
         public Point PixelToWorld(Point ptPixel)
         {
-            return xformPixelToWorld.Transform(ptPixel);
+            return xformLogPixelToWorld.Transform(ptPixel);
         }
 
         // Transform distance from world to pixel coordinates. 
         public float WorldToPixelDistance(float distWorld)
         {
             // M11 is the X scale, which is the same as Y scale since we use uniform scaling.
-            return (float) (distWorld * xformWorldToPixel.M11);  
+            return (float) (distWorld * xformWorldToLogPixel.M11);  
         }
 
         // Transform distance from pixe to world coordinates. 
         public float PixelToWorldDistance(float distPixel)
         {
             // M11 is the X scale, which is the same as Y scale since we use uniform scaling.
-            return (float)(distPixel * xformPixelToWorld.M11);
+            return (float)(distPixel * xformLogPixelToWorld.M11);
         }
 
         // Zoom, keeping the given point at the same location in pixel coordinates.

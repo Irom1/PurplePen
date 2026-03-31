@@ -74,7 +74,7 @@ namespace AvUtil
         // full rectangle at the resolution requested, then a drawing of the full rectangle
         // is initiated on a background task, and the DrawingChanged event is raised
         // (on the UI thread) when the full drawing is available.
-        public void Draw(DrawingContext drawingContext, Rect rectToDraw, PixelSize pixelSize)
+        public void Draw(DrawingContext drawingContext, Rect rectToDraw, PixelSize pixelSize, Matrix transformWorldToPixel)
         {
             DebugPrint($"Draw: Rect:{rectToDraw} PixelSize:{pixelSize}");
 
