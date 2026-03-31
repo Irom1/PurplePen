@@ -92,6 +92,11 @@ namespace PurplePen.Tests
             this.symbolDB = symbolDB;
         }
 
+        public void QueueIdleEvent()
+        {
+            // nothing to do.
+        }
+
         public void MouseMoved(float x, float y, float pixelSize)
         {
             this.mouseLocation = new PointF(x, y);

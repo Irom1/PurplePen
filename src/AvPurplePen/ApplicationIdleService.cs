@@ -5,10 +5,13 @@
 // dispatches are coalesced into one idle event. Works across all top-level windows.
 
 using System;
+using System.Diagnostics;
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Threading;
+using PurplePen.ViewModels;
 
 namespace AvPurplePen
 {
@@ -23,6 +26,8 @@ namespace AvPurplePen
         /// Raised once when the application becomes idle after processing input.
         /// </summary>
         public static event EventHandler? ApplicationIdle;
+
+        private static bool initialized = false;
 
         // True when an idle callback has been posted but not yet executed.
         private static bool idleQueued = false;
@@ -44,10 +49,15 @@ namespace AvPurplePen
             InputElement.KeyUpEvent.AddClassHandler<TopLevel>(OnInput, handledEventsToo: true);
             InputElement.TextInputEvent.AddClassHandler<TopLevel>(OnInput, handledEventsToo: true);
 
+            // When any window regains activation (e.g., after a native OS dialog closes),
+            // queue an idle event. Native dialogs run their own message loop, so Avalonia
+            // never sees their input events — this catches the return from those dialogs.
+            WindowBase.IsActiveProperty.Changed.Subscribe(new IsActiveObserver());
+
             // Queue an initial idle event so subscribers get notified at startup,
             // matching WinForms Application.Idle behavior.
-            idleQueued = true;
-            Dispatcher.UIThread.Post(RaiseIdle, DispatcherPriority.ApplicationIdle);
+            QueueIdle();
+            initialized = true;
         }
 
         /// <summary>
@@ -56,7 +66,15 @@ namespace AvPurplePen
         /// </summary>
         private static void OnInput(object? sender, RoutedEventArgs e)
         {
-            if (!idleQueued) {
+            QueueIdle();
+        }
+
+        /// <summary>
+        /// Posts a single idle callback if one is not already pending.
+        /// </summary>
+        public static void QueueIdle()
+        {
+            if (initialized && !idleQueued) {
                 idleQueued = true;
                 Dispatcher.UIThread.Post(RaiseIdle, DispatcherPriority.ApplicationIdle);
             }
@@ -69,6 +87,30 @@ namespace AvPurplePen
         {
             idleQueued = false;
             ApplicationIdle?.Invoke(null, EventArgs.Empty);
+        }
+    }
+
+    /// <summary>
+    /// Observer for WindowBase.IsActive property changes. Queues an idle event
+    /// whenever any window becomes active.
+    /// </summary>
+    internal class IsActiveObserver : IObserver<AvaloniaPropertyChangedEventArgs<bool>>
+    {
+        public void OnNext(AvaloniaPropertyChangedEventArgs<bool> value)
+        {
+            if (value.NewValue.GetValueOrDefault())
+                ApplicationIdleService.QueueIdle();
+        }
+
+        public void OnError(Exception error) { }
+        public void OnCompleted() { }
+    }
+
+    public class ApplicationIdleServiceAdapter : IApplicationIdleService
+    {
+        public void QueueIdleEvent()
+        {
+            ApplicationIdleService.QueueIdle();
         }
     }
 }

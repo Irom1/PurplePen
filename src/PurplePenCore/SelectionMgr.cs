@@ -118,6 +118,7 @@ namespace PurplePen
         // Update changenum.
         public void ForceChangeUpdate()
         {
+            controller.QueueIdleEvent();
             ++selectionChangeNum;
         }
 

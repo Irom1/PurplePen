@@ -15,6 +15,7 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Microsoft.Extensions.DependencyInjection;
 using System.Collections.ObjectModel;
 using System.Data;
 using System.Drawing;
@@ -73,6 +74,10 @@ namespace PurplePen.ViewModels
 
         public Size Size => throw new NotImplementedException();
 
+        public void QueueIdleEvent()
+        {
+            Services.ServiceProvider.GetRequiredService<IApplicationIdleService>().QueueIdleEvent();
+        }
 
         public void InfoMessage(string message)
         {

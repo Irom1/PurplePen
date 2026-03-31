@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using PurplePen;
 using PurplePen.Graphics2D;
 using PurplePen.MapModel;
+using PurplePen.ViewModels;
 using System;
 using System.Globalization;
 using System.IO;
@@ -44,6 +45,7 @@ namespace AvPurplePen
             services.AddSingleton<ITextMetrics, Skia_TextMetrics>();
             services.AddSingleton<IFileLoaderProvider, SkiaFileLoaderProvider>();
             services.AddSingleton<IPdfWriter, PdfWriter>();
+            services.AddSingleton<IApplicationIdleService, ApplicationIdleServiceAdapter>();
             //services.AddSingleton<IPdfLoadingStatus, PdfLoadingUI>();
 
             // IDialogService depends on the MainWindow, which is created later by App.

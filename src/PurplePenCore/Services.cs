@@ -21,6 +21,7 @@ namespace PurplePen
             Services.serviceProvider = serviceProvider;
         }
 
+        public static IServiceProvider ServiceProvider => serviceProvider;
         public static IGraphicsBitmapLoader BitmapLoader => serviceProvider.GetRequiredService<IGraphicsBitmapLoader>();
         public static IBitmapGraphicsTargetProvider BitmapGraphicsTargetProvider => serviceProvider.GetRequiredService<IBitmapGraphicsTargetProvider>();
         public static IFontLoader FontLoader => serviceProvider.GetRequiredService<IFontLoader>();
