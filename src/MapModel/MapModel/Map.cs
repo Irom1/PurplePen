@@ -2303,7 +2303,7 @@ namespace PurplePen.MapModel
 
                                 //if (symbolsDrawn % 100 == 0)
                                 //    TraceLine("Drawn {0} symbols", symbolsDrawn);
-                                if (throwOnCancel != null && symbolsDrawn % 64 == 0)
+                                if (throwOnCancel != null && symbolsDrawn % 4 == 0)
                                     throwOnCancel();
                             }
                         }

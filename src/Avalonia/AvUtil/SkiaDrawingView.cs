@@ -24,7 +24,7 @@ namespace AvUtil
         /// </summary>
         public event EventHandler<PaintEventArgs>? Paint;
 
-        private WriteableBitmap? _writeableBitmap = null;
+        private WriteableBitmapTracker? _writeableBitmapTracker = null;
         private int _pixelWidth;
         private int _pixelHeight;
         private Size _logicalSize;
@@ -65,23 +65,23 @@ namespace AvUtil
                 // WriteableBitmap does not support zero-size dimensions
                 // Therefore, to avoid a crash, exit here if size is zero
                 if (!this.IsVisible || _pixelWidth == 0 || _pixelHeight == 0) {
-                    _writeableBitmap?.Dispose();
-                    _writeableBitmap = null;
+                    _writeableBitmapTracker?.Dispose();
+                    _writeableBitmapTracker = null;
                     return;
                 }
 
-                if (_writeableBitmap != null && (_writeableBitmap.PixelSize.Width != _pixelWidth || _writeableBitmap.PixelSize.Height != _pixelHeight)) {
-                    _writeableBitmap?.Dispose();
-                    _writeableBitmap = null;
+                if (_writeableBitmapTracker != null && (_writeableBitmapTracker.Bitmap.PixelSize.Width != _pixelWidth || _writeableBitmapTracker.Bitmap.PixelSize.Height != _pixelHeight)) {
+                    _writeableBitmapTracker?.Dispose();
+                    _writeableBitmapTracker = null;
                 }
 
-                _writeableBitmap ??= new WriteableBitmap(
+                _writeableBitmapTracker ??= new WriteableBitmapTracker(new WriteableBitmap(
                     new PixelSize(_pixelWidth, _pixelHeight),
                     new Vector(96, 96),
                     PixelFormat.Bgra8888,
-                    AlphaFormat.Premul);
+                    AlphaFormat.Premul));
 
-                SkiaWritableBitmap.DrawToBitmap(_writeableBitmap,
+                SkiaWritableBitmap.DrawToBitmap(_writeableBitmapTracker,
                     (SKCanvas canvas, CancellationToken cancelToken) => {
                         canvas.Scale(Convert.ToSingle(_scale));
                         this.OnPaint(new PaintEventArgs(canvas, _logicalSize, new SKSizeI(_pixelWidth, _pixelHeight), _scale, cancelToken));
@@ -105,18 +105,18 @@ namespace AvUtil
         protected override void OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs e)
         {
             base.OnDetachedFromVisualTree(e);
-            _writeableBitmap?.Dispose();
-            _writeableBitmap = null;
+            _writeableBitmapTracker?.Dispose();
+            _writeableBitmapTracker = null;
         }
 
         public sealed override void Render(DrawingContext context)
         {
-            if (_writeableBitmap != null) {
+            if (_writeableBitmapTracker != null) {
                 Rect bounds = Bounds;
                 int currentPixelWidth = Convert.ToInt32(bounds.Width * _scale);
                 int currentPixelHeight = Convert.ToInt32(bounds.Height * _scale);
 
-                context.DrawImage(_writeableBitmap, new Rect(0, 0, currentPixelWidth, currentPixelHeight), new Rect(Bounds.Size));
+                context.DrawImage(_writeableBitmapTracker.Bitmap, new Rect(0, 0, currentPixelWidth, currentPixelHeight), new Rect(Bounds.Size));
             }
         }
 

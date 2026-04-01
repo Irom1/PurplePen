@@ -46,7 +46,9 @@ namespace AvMapViewer
 
         public Task DrawAsync(SKCanvas canvas, SKRect rectToDraw, SKSizeI pixelSize, CancellationToken cancelToken)
         {
-            return Task.Run(() => Draw(canvas, rectToDraw, cancelToken), cancelToken);
+            return Task.Run(() => {
+                    Draw(canvas, rectToDraw, cancelToken);
+            }, cancelToken);
         }
 
 

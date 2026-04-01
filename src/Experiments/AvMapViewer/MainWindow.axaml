@@ -14,7 +14,10 @@
 
     <Panel Background="CadetBlue">
       <Panel Background="Red"  Margin="10,10,10,10">
-        <utils:PanAndZoom Margin="20,20,20,20" Name="panAndZoom"/>    
+        <utils:PanAndZoom 
+            Margin="20,20,20,20" 
+            Name="panAndZoom"
+            MouseActivity="panAndZoom_MouseActivity"/>    
       </Panel>
     </Panel>
   </DockPanel>

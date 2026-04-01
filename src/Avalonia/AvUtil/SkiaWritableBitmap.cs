@@ -15,56 +15,63 @@ namespace AvUtil
     public static class SkiaWritableBitmap
     {
         // Create a new bitmap of the given size, and draw to it using the given drawing function.
-        public static WriteableBitmap DrawToBitmap(PixelSize pixelSize, Action<SKCanvas> draw)
+        public static WriteableBitmapTracker DrawToBitmap(PixelSize pixelSize, Action<SKCanvas> draw)
         {
             return DrawToBitmap(pixelSize, (canvas, _) => draw(canvas));
         }
 
         // Create a new bitmap of the given size, and draw to it using the given drawing function.
-        public static WriteableBitmap DrawToBitmap(PixelSize pixelSize, Action<SKCanvas, CancellationToken> draw, CancellationToken token = default)
+        public static WriteableBitmapTracker DrawToBitmap(PixelSize pixelSize, Action<SKCanvas, CancellationToken> draw, CancellationToken token = default)
         {
-            WriteableBitmap bitmap = new WriteableBitmap(
+            WriteableBitmapTracker bitmapTracker = new WriteableBitmapTracker(new WriteableBitmap(
                 pixelSize,
                 new Vector(96, 96),
                 SKImageInfo.PlatformColorType.ToPixelFormat(),
-                AlphaFormat.Premul);
+                AlphaFormat.Premul));
 
-            DrawToBitmap(bitmap, draw, token);
-            return bitmap;
+            DrawToBitmap(bitmapTracker, draw, token);
+
+            return bitmapTracker;
         }
 
         // Create a new bitmap of the given size, and draw to it using the given drawing function.
-        public static async Task<WriteableBitmap> DrawToBitmapAsync(PixelSize pixelSize, Func<SKCanvas, CancellationToken, Task> draw, CancellationToken token = default)
+        public static async Task<WriteableBitmapTracker> DrawToBitmapAsync(PixelSize pixelSize, Func<SKCanvas, CancellationToken, Task> draw, CancellationToken token = default)
         {
             SKColorType colorType = SKImageInfo.PlatformColorType;
 
-            WriteableBitmap bitmap = new WriteableBitmap(
+            WriteableBitmapTracker bitmapTracker = new WriteableBitmapTracker(new WriteableBitmap(
                 pixelSize,
                 new Vector(96, 96),
                 colorType.ToPixelFormat(),
-                AlphaFormat.Premul);
+                AlphaFormat.Premul));
 
-            using (var framebuffer = bitmap.Lock()) {
-                var info = new SKImageInfo(
-                    framebuffer.Size.Width,
-                    framebuffer.Size.Height,
-                    colorType,
-                    SKAlphaType.Premul);
+            try {
+                using (ILockedFramebuffer framebuffer = bitmapTracker.Bitmap.Lock()) {
+                    SKImageInfo info = new SKImageInfo(
+                        framebuffer.Size.Width,
+                        framebuffer.Size.Height,
+                        colorType,
+                        SKAlphaType.Premul);
 
-                using var properties = new SKSurfaceProperties(SKPixelGeometry.Unknown);
-
-                using (var surface = SKSurface.Create(info, framebuffer.Address, framebuffer.RowBytes, properties)) {
-                    await draw(surface.Canvas, token);
+                    using (SKSurfaceProperties properties = new SKSurfaceProperties(SKPixelGeometry.Unknown)) 
+                    using (SKSurface surface = SKSurface.Create(info, framebuffer.Address, framebuffer.RowBytes, properties)) {
+                        await draw(surface.Canvas, token);
+                    }
                 }
             }
+            catch {
+                // Clean up bitmap that we aren't going to return if the drawing was cancelled.
+                bitmapTracker.Dispose();
+                throw;
+            }
 
-            return bitmap;
+            return bitmapTracker;
         }
 
         // Draw to an existing WriteableBitmap using the given drawing function.
-        public static void DrawToBitmap(WriteableBitmap bitmap, Action<SKCanvas, CancellationToken> draw, CancellationToken token = default)
+        public static void DrawToBitmap(WriteableBitmapTracker bitmapTracker, Action<SKCanvas, CancellationToken> draw, CancellationToken token = default)
         {
-            using (var framebuffer = bitmap.Lock()) {
+            using (var framebuffer = bitmapTracker.Bitmap.Lock()) {
                 var info = new SKImageInfo(
                     framebuffer.Size.Width,
                     framebuffer.Size.Height,

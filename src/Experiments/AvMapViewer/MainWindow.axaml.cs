@@ -37,5 +37,14 @@ namespace AvMapViewer
                 panAndZoom.Drawing = new CachedDrawing(cacheableMapDrawing);
             }
         }
+
+        private void panAndZoom_MouseActivity(object? sender, PanAndZoom.MouseEventArgs e)
+        {
+            if (e.Action == PanAndZoom.MouseAction.Down &&
+            (e.Button == PanAndZoom.MouseButton.RightButton || e.Button == PanAndZoom.MouseButton.MiddleButton)) {
+                // Middle and right mouse buttons always pan the map.
+                e.MouseDownResult = PanAndZoom.MouseDownResult.BeginPanning;
+            }
+        }
     }
 }
