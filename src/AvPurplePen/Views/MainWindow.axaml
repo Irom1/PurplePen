@@ -736,9 +736,12 @@
                      Handles mouse events for course editing (adding controls, moving items, etc.).
                      Scroll bars are external (horizScroll, vertScroll below). -->
                 <resx:MapViewer
+                    x:Name="mapViewer"
                     Grid.Row="1" Grid.Column="0"
                     MapDisplay="{Binding MapDisplay}"
                     MapHighlights="{Binding MapHighlights}"
+                    MouseActivity="MapViewer_MouseActivity"
+
                 />
 
                 <!-- Vertical scroll bar for map viewer -->

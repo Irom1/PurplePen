@@ -9,7 +9,8 @@
              x:Class="AvPurplePen.DescriptionViewer"
              x:DataType="vm:DescriptionViewerViewModel"
              
-             DescriptionData="{Binding DescriptionData}">
+             DescriptionData="{Binding DescriptionData}"
+             Selection="{Binding Selection}">
 
     <ScrollViewer HorizontalScrollBarVisibility="Auto"
                   VerticalScrollBarVisibility="Auto">

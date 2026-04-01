@@ -1,10 +1,12 @@
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
 using Avalonia.Threading;
 using AvPurplePen.Views;
 using AvUtil;
 using PurplePen;
+using System;
 
 namespace AvPurplePen;
 
@@ -18,6 +20,12 @@ public partial class MapViewer : UserControl
     // Has the map highlights that this map viewer should display.
     public static readonly StyledProperty<IMapViewerHighlight[]?> MapHighlightsProperty =
             AvaloniaProperty.Register<MainWindow, IMapViewerHighlight[]?>(nameof(MapHighlights));
+
+    public static readonly RoutedEvent<PanAndZoom.MouseEventArgs> MouseActivityEvent =
+        RoutedEvent.Register<MapViewer, PanAndZoom.MouseEventArgs>(
+            name: nameof(MouseActivity),
+            routingStrategy: RoutingStrategies.Direct);
+
 
     private HighlightDrawing highlightDrawing = new HighlightDrawing();
 
@@ -34,6 +42,17 @@ public partial class MapViewer : UserControl
     public IMapViewerHighlight[]? MapHighlights {
         get => GetValue(MapHighlightsProperty);
         set => SetValue(MapHighlightsProperty, value);
+    }
+
+    public event EventHandler<PanAndZoom.MouseEventArgs> MouseActivity {
+        add => AddHandler(MouseActivityEvent, value);
+        remove => RemoveHandler(MouseActivityEvent, value);
+    }
+
+    public float PixelSize {
+        get {
+            return panAndZoom.PixelToWorldDistance(1);
+        }
     }
 
 
@@ -84,6 +103,14 @@ public partial class MapViewer : UserControl
         {
             // Middle and right mouse buttons always pan the map.
             e.MouseDownResult = PanAndZoom.MouseDownResult.BeginPanning;
+        }
+        else {
+            // Reraise the event to the main window.
+            PanAndZoom.MouseEventArgs args =
+                new PanAndZoom.MouseEventArgs(MouseActivityEvent, this, e.Button, e.Action, e.LogicalPixelLocation, e.WorldLocation);
+            args.MouseDownResult = PanAndZoom.MouseDownResult.None;
+            args.WorldDragStart = e.WorldDragStart;
+            RaiseEvent(args);
         }
     }
 }

@@ -1,5 +1,6 @@
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Data;
 using Avalonia.Input;
 using Avalonia.Markup.Xaml;
 using Avalonia.Remote.Protocol.Input;
@@ -20,8 +21,10 @@ public partial class DescriptionViewer : UserControl
     public static readonly StyledProperty<DescriptionData?> DescriptionDataProperty =
         AvaloniaProperty.Register<DescriptionViewer, DescriptionData?>(nameof(DescriptionData));
 
+    public static readonly StyledProperty<SelectedLines?> SelectionProperty =
+        AvaloniaProperty.Register<DescriptionViewer, SelectedLines?>(nameof(Selection), defaultBindingMode: BindingMode.TwoWay);
+
     private DescriptionRenderer? renderer;
-    private SelectedLines? selectedLines = null;
 
     private const int margin = 3;            // margin size in logical pixels
     private const int minCellSize = 20;      // minimum cell size in logical pixels
@@ -49,25 +52,12 @@ public partial class DescriptionViewer : UserControl
     // the property.
     public event EventHandler? SelectedIndexChange;
 
+
     // Indicates which line(s) are selected, or null for
     // nothing selected.
     public SelectedLines? Selection {
-        get { return selectedLines;  }
-        set {
-            if (value != null) {
-                if (value.FirstLine < 0 || value.FirstLine >= ((DescriptionData == null || DescriptionData.Description == null) ? 0 : DescriptionData.Description.Length)) {
-                    throw new ArgumentOutOfRangeException(nameof(SelectedLines.FirstLine), "FirstLine is out of range");
-                }
-                if (value.LastLine < 0 || value.LastLine >= ((DescriptionData == null || DescriptionData.Description == null) ? 0 : DescriptionData.Description.Length)) {
-                    throw new ArgumentOutOfRangeException(nameof(SelectedLines.LastLine), "LastLine is out of range");
-                }
-            }
-
-            if (selectedLines != value) {
-                selectedLines = value;
-                UpdateView();
-            }
-        }
+        get => GetValue(SelectionProperty);
+        set => SetValue(SelectionProperty, value);
     }
 
 #if !PORTING
@@ -81,6 +71,9 @@ public partial class DescriptionViewer : UserControl
 
         if (change.Property == DescriptionDataProperty && drawingView is not null) {
             DescriptionDataUpdated();
+        }
+        else if (change.Property == SelectionProperty && drawingView is not null) {
+            UpdateView();
         }
         else if (change.Property == BoundsProperty && drawingView is not null) {
             UpdateView();
@@ -103,14 +96,14 @@ public partial class DescriptionViewer : UserControl
     // Called when DescriptionData updates.
     private void DescriptionDataUpdated()
     {
-        if (selectedLines != null) {
+        if (Selection != null) {
             if (DescriptionData == null || DescriptionData.Description == null) {
-                selectedLines = null;
+                Selection = null;
             }
             else {
                 int maxLine = DescriptionData.Description.Length - 1;
-                if (selectedLines.FirstLine > maxLine || selectedLines.LastLine > maxLine) {
-                    selectedLines = null;
+                if (Selection.FirstLine > maxLine || Selection.LastLine > maxLine) {
+                    Selection = null;
                 }
             }
         }
@@ -131,7 +124,7 @@ public partial class DescriptionViewer : UserControl
         if (hitTest.firstLine < 0)
             return;             // clicked outside the description.
 
-        bool alreadySelected = (selectedLines != null && hitTest.firstLine == selectedLines.FirstLine);
+        bool alreadySelected = (Selection != null && hitTest.firstLine == Selection.FirstLine);
 
         if (!alreadySelected) {
             // Move the selected line.
@@ -194,8 +187,11 @@ public partial class DescriptionViewer : UserControl
 
     private void DrawSelection(IGraphicsTarget grTarget, RectangleF clipRectangle)
     {
-        if (renderer != null && selectedLines != null && selectedLines.FirstLine >= 0 && selectedLines.LastLine >= 0) {
-            RectangleF selectedRect = (renderer.LineBounds(selectedLines.FirstLine, selectedLines.LastLine));
+        if (renderer != null && Selection != null && DescriptionData != null && DescriptionData.Description != null &&
+            Selection.FirstLine >= 0 && Selection.LastLine >= 0 &&
+            Selection.FirstLine < DescriptionData.Description.Length && Selection.LastLine < DescriptionData.Description.Length) 
+        {
+            RectangleF selectedRect = (renderer.LineBounds(Selection.FirstLine, Selection.LastLine));
             if (selectedRect.IntersectsWith(clipRectangle)) {
                 object selectionBrush = new object();
                 grTarget.CreateSolidBrush(selectionBrush, CmykColor.FromColor(Color.Yellow));

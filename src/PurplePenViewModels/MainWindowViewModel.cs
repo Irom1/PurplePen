@@ -18,6 +18,7 @@ using CommunityToolkit.Mvvm.Input;
 using Microsoft.Extensions.DependencyInjection;
 using System.Collections.ObjectModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Threading.Tasks;
 
@@ -28,7 +29,7 @@ namespace PurplePen.ViewModels
     /// </summary>
     public partial class MainWindowViewModel : ViewModelBase, IUserInterface
     {
-        Controller controller = null!;
+        Controller? controller = null;
         SymbolDB symbolDB = null!;
         long changeNum = 0;         // When this changes, state information needs to be updated in the UI.
         bool updatingTabs = false;  // Guard to prevent re-entrant controller calls during UpdateTabs.
@@ -42,10 +43,6 @@ namespace PurplePen.ViewModels
 
         [ObservableProperty]
         private DescriptionViewerViewModel descriptionViewerViewModel = new DescriptionViewerViewModel();
-
-        // Which lines (if any) are selected in the description viewer. 
-        [ObservableProperty]
-        private SelectedLines? descriptionSelection = null;
 
         /// <summary>
         /// The names of the course tabs displayed in the tab strip.
@@ -70,6 +67,7 @@ namespace PurplePen.ViewModels
             this.symbolDB = symbolDB;
 
             DescriptionViewerViewModel.SymbolDB = symbolDB;
+            DescriptionViewerViewModel.Controller = controller;
         }
 
         public Size Size => throw new NotImplementedException();
@@ -167,6 +165,9 @@ namespace PurplePen.ViewModels
         // We can use this to update the UI in response to changes that may have occurred.
         public void UpdateStateOnIdle()
         {
+            if (controller == null)
+                return;   // happens in design mode, for example.
+
 #if !PORTING
             UpdateMenusToolbarButtons();   // This needs updating even if other things haven't changed.
             UpdateStatusText();
@@ -210,6 +211,9 @@ namespace PurplePen.ViewModels
         // Update the map file on Display.
         private void UpdateMapFile()
         {
+            if (controller == null)
+                return;   // happens in design mode, for example.
+
             if (MapDisplay != controller.MapDisplay) {
                 // The mapDisplay object is new. This currently o`nly happens on startup.
                 MapDisplay = controller.MapDisplay;
@@ -257,6 +261,9 @@ namespace PurplePen.ViewModels
 
         private void UpdateTabsCore()
         {
+            if (controller == null)
+                return;   // happens in design mode, for example.
+
             string[] tabNames = controller.GetTabNames();
 
             // Update or add tab names.
@@ -284,7 +291,10 @@ namespace PurplePen.ViewModels
         /// </summary>
         partial void OnSelectedTabIndexChanged(int value)
         {
-            if (!updatingTabs && controller != null && value >= 0 && value < TabNames.Count) {
+            if (controller == null)
+                return;   // happens in design mode, for example.
+
+            if (!updatingTabs && value >= 0 && value < TabNames.Count) {
                 controller.SelectTab(value);
             }
         }
@@ -294,6 +304,9 @@ namespace PurplePen.ViewModels
         // Update the course in the map pane.
         void UpdateCourse()
         {
+            if (controller == null)
+                return;   // happens in design mode, for example.
+
             controller.MapDisplay.SetCourse(controller.GetCourseLayout());
         }
 
@@ -301,6 +314,9 @@ namespace PurplePen.ViewModels
         // Update the description with data from the controller.
         void UpdateDescription()
         {
+            if (controller == null)
+                return;   // happens in design mode, for example.
+
             CourseView.CourseViewKind kind;
             DescriptionLine[] description;
             bool isCoursePart, hasCustomLength;
@@ -321,35 +337,72 @@ namespace PurplePen.ViewModels
         // Update the selected line.
         void UpdateSelection()
         {
+            if (controller == null)
+                return;   // happens in design mode, for example.
+
             int firstLine, lastLine;
             controller.GetHighlightedDescriptionLines(out firstLine, out lastLine);
-            this.DescriptionSelection = new SelectedLines(firstLine, lastLine);
+            Debug.WriteLine("Selected Line: " + firstLine);
+            this.DescriptionViewerViewModel.Selection = new SelectedLines(firstLine, lastLine);
         }
 
         // Update the selection panel with a description of the selection.
         void UpdateSelectionPanel()
         {
+            if (controller == null)
+                return;   // happens in design mode, for example.
+
             this.SelectedObjectDescription = controller.GetSelectionDescription();
         }
 
         // Update the highlights
         void UpdateHighlight()
         {
+            if (controller == null)
+                return;   // happens in design mode, for example.
+
             this.MapHighlights = controller.GetHighlights(Pane.Map);
         }
 
         #endregion // State updating on idle.
 
-        #region Description control handling
 
-        // The used has selected new line(s) in the description control.
-        partial void OnDescriptionSelectionChanged(SelectedLines? value)
-        {
-            if (controller != null) {
-                controller.SelectDescriptionLine((value == null) ? -1 : value.FirstLine);
-            }
-        }
+        #region Mouse events
 
+        public DragAction MapViewerLeftButtonDown(PointF location, float pixelSize)
+        { return controller?.LeftButtonDown(Pane.Map, location, pixelSize) ?? DragAction.None; }
+
+        public DragAction MapViewerRightButtonDown(PointF location, float pixelSize)
+        { return controller?.RightButtonDown(Pane.Map, location, pixelSize) ?? DragAction.None; }
+
+        public void MapViewerLeftButtonUp(PointF location, float pixelSize)
+        { controller?.LeftButtonUp(Pane.Map, location, pixelSize); }
+
+        public void MapViewerRightButtonUp(PointF location, float pixelSize)
+        { controller?.RightButtonUp(Pane.Map, location, pixelSize); }
+
+        public void MapViewerLeftButtonClick(PointF location, float pixelSize)
+        { controller?.LeftButtonClick(Pane.Map, location, pixelSize); }
+
+        public void MapViewerRightButtonClick(PointF location, float pixelSize)
+        { controller?.RightButtonClick(Pane.Map, location, pixelSize); }
+
+        public void MapViewerLeftButtonDrag(PointF location, PointF locationStart, float pixelSize)
+        { controller?.LeftButtonDrag(Pane.Map, location, locationStart, pixelSize); }
+
+        public void MapViewerRightButtonDrag(PointF location, PointF locationStart, float pixelSize)
+        { controller?.RightButtonDrag(Pane.Map, location, locationStart, pixelSize); }
+
+        public void MapViewerLeftButtonEndDrag(PointF location, PointF locationStart, float pixelSize)
+        { controller?.LeftButtonEndDrag(Pane.Map, location, locationStart, pixelSize); }
+
+        public void MapViewerRightButtonEndDrag(PointF location, PointF locationStart, float pixelSize)
+        { controller?.RightButtonEndDrag(Pane.Map, location, locationStart, pixelSize); }
+        public void MapViewerLeftButtonCancelDrag()
+        { controller?.LeftButtonCancelDrag(Pane.Map); }
+
+        public void MapViewerRightButtonCancelDrag()
+        { controller?.RightButtonCancelDrag(Pane.Map); }
 
         #endregion
 
@@ -362,6 +415,8 @@ namespace PurplePen.ViewModels
         [RelayCommand]
         private async Task FileOpenPurplePenFile()
         {
+            if (controller == null) return;
+
 #if PORTING
             // Not all functionality ported from MainFrame.openMenu_Click.
 #endif
@@ -384,6 +439,8 @@ namespace PurplePen.ViewModels
         [RelayCommand]
         private async Task ShowAddCourseDialog()
         {
+            if (controller == null) return;
+
 #if PORTING
             // TODO: Initialize ViewModel from current event data (map scale, etc.)
             // and process the result to actually add the course.

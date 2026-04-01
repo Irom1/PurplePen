@@ -535,8 +535,6 @@ namespace PurplePen
                 // Do nothing. Very occasionally, GDI+ given an overflow exception or ExternalException or OutOfMemory exception. 
                 // Just ignore it; there's nothing else to do. See bug #1997301.
             }
-
-            grTarget.Dispose();
         }
 
         // Get the bounds of the highlight.
@@ -718,8 +716,6 @@ namespace PurplePen
 
             // Draw the interior
             path.FillTransformed(grTarget, fillBrushKey, xformWorldToPixel);
-
-            grTarget.Dispose();
         }
 
         // Get the bounds of the highlight.
@@ -1966,8 +1962,6 @@ namespace PurplePen
             path2.DrawTransformed(grTarget, penKey, xformWorldToPixel);
             path3.DrawTransformed(grTarget, penKey, xformWorldToPixel);
             path4.DrawTransformed(grTarget, penKey, xformWorldToPixel);
-
-            grTarget.Dispose();
         }
 
     }
@@ -2086,8 +2080,6 @@ namespace PurplePen
             // Draw it.
             path1.DrawTransformed(grTarget, penKey, xformWorldToPixel);
             path2.DrawTransformed(grTarget, penKey, xformWorldToPixel);
-
-            grTarget.Dispose();
         }
 
         // A struct synthesizes Equals/GetHashCode automatically.
@@ -2168,8 +2160,6 @@ namespace PurplePen
             // Draw the paths
             path1.DrawTransformed(grTarget, penKey, xformWorldToPixel);
             path2.DrawTransformed(grTarget, penKey, xformWorldToPixel);
-
-            grTarget.Dispose();
         }
     }
 
@@ -2227,8 +2217,6 @@ namespace PurplePen
 
             path1.DrawTransformed(grTarget, penKey, xformWorldToPixel);
             path2.DrawTransformed(grTarget, penKey, xformWorldToPixel);
-
-            grTarget.Dispose();
         }
     }
 
