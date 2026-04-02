@@ -287,7 +287,7 @@ namespace AvUtil
 
                     if (onCompleted != null)
                             onCompleted();
-                }, cancelToken);
+                }, longLived: false, cancelToken);
             }
 
             public bool IsCompleted => task.Status == TaskStatus.RanToCompletion;

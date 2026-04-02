@@ -21,13 +21,9 @@ namespace AvUtil
         }
 
         // Create a new bitmap of the given size, and draw to it using the given drawing function.
-        public static WriteableBitmapTracker DrawToBitmap(PixelSize pixelSize, Action<SKCanvas, CancellationToken> draw, CancellationToken token = default)
+        public static WriteableBitmapTracker DrawToBitmap(PixelSize pixelSize, Action<SKCanvas, CancellationToken> draw, bool longLived = false, CancellationToken token = default)
         {
-            WriteableBitmapTracker bitmapTracker = new WriteableBitmapTracker(new WriteableBitmap(
-                pixelSize,
-                new Vector(96, 96),
-                SKImageInfo.PlatformColorType.ToPixelFormat(),
-                AlphaFormat.Premul));
+            WriteableBitmapTracker bitmapTracker = WriteableBitmapPool.Instance.Rent(pixelSize, longLived);
 
             DrawToBitmap(bitmapTracker, draw, token);
 
@@ -35,15 +31,11 @@ namespace AvUtil
         }
 
         // Create a new bitmap of the given size, and draw to it using the given drawing function.
-        public static async Task<WriteableBitmapTracker> DrawToBitmapAsync(PixelSize pixelSize, Func<SKCanvas, CancellationToken, Task> draw, CancellationToken token = default)
+        public static async Task<WriteableBitmapTracker> DrawToBitmapAsync(PixelSize pixelSize, Func<SKCanvas, CancellationToken, Task> draw, bool longLived = false, CancellationToken token = default)
         {
             SKColorType colorType = SKImageInfo.PlatformColorType;
 
-            WriteableBitmapTracker bitmapTracker = new WriteableBitmapTracker(new WriteableBitmap(
-                pixelSize,
-                new Vector(96, 96),
-                colorType.ToPixelFormat(),
-                AlphaFormat.Premul));
+            WriteableBitmapTracker bitmapTracker = WriteableBitmapPool.Instance.Rent(pixelSize, longLived);
 
             try {
                 using (ILockedFramebuffer framebuffer = bitmapTracker.Bitmap.Lock()) {

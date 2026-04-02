@@ -40,7 +40,12 @@
     <ProjectReference Include="..\MapModel\MapModel\MapModel.csproj" />
     <ProjectReference Include="..\MapModel\Map_PDF\Map_PDF.csproj" />
     <ProjectReference Include="..\MapModel\Map_SkiaStd\Map_SkiaStd.csproj" />
-    <ProjectReference Include="..\PdfConverter\PdfConverter.csproj" />
+    <!-- PdfConverter is a standalone exe tool, not a compile-time dependency.
+         Build it first, then copy its output to our publish/output directory. -->
+    <ProjectReference Include="..\PdfConverter\PdfConverter.csproj">
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <GlobalPropertiesToRemove>RuntimeIdentifier;SelfContained;PublishDir</GlobalPropertiesToRemove>
+    </ProjectReference>
     <ProjectReference Include="..\PurplePenCore\PurplePenCore.csproj" />
     <ProjectReference Include="..\PurplePenViewModels\PurplePenViewModels.csproj" />
   </ItemGroup>

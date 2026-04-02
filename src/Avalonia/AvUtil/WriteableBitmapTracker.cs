@@ -1,7 +1,10 @@
-﻿using Avalonia.Media.Imaging;
+﻿using Avalonia;
+using Avalonia.Media.Imaging;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace AvUtil
@@ -13,12 +16,26 @@ namespace AvUtil
         public WriteableBitmap Bitmap { get; }
         private bool _isDisposed;
         private readonly string _allocationStackTrace;
+        private PixelSize pixelSize;  // Could be smaller than the actual bitmap size in rental scenarios, but is the size that was requested by the user.
 
         public WriteableBitmapTracker(WriteableBitmap bitmap)
         {
             Bitmap = bitmap;
+            pixelSize = bitmap.PixelSize;
             // Capture where this bitmap was created to make debugging easy
             _allocationStackTrace = Environment.StackTrace;
+        }
+
+
+        // Get the size of the bitmap. This may be smaller than the actual bitmap size in rental scenarios.
+        public PixelSize PixelSize => pixelSize;
+
+        // Set the rental size of the bitmap. This is the size that was requested by the user, and may be smaller than the actual bitmap size.
+        public void SetRentalSize(PixelSize pixelSize)
+        {
+            if (pixelSize.Width > Bitmap.PixelSize.Width || pixelSize.Height > Bitmap.PixelSize.Height)
+                throw new ArgumentException("Rental size cannot be larger than the actual bitmap size.");
+            this.pixelSize = pixelSize;
         }
 
         public void Dispose()

@@ -41,10 +41,19 @@ namespace AvPurplePen
 
             PurplePen.Graphics2D.Matrix xformWorldToPixel = MatrixFromAvMatrix(transformWorldToPixel);
 
+            // Get the bounds of all the highlights, slightly expanded.
+            Rect highlightBounds = Bounds;
+            if (highlightBounds.Width == 0 || highlightBounds.Height == 0)
+                return;
+
+            // Inflate by 2 pixels on each side, in case of rounding errors and the like.
+            // Make sure no bigger than rectToDraw.
+            float inflationAmount = PurplePen.Graphics2D.Geometry.TransformDistance(2F, xformWorldToPixel);
+            highlightBounds.Inflate(inflationAmount);
+            highlightBounds = highlightBounds.Intersect(rectToDraw);
+
             // For now, create a writable bitmap of the full window size. But we should be able to instead create one
-            // that is just big enough for "Bounds" of the highlights, and draw that, which would be more efficient.
-            // We could consider also using the same bitmap each time instead of destroying and recreating one, as long
-            // as the bitmap is big enough.
+            // that is just big enough for "highlightBounds" of the highlights, and draw that, which would be more efficient.
 
             WriteableBitmapTracker skiaBitmap = SkiaWritableBitmap.DrawToBitmap(pixelSize, canvas => {
                 using (Skia_GraphicsTarget grTarget = new Skia_GraphicsTarget(canvas)) {

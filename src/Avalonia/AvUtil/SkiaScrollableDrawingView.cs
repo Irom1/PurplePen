@@ -183,11 +183,7 @@ namespace AvUtil
                     _writeableBitmapTracker = null;
                 }
 
-                _writeableBitmapTracker ??= new WriteableBitmapTracker(new WriteableBitmap(
-                    new PixelSize(_pixelWidth, _pixelHeight),
-                    new Vector(96, 96),
-                    PixelFormat.Bgra8888,
-                    AlphaFormat.Premul));
+                _writeableBitmapTracker ??= WriteableBitmapPool.Instance.Rent(new PixelSize(_pixelWidth, _pixelHeight), longLived: true);
 
                 SkiaWritableBitmap.DrawToBitmap(_writeableBitmapTracker,
                     (SKCanvas canvas, CancellationToken cancelToken) => {
