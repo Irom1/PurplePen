@@ -155,7 +155,7 @@ namespace AvUtil
 
             Debug.WriteLine("Pointer Pressed " + props.PointerUpdateKind + $" logpixel({pointer.Position.X},{pointer.Position.Y}) world({worldPos.X},{worldPos.Y})");
 
-            BasicMouseEventArgs eventArgs = new BasicMouseEventArgs(BasicMouseActivityEvent, this, mouseButton, BasicMouseAction.Down, pointer.Position, worldPos);
+            BasicMouseEventArgs eventArgs = new BasicMouseEventArgs(BasicMouseActivityEvent, this, mouseButton, BasicMouseAction.Down, pointer.Position, worldPos, e.Timestamp);
             RaiseEvent(eventArgs);
         }
 
@@ -175,7 +175,7 @@ namespace AvUtil
                 EndPanning(pointer.Position);
             }
             else {
-                BasicMouseEventArgs eventArgs = new BasicMouseEventArgs(BasicMouseActivityEvent, this, mouseButton, BasicMouseAction.Up, pointer.Position, worldPos);
+                BasicMouseEventArgs eventArgs = new BasicMouseEventArgs(BasicMouseActivityEvent, this, mouseButton, BasicMouseAction.Up, pointer.Position, worldPos, e.Timestamp);
                 RaiseEvent(eventArgs);
             }
         }
@@ -192,7 +192,7 @@ namespace AvUtil
                 PanMove(pointer.Position);
             }
             else {
-                BasicMouseEventArgs eventArgs = new BasicMouseEventArgs(BasicMouseActivityEvent, this, MouseButton.None, BasicMouseAction.Move, pointer.Position, worldPos);
+                BasicMouseEventArgs eventArgs = new BasicMouseEventArgs(BasicMouseActivityEvent, this, MouseButton.None, BasicMouseAction.Move, pointer.Position, worldPos, e.Timestamp);
                 RaiseEvent(eventArgs);
             }
         }
@@ -383,19 +383,21 @@ namespace AvUtil
         // Note that PanUntilReleased is an OUT -- it is set by the handler of the event to begin panning.
         public class BasicMouseEventArgs: RoutedEventArgs
         {
-            public BasicMouseEventArgs(RoutedEvent? routedEvent, object? source, MouseButton button, BasicMouseAction action, Point logicalPixelLocation, Point worldLocation)
+            public BasicMouseEventArgs(RoutedEvent? routedEvent, object? source, MouseButton button, BasicMouseAction action, Point logicalPixelLocation, Point worldLocation, ulong timeStamp)
                 : base(routedEvent, source)
             {
                 this.Button = button;
                 this.BasicAction = action;
                 this.LogicalPixelLocation = logicalPixelLocation;
                 this.WorldLocation = worldLocation;
+                this.TimeStamp = timeStamp;
             }
 
             public MouseButton Button;              // Not used for a Move action.
             public BasicMouseAction BasicAction;    // Basic mouse action: down/move/up.
             public Point LogicalPixelLocation;      // location in logical pixels in the control
             public Point WorldLocation;             // location in world coordinates in the control.
+            public ulong TimeStamp;                 // When the event occured, in milliseconds
         }
     }
 }
