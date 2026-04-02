@@ -342,7 +342,6 @@ namespace PurplePen.ViewModels
 
             int firstLine, lastLine;
             controller.GetHighlightedDescriptionLines(out firstLine, out lastLine);
-            Debug.WriteLine("Selected Line: " + firstLine);
             this.DescriptionViewerViewModel.Selection = new SelectedLines(firstLine, lastLine);
         }
 

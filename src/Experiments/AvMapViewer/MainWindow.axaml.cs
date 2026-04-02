@@ -1,4 +1,5 @@
 using Avalonia.Controls;
+using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Platform.Storage;
 using AvUtil;
@@ -38,12 +39,13 @@ namespace AvMapViewer
             }
         }
 
-        private void panAndZoom_MouseActivity(object? sender, PanAndZoom.MouseEventArgs e)
+        private void panAndZoom_MouseActivity(object? sender, PanAndZoom.BasicMouseEventArgs e)
         {
-            if (e.Action == PanAndZoom.MouseAction.Down &&
-            (e.Button == PanAndZoom.MouseButton.RightButton || e.Button == PanAndZoom.MouseButton.MiddleButton)) {
+            if (e.BasicAction == PanAndZoom.BasicMouseAction.Down &&
+               (e.Button == MouseButton.Right || e.Button == MouseButton.Middle)) 
+            {                    
                 // Middle and right mouse buttons always pan the map.
-                e.MouseDownResult = PanAndZoom.MouseDownResult.BeginPanning;
+                panAndZoom.BeginPanning(e.LogicalPixelLocation, e.Button);
             }
         }
     }

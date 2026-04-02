@@ -16,8 +16,8 @@
       <Panel Background="Red"  Margin="10,10,10,10">
         <utils:PanAndZoom 
             Margin="20,20,20,20" 
-            Name="panAndZoom"
-            MouseActivity="panAndZoom_MouseActivity"/>    
+            x:Name="panAndZoom"
+            BasicMouseActivity="panAndZoom_MouseActivity"/>    
       </Panel>
     </Panel>
   </DockPanel>

@@ -740,7 +740,7 @@
                     Grid.Row="1" Grid.Column="0"
                     MapDisplay="{Binding MapDisplay}"
                     MapHighlights="{Binding MapHighlights}"
-                    MouseActivity="MapViewer_MouseActivity"
+                    FancyMouseActivity="MapViewer_MouseActivity"
 
                 />
 

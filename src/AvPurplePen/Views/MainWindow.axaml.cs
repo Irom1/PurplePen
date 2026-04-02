@@ -5,6 +5,7 @@
 // don't fit cleanly into the ViewModel layer.
 
 using Avalonia.Controls;
+using Avalonia.Input;
 using Avalonia.Interactivity;
 using AvUtil;
 using PurplePen;
@@ -41,70 +42,70 @@ namespace AvPurplePen.Views
         }
 
         // Mouse activity in the main map viewer.
-        private void MapViewer_MouseActivity(object? sender, PanAndZoom.MouseEventArgs e)
+        private void MapViewer_MouseActivity(object? sender, MapViewer.FancyMouseEventArgs e)
         {
             MainWindowViewModel? vm = this.DataContext as MainWindowViewModel;
             if (vm == null)
                 return;
 
             // Only left and right buttons have meaning.
-            if (e.Button != PanAndZoom.MouseButton.LeftButton && e.Button != PanAndZoom.MouseButton.RightButton)
+            if (e.Button != MouseButton.Left && e.Button != MouseButton.Right)
                 return;
 
-            bool isRightButton = (e.Button == PanAndZoom.MouseButton.RightButton);
+            bool isRightButton = (e.Button == MouseButton.Right);
             PointF location = Conv.ToPointF(e.WorldLocation);
             PointF locationStart = Conv.ToPointF(e.WorldDragStart);
             float pixelSize = mapViewer.PixelSize;
             DragAction dragAction = DragAction.None;
             
-            switch (e.Action) {
-            case PanAndZoom.MouseAction.Down:
+            switch (e.FancyAction) {
+            case MapViewer.FancyMouseAction.Down:
                 if (isRightButton)
                     dragAction = vm.MapViewerRightButtonDown(location, pixelSize);
                 else
                     dragAction = vm.MapViewerLeftButtonDown(location, pixelSize);
                 break;
 
-            case PanAndZoom.MouseAction.Move:
+            case MapViewer.FancyMouseAction.Move:
                 // nothing to do on pure mouse move; status bar is updated by idle.
                 break;
 
-            case PanAndZoom.MouseAction.Drag:
+            case MapViewer.FancyMouseAction.Drag:
                 if (isRightButton)
                     vm.MapViewerRightButtonDrag(location, locationStart, pixelSize);
                 else
                     vm.MapViewerLeftButtonDrag(location, locationStart, pixelSize);
                 break;
 
-            case PanAndZoom.MouseAction.Up:
+            case MapViewer.FancyMouseAction.Up:
                 if (isRightButton) 
                     vm.MapViewerRightButtonUp(location, pixelSize);
                 else
                     vm.MapViewerLeftButtonUp(location, pixelSize);
                 break;
 
-            case PanAndZoom.MouseAction.DragEnd:
+            case MapViewer.FancyMouseAction.DragEnd:
                 if (isRightButton)
                     vm.MapViewerRightButtonEndDrag(location, locationStart, pixelSize);
                 else
                     vm.MapViewerLeftButtonEndDrag(location, locationStart, pixelSize);
                 break;
 
-            case PanAndZoom.MouseAction.Click:
+            case MapViewer.FancyMouseAction.Click:
                 if (isRightButton)
                     vm.MapViewerRightButtonClick(location, pixelSize);
                 else
                     vm.MapViewerLeftButtonClick(location, pixelSize);
                 break;
 
-            case PanAndZoom.MouseAction.DragCancel:
+            case MapViewer.FancyMouseAction.DragCancel:
                 if (isRightButton)
                     vm.MapViewerRightButtonCancelDrag();
                 else
                     vm.MapViewerLeftButtonCancelDrag();
                 break;
 
-            case PanAndZoom.MouseAction.Hover:
+            case MapViewer.FancyMouseAction.Hover:
 #if !PORTING
                 // handle hover
 #endif
@@ -116,15 +117,15 @@ namespace AvPurplePen.Views
 
             switch (dragAction) {
             case DragAction.None:
-                e.MouseDownResult = PanAndZoom.MouseDownResult.None; break;
+                e.MouseDownResult = MapViewer.MouseDownResult.None; break;
             case DragAction.SuppressClick:
-                e.MouseDownResult = PanAndZoom.MouseDownResult.SuppressClick; break;
+                e.MouseDownResult = MapViewer.MouseDownResult.SuppressClick; break;
             case DragAction.MapDrag:
-                e.MouseDownResult = PanAndZoom.MouseDownResult.BeginPanning;  break;
+                e.MouseDownResult = MapViewer.MouseDownResult.ImmediatePan;  break;
             case DragAction.ImmediateDrag:
-                e.MouseDownResult = PanAndZoom.MouseDownResult.ImmediateDrag; break;
+                e.MouseDownResult = MapViewer.MouseDownResult.ImmediateDrag; break;
             case DragAction.DelayedDrag:
-                e.MouseDownResult = PanAndZoom.MouseDownResult.DelayedDrag; break;
+                e.MouseDownResult = MapViewer.MouseDownResult.DelayedDrag; break;
             default:
                 break;
             }

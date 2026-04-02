@@ -33,9 +33,10 @@ namespace AvUtil
         MouseButton endPanningButton;                           // Which mouse button ends panning.
         Point lastPanScrollPoint;								// last point we panned to, in logical pixels
 
-        public static readonly RoutedEvent<MouseEventArgs> MouseActivityEvent =
-            RoutedEvent.Register<PanAndZoom, MouseEventArgs>(
-                name: nameof(MouseActivity),
+        // This event reports basic mouse activity (down/move/up) in both logical pixel coordinates and world coordinates. 
+        public static readonly RoutedEvent<BasicMouseEventArgs> BasicMouseActivityEvent =
+            RoutedEvent.Register<PanAndZoom, BasicMouseEventArgs>(
+                name: nameof(BasicMouseActivity),
                 routingStrategy: RoutingStrategies.Direct);
 
         public PanAndZoom()
@@ -93,9 +94,9 @@ namespace AvUtil
             }
         }
 
-        public event EventHandler<MouseEventArgs> MouseActivity {
-            add => AddHandler(MouseActivityEvent, value);
-            remove => RemoveHandler(MouseActivityEvent, value);
+        public event EventHandler<BasicMouseEventArgs> BasicMouseActivity {
+            add => AddHandler(BasicMouseActivityEvent, value);
+            remove => RemoveHandler(BasicMouseActivityEvent, value);
         }
 
         int renderNumber = 0;
@@ -148,22 +149,14 @@ namespace AvUtil
 
             PointerPoint pointer = e.GetCurrentPoint(this);
             PointerPointProperties props = pointer.Properties;
-            MouseButton mouseButton = MouseButtonFromPointerUpdate(props.PointerUpdateKind);
-
-            if (mouseButton == MouseButton.Other)
-                return;  // Ignore mouse buttons other than Left, Right, Middle.
+            MouseButton mouseButton = props.PointerUpdateKind.GetMouseButton();
 
             Point worldPos = PixelToWorld(pointer.Position);
 
             Debug.WriteLine("Pointer Pressed " + props.PointerUpdateKind + $" logpixel({pointer.Position.X},{pointer.Position.Y}) world({worldPos.X},{worldPos.Y})");
 
-            MouseEventArgs eventArgs = new MouseEventArgs(MouseActivityEvent, this, mouseButton, PanAndZoom.MouseAction.Down, pointer.Position, worldPos);
+            BasicMouseEventArgs eventArgs = new BasicMouseEventArgs(BasicMouseActivityEvent, this, mouseButton, BasicMouseAction.Down, pointer.Position, worldPos);
             RaiseEvent(eventArgs);
-            MouseDownResult result = eventArgs.MouseDownResult;
-
-            if (result == MouseDownResult.BeginPanning) {
-                BeginPanning(pointer.Position, mouseButton);
-            }
         }
 
         protected override void OnPointerReleased(PointerReleasedEventArgs e)
@@ -172,10 +165,7 @@ namespace AvUtil
 
             PointerPoint pointer = e.GetCurrentPoint(this);
             PointerPointProperties props = pointer.Properties;
-            MouseButton mouseButton = MouseButtonFromPointerUpdate(props.PointerUpdateKind);
-
-            if (mouseButton == MouseButton.Other)
-                return;  // Ignore mouse buttons other than Left, Right, Middle.
+            MouseButton mouseButton = props.PointerUpdateKind.GetMouseButton();
 
             Point worldPos = PixelToWorld(pointer.Position);
 
@@ -185,7 +175,7 @@ namespace AvUtil
                 EndPanning(pointer.Position);
             }
             else {
-                MouseEventArgs eventArgs = new MouseEventArgs(MouseActivityEvent, this, mouseButton, PanAndZoom.MouseAction.Up, pointer.Position, worldPos);
+                BasicMouseEventArgs eventArgs = new BasicMouseEventArgs(BasicMouseActivityEvent, this, mouseButton, BasicMouseAction.Up, pointer.Position, worldPos);
                 RaiseEvent(eventArgs);
             }
         }
@@ -202,7 +192,7 @@ namespace AvUtil
                 PanMove(pointer.Position);
             }
             else {
-                MouseEventArgs eventArgs = new MouseEventArgs(MouseActivityEvent, this, MouseButton.None, PanAndZoom.MouseAction.Up, pointer.Position, worldPos);
+                BasicMouseEventArgs eventArgs = new BasicMouseEventArgs(BasicMouseActivityEvent, this, MouseButton.None, BasicMouseAction.Move, pointer.Position, worldPos);
                 RaiseEvent(eventArgs);
             }
         }
@@ -336,16 +326,18 @@ namespace AvUtil
             CenterPoint = centerPtWorld;
         }
 
-        void BeginPanning(Point pt, MouseButton endingButton)
+        // Begin panning, which continues until the given mouse button is released.
+        // Basic mouse actions (including the move and the up) are not reported until panning ends.
+        public void BeginPanning(Point logicalPosition, MouseButton endingButton)
         {
             panningInProgress = true;
             endPanningButton = endingButton;
-            lastPanScrollPoint = pt;
+            lastPanScrollPoint = logicalPosition;
             //this.Cursor = DragCursor;
             //DisableHoverTimer();
         }
 
-        void EndPanning(Point pt)
+        public void EndPanning(Point logicalPosition)
         {
             panningInProgress = false;
             //this.Cursor = Cursors.Default;
@@ -378,79 +370,32 @@ namespace AvUtil
             return controlBounds.Contains(point);
         }
 
-        private MouseButton MouseButtonFromPointerUpdate(PointerUpdateKind pointerUpdateKind)
-        {
-            switch (pointerUpdateKind) {
-            case PointerUpdateKind.LeftButtonPressed:
-            case PointerUpdateKind.LeftButtonReleased:
-                return MouseButton.LeftButton;
-
-            case PointerUpdateKind.MiddleButtonPressed:
-            case PointerUpdateKind.MiddleButtonReleased:
-                return MouseButton.MiddleButton;
-
-            case PointerUpdateKind.RightButtonPressed:
-            case PointerUpdateKind.RightButtonReleased:
-                return MouseButton.RightButton;
-
-            default:
-                return MouseButton.Other;
-            }
-        }
-
-        // Other is only used internally -- will never be sent in an event. None is used for events that don't have a button, such as mouse move.
-        public enum MouseButton { None, LeftButton, RightButton, MiddleButton, Other }
 
         // Types of mouse actions.
-        public enum MouseAction
+        public enum BasicMouseAction
         {
             Down,      // mouse button pressed down
             Move,      // mouse was moved
-            Drag,      // mouse was dragged with a button down, occurs together with (and after) MouseMove if dragging enabled
-
-            // When mouse button is released, exactly one of the follow three occurs.
-            Up,        // mouse button released (dragging disabled) 
-            DragEnd,   // mouse button released (if dragging enabled)
-            Click,     // mouse button release after no/little movement 
-
-            // If a drag is started, but the mouse is taken away before finishing, a DragCancel event occurs
-            DragCancel,
-
-            // Mouse hovers a certain length of time without moving
-            Hover,
-        }
-
-        // Possible responses to a mouse down.
-        public enum MouseDownResult
-        {
-            None,           // no special handling. May get click event when released, and Up when released. No dragging or panning will occur.
-            SuppressClick,  // no click event will occur. Up event will still occur.
-            BeginPanning,   // begin panning immediately. No Click or Drag events will occurs.
-            ImmediateDrag,  // begin dragging immediately. No Click event will occur, Drag, DragEnd events will occurs.
-            DelayedDrag     // if the mouse moves enough before release, begin dragging, otherwise a Click event occurs.
+            Up,        // mouse button released
         }
 
         // The information sent with a mouse event. 
-        // Note that MouseDownResult is an OUT -- it is set by the handler of the event to indicate how the mousedown is handled.
-        public class MouseEventArgs: RoutedEventArgs
+        // Note that PanUntilReleased is an OUT -- it is set by the handler of the event to begin panning.
+        public class BasicMouseEventArgs: RoutedEventArgs
         {
-            public MouseEventArgs(RoutedEvent? routedEvent, object? source, MouseButton button, MouseAction action, Point logicalPixelLocation, Point worldLocation)
+            public BasicMouseEventArgs(RoutedEvent? routedEvent, object? source, MouseButton button, BasicMouseAction action, Point logicalPixelLocation, Point worldLocation)
                 : base(routedEvent, source)
             {
                 this.Button = button;
-                this.Action = action;
+                this.BasicAction = action;
                 this.LogicalPixelLocation = logicalPixelLocation;
                 this.WorldLocation = worldLocation;
-                this.WorldDragStart = worldLocation;
-                this.MouseDownResult = MouseDownResult.None;
             }
 
-            public MouseButton Button;
-            public MouseAction Action;
+            public MouseButton Button;              // Not used for a Move action.
+            public BasicMouseAction BasicAction;    // Basic mouse action: down/move/up.
             public Point LogicalPixelLocation;      // location in logical pixels in the control
             public Point WorldLocation;             // location in world coordinates in the control.
-            public Point WorldDragStart;            // For a drag event, where the dragging began
-            public MouseDownResult MouseDownResult; // For a mouse down, how the mouse down is handled.
         }
     }
 }
