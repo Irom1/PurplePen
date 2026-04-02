@@ -65,13 +65,15 @@ namespace AvUtil
                 // WriteableBitmap does not support zero-size dimensions
                 // Therefore, to avoid a crash, exit here if size is zero
                 if (!this.IsVisible || _pixelWidth == 0 || _pixelHeight == 0) {
-                    _writeableBitmapTracker?.Dispose();
+                    if (_writeableBitmapTracker != null) {
+                        WriteableBitmapPool.Instance.Return(_writeableBitmapTracker);
+                    }
                     _writeableBitmapTracker = null;
                     return;
                 }
 
-                if (_writeableBitmapTracker != null && (_writeableBitmapTracker.Bitmap.PixelSize.Width != _pixelWidth || _writeableBitmapTracker.Bitmap.PixelSize.Height != _pixelHeight)) {
-                    _writeableBitmapTracker?.Dispose();
+                if (_writeableBitmapTracker != null && (_writeableBitmapTracker.PixelSize.Width != _pixelWidth || _writeableBitmapTracker.PixelSize.Height != _pixelHeight)) {
+                    WriteableBitmapPool.Instance.Return(_writeableBitmapTracker);
                     _writeableBitmapTracker = null;
                 }
 
@@ -101,7 +103,9 @@ namespace AvUtil
         protected override void OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs e)
         {
             base.OnDetachedFromVisualTree(e);
-            _writeableBitmapTracker?.Dispose();
+            if (_writeableBitmapTracker != null) {
+                WriteableBitmapPool.Instance.Return(_writeableBitmapTracker);
+            }
             _writeableBitmapTracker = null;
         }
 

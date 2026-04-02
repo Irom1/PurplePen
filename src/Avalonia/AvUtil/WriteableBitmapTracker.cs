@@ -1,5 +1,7 @@
 ﻿using Avalonia;
+using Avalonia.Media;
 using Avalonia.Media.Imaging;
+using SkiaSharp;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -36,6 +38,25 @@ namespace AvUtil
             if (pixelSize.Width > Bitmap.PixelSize.Width || pixelSize.Height > Bitmap.PixelSize.Height)
                 throw new ArgumentException("Rental size cannot be larger than the actual bitmap size.");
             this.pixelSize = pixelSize;
+        }
+
+        // Draw to the drawing context, using the rental PixelSize.
+        public void DrawToContext(DrawingContext drawingContext, Rect destinationRect)
+        {
+            // Calculate the DPI scaling factor of the specific bitmap
+            double scaleX = Bitmap.Size.Width / Bitmap.PixelSize.Width;
+            double scaleY = Bitmap.Size.Height / Bitmap.PixelSize.Height;
+
+            // Scale the physical coordinates into logical DIPs
+            Rect logicalSourceRect = new Rect(
+                0,
+                0,
+                pixelSize.Width * scaleX,
+                pixelSize.Height * scaleY
+            );
+
+            // Now it's safe to draw!
+            drawingContext.DrawImage(Bitmap, logicalSourceRect, destinationRect);
         }
 
         public void Dispose()

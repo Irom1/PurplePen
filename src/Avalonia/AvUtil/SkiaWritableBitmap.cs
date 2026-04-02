@@ -25,34 +25,12 @@ namespace AvUtil
         {
             WriteableBitmapTracker bitmapTracker = WriteableBitmapPool.Instance.Rent(pixelSize, longLived);
 
-            DrawToBitmap(bitmapTracker, draw, token);
-
-            return bitmapTracker;
-        }
-
-        // Create a new bitmap of the given size, and draw to it using the given drawing function.
-        public static async Task<WriteableBitmapTracker> DrawToBitmapAsync(PixelSize pixelSize, Func<SKCanvas, CancellationToken, Task> draw, bool longLived = false, CancellationToken token = default)
-        {
-            SKColorType colorType = SKImageInfo.PlatformColorType;
-
-            WriteableBitmapTracker bitmapTracker = WriteableBitmapPool.Instance.Rent(pixelSize, longLived);
-
             try {
-                using (ILockedFramebuffer framebuffer = bitmapTracker.Bitmap.Lock()) {
-                    SKImageInfo info = new SKImageInfo(
-                        framebuffer.Size.Width,
-                        framebuffer.Size.Height,
-                        colorType,
-                        SKAlphaType.Premul);
-
-                    using (SKSurfaceProperties properties = new SKSurfaceProperties(SKPixelGeometry.Unknown)) 
-                    using (SKSurface surface = SKSurface.Create(info, framebuffer.Address, framebuffer.RowBytes, properties)) {
-                        await draw(surface.Canvas, token);
-                    }
-                }
+                DrawToBitmap(bitmapTracker, draw, token);
             }
             catch {
-                // Clean up bitmap that we aren't going to return if the drawing was cancelled.
+                // If an exception occurs during drawing,
+                // dispose the bitmap that we aren't going to return.
                 bitmapTracker.Dispose();
                 throw;
             }

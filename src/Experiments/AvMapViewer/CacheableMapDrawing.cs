@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
@@ -16,8 +16,8 @@ using RenderOptions = PurplePen.MapModel.RenderOptions;
 
 namespace AvMapViewer
 {
-    // Implements IAsyncSkiaDrawing to draw a Map on a Skia canvas. The map is cached, so it can be drawn quickly when needed.
-    class CacheableMapDrawing : IAsyncSkiaDrawing
+    // Implements IThreadsafeSkiaDrawing to draw a Map on a Skia canvas. The map is cached, so it can be drawn quickly when needed.
+    class CacheableMapDrawing : IThreadsafeSkiaDrawing
     {
         Map? map;
         RectangleF bounds;
@@ -44,16 +44,8 @@ namespace AvMapViewer
 
         public event EventHandler? DrawingChanged;
 
-        public Task DrawAsync(SKCanvas canvas, SKRect rectToDraw, SKSizeI pixelSize, CancellationToken cancelToken)
-        {
-            return Task.Run(() => {
-                    Draw(canvas, rectToDraw, cancelToken);
-            }, cancelToken);
-        }
-
-
-        // This is called in another thread to draw the map.
-        private void Draw(SKCanvas canvas, SKRect rectToDraw, CancellationToken cancelToken)
+        // Draw the map to the canvas. This is called from a background thread by CachedDrawing.
+        public void ThreadsafeDraw(SKCanvas canvas, SKRect rectToDraw, SKSizeI pixelSize, CancellationToken cancelToken)
         {
             canvas.Clear(SKColors.White);
 
@@ -76,4 +68,3 @@ namespace AvMapViewer
     }
 
 }
-

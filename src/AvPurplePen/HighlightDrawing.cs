@@ -72,11 +72,11 @@ namespace AvPurplePen
                 // Things are flipped vertically between Skia and Avalonia, so we need to flip the bitmap around the horizontal center line before drawing it.
                 Matrix flipTransform = Matrix.CreateScale(1, -1) * Matrix.CreateTranslation(0, (rectToDraw.Y * 2) + rectToDraw.Height);
                 using (var pushedState = drawingContext.PushTransform(flipTransform)) {
-                    drawingContext.DrawImage(skiaBitmap.Bitmap, rectToDraw);
+                    skiaBitmap.DrawToContext(drawingContext, rectToDraw);
                 }
             }
             finally {
-                skiaBitmap.Dispose();
+                WriteableBitmapPool.Instance.Return(skiaBitmap);
             }
         }
 

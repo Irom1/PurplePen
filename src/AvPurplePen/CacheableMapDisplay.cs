@@ -1,4 +1,4 @@
-﻿using AvUtil;
+using AvUtil;
 using PurplePen;
 using PurplePen.Graphics2D;
 using PurplePen.MapModel;
@@ -12,9 +12,9 @@ using System.Threading.Tasks;
 
 namespace AvPurplePen
 {
-    // Class that implements IAsyncSkiaDrawing to draw an IMapDisplay. 
-    // Basically adaptes the IMapDisplay interface into IAsyncSkiaDrawing.
-    class CacheableMapDisplay : IAsyncSkiaDrawing
+    // Class that implements IThreadsafeSkiaDrawing to draw an IMapDisplay.
+    // Basically adapts the IMapDisplay interface into IThreadsafeSkiaDrawing.
+    class CacheableMapDisplay : IThreadsafeSkiaDrawing
     {
         IMapDisplay mapDisplay;
         RectangleF bounds;
@@ -30,30 +30,25 @@ namespace AvPurplePen
 
         public SKRect Bounds => Conv.ToSKRect(bounds);
 
-
-        public Task DrawAsync(SKCanvas canvas, SKRect rectToDraw, SKSizeI pixelSize, CancellationToken cancelToken)
+        // Draw the map to the canvas. This is called from a background thread by CachedDrawing.
+        public void ThreadsafeDraw(SKCanvas canvas, SKRect rectToDraw, SKSizeI pixelSize, CancellationToken cancelToken)
         {
             float minResolution = Math.Min(rectToDraw.Width / pixelSize.Width, rectToDraw.Height / pixelSize.Height);
-            return Task.Run(() => Draw(canvas, rectToDraw, minResolution, cancelToken), cancelToken);
-        }
 
-        // The MapDisplay has changed. Raise the DrawingChanged event to indicate that
-        // he drawing needs to be redrawn.
-        private void MapDisplay_Changed()
-        {
-            DrawingChanged?.Invoke(this, EventArgs.Empty);
-        }
-
-        // This is called in another thread to draw the map.
-        private void Draw(SKCanvas canvas, SKRect rectToDraw, float minResolution, CancellationToken cancelToken)
-        {
-            canvas.Clear(SKColors.White);  // TODO: Is this needed?
+            canvas.Clear(SKColors.White);
 
             if (mapDisplay != null) {
                 using (IGraphicsTarget grTarget = new Skia_GraphicsTarget(canvas)) {
                     mapDisplay.Draw(grTarget, Conv.ToRectangleF(rectToDraw), minResolution, () => cancelToken.ThrowIfCancellationRequested());
                 }
             }
+        }
+
+        // The MapDisplay has changed. Raise the DrawingChanged event to indicate that
+        // the drawing needs to be redrawn.
+        private void MapDisplay_Changed()
+        {
+            DrawingChanged?.Invoke(this, EventArgs.Empty);
         }
     }
 }

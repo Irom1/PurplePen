@@ -19,12 +19,12 @@ namespace AvUtil
     // first draws anything that is available, then starts a new render of the drawing at the
     // resolution requested and raised an event when the full resolution drawing is available.
     //
-    // Adapts an IAsyncSkiaDrawing to an IAvaloniaDrawing by caching the result of the drawing function in a bitmap.
+    // Adapts an IThreadsafeSkiaDrawing to an IAvaloniaDrawing by caching the result of the drawing function in a bitmap.
     public class CachedDrawing: IAvaloniaDrawing
     {
         private const int FullRenderSize = 1300;  // Size of the full render along the longest dimension.
 
-        private readonly IAsyncSkiaDrawing underlyingDrawing;
+        private readonly IThreadsafeSkiaDrawing underlyingDrawing;
 
         // List of all the renders that are in progress or complete that render the detailed
         // version of the drawing at the resolution requested.
@@ -50,7 +50,7 @@ namespace AvUtil
         // so we don't post it multiple times.
         private volatile bool availableDrawingPosted = false;
 
-        public CachedDrawing(IAsyncSkiaDrawing drawing)
+        public CachedDrawing(IThreadsafeSkiaDrawing drawing)
         {
             this.underlyingDrawing = drawing;
             this.underlyingDrawing.DrawingChanged += OnUnderlyingDrawing;
@@ -261,7 +261,7 @@ namespace AvUtil
             public readonly Task<WriteableBitmapTracker> task;     // Task that will return the bitmap when done.
             public readonly CancellationTokenSource cancelSource;  // Source for canceling the task.
 
-            public InProgressRender(IAsyncSkiaDrawing drawing, int drawingVersion, int renderVersion, Rect rectToDraw, PixelSize pixelSize, Action? onCompleted)
+            public InProgressRender(IThreadsafeSkiaDrawing drawing, int drawingVersion, int renderVersion, Rect rectToDraw, PixelSize pixelSize, Action? onCompleted)
             {
                 this.drawingVersion = drawingVersion;
                 this.renderVersion = renderVersion;
@@ -271,23 +271,29 @@ namespace AvUtil
 
                 CancellationToken cancelToken = cancelSource.Token;
 
-                this.task = SkiaWritableBitmap.DrawToBitmapAsync(pixelSize, async (canvas, token) => {
-                    token.ThrowIfCancellationRequested();
+                // All canvas operations (Concat, Clear, Draw) must happen on the same thread.
+                // SKCanvas is not thread-safe, so we wrap everything in a single Task.Run
+                // and use the synchronous DrawToBitmap.
+                this.task = Task.Run(() => {
+                    cancelToken.ThrowIfCancellationRequested();
 
-                    RectangleF destRect = new RectangleF(0, 0, pixelSize.Width, pixelSize.Height);
-                    SKMatrix transformation = GeometryUtil.CreateRectangleTransform(Conv.ToSKRect(rectToDraw), Conv.ToSKRect(destRect));
-                    canvas.Concat(ref transformation);
+                    return SkiaWritableBitmap.DrawToBitmap(pixelSize, (canvas, token) => {
+                        token.ThrowIfCancellationRequested();
 
-                    
-                    await drawing.DrawAsync(canvas, 
-                                            new SKRect((float) rectToDraw.Left, (float)rectToDraw.Top, (float)rectToDraw.Right, (float)rectToDraw.Bottom), 
-                                            new SKSizeI(pixelSize.Width, pixelSize.Height), 
-                                            token);
-                    token.ThrowIfCancellationRequested();
+                        RectangleF destRect = new RectangleF(0, 0, pixelSize.Width, pixelSize.Height);
+                        SKMatrix transformation = GeometryUtil.CreateRectangleTransform(Conv.ToSKRect(rectToDraw), Conv.ToSKRect(destRect));
+                        canvas.Concat(ref transformation);
 
-                    if (onCompleted != null)
+                        drawing.ThreadsafeDraw(canvas,
+                                               new SKRect((float)rectToDraw.Left, (float)rectToDraw.Top, (float)rectToDraw.Right, (float)rectToDraw.Bottom),
+                                               new SKSizeI(pixelSize.Width, pixelSize.Height),
+                                               token);
+                        token.ThrowIfCancellationRequested();
+
+                        if (onCompleted != null)
                             onCompleted();
-                }, longLived: false, cancelToken);
+                    }, longLived: false, cancelToken);
+                }, cancelToken);
             }
 
             public bool IsCompleted => task.Status == TaskStatus.RanToCompletion;
@@ -306,7 +312,7 @@ namespace AvUtil
             {
                 if (IsCompleted && clipRect.Intersects(rect)) {
                     using (var state = drawingContext.PushClip(clipRect)) {
-                        drawingContext.DrawImage(task.Result.Bitmap, rect);
+                        task.Result.DrawToContext(drawingContext, rect);
                     }
                 }
             }
@@ -330,7 +336,7 @@ namespace AvUtil
                     if (task.IsCompletedSuccessfully) {
                         WriteableBitmapTracker bitmapTracker = task.Result;
                         if (bitmapTracker != null) {
-                            bitmapTracker.Dispose();
+                            WriteableBitmapPool.Instance.Return(bitmapTracker);
                         }
                     }
                     task.Dispose();
