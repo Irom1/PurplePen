@@ -8,6 +8,7 @@ using AvPurplePen.Views;
 using AvUtil;
 using PurplePen;
 using System;
+using static AvUtil.PanAndZoom;
 
 namespace AvPurplePen;
 
@@ -28,11 +29,42 @@ public partial class MapViewer : UserControl
             routingStrategy: RoutingStrategies.Direct);
 
 
+    // Tracks the state of a single mouse button for converting basic events into
+    // fancy events (click, drag, hover, etc.).
+    private struct ButtonState
+    {
+        public bool IsDown;           // Is the button currently held down?
+        public bool IsDragging;       // Is a drag in progress?
+        public bool CanDrag;          // Was dragging allowed by the MouseDown handler?
+        public bool CanPan;           // Was delayed panning allowed by the MouseDown handler?
+        public bool SuppressClick;    // Should a click event be suppressed on release?
+        public Point DownPosition;    // World-coordinate position where the button went down.
+        public Point DownPixelPosition; // Logical-pixel position where the button went down (for BeginPanning).
+        public ulong DownTime;        // Timestamp (ms) when the button went down.
+    }
+
+    private const float MinDragDistance = 2.8f;   // Minimum pixel distance to start a drag.
+    private const float MaxClickDistance = 1.7f;   // Maximum pixel distance to still count as a click.
+    private const int MaxClickTime = 300;          // Maximum milliseconds for a press-release to be a click.
+    private const int HoverDelayMs = 400;          // Milliseconds of stillness before a hover event fires.
+
+    private const int LeftButton = 0;
+    private const int RightButton = 1;
+    private const int ButtonCount = 2;
+
+    private ButtonState[] buttonStates = new ButtonState[ButtonCount];
+    private DispatcherTimer? hoverTimer;
+    private Point lastHoverLocation = new Point(double.NaN, double.NaN);
+    private Point lastMouseWorldLocation;
+
     private HighlightDrawing highlightDrawing = new HighlightDrawing();
 
     public MapViewer()
     {
         InitializeComponent();
+
+        hoverTimer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(HoverDelayMs) };
+        hoverTimer.Tick += HoverTimer_Tick;
     }
 
     public IMapDisplay? MapDisplay {
@@ -96,41 +128,236 @@ public partial class MapViewer : UserControl
         }
     }
 
-    // A mouse event has occurred.
-    private void panAndZoom_MouseActivity(object? sender, PanAndZoom.BasicMouseEventArgs e)
+    #region Fancy mouse event conversion
+
+    // Returns the distance in world coordinates between two points.
+    private static float WorldDistance(Point a, Point b)
     {
-        if (e.BasicAction == PanAndZoom.BasicMouseAction.Down && 
-            (e.Button == MouseButton.Right || e.Button == MouseButton.Middle)) 
+        double dx = a.X - b.X;
+        double dy = a.Y - b.Y;
+        return (float)Math.Sqrt(dx * dx + dy * dy);
+    }
+
+    // Returns the button index for tracking state, or -1 for unsupported buttons.
+    private static int ButtonIndex(MouseButton button) => button switch
+    {
+        MouseButton.Left => LeftButton,
+        MouseButton.Right => RightButton,
+        _ => -1,
+    };
+
+    // Returns the MouseButton for a given button index.
+    private static MouseButton ButtonForIndex(int index) => index switch
+    {
+        LeftButton => MouseButton.Left,
+        RightButton => MouseButton.Right,
+        _ => MouseButton.None,
+    };
+
+    // Constructs a FancyMouseEventArgs, raises it, and returns it so the caller
+    // can inspect response fields (e.g. MouseDownResult).
+    private FancyMouseEventArgs RaiseFancyMouseEvent(MouseButton button, FancyMouseAction action, Point worldLocation, Point worldDragStart = default)
+    {
+        FancyMouseEventArgs args = new FancyMouseEventArgs(FancyMouseActivityEvent, this, button, action, worldLocation)
+        {
+            WorldDragStart = worldDragStart,
+        };
+        RaiseEvent(args);
+        return args;
+    }
+
+    // Stops the hover timer and resets the last hover location sentinel.
+    private void DisableHoverTimer()
+    {
+        if (hoverTimer != null) {
+            hoverTimer.Stop();
+        }
+        lastHoverLocation = new Point(double.NaN, double.NaN);
+    }
+
+    // Restarts the hover timer if the mouse has moved to a new location.
+    private void ResetHoverTimer(Point worldLocation)
+    {
+        if (worldLocation != lastHoverLocation) {
+            if (hoverTimer != null) {
+                hoverTimer.Stop();
+                hoverTimer.Interval = TimeSpan.FromMilliseconds(HoverDelayMs);
+                hoverTimer.Start();
+            }
+            lastHoverLocation = worldLocation;
+        }
+    }
+
+    // Fires when the mouse has been still long enough to count as a hover.
+    private void HoverTimer_Tick(object? sender, EventArgs e)
+    {
+        if (hoverTimer != null) {
+            hoverTimer.Stop();
+        }
+        RaiseFancyMouseEvent(MouseButton.None, FancyMouseAction.Hover, lastMouseWorldLocation);
+    }
+
+    // Receives basic mouse events from the PanAndZoom control and converts them
+    // into fancy mouse events (click, drag, hover, etc.).
+    private void panAndZoom_MouseActivity(object? sender, BasicMouseEventArgs e)
+    {
+        if (e.BasicAction == BasicMouseAction.Down &&
+            (e.Button == MouseButton.Right || e.Button == MouseButton.Middle))
         {
             // Middle and right mouse buttons always pan the map.
             panAndZoom.BeginPanning(e.LogicalPixelLocation, e.Button);
         }
         else {
-            // Reraise the event to the main window.
-
-            // Temporary: this is just to get things to compile. Eventually we want translate basic
-            // mouse up/down/move into clicks, drags, hovers, etc.
-
-            FancyMouseAction fancyAction;
             switch (e.BasicAction) {
-            case PanAndZoom.BasicMouseAction.Down:
-                fancyAction = FancyMouseAction.Down;
+            case BasicMouseAction.Down:
+                HandleMouseDown(e);
                 break;
-            case PanAndZoom.BasicMouseAction.Move:
-                fancyAction = FancyMouseAction.Move;
+            case BasicMouseAction.Move:
+                HandleMouseMove(e);
                 break;
-            case PanAndZoom.BasicMouseAction.Up:
-                fancyAction = FancyMouseAction.Up;
+            case BasicMouseAction.Up:
+                HandleMouseUp(e);
                 break;
-            default:
-                return;
             }
-
-            FancyMouseEventArgs args =
-                new FancyMouseEventArgs(FancyMouseActivityEvent, this, e.Button, fancyAction, e.WorldLocation);
-            RaiseEvent(args);
         }
     }
+
+    // Handles a mouse button press. Records the press state, raises the Down event,
+    // and processes the handler's MouseDownResult to decide drag/pan/click behavior.
+    private void HandleMouseDown(BasicMouseEventArgs e)
+    {
+        int index = ButtonIndex(e.Button);
+        if (index < 0) return;
+
+        buttonStates[index].IsDown = true;
+        buttonStates[index].IsDragging = false;
+        buttonStates[index].CanDrag = false;
+        buttonStates[index].CanPan = false;
+        buttonStates[index].SuppressClick = false;
+        buttonStates[index].DownPosition = e.WorldLocation;
+        buttonStates[index].DownPixelPosition = e.LogicalPixelLocation;
+        buttonStates[index].DownTime = e.TimeStamp;
+
+        FancyMouseEventArgs args = RaiseFancyMouseEvent(e.Button, FancyMouseAction.Down, e.WorldLocation, e.WorldLocation);
+
+        switch (args.MouseDownResult) {
+        case MouseDownResult.ImmediateDrag:
+            buttonStates[index].CanDrag = true;
+            buttonStates[index].IsDragging = true;
+            DisableHoverTimer();
+            break;
+
+        case MouseDownResult.DelayedDrag:
+            buttonStates[index].CanDrag = true;
+            break;
+
+        case MouseDownResult.ImmediatePan:
+            // Hand off to PanAndZoom for panning immediately.
+            panAndZoom.BeginPanning(e.LogicalPixelLocation, e.Button);
+            break;
+
+        case MouseDownResult.DelayedPan:
+            // Panning starts once the mouse moves far enough, otherwise it's a click.
+            buttonStates[index].CanPan = true;
+            break;
+
+        case MouseDownResult.SuppressClick:
+            buttonStates[index].SuppressClick = true;
+            break;
+        }
+    }
+
+    // Handles mouse movement. Raises Move, manages the hover timer, detects drag
+    // start for any button that has CanDrag set, and raises Drag for active drags.
+    private void HandleMouseMove(BasicMouseEventArgs e)
+    {
+        lastMouseWorldLocation = e.WorldLocation;
+
+        RaiseFancyMouseEvent(e.Button, FancyMouseAction.Move, e.WorldLocation);
+        ResetHoverTimer(e.WorldLocation);
+
+        for (int i = 0; i < ButtonCount; i++) {
+            // Check if a drag should start: button is down, not yet dragging,
+            // dragging was allowed, and the mouse has moved far enough.
+            if (buttonStates[i].IsDown && !buttonStates[i].IsDragging && buttonStates[i].CanDrag) {
+                float worldDistance = WorldDistance(e.WorldLocation, buttonStates[i].DownPosition);
+                float pixelDistance = panAndZoom.WorldToPixelDistance(worldDistance);
+                if (pixelDistance >= MinDragDistance) {
+                    buttonStates[i].IsDragging = true;
+                    DisableHoverTimer();
+                }
+            }
+
+            // Check if a delayed pan should start: same distance threshold as dragging.
+            if (buttonStates[i].IsDown && buttonStates[i].CanPan) {
+                float worldDistance = WorldDistance(e.WorldLocation, buttonStates[i].DownPosition);
+                float pixelDistance = panAndZoom.WorldToPixelDistance(worldDistance);
+                if (pixelDistance >= MinDragDistance) {
+                    buttonStates[i].IsDown = false;
+                    buttonStates[i].CanPan = false;
+                    panAndZoom.BeginPanning(buttonStates[i].DownPixelPosition, ButtonForIndex(i));
+                    DisableHoverTimer();
+                }
+            }
+
+            // Raise a Drag event for any button that is actively dragging.
+            if (buttonStates[i].IsDown && buttonStates[i].IsDragging) {
+                RaiseFancyMouseEvent(ButtonForIndex(i), FancyMouseAction.Drag, e.WorldLocation, buttonStates[i].DownPosition);
+                DisableHoverTimer();
+            }
+        }
+    }
+
+    // Handles a mouse button release. Determines whether the gesture was a click,
+    // a drag end, or a plain release, and raises the appropriate event.
+    private void HandleMouseUp(BasicMouseEventArgs e)
+    {
+        int index = ButtonIndex(e.Button);
+        if (index < 0) return;
+
+        bool wasDown = buttonStates[index].IsDown;
+        bool wasDrag = buttonStates[index].IsDragging;
+        Point downPosition = buttonStates[index].DownPosition;
+
+        // A click requires: button was down, no drag occurred, click not suppressed,
+        // mouse stayed close to the down position, and the press was short enough.
+        bool wasClick = wasDown && !wasDrag && !buttonStates[index].SuppressClick
+            && panAndZoom.WorldToPixelDistance(WorldDistance(e.WorldLocation, downPosition)) <= MaxClickDistance
+            && (e.TimeStamp - buttonStates[index].DownTime) <= (ulong)MaxClickTime;
+
+        // Clear button state before raising the event.
+        buttonStates[index].IsDown = false;
+        buttonStates[index].IsDragging = false;
+        buttonStates[index].SuppressClick = false;
+
+        // Raise exactly one of DragEnd, Click, or Up.
+        if (wasDrag) {
+            RaiseFancyMouseEvent(e.Button, FancyMouseAction.DragEnd, e.WorldLocation, downPosition);
+        }
+        else if (wasClick) {
+            RaiseFancyMouseEvent(e.Button, FancyMouseAction.Click, downPosition, downPosition);
+        }
+        else if (wasDown) {
+            RaiseFancyMouseEvent(e.Button, FancyMouseAction.Up, e.WorldLocation, downPosition);
+        }
+    }
+
+    // Cancels any drags currently in progress and raises DragCancel for each.
+    public void CancelAllDrags()
+    {
+        for (int i = 0; i < ButtonCount; i++) {
+            if (buttonStates[i].IsDragging) {
+                buttonStates[i].IsDown = false;
+                buttonStates[i].IsDragging = false;
+                RaiseFancyMouseEvent(ButtonForIndex(i), FancyMouseAction.DragCancel, buttonStates[i].DownPosition, buttonStates[i].DownPosition);
+            }
+            else {
+                buttonStates[i].IsDown = false;
+            }
+        }
+    }
+
+    #endregion
 
     // Types of mouse actions.
     public enum FancyMouseAction
