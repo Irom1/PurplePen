@@ -34,7 +34,8 @@
       "Bash(dir \"D:\\\\Repos\\\\Main\\\\PurplePen\\\\src\\\\PdfConverter\\\\obj\\\\Release\\\\net10.0 2>nul | findstr apphost && echo --- && dir D:ReposMainPurplePensrcPdfConverterobjReleasenet10.0win-x64\")",
       "Bash(findstr \"apphost\")",
       "Bash(find D:ReposMainPurplePen/src/AvPurplePen -path */bin/*/PdfConverter.exe -type f)",
-      "Bash(xargs ls:*)"
+      "Bash(xargs ls:*)",
+      "Bash(grep -r \"ImageSharp\\\\|SixLabors\" /d/Repos/Main/PurplePen/src --include=*.cs --include=*.csproj)"
     ]
   }
 }

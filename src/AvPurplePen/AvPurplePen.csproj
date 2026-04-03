@@ -18,6 +18,12 @@
     <AvaloniaResource Include="Assets\**" />
   </ItemGroup>
 
+  <!-- Exclude ImageSharp from ReadyToRun — it grows from 1.7 MB to 30 MB
+       and is only used for metadata/format detection, not on the hot path. -->
+  <ItemGroup>
+    <PublishReadyToRunExclude Include="SixLabors.ImageSharp.dll" />
+  </ItemGroup>
+
   <ItemGroup>
     <PackageReference Include="Avalonia" />
     <PackageReference Include="Avalonia.Desktop" />
