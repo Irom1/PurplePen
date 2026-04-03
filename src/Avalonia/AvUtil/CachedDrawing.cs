@@ -277,7 +277,7 @@ namespace AvUtil
                 this.task = Task.Run(() => {
                     cancelToken.ThrowIfCancellationRequested();
 
-                    return SkiaWritableBitmap.DrawToBitmap(pixelSize, (canvas, token) => {
+                    return SkiaWriteableBitmapUtil.DrawToBitmap(pixelSize, (canvas, token) => {
                         token.ThrowIfCancellationRequested();
 
                         RectangleF destRect = new RectangleF(0, 0, pixelSize.Width, pixelSize.Height);
@@ -292,7 +292,7 @@ namespace AvUtil
 
                         if (onCompleted != null)
                             onCompleted();
-                    }, longLived: false, cancelToken);
+                    }, cancelToken);
                 }, cancelToken);
             }
 
@@ -312,7 +312,7 @@ namespace AvUtil
             {
                 if (IsCompleted && clipRect.Intersects(rect)) {
                     using (var state = drawingContext.PushClip(clipRect)) {
-                        task.Result.DrawToContext(drawingContext, rect);
+                        drawingContext.DrawImage(task.Result.Bitmap, rect);
                     }
                 }
             }
@@ -335,9 +335,7 @@ namespace AvUtil
                 if (task != null && task.IsCompleted) {
                     if (task.IsCompletedSuccessfully) {
                         WriteableBitmapTracker bitmapTracker = task.Result;
-                        if (bitmapTracker != null) {
-                            WriteableBitmapPool.Instance.Return(bitmapTracker);
-                        }
+                        bitmapTracker?.Dispose();
                     }
                     task.Dispose();
                 }

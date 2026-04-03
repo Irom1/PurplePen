@@ -16,6 +16,7 @@ namespace AvUtil
     // An Avalonia control that can be drawn on using SkiaSharp drawing commands.
     // Handle the Paint event to draw to the canvas using SkiaSharp.
     // Use InvalidateSurface to trigger a repaint of the canvas which will fire the Paint event.
+    // Use InvalidateRect to invalidate a rectangle; a repaint will only fire if that rectangle is in view.
     //
     // It implements the ILogicalScrollable interface, so it can be used with ScrollViewer to provide
     // scrolling functionality when the content is larger than the view.
@@ -117,12 +118,12 @@ namespace AvUtil
         public bool IsLogicalScrollEnabled => true;
 
         public Size ScrollSize => new Size(
-            CanHorizontallyScroll ? Viewport.Width * ScrollChangeFraction : 0,
-            CanVerticallyScroll ? Viewport.Height * ScrollChangeFraction : 0);
+            CanHorizontallyScroll ? _logicalSize.Width * ScrollChangeFraction : 0,
+            CanVerticallyScroll ? _logicalSize.Height * ScrollChangeFraction : 0);
 
-        public Size PageScrollSize => Viewport;
+        public Size PageScrollSize => _logicalSize;
 
-        public Size     Extent => LogicalExtent;
+        public Size Extent => LogicalExtent;
 
         public Vector Offset {
             get => _offset;
@@ -136,7 +137,11 @@ namespace AvUtil
             }
         }
 
-        public Size Viewport => _logicalSize;
+        Size IScrollable.Viewport => _logicalSize;
+
+        // The part of the context that is currently visible.
+        public Rect VisibleRect => new Rect(new Point(_offset.X, _offset.Y), _logicalSize);
+
 
         public event EventHandler? ScrollInvalidated;
 
@@ -146,6 +151,23 @@ namespace AvUtil
         /// </summary>
         public void InvalidateSurface()
         {
+            if (!repaintQueued) {
+                repaintQueued = true;
+                Dispatcher.UIThread.Post(RepaintSurface);
+            }
+        }
+
+        /// <summary>
+        /// Invalidates the canvas causing the surface to be repainted.
+        /// This will fire the <see cref="Paint"/> event.
+        /// </summary>
+        public void InvalidateRect(Rect rectInvalid)
+        {
+            // If the invalid rectangle is not visible, there is nothing to do; 
+            // it will get repainted when it scrolls into view.
+            if (!rectInvalid.Intersects(VisibleRect))
+                return;
+
             if (!repaintQueued) {
                 repaintQueued = true;
                 Dispatcher.UIThread.Post(RepaintSurface);
@@ -173,24 +195,22 @@ namespace AvUtil
                 // WriteableBitmap does not support zero-size dimensions
                 // Therefore, to avoid a crash, exit here if size is zero
                 if (!this.IsVisible || _pixelWidth == 0 || _pixelHeight == 0) {
-                    if (_writeableBitmapTracker != null) {
-                        WriteableBitmapPool.Instance.Return(_writeableBitmapTracker);
-                    }
+                    _writeableBitmapTracker?.Dispose();
                     _writeableBitmapTracker = null;
                     return;
                 }
 
-                if (_writeableBitmapTracker != null && (_writeableBitmapTracker.PixelSize.Width != _pixelWidth || _writeableBitmapTracker.PixelSize.Height != _pixelHeight)) {
-                    WriteableBitmapPool.Instance.Return(_writeableBitmapTracker);
+                if (_writeableBitmapTracker != null && (_writeableBitmapTracker.Bitmap.PixelSize.Width != _pixelWidth || _writeableBitmapTracker.Bitmap.PixelSize.Height != _pixelHeight)) {
+                    _writeableBitmapTracker.Dispose();
                     _writeableBitmapTracker = null;
                 }
 
-                _writeableBitmapTracker ??= WriteableBitmapPool.Instance.Rent(new PixelSize(_pixelWidth, _pixelHeight), longLived: true);
+                _writeableBitmapTracker ??= new WriteableBitmapTracker(new PixelSize(_pixelWidth, _pixelHeight));
 
-                SkiaWritableBitmap.DrawToBitmap(_writeableBitmapTracker,
+                SkiaWriteableBitmapUtil.DrawToBitmap(_writeableBitmapTracker,
                     (SKCanvas canvas, CancellationToken cancelToken) => {
                         canvas.SetMatrix(SKMatrix.CreateScaleTranslation(Convert.ToSingle(_scale), Convert.ToSingle(_scale), Convert.ToSingle(-_offset.X * _scale), Convert.ToSingle(-_offset.Y * _scale)));
-                        this.OnPaint(new PaintEventArgs(canvas, new Rect(new Point(_offset.X, _offset.Y), Viewport), new SKSizeI(_pixelWidth, _pixelHeight), _scale, cancelToken));
+                        this.OnPaint(new PaintEventArgs(canvas, new Rect(new Point(_offset.X, _offset.Y), _logicalSize), new SKSizeI(_pixelWidth, _pixelHeight), _scale, cancelToken));
                     });
 
                 InvalidateVisual();
@@ -220,8 +240,8 @@ namespace AvUtil
                 if (targetRect.Left < newOffset.X) {
                     newOffset = new Vector(targetRect.Left, newOffset.Y);
                 }
-                else if (targetRect.Right > newOffset.X + Viewport.Width) {
-                    newOffset = new Vector(targetRect.Right - Viewport.Width, newOffset.Y);
+                else if (targetRect.Right > newOffset.X + _logicalSize.Width) {
+                    newOffset = new Vector(targetRect.Right - _logicalSize.Width, newOffset.Y);
                 }
             }
 
@@ -229,13 +249,19 @@ namespace AvUtil
                 if (targetRect.Top < newOffset.Y) {
                     newOffset = new Vector(newOffset.X, targetRect.Top);
                 }
-                else if (targetRect.Bottom > newOffset.Y + Viewport.Height) {
-                    newOffset = new Vector(newOffset.X, targetRect.Bottom - Viewport.Height);
+                else if (targetRect.Bottom > newOffset.Y + _logicalSize.Height) {
+                    newOffset = new Vector(newOffset.X, targetRect.Bottom - _logicalSize.Height);
                 }
             }
 
             Offset = newOffset;
             return true;
+        }
+
+        // Scroll the target rectangle into view.
+        public void BringIntoView(Rect targetRect)
+        {
+            BringIntoView(this, targetRect);
         }
 
         public Control? GetControlInDirection(NavigationDirection direction, Control? from)
@@ -251,9 +277,7 @@ namespace AvUtil
         protected override void OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs e)
         {
             base.OnDetachedFromVisualTree(e);
-            if (_writeableBitmapTracker != null) {
-                WriteableBitmapPool.Instance.Return(_writeableBitmapTracker);
-            }
+            _writeableBitmapTracker?.Dispose();
             _writeableBitmapTracker = null;
         }
 
@@ -309,8 +333,8 @@ namespace AvUtil
 
         private Vector CoerceOffset(Vector offset)
         {
-            double maxX = CanHorizontallyScroll ? Math.Max(0, Extent.Width - Viewport.Width) : 0;
-            double maxY = CanVerticallyScroll ? Math.Max(0, Extent.Height - Viewport.Height) : 0;
+            double maxX = CanHorizontallyScroll ? Math.Max(0, Extent.Width - _logicalSize.Width) : 0;
+            double maxY = CanVerticallyScroll ? Math.Max(0, Extent.Height - _logicalSize.Height) : 0;
 
             return new Vector(
                 Math.Clamp(offset.X, 0, maxX),

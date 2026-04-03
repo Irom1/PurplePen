@@ -65,21 +65,19 @@ namespace AvUtil
                 // WriteableBitmap does not support zero-size dimensions
                 // Therefore, to avoid a crash, exit here if size is zero
                 if (!this.IsVisible || _pixelWidth == 0 || _pixelHeight == 0) {
-                    if (_writeableBitmapTracker != null) {
-                        WriteableBitmapPool.Instance.Return(_writeableBitmapTracker);
-                    }
+                    _writeableBitmapTracker?.Dispose();
                     _writeableBitmapTracker = null;
                     return;
                 }
 
-                if (_writeableBitmapTracker != null && (_writeableBitmapTracker.PixelSize.Width != _pixelWidth || _writeableBitmapTracker.PixelSize.Height != _pixelHeight)) {
-                    WriteableBitmapPool.Instance.Return(_writeableBitmapTracker);
+                if (_writeableBitmapTracker != null && (_writeableBitmapTracker.Bitmap.PixelSize.Width != _pixelWidth || _writeableBitmapTracker.Bitmap.PixelSize.Height != _pixelHeight)) {
+                    _writeableBitmapTracker.Dispose(); ;
                     _writeableBitmapTracker = null;
                 }
 
-                _writeableBitmapTracker ??= WriteableBitmapPool.Instance.Rent(new PixelSize(_pixelWidth, _pixelHeight), longLived: true);
+                _writeableBitmapTracker ??= new WriteableBitmapTracker(new PixelSize(_pixelWidth, _pixelHeight));
 
-                SkiaWritableBitmap.DrawToBitmap(_writeableBitmapTracker,
+                SkiaWriteableBitmapUtil.DrawToBitmap(_writeableBitmapTracker,
                     (SKCanvas canvas, CancellationToken cancelToken) => {
                         canvas.Scale(Convert.ToSingle(_scale));
                         this.OnPaint(new PaintEventArgs(canvas, _logicalSize, new SKSizeI(_pixelWidth, _pixelHeight), _scale, cancelToken));
@@ -103,9 +101,7 @@ namespace AvUtil
         protected override void OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs e)
         {
             base.OnDetachedFromVisualTree(e);
-            if (_writeableBitmapTracker != null) {
-                WriteableBitmapPool.Instance.Return(_writeableBitmapTracker);
-            }
+            _writeableBitmapTracker?.Dispose();
             _writeableBitmapTracker = null;
         }
 

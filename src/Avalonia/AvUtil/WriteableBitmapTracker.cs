@@ -1,6 +1,8 @@
 ﻿using Avalonia;
 using Avalonia.Media;
 using Avalonia.Media.Imaging;
+using Avalonia.Platform;
+using Avalonia.Skia;
 using SkiaSharp;
 using System;
 using System.Collections.Generic;
@@ -13,50 +15,28 @@ namespace AvUtil
 {
     // A class that tracks a WriteableBitmap and ensures it is disposed properly.
     // If the bitmap is not disposed, it logs a warning with the stack trace of where it was allocated.
+    //
+    // Note: it is OK to Dispose of a WriteableBitmapTracker after it is used to draw to a DrawingContext.
+    // However: if you draw AGAIN to it, then that drawing may be picked up by the render thread (although it
+    // will respect Lock calls). So while it is tempting to reuse WritableBitmaps to avoid allocating new ones, 
+    // it can cause drawing artifacts, so generally you shouldn't, unless you are reusing it to draw the exact
+    // same portion of the same control (like SkiaDrawingView does).
     public class WriteableBitmapTracker : IDisposable
     {
         public WriteableBitmap Bitmap { get; }
         private bool _isDisposed;
         private readonly string _allocationStackTrace;
-        private PixelSize pixelSize;  // Could be smaller than the actual bitmap size in rental scenarios, but is the size that was requested by the user.
 
-        public WriteableBitmapTracker(WriteableBitmap bitmap)
+        // Allocated a new WriteableBitmap of the given pixel size.
+        public WriteableBitmapTracker(PixelSize pixelSize)
         {
-            Bitmap = bitmap;
-            pixelSize = bitmap.PixelSize;
-            // Capture where this bitmap was created to make debugging easy
+            Bitmap = new WriteableBitmap(
+                pixelSize,
+                new Vector(96, 96),
+                SKImageInfo.PlatformColorType.ToPixelFormat(),
+                AlphaFormat.Premul);
+
             _allocationStackTrace = Environment.StackTrace;
-        }
-
-
-        // Get the size of the bitmap. This may be smaller than the actual bitmap size in rental scenarios.
-        public PixelSize PixelSize => pixelSize;
-
-        // Set the rental size of the bitmap. This is the size that was requested by the user, and may be smaller than the actual bitmap size.
-        public void SetRentalSize(PixelSize pixelSize)
-        {
-            if (pixelSize.Width > Bitmap.PixelSize.Width || pixelSize.Height > Bitmap.PixelSize.Height)
-                throw new ArgumentException("Rental size cannot be larger than the actual bitmap size.");
-            this.pixelSize = pixelSize;
-        }
-
-        // Draw to the drawing context, using the rental PixelSize.
-        public void DrawToContext(DrawingContext drawingContext, Rect destinationRect)
-        {
-            // Calculate the DPI scaling factor of the specific bitmap
-            double scaleX = Bitmap.Size.Width / Bitmap.PixelSize.Width;
-            double scaleY = Bitmap.Size.Height / Bitmap.PixelSize.Height;
-
-            // Scale the physical coordinates into logical DIPs
-            Rect logicalSourceRect = new Rect(
-                0,
-                0,
-                pixelSize.Width * scaleX,
-                pixelSize.Height * scaleY
-            );
-
-            // Now it's safe to draw!
-            drawingContext.DrawImage(Bitmap, logicalSourceRect, destinationRect);
         }
 
         public void Dispose()
@@ -80,9 +60,6 @@ namespace AvUtil
                 Console.WriteLine($"Allocated at: {_allocationStackTrace}");
                 Debug.WriteLine("MEMORY LEAK DETECTED: WriteableBitmap was not disposed!");
                 Debug.WriteLine($"Allocated at: {_allocationStackTrace}");
-
-                // Optional: Clean up the bitmap here as a failsafe, though doing 
-                // unmanaged cleanup inside a finalizer thread can sometimes be risky depending on the graphics context.
             }
         }
     }

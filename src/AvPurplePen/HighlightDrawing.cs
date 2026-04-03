@@ -55,7 +55,7 @@ namespace AvPurplePen
             // For now, create a writable bitmap of the full window size. But we should be able to instead create one
             // that is just big enough for "highlightBounds" of the highlights, and draw that, which would be more efficient.
 
-            WriteableBitmapTracker skiaBitmap = SkiaWritableBitmap.DrawToBitmap(pixelSize, canvas => {
+            WriteableBitmapTracker skiaBitmap = SkiaWriteableBitmapUtil.DrawToBitmap(pixelSize, canvas => {
                 using (Skia_GraphicsTarget grTarget = new Skia_GraphicsTarget(canvas)) {
                     // Old Purple Pen was not anti-aliased, but unless it's a performance issue it's nicer to
                     // turn it on. I turn it off specifically for the cross-hair drawing to get that crisp.
@@ -72,11 +72,11 @@ namespace AvPurplePen
                 // Things are flipped vertically between Skia and Avalonia, so we need to flip the bitmap around the horizontal center line before drawing it.
                 Matrix flipTransform = Matrix.CreateScale(1, -1) * Matrix.CreateTranslation(0, (rectToDraw.Y * 2) + rectToDraw.Height);
                 using (var pushedState = drawingContext.PushTransform(flipTransform)) {
-                    skiaBitmap.DrawToContext(drawingContext, rectToDraw);
+                    drawingContext.DrawImage(skiaBitmap.Bitmap, rectToDraw);
                 }
             }
             finally {
-                WriteableBitmapPool.Instance.Return(skiaBitmap);
+                skiaBitmap.Dispose();
             }
         }
 
