@@ -29,7 +29,12 @@
       "Bash(grep -r .pob /d/Repos/Main/PurplePen/src --include=*.cs)",
       "Bash(dotnet test:*)",
       "WebFetch(domain:github.com)",
-      "WebSearch"
+      "WebSearch",
+      "Bash(dir \"D:\\\\Repos\\\\Main\\\\PurplePen\\\\src\\\\PdfConverter\\\\bin\\\\Release\\\\net10.0\"\" 2>nul && echo \"---\" && dir \"D:ReposMainPurplePensrcPdfConverterbinReleasenet10.0win-x64\"\")",
+      "Bash(dir \"D:\\\\Repos\\\\Main\\\\PurplePen\\\\src\\\\PdfConverter\\\\obj\\\\Release\\\\net10.0 2>nul | findstr apphost && echo --- && dir D:ReposMainPurplePensrcPdfConverterobjReleasenet10.0win-x64\")",
+      "Bash(findstr \"apphost\")",
+      "Bash(find D:ReposMainPurplePen/src/AvPurplePen -path */bin/*/PdfConverter.exe -type f)",
+      "Bash(xargs ls:*)"
     ]
   }
 }
