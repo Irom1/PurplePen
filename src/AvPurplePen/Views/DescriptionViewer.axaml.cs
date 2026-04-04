@@ -27,6 +27,7 @@ public partial class DescriptionViewer : UserControl
     public static readonly StyledProperty<SelectedLines?> SelectionProperty =
         AvaloniaProperty.Register<DescriptionViewer, SelectedLines?>(nameof(Selection), defaultBindingMode: BindingMode.TwoWay);
 
+    private SymbolDB? symbolDB;
     private DescriptionRenderer? renderer;
 
     private const int margin = 3;            // margin size in logical pixels
@@ -89,6 +90,7 @@ public partial class DescriptionViewer : UserControl
         if (this.DataContext is DescriptionViewerViewModel vm) {
             if (vm.SymbolDB != null) {
                 // Create the renderer.
+                symbolDB = vm.SymbolDB;
                 renderer = new DescriptionRenderer(vm.SymbolDB);
                 renderer.Margin = margin;
                 renderer.DescriptionKind = DescriptionKind.Symbols;     // control always shows symbols.
@@ -146,7 +148,7 @@ public partial class DescriptionViewer : UserControl
 
     private void PopupMenu(HitTestResult hitTest)
     {
-        if (renderer == null)
+        if (renderer == null || symbolDB == null)
             return;
 
         Avalonia.Point popupMenuLocation = new Avalonia.Point(hitTest.rect.Left + renderer.CellSize * 0.5F,
@@ -164,7 +166,7 @@ public partial class DescriptionViewer : UserControl
                 Setters = { new Setter(FlyoutPresenter.PaddingProperty, new Thickness(3)) }
             },
             Content = new DescriptionPopup() {
-                DataContext = new DescriptionPopupViewModel()
+                DataContext = new DescriptionPopupViewModel(symbolDB, "en", 8, 'D')
             }
         };
 

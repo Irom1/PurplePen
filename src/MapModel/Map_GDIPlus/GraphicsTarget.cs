@@ -1452,9 +1452,9 @@ namespace PurplePen.MapModel
 
     public class GDIPlus_BitmapGraphicsTargetProvider : IBitmapGraphicsTargetProvider
     {
-        public IBitmapGraphicsTarget CreateBitmapGraphicsTarget(int width, int height, IColorConverter colorConverter)
+        public IBitmapGraphicsTarget CreateBitmapGraphicsTarget(int width, int height, CmykColor initialColor, IColorConverter colorConverter)
         {
-            return new GDIPlus_BitmapGraphicsTarget(width, height, true, CmykColor.FromCmyk(0, 0, 0, 0), RectangleF.FromLTRB(0, 0, width, height), false, colorConverter);
+            return new GDIPlus_BitmapGraphicsTarget(width, height, true, initialColor, RectangleF.FromLTRB(0, 0, width, height), false, colorConverter);
         }
 
         public void Dispose()

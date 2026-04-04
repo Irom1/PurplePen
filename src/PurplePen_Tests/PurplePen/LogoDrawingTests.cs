@@ -22,7 +22,7 @@ namespace PurplePen.Tests
             string baseline = TestUtil.GetTestFile("logo\\logo1_baseline.png");
             string testfile = TestUtil.GetTestFile("logo\\logo1_temp.png");
 
-            IBitmapGraphicsTarget bmTarget = Services.BitmapGraphicsTargetProvider.CreateBitmapGraphicsTarget(559, 182, DefaultColorConverter.Instance);
+            IBitmapGraphicsTarget bmTarget = Services.BitmapGraphicsTargetProvider.CreateBitmapGraphicsTarget(559, 182, CmykColor.FromCmyk(0, 0, 0, 0), DefaultColorConverter.Instance);
             LogoDrawing.DrawPurplePenLogo(bmTarget, new System.Drawing.RectangleF(0, 0, 559, 182));
             IGraphicsBitmap bitmap = bmTarget.FinishBitmap();
             using (Stream stream = new FileStream(testfile, FileMode.Create, FileAccess.Write)) {

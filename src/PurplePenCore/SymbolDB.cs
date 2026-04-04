@@ -563,7 +563,7 @@ public void Draw(IGraphicsTarget g, CmykColor color, RectangleF rect)
             const int iconSize = 24;
             RectangleF iconRect = new RectangleF(0, 0, iconSize, iconSize);
 
-            using (IBitmapGraphicsTarget grTarget = Services.BitmapGraphicsTargetProvider.CreateBitmapGraphicsTarget(iconSize, iconSize, DefaultColorConverter.Instance)) {
+            using (IBitmapGraphicsTarget grTarget = Services.BitmapGraphicsTargetProvider.CreateBitmapGraphicsTarget(iconSize, iconSize, CmykColor.FromCmyk(0, 0, 0, 0), DefaultColorConverter.Instance)) {
                 CmykColor white = CmykColor.FromColor(Color.White);
                 object whiteBrush = new object();
                 grTarget.CreateSolidBrush(whiteBrush, white);

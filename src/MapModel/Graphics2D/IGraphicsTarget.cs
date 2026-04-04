@@ -115,7 +115,7 @@ namespace PurplePen.Graphics2D
 
     public interface IBitmapGraphicsTargetProvider: IDisposable
     {
-        IBitmapGraphicsTarget CreateBitmapGraphicsTarget(int width, int height, IColorConverter colorConverter);
+        IBitmapGraphicsTarget CreateBitmapGraphicsTarget(int width, int height, CmykColor initialColor, IColorConverter colorConverter);
     }
 
     public interface IGraphicsTarget : IDisposable

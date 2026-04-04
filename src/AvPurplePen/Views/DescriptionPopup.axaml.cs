@@ -13,7 +13,7 @@ namespace AvPurplePen;
 // are not bindable in Avalonia.
 public partial class DescriptionPopup : UserControl
 {
-    private const int CELLSIZE = 50; // Fixed cell size in pixels for simplicity
+    private const int CELLSIZE = 40; // Fixed cell size in pixels for simplicity
 
     public DescriptionPopup()
     {
