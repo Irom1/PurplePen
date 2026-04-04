@@ -1,0 +1,58 @@
+<!--
+    DescriptionPopup.axaml
+    Popup grid control used in the DescriptionViewer to show contextual actions.
+-->
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:PurplePen.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="300" d:DesignHeight="200"
+             x:Class="AvPurplePen.DescriptionPopup"
+             x:DataType="vm:DescriptionPopupViewModel">
+
+    <Design.DataContext>
+        <vm:DescriptionPopupViewModel/>
+    </Design.DataContext>
+
+    <UserControl.Styles>
+        <!-- Popup button: transparent by default, light blue on hover, darker on press -->
+        <Style Selector="Button.popupBtn">
+            <Setter Property="CornerRadius" Value="0"/>
+            <Setter Property="Padding" Value="6,4"/>
+        </Style>
+        <Style Selector="Button.popupBtn /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+        <Style Selector="Button.popupBtn:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#FFCCE5FF"/>
+            <Setter Property="BorderBrush" Value="#FF3078C0"/>
+        </Style>
+        <Style Selector="Button.popupBtn:pressed /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#FF99CCEE"/>
+            <Setter Property="BorderBrush" Value="#FF3078C0"/>
+        </Style>
+
+        <!-- Popup text box: flat style to match -->
+        <Style Selector="TextBox.popupTextBox">
+            <Setter Property="CornerRadius" Value="0"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="#FF3078C0"/>
+        </Style>
+    </UserControl.Styles>
+
+    <UserControl.Resources>
+        <DataTemplate x:Key="ButtonTemplate" x:DataType="vm:ButtonGridItemViewModel">
+            <Button Classes="popupBtn" Content="{Binding ButtonText}"
+                    HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        </DataTemplate>
+        <DataTemplate x:Key="TextBoxTemplate" x:DataType="vm:TextBoxGridItemViewModel">
+            <TextBox Classes="popupTextBox" Text="{Binding InputText}"
+                     Watermark="{Binding PlaceholderText}"/>
+        </DataTemplate>
+    </UserControl.Resources>
+
+    <Grid x:Name="popupGrid" />
+</UserControl>

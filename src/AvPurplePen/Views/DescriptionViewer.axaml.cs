@@ -1,10 +1,13 @@
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.Primitives;
+using Avalonia.Controls.Primitives.PopupPositioning;
 using Avalonia.Data;
 using Avalonia.Input;
 using Avalonia.Markup.Xaml;
 using Avalonia.Remote.Protocol.Input;
 using Avalonia.Rendering;
+using Avalonia.Styling;
 using AvUtil;
 using PurplePen;
 using PurplePen.Graphics2D;
@@ -136,12 +139,36 @@ public partial class DescriptionViewer : UserControl
 
         // If the left-click the selected line, or right-click anywhere, then possibly show a popup menu.
         if ((whichButton == PointerUpdateKind.RightButtonPressed || alreadySelected) && hitTest.kind != HitTestKind.None) {
-#if !PORTING
             // Clicked on the selected line, in a potentially interesting place. Show a menu (maybe).
             PopupMenu(hitTest);
-#endif
         }
+    }
 
+    private void PopupMenu(HitTestResult hitTest)
+    {
+        if (renderer == null)
+            return;
+
+        Avalonia.Point popupMenuLocation = new Avalonia.Point(hitTest.rect.Left + renderer.CellSize * 0.5F,
+                                                              hitTest.rect.Top + renderer.CellSize * 0.75F);
+        popupMenuLocation -= drawingView.Offset;
+
+        Flyout flyout = new Flyout() {
+            Placement = PlacementMode.AnchorAndGravity,
+            PlacementAnchor = PopupAnchor.TopLeft,
+            PlacementGravity = PopupGravity.BottomRight,
+            HorizontalOffset = popupMenuLocation.X,
+            VerticalOffset = popupMenuLocation.Y,
+            FlyoutPresenterTheme = new ControlTheme(typeof(FlyoutPresenter)) {
+                BasedOn = (ControlTheme)this.FindResource(typeof(FlyoutPresenter))!,
+                Setters = { new Setter(FlyoutPresenter.PaddingProperty, new Thickness(3)) }
+            },
+            Content = new DescriptionPopup() {
+                DataContext = new DescriptionPopupViewModel()
+            }
+        };
+
+        flyout.ShowAt(drawingView);
     }
 
 

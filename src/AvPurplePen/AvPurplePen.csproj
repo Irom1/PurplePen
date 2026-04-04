@@ -86,9 +86,7 @@
   </PropertyGroup>
 
   <Target Name="BuildPdfConverter" BeforeTargets="Build;Publish">
-    <MSBuild Projects="..\PdfConverter\PdfConverter.csproj"
-             Targets="Build"
-             Properties="Configuration=$(Configuration);TargetFramework=net10.0;RuntimeIdentifier=;SelfContained=;PublishDir=;PublishReadyToRun=" />
+    <MSBuild Projects="..\PdfConverter\PdfConverter.csproj" Targets="Build" Properties="Configuration=$(Configuration);TargetFramework=net10.0;RuntimeIdentifier=;SelfContained=;PublishDir=;PublishReadyToRun=" />
   </Target>
 
   <!-- Copy PdfConverter output to AvPurplePen output directory after build. -->
@@ -96,9 +94,7 @@
     <ItemGroup>
       <PdfConverterBuildFiles Include="$(PdfConverterOutputDir)**\*.*" />
     </ItemGroup>
-    <Copy SourceFiles="@(PdfConverterBuildFiles)"
-          DestinationFiles="@(PdfConverterBuildFiles->'$(OutputPath)%(RecursiveDir)%(Filename)%(Extension)')"
-          SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(PdfConverterBuildFiles)" DestinationFiles="@(PdfConverterBuildFiles->'$(OutputPath)%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
   </Target>
 
   <!-- Copy PdfConverter output to publish directory after publish. -->
@@ -106,8 +102,6 @@
     <ItemGroup>
       <PdfConverterPublishFiles Include="$(PdfConverterOutputDir)**\*.*" />
     </ItemGroup>
-    <Copy SourceFiles="@(PdfConverterPublishFiles)"
-          DestinationFiles="@(PdfConverterPublishFiles->'$(PublishDir)%(RecursiveDir)%(Filename)%(Extension)')"
-          SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(PdfConverterPublishFiles)" DestinationFiles="@(PdfConverterPublishFiles->'$(PublishDir)%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
   </Target>
 </Project>
