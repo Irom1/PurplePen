@@ -22,25 +22,57 @@ namespace PurplePen.ViewModels
 
         SymbolDB symbolDB;
         string langId;
+        DescriptionChangeData descriptionChangeData;
+
         int currentRow, currentCol;
 
         // Items to display in the grid, each with row/column placement.
         public ObservableCollection<PopupGridItemViewModel> MenuItems { get; } = new();
 
-        // Parameterless constructor for the Avalonia designer.
-        public DescriptionPopupViewModel(SymbolDB symbolDB, string langId, int columns, char kind)
+        public DescriptionPopupViewModel(SymbolDB symbolDB, string langId, DescriptionChangeData descriptionChangeData, PopupConfigurationData popupConfigurationData)
         {
             this.symbolDB = symbolDB;
             this.langId = langId;
-            this.Columns = columns;
+            this.descriptionChangeData = descriptionChangeData;
+            this.Columns = 8;
+
             this.MenuItems.Clear();
             SymbolImageCache.Instance.Configure(symbolDB, 100); // Cache symbol images at 100 pixel box size.
 
-            // Sample data for designer preview.
-            AddSymbolsOfKind(kind);
+            // Add all the items to the popup menu according to the configuration data,
+            // which specifies what kinds of items to add.
+            AddItems(popupConfigurationData);
 
             Rows = currentRow + (currentCol > 0 ? 1 : 0);
         }
+
+        // Configure the popup menu with the give number of symbol columns (typically 1 or 8). 
+        // It can optionally contrain symbols of one or two kinds (if two kinds, with separator).
+        // It can optionally have a text box of a given width (1-8). If textBoxInfo is non-null, a textbox is requested
+        // with textBoxInfo as the text.
+        public void AddItems(PopupConfigurationData popupData)
+        {
+            if (popupData.KindFirst != (char)0) {
+                AddSymbolsOfKind(popupData.KindFirst);
+            }
+
+            if (popupData.NoSymbol) {
+                //AddNoSymbol();
+            }
+
+            // Add symbols of the second kind, if any.
+            if (popupData.KindSecond != (char)0) {
+                // A second kind of symbol. First put a separator with the first one.
+                //AddSeparator();
+                AddSymbolsOfKind(popupData.KindSecond);
+            }
+
+            // Add a text box, if requested.
+            if (popupData.TextBoxInfo != null) {
+                AddTextbox(popupData.TextBoxInfo, popupData.InitialText ?? "", popupData.TextBoxWidth);
+            }
+        }
+
 
         private void AddSymbolsOfKind(char kind)
         {
@@ -59,9 +91,18 @@ namespace PurplePen.ViewModels
 
                     ButtonGridItemViewModel button = new ButtonGridItemViewModel(image, text);
 
-                    AddItem(button, 1);
+                    AddItem(button, symbol.IsWide ? 8 : 1);
                 }
             }
+        }
+
+        private void AddTextbox(string infoText, string initialText, int width)
+        {
+            TextBoxGridItemViewModel textBox = new TextBoxGridItemViewModel(initialText, infoText)
+            {
+                InputText = initialText
+            };
+            AddItem(textBox, width);
         }
 
         private void AddItem(PopupGridItemViewModel item, int columnSpan)
@@ -201,4 +242,14 @@ namespace PurplePen.ViewModels
             cache.Clear();
         }
     }
+
+    public record class PopupConfigurationData(
+        int Columns,
+        char KindFirst,
+        char KindSecond,
+        bool NoSymbol,
+        string? TextBoxInfo,
+        string? InitialText,
+        int TextBoxWidth
+    );
 }

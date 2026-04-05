@@ -327,6 +327,7 @@ namespace PurplePen.ViewModels
                 Description: description,
                 CourseKind: kind,
                 ScoreColumn: controller.GetScoreColumn(),
+                IsCoursePart: isCoursePart,
                 HasCustomLength: hasCustomLength,
                 LangId: controller.GetDescriptionLanguage()
             );

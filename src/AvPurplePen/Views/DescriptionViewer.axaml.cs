@@ -148,7 +148,16 @@ public partial class DescriptionViewer : UserControl
 
     private void PopupMenu(HitTestResult hitTest)
     {
-        if (renderer == null || symbolDB == null)
+        if (renderer == null || symbolDB == null || DataContext == null)
+            return;
+
+        DescriptionViewerViewModel? vm = DataContext as DescriptionViewerViewModel;
+        if (vm == null)
+            return;
+
+        // Get the information to configure the popup menu, or null if no popup menu should be shown.
+        DescriptionPopupViewModel? popupViewModel = vm.GetPopupMenu(hitTest, renderer);
+        if (popupViewModel == null) 
             return;
 
         Avalonia.Point popupMenuLocation = new Avalonia.Point(hitTest.rect.Left + renderer.CellSize * 0.5F,
@@ -166,7 +175,7 @@ public partial class DescriptionViewer : UserControl
                 Setters = { new Setter(FlyoutPresenter.PaddingProperty, new Thickness(3)) }
             },
             Content = new DescriptionPopup() {
-                DataContext = new DescriptionPopupViewModel(symbolDB, "en", 8, 'D')
+                DataContext = popupViewModel
             }
         };
 
