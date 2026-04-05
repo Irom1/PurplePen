@@ -17,7 +17,9 @@
     </Design.DataContext>
 
     <UserControl.Styles>
-        <!-- Popup button: transparent by default, light blue on hover, darker on press -->
+        <!-- Popup button: transparent by default, light blue on hover, darker on press.
+             If Padding or BorderThickness change, update BUTTON_CHROME_PER_SIDE in
+             DescriptionPopup.axaml.cs to match (currently Padding=4 + Border=1 = 5). -->
         <Style Selector="Button.popupBtn">
             <Setter Property="CornerRadius" Value="0"/>
             <Setter Property="Padding" Value="4"/>
@@ -41,6 +43,8 @@
             <Setter Property="CornerRadius" Value="0"/>
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="BorderBrush" Value="#FF3078C0"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
         </Style>
     </UserControl.Styles>
 
@@ -51,7 +55,7 @@
             </Button>
         </DataTemplate>
         <DataTemplate x:Key="SeparatorTemplate" x:DataType="vm:SeparatorGridItemViewModel">
-            <Separator Margin="0,10" HorizontalAlignment="Stretch"/>
+            <Separator Margin="0,6" HorizontalAlignment="Stretch"/>
         </DataTemplate>
         <DataTemplate x:Key="TextBoxTemplate" x:DataType="vm:TextBoxGridItemViewModel">
             <TextBox Classes="popupTextBox" Text="{Binding InputText}"

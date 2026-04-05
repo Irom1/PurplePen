@@ -1,12 +1,11 @@
-using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
 using Avalonia.Input;
-using Avalonia.Markup.Xaml;
 using Avalonia.Markup.Xaml.Templates;
 using Avalonia.Media;
 using PurplePen.ViewModels;
 using System;
+using System.Collections.Generic;
 
 namespace AvPurplePen;
 
@@ -15,7 +14,13 @@ namespace AvPurplePen;
 // are not bindable in Avalonia.
 public partial class DescriptionPopup : UserControl
 {
-    private const int CELLSIZE = 40; // Fixed cell size in pixels for simplicity
+    // Grid cell size in DIPs. Used by DescriptionViewer to calculate bitmap sizes.
+    public const int CELLSIZE = 34;
+
+    // Per-side overhead (padding + border) of the popupBtn button style, in DIPs.
+    // Must match the Padding and BorderThickness in the popupBtn styles in
+    // DescriptionPopup.axaml (currently Padding="4" + BorderThickness="1" = 5).
+    public const double BUTTON_CHROME_PER_SIDE = 5;
 
     private TextBlock? infoTextControl;
 
@@ -39,10 +44,26 @@ public partial class DescriptionPopup : UserControl
         popupGrid.ColumnDefinitions.Clear();
         popupGrid.Children.Clear();
 
-        for (int i = 0; i < vm.Rows; i++)
-            popupGrid.RowDefinitions.Add(new RowDefinition(CELLSIZE, GridUnitType.Pixel));
         for (int i = 0; i < vm.Columns; i++)
             popupGrid.ColumnDefinitions.Add(new ColumnDefinition(CELLSIZE, GridUnitType.Pixel));
+
+        // Track which rows contain separators so they get Auto height.
+        HashSet<int> separatorRows = new HashSet<int>();
+        foreach (PopupGridItemViewModel item in vm.MenuItems)
+        {
+            if (item is SeparatorGridItemViewModel)
+                separatorRows.Add(item.Row);
+        }
+
+        // Add row definitions as needed: Auto for separator rows, fixed CELLSIZE for others.
+        for (int i = 0; i < vm.Rows; i++)
+        {
+            if (separatorRows.Contains(i))
+                popupGrid.RowDefinitions.Add(new RowDefinition(GridLength.Auto));
+            else
+                popupGrid.RowDefinitions.Add(new RowDefinition(CELLSIZE, GridUnitType.Pixel));
+        }
+
         popupGrid.RowDefinitions.Add(new RowDefinition(GridLength.Auto)); // Extra row for the information text.
 
         foreach (PopupGridItemViewModel item in vm.MenuItems)

@@ -61,7 +61,7 @@ namespace PurplePen.ViewModels
 
         // The user has clicked on the description viewer.
         // Return a DescriptionPopupViewModel to show a popup menu, or null for no popup.
-        public DescriptionPopupViewModel? GetPopupMenu(HitTestResult hitTest, DescriptionRenderer renderer)
+        public DescriptionPopupViewModel? GetPopupMenu(HitTestResult hitTest, DescriptionRenderer renderer, int cellContentPixelSize)
         {
             if (symbolDB == null || DescriptionData == null)
                 return null;
@@ -186,7 +186,7 @@ namespace PurplePen.ViewModels
             if (popupData == null || popupKind == DescriptionChangeKind.None)
                 return null;
             else
-                return new DescriptionPopupViewModel(symbolDB, DescriptionData.LangId, new DescriptionChangeData(popupKind, hitTest.firstLine, hitTest.box), popupData);
+                return new DescriptionPopupViewModel(symbolDB, DescriptionData.LangId, cellContentPixelSize, new DescriptionChangeData(popupKind, hitTest.firstLine, hitTest.box), popupData);
 
         }
 

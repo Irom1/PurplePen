@@ -146,6 +146,20 @@ public partial class DescriptionViewer : UserControl
         }
     }
 
+    // Calculates the content area inside a popup button cell in physical pixels.
+    // Uses the CELLSIZE and BUTTON_CHROME_PER_SIDE constants from DescriptionPopup,
+    // and does the subtraction in physical pixel space with AwayFromZero rounding
+    // to match Avalonia's layout rounding (LayoutHelper.RoundLayoutValue).
+    private int MeasureCellContentSize()
+    {
+        double scaling = TopLevel.GetTopLevel(this)?.RenderScaling ?? 1.0;
+
+        int physicalCell = (int)Math.Round(DescriptionPopup.CELLSIZE * scaling, MidpointRounding.AwayFromZero);
+        int physicalPerSide = (int)Math.Round(DescriptionPopup.BUTTON_CHROME_PER_SIDE * scaling, MidpointRounding.AwayFromZero);
+        int pixelSize = physicalCell - 2 * physicalPerSide;
+        return pixelSize;
+    }
+
     private void PopupMenu(HitTestResult hitTest)
     {
         if (renderer == null || symbolDB == null || DataContext == null)
@@ -155,8 +169,10 @@ public partial class DescriptionViewer : UserControl
         if (vm == null)
             return;
 
+        int cellContentPixelSize = MeasureCellContentSize();
+
         // Get the information to configure the popup menu, or null if no popup menu should be shown.
-        DescriptionPopupViewModel? popupViewModel = vm.GetPopupMenu(hitTest, renderer);
+        DescriptionPopupViewModel? popupViewModel = vm.GetPopupMenu(hitTest, renderer, cellContentPixelSize);
         if (popupViewModel == null) 
             return;
 

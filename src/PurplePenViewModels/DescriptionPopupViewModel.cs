@@ -29,7 +29,7 @@ namespace PurplePen.ViewModels
         // Items to display in the grid, each with row/column placement.
         public ObservableCollection<PopupGridItemViewModel> MenuItems { get; } = new();
 
-        public DescriptionPopupViewModel(SymbolDB symbolDB, string langId, DescriptionChangeData descriptionChangeData, PopupConfigurationData popupConfigurationData)
+        public DescriptionPopupViewModel(SymbolDB symbolDB, string langId, int cellContentPixelSize, DescriptionChangeData descriptionChangeData, PopupConfigurationData popupConfigurationData)
         {
             this.symbolDB = symbolDB;
             this.langId = langId;
@@ -37,7 +37,7 @@ namespace PurplePen.ViewModels
             this.Columns = 8;
 
             this.MenuItems.Clear();
-            SymbolImageCache.Instance.Configure(symbolDB, 100); // Cache symbol images at 100 pixel box size.
+            SymbolImageCache.Instance.Configure(symbolDB, cellContentPixelSize); // Cache symbol images at the exact size that will be drawn, for best look.
 
             // Add all the items to the popup menu according to the configuration data,
             // which specifies what kinds of items to add.
@@ -241,7 +241,7 @@ namespace PurplePen.ViewModels
 
                 // Use transparent background.
                 using (IBitmapGraphicsTarget grTarget = Services.BitmapGraphicsTargetProvider.CreateBitmapGraphicsTarget(pixelWidth, pixelHeight, CmykColor.FromCmyka(0, 0, 0, 0, 0), DefaultColorConverter.Instance)) {
-                    grTarget.PushAntiAliasing(false);
+                    grTarget.PushAntiAliasing(true);
                     symbol.Draw(grTarget, CmykColor.FromColor(Color.Black), new RectangleF(0, 0, pixelWidth, pixelHeight));
                     cache[symbolID] = grTarget.FinishBitmap();
                 }
