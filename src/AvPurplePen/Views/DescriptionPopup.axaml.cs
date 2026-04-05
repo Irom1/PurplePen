@@ -104,6 +104,7 @@ public partial class DescriptionPopup : UserControl
         return item switch
         {
             ButtonGridItemViewModel => this.FindResource("ButtonTemplate") as DataTemplate,
+            SeparatorGridItemViewModel => this.FindResource("SeparatorTemplate") as DataTemplate,
             TextBoxGridItemViewModel => this.FindResource("TextBoxTemplate") as DataTemplate,
             _ => null,
         };

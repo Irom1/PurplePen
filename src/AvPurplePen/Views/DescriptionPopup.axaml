@@ -50,6 +50,9 @@
                 <controls:GraphicsBitmapControl Source="{Binding ButtonBitmap}"/>
             </Button>
         </DataTemplate>
+        <DataTemplate x:Key="SeparatorTemplate" x:DataType="vm:SeparatorGridItemViewModel">
+            <Separator Margin="0,10" HorizontalAlignment="Stretch"/>
+        </DataTemplate>
         <DataTemplate x:Key="TextBoxTemplate" x:DataType="vm:TextBoxGridItemViewModel">
             <TextBox Classes="popupTextBox" Text="{Binding InputText}"
                      Watermark="{Binding PlaceholderText}"/>

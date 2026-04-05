@@ -63,7 +63,7 @@ namespace PurplePen.ViewModels
             // Add symbols of the second kind, if any.
             if (popupData.KindSecond != (char)0) {
                 // A second kind of symbol. First put a separator with the first one.
-                //AddSeparator();
+                AddSeparator();
                 AddSymbolsOfKind(popupData.KindSecond);
             }
 
@@ -73,6 +73,13 @@ namespace PurplePen.ViewModels
             }
         }
 
+
+        // Adds a full-width horizontal separator to the grid.
+        private void AddSeparator()
+        {
+            SeparatorGridItemViewModel separator = new SeparatorGridItemViewModel();
+            AddItem(separator, Columns);
+        }
 
         private void AddSymbolsOfKind(char kind)
         {
@@ -158,6 +165,15 @@ namespace PurplePen.ViewModels
         {
             ButtonBitmap = bitmap;
             InfoText = infoText;
+        }
+    }
+
+    // A horizontal separator item in the popup grid.
+    public partial class SeparatorGridItemViewModel : PopupGridItemViewModel
+    {
+        public SeparatorGridItemViewModel()
+        {
+            InfoText = " ";
         }
     }
 
