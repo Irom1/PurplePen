@@ -47,8 +47,17 @@ namespace PurplePen.ViewModels
             foreach (Symbol symbol in symbolDB.AllSymbols) {
                 if (symbol.Kind == kind && symbol.HasVisualImage) {
                     IGraphicsBitmap image = SymbolImageCache.Instance.GetSymbolImage(symbol.Id);
+                    string text = symbol.GetName(langId);
+#if !PORTING
+                    // Handle custom symbol text.
+                    if (customSymbolText.ContainsKey(symbol.Id)) {
+                        string customText = customSymbolText[symbol.Id];
+                        customText = customText.Replace("{0}", "").Trim();  // Remove {0} fillin.
+                        text += string.Format(" ({0})", customText);         // add custom symbol text after the regular name for the symbol.
+                    }
+#endif
 
-                    ButtonGridItemViewModel button = new ButtonGridItemViewModel(image);
+                    ButtonGridItemViewModel button = new ButtonGridItemViewModel(image, text);
 
                     AddItem(button, 1);
                 }
@@ -93,6 +102,9 @@ namespace PurplePen.ViewModels
 
         // Number of columns this item spans (default 1).
         [ObservableProperty] private int columnSpan = 1;
+
+        // Information text to put in the bottom description or a toolip.
+        [ObservableProperty] private string infoText = "";
     }
 
     // A button item in the popup grid.
@@ -101,9 +113,10 @@ namespace PurplePen.ViewModels
         // Text displayed on the button.
         [ObservableProperty] private IGraphicsBitmap? buttonBitmap;
 
-        public ButtonGridItemViewModel(IGraphicsBitmap bitmap)
+        public ButtonGridItemViewModel(IGraphicsBitmap bitmap, string infoText)
         {
             ButtonBitmap = bitmap;
+            InfoText = infoText;
         }
     }
 
@@ -119,11 +132,13 @@ namespace PurplePen.ViewModels
         public TextBoxGridItemViewModel()
         {
             PlaceholderText = "";
+            InfoText = "";
         }
 
-        public TextBoxGridItemViewModel(string placeholder)
+        public TextBoxGridItemViewModel(string placeholder, string infoText)
         {
             PlaceholderText = placeholder;
+            InfoText = infoText;
         }
     }
 

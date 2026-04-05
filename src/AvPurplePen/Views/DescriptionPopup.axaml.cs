@@ -1,8 +1,10 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
+using Avalonia.Input;
 using Avalonia.Markup.Xaml;
 using Avalonia.Markup.Xaml.Templates;
+using Avalonia.Media;
 using PurplePen.ViewModels;
 using System;
 
@@ -14,6 +16,8 @@ namespace AvPurplePen;
 public partial class DescriptionPopup : UserControl
 {
     private const int CELLSIZE = 40; // Fixed cell size in pixels for simplicity
+
+    private TextBlock? infoTextControl;
 
     public DescriptionPopup()
     {
@@ -39,6 +43,7 @@ public partial class DescriptionPopup : UserControl
             popupGrid.RowDefinitions.Add(new RowDefinition(CELLSIZE, GridUnitType.Pixel));
         for (int i = 0; i < vm.Columns; i++)
             popupGrid.ColumnDefinitions.Add(new ColumnDefinition(CELLSIZE, GridUnitType.Pixel));
+        popupGrid.RowDefinitions.Add(new RowDefinition(GridLength.Auto)); // Extra row for the information text.
 
         foreach (PopupGridItemViewModel item in vm.MenuItems)
         {
@@ -49,10 +54,47 @@ public partial class DescriptionPopup : UserControl
                 HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Stretch,
                 VerticalAlignment = Avalonia.Layout.VerticalAlignment.Stretch,
             };
+            content.PointerEntered += ContentControl_PointerEntered;
+            content.PointerExited += ContentControl_PointerExited;
             Grid.SetRow(content, item.Row);
             Grid.SetColumn(content, item.Column);
             Grid.SetColumnSpan(content, item.ColumnSpan);
             popupGrid.Children.Add(content);
+        }
+
+        // Add the information text in the last row, spanning all columns.
+        infoTextControl = new TextBlock { Text = " ", TextWrapping = TextWrapping.Wrap, FontSize = 18, FontWeight = FontWeight.Bold };
+        ContentControl infoTextContent = new ContentControl {
+            Content = infoTextControl,
+            HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Stretch,
+            VerticalAlignment = Avalonia.Layout.VerticalAlignment.Top,
+        };
+
+        Grid.SetRow(infoTextContent, vm.Rows);
+        Grid.SetColumn(infoTextContent, 0);
+        Grid.SetColumnSpan(infoTextContent, vm.Columns);
+        popupGrid.Children.Add(infoTextContent);
+
+    }
+
+    // Updates the info text when the pointer enters a grid item.
+    private void ContentControl_PointerEntered(object? sender, PointerEventArgs e)
+    {
+        if (sender is ContentControl contentControl &&
+            contentControl.Content is PopupGridItemViewModel item &&
+            infoTextControl != null)
+        {
+            infoTextControl.Text = item.InfoText;
+        }
+    }
+
+    // Removes the info text when the pointer exits a grid item.
+    private void ContentControl_PointerExited(object? sender, PointerEventArgs e)
+    {
+        if (sender is ContentControl contentControl &&
+            contentControl.Content is PopupGridItemViewModel item &&
+            infoTextControl != null) {
+            infoTextControl.Text = " ";
         }
     }
 
