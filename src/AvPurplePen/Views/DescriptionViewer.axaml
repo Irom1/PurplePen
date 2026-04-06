@@ -10,7 +10,8 @@
              x:DataType="vm:DescriptionViewerViewModel"
              
              DescriptionData="{Binding DescriptionData}"
-             Selection="{Binding Selection}">
+             Selection="{Binding Selection}"
+             DescriptionChangeCommand="{Binding DescriptionChangeCommand}">
 
     <ScrollViewer HorizontalScrollBarVisibility="Auto"
                   VerticalScrollBarVisibility="Auto">

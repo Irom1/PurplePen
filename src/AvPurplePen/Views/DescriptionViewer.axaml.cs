@@ -16,6 +16,7 @@ using PurplePen.ViewModels;
 using SkiaSharp;
 using System;
 using System.Drawing;
+using System.Windows.Input;
 
 namespace AvPurplePen;
 
@@ -26,6 +27,11 @@ public partial class DescriptionViewer : UserControl
 
     public static readonly StyledProperty<SelectedLines?> SelectionProperty =
         AvaloniaProperty.Register<DescriptionViewer, SelectedLines?>(nameof(Selection), defaultBindingMode: BindingMode.TwoWay);
+
+    // Command invoked when the user selects an item or enters text in a description popup.
+    // The command parameter is a DescriptionChangeCommandData instance.
+    public static readonly StyledProperty<ICommand?> DescriptionChangeCommandProperty =
+        AvaloniaProperty.Register<DescriptionViewer, ICommand?>(nameof(DescriptionChangeCommand));
 
     private SymbolDB? symbolDB;
     private DescriptionRenderer? renderer;
@@ -57,6 +63,13 @@ public partial class DescriptionViewer : UserControl
     public SelectedLines? Selection {
         get => GetValue(SelectionProperty);
         set => SetValue(SelectionProperty, value);
+    }
+
+    // Command invoked when the user selects an item or enters text in a description popup.
+    // The command parameter is a DescriptionChangeCommandData instance.
+    public ICommand? DescriptionChangeCommand {
+        get => GetValue(DescriptionChangeCommandProperty);
+        set => SetValue(DescriptionChangeCommandProperty, value);
     }
 
 #if !PORTING
@@ -209,6 +222,13 @@ public partial class DescriptionViewer : UserControl
         flyout?.Hide();
         flyout = null;
 
+        object? newValue = e.NewSymbol != null ? (object)e.NewSymbol : e.NewText;
+        DescriptionChangeCommandData data = new DescriptionChangeCommandData(
+            e.DescriptionChangeKind, e.ChangedLine, e.ChangedBox, newValue);
+
+        if (DescriptionChangeCommand != null && DescriptionChangeCommand.CanExecute(data)) {
+            DescriptionChangeCommand.Execute(data);
+        }
     }
 
 
@@ -268,6 +288,6 @@ public partial class DescriptionViewer : UserControl
     }
 }
 
-public record class DescriptionChangeCommandData(DescriptionChangeKind DescriptionChangeKind, int Line, int Box, object? NewValue);
+
 
 

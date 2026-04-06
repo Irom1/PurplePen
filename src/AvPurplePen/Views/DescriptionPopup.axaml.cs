@@ -44,6 +44,9 @@ public partial class DescriptionPopup : UserControl
 
         // Listen for Button.Click events bubbling up from buttons inside the grid.
         AddHandler(Button.ClickEvent, OnGridButtonClick, RoutingStrategies.Bubble);
+
+        // Listen for KeyDown events bubbling up from text boxes inside the grid.
+        AddHandler(KeyDownEvent, OnGridKeyDown, RoutingStrategies.Bubble);
     }
 
     protected override void OnDataContextChanged(EventArgs e)
@@ -175,9 +178,25 @@ public partial class DescriptionPopup : UserControl
         if (e.Source is Button button &&
             button.FindAncestorOfType<ContentControl>() is ContentControl contentControl &&
             contentControl.Content is ButtonGridItemViewModel item &&
-            this.DataContext is DescriptionPopupViewModel vm) 
+            this.DataContext is DescriptionPopupViewModel vm)
         {
             RaiseEvent(new PopupItemSelectedEventArgs(ItemSelectedEvent, vm.DescriptionChangeData, item.Symbol));
+        }
+    }
+
+    // Handles KeyDown events from text boxes inside the popup grid.
+    // When Enter is pressed, extracts the text from the TextBoxGridItemViewModel
+    // and raises the PopupItemSelected routed event.
+    private void OnGridKeyDown(object? sender, KeyEventArgs e)
+    {
+        if (e.Key == Key.Enter &&
+            e.Source is TextBox textBox &&
+            textBox.FindAncestorOfType<ContentControl>() is ContentControl contentControl &&
+            contentControl.Content is TextBoxGridItemViewModel item &&
+            this.DataContext is DescriptionPopupViewModel vm)
+        {
+            RaiseEvent(new PopupItemSelectedEventArgs(ItemSelectedEvent, vm.DescriptionChangeData, item.InputText));
+            e.Handled = true;
         }
     }
 
