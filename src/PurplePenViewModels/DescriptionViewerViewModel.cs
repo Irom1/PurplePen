@@ -220,9 +220,9 @@ namespace PurplePen.ViewModels
 
     // Describes the kind of change being made by a popup.
     public record class DescriptionChangeData(
-        DescriptionChangeKind descriptionChangeKind,
-        int changedLine,
-        int changedBox
+        DescriptionChangeKind DescriptionChangeKind,
+        int ChangedLine,
+        int ChangedBox
     );
 
 }

@@ -30,6 +30,9 @@ public partial class DescriptionViewer : UserControl
     private SymbolDB? symbolDB;
     private DescriptionRenderer? renderer;
 
+    // This is the flyout for the popup menu, if it is open. 
+    private Flyout? flyout;
+
     private const int margin = 3;            // margin size in logical pixels
     private const int minCellSize = 20;      // minimum cell size in logical pixels
 
@@ -48,14 +51,6 @@ public partial class DescriptionViewer : UserControl
     }
 
     public delegate void DescriptionChangedHandler(object sender, DescriptionChangeKind kind, int line, int box, object newValue);
-
-    // Via a popup-menu, the user requested a change to what is in a box in the description.
-    public event DescriptionChangedHandler? Change;
-
-    // Via a mouse, the selected was changed. Does not fire if the selected in changed via
-    // the property.
-    public event EventHandler? SelectedIndexChange;
-
 
     // Indicates which line(s) are selected, or null for
     // nothing selected.
@@ -134,7 +129,6 @@ public partial class DescriptionViewer : UserControl
         if (!alreadySelected) {
             // Move the selected line.
             Selection = new SelectedLines(hitTest.firstLine, hitTest.lastLine);
-            SelectedIndexChange?.Invoke(this, EventArgs.Empty);
         }
 
         PointerUpdateKind whichButton = pointerPoint.Properties.PointerUpdateKind;
@@ -180,7 +174,11 @@ public partial class DescriptionViewer : UserControl
                                                               hitTest.rect.Top + renderer.CellSize * 0.75F);
         popupMenuLocation -= drawingView.Offset;
 
-        Flyout flyout = new Flyout() {
+        DescriptionPopup descriptionPopup = new() {
+            DataContext = popupViewModel
+        };
+
+        flyout = new Flyout() {
             Placement = PlacementMode.AnchorAndGravity,
             PlacementAnchor = PopupAnchor.TopLeft,
             PlacementGravity = PopupGravity.BottomRight,
@@ -190,12 +188,27 @@ public partial class DescriptionViewer : UserControl
                 BasedOn = (ControlTheme)this.FindResource(typeof(FlyoutPresenter))!,
                 Setters = { new Setter(FlyoutPresenter.PaddingProperty, new Thickness(3)) }
             },
-            Content = new DescriptionPopup() {
-                DataContext = popupViewModel
-            }
+            Content = descriptionPopup
         };
 
+        descriptionPopup.PopupItemSelected += DescriptionPopup_PopupItemSelected;
+        flyout.Closed += Flyout_Closed;
         flyout.ShowAt(drawingView);
+    }
+
+    // The flyout closed. Don't track it anymore.
+    private void Flyout_Closed(object? sender, EventArgs e)
+    {
+        flyout = null;
+    }
+
+    // The popup selected an item or modified text.
+    // Close the flyout, and invoke a command to make the change.
+    private void DescriptionPopup_PopupItemSelected(object? sender, PopupItemSelectedEventArgs e)
+    {
+        flyout?.Hide();
+        flyout = null;
+
     }
 
 
@@ -254,5 +267,7 @@ public partial class DescriptionViewer : UserControl
         }
     }
 }
+
+public record class DescriptionChangeCommandData(DescriptionChangeKind DescriptionChangeKind, int Line, int Box, object? NewValue);
 
 

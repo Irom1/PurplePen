@@ -30,16 +30,8 @@ namespace AvPurplePen.Views
         {
             InitializeComponent();
             ApplicationIdleService.ApplicationIdle += ApplicationIdle;
-            descriptionViewer.Change += DescriptionViewer_Change;
         }
 
-        // Event fired when the user changes something in the description control.
-        private void DescriptionViewer_Change(object sender, DescriptionChangeKind kind, int line, int box, object newValue)
-        {
-#if !PORTING
-            //TODO: Implemented this.
-#endif
-        }
 
         // Mouse activity in the main map viewer.
         private void MapViewer_MouseActivity(object? sender, MapViewer.FancyMouseEventArgs e)

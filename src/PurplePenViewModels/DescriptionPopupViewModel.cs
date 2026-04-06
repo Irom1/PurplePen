@@ -20,11 +20,16 @@ namespace PurplePen.ViewModels
         // Number of columns in the grid.
         [ObservableProperty] private int columns;
 
-        SymbolDB symbolDB;
-        string langId;
-        DescriptionChangeData descriptionChangeData;
+        // Data about the description change that this popup is for.
+        [ObservableProperty] private DescriptionChangeData descriptionChangeData;
 
-        int currentRow, currentCol;
+        private SymbolDB symbolDB;
+        private string langId;
+
+        // The ID used for the "no symbol" item.
+        public const string NoSymbolId = "none";
+
+        private int currentRow, currentCol;
 
         // Items to display in the grid, each with row/column placement.
         public ObservableCollection<PopupGridItemViewModel> MenuItems { get; } = new();
@@ -33,7 +38,7 @@ namespace PurplePen.ViewModels
         {
             this.symbolDB = symbolDB;
             this.langId = langId;
-            this.descriptionChangeData = descriptionChangeData;
+            this.DescriptionChangeData = descriptionChangeData;
             this.Columns = 8;
 
             this.MenuItems.Clear();
@@ -57,7 +62,7 @@ namespace PurplePen.ViewModels
             }
 
             if (popupData.NoSymbol) {
-                //AddNoSymbol();
+                AddNoSymbol();
             }
 
             // Add symbols of the second kind, if any.
@@ -81,6 +86,14 @@ namespace PurplePen.ViewModels
             AddItem(separator, Columns);
         }
 
+        // Add the "no item" button.
+        private void AddNoSymbol()
+        {
+            IGraphicsBitmap image = SymbolImageCache.Instance.GetSymbolImage(NoSymbolId);
+            ButtonGridItemViewModel button = new ButtonGridItemViewModel(image, null, MiscText.NoSymbol);
+            AddItem(button, 1);
+        }
+
         private void AddSymbolsOfKind(char kind)
         {
             foreach (Symbol symbol in symbolDB.AllSymbols) {
@@ -96,7 +109,7 @@ namespace PurplePen.ViewModels
                     }
 #endif
 
-                    ButtonGridItemViewModel button = new ButtonGridItemViewModel(image, text);
+                    ButtonGridItemViewModel button = new ButtonGridItemViewModel(image, symbol, text);
 
                     AddItem(button, symbol.IsWide ? 8 : 1);
                 }
@@ -161,9 +174,12 @@ namespace PurplePen.ViewModels
         // Text displayed on the button.
         [ObservableProperty] private IGraphicsBitmap? buttonBitmap;
 
-        public ButtonGridItemViewModel(IGraphicsBitmap bitmap, string infoText)
+        [ObservableProperty] private Symbol? symbol;  // null used for "no symbol" button.
+
+        public ButtonGridItemViewModel(IGraphicsBitmap bitmap, Symbol? symbol, string infoText)
         {
             ButtonBitmap = bitmap;
+            Symbol = symbol;
             InfoText = infoText;
         }
     }
@@ -234,22 +250,34 @@ namespace PurplePen.ViewModels
             }
 
             if (! cache.ContainsKey(symbolID)) {
-                Symbol symbol = symbolDB[symbolID];
+                if (symbolID == DescriptionPopupViewModel.NoSymbolId) {
+                    // Draw the "no symbol" image, which is just a dark red box.
+                    int pixelWidth = boxSize, pixelHeight = boxSize;
+                    using (IBitmapGraphicsTarget grTarget = Services.BitmapGraphicsTargetProvider.CreateBitmapGraphicsTarget(pixelWidth, pixelHeight, CmykColor.FromCmyka(0, 0, 0, 0, 0), DefaultColorConverter.Instance)) {
+                        grTarget.PushAntiAliasing(false);
+                        RectangleF rect = new RectangleF(0, 0, pixelWidth, pixelHeight);
+                        rect.Inflate(-2.5F, -2.5F);
+                        object pen = new object();
+                        grTarget.CreatePen(pen, CmykColor.FromColor(Color.DarkRed), 1, LineCapMode.Flat, LineJoinMode.Miter, 5);
+                        grTarget.DrawRectangle(pen, rect);
+                        cache[symbolID] = grTarget.FinishBitmap();
+                    }
+                }
+                else {
+                    Symbol symbol = symbolDB[symbolID];
 
-                int pixelWidth = symbol.IsWide ? boxSize * 8 : boxSize;
-                int pixelHeight = boxSize;
+                    int pixelWidth = symbol.IsWide ? boxSize * 8 : boxSize;
+                    int pixelHeight = boxSize;
 
-                // Use transparent background.
-                using (IBitmapGraphicsTarget grTarget = Services.BitmapGraphicsTargetProvider.CreateBitmapGraphicsTarget(pixelWidth, pixelHeight, CmykColor.FromCmyka(0, 0, 0, 0, 0), DefaultColorConverter.Instance)) {
-                    grTarget.PushAntiAliasing(true);
-                    symbol.Draw(grTarget, CmykColor.FromColor(Color.Black), new RectangleF(0, 0, pixelWidth, pixelHeight));
-                    cache[symbolID] = grTarget.FinishBitmap();
+                    // Use transparent background.
+                    using (IBitmapGraphicsTarget grTarget = Services.BitmapGraphicsTargetProvider.CreateBitmapGraphicsTarget(pixelWidth, pixelHeight, CmykColor.FromCmyka(0, 0, 0, 0, 0), DefaultColorConverter.Instance)) {
+                        grTarget.PushAntiAliasing(true);
+                        symbol.Draw(grTarget, CmykColor.FromColor(Color.Black), new RectangleF(0, 0, pixelWidth, pixelHeight));
+                        cache[symbolID] = grTarget.FinishBitmap();
+                    }
                 }
             }
 
-            if (symbolID == "3.4")
-                using (Stream stm = new FileStream(@"D:\Temp\symbol3.4.png", FileMode.Create))
-                    cache[symbolID].WriteToStream(GraphicsBitmapFormat.PNG, stm);
             return cache[symbolID];
         }
 
