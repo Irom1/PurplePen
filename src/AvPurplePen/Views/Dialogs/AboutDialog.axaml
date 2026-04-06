@@ -18,6 +18,7 @@
         mc:Ignorable="d"
         d:DesignWidth="447" d:DesignHeight="439"
         x:Class="AvPurplePen.Views.AboutDialog"
+        Classes="dialog"
         x:DataType="vm:AboutDialogViewModel"
         Title="{resx:Localize AboutForm_Text}"
         Width="447" Height="439"

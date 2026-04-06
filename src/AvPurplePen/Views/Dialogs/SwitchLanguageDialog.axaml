@@ -17,6 +17,7 @@
         mc:Ignorable="d"
         d:DesignWidth="350" d:DesignHeight="450"
         x:Class="AvPurplePen.Views.SwitchLanguageDialog"
+        Classes="dialog"
         x:DataType="vm:SwitchLanguageDialogViewModel"
         Title="{x:Static resx:UIText.SwitchLanguageDialog_Title}"
         Width="350" Height="450"

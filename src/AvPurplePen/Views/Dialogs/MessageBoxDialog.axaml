@@ -13,6 +13,7 @@
         mc:Ignorable="d"
         d:DesignWidth="400" d:DesignHeight="180"
         x:Class="AvPurplePen.Views.MessageBoxDialog"
+        Classes="dialog"
         x:DataType="vm:MessageBoxDialogViewModel"
         Title="Purple Pen"
         Icon="/Assets/transparent.ico"

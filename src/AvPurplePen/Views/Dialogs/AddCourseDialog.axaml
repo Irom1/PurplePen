@@ -17,6 +17,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         x:Class="AvPurplePen.Views.AddCourseDialog"
+        Classes="dialog"
         x:DataType="vm:AddCourseDialogViewModel"
         Title="{resx:Localize AddCourse_Text}"
         Icon="/Assets/transparent.ico"

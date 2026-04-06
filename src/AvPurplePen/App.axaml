@@ -27,6 +27,9 @@
         <!-- Menu item padding: default is "16 8" (horiz vert). Reduce vertical padding. -->
         <Thickness x:Key="MenuItemPadding">16 2</Thickness>
 
+        <!-- ComboBox dropdown item padding: default is "12 8" (horiz vert). -->
+        <Thickness x:Key="ComboBoxItemDefaultPadding">12 4</Thickness>
+
     </Application.Resources>
 
     <Application.Styles>
@@ -38,6 +41,28 @@
         </Style>
         <Style Selector="TextBlock">
             <Setter Property="FontFamily" Value="{DynamicResource DefaultFontFamily}"/>
+        </Style>
+
+        <!-- Use Small size for input controls globally (Semi default height is 32, Small is 24) -->
+        <Style Selector="TextBox">
+            <Setter Property="MinHeight" Value="{DynamicResource TextBoxSmallHeight}"/>
+        </Style>
+        <Style Selector="AutoCompleteBox">
+            <Setter Property="MinHeight" Value="{DynamicResource AutoCompleteBoxSmallHeight}"/>
+        </Style>
+        <Style Selector="ComboBox">
+            <Setter Property="MinHeight" Value="{DynamicResource ComboBoxSmallHeight}"/>
+        </Style>
+        <Style Selector="NumericUpDown">
+            <Setter Property="MinHeight" Value="{DynamicResource NumericUpDownSmallHeight}"/>
+        </Style>
+
+        <!-- Dialog text: use Medium (500) weight by default.
+             Inherited by all children unless they set their own FontWeight
+             (e.g. Button ControlTheme, inline SemiBold on GroupBox headers). -->
+        <Style Selector="Window.dialog">
+            <Setter Property="FontWeight" Value="Medium"/>
+            <Setter Property="Background" Value="#FFFCF6"/>
         </Style>
 
         <!-- Style HeaderedContentControl to look like a Windows GroupBox:
