@@ -34,7 +34,8 @@ namespace AvPurplePen.Controls
 
             if (change.Property == SourceProperty) {
                 UpdateBitmap((IGraphicsBitmap?)change.NewValue);
-                InvalidateVisual(); // Tell Avalonia to redraw
+                InvalidateMeasure();
+                InvalidateVisual();
             }
         }
 
@@ -62,6 +63,16 @@ namespace AvPurplePen.Controls
                     }
                 });
             }
+        }
+
+        // Report the bitmap's pixel dimensions as the desired size so
+        // layout allocates space even when the parent doesn't force a size.
+        protected override Avalonia.Size MeasureOverride(Avalonia.Size availableSize)
+        {
+            if (writeableBitmap != null) {
+                return new Avalonia.Size(writeableBitmap.Bitmap.PixelSize.Width, writeableBitmap.Bitmap.PixelSize.Height);
+            }
+            return default;
         }
 
         public override void Render(DrawingContext context)

@@ -33,13 +33,17 @@
     <PackageVersion Include="System.Text.Encoding.CodePages" Version="10.0.2" />
     <PackageVersion Include="PDFiumCore" Version="134.0.6982" />
     <PackageVersion Include="System.Configuration.ConfigurationManager" Version="10.0.3" />
+    
     <PackageVersion Include="Avalonia" Version="11.3.11" />
     <PackageVersion Include="Avalonia.Desktop" Version="11.3.11" />
     <PackageVersion Include="Avalonia.Themes.Fluent" Version="11.3.11" />
+    <PackageVersion Include="Avalonia.Fonts.Inter" Version="11.3.11" />
+    <PackageVersion Include="Avalonia.Diagnostics" Version="11.3.11" />
+
+    <PackageVersion Include="CommunityToolkit.Mvvm" Version="8.2.1" />
+
     <PackageVersion Include="Semi.Avalonia" Version="11.3.7" />
 
-    <PackageVersion Include="Avalonia.Diagnostics" Version="11.3.11" />
-    <PackageVersion Include="CommunityToolkit.Mvvm" Version="8.2.1" />
     <!-- 
     Do not upgrade ImageSharp past 2.1.3! Later versions have a stricter license. We want the Apache 2.0 license. 
     There are security vulnerabilities in ImageSharp, but only if you are decoding untrusted images. We assuming people 

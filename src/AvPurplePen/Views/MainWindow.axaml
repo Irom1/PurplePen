@@ -599,7 +599,7 @@
         <!-- Status bar at the bottom with status text, zoom controls, and coordinate display. -->
         <Grid x:Name="statusBar" DockPanel.Dock="Bottom" Height="26"
               ColumnDefinitions="*,Auto,Auto,Auto,Auto"
-              Background="{DynamicResource SystemControlBackgroundChromeMediumLowBrush}">
+              Background="{DynamicResource SemiColorTertiaryLight}">
 
             <!-- Status message (Spring = fills available space) -->
             <TextBlock x:Name="statusLabel" Grid.Column="0"
@@ -693,8 +693,7 @@
                 </Grid>
 
                 <!-- GridSplitter between description area and selection panel -->
-                <GridSplitter Grid.Row="1" Height="4" ResizeDirection="Rows"
-                              Background="{DynamicResource SystemControlBackgroundBaseMediumBrush}"/>
+                <GridSplitter Grid.Row="1" Height="4" ResizeDirection="Rows"/>
 
                 <!-- SelectionPanel
                      Displays context-sensitive selection controls (properties panel).
@@ -707,8 +706,7 @@
             </Grid>
 
             <!-- GridSplitter between left and right panels -->
-            <GridSplitter Grid.Column="1" Width="4" ResizeDirection="Columns"
-                          Background="{DynamicResource SystemControlBackgroundBaseMediumBrush}"/>
+            <GridSplitter Grid.Column="1" Width="4" ResizeDirection="Columns"/>
 
             <!-- === RIGHT PANEL (map viewer area) === -->
             <Grid Grid.Column="2" RowDefinitions="Auto,*,Auto" ColumnDefinitions="*,Auto">
@@ -720,7 +718,7 @@
                      EnableProperties, AvailableVariations, CurrentVariation.
                      Events: SelectedVariationChanged, SelectedPartChanged, PropertiesClicked. -->
                 <Border x:Name="coursePartBanner" Grid.Row="0" Grid.ColumnSpan="2"
-                        Background="{DynamicResource SystemControlBackgroundListMediumBrush}"
+                        Background="{DynamicResource SemiColorFill1}"
                         Height="24">
                     <TextBlock Text="[coursePartBanner placeholder]"
                                HorizontalAlignment="Center" VerticalAlignment="Center"

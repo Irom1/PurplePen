@@ -36,7 +36,8 @@
       "Bash(find D:ReposMainPurplePen/src/AvPurplePen -path */bin/*/PdfConverter.exe -type f)",
       "Bash(xargs ls:*)",
       "Bash(grep -r \"ImageSharp\\\\|SixLabors\" /d/Repos/Main/PurplePen/src --include=*.cs --include=*.csproj)",
-      "WebFetch(domain:docs.irihi.tech)"
+      "WebFetch(domain:docs.irihi.tech)",
+      "WebFetch(domain:raw.githubusercontent.com)"
     ]
   }
 }

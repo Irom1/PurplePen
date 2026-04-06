@@ -12,8 +12,18 @@
 
     <Application.Resources>
         <FontFamily x:Key="DefaultFontFamily">avares://AvPurplePen/Assets/UIFonts#Source Sans 3</FontFamily>
+        <!-- Override Semi.Avalonia's default font (Inter) with our embedded font -->
+        <FontFamily x:Key="SemiFontFamilyRegular">avares://AvPurplePen/Assets/UIFonts#Source Sans 3</FontFamily>
+
         <!-- Override Semi.Avalonia's menu popup max height (default 400) to prevent scrolling -->
         <x:Double x:Key="MenuFlyoutMaxHeight">10000</x:Double>
+
+        <!-- Top-level menu bar item padding (File, Edit, ...): default is "16 0". -->
+        <Thickness x:Key="TopLevelMenuItemPadding">10 0</Thickness>
+
+        <!-- Menu item padding: default is "16 8" (horiz vert). Reduce vertical padding. -->
+        <Thickness x:Key="MenuItemPadding">16 3</Thickness>
+
     </Application.Resources>
 
     <Application.Styles>
@@ -31,7 +41,7 @@
              bordered rectangle with the header text overlapping the top border. -->
         <Style Selector="HeaderedContentControl">
             <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="BorderBrush" Value="{DynamicResource SystemControlForegroundBaseMediumBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource SemiColorBorder}"/>
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="CornerRadius" Value="4"/>
             <Setter Property="Padding" Value="8,4,8,8"/>
@@ -55,7 +65,7 @@
                                           VerticalAlignment="Top"
                                           Margin="12,0,0,0"
                                           Padding="4,0"
-                                          Background="{DynamicResource SystemControlBackgroundAltHighBrush}"
+                                          Background="{DynamicResource SemiColorBackground0}"
                                           FontWeight="SemiBold"/>
                     </Grid>
                 </ControlTemplate>
