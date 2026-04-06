@@ -11,7 +11,7 @@
     </Application.DataTemplates>
 
     <Application.Resources>
-        <FontFamily x:Key="DefaultFontFamily">Segoe UI</FontFamily>
+        <FontFamily x:Key="DefaultFontFamily">avares://AvPurplePen/Assets/UIFonts#Source Sans 3</FontFamily>
         <!-- Override Semi.Avalonia's menu popup max height (default 400) to prevent scrolling -->
         <x:Double x:Key="MenuFlyoutMaxHeight">10000</x:Double>
     </Application.Resources>
@@ -19,9 +19,12 @@
     <Application.Styles>
         <semi:SemiTheme Locale="en-US" />
 
-        <!-- Force Segoe UI as the default font for all controls -->
+        <!-- Use embedded Source Sans 3 as the default font for all controls -->
         <Style Selector=":is(TemplatedControl)">
-            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontFamily" Value="{DynamicResource DefaultFontFamily}"/>
+        </Style>
+        <Style Selector="TextBlock">
+            <Setter Property="FontFamily" Value="{DynamicResource DefaultFontFamily}"/>
         </Style>
 
         <!-- Style HeaderedContentControl to look like a Windows GroupBox:
