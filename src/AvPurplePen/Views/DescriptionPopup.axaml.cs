@@ -29,12 +29,12 @@ public partial class DescriptionPopup : UserControl
         remove => RemoveHandler(ItemSelectedEvent, value);
     }
     // Grid cell size in DIPs. Used by DescriptionViewer to calculate bitmap sizes.
-    public const int CELLSIZE = 34;
+    public const int CELLSIZE = 36;
 
     // Per-side overhead (padding + border) of the popupBtn button style, in DIPs.
     // Must match the Padding and BorderThickness in the popupBtn styles in
-    // DescriptionPopup.axaml (currently Padding="2" + BorderThickness="1" = 4).
-    public const double BUTTON_CHROME_PER_SIDE = 2;
+    // DescriptionPopup.axaml (currently Padding="3" + BorderThickness="1" = 4).
+    public const double BUTTON_CHROME_PER_SIDE = 4;
 
     private TextBlock? infoTextControl;
 

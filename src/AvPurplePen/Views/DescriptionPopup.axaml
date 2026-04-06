@@ -17,6 +17,27 @@
     </Design.DataContext>
 
     <UserControl.Styles>
+        <!-- Popup button: transparent by default, light blue on hover, darker on press.
+             If Padding or BorderThickness change, update BUTTON_CHROME_PER_SIDE in
+             DescriptionPopup.axaml.cs to match (currently Padding=3 + Border=1 = 4). -->
+        <Style Selector="Button.popupBtn">
+            <Setter Property="CornerRadius" Value="0"/>
+            <Setter Property="Padding" Value="3"/>
+        </Style>
+        <Style Selector="Button.popupBtn /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+        <Style Selector="Button.popupBtn:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#FFCCE5FF"/>
+            <Setter Property="BorderBrush" Value="#FF3078C0"/>
+        </Style>
+        <Style Selector="Button.popupBtn:pressed /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#FF99CCEE"/>
+            <Setter Property="BorderBrush" Value="#FF3078C0"/>
+        </Style>
+
         <!-- Popup text box: flat style to match -->
         <Style Selector="TextBox.popupTextBox">
             <Setter Property="CornerRadius" Value="0"/>
@@ -28,46 +49,8 @@
     </UserControl.Styles>
 
     <UserControl.Resources>
-        <!-- Custom button theme that bypasses Semi's Button styling.
-             Transparent by default, light blue on hover, darker on press.
-             If Padding or BorderThickness change, update BUTTON_CHROME_PER_SIDE in
-             DescriptionPopup.axaml.cs to match (currently Padding=2 + Border=1 = 3). -->
-        <ControlTheme x:Key="PopupButtonTheme" TargetType="Button">
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="BorderBrush" Value="Transparent"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="CornerRadius" Value="0"/>
-            <Setter Property="Padding" Value="2"/>
-            <Setter Property="Cursor" Value="Hand"/>
-            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-            <Setter Property="VerticalContentAlignment" Value="Stretch"/>
-            <Setter Property="Template">
-                <ControlTemplate TargetType="Button">
-                    <ContentPresenter Name="PART_ContentPresenter"
-                                      Background="{TemplateBinding Background}"
-                                      BorderBrush="{TemplateBinding BorderBrush}"
-                                      BorderThickness="{TemplateBinding BorderThickness}"
-                                      CornerRadius="{TemplateBinding CornerRadius}"
-                                      Padding="{TemplateBinding Padding}"
-                                      Content="{TemplateBinding Content}"
-                                      ContentTemplate="{TemplateBinding ContentTemplate}"
-                                      HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                      VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                </ControlTemplate>
-            </Setter>
-
-            <Style Selector="^:pointerover /template/ ContentPresenter#PART_ContentPresenter">
-                <Setter Property="Background" Value="#FFCCE5FF"/>
-                <Setter Property="BorderBrush" Value="#FF3078C0"/>
-            </Style>
-            <Style Selector="^:pressed /template/ ContentPresenter#PART_ContentPresenter">
-                <Setter Property="Background" Value="#FF99CCEE"/>
-                <Setter Property="BorderBrush" Value="#FF3078C0"/>
-            </Style>
-        </ControlTheme>
-
         <DataTemplate x:Key="ButtonTemplate" x:DataType="vm:ButtonGridItemViewModel">
-            <Button Theme="{StaticResource PopupButtonTheme}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Button Classes="popupBtn" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <controls:GraphicsBitmapControl Source="{Binding ButtonBitmap}"/>
             </Button>
         </DataTemplate>

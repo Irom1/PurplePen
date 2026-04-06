@@ -256,7 +256,7 @@ namespace PurplePen.ViewModels
                     using (IBitmapGraphicsTarget grTarget = Services.BitmapGraphicsTargetProvider.CreateBitmapGraphicsTarget(pixelWidth, pixelHeight, CmykColor.FromCmyka(0, 0, 0, 0, 0), DefaultColorConverter.Instance)) {
                         grTarget.PushAntiAliasing(false);
                         RectangleF rect = new RectangleF(0, 0, pixelWidth, pixelHeight);
-                        rect.Inflate(-2.5F, -2.5F);
+                        rect.Inflate(-1.5F, -1.5F);
                         object pen = new object();
                         grTarget.CreatePen(pen, CmykColor.FromColor(Color.DarkRed), 1, LineCapMode.Flat, LineJoinMode.Miter, 5);
                         grTarget.DrawRectangle(pen, rect);

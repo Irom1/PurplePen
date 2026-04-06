@@ -19,10 +19,13 @@
         <x:Double x:Key="MenuFlyoutMaxHeight">10000</x:Double>
 
         <!-- Top-level menu bar item padding (File, Edit, ...): default is "16 0". -->
-        <Thickness x:Key="TopLevelMenuItemPadding">10 0</Thickness>
+        <Thickness x:Key="TopLevelMenuItemPadding">10 2</Thickness>
+
+        <!-- Top-level menu bar item min height: default is SemiHeightControlDefault (32). -->
+        <x:Double x:Key="TopLevelMenuItemMinHeight">24</x:Double>
 
         <!-- Menu item padding: default is "16 8" (horiz vert). Reduce vertical padding. -->
-        <Thickness x:Key="MenuItemPadding">16 3</Thickness>
+        <Thickness x:Key="MenuItemPadding">16 2</Thickness>
 
     </Application.Resources>
 
