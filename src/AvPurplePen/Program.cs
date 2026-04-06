@@ -77,7 +77,6 @@ namespace AvPurplePen
         { 
             return AppBuilder.Configure<App>()
                 .UsePlatformDetect()
-                .WithInterFont()
                 .LogToTrace();
         }
     }
