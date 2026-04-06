@@ -3,8 +3,8 @@
              x:Class="AvPurplePen.App"
              xmlns:local="using:AvPurplePen"
              xmlns:semi="https://irihi.tech/semi"
-             RequestedThemeVariant="Light">
-             <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+             >
+             <!-- Theme variant is set in App.axaml.cs -->
 
     <Application.DataTemplates>
         <local:ViewLocator/>

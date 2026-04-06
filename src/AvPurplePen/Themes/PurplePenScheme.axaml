@@ -1,0 +1,15 @@
+<!--
+    PurplePenScheme.axaml
+    Custom color scheme for PurplePen, based on Semi.Avalonia's Desert scheme.
+    Uses the HighContrast control themes but with our own color palette.
+    See: https://github.com/irihitech/Semi.Avalonia/blob/main/src/Semi.Avalonia/Tokens/HighContrast/Desert.axaml
+-->
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.MergedDictionaries>
+        <!-- Our custom color tokens (replaces Desert.axaml) -->
+        <ResourceInclude Source="/Themes/PurplePenColors.axaml" />
+        <!-- Reuse Semi's HighContrast control themes that map these colors to controls -->
+        <ResourceInclude Source="avares://Semi.Avalonia/Themes/HighContrast/_index.axaml" />
+    </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>

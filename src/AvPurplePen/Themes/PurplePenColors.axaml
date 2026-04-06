@@ -1,0 +1,46 @@
+<!--
+    PurplePenColors.axaml
+    Custom color tokens for PurplePen, based on Semi.Avalonia's Desert color scheme.
+    These 8 colors flow through Semi's HighContrast control themes to style all controls.
+
+    Original Desert values for reference:
+        WindowColor:        #FFFAEF     (warm cream background)
+        WindowTextColor:    #3D3D3D     (medium grey text)
+        HotlightColor:      #1C5E75     (teal accent / links)
+        GrayTextColor:      #676767     (disabled / secondary text)
+        HighlightTextColor: #FFF5E3     (selected item text)
+        HighlightColor:     #903909     (selection / accent background)
+        ButtonTextColor:    #202020     (button label text)
+        ButtonFaceColor:    #FFFAEF     (button background)
+-->
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- Window / page background -->
+    <Color x:Key="WindowColor">#FFFAEF</Color>
+    <!-- Default text color (labels, menus, radio buttons, checkboxes, etc.) -->
+    <Color x:Key="WindowTextColor">#1C1C1C</Color>
+    <!-- Accent color for links and hotlight effects -->
+    <Color x:Key="HotlightColor">#1C5E75</Color>
+    <!-- Disabled / secondary text -->
+    <Color x:Key="GrayTextColor">#676767</Color>
+    <!-- Text on highlighted / selected items -->
+    <Color x:Key="HighlightTextColor">#FFF5E3</Color>
+    <!-- Selection / accent background -->
+    <Color x:Key="HighlightColor">#903909</Color>
+    <!-- Button label text -->
+    <Color x:Key="ButtonTextColor">#202020</Color>
+    <!-- Button background -->
+    <Color x:Key="ButtonFaceColor">#FFFAEF</Color>
+
+    <!-- SolidColorBrush versions (consumed by Semi's HighContrast control themes) -->
+    <SolidColorBrush x:Key="SemiColorWindow" Color="{StaticResource WindowColor}" />
+    <SolidColorBrush x:Key="SemiColorWindowText" Color="{StaticResource WindowTextColor}" />
+    <SolidColorBrush x:Key="SemiColorHotlight" Color="{StaticResource HotlightColor}" />
+    <SolidColorBrush x:Key="SemiColorGrayText" Color="{StaticResource GrayTextColor}" />
+    <SolidColorBrush x:Key="SemiColorHighlightText" Color="{StaticResource HighlightTextColor}" />
+    <SolidColorBrush x:Key="SemiColorHighlight" Color="{StaticResource HighlightColor}" />
+    <SolidColorBrush x:Key="SemiColorButtonText" Color="{StaticResource ButtonTextColor}" />
+    <SolidColorBrush x:Key="SemiColorButtonFace" Color="{StaticResource ButtonFaceColor}" />
+
+</ResourceDictionary>
