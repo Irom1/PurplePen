@@ -579,20 +579,10 @@
         <!-- ==================== COURSE TABS ==================== -->
         <!-- TabStrip for course selection. Tabs are bound to ViewModel tab names. -->
         <TabStrip x:Name="courseTabs" DockPanel.Dock="Top" Padding="0"
+                  Theme="{DynamicResource CardTabStrip}"
                   ItemsSource="{Binding TabNames}"
                   SelectedIndex="{Binding SelectedTabIndex}"
                   Background="#E0E0E0">
-            <TabStrip.Styles>
-                <Style Selector="TabStripItem">
-                    <Setter Property="FontSize" Value="18"/>
-                    <Setter Property="Background" Value="#E0E0E0"/>
-                    <Setter Property="Foreground" Value="Black"/>
-                </Style>
-                <Style Selector="TabStripItem:selected">
-                    <Setter Property="Background" Value="#E0E0E0"/>
-                    <Setter Property="Foreground" Value="#8B00FF"/>
-                </Style>
-            </TabStrip.Styles>
         </TabStrip>
 
         <!-- ==================== STATUS BAR ==================== -->

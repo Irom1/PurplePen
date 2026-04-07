@@ -45,10 +45,17 @@
 
         <!-- Dark grey border for input controls, popups, splitters, group boxes -->
         <SolidColorBrush x:Key="DarkGreyBorder" Color="{StaticResource SemiGrey3Color}"/>
+        <!-- Card tab border — same as DarkGreyBorder so selected tab border is visible -->
+        <SolidColorBrush x:Key="TabControlSeparatorBorderBrush" Color="{StaticResource SemiGrey3Color}"/>
         <SolidColorBrush x:Key="ComboBoxPopupBorderBrush" Color="{StaticResource SemiGrey3Color}"/>
         <SolidColorBrush x:Key="ComboBoxSelectorBorderedBorderBrush" Color="{StaticResource SemiGrey3Color}"/>
         <SolidColorBrush x:Key="HeaderedContentControlBorderBrush" Color="{StaticResource SemiGrey3Color}"/>
         <SolidColorBrush x:Key="GridSplitterBackground" Color="{StaticResource SemiGrey4Color}"/>
+
+        <!-- Tab strip: regular weight for selected tabs (default is SemiBold/600) -->
+        <FontWeight x:Key="TabItemSelectedFontWeight">Regular</FontWeight>
+        <!-- Tab strip: compact height (default is 32) -->
+        <x:Double x:Key="TabItemCardDefaultHeight">24</x:Double>
 
     </Application.Resources>
 
@@ -61,6 +68,21 @@
         </Style>
         <Style Selector="TextBlock">
             <Setter Property="FontFamily" Value="{DynamicResource DefaultFontFamily}"/>
+        </Style>
+
+        <!-- Tab strip: smaller font size, adjust padding and margin -->
+        <Style Selector="TabStripItem">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Padding" Value="6 1 6 0"/>
+            <Setter Property="Margin" Value="3 0 0 0"/>
+        </Style>
+        <Style Selector="TabStrip TabStripItem:nth-last-child(1)">
+            <!-- remove special case for last tab item so all tabs have the same margin -->
+            <Setter Property="Margin" Value="3 0 0 0"/>
+        </Style>
+        <Style Selector="TabStripItem:selected">
+            <!-- because the active tab has border changes, adjust the padding so the text doesn't move -->
+            <Setter Property="Padding" Value="5 0 5 0"/>
         </Style>
 
         <!-- Global input control overrides (Small size + border + background styling)
@@ -189,7 +211,7 @@
                                           Margin="12,0,0,0"
                                           Padding="4,0"
                                           Background="{DynamicResource DialogBackground}"
-                                          FontWeight="SemiBold"/>
+                                          FontWeight="Bold"/>
                     </Grid>
                 </ControlTemplate>
             </Setter>
