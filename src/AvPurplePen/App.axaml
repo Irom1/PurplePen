@@ -300,6 +300,11 @@
         </Style>
 
         <!-- When a TextBox has a validation error, show the error as a tooltip. -->
+
+        <Style Selector="TextBox:error /template/ Border#PART_ContentPresenterBorder">
+            <Setter Property="BorderBrush" Value="{DynamicResource SemiColorDanger}"/>
+            <Setter Property="Background" Value="{StaticResource SemiRed1Color}"/>
+        </Style>
         <Style Selector="TextBox:error">
             <Setter Property="ToolTip.Tip">
                 <Template>
@@ -309,5 +314,6 @@
                 </Template>
             </Setter>
         </Style>
+
     </Application.Styles>
 </Application>
