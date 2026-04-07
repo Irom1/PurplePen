@@ -288,6 +288,7 @@ namespace AvUtil
                 int currentPixelWidth = Convert.ToInt32(bounds.Width * _scale);
                 int currentPixelHeight = Convert.ToInt32(bounds.Height * _scale);
 
+                context.PushClip(new Rect(Bounds.Size));
                 context.DrawImage(_writeableBitmapTracker.Bitmap, new Rect(0, 0, currentPixelWidth, currentPixelHeight), new Rect(Bounds.Size));
             }
         }

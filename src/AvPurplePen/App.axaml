@@ -127,6 +127,21 @@
         <Style Selector="TextBox:not(#PART_EditableTextBox):focus:pointerover /template/ Border#PART_ContentPresenterBorder">
             <Setter Property="BorderBrush" Value="{DynamicResource SemiColorFocusBorder}"/>
         </Style>
+        <Style Selector="ListBox">
+            <Setter Property="BorderBrush" Value="{DynamicResource DarkGreyBorder}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="3"/>
+            <Setter Property="Background" Value="{DynamicResource InputBackground}"/>
+        </Style>
+        <Style Selector="ListBox /template/ ScrollViewer#PART_ScrollViewer">
+            <Setter Property="Margin" Value="0 0 2 0"/>
+        </Style>
+        <Style Selector="ListBox:focus-within">
+            <Setter Property="Background" Value="{DynamicResource InputActiveBackground}"/>
+        </Style>
+        <Style Selector="ListBox:pointerover">
+            <Setter Property="Background" Value="{DynamicResource InputActiveBackground}"/>
+        </Style>
         <Style Selector="AutoCompleteBox">
             <Setter Property="MinHeight" Value="{DynamicResource AutoCompleteBoxSmallHeight}"/>
             <Setter Property="BorderBrush" Value="{DynamicResource DarkGreyBorder}"/>

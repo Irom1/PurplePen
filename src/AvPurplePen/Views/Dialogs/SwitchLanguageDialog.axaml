@@ -63,7 +63,8 @@
         <ListBox x:Name="languageListBox"
                  ItemsSource="{Binding AvailableLanguages}"
                  SelectedItem="{Binding SelectedLanguage}"
-                 DoubleTapped="LanguageListBox_DoubleTapped">
+                 DoubleTapped="LanguageListBox_DoubleTapped"
+                 >
             <ListBox.ItemTemplate>
                 <DataTemplate x:DataType="vm:LanguageItem">
                     <StackPanel Orientation="Horizontal" Spacing="8">
