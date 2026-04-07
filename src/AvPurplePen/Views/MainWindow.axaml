@@ -346,7 +346,7 @@
             <Button x:Name="openToolStripButton"
                     ToolTip.Tip="{resx:Localize MainFrame_openToolStripButton_ToolTipText}"
                     Command="{Binding FileOpenPurplePenFileCommand}"
-                    Padding="2,2">
+                    Padding="6,2,2,2">
                 <Image Source="/Assets/Toolbar/open.png" Width="16" Height="16"/>
             </Button>
 
@@ -356,7 +356,7 @@
                     Padding="2,2">
                 <Image Source="/Assets/Toolbar/save.png" Width="16" Height="16"/>
             </Button>
-            <Separator Width="1" Margin="4,2"/>
+            <Separator Width="1" Margin="3,2"/>
 
             <!-- Undo (image only) -->
             <Button x:Name="undoToolStripButton"
@@ -379,7 +379,7 @@
                     Padding="2,2">
                 <Image Source="/Assets/Toolbar/delete.png" Width="16" Height="16"/>
             </Button>
-            <Separator Width="1" Margin="4,2"/>
+            <Separator Width="1" Margin="2,2"/>
 
             <!-- Add Start (image + text) -->
             <Button x:Name="addStartToolStripButton" Padding="2,2">
@@ -409,7 +409,7 @@
                                VerticalAlignment="Center"/>
                 </StackPanel>
             </Button>
-            <Separator Width="1" Margin="4,2"/>
+            <Separator Width="1" Margin="2,2"/>
 
             <!-- Descriptions (image + text) -->
             <Button x:Name="descriptionsToolStripMenuItem" Padding="2,2">
@@ -559,7 +559,7 @@
                     </MenuFlyout>
                 </Button.Flyout>
             </Button>
-            <Separator Width="1" Margin="4,2"/>
+            <Separator Width="1" Margin="2,2"/>
 
             <!-- Add Bend (image only) -->
             <Button x:Name="addBendToolStripButton"
