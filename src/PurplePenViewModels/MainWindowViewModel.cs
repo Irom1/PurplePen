@@ -446,7 +446,8 @@ namespace PurplePen.ViewModels
             // and process the result to actually add the course.
 #endif
             AddCourseDialogViewModel vm = new AddCourseDialogViewModel();
-            await Services.DialogService.ShowDialogAsync(vm);
+            bool result = await Services.DialogService.ShowDialogAsync(vm);
+            Debug.WriteLine("Dialog returned: " + result);
         }
 
         /// <summary>

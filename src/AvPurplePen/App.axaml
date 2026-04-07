@@ -30,6 +30,20 @@
         <!-- ComboBox dropdown item padding: default is "12 8" (horiz vert). -->
         <Thickness x:Key="ComboBoxItemDefaultPadding">12 4</Thickness>
 
+        <!-- Dialog background color -->
+        <SolidColorBrush x:Key="DialogBackground" Color="#FFFAEF"/>
+
+        <!-- Input control background colors -->
+        <SolidColorBrush x:Key="InputBackground" Color="#FBFBFB"/>
+        <SolidColorBrush x:Key="InputActiveBackground" Color="#FFFFFF"/>
+
+        <!-- Dark grey border for input controls, popups, splitters, group boxes -->
+        <SolidColorBrush x:Key="DarkGreyBorder" Color="{StaticResource SemiGrey3Color}"/>
+        <SolidColorBrush x:Key="ComboBoxPopupBorderBrush" Color="{StaticResource SemiGrey3Color}"/>
+        <SolidColorBrush x:Key="ComboBoxSelectorBorderedBorderBrush" Color="{StaticResource SemiGrey3Color}"/>
+        <SolidColorBrush x:Key="HeaderedContentControlBorderBrush" Color="{StaticResource SemiGrey3Color}"/>
+        <SolidColorBrush x:Key="GridSplitterBackground" Color="{StaticResource SemiGrey4Color}"/>
+
     </Application.Resources>
 
     <Application.Styles>
@@ -43,18 +57,93 @@
             <Setter Property="FontFamily" Value="{DynamicResource DefaultFontFamily}"/>
         </Style>
 
-        <!-- Use Small size for input controls globally (Semi default height is 32, Small is 24) -->
-        <Style Selector="TextBox">
+        <!-- Global input control overrides (Small size + border + background styling)
+             :not(#PART_EditableTextBox) excludes the inner TextBox inside editable ComboBox. -->
+        <Style Selector="TextBox:not(#PART_EditableTextBox)">
             <Setter Property="MinHeight" Value="{DynamicResource TextBoxSmallHeight}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource DarkGreyBorder}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Background" Value="{DynamicResource InputBackground}"/>
+        </Style>
+        <Style Selector="TextBox:not(#PART_EditableTextBox):pointerover /template/ Border#PART_ContentPresenterBorder">
+            <Setter Property="Background" Value="{DynamicResource InputActiveBackground}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource DarkGreyBorder}"/>
+        </Style>
+        <Style Selector="TextBox:not(#PART_EditableTextBox):focus /template/ Border#PART_ContentPresenterBorder">
+            <Setter Property="Background" Value="{DynamicResource InputActiveBackground}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource SemiColorFocusBorder}"/>
+        </Style>
+        <Style Selector="TextBox:not(#PART_EditableTextBox):focus:pointerover /template/ Border#PART_ContentPresenterBorder">
+            <Setter Property="BorderBrush" Value="{DynamicResource SemiColorFocusBorder}"/>
         </Style>
         <Style Selector="AutoCompleteBox">
             <Setter Property="MinHeight" Value="{DynamicResource AutoCompleteBoxSmallHeight}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource DarkGreyBorder}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Background" Value="{DynamicResource InputBackground}"/>
+        </Style>
+        <Style Selector="AutoCompleteBox:pointerover">
+            <Setter Property="Background" Value="{DynamicResource InputActiveBackground}"/>
+        </Style>
+        <Style Selector="AutoCompleteBox:focus">
+            <Setter Property="Background" Value="{DynamicResource InputActiveBackground}"/>
         </Style>
         <Style Selector="ComboBox">
             <Setter Property="MinHeight" Value="{DynamicResource ComboBoxSmallHeight}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource DarkGreyBorder}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Background" Value="{DynamicResource InputBackground}"/>
+        </Style>
+        <!-- Reset inner TextBox height in editable ComboBox so it doesn't force a larger size -->
+        <Style Selector="ComboBox TextBox#PART_EditableTextBox">
+            <Setter Property="MinHeight" Value="0"/>
+        </Style>
+        <Style Selector="ComboBox:pointerover">
+            <Setter Property="Background" Value="{DynamicResource InputActiveBackground}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource DarkGreyBorder}"/>
+        </Style>
+        <Style Selector="ComboBox:focus">
+            <Setter Property="Background" Value="{DynamicResource InputActiveBackground}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource SemiColorFocusBorder}"/>
+        </Style>
+        <Style Selector="ComboBox:focus:pointerover">
+            <Setter Property="BorderBrush" Value="{DynamicResource SemiColorFocusBorder}"/>
+        </Style>
+        <Style Selector="ComboBox:dropdownopen">
+            <Setter Property="Background" Value="{DynamicResource InputActiveBackground}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource DarkGreyBorder}"/>
+        </Style>
+        <Style Selector="ComboBox:dropdownopen /template/ PathIcon#DropDownGlyph">
+            <Setter Property="Foreground" Value="{DynamicResource SemiColorText0}"/>
         </Style>
         <Style Selector="NumericUpDown">
             <Setter Property="MinHeight" Value="{DynamicResource NumericUpDownSmallHeight}"/>
+            <Setter Property="Background" Value="{DynamicResource InputBackground}"/>
+        </Style>
+        <Style Selector="NumericUpDown:pointerover">
+            <Setter Property="Background" Value="{DynamicResource InputActiveBackground}"/>
+        </Style>
+        <Style Selector="NumericUpDown:focus-within">
+            <Setter Property="Background" Value="{DynamicResource InputActiveBackground}"/>
+        </Style>
+
+        <!-- Dialog button border (must target template part — Semi doesn't
+             use TemplateBinding for BorderBrush on the ContentPresenter) -->
+        <Style Selector="Window.dialog Button /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="BorderBrush" Value="{DynamicResource SemiGrey4}"/>
+        </Style>
+        <Style Selector="Window.dialog Button:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="BorderBrush" Value="{DynamicResource SemiGrey5}"/>
+        </Style>
+        <Style Selector="Window.dialog Button:pressed /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="BorderBrush" Value="{DynamicResource SemiGrey5}"/>
+        </Style>
+        <Style Selector="Window.dialog Button:disabled /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="BorderBrush" Value="{DynamicResource SemiGrey2}"/>
+        </Style>
+        <!-- Default (Enter) button gets accent border, but not when disabled -->
+        <Style Selector="Window.dialog Button[IsDefault=True]:not(:disabled) /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="BorderBrush" Value="{DynamicResource SemiColorFocusBorder}"/>
         </Style>
 
         <!-- Dialog text: use Medium (500) weight by default.
@@ -62,14 +151,14 @@
              (e.g. Button ControlTheme, inline SemiBold on GroupBox headers). -->
         <Style Selector="Window.dialog">
             <Setter Property="FontWeight" Value="Medium"/>
-            <Setter Property="Background" Value="#FFFCF6"/>
+            <Setter Property="Background" Value="{DynamicResource DialogBackground}"/>
         </Style>
 
         <!-- Style HeaderedContentControl to look like a Windows GroupBox:
              bordered rectangle with the header text overlapping the top border. -->
         <Style Selector="HeaderedContentControl">
             <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="BorderBrush" Value="{DynamicResource SemiColorBorder}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource SemiGrey2}"/>
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="CornerRadius" Value="4"/>
             <Setter Property="Padding" Value="8,4,8,8"/>
@@ -93,7 +182,7 @@
                                           VerticalAlignment="Top"
                                           Margin="12,0,0,0"
                                           Padding="4,0"
-                                          Background="{DynamicResource SemiColorBackground0}"
+                                          Background="{DynamicResource DialogBackground}"
                                           FontWeight="SemiBold"/>
                     </Grid>
                 </ControlTemplate>
