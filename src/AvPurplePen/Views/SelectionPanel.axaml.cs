@@ -73,7 +73,7 @@ public partial class SelectionPanel : UserControl
         List<TextBlock> textBlocks = new List<TextBlock>();
         TextBlock? currentTextBlock = null;
 
-        double baseFontSize = 14;
+        double baseFontSize = 15;
         const int HEADERGAP = 4;    // number of pixels extra space before a header
         const int LEFTRIGHTPADDING = 3; // pixels of left/right padding.
         const int INDENT = 12;    // number of pixels to index non-header lines
@@ -94,6 +94,7 @@ public partial class SelectionPanel : UserControl
                 currentTextBlock.TextWrapping = TextWrapping.Wrap;
                 currentTextBlock.Inlines = new InlineCollection();
                 currentTextBlock.Padding = new Thickness(LEFTRIGHTPADDING, 0, LEFTRIGHTPADDING, 0);
+                currentTextBlock.LineSpacing = -2;  // Move lines a little closer together to make it look better.
             }
 
             string text = part.text;
