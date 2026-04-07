@@ -52,6 +52,11 @@
         <SolidColorBrush x:Key="HeaderedContentControlBorderBrush" Color="{StaticResource SemiGrey3Color}"/>
         <SolidColorBrush x:Key="GridSplitterBackground" Color="{StaticResource SemiGrey4Color}"/>
 
+        <!-- Tooltip styling: dark text on light yellow background -->
+        <StaticResource x:Key="ToolTipForeground" ResourceKey="SemiColorText0"/>
+        <SolidColorBrush x:Key="ToolTipBackground" Color="{StaticResource SemiYellow1Color}"/>
+        <StaticResource x:Key="ToolTipBorderBrush" ResourceKey="DarkGreyBorder"/>
+
         <!-- Tab strip: regular weight for selected tabs (default is SemiBold/600) -->
         <FontWeight x:Key="TabItemSelectedFontWeight">Regular</FontWeight>
         <!-- Tab strip: compact height (default is 32) -->
