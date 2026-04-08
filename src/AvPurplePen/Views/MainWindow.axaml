@@ -673,13 +673,32 @@
                     </Panel>
 
                     <!-- Radio buttons to toggle between Descriptions and Topology/Ordering views -->
-                    <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="4,2">
-                        <RadioButton x:Name="radioButtonDescriptions"
+                    <Grid Grid.Row="1" ColumnDefinitions="*,*"
+                          Background="#f5f5f5" >
+                        <Grid.Styles>
+                            <Style Selector="RadioButton:not(:checked)">
+                                <Setter Property="Padding" Value="6,3"/>
+                            </Style>
+                            <Style Selector="RadioButton:checked">
+                                <Setter Property="BorderBrush" Value="{DynamicResource SemiGrey4}"/>
+                                <Setter Property="BorderThickness" Value="1"/>
+                                <Setter Property="Padding" Value="6,2"/>
+                            </Style>
+                        </Grid.Styles>
+                        <RadioButton x:Name="radioButtonDescriptions" Grid.Column="0"
+                                     Theme="{DynamicResource ButtonRadioButton}"
+                                     Classes="Small"
+                                     HorizontalAlignment="Stretch"
+                                     HorizontalContentAlignment="Center"
                                      Content="{resx:Localize MainFrame_radioButtonDescriptions_Text}"
-                                     IsChecked="True" Margin="0,0,8,0"/>
-                        <RadioButton x:Name="radioButtonTopology"
+                                     IsChecked="True"/>
+                        <RadioButton x:Name="radioButtonTopology" Grid.Column="1"
+                                     Theme="{DynamicResource ButtonRadioButton}"
+                                     Classes="Small"
+                                     HorizontalAlignment="Stretch"
+                                     HorizontalContentAlignment="Center"
                                      Content="{resx:Localize MainFrame_radioButtonTopology_Text}"/>
-                    </StackPanel>
+                    </Grid>
                 </Grid>
 
                 <!-- GridSplitter between description area and selection panel -->
