@@ -5,6 +5,7 @@ using Avalonia.Controls.Primitives.PopupPositioning;
 using Avalonia.Data;
 using Avalonia.Input;
 using Avalonia.Markup.Xaml;
+using Avalonia.Media;
 using Avalonia.Remote.Protocol.Input;
 using Avalonia.Rendering;
 using Avalonia.Styling;
@@ -199,7 +200,8 @@ public partial class DescriptionViewer : UserControl
             VerticalOffset = popupMenuLocation.Y,
             FlyoutPresenterTheme = new ControlTheme(typeof(FlyoutPresenter)) {
                 BasedOn = (ControlTheme)this.FindResource(typeof(FlyoutPresenter))!,
-                Setters = { new Setter(FlyoutPresenter.PaddingProperty, new Thickness(3)) }
+                Setters = { new Setter(FlyoutPresenter.PaddingProperty, new Thickness(3)), 
+                            new Setter(FlyoutPresenter.BackgroundProperty, new SolidColorBrush(Avalonia.Media.Color.FromRgb(0xFB, 0xF8, 0xED))) }
             },
             Content = descriptionPopup
         };
@@ -281,7 +283,7 @@ public partial class DescriptionViewer : UserControl
             RectangleF selectedRect = (renderer.LineBounds(Selection.FirstLine, Selection.LastLine));
             if (selectedRect.IntersectsWith(clipRectangle)) {
                 object selectionBrush = new object();
-                grTarget.CreateSolidBrush(selectionBrush, CmykColor.FromColor(Color.Yellow));
+                grTarget.CreateSolidBrush(selectionBrush, CmykColor.FromColor(System.Drawing.Color.Yellow));
                 grTarget.FillRectangle(selectionBrush, selectedRect);
             }
         }

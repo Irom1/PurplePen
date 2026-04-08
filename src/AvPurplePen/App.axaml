@@ -18,6 +18,10 @@
         <!-- Override Semi.Avalonia's menu popup max height (default 400) to prevent scrolling -->
         <x:Double x:Key="MenuFlyoutMaxHeight">10000</x:Double>
 
+        <!-- Flyout sizing overrides (defaults: min 100, max 600) -->
+        <x:Double x:Key="FlyoutMinHeight">60</x:Double>
+        <x:Double x:Key="FlyoutMaxHeight">1000</x:Double>
+
         <!-- Top-level menu bar item padding (File, Edit, ...): default is "16 0". -->
         <Thickness x:Key="TopLevelMenuItemPadding">10 2</Thickness>
 
