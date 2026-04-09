@@ -37,7 +37,8 @@ namespace PurplePen
         {
             get
             {
-                Debug.Assert(Status == ConversionStatus.Success);
+                if (Status != ConversionStatus.Success)
+                    throw new InvalidOperationException("Cannot get PNG file name until conversion is successful.");
                 return pngFileName;
             }
         }
@@ -214,7 +215,11 @@ namespace PurplePen
         {
             var hashAlgorithm = System.Security.Cryptography.SHA1.Create();
             byte[] hash = hashAlgorithm.ComputeHash(File.ReadAllBytes(path));
-            hash[0] ^= 0xe9;   // Change hash so different from previous (GhostScript)
+            hash[0] ^= 0xd9;   // Change hash so different from previous (GhostScript)
+#if !NETFRAMEWORK
+            // NET CORE use different hash from NET Framework, because the converters are different.
+            hash[1] ^= 0x7b;   
+#endif
             return Hexify(hash);
         }
 

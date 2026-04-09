@@ -43,6 +43,7 @@ using System.Drawing;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TestingUtils;
+using System.Threading.Tasks;
 
 // Things to test:
 // -- score course
@@ -56,22 +57,22 @@ namespace PurplePen.Tests
         TestUI ui;
         Controller controller;
 
-        public void Setup(string filename)
+        public async Task Setup(string filename)
         {
             ui = TestUI.Create();
             controller = ui.controller;
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile(filename), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile(filename), true);
             Assert.IsTrue(success);
         }
 
 
         [TestMethod]
-        public void ExportGpx()
+        public async Task ExportGpx()
         {
             string outputFile = TestUtil.GetTestFile("gpx\\lickcreek_actual.gpx");
             string expectedFile = TestUtil.GetTestFile("gpx\\lickcreek_expected.gpx");
 
-            Setup("gpx\\Lick Creek 2014.ppen");
+            await Setup("gpx\\Lick Creek 2014.ppen");
 
             controller.ExportGpx(outputFile, new GpxCreationSettings() {
                 CourseIds = new Id<Course>[] { Id<Course>.None, new Id<Course>(3), new Id<Course>(4), new Id<Course>(2) },
@@ -83,12 +84,12 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void ExportGpx2()
+        public async Task ExportGpx2()
         {
             string outputFile = TestUtil.GetTestFile("gpx\\lickcreek2_actual.gpx");
             string expectedFile = TestUtil.GetTestFile("gpx\\lickcreek2_expected.gpx");
 
-            Setup("gpx\\Lick Creek 2014.ppen");
+            await Setup("gpx\\Lick Creek 2014.ppen");
 
             controller.ExportGpx(outputFile, new GpxCreationSettings() {
                 CourseIds = new Id<Course>[] { new Id<Course>(5) },
@@ -100,12 +101,12 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void ExportGpxProj1()
+        public async Task ExportGpxProj1()
         {
             string outputFile = TestUtil.GetTestFile("gpx\\testproj1_actual.gpx");
             string expectedFile = TestUtil.GetTestFile("gpx\\testproj1_expected.gpx");
 
-            Setup("gpx\\testproj1.ppen");
+            await Setup("gpx\\testproj1.ppen");
 
             controller.ExportGpx(outputFile, new GpxCreationSettings() {
                 CourseIds = new Id<Course>[] { Id<Course>.None },
@@ -118,12 +119,12 @@ namespace PurplePen.Tests
 
 
         [TestMethod]
-        public void ExportGpxProj2()
+        public async Task ExportGpxProj2()
         {
             string outputFile = TestUtil.GetTestFile("gpx\\testproj2_actual.gpx");
             string expectedFile = TestUtil.GetTestFile("gpx\\testproj2_expected.gpx");
 
-            Setup("gpx\\testproj2.ppen");
+            await Setup("gpx\\testproj2.ppen");
 
             controller.ExportGpx(outputFile, new GpxCreationSettings() {
                 CourseIds = new Id<Course>[] { Id<Course>.None },
@@ -135,12 +136,12 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void ExportGpxProj3()
+        public async Task ExportGpxProj3()
         {
             string outputFile = TestUtil.GetTestFile("gpx\\testproj3_actual.gpx");
             string expectedFile = TestUtil.GetTestFile("gpx\\testproj3_expected.gpx");
 
-            Setup("gpx\\testproj3.ppen");
+            await Setup("gpx\\testproj3.ppen");
 
             controller.ExportGpx(outputFile, new GpxCreationSettings() {
                 CourseIds = new Id<Course>[] { Id<Course>.None },
@@ -152,12 +153,12 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void ExportGpxProj4()
+        public async Task ExportGpxProj4()
         {
             string outputFile = TestUtil.GetTestFile("gpx\\testproj4_actual.gpx");
             string expectedFile = TestUtil.GetTestFile("gpx\\testproj4_expected.gpx");
 
-            Setup("gpx\\testproj4.ppen");
+            await Setup("gpx\\testproj4.ppen");
 
             controller.ExportGpx(outputFile, new GpxCreationSettings() {
                 CourseIds = new Id<Course>[] { Id<Course>.None },
@@ -170,12 +171,12 @@ namespace PurplePen.Tests
 
 
         [TestMethod]
-        public void ExportGpxNotOcad()
+        public async Task ExportGpxNotOcad()
         {
             string outputFile = TestUtil.GetTestFile("gpx\\lincoln_actual.gpx");
             string expectedFile = TestUtil.GetTestFile("gpx\\lincoln_expected.gpx");
 
-            Setup("gpx\\Lincoln Park PDF.ppen");
+            await Setup("gpx\\Lincoln Park PDF.ppen");
 
             controller.ExportGpx(outputFile, new GpxCreationSettings() {
                 CourseIds = new Id<Course>[] { Id<Course>.None, },
@@ -187,12 +188,12 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void ExportGpxNoRealWorld()
+        public async Task ExportGpxNoRealWorld()
         {
             string outputFile = TestUtil.GetTestFile("gpx\\lickcreeknorealworld_actual.gpx");
             string expectedFile = TestUtil.GetTestFile("gpx\\lickcreeknorealworld_expected.gpx");
 
-            Setup("gpx\\Lick Creek 2014 NoRealWorld.ppen");
+            await Setup("gpx\\Lick Creek 2014 NoRealWorld.ppen");
 
             controller.ExportGpx(outputFile, new GpxCreationSettings() {
                 CourseIds = new Id<Course>[] { Id<Course>.None, new Id<Course>(3), new Id<Course>(4), new Id<Course>(2) },
@@ -205,12 +206,12 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void ExportGpxNoCoordSystem()
+        public async Task ExportGpxNoCoordSystem()
         {
             string outputFile = TestUtil.GetTestFile("gpx\\lickcreeknocoord_actual.gpx");
             string expectedFile = TestUtil.GetTestFile("gpx\\lickcreeknocoord_expected.gpx");
 
-            Setup("gpx\\Lick Creek 2014 NoCoordSystem.ppen");
+            await Setup("gpx\\Lick Creek 2014 NoCoordSystem.ppen");
 
             controller.ExportGpx(outputFile, new GpxCreationSettings() {
                 CourseIds = new Id<Course>[] { Id<Course>.None, new Id<Course>(3), new Id<Course>(4), new Id<Course>(2) },
@@ -222,12 +223,12 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void ExportGpxUnsupCoordSystem()
+        public async Task ExportGpxUnsupCoordSystem()
         {
             string outputFile = TestUtil.GetTestFile("gpx\\lickcreekunsupcoord_actual.gpx");
             string expectedFile = TestUtil.GetTestFile("gpx\\lickcreekunsupcoord_expected.gpx");
 
-            Setup("gpx\\Lick Creek 2014 UnsupCoordSystem.ppen");
+            await Setup("gpx\\Lick Creek 2014 UnsupCoordSystem.ppen");
 
             controller.ExportGpx(outputFile, new GpxCreationSettings() {
                 CourseIds = new Id<Course>[] { Id<Course>.None, new Id<Course>(3), new Id<Course>(4), new Id<Course>(2) },

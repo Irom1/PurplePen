@@ -42,6 +42,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TestingUtils;
+using System.Threading.Tasks;
 
 namespace PurplePen.Tests
 {
@@ -51,12 +52,12 @@ namespace PurplePen.Tests
         MainFrame mainFrame;
         Controller controller;
 
-        void LoadInitialFile(string filename)
+        async Task LoadInitialFile(string filename)
         {
             mainFrame = new MainFrame();
             controller = new Controller(mainFrame);
 
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile(filename), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile(filename), true);
             Assert.IsTrue(success);
 
             // Start the UI
@@ -87,10 +88,10 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void WrongScale()
+        public async Task WrongScale()
         {
             // Map sure the map scale is correct upon load of the map. The recorded map scale is wrong.
-            LoadInitialFile("mainframe\\wrongscale.coursescribe");
+            await LoadInitialFile("mainframe\\wrongscale.coursescribe");
             Application.DoEvents();
             Application.RaiseIdle(EventArgs.Empty);
 

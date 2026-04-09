@@ -40,6 +40,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PurplePen
@@ -65,7 +66,7 @@ namespace PurplePen
         }
 
         // Create new event was selected.
-        public void CreateNewEvent()
+        public async Task CreateNewEvent()
         {
             NewEventWizard wizard = new NewEventWizard();
             DialogResult result = wizard.ShowDialog(this);
@@ -83,7 +84,7 @@ namespace PurplePen
                 Controller controller = new Controller(mainFrame);
 
                 // Create the new event.
-                if (controller.InitialNewEvent(wizard.CreateEventInfo)) {
+                if (await controller.InitialNewEvent(wizard.CreateEventInfo)) {
                     // success
 
                     // show the main frame with the new event.
@@ -103,13 +104,13 @@ namespace PurplePen
         }
 
         // Open existing event was selected.
-        public void OpenExistingEvent()
+        public async Task OpenExistingEvent()
         {
             MainFrame mainFrame = new MainFrame();
             Controller controller = new Controller(mainFrame);
 
             string fileName = mainFrame.GetOpenFileName();
-            if (fileName == null || ! controller.LoadInitialFile(fileName, true)) {
+            if (fileName == null || !await controller.LoadInitialFile(fileName, true)) {
                 // User cancelled or the file didn't load. 
                 // Go back and show the initial screen again.
                 mainFrame.Dispose();
@@ -125,12 +126,12 @@ namespace PurplePen
         }
 
         // Open existing event was selected.
-        public void OpenLastViewedEvent()
+        public async Task OpenLastViewedEvent()
         {
             MainFrame mainFrame = new MainFrame();
             Controller controller = new Controller(mainFrame);
 
-            if (!controller.LoadInitialFile(UserSettings.Current.LastLoadedFile, true)) {
+            if (!await controller.LoadInitialFile(UserSettings.Current.LastLoadedFile, true)) {
                 // User cancelled or the file didn't load. 
                 // Go back and show the initial screen again.
                 mainFrame.Dispose();
@@ -152,12 +153,12 @@ namespace PurplePen
         }
 
         // Open sample event was selected
-        public void OpenSampleEvent()
+        public async Task OpenSampleEvent()
         {
             MainFrame mainFrame = new MainFrame();
             Controller controller = new Controller(mainFrame);
 
-            if (!controller.LoadInitialFile(SampleEventFileName(), false)) {        // Don't set sample event as the last loaded file.
+            if (!await controller.LoadInitialFile(SampleEventFileName(), false)) {        // Don't set sample event as the last loaded file.
                 // File didn't load. 
                 // Go back and show the initial screen again.
                 mainFrame.Dispose();
@@ -179,19 +180,19 @@ namespace PurplePen
             Dispose();      // The initial screen is over and out.
         }
 
-        private void okButton_Click(object sender, EventArgs e)
+        private async void okButton_Click(object sender, EventArgs e)
         {
             if (openExistingRadioButton.Checked) {
-                OpenExistingEvent();
+                await OpenExistingEvent();
             }
             else if (openLastRadioButton.Checked) {
-                OpenLastViewedEvent();
+                await OpenLastViewedEvent();
             }
             else if (createNewRadioButton.Checked) {
-                CreateNewEvent();
+                await CreateNewEvent();
             }
             else if (openSampleRadioButton.Checked) {
-                OpenSampleEvent();
+                await OpenSampleEvent();
             }
             else
                 Debug.Fail("how can this happen?");

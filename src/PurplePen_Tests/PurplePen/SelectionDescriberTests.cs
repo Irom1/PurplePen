@@ -44,6 +44,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TestingUtils;
+using System.Threading.Tasks;
 
 namespace PurplePen.Tests
 {
@@ -65,12 +66,12 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void SelectedControl1()
+        public async Task SelectedControl1()
         {
             TextPart textpart;
             int index;
 
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\marymoor.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\marymoor.coursescribe"), true);
             Assert.IsTrue(success);
 
             selectionMgr.SelectCourseView(Designator(2));
@@ -110,12 +111,12 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void SelectedControl1Toolstip()
+        public async Task SelectedControl1Toolstip()
         {
             TextPart textpart;
             int index;
 
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\marymoor.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\marymoor.coursescribe"), true);
             Assert.IsTrue(success);
 
             selectionMgr.SelectCourseView(Designator(2));
@@ -141,12 +142,12 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void SelectedControl2()
+        public async Task SelectedControl2()
         {
             TextPart textpart;
             int index;
 
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\marymoor.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\marymoor.coursescribe"), true);
             Assert.IsTrue(success);
 
             selectionMgr.SelectControl(ControlId(81));
@@ -185,12 +186,12 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void SelectedControl2Tooltip()
+        public async Task SelectedControl2Tooltip()
         {
             TextPart textpart;
             int index;
 
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\marymoor.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\marymoor.coursescribe"), true);
             Assert.IsTrue(success);
 
             selectionMgr.SelectControl(ControlId(81));
@@ -215,12 +216,12 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void SelectedControlWithLoad()
+        public async Task SelectedControlWithLoad()
         {
             TextPart textpart;
             int index;
 
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\marymoor2.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\marymoor2.coursescribe"), true);
             Assert.IsTrue(success);
 
             selectionMgr.SelectCourseView(Designator(2));
@@ -268,12 +269,12 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void SelectedControlWithLoadTooltip()
+        public async Task SelectedControlWithLoadTooltip()
         {
             TextPart textpart;
             int index;
 
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\marymoor2.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\marymoor2.coursescribe"), true);
             Assert.IsTrue(success);
 
             selectionMgr.SelectCourseView(Designator(2));
@@ -306,12 +307,12 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void SelectedStart()
+        public async Task SelectedStart()
         {
             TextPart textpart;
             int index;
 
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\marymoor.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\marymoor.coursescribe"), true);
             Assert.IsTrue(success);
 
             selectionMgr.SelectCourseView(Designator(2));
@@ -351,12 +352,12 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void SelectedStartTooltip()
+        public async Task SelectedStartTooltip()
         {
             TextPart textpart;
             int index;
 
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\marymoor.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\marymoor.coursescribe"), true);
             Assert.IsTrue(success);
 
             selectionMgr.SelectCourseView(Designator(2));
@@ -381,12 +382,12 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void SelectedStartWithLoad()
+        public async Task SelectedStartWithLoad()
         {
             TextPart textpart;
             int index;
 
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\marymoor2.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\marymoor2.coursescribe"), true);
             Assert.IsTrue(success);
 
             selectionMgr.SelectCourseView(Designator(2));
@@ -434,12 +435,12 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void SelectedFinish()
+        public async Task SelectedFinish()
         {
             TextPart textpart;
             int index;
 
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\marymoor.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\marymoor.coursescribe"), true);
             Assert.IsTrue(success);
 
             selectionMgr.SelectCourseView(Designator(2));
@@ -479,12 +480,12 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void SelectedMandatoryCrossingPoint()
+        public async Task SelectedMandatoryCrossingPoint()
         {
             TextPart textpart;
             int index;
 
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\marymoor.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\marymoor.coursescribe"), true);
             Assert.IsTrue(success);
 
             selectionMgr.SelectCourseView(Designator(5));
@@ -524,12 +525,12 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void SelectedSymbolKey()
+        public async Task SelectedSymbolKey()
         {
             TextPart textpart;
             int index;
 
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\sampleevent2.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\sampleevent2.coursescribe"), true);
             Assert.IsTrue(success);
 
             selectionMgr.SelectCourseView(Designator(6));
@@ -543,12 +544,12 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void SelectedTextLine()
+        public async Task SelectedTextLine()
         {
             TextPart textpart;
             int index;
 
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\desctext.ppen"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\desctext.ppen"), true);
             Assert.IsTrue(success);
 
             selectionMgr.SelectCourseView(Designator(6));
@@ -570,12 +571,12 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void SelectedCourse()
+        public async Task SelectedCourse()
         {
             TextPart textpart;
             int index;
 
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\marymoor.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\marymoor.coursescribe"), true);
             Assert.IsTrue(success);
 
             selectionMgr.SelectCourseView(Designator(3));
@@ -606,12 +607,12 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void SelectedCourseCustomLength()
+        public async Task SelectedCourseCustomLength()
         {
             TextPart textpart;
             int index;
 
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\marymoor.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\marymoor.coursescribe"), true);
             Assert.IsTrue(success);
 
             selectionMgr.SelectCourseView(Designator(6));
@@ -642,12 +643,12 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void SelectedCourseWithLoad()
+        public async Task SelectedCourseWithLoad()
         {
             TextPart textpart;
             int index;
 
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\marymoor2.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\marymoor2.coursescribe"), true);
             Assert.IsTrue(success);
 
             selectionMgr.SelectCourseView(Designator(3));
@@ -686,12 +687,12 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void SelectedCourseMapExchange()
+        public async Task SelectedCourseMapExchange()
         {
             TextPart textpart;
             int index;
 
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\mapexchange1.ppen"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\mapexchange1.ppen"), true);
             Assert.IsTrue(success);
 
             selectionMgr.SelectCourseView(Designator(6, 1));
@@ -723,12 +724,12 @@ namespace PurplePen.Tests
 
 
         [TestMethod]
-        public void ScoreCourse()
+        public async Task ScoreCourse()
         {
             TextPart textpart;
             int index;
 
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\marymoor2.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\marymoor2.coursescribe"), true);
             Assert.IsTrue(success);
 
             selectionMgr.SelectCourseView(Designator(9));
@@ -759,12 +760,12 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void SelectedLeg()
+        public async Task SelectedLeg()
         {
             TextPart textpart;
             int index;
 
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\marymoor.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\marymoor.coursescribe"), true);
             Assert.IsTrue(success);
 
             selectionMgr.SelectCourseView(Designator(6));
@@ -804,12 +805,12 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void SelectedLegTooltip()
+        public async Task SelectedLegTooltip()
         {
             TextPart textpart;
             int index;
 
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\marymoor.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\marymoor.coursescribe"), true);
             Assert.IsTrue(success);
 
             selectionMgr.SelectCourseView(Designator(6));
@@ -842,12 +843,12 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void SelectedLegWithLoad()
+        public async Task SelectedLegWithLoad()
         {
             TextPart textpart;
             int index;
 
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\marymoor2.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\marymoor2.coursescribe"), true);
             Assert.IsTrue(success);
 
             selectionMgr.SelectCourseView(Designator(6));
@@ -896,12 +897,12 @@ namespace PurplePen.Tests
 
 
         [TestMethod]
-        public void SelectedLegWithLoadTooltip()
+        public async Task SelectedLegWithLoadTooltip()
         {
             TextPart textpart;
             int index;
 
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\marymoor2.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\marymoor2.coursescribe"), true);
             Assert.IsTrue(success);
 
             selectionMgr.SelectCourseView(Designator(6));
@@ -943,12 +944,12 @@ namespace PurplePen.Tests
 
 
         [TestMethod]
-        public void SelectedLegBends()
+        public async Task SelectedLegBends()
         {
             TextPart textpart;
             int index;
 
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\SpecialLegs.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\SpecialLegs.coursescribe"), true);
             Assert.IsTrue(success);
 
             selectionMgr.SelectCourseView(Designator(1));
@@ -989,12 +990,12 @@ namespace PurplePen.Tests
 
 
         [TestMethod]
-        public void SelectedLegFlagging1()
+        public async Task SelectedLegFlagging1()
         {
             TextPart textpart;
             int index;
 
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\SpecialLegs.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\SpecialLegs.coursescribe"), true);
             Assert.IsTrue(success);
 
             selectionMgr.SelectCourseView(Designator(1));
@@ -1034,12 +1035,12 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void SelectedLegFlagging2()
+        public async Task SelectedLegFlagging2()
         {
             TextPart textpart;
             int index;
 
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\SpecialLegs.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\SpecialLegs.coursescribe"), true);
             Assert.IsTrue(success);
 
             selectionMgr.SelectCourseView(Designator(1));
@@ -1079,12 +1080,12 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void SelectedMapExchangeAtControl()
+        public async Task SelectedMapExchangeAtControl()
         {
             TextPart textpart;
             int index;
 
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\mapexchange2.ppen"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\mapexchange2.ppen"), true);
             Assert.IsTrue(success);
 
             selectionMgr.SelectCourseView(Designator(6));
@@ -1108,12 +1109,12 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void SelectedMapFlipAtControl()
+        public async Task SelectedMapFlipAtControl()
         {
             TextPart textpart;
             int index;
 
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\mapexchange3.ppen"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\mapexchange3.ppen"), true);
             Assert.IsTrue(success);
 
             selectionMgr.SelectCourseView(Designator(6));
@@ -1137,12 +1138,12 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void OutOfBounds()
+        public async Task OutOfBounds()
         {
             TextPart textpart;
             int index;
 
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\marymoor2.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\marymoor2.coursescribe"), true);
             Assert.IsTrue(success);
 
             selectionMgr.SelectCourseView(Designator(4));
@@ -1166,12 +1167,12 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void OutOfBoundsTooltip()
+        public async Task OutOfBoundsTooltip()
         {
             TextPart textpart;
             int index;
 
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\marymoor2.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\marymoor2.coursescribe"), true);
             Assert.IsTrue(success);
 
             selectionMgr.SelectCourseView(Designator(4));
@@ -1196,12 +1197,12 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void OptionalCrossingPoint()
+        public async Task OptionalCrossingPoint()
         {
             TextPart textpart;
             int index;
 
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\marymoor2.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\marymoor2.coursescribe"), true);
             Assert.IsTrue(success);
 
             selectionMgr.SelectCourseView(Designator(3));
@@ -1233,12 +1234,12 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void OptionalCrossingPointTooltip()
+        public async Task OptionalCrossingPointTooltip()
         {
             TextPart textpart;
             int index;
 
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\marymoor2.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\marymoor2.coursescribe"), true);
             Assert.IsTrue(success);
 
             selectionMgr.SelectCourseView(Designator(3));
@@ -1264,12 +1265,12 @@ namespace PurplePen.Tests
 
 
         [TestMethod]
-        public void Description()
+        public async Task Description()
         {
             TextPart textpart;
             int index;
 
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\marymoor2.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\marymoor2.coursescribe"), true);
             Assert.IsTrue(success);
 
             selectionMgr.SelectCourseView(Designator(10));
@@ -1310,12 +1311,12 @@ namespace PurplePen.Tests
 
 
         [TestMethod]
-        public void DescriptionTooltip()
+        public async Task DescriptionTooltip()
         {
             TextPart textpart;
             int index;
 
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\marymoor2.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\marymoor2.coursescribe"), true);
             Assert.IsTrue(success);
 
             selectionMgr.SelectCourseView(Designator(10));
@@ -1348,12 +1349,12 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void DescriptionScaled()
+        public async Task DescriptionScaled()
         {
             TextPart textpart;
             int index;
 
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\marymoor2.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\marymoor2.coursescribe"), true);
             Assert.IsTrue(success);
 
             selectionMgr.SelectCourseView(Designator(5));
@@ -1393,12 +1394,12 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void DescriptionScaledTooltip()
+        public async Task DescriptionScaledTooltip()
         {
             TextPart textpart;
             int index;
 
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\marymoor2.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\marymoor2.coursescribe"), true);
             Assert.IsTrue(success);
 
             selectionMgr.SelectCourseView(Designator(5));
@@ -1431,12 +1432,12 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void ImageBitmap()
+        public async Task ImageBitmap()
         {
             TextPart textpart;
             int index;
 
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\marymoor2.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\marymoor2.coursescribe"), true);
             Assert.IsTrue(success);
 
             selectionMgr.SelectCourseView(Designator(10));
@@ -1469,12 +1470,12 @@ namespace PurplePen.Tests
 
 
         [TestMethod]
-        public void LineSpecial()
+        public async Task LineSpecial()
         {
             TextPart textpart;
             int index;
 
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\marymoor2.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\marymoor2.coursescribe"), true);
             Assert.IsTrue(success);
 
             selectionMgr.SelectCourseView(Designator(10));
@@ -1507,12 +1508,12 @@ namespace PurplePen.Tests
 
 
         [TestMethod]
-        public void RectangleSpecial()
+        public async Task RectangleSpecial()
         {
             TextPart textpart;
             int index;
 
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\marymoor2.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\marymoor2.coursescribe"), true);
             Assert.IsTrue(success);
 
             selectionMgr.SelectCourseView(Designator(10));
@@ -1536,12 +1537,12 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void RectangleSpecialAllButOne()
+        public async Task RectangleSpecialAllButOne()
         {
             TextPart textpart;
             int index;
 
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\marymoor3.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\marymoor3.coursescribe"), true);
             Assert.IsTrue(success);
 
             selectionMgr.SelectCourseView(Designator(10));
@@ -1567,12 +1568,12 @@ namespace PurplePen.Tests
 
 
         [TestMethod]
-        public void Text()
+        public async Task Text()
         {
             TextPart textpart;
             int index;
 
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\marymoor2.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\marymoor2.coursescribe"), true);
             Assert.IsTrue(success);
 
             selectionMgr.SelectCourseView(Designator(10));
@@ -1606,12 +1607,12 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void SelectedAllControls()
+        public async Task SelectedAllControls()
         {
             TextPart textpart;
             int index;
 
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\marymoor.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("selectiondescriber\\marymoor.coursescribe"), true);
             Assert.IsTrue(success);
 
             selectionMgr.SelectCourseView(CourseDesignator.AllControls);

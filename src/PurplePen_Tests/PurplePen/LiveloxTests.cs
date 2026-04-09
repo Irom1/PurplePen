@@ -39,6 +39,7 @@ using TestingUtils;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PurplePen.Livelox;
+using System.Threading.Tasks;
 
 namespace PurplePen.Tests
 {
@@ -56,9 +57,9 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void CreateLiveloxImportableEvent()
+        public async Task CreateLiveloxImportableEvent()
         {
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile(@"livelox\Test Event.ppen"), false);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile(@"livelox\Test Event.ppen"), false);
             Assert.IsTrue(success);
 
             var manager = new PublishManager();

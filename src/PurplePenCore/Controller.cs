@@ -41,6 +41,7 @@ using System.Diagnostics;
 using System.Linq;
 using PurplePen.MapModel;
 using PurplePen.Graphics2D;
+using System.Threading.Tasks;
 
 namespace PurplePen
 {
@@ -237,16 +238,20 @@ namespace PurplePen
             }
         }
 
+        // Like NewMapFileLoaded, but called if want to ask the user about a missing map file, if there is one.
+        private async Task NewMapFileLoadedWithMissingMapUI()
+        {
+            // If the map file can't be found, try to recover.
+            if (MapType != MapType.None && !File.Exists(MapFileName) && await FindMissingMapFile(MapFileName))
+                return;     // FindMissingMapFile() will cause NewMapFileLoaded() to be called again after updating the map file name.
+
+            NewMapFileLoaded(true);
+        }
+
         // Bookkeeping that needs to be done when a new map file is loaded. If "tryToFindMissingMap" is true, then attempt to recover from a missing map, possibly asking the user.
         private void NewMapFileLoaded(bool tryToFindMissingMap)
         {
             ForceChangeUpdate(true);
-
-            if (tryToFindMissingMap) {
-                // If the map file can't be found, try to recover.
-                if (MapType != MapType.None && !File.Exists(MapFileName) && FindMissingMapFile(MapFileName))
-                    return;     // FindMissingMapFile() will cause NewMapFileLoaded() to be called again after updating the map file name.
-            }
 
             bool success = HandleExceptions(
                 delegate {
@@ -297,7 +302,7 @@ namespace PurplePen
         // use that. Otherwise, inform the user and try to find the map file elsewhere.
         // Return true if a new map file was found and ChangeMapFile() was called with it. 
         // Return false if a new map file was not found.
-        private bool FindMissingMapFile(string missingMapFile)
+        private async Task<bool> FindMissingMapFile(string missingMapFile)
         {
             // Try the file name in the same directory as the purple pen event file.
             string directory = Path.GetDirectoryName(FileName);
@@ -315,13 +320,13 @@ namespace PurplePen
             ui.ErrorMessage(string.Format(MiscText.MissingMapFile, Path.GetFileName(missingMapFile)));
 
             // Ask the UI to set a new map file.
-            return ui.FindMissingMapFile(missingMapFile);
+            return await ui.FindMissingMapFile(missingMapFile);
         }
 
         private bool inChangeMapFileCheck = false;       // prevent recursive calls.
 
         // Check if the map file has changed.
-        public void CheckForChangedMapFile()
+        public async Task CheckForChangedMapFile()
         {
             if (!inChangeMapFileCheck && mapDisplay != null && MapFileName != null) {
                 if (!File.Exists(MapFileName)) {
@@ -334,7 +339,7 @@ namespace PurplePen
                         ui.InfoMessage(string.Format(MiscText.MapFileDeleted, MapFileName));
                         if (File.Exists(MapFileName))
                             mapDisplay.SetMapFile(MapType, MapFileName);
-                        NewMapFileLoaded(true);
+                        await NewMapFileLoadedWithMissingMapUI();
                         return;
                     }
                     finally {
@@ -507,7 +512,7 @@ namespace PurplePen
         }
 
         // Load the initial file. Should only be called before any file has been loaded.
-        public bool LoadInitialFile(string fileName, bool setAsLastLoadedFile)
+        public async Task<bool> LoadInitialFile(string fileName, bool setAsLastLoadedFile)
         {
             bool success = HandleExceptions(
                 delegate { eventDB.Load(fileName); },
@@ -515,7 +520,7 @@ namespace PurplePen
 
             if (success) {
                 this.fileName = Path.GetFullPath(fileName);
-                if (setAsLastLoadedFile) {
+                if (setAsLastLoadedFile && UserSettings.Current.LastLoadedFile != this.fileName) {
                     UserSettings.Current.LastLoadedFile = this.fileName;
                     UserSettings.Current.Save();
                 }
@@ -523,7 +528,7 @@ namespace PurplePen
                 symbolDB.Standard = eventDB.GetEvent().descriptionStandard;
                 selectionMgr.SelectCourseView(CourseDesignator.AllControls);
                 selectionMgr.ClearSelection();
-                NewMapFileLoaded(true);
+                await NewMapFileLoadedWithMissingMapUI();
 
                 // For backward compatibility, update the automatic print areas.
                 UpdateAutomaticPrintAreas();
@@ -534,10 +539,10 @@ namespace PurplePen
 
         // Load a new file. Should only be called if you know the current file can be closed.
         // If this method returns false, the old file has been destroyed so we're basically in limbo.
-        public bool LoadNewFile(string fileName)
+        public async Task<bool> LoadNewFile(string fileName)
         {
             ResetState();
-            return LoadInitialFile(fileName, true);
+            return await LoadInitialFile(fileName, true);
         }
 
         // Info needed to create a new event.
@@ -561,7 +566,7 @@ namespace PurplePen
         }
 
         // Create a new event. Should only be called before any file has been loaded.
-        public bool InitialNewEvent(CreateEventInfo info)
+        public async Task<bool> InitialNewEvent(CreateEventInfo info)
         {
             undoMgr.BeginCommand(8112, CommandNameText.NewEvent);
 
@@ -610,7 +615,7 @@ namespace PurplePen
 
             undoMgr.EndCommand(8112);
 
-            NewMapFileLoaded(true);
+            await NewMapFileLoadedWithMissingMapUI();
 
             // Save the new event in the given file.
             bool success = SaveAs(info.eventFileName);
@@ -624,10 +629,10 @@ namespace PurplePen
 
         // Create a new event. Should only be called if you know the current file can be closed.
         // If this method returns false, the old file has been destroyed so we're basically in limbo.
-        public bool NewEvent(CreateEventInfo info)
+        public async Task<bool> NewEvent(CreateEventInfo info)
         {
             ResetState();
-            return InitialNewEvent(info);
+            return await InitialNewEvent(info);
         }
 
 
@@ -4481,7 +4486,7 @@ namespace PurplePen
         YesNoCancel MovingSharedControl(string controlCode, string otherCourses);
 
         // Find a missing map file.
-        bool FindMissingMapFile(string missingMapFile);
+        Task<bool> FindMissingMapFile(string missingMapFile);
 
         // Initiate map dragging.
         void InitiateMapDragging(PointF initialPos, PointerButton buttonEnd);

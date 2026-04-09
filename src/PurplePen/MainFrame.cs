@@ -50,6 +50,7 @@ using System.Net;
 using System.Reflection;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using static SkiaSharp.HarfBuzz.SKShaper;
 
@@ -939,7 +940,7 @@ namespace PurplePen
 
 
 
-        void Application_Idle(object sender, EventArgs e)
+        async void Application_Idle(object sender, EventArgs e)
         {
             if (IsDisposed)
                 return;
@@ -971,7 +972,7 @@ namespace PurplePen
 
                     if (checkForUpdatedMapFile) {
                         checkForUpdatedMapFile = false;
-                        controller.CheckForChangedMapFile();
+                        await controller.CheckForChangedMapFile();
                     }
                 }
             }
@@ -1060,14 +1061,14 @@ namespace PurplePen
         }
 
 
-        private void openMenu_Click(object sender, EventArgs e)
+        private async void openMenu_Click(object sender, EventArgs e)
         {
             // Try to close the current file. If that succeeds, then ask for a new file and try to open it.
             bool closeSuccess = controller.TryCloseFile();
             if (closeSuccess) {
                 string newFilename = GetOpenFileName();
                 if (newFilename != null) {
-                    bool success = controller.LoadNewFile(newFilename);
+                    bool success = await controller.LoadNewFile(newFilename);
                     if (!success) {
                         // This is bad news. The old file is gone, and we don't have a new file. Go back to initial screen is the best solution, 
                         // I guess.
@@ -1084,7 +1085,7 @@ namespace PurplePen
         }
 
 
-        private void newEventMenu_Click(object sender, EventArgs e)
+        private async void newEventMenu_Click(object sender, EventArgs e)
         {
             // Try to close the current file. If that succeeds, then ask for a new file and try to open it.
             bool closeSuccess = controller.TryCloseFile();
@@ -1092,7 +1093,7 @@ namespace PurplePen
                 NewEventWizard wizard = new NewEventWizard();
                 DialogResult result = wizard.ShowDialog();
                 if (result == DialogResult.OK) {
-                    bool success = controller.NewEvent(wizard.CreateEventInfo);
+                    bool success = await controller.NewEvent(wizard.CreateEventInfo);
                     if (!success) {
                         // This is bad news. The old file is gone, and we don't have a new file. Go back to initial screen is the best solution, 
                         // I guess.
@@ -2597,7 +2598,7 @@ namespace PurplePen
 
         // Find a new map file. This is like ChangeMapFile, but this UI is somewhat different -- we just show the
         // Open File dialog at first, and if we use it to select an OK OCAD file, then we close immediately too.
-        public bool FindMissingMapFile(string missingMapFile)
+        public Task<bool> FindMissingMapFile(string missingMapFile)
         {
             // Initialize dialog.
             ChangeMapFile dialog = new ChangeMapFile();
@@ -2616,10 +2617,10 @@ namespace PurplePen
             // Apply new map file.
             if (result == DialogResult.OK) {
                 controller.ChangeMapFile(dialog.MapType, dialog.MapFile, dialog.MapScale, dialog.Dpi);
-                return true;
+                return Task.FromResult(true);
             }
             else
-                return false;
+                return Task.FromResult(false);
         }
 
 

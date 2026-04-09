@@ -39,6 +39,10 @@
 
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
 
+    <PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
   <ItemGroup>

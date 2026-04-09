@@ -44,6 +44,7 @@ using PurplePen.MapModel;
 using TestingUtils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
+using System.Threading.Tasks;
 
 
 namespace PurplePen.Tests
@@ -54,11 +55,11 @@ namespace PurplePen.Tests
         TestUI ui;
         Controller controller;
 
-        public void Setup(string filename)
+        public async Task Setup(string filename)
         {
             ui = TestUI.Create();
             controller = ui.controller;
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile(filename), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile(filename), true);
             Assert.IsTrue(success);
         }
 
@@ -129,9 +130,9 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void SampleMap()
+        public async Task SampleMap()
         {
-            Setup("findpurple\\Sample Event.ppen");
+            await Setup("findpurple\\Sample Event.ppen");
             List<SymColor> colors = controller.MapDisplay.GetMapColors();
 
             int lowerPurpleId = FindPurple.FindBestLowerPurpleLayer(colors);
@@ -143,9 +144,9 @@ namespace PurplePen.Tests
 
 
         [TestMethod]
-        public void OCAD_ISOM()
+        public async Task OCAD_ISOM()
         {
-            Setup("findpurple\\OCAD_ISOM_Blank.ppen");
+            await Setup("findpurple\\OCAD_ISOM_Blank.ppen");
             List<SymColor> colors = controller.MapDisplay.GetMapColors();
 
             int lowerPurpleId = FindPurple.FindBestLowerPurpleLayer(colors);
@@ -155,9 +156,9 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void OCAD_ISSprOM()
+        public async Task OCAD_ISSprOM()
         {
-            Setup("findpurple\\OCAD_ISSprOM_Blank.ppen");
+            await Setup("findpurple\\OCAD_ISSprOM_Blank.ppen");
             List<SymColor> colors = controller.MapDisplay.GetMapColors();
 
             int lowerPurpleId = FindPurple.FindBestLowerPurpleLayer(colors);
@@ -167,9 +168,9 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void OOM_ISOM()
+        public async Task OOM_ISOM()
         {
-            Setup("findpurple\\OOM_ISOM_Blank.ppen");
+            await Setup("findpurple\\OOM_ISOM_Blank.ppen");
             List<SymColor> colors = controller.MapDisplay.GetMapColors();
 
             int lowerPurpleId = FindPurple.FindBestLowerPurpleLayer(colors);
@@ -179,9 +180,9 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void OOM_ISSprOM()
+        public async Task OOM_ISSprOM()
         {
-            Setup("findpurple\\OOM_ISSprOM_Blank.ppen");
+            await Setup("findpurple\\OOM_ISSprOM_Blank.ppen");
             List<SymColor> colors = controller.MapDisplay.GetMapColors();
 
             int lowerPurpleId = FindPurple.FindBestLowerPurpleLayer(colors);

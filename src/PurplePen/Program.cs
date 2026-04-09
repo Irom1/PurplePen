@@ -41,6 +41,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Globalization;
 using System.IO;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PurplePen
@@ -53,7 +54,7 @@ namespace PurplePen
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             ServiceProvider serviceProvider;
 
@@ -111,7 +112,7 @@ namespace PurplePen
             InitClientId();
             FontDesc.InitializeFonts();
 
-            if (args.Length > 0 && LoadCommandLineFile(args[0])) {
+            if (args.Length > 0 && await LoadCommandLineFile(args[0])) {
                 // We successfully loaded a file from the command line.
                 // Nothing more to do here.
             }
@@ -149,12 +150,12 @@ namespace PurplePen
         }
 
         // Attempt to load file from a command line file. Return true on success.
-        static bool LoadCommandLineFile(string filename)
+        static async Task<bool> LoadCommandLineFile(string filename)
         {
             MainFrame mainFrame = new MainFrame();
             Controller controller = new Controller(mainFrame);
 
-            if (!controller.LoadInitialFile(filename, true)) {
+            if (!await controller.LoadInitialFile(filename, true)) {
                 // File didn't load. 
                 // Go back and show the initial screen again.
                 mainFrame.Dispose();

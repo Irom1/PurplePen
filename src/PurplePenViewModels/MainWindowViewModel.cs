@@ -112,7 +112,7 @@ namespace PurplePen.ViewModels
             throw new NotImplementedException();
         }
 
-        public bool FindMissingMapFile(string missingMapFile)
+        public async Task<bool> FindMissingMapFile(string missingMapFile)
         {
             throw new NotImplementedException();
         }
@@ -429,7 +429,7 @@ namespace PurplePen.ViewModels
 
             if (result && fileOpenVM.SelectedFile != null) {
                 string newFilename = fileOpenVM.SelectedFile;
-                bool success = controller.LoadNewFile(newFilename);
+                bool success = await controller.LoadNewFile(newFilename);
             }
         }
 

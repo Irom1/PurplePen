@@ -42,6 +42,7 @@ using PurplePen.MapView;
 
 using TestingUtils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Threading.Tasks;
 
 
 namespace PurplePen.Tests
@@ -53,7 +54,7 @@ namespace PurplePen.Tests
         Controller controller;
         EventDB eventDB;
 
-        public void Setup(string filename)
+        public async Task Setup(string filename)
         {
             ui = TestUI.Create();
             controller = ui.controller;
@@ -61,15 +62,15 @@ namespace PurplePen.Tests
 
             string fileName = TestUtil.GetTestFile(filename);
 
-            bool success = controller.LoadInitialFile(fileName, true);
+            bool success = await controller.LoadInitialFile(fileName, true);
             Assert.IsTrue(success);
         }
 
         // Add a gap to a control via single click
         [TestMethod]
-        public void AddControlGap1()
+        public async Task AddControlGap1()
         {
-            Setup("modes\\speciallegs.ppen");
+            await Setup("modes\\speciallegs.ppen");
 
             // Select course 1.
             controller.SelectTab(1);       // Course 1.
@@ -124,9 +125,9 @@ namespace PurplePen.Tests
 
         // Add a gap to a control via drag
         [TestMethod]
-        public void AddControlGap2()
+        public async Task AddControlGap2()
         {
-            Setup("modes\\speciallegs.ppen");
+            await Setup("modes\\speciallegs.ppen");
 
             // Select course 1.
             controller.SelectTab(1);       // Course 1.
@@ -181,9 +182,9 @@ namespace PurplePen.Tests
 
         // Remove a gap from a control.
         [TestMethod]
-        public void RemoveControlGap()
+        public async Task RemoveControlGap()
         {
-            Setup("modes\\speciallegs.ppen");
+            await Setup("modes\\speciallegs.ppen");
 
             // Select course 1.
             controller.SelectTab(1);       // Course 1.
@@ -238,9 +239,9 @@ namespace PurplePen.Tests
 
         // Remove a gap from a leg.
         [TestMethod]
-        public void RemoveLegGap()
+        public async Task RemoveLegGap()
         {
-            Setup("modes\\gappedlegs.coursescribe");
+            await Setup("modes\\gappedlegs.coursescribe");
 
             // Select course 1.
             controller.SelectTab(1);       // Course 1.
@@ -293,9 +294,9 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void AddLegGap1()
+        public async Task AddLegGap1()
         {
-            Setup("modes\\gappedlegs.coursescribe");
+            await Setup("modes\\gappedlegs.coursescribe");
 
             // Select course 1.
             controller.SelectTab(1);       // Course 1.
@@ -350,9 +351,9 @@ namespace PurplePen.Tests
 
         // Add a gap to a leg that has two gaps -- forming 1 gap.
         [TestMethod]
-        public void AddLegGap2()
+        public async Task AddLegGap2()
         {
-            Setup("modes\\gappedlegs.coursescribe");
+            await Setup("modes\\gappedlegs.coursescribe");
 
             // Select course 1.
             controller.SelectTab(1);       // Course 1.
@@ -407,9 +408,9 @@ namespace PurplePen.Tests
 
         // Create gap by single click (2mm gap).
         [TestMethod]
-        public void AddLegGap3()
+        public async Task AddLegGap3()
         {
-            Setup("modes\\gappedlegs.coursescribe");
+            await Setup("modes\\gappedlegs.coursescribe");
 
             // Select course 1.
             controller.SelectTab(1);       // Course 1.

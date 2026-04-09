@@ -47,6 +47,7 @@ using TestingUtils;
 namespace PurplePen.Tests
 {
     using System.Linq;
+    using System.Threading.Tasks;
     using PurplePen.MapModel;
 
     [TestClass, DoNotParallelize]
@@ -75,11 +76,11 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void LoadInitialFile()
+        public async Task LoadInitialFile()
         {
             string fileName = TestUtil.GetTestFile("controller\\sampleevent1.coursescribe");
 
-            bool success = controller.LoadInitialFile(fileName, true);
+            bool success = await controller.LoadInitialFile(fileName, true);
             Assert.IsTrue(success);
 
             EventDB eventDB = controller.GetEventDB();
@@ -90,7 +91,7 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void LoadMissingMapFile()
+        public async Task LoadMissingMapFile()
         {
             string fileName = TestUtil.GetTestFile("controller\\missingmap2.ppen");
 
@@ -100,7 +101,7 @@ namespace PurplePen.Tests
             ui.newMapType = MapType.OCAD;
             ui.newMapDpi = 0;
 
-            bool success = controller.LoadInitialFile(fileName, true);
+            bool success = await controller.LoadInitialFile(fileName, true);
             Assert.IsTrue(success);
 
             string expected = "ERROR: '" + String.Format(MiscText.MissingMapFile, Path.GetFileName(ui.expectedMissingMapFile)) + "'\r\n";
@@ -114,11 +115,11 @@ namespace PurplePen.Tests
 
         // Load an event with map file not in given location, but in current directory.
         [TestMethod]
-        public void LoadWrongDirectoryMap()
+        public async Task LoadWrongDirectoryMap()
         {
             string fileName = TestUtil.GetTestFile("controller\\missingmap.ppen");
 
-            bool success = controller.LoadInitialFile(fileName, true);
+            bool success = await controller.LoadInitialFile(fileName, true);
             Assert.IsTrue(success);
 
             EventDB eventDB = controller.GetEventDB();
@@ -131,11 +132,11 @@ namespace PurplePen.Tests
 
 
         [TestMethod]
-        public void LoadBogusFile()
+        public async Task LoadBogusFile()
         {
             string fileName = TestUtil.GetTestFile("XBogus.coursescribe");
 
-            bool success = controller.LoadInitialFile(fileName, true);
+            bool success = await controller.LoadInitialFile(fileName, true);
             Assert.IsFalse(success);
             Console.WriteLine(ui.output.ToString());
 
@@ -151,7 +152,7 @@ Invalid control point kind 'norfmal''
         }
 
         [TestMethod]
-        public void InitialNewEvent()
+        public async Task InitialNewEvent()
         {
             Controller.CreateEventInfo info;
             info.title = "My New Event";
@@ -170,7 +171,7 @@ Invalid control point kind 'norfmal''
             info.blend = PurpleColorBlend.Blend;
             info.lowerPurpleLayer = null;
 
-            bool success = controller.InitialNewEvent(info);
+            bool success = await controller.InitialNewEvent(info);
             Assert.IsTrue(success);
 
             EventDB eventDB = controller.GetEventDB();
@@ -206,9 +207,9 @@ Invalid control point kind 'norfmal''
 
         // Test closing the current file and creating a new event.
         [TestMethod]
-        public void NewEvent()
+        public async Task NewEvent()
         {
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent1.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent1.coursescribe"), true);
             Assert.IsTrue(success);
             controller.SaveAs(TestUtil.GetTestFile("file_temp.coursescribe"));
             File.Delete(TestUtil.GetTestFile("file_temp.coursescribe"));
@@ -235,7 +236,7 @@ Invalid control point kind 'norfmal''
 
             success = controller.TryCloseFile();
             Assert.IsTrue(success);
-            success = controller.NewEvent(info);
+            success = await controller.NewEvent(info);
             Assert.IsTrue(success);
             Assert.IsFalse(File.Exists(TestUtil.GetTestFile("file_temp.coursescribe")));  // make sure it was NOT saved.
             Assert.AreEqual(
@@ -274,7 +275,7 @@ Invalid control point kind 'norfmal''
 
 
         [TestMethod]
-        public void InitialNewEventError()
+        public async Task InitialNewEventError()
         {
             Controller.CreateEventInfo info;
             info.title = "My New Event";
@@ -293,7 +294,7 @@ Invalid control point kind 'norfmal''
             info.blend = PurpleColorBlend.Blend;
             info.lowerPurpleLayer = null;
 
-            bool success = controller.InitialNewEvent(info);
+            bool success = await controller.InitialNewEvent(info);
             Assert.IsFalse(success);
 
             string expected =
@@ -305,9 +306,9 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
 	
 
         [TestMethod]
-        public void IsDirty()
+        public async Task IsDirty()
         {
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent1.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent1.coursescribe"), true);
             Assert.IsTrue(success);
 
             Assert.IsFalse(controller.IsDirty);
@@ -318,7 +319,7 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
         }
 
         [TestMethod]
-        public void SaveAs()
+        public async Task SaveAs()
         {
             EventDB eventDB;
 
@@ -328,7 +329,7 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
             File.Delete(newFile1);
             File.Delete(newFile2);
 
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent1.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent1.coursescribe"), true);
             Assert.IsTrue(success);
 
             controller.SaveAs(newFile1);
@@ -336,7 +337,7 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
 
             // Load the file we saved, make sure it is ok.
             Setup();
-            success = controller.LoadInitialFile(newFile1, true);
+            success = await controller.LoadInitialFile(newFile1, true);
             Assert.IsTrue(success);
 
             eventDB = controller.GetEventDB();
@@ -352,7 +353,7 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
 
             // Load the new files we saved, make sure it has the change.
             Setup();
-            success = controller.LoadInitialFile(newFile2, true);
+            success = await controller.LoadInitialFile(newFile2, true);
             Assert.IsTrue(success);
 
             eventDB = controller.GetEventDB();
@@ -363,9 +364,9 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
         }
 
         [TestMethod]
-        public void TryCloseFileClean()
+        public async Task TryCloseFileClean()
         {
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent1.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent1.coursescribe"), true);
             Assert.IsTrue(success);
 
             success = controller.TryCloseFile();
@@ -374,9 +375,9 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
         }
 
         [TestMethod]
-        public void TryCloseFileYes()
+        public async Task TryCloseFileYes()
         {
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent1.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent1.coursescribe"), true);
             Assert.IsTrue(success);
             controller.SaveAs(TestUtil.GetTestFile("file_temp.coursescribe"));
             File.Delete(TestUtil.GetTestFile("file_temp.coursescribe"));
@@ -394,9 +395,9 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
         }
 
         [TestMethod]
-        public void TryCloseFileNo()
+        public async Task TryCloseFileNo()
         {
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent1.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent1.coursescribe"), true);
             Assert.IsTrue(success);
             controller.SaveAs(TestUtil.GetTestFile("file_temp.coursescribe"));
             File.Delete(TestUtil.GetTestFile("file_temp.coursescribe"));
@@ -415,9 +416,9 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
 
 
         [TestMethod]
-        public void TryCloseFileCancel()
+        public async Task TryCloseFileCancel()
         {
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent1.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent1.coursescribe"), true);
             Assert.IsTrue(success);
             controller.SaveAs(TestUtil.GetTestFile("file_temp.coursescribe"));
             File.Delete(TestUtil.GetTestFile("file_temp.coursescribe"));
@@ -436,9 +437,9 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
 
         // Test closing the current file and opening a new one.
         [TestMethod]
-        public void LoadNewFile()
+        public async Task LoadNewFile()
         {
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent1.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent1.coursescribe"), true);
             Assert.IsTrue(success);
             controller.SaveAs(TestUtil.GetTestFile("controller\\file_temp.coursescribe"));
             File.Delete(TestUtil.GetTestFile("controller\\file_temp.coursescribe"));
@@ -447,7 +448,7 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
 
             ui.returnQuestion = YesNoCancel.No;
             success = controller.TryCloseFile();
-            controller.LoadNewFile(TestUtil.GetTestFile("marymoor.ppen"));
+            await controller.LoadNewFile(TestUtil.GetTestFile("marymoor.ppen"));
             Assert.IsTrue(success);
             Assert.IsFalse(File.Exists(TestUtil.GetTestFile("controller\\file_temp.coursescribe")));  // make sure it was NOT saved.
             Assert.AreEqual(
@@ -466,9 +467,9 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
 	
 
         [TestMethod]
-        public void UndoRedo()
+        public async Task UndoRedo()
         {
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent1.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent1.coursescribe"), true);
             Assert.IsTrue(success);
             Assert.IsFalse(controller.IsDirty);
 
@@ -502,11 +503,11 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
 
 
         [TestMethod]
-        public void DescriptionChange()
+        public async Task DescriptionChange()
         {
             EventDB eventDB = controller.GetEventDB();
             SymbolDB symbolDB = ui.symbolDB;
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent1.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent1.coursescribe"), true);
             Assert.IsTrue(success);
 
             controller.SelectTab(3);
@@ -539,11 +540,11 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
         }
 
         [TestMethod]
-        public void CodeChange()
+        public async Task CodeChange()
         {
             EventDB eventDB = controller.GetEventDB();
             SymbolDB symbolDB = ui.symbolDB;
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent1.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent1.coursescribe"), true);
             Assert.IsTrue(success);
 
             controller.SelectTab(1);
@@ -564,12 +565,12 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
         }
 
         [TestMethod]
-        public void ChangeControlInCourse()
+        public async Task ChangeControlInCourse()
         {
             // course control 15 -- was control 4 (code 32). change to control 17 (code 302)
             EventDB eventDB = controller.GetEventDB();
             SymbolDB symbolDB = ui.symbolDB;
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent1.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent1.coursescribe"), true);
             Assert.IsTrue(success);
 
             CourseControl courseControl;
@@ -589,11 +590,11 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
         }
 
         [TestMethod]
-        public void DuplicateCodeAllControls()
+        public async Task DuplicateCodeAllControls()
         {
             EventDB eventDB = controller.GetEventDB();
             SymbolDB symbolDB = ui.symbolDB;
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent1.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent1.coursescribe"), true);
             Assert.IsTrue(success);
 
             controller.SelectTab(0);
@@ -610,11 +611,11 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
         }
 
         [TestMethod]
-        public void InvertibleCode()
+        public async Task InvertibleCode()
         {
             EventDB eventDB = controller.GetEventDB();
             SymbolDB symbolDB = ui.symbolDB;
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent1.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent1.coursescribe"), true);
             Assert.IsTrue(success);
 
             controller.SelectTab(0);
@@ -631,11 +632,11 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
         }
 
         [TestMethod]
-        public void EventTitleChange()
+        public async Task EventTitleChange()
         {
             EventDB eventDB = controller.GetEventDB();
             SymbolDB symbolDB = ui.symbolDB;
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent1.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent1.coursescribe"), true);
             Assert.IsTrue(success);
 
             controller.SelectTab(1);
@@ -650,11 +651,11 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
         }
 
         [TestMethod]
-        public void CourseClimbChange()
+        public async Task CourseClimbChange()
         {
             EventDB eventDB = controller.GetEventDB();
             SymbolDB symbolDB = ui.symbolDB;
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent1.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent1.coursescribe"), true);
             Assert.IsTrue(success);
 
             controller.SelectTab(1);
@@ -674,11 +675,11 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
         }
 
         [TestMethod]
-        public void CourseNameChange()
+        public async Task CourseNameChange()
         {
             EventDB eventDB = controller.GetEventDB();
             SymbolDB symbolDB = ui.symbolDB;
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent1.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent1.coursescribe"), true);
             Assert.IsTrue(success);
 
             controller.SelectTab(1);
@@ -690,11 +691,11 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
         }
 
         [TestMethod]
-        public void SecondaryTitleChange()
+        public async Task SecondaryTitleChange()
         {
             EventDB eventDB = controller.GetEventDB();
             SymbolDB symbolDB = ui.symbolDB;
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent1.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent1.coursescribe"), true);
             Assert.IsTrue(success);
 
             controller.SelectTab(5);
@@ -709,11 +710,11 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
         }
 
         [TestMethod]
-        public void ScoreChange()
+        public async Task ScoreChange()
         {
             EventDB eventDB = controller.GetEventDB();
             SymbolDB symbolDB = ui.symbolDB;
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent1.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent1.coursescribe"), true);
             Assert.IsTrue(success);
 
             controller.SelectTab(4);
@@ -737,13 +738,13 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
         }
 
         [TestMethod]
-        public void KeyValueChange()
+        public async Task KeyValueChange()
         {
             Dictionary<string, List<SymbolText>> customSymbolText;
             Dictionary<string, bool> customSymbolKey;
             EventDB eventDB = controller.GetEventDB();
             SymbolDB symbolDB = ui.symbolDB;
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent5.ppen"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent5.ppen"), true);
             Assert.IsTrue(success);
 
             // Change to new text.
@@ -764,11 +765,11 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
 	
 
         [TestMethod]
-        public void BadScore()
+        public async Task BadScore()
         {
             EventDB eventDB = controller.GetEventDB();
             SymbolDB symbolDB = ui.symbolDB;
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent1.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent1.coursescribe"), true);
             Assert.IsTrue(success);
 
             controller.SelectTab(4);
@@ -785,11 +786,11 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
         }
 
         [TestMethod]
-        public void BadClimb()
+        public async Task BadClimb()
         {
             EventDB eventDB = controller.GetEventDB();
             SymbolDB symbolDB = ui.symbolDB;
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent1.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent1.coursescribe"), true);
             Assert.IsTrue(success);
 
             controller.SelectTab(5);
@@ -802,11 +803,11 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
         }
 
         [TestMethod]
-        public void MapNameAndType()
+        public async Task MapNameAndType()
         {
             string fileName = TestUtil.GetTestFile("controller\\sampleevent1.coursescribe");
 
-            bool success = controller.LoadInitialFile(fileName, true);
+            bool success = await controller.LoadInitialFile(fileName, true);
             Assert.IsTrue(success);
 
             Assert.AreEqual(MapType.OCAD, controller.MapType);
@@ -814,12 +815,12 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
         }
 
         [TestMethod]
-        public void ChangeMap()
+        public async Task ChangeMap()
         {
             UndoMgr undomgr = controller.GetUndoMgr();
             string fileName = TestUtil.GetTestFile("controller\\sampleevent1.coursescribe");
 
-            bool success = controller.LoadInitialFile(fileName, true);
+            bool success = await controller.LoadInitialFile(fileName, true);
             Assert.IsTrue(success);
 
             Assert.AreEqual(MapType.OCAD, controller.MapType);
@@ -864,9 +865,9 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
 	
 
         [TestMethod]
-        public void TabList()
+        public async Task TabList()
         {
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent1.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent1.coursescribe"), true);
             Assert.IsTrue(success);
 
             string[] expected = { "All controls", "Green Y", "Rambo", "SampleCourse4", "Score 4", "White", "Yellow" };
@@ -880,9 +881,9 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
         }
 
         [TestMethod]
-        public void ActiveTab()
+        public async Task ActiveTab()
         {
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent1.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent1.coursescribe"), true);
             Assert.IsTrue(success);
 
             Assert.AreEqual(0, controller.ActiveTab);
@@ -907,9 +908,9 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
         }
 
         [TestMethod]
-        public void CanDelete()
+        public async Task CanDelete()
         {
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent1.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent1.coursescribe"), true);
             Assert.IsTrue(success);
 
             Assert.IsFalse(controller.CanDeleteSelection());
@@ -927,9 +928,9 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
         }
 
         [TestMethod]
-        public void CanDeleteSpecial()
+        public async Task CanDeleteSpecial()
         {
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("controller\\marymoor2.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\marymoor2.coursescribe"), true);
             Assert.IsTrue(success);
 
             Assert.IsFalse(controller.CanDeleteSelection());
@@ -944,10 +945,10 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
         }
 
         [TestMethod]
-        public void DeleteSpecial()
+        public async Task DeleteSpecial()
         {
             EventDB eventDB = controller.GetEventDB();
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("controller\\marymoor2.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\marymoor2.coursescribe"), true);
             Assert.IsTrue(success);
 
             controller.GetSelectionMgr().SelectSpecial(SpecialId(1));
@@ -969,9 +970,9 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
         }
 
         [TestMethod]
-        public void DeleteCourseControl()
+        public async Task DeleteCourseControl()
         {
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent1.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent1.coursescribe"), true);
             Assert.IsTrue(success);
 
             controller.SelectTab(1);
@@ -993,9 +994,9 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
         }
 
         [TestMethod]
-        public void DeleteCourseControlAndControl()
+        public async Task DeleteCourseControlAndControl()
         {
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent1.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent1.coursescribe"), true);
             Assert.IsTrue(success);
 
             controller.SelectTab(4);
@@ -1023,9 +1024,9 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
         }
 
         [TestMethod]
-        public void DeleteCourseControlButNotControl()
+        public async Task DeleteCourseControlButNotControl()
         {
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent1.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent1.coursescribe"), true);
             Assert.IsTrue(success);
 
             controller.SelectTab(4);
@@ -1053,9 +1054,9 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
         }
 
         [TestMethod]
-        public void DeleteAllControlsUnusedControl()
+        public async Task DeleteAllControlsUnusedControl()
         {
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent1.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent1.coursescribe"), true);
             Assert.IsTrue(success);
 
             controller.SelectTab(0);
@@ -1075,9 +1076,9 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
         }
 
         [TestMethod]
-        public void DeleteAllControlsUsedControlYes()
+        public async Task DeleteAllControlsUsedControlYes()
         {
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent1.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent1.coursescribe"), true);
             Assert.IsTrue(success);
 
             controller.SelectTab(0);
@@ -1109,9 +1110,9 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
         }
 
         [TestMethod]
-        public void DeleteAllControlsUsedControlNo()
+        public async Task DeleteAllControlsUsedControlNo()
         {
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent1.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent1.coursescribe"), true);
             Assert.IsTrue(success);
 
             controller.SelectTab(0);
@@ -1135,10 +1136,10 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
         }
 
         [TestMethod]
-        public void DeleteStartCourseControlAndControl()
+        public async Task DeleteStartCourseControlAndControl()
         {
             EventDB eventDB = controller.GetEventDB();
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent1.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent1.coursescribe"), true);
             Assert.IsTrue(success);
 
             // Change course 6 to use a new start control.
@@ -1169,9 +1170,9 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
         }
 
         [TestMethod]
-        public void DeleteMapExchangeFromCourseControl()
+        public async Task DeleteMapExchangeFromCourseControl()
         {
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("controller\\mapexchange1.ppen"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\mapexchange1.ppen"), true);
             Assert.IsTrue(success);
 
             controller.SelectTab(6);
@@ -1203,9 +1204,9 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
         }
 
         [TestMethod]
-        public void ShowAllControls()
+        public async Task ShowAllControls()
         {
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent1.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent1.coursescribe"), true);
             Assert.IsTrue(success);
 
             controller.SelectTab(1);
@@ -1242,9 +1243,9 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
         }
 
         [TestMethod]
-        public void ShowAllControls2()
+        public async Task ShowAllControls2()
         {
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent1.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent1.coursescribe"), true);
             Assert.IsTrue(success);
 
             // Show all controls is available for the all controls tab, but doesn't add another course layout.
@@ -1279,11 +1280,11 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
         }
 
         [TestMethod]
-        public void SetTemporaryControlView()
+        public async Task SetTemporaryControlView()
         {
             StringWriter writer;
             string mainCourseText;
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent3.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent3.coursescribe"), true);
             Assert.IsTrue(success);
 
             controller.SelectTab(1);
@@ -1344,9 +1345,9 @@ Code:           layer:12  control:4  scale:1  text:GO  top-left:(38.29,-16.89)
         }
 
         [TestMethod]
-        public void ScrollHighlightIntoView()
+        public async Task ScrollHighlightIntoView()
         {
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent1.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent1.coursescribe"), true);
             Assert.IsTrue(success);
 
             Assert.IsFalse(controller.ScrollHighlightIntoView);
@@ -1360,9 +1361,9 @@ Code:           layer:12  control:4  scale:1  text:GO  top-left:(38.29,-16.89)
         }
 
         [TestMethod]
-        public void DeleteCourseNotControls()
+        public async Task DeleteCourseNotControls()
         {
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("controller\\marymoor.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\marymoor.coursescribe"), true);
             Assert.IsTrue(success);
 
             Assert.IsFalse(controller.CanDeleteCurrentCourse());
@@ -1399,9 +1400,9 @@ Code:           layer:12  control:4  scale:1  text:GO  top-left:(38.29,-16.89)
         }
 
         [TestMethod]
-        public void DeleteCourseAndControls()
+        public async Task DeleteCourseAndControls()
         {
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("controller\\marymoor.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\marymoor.coursescribe"), true);
             Assert.IsTrue(success);
 
             Assert.IsFalse(controller.CanDeleteCurrentCourse());
@@ -1438,11 +1439,11 @@ Code:           layer:12  control:4  scale:1  text:GO  top-left:(38.29,-16.89)
         }
 
         [TestMethod]
-        public void AddNewCourse()
+        public async Task AddNewCourse()
         {
             EventDB eventDB = controller.GetEventDB();
 
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("controller\\marymoor.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\marymoor.coursescribe"), true);
             Assert.IsTrue(success);
 
             controller.NewCourse(CourseKind.Normal, "My New Course", ControlLabelKind.SequenceAndCode, 1, "Secondary Title", 15000, 25, null, DescriptionKind.Symbols, 3, true);
@@ -1465,11 +1466,11 @@ Code:           layer:12  control:4  scale:1  text:GO  top-left:(38.29,-16.89)
         }
 
         [TestMethod]
-        public void ChangeCourseProperties()
+        public async Task ChangeCourseProperties()
         {
             EventDB eventDB = controller.GetEventDB();
 
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("controller\\marymoor.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\marymoor.coursescribe"), true);
 
             Assert.IsTrue(success);
 
@@ -1519,11 +1520,11 @@ Code:           layer:12  control:4  scale:1  text:GO  top-left:(38.29,-16.89)
         }
 
         [TestMethod]
-        public void GetAllControlsProperties()
+        public async Task GetAllControlsProperties()
         {
             EventDB eventDB = controller.GetEventDB();
 
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent12.ppen"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent12.ppen"), true);
 
             Assert.IsTrue(success);
 
@@ -1536,11 +1537,11 @@ Code:           layer:12  control:4  scale:1  text:GO  top-left:(38.29,-16.89)
         }
 
         [TestMethod]
-        public void MoveSpecial()
+        public async Task MoveSpecial()
         {
             EventDB eventDB = controller.GetEventDB();
 
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("controller\\marymoor2.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\marymoor2.coursescribe"), true);
             Assert.IsTrue(success);
 
             controller.MoveSpecial(SpecialId(1), new PointF[1] { new PointF(12.1F, -38.1F) });
@@ -1548,11 +1549,11 @@ Code:           layer:12  control:4  scale:1  text:GO  top-left:(38.29,-16.89)
         }
 
         [TestMethod]
-        public void MoveSpecialDelta()
+        public async Task MoveSpecialDelta()
         {
             EventDB eventDB = controller.GetEventDB();
 
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("controller\\marymoor2.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\marymoor2.coursescribe"), true);
             Assert.IsTrue(success);
 
             controller.MoveSpecialDelta(SpecialId(1), 6.5F, -1.1F);
@@ -1565,11 +1566,11 @@ Code:           layer:12  control:4  scale:1  text:GO  top-left:(38.29,-16.89)
         }
 
         [TestMethod]
-        public void CanSetLegFlagging()
+        public async Task CanSetLegFlagging()
         {
             EventDB eventDB = controller.GetEventDB();
 
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("controller\\speciallegs.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\speciallegs.coursescribe"), true);
             Assert.IsTrue(success);
 
             FlaggingKind flagging;
@@ -1584,12 +1585,12 @@ Code:           layer:12  control:4  scale:1  text:GO  top-left:(38.29,-16.89)
         }
 
         [TestMethod]
-        public void SetLegFlagging()
+        public async Task SetLegFlagging()
         {
             EventDB eventDB = controller.GetEventDB();
             UndoMgr undoMgr = controller.GetUndoMgr();
 
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("controller\\speciallegs.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\speciallegs.coursescribe"), true);
             Assert.IsTrue(success);
 
             FlaggingKind flagging;
@@ -1610,11 +1611,11 @@ Code:           layer:12  control:4  scale:1  text:GO  top-left:(38.29,-16.89)
 
 
         [TestMethod]
-        public void GetAllCodes()
+        public async Task GetAllCodes()
         {
             EventDB eventDB = controller.GetEventDB();
 
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent1.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent1.coursescribe"), true);
             Assert.IsTrue(success);
 
             string[] expected = { "31","32","74","189","190","191","210","211","290","291","301","302","303","304","305","306","GO"};
@@ -1627,12 +1628,12 @@ Code:           layer:12  control:4  scale:1  text:GO  top-left:(38.29,-16.89)
         }
 
         [TestMethod]
-        public void SetAllCodes()
+        public async Task SetAllCodes()
         {
             EventDB eventDB = controller.GetEventDB();
             UndoMgr undoMgr = controller.GetUndoMgr();
 
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent1.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent1.coursescribe"), true);
             Assert.IsTrue(success);
 
             string[] expected = { "31", "32", "74", "189", "190", "191", "210", "211", "290", "291", "301", "302", "303", "304", "305", "306", "GO" };
@@ -1661,14 +1662,14 @@ Code:           layer:12  control:4  scale:1  text:GO  top-left:(38.29,-16.89)
         }
 
         [TestMethod]
-        public void GetAllCourseLoads()
+        public async Task GetAllCourseLoads()
         {
             Controller.CourseLoadInfo[] loads;
 
             EventDB eventDB = controller.GetEventDB();
             UndoMgr undoMgr = controller.GetUndoMgr();
 
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("controller\\marymoor3.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\marymoor3.coursescribe"), true);
             Assert.IsTrue(success);
 
             loads = controller.GetAllCourseLoads();
@@ -1698,12 +1699,12 @@ Code:           layer:12  control:4  scale:1  text:GO  top-left:(38.29,-16.89)
         }
 
         [TestMethod]
-        public void SetAllCourseLoads()
+        public async Task SetAllCourseLoads()
         {
             EventDB eventDB = controller.GetEventDB();
             UndoMgr undoMgr = controller.GetUndoMgr();
 
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("controller\\marymoor3.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\marymoor3.coursescribe"), true);
             Assert.IsTrue(success);
 
             Controller.CourseLoadInfo[] loads = controller.GetAllCourseLoads();
@@ -1724,14 +1725,14 @@ Code:           layer:12  control:4  scale:1  text:GO  top-left:(38.29,-16.89)
 
 
         [TestMethod]
-        public void GetAllCourseSortOrders()
+        public async Task GetAllCourseSortOrders()
         {
             Controller.CourseOrderInfo[] orders;
 
             EventDB eventDB = controller.GetEventDB();
             UndoMgr undoMgr = controller.GetUndoMgr();
 
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("controller\\marymoor5.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\marymoor5.coursescribe"), true);
             Assert.IsTrue(success);
 
             orders = controller.GetAllCourseOrders();
@@ -1753,12 +1754,12 @@ Code:           layer:12  control:4  scale:1  text:GO  top-left:(38.29,-16.89)
         }
 
         [TestMethod]
-        public void SetAllCourseSortOrders()
+        public async Task SetAllCourseSortOrders()
         {
             EventDB eventDB = controller.GetEventDB();
             UndoMgr undoMgr = controller.GetUndoMgr();
 
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("controller\\marymoor5.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\marymoor5.coursescribe"), true);
             Assert.IsTrue(success);
 
             Controller.CourseOrderInfo[] orders = controller.GetAllCourseOrders();
@@ -1777,12 +1778,12 @@ Code:           layer:12  control:4  scale:1  text:GO  top-left:(38.29,-16.89)
         }
 
         [TestMethod]
-        public void MoveControlNumber()
+        public async Task MoveControlNumber()
         {
             EventDB eventDB = controller.GetEventDB();
             UndoMgr undoMgr = controller.GetUndoMgr();
 
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent1.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent1.coursescribe"), true);
             Assert.IsTrue(success);
 
             Assert.IsFalse(eventDB.GetCourseControl(CourseControlId(206)).customNumberPlacement);
@@ -1799,12 +1800,12 @@ Code:           layer:12  control:4  scale:1  text:GO  top-left:(38.29,-16.89)
         }
 
         [TestMethod]
-        public void MoveAllControlsCode()
+        public async Task MoveAllControlsCode()
         {
             EventDB eventDB = controller.GetEventDB();
             UndoMgr undoMgr = controller.GetUndoMgr();
 
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent1.coursescribe"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent1.coursescribe"), true);
             Assert.IsTrue(success);
 
             Assert.IsFalse(eventDB.GetControl(ControlId(17)).customCodeLocation);
@@ -1820,9 +1821,9 @@ Code:           layer:12  control:4  scale:1  text:GO  top-left:(38.29,-16.89)
         }
 
         [TestMethod]
-        public void MissingFontWarning()
+        public async Task MissingFontWarning()
         {
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("controller\\missingfont.ppen"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\missingfont.ppen"), true);
             Assert.IsTrue(success);
 
             // First time, should get the list of missing fonts.
@@ -1855,11 +1856,11 @@ Code:           layer:12  control:4  scale:1  text:GO  top-left:(38.29,-16.89)
         }
 
         // Create some courses, write them, and check against a dump.
-        void CreateOcadFiles(string file, OcadCreationSettings settings, CourseAppearance appearance, string[] expectedFiles, string[] expectedDumps, string[] bitmapFileNames = null, string[] bitmapFileBaselines = null)
+        async Task CreateOcadFiles(string file, OcadCreationSettings settings, CourseAppearance appearance, string[] expectedFiles, string[] expectedDumps, string[] bitmapFileNames = null, string[] bitmapFileBaselines = null)
         {
             EventDB eventDB = controller.GetEventDB();
 
-            bool success = controller.LoadInitialFile(file, true);
+            bool success = await controller.LoadInitialFile(file, true);
             Assert.IsTrue(success);
 
             controller.SetCourseAppearance(appearance);
@@ -1887,7 +1888,7 @@ Code:           layer:12  control:4  scale:1  text:GO  top-left:(38.29,-16.89)
         }
 
         [TestMethod]
-        public void OcadCreation1()
+        public async Task OcadCreation1()
         {
             OcadCreationSettings settings = new OcadCreationSettings();
             settings.mapDirectory = settings.fileDirectory = false;
@@ -1901,14 +1902,14 @@ Code:           layer:12  control:4  scale:1  text:GO  top-left:(38.29,-16.89)
 
             Directory.CreateDirectory(settings.outputDirectory);
 
-            CreateOcadFiles(TestUtil.GetTestFile("controller\\marymoor4.ppen"), settings, new CourseAppearance(),
+            await CreateOcadFiles(TestUtil.GetTestFile("controller\\marymoor4.ppen"), settings, new CourseAppearance(),
                 new string[1] { TestUtil.GetTestFile("controller\\ocad_create1\\Course 2.ocd") },
                 new string[1] { TestUtil.GetTestFile("controller\\ocad_create1\\Course 2_expected.txt") });
         }
 
 
         [TestMethod]
-        public void OcadCreation2()
+        public async Task OcadCreation2()
         {
             OcadCreationSettings settings = new OcadCreationSettings();
             settings.mapDirectory = settings.fileDirectory = false;
@@ -1922,7 +1923,7 @@ Code:           layer:12  control:4  scale:1  text:GO  top-left:(38.29,-16.89)
 
             Directory.CreateDirectory(settings.outputDirectory);
 
-            CreateOcadFiles(TestUtil.GetTestFile("controller\\marymoor4.ppen"), settings, new CourseAppearance(),
+            await CreateOcadFiles(TestUtil.GetTestFile("controller\\marymoor4.ppen"), settings, new CourseAppearance(),
                                         new string[3] { TestUtil.GetTestFile("controller\\ocad_create2\\Course 3.ocd"),
                                                                  TestUtil.GetTestFile("controller\\ocad_create2\\Course 4G.ocd"),
                                                                  TestUtil.GetTestFile("controller\\ocad_create2\\All controls.ocd")},
@@ -1932,7 +1933,7 @@ Code:           layer:12  control:4  scale:1  text:GO  top-left:(38.29,-16.89)
         }
 
         [TestMethod]
-        public void OcadCreation3()
+        public async Task OcadCreation3()
         {
             OcadCreationSettings settings = new OcadCreationSettings();
             settings.mapDirectory = false;
@@ -1950,13 +1951,13 @@ Code:           layer:12  control:4  scale:1  text:GO  top-left:(38.29,-16.89)
             string outputFile = TestUtil.GetTestFile("controller\\ocad_create3\\Course 3.ocd");
             File.Delete(outputFile);
             Assert.IsFalse(File.Exists(outputFile));
-            CreateOcadFiles(TestUtil.GetTestFile("controller\\ocad_create3\\marymoor4.ppen"), settings, new CourseAppearance(),
+            await CreateOcadFiles(TestUtil.GetTestFile("controller\\ocad_create3\\marymoor4.ppen"), settings, new CourseAppearance(),
                 new string[1] { TestUtil.GetTestFile("controller\\ocad_create3\\Course 3.ocd")},
                 new string[1] { TestUtil.GetTestFile("controller\\ocad_create3\\Course 3_expected.txt")});
         }
 
         [TestMethod]
-        public void OcadCreation4()
+        public async Task OcadCreation4()
         {
             OcadCreationSettings settings = new OcadCreationSettings();
             settings.mapDirectory = true;
@@ -1975,7 +1976,7 @@ Code:           layer:12  control:4  scale:1  text:GO  top-left:(38.29,-16.89)
             string outputFile = TestUtil.GetTestFile("controller\\Course 3.ocd");
             File.Delete(outputFile);
             Assert.IsFalse(File.Exists(outputFile));
-            CreateOcadFiles(TestUtil.GetTestFile("controller\\ocad_create3\\marymoor4.ppen"), settings, new CourseAppearance(),
+            await CreateOcadFiles(TestUtil.GetTestFile("controller\\ocad_create3\\marymoor4.ppen"), settings, new CourseAppearance(),
                 new string[1] { TestUtil.GetTestFile("controller\\Course 3.ocd") },
                 new string[1] { TestUtil.GetTestFile("controller\\ocad_create4\\Course 3_expected.txt") });
             File.Delete(outputFile);
@@ -1983,7 +1984,7 @@ Code:           layer:12  control:4  scale:1  text:GO  top-left:(38.29,-16.89)
 
         // Test invalid paths and prefix
         [TestMethod]
-        public void OcadCreation5()
+        public async Task OcadCreation5()
         {
             OcadCreationSettings settings = new OcadCreationSettings();
             settings.mapDirectory = settings.fileDirectory = false;
@@ -1998,13 +1999,13 @@ Code:           layer:12  control:4  scale:1  text:GO  top-left:(38.29,-16.89)
 
             Directory.CreateDirectory(settings.outputDirectory);
 
-            CreateOcadFiles(TestUtil.GetTestFile("controller\\create_ocad5.ppen"), settings, new CourseAppearance(),
+            await CreateOcadFiles(TestUtil.GetTestFile("controller\\create_ocad5.ppen"), settings, new CourseAppearance(),
                 new string[1] { TestUtil.GetTestFile("controller\\ocad_create5\\MyEvent_Coolthing-A&B_C&D_E_F.ocd") },
                 new string[1] { TestUtil.GetTestFile("controller\\ocad_create5\\MyEvent_Coolthing_A&B_C&D_E_F_expected.txt") });
         }
 
         [TestMethod]
-        public void OcadCreation6()
+        public async Task OcadCreation6()
         {
             OcadCreationSettings settings = new OcadCreationSettings();
             settings.mapDirectory = settings.fileDirectory = false;
@@ -2025,13 +2026,13 @@ Code:           layer:12  control:4  scale:1  text:GO  top-left:(38.29,-16.89)
 
             Directory.CreateDirectory(settings.outputDirectory);
 
-            CreateOcadFiles(TestUtil.GetTestFile("controller\\marymoor4.ppen"), settings, appearance,
+            await CreateOcadFiles(TestUtil.GetTestFile("controller\\marymoor4.ppen"), settings, appearance,
                 new string[1] { TestUtil.GetTestFile("controller\\ocad_create6\\Course 2.ocd") },
                 new string[1] { TestUtil.GetTestFile("controller\\ocad_create6\\Course 2_expected.txt") });
         }
 
         [TestMethod]
-        public void OcadCreation7() {
+        public async Task OcadCreation7() {
             OcadCreationSettings settings = new OcadCreationSettings();
             settings.mapDirectory = settings.fileDirectory = false;
             settings.outputDirectory = TestUtil.GetTestFile("controller\\ocad_create7");
@@ -2052,13 +2053,13 @@ Code:           layer:12  control:4  scale:1  text:GO  top-left:(38.29,-16.89)
 
             Directory.CreateDirectory(settings.outputDirectory);
 
-            CreateOcadFiles(TestUtil.GetTestFile("controller\\marymoor4.ppen"), settings, appearance,
+            await CreateOcadFiles(TestUtil.GetTestFile("controller\\marymoor4.ppen"), settings, appearance,
                 new string[1] { TestUtil.GetTestFile("controller\\ocad_create7\\Course 2.ocd") },
                 new string[1] { TestUtil.GetTestFile("controller\\ocad_create7\\Course 2_expected.txt") });
         }
 
         [TestMethod]
-        public void OcadCreation8()
+        public async Task OcadCreation8()
         {
             OcadCreationSettings settings = new OcadCreationSettings();
             settings.mapDirectory = settings.fileDirectory = false;
@@ -2073,13 +2074,13 @@ Code:           layer:12  control:4  scale:1  text:GO  top-left:(38.29,-16.89)
 
             Directory.CreateDirectory(settings.outputDirectory);
 
-            CreateOcadFiles(TestUtil.GetTestFile("controller\\Madrona Permanent11.ppen"), settings, new CourseAppearance(),
+            await CreateOcadFiles(TestUtil.GetTestFile("controller\\Madrona Permanent11.ppen"), settings, new CourseAppearance(),
                 new string[1] { TestUtil.GetTestFile("controller\\ocad_create8\\All Controls.ocd") },
                 new string[1] { TestUtil.GetTestFile("controller\\ocad_create8\\All Controls_expected.txt") });
         }
 
         [TestMethod]
-        public void OcadCreation9()
+        public async Task OcadCreation9()
         {
             OcadCreationSettings settings = new OcadCreationSettings();
             settings.mapDirectory = settings.fileDirectory = false;
@@ -2094,13 +2095,13 @@ Code:           layer:12  control:4  scale:1  text:GO  top-left:(38.29,-16.89)
 
             Directory.CreateDirectory(settings.outputDirectory);
 
-            CreateOcadFiles(TestUtil.GetTestFile("controller\\mapexchange2.ppen"), settings, new CourseAppearance(),
+            await CreateOcadFiles(TestUtil.GetTestFile("controller\\mapexchange2.ppen"), settings, new CourseAppearance(),
                 new string[5] { TestUtil.GetTestFile("controller\\ocad_create9\\Course 4G.ocd"), TestUtil.GetTestFile("controller\\ocad_create9\\Course 5-1.ocd"), TestUtil.GetTestFile("controller\\ocad_create9\\Course 5-2.ocd"), TestUtil.GetTestFile("controller\\ocad_create9\\Course 5-3.ocd"), TestUtil.GetTestFile("controller\\ocad_create9\\Course 5-4.ocd") },
                 new string[5] { TestUtil.GetTestFile("controller\\ocad_create9\\Course 4G_expected.txt"), TestUtil.GetTestFile("controller\\ocad_create9\\Course 5_1_expected.txt"), TestUtil.GetTestFile("controller\\ocad_create9\\Course 5_2_expected.txt"), TestUtil.GetTestFile("controller\\ocad_create9\\Course 5_3_expected.txt"), TestUtil.GetTestFile("controller\\ocad_create9\\Course 5_4_expected.txt") });
         }
 
         [TestMethod]
-        public void OcadCreation10()
+        public async Task OcadCreation10()
         {
             OcadCreationSettings settings = new OcadCreationSettings();
             settings.mapDirectory = settings.fileDirectory = false;
@@ -2115,7 +2116,7 @@ Code:           layer:12  control:4  scale:1  text:GO  top-left:(38.29,-16.89)
 
             Directory.CreateDirectory(settings.outputDirectory);
 
-            CreateOcadFiles(TestUtil.GetTestFile("controller\\Lincoln Park PDF.ppen"), settings, new CourseAppearance(),
+            await CreateOcadFiles(TestUtil.GetTestFile("controller\\Lincoln Park PDF.ppen"), settings, new CourseAppearance(),
                 new string[] { TestUtil.GetTestFile("controller\\ocad_create10\\Short.ocd"),
                                TestUtil.GetTestFile("controller\\ocad_create10\\SmallScale.ocd"),
                                TestUtil.GetTestFile("controller\\ocad_create10\\LargeScale.ocd"),
@@ -2129,7 +2130,7 @@ Code:           layer:12  control:4  scale:1  text:GO  top-left:(38.29,-16.89)
         }
 
         [TestMethod]
-        public void OcadCreation11()
+        public async Task OcadCreation11()
         {
             OcadCreationSettings settings = new OcadCreationSettings();
             settings.mapDirectory = settings.fileDirectory = false;
@@ -2144,7 +2145,7 @@ Code:           layer:12  control:4  scale:1  text:GO  top-left:(38.29,-16.89)
 
             Directory.CreateDirectory(settings.outputDirectory);
 
-            CreateOcadFiles(TestUtil.GetTestFile("controller\\Lincoln Park.ppen"), settings, new CourseAppearance(),
+            await CreateOcadFiles(TestUtil.GetTestFile("controller\\Lincoln Park.ppen"), settings, new CourseAppearance(),
                 new string[] { TestUtil.GetTestFile("controller\\ocad_create11\\Short.ocd")},
                 new string[] { TestUtil.GetTestFile("controller\\ocad_create11\\Short_expected.txt")},
                 new string[] { TestUtil.GetTestFile("controller\\ocad_create11\\LincolnNov12.bmp") },
@@ -2152,7 +2153,7 @@ Code:           layer:12  control:4  scale:1  text:GO  top-left:(38.29,-16.89)
         }
 
         [TestMethod]
-        public void OcadCreation12()
+        public async Task OcadCreation12()
         {
             OcadCreationSettings settings = new OcadCreationSettings();
             settings.mapDirectory = settings.fileDirectory = false;
@@ -2166,7 +2167,7 @@ Code:           layer:12  control:4  scale:1  text:GO  top-left:(38.29,-16.89)
 
             Directory.CreateDirectory(settings.outputDirectory);
 
-            CreateOcadFiles(TestUtil.GetTestFile("controller\\marymoor6.ppen"), settings, new CourseAppearance(),
+            await CreateOcadFiles(TestUtil.GetTestFile("controller\\marymoor6.ppen"), settings, new CourseAppearance(),
                 new string[1] { TestUtil.GetTestFile("controller\\ocad_create12\\Course 2.ocd") },
                 new string[1] { TestUtil.GetTestFile("controller\\ocad_create12\\Course 2_expected.txt") },
                 new string[] { TestUtil.GetTestFile("controller\\ocad_create12\\mrsneeze.jpg"), TestUtil.GetTestFile("controller\\ocad_create12\\flower.gif") },
@@ -2174,7 +2175,7 @@ Code:           layer:12  control:4  scale:1  text:GO  top-left:(38.29,-16.89)
         }
 
         [TestMethod]
-        public void OcadCreation13()
+        public async Task OcadCreation13()
         {
             OcadCreationSettings settings = new OcadCreationSettings();
             settings.mapDirectory = settings.fileDirectory = false;
@@ -2188,7 +2189,7 @@ Code:           layer:12  control:4  scale:1  text:GO  top-left:(38.29,-16.89)
 
             Directory.CreateDirectory(settings.outputDirectory);
 
-            CreateOcadFiles(TestUtil.GetTestFile("courseprinting\\marymoor_graphics.ppen"), settings, new CourseAppearance(),
+            await CreateOcadFiles(TestUtil.GetTestFile("courseprinting\\marymoor_graphics.ppen"), settings, new CourseAppearance(),
                 new string[1] { TestUtil.GetTestFile("controller\\ocad_create13\\Course 2.ocd") },
                 new string[1] { TestUtil.GetTestFile("controller\\ocad_create13\\Course 2_expected.txt") },
                 new string[] { TestUtil.GetTestFile("controller\\ocad_create13\\mrsneeze.jpg"), 
@@ -2204,7 +2205,7 @@ Code:           layer:12  control:4  scale:1  text:GO  top-left:(38.29,-16.89)
         }
 
         [TestMethod]
-        public void OcadCreation14()
+        public async Task OcadCreation14()
         {
             OcadCreationSettings settings = new OcadCreationSettings();
             settings.mapDirectory = settings.fileDirectory = false;
@@ -2219,7 +2220,7 @@ Code:           layer:12  control:4  scale:1  text:GO  top-left:(38.29,-16.89)
 
             Directory.CreateDirectory(settings.outputDirectory);
 
-            CreateOcadFiles(TestUtil.GetTestFile("controller\\marymoor4.ppen"), settings, new CourseAppearance(),
+            await CreateOcadFiles(TestUtil.GetTestFile("controller\\marymoor4.ppen"), settings, new CourseAppearance(),
                 new string[1] { TestUtil.GetTestFile("controller\\ocad_create14\\Course 2.ocd") },
                 new string[1] { TestUtil.GetTestFile("controller\\ocad_create14\\Course 2_expected.txt") });
         }
@@ -2228,7 +2229,7 @@ Code:           layer:12  control:4  scale:1  text:GO  top-left:(38.29,-16.89)
 
         // Test overwritting files
         [TestMethod]
-        public void OverwritingOcadFiles()
+        public async Task OverwritingOcadFiles()
         {
             OcadCreationSettings settings = new OcadCreationSettings();
             settings.mapDirectory = settings.fileDirectory = false;
@@ -2244,7 +2245,7 @@ Code:           layer:12  control:4  scale:1  text:GO  top-left:(38.29,-16.89)
             EventDB eventDB = controller.GetEventDB();
 
             // First, create ocad files.
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("controller\\create_ocad5.ppen"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\create_ocad5.ppen"), true);
             Assert.IsTrue(success);
 
             success = controller.CreateOcadFiles(settings);
@@ -2262,13 +2263,13 @@ Code:           layer:12  control:4  scale:1  text:GO  top-left:(38.29,-16.89)
 
 
         [TestMethod]
-        public void CanAddTextLine()
+        public async Task CanAddTextLine()
         {
             string text, objectName;
             DescriptionLine.TextLineKind textLineKind;
             bool canAdd, enableThisCourse;
 
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("controller\\desctext.ppen"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\desctext.ppen"), true);
             Assert.IsTrue(success);
 
             controller.SelectTab(0);    // All controls.
@@ -2313,11 +2314,11 @@ Code:           layer:12  control:4  scale:1  text:GO  top-left:(38.29,-16.89)
         }
 
         [TestMethod]
-        public void AddTextLine()
+        public async Task AddTextLine()
         {
             EventDB eventDB = controller.GetEventDB();
 
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("controller\\desctext.ppen"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\desctext.ppen"), true);
             Assert.IsTrue(success);
 
             controller.SelectTab(0);    // All controls.
@@ -2352,11 +2353,11 @@ Code:           layer:12  control:4  scale:1  text:GO  top-left:(38.29,-16.89)
         }
 
         [TestMethod]
-        public void DeleteTextLine()
+        public async Task DeleteTextLine()
         {
             EventDB eventDB = controller.GetEventDB();
 
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("controller\\desctext.ppen"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\desctext.ppen"), true);
             Assert.IsTrue(success);
 
             controller.SelectTab(4);    // All controls.
@@ -2386,11 +2387,11 @@ Code:           layer:12  control:4  scale:1  text:GO  top-left:(38.29,-16.89)
 
 
         [TestMethod]
-        public void ChangeTextLine()
+        public async Task ChangeTextLine()
         {
             EventDB eventDB = controller.GetEventDB();
 
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("controller\\desctext.ppen"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\desctext.ppen"), true);
             Assert.IsTrue(success);
 
             controller.SelectTab(4);    // All controls.
@@ -2416,11 +2417,11 @@ Code:           layer:12  control:4  scale:1  text:GO  top-left:(38.29,-16.89)
         }
 
         [TestMethod]
-        public void GetUnusedControls()
+        public async Task GetUnusedControls()
         {
             EventDB eventDB = controller.GetEventDB();
 
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("controller\\marymoor5.ppen"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\marymoor5.ppen"), true);
             Assert.IsTrue(success);
 
             List<KeyValuePair<Id<ControlPoint>, string>> result, expected;
@@ -2443,11 +2444,11 @@ Code:           layer:12  control:4  scale:1  text:GO  top-left:(38.29,-16.89)
         }
 
         [TestMethod]
-        public void RemoveControls()
+        public async Task RemoveControls()
         {
             EventDB eventDB = controller.GetEventDB();
 
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("controller\\marymoor5.ppen"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\marymoor5.ppen"), true);
             Assert.IsTrue(success);
 
             controller.RemoveControls(new List<Id<ControlPoint>> { ControlId(83), ControlId(86), ControlId(87), ControlId(42) });
@@ -2493,11 +2494,11 @@ Code:           layer:12  control:4  scale:1  text:GO  top-left:(38.29,-16.89)
 
 
         [TestMethod]
-        public void GetLineSpecialProperties1()
+        public async Task GetLineSpecialProperties1()
         {
             EventDB eventDB = controller.GetEventDB();
 
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("controller\\mapexchange1.ppen"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\mapexchange1.ppen"), true);
             Assert.IsTrue(success);
 
             SpecialColor color;
@@ -2520,11 +2521,11 @@ Code:           layer:12  control:4  scale:1  text:GO  top-left:(38.29,-16.89)
         }
 
         [TestMethod]
-        public void GetLineSpecialProperties2()
+        public async Task GetLineSpecialProperties2()
         {
             EventDB eventDB = controller.GetEventDB();
 
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent13.ppen"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent13.ppen"), true);
             Assert.IsTrue(success);
 
             SpecialColor color;
@@ -2565,11 +2566,11 @@ Code:           layer:12  control:4  scale:1  text:GO  top-left:(38.29,-16.89)
         }
 
         [TestMethod]
-        public void MigratePrintAreaWithBackwardCompatibility()
+        public async Task MigratePrintAreaWithBackwardCompatibility()
         {
             EventDB eventDB = controller.GetEventDB();
 
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("eventdb\\Lk Samm print area.ppen"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("eventdb\\Lk Samm print area.ppen"), true);
             Assert.IsTrue(success);
 
             PrintArea result;
@@ -2648,11 +2649,11 @@ Code:           layer:12  control:4  scale:1  text:GO  top-left:(38.29,-16.89)
         }
 
         [TestMethod]
-        public void ChangeVariations()
+        public async Task ChangeVariations()
         {
             EventDB eventDB = controller.GetEventDB();
 
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("queryevent\\variations.ppen"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("queryevent\\variations.ppen"), true);
             Assert.IsTrue(success);
 
             controller.SelectTab(0);

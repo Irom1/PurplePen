@@ -44,6 +44,7 @@ using PurplePen.MapModel;
 using TestingUtils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PurplePen.Graphics2D;
+using System.Threading.Tasks;
 
 namespace PurplePen.Tests
 {
@@ -56,7 +57,7 @@ namespace PurplePen.Tests
 
 
         [TestInitialize]
-        public void Setup()
+        public async Task Setup()
         {
             ui = TestUI.Create();
             controller = ui.controller;
@@ -64,7 +65,7 @@ namespace PurplePen.Tests
 
             string fileName = TestUtil.GetTestFile("modes\\marymoor.coursescribe");
 
-            bool success = controller.LoadInitialFile(fileName, true);
+            bool success = await controller.LoadInitialFile(fileName, true);
             Assert.IsTrue(success);
         }
 

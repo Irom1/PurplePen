@@ -44,6 +44,7 @@ using PurplePen.MapView;
 
 using TestingUtils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Threading.Tasks;
 
 
 namespace PurplePen.Tests
@@ -55,7 +56,7 @@ namespace PurplePen.Tests
         Controller controller;
         EventDB eventDB;
 
-        public void Setup(string filename)
+        public async Task Setup(string filename)
         {
             ui = TestUI.Create();
             controller = ui.controller;
@@ -63,7 +64,7 @@ namespace PurplePen.Tests
 
             string fileName = TestUtil.GetTestFile(filename);
 
-            bool success = controller.LoadInitialFile(fileName, true);
+            bool success = await controller.LoadInitialFile(fileName, true);
             Assert.IsTrue(success);
         }
 
@@ -149,9 +150,9 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void SetPrintArea1()
+        public async Task SetPrintArea1()
         {
-            Setup("modes\\printarea.ppen");
+            await Setup("modes\\printarea.ppen");
             RectangleF currentPrintArea = new RectangleF(-77.68744F, -142.4035F, 215.9F, 279.4F);
             RectangleF newPrintArea = RectangleF.FromLTRB(-5F, -20F, 70F, 30F);
 
@@ -164,9 +165,9 @@ namespace PurplePen.Tests
         }
 	
         [TestMethod]
-        public void SetPrintArea2()
+        public async Task SetPrintArea2()
         {
-            Setup("modes\\printarea.ppen");
+            await Setup("modes\\printarea.ppen");
             RectangleF currentPrintArea = RectangleF.FromLTRB(32.1F, -12F, 177F, 101.1F);
             RectangleF newPrintArea = RectangleF.FromLTRB(32.1F, -20F, 70F, 30F);
 
@@ -179,9 +180,9 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void SetPrintAreaAllControls()
+        public async Task SetPrintAreaAllControls()
         {
-            Setup("modes\\printarea.ppen");
+            await Setup("modes\\printarea.ppen");
             RectangleF currentPrintArea = new RectangleF(-48.27457F, -133.2415F, 215.9F, 279.4F);
             RectangleF newPrintArea = RectangleF.FromLTRB(-5F, 20F, 70F, 130F);
 
@@ -194,9 +195,9 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void SetPrintAreaAllCourses()
+        public async Task SetPrintAreaAllCourses()
         {
-            Setup("modes\\printarea.ppen");
+            await Setup("modes\\printarea.ppen");
             RectangleF currentPrintArea = new RectangleF(-48.27457F, -133.2415F, 215.9F, 279.4F);
             RectangleF newPrintArea = RectangleF.FromLTRB(-5F, -20F, 70F, 30F);
 
@@ -209,11 +210,11 @@ namespace PurplePen.Tests
         }
 
         [TestMethod] 
-        public void AutoPrintArea()
+        public async Task AutoPrintArea()
         {
             RectangleF expectedPrintArea = RectangleF.FromLTRB(25.9F, 68.9F, 305.3F, 284.8F);
 
-            Setup("modes\\printarea2.ppen");
+            await Setup("modes\\printarea2.ppen");
 
             controller.SelectTab(1);
             RectangleF autoPrintArea = controller.GetCurrentPrintAreaRectangle(new CourseDesignator(CourseId(1)));
@@ -266,9 +267,9 @@ namespace PurplePen.Tests
             }
         }
 
-        void ExportPrintAreaToOcad(int ocadVersion)
+        async Task ExportPrintAreaToOcad(int ocadVersion)
         {
-            Setup("modes\\printarea.ppen");
+            await Setup("modes\\printarea.ppen");
 
             SetPrintArea(1, new RectangleF(-77.68744F, -142.4035F, 215.9F, 279.4F), RectangleF.FromLTRB(-5F, -20F, 70F, 30F), PrintAreaKind.OneCourse);
             SetPrintArea(2, RectangleF.FromLTRB(32.1F, -12F, 177F, 101.1F), RectangleF.FromLTRB(-51.5F, 0F, 170.06F, 39.8F), PrintAreaKind.OneCourse);
@@ -297,15 +298,15 @@ namespace PurplePen.Tests
         }
 
         [TestMethod, DoNotParallelize]
-        public void ExportPrintAreaToOcad6()
+        public async Task ExportPrintAreaToOcad6()
         {
-            ExportPrintAreaToOcad(6);
+            await ExportPrintAreaToOcad(6);
         }
 
         [TestMethod, DoNotParallelize]
-        public void ExportPrintAreaToOcad9()
+        public async Task ExportPrintAreaToOcad9()
         {
-            ExportPrintAreaToOcad(9);
+            await ExportPrintAreaToOcad(9);
         }
 	
 

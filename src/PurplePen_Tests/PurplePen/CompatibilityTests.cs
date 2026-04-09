@@ -43,6 +43,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TestingUtils;
+using System.Threading.Tasks;
 
 namespace PurplePen.Tests
 {
@@ -52,12 +53,12 @@ namespace PurplePen.Tests
         MainFrame mainFrame;
         Controller controller;
 
-        void LoadInitialFile(string filename)
+        async Task LoadInitialFile(string filename)
         {
             mainFrame = new MainFrame();
             controller = new Controller(mainFrame);
 
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile(filename), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile(filename), true);
             Assert.IsTrue(success);
 
             controller.GetEventDB().Validate();
@@ -89,9 +90,9 @@ namespace PurplePen.Tests
         }
 
         // Test loading a file.
-        void TestLoadFile(string filename)
+        async Task TestLoadFile(string filename)
         {
-            LoadInitialFile(filename);
+            await LoadInitialFile(filename);
             Application.DoEvents();
             Application.RaiseIdle(EventArgs.Empty);
             controller.GetEventDB().Validate();
@@ -100,16 +101,16 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void Version100beta1()
+        public async Task Version100beta1()
         {
-            TestLoadFile("compatibility\\Sample Event_100b1.ppen");
+            await TestLoadFile("compatibility\\Sample Event_100b1.ppen");
         }
 
 
         [TestMethod]
-        public void Version100beta2()
+        public async Task Version100beta2()
         {
-            TestLoadFile("compatibility\\Sample Event_100b2.ppen");
+            await TestLoadFile("compatibility\\Sample Event_100b2.ppen");
 
             // Make sure gaps converted correctly.
             EventDB eventDB = controller.GetEventDB();
@@ -124,9 +125,9 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void Version101()
+        public async Task Version101()
         {
-            TestLoadFile("compatibility\\Sample Event_101.ppen");
+            await TestLoadFile("compatibility\\Sample Event_101.ppen");
             // Make sure first ordinal is correct.
             // Make sure label kind is correct.
             EventDB eventDB = controller.GetEventDB();
@@ -141,9 +142,9 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void OldStyleCustomText()
+        public async Task OldStyleCustomText()
         {
-            TestLoadFile("compatibility\\customtext.ppen");
+            await TestLoadFile("compatibility\\customtext.ppen");
 
             // Make sure the custom text is right.
             EventDB eventDB = controller.GetEventDB();

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TestingUtils;
 
@@ -28,7 +29,7 @@ namespace PurplePen.Tests
 
 
         // Create some courses, write them, and check against a dump.
-        void CreateBitmapFiles(string file, BitmapCreationSettings settings, CourseAppearance appearance, 
+        async Task CreateBitmapFiles(string file, BitmapCreationSettings settings, CourseAppearance appearance, 
                                string[] expectedBitmapNames, string[] expectedBitmapBaselines, 
                                string[] expectedTextNames = null, string[] expectedTextBaselines = null)
         {
@@ -44,7 +45,7 @@ namespace PurplePen.Tests
                 }
             }
 
-            bool success = controller.LoadInitialFile(file, true);
+            bool success = await controller.LoadInitialFile(file, true);
             Assert.IsTrue(success);
 
             controller.SetCourseAppearance(appearance);
@@ -86,7 +87,7 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void BitmapCreation1()
+        public async Task BitmapCreation1()
         {
             BitmapCreationSettings settings = new BitmapCreationSettings();
             settings.mapDirectory = settings.fileDirectory = false;
@@ -97,13 +98,13 @@ namespace PurplePen.Tests
  
             Directory.CreateDirectory(settings.outputDirectory);
 
-            CreateBitmapFiles(TestUtil.GetTestFile("bitmapcreate\\GRC.ppen"), settings, new CourseAppearance(),
+            await CreateBitmapFiles(TestUtil.GetTestFile("bitmapcreate\\GRC.ppen"), settings, new CourseAppearance(),
                 new string[1] { TestUtil.GetTestFile("bitmapcreate\\create1\\Course 1.jpg") },
                 new string[1] { TestUtil.GetTestFile("bitmapcreate\\create1\\Course 1_baseline.jpg") });
         }
 
         [TestMethod]
-        public void BitmapCreation1_NoBaseMap()
+        public async Task BitmapCreation1_NoBaseMap()
         {
             BitmapCreationSettings settings = new BitmapCreationSettings();
             settings.mapDirectory = settings.fileDirectory = false;
@@ -115,13 +116,13 @@ namespace PurplePen.Tests
 
             Directory.CreateDirectory(settings.outputDirectory);
 
-            CreateBitmapFiles(TestUtil.GetTestFile("bitmapcreate\\GRC.ppen"), settings, new CourseAppearance(),
+            await CreateBitmapFiles(TestUtil.GetTestFile("bitmapcreate\\GRC.ppen"), settings, new CourseAppearance(),
                 new string[1] { TestUtil.GetTestFile("bitmapcreate\\create1_nobasemap\\Course 1.jpg") },
                 new string[1] { TestUtil.GetTestFile("bitmapcreate\\create1_nobasemap\\Course 1_baseline.jpg") });
         }
 
         [TestMethod]
-        public void BitmapCreation2()
+        public async Task BitmapCreation2()
         {
             BitmapCreationSettings settings = new BitmapCreationSettings();
             settings.mapDirectory = settings.fileDirectory = false;
@@ -135,7 +136,7 @@ namespace PurplePen.Tests
 
             Directory.CreateDirectory(settings.outputDirectory);
 
-            CreateBitmapFiles(TestUtil.GetTestFile("bitmapcreate\\GRC.ppen"), settings, new CourseAppearance(),
+            await CreateBitmapFiles(TestUtil.GetTestFile("bitmapcreate\\GRC.ppen"), settings, new CourseAppearance(),
                 new string[3] { TestUtil.GetTestFile("bitmapcreate\\create2\\BM-All Controls.png"),
                                 TestUtil.GetTestFile("bitmapcreate\\create2\\BM-Course 1.png"),
                                 TestUtil.GetTestFile("bitmapcreate\\create2\\BM-Course 2.png")},
@@ -152,7 +153,7 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void BitmapCreation2_NoBaseMap()
+        public async Task BitmapCreation2_NoBaseMap()
         {
             BitmapCreationSettings settings = new BitmapCreationSettings();
             settings.mapDirectory = settings.fileDirectory = false;
@@ -167,7 +168,7 @@ namespace PurplePen.Tests
 
             Directory.CreateDirectory(settings.outputDirectory);
 
-            CreateBitmapFiles(TestUtil.GetTestFile("bitmapcreate\\GRC.ppen"), settings, new CourseAppearance(),
+            await CreateBitmapFiles(TestUtil.GetTestFile("bitmapcreate\\GRC.ppen"), settings, new CourseAppearance(),
                 new string[3] { TestUtil.GetTestFile("bitmapcreate\\create2_nobasemap\\BM-All Controls.png"),
                                 TestUtil.GetTestFile("bitmapcreate\\create2_nobasemap\\BM-Course 1.png"),
                                 TestUtil.GetTestFile("bitmapcreate\\create2_nobasemap\\BM-Course 2.png")},
@@ -184,7 +185,7 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void BitmapCreation3()
+        public async Task BitmapCreation3()
         {
             BitmapCreationSettings settings = new BitmapCreationSettings();
             settings.mapDirectory = settings.fileDirectory = false;
@@ -197,7 +198,7 @@ namespace PurplePen.Tests
 
             Directory.CreateDirectory(settings.outputDirectory);
 
-            CreateBitmapFiles(TestUtil.GetTestFile("bitmapcreate\\GRC.ppen"), settings, new CourseAppearance(),
+            await CreateBitmapFiles(TestUtil.GetTestFile("bitmapcreate\\GRC.ppen"), settings, new CourseAppearance(),
                 new string[] { TestUtil.GetTestFile("bitmapcreate\\create3\\Exchg-1.gif"),
                                TestUtil.GetTestFile("bitmapcreate\\create3\\Exchg-2.gif"),
                                TestUtil.GetTestFile("bitmapcreate\\create3\\Relay AC.gif"),
@@ -215,7 +216,7 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void BitmapCreation4()
+        public async Task BitmapCreation4()
         {
             BitmapCreationSettings settings = new BitmapCreationSettings();
             settings.mapDirectory = settings.fileDirectory = false;
@@ -226,7 +227,7 @@ namespace PurplePen.Tests
 
             Directory.CreateDirectory(settings.outputDirectory);
 
-            CreateBitmapFiles(TestUtil.GetTestFile("bitmapcreate\\StEd.ppen"), settings, new CourseAppearance(),
+            await CreateBitmapFiles(TestUtil.GetTestFile("bitmapcreate\\StEd.ppen"), settings, new CourseAppearance(),
                 new string[] { TestUtil.GetTestFile("bitmapcreate\\create4\\Course 1.jpg"),
                                TestUtil.GetTestFile("bitmapcreate\\create4\\Course 2.jpg")},
                 new string[] { TestUtil.GetTestFile("bitmapcreate\\create4\\Course 1_baseline.png"),
@@ -234,7 +235,7 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void BitmapCreation5()
+        public async Task BitmapCreation5()
         {
             BitmapCreationSettings settings = new BitmapCreationSettings();
             settings.mapDirectory = settings.fileDirectory = false;
@@ -248,7 +249,7 @@ namespace PurplePen.Tests
             CourseAppearance appearance = new CourseAppearance();
             appearance.numberRoboto = false;
 
-            CreateBitmapFiles(TestUtil.GetTestFile("bitmapcreate\\StEd.ppen"), settings, appearance,
+            await CreateBitmapFiles(TestUtil.GetTestFile("bitmapcreate\\StEd.ppen"), settings, appearance,
                 new string[] { TestUtil.GetTestFile("bitmapcreate\\create5\\Course 1.jpg"),
                                TestUtil.GetTestFile("bitmapcreate\\create5\\Course 2.jpg")},
                 new string[] { TestUtil.GetTestFile("bitmapcreate\\create5\\Course 1_baseline.png"),
@@ -256,7 +257,7 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void BitmapCreationBlendNone()
+        public async Task BitmapCreationBlendNone()
         {
             BitmapCreationSettings settings = new BitmapCreationSettings();
             settings.mapDirectory = settings.fileDirectory = false;
@@ -272,13 +273,13 @@ namespace PurplePen.Tests
             appearance.purpleColorBlend = PurpleColorBlend.None;
             appearance.itemScaling = ItemScaling.None;
 
-            CreateBitmapFiles(TestUtil.GetTestFile("courseprinting\\Lord Hill Feb 2024 - Final.ppen"), settings, appearance,
+            await CreateBitmapFiles(TestUtil.GetTestFile("courseprinting\\Lord Hill Feb 2024 - Final.ppen"), settings, appearance,
                 new string[] { TestUtil.GetTestFile("bitmapcreate\\blend\\none\\Course 5.png"),},
                 new string[] { TestUtil.GetTestFile("bitmapcreate\\blend\\none\\Course 5_baseline.png")});
         }
 
         [TestMethod]
-        public void BitmapCreationBlend()
+        public async Task BitmapCreationBlend()
         {
             BitmapCreationSettings settings = new BitmapCreationSettings();
             settings.mapDirectory = settings.fileDirectory = false;
@@ -294,13 +295,13 @@ namespace PurplePen.Tests
             appearance.purpleColorBlend = PurpleColorBlend.Blend;
             appearance.itemScaling = ItemScaling.None;
 
-            CreateBitmapFiles(TestUtil.GetTestFile("courseprinting\\Lord Hill Feb 2024 - Final.ppen"), settings, appearance,
+            await CreateBitmapFiles(TestUtil.GetTestFile("courseprinting\\Lord Hill Feb 2024 - Final.ppen"), settings, appearance,
                 new string[] { TestUtil.GetTestFile("bitmapcreate\\blend\\blend\\Course 5.png"), },
                 new string[] { TestUtil.GetTestFile("bitmapcreate\\blend\\blend\\Course 5_baseline.png") });
         }
 
         [TestMethod]
-        public void BitmapCreationBlendLayer()
+        public async Task BitmapCreationBlendLayer()
         {
             BitmapCreationSettings settings = new BitmapCreationSettings();
             settings.mapDirectory = settings.fileDirectory = false;
@@ -317,13 +318,13 @@ namespace PurplePen.Tests
             appearance.mapLayerForLowerPurple = 10;
             appearance.itemScaling = ItemScaling.None;
 
-            CreateBitmapFiles(TestUtil.GetTestFile("courseprinting\\Lord Hill Feb 2024 - Final.ppen"), settings, appearance,
+            await CreateBitmapFiles(TestUtil.GetTestFile("courseprinting\\Lord Hill Feb 2024 - Final.ppen"), settings, appearance,
                 new string[] { TestUtil.GetTestFile("bitmapcreate\\blend\\layer\\Course 5.png"), },
                 new string[] { TestUtil.GetTestFile("bitmapcreate\\blend\\layer\\Course 5_baseline.png") });
         }
 
         [TestMethod]
-        public void BitmapCreationBlendLayerSprint()
+        public async Task BitmapCreationBlendLayerSprint()
         {
             BitmapCreationSettings settings = new BitmapCreationSettings();
             settings.mapDirectory = settings.fileDirectory = false;
@@ -341,7 +342,7 @@ namespace PurplePen.Tests
             appearance.mapLayerForLowerPurple = 10;
             appearance.itemScaling = ItemScaling.None;
 
-            CreateBitmapFiles(TestUtil.GetTestFile("courseprinting\\Lord Hill Feb 2024 - Final.ppen"), settings, appearance,
+            await CreateBitmapFiles(TestUtil.GetTestFile("courseprinting\\Lord Hill Feb 2024 - Final.ppen"), settings, appearance,
                 new string[] { TestUtil.GetTestFile("bitmapcreate\\blend\\layersprint\\Course 5.png"), },
                 new string[] { TestUtil.GetTestFile("bitmapcreate\\blend\\layersprint\\Course 5_baseline.png") });
         }

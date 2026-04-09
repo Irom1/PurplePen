@@ -42,6 +42,7 @@ using System.Drawing;
 using System.Drawing.Printing;
 using System.IO;
 using System.Text;
+using System.Threading.Tasks;
 using TestingUtils;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
@@ -135,9 +136,9 @@ namespace PurplePen.Tests
 
 
         [TestMethod]
-        public void PrintPunches1()
+        public async Task PrintPunches1()
         {
-            controller.LoadInitialFile(TestUtil.GetTestFile("punchcards\\sample1.ppen"), true);
+            await controller.LoadInitialFile(TestUtil.GetTestFile("punchcards\\sample1.ppen"), true);
 
             CorePunchPrintSettings punchPrintSettings = new CorePunchPrintSettings();
             punchPrintSettings.BoxSize = 18;
@@ -150,9 +151,9 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void PrintPunches2()
+        public async Task PrintPunches2()
         {
-            controller.LoadInitialFile(TestUtil.GetTestFile("punchcards\\sample1.ppen"), true);
+            await controller.LoadInitialFile(TestUtil.GetTestFile("punchcards\\sample1.ppen"), true);
             CorePunchPrintSettings punchPrintSettings = new CorePunchPrintSettings();
             punchPrintSettings.BoxSize = 9;
 
@@ -165,9 +166,9 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void PrintPunchesRelay1()
+        public async Task PrintPunchesRelay1()
         {
-            controller.LoadInitialFile(TestUtil.GetTestFile("controller\\variations.ppen"), true);
+            await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\variations.ppen"), true);
 
             CorePunchPrintSettings punchPrintSettings = new CorePunchPrintSettings();
             punchPrintSettings.BoxSize = 18;
@@ -180,9 +181,9 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void PrintPunchesRelay2()
+        public async Task PrintPunchesRelay2()
         {
-            controller.LoadInitialFile(TestUtil.GetTestFile("controller\\variations.ppen"), true);
+            await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\variations.ppen"), true);
 
             CorePunchPrintSettings punchPrintSettings = new CorePunchPrintSettings();
             punchPrintSettings.BoxSize = 18;
@@ -201,9 +202,9 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void PrintPunchesRelay3()
+        public async Task PrintPunchesRelay3()
         {
-            controller.LoadInitialFile(TestUtil.GetTestFile("controller\\variations.ppen"), true);
+            await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\variations.ppen"), true);
 
             CorePunchPrintSettings punchPrintSettings = new CorePunchPrintSettings();
             punchPrintSettings.BoxSize = 18;
@@ -221,9 +222,9 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void PrintPunchesPdf1()
+        public async Task PrintPunchesPdf1()
         {
-            controller.LoadInitialFile(TestUtil.GetTestFile("punchcards\\sample1.ppen"), true);
+            await controller.LoadInitialFile(TestUtil.GetTestFile("punchcards\\sample1.ppen"), true);
 
             CorePunchPrintSettings punchPrintSettings = new CorePunchPrintSettings();
             punchPrintSettings.BoxSize = 18;
@@ -236,9 +237,9 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void PrintPunchesPdf2()
+        public async Task PrintPunchesPdf2()
         {
-            controller.LoadInitialFile(TestUtil.GetTestFile("punchcards\\sample1.ppen"), true);
+            await controller.LoadInitialFile(TestUtil.GetTestFile("punchcards\\sample1.ppen"), true);
 
             CorePunchPrintSettings punchPrintSettings = new CorePunchPrintSettings();
             punchPrintSettings.BoxSize = 9;
@@ -254,9 +255,9 @@ namespace PurplePen.Tests
 
 
         [TestMethod]
-        public void PrintingException()
+        public async Task PrintingException()
         {
-            controller.LoadInitialFile(TestUtil.GetTestFile("punchcards\\sample1.ppen"), true);
+            await controller.LoadInitialFile(TestUtil.GetTestFile("punchcards\\sample1.ppen"), true);
             CorePunchPrintSettings punchPrintSettings = new CorePunchPrintSettings();
 
             punchPrintSettings.CourseIds = new Id<Course>[] { CourseId(1), CourseId(2), CourseId(3) };

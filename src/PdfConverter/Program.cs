@@ -4,6 +4,12 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+#if !NETFRAMEWORK
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.Metadata;
+#endif
+
+
 
 
 
@@ -156,10 +162,14 @@ namespace PurplePen.PdfConverter
                 // 6. Save the SkiaSharp Bitmap to a file
                 using (var image = SKImage.FromBitmap(bitmap))
                 using (var data = image.Encode(SKEncodedImageFormat.Png, 100))
-                using (var stream = File.OpenWrite(destFileName)) {
-                    data.SaveTo(stream);
+                using (Stream stream = data.AsStream())
+                using (var imageSharpImage = Image.Load(stream)) {
+                    // We need to use SixLabors.ImageSharp to set the DPI metadata, since SkiaSharp doesn't support that.
+                    imageSharpImage.Metadata.ResolutionUnits = PixelResolutionUnit.PixelsPerInch;
+                    imageSharpImage.Metadata.HorizontalResolution = dpi;
+                    imageSharpImage.Metadata.VerticalResolution = dpi;
+                    imageSharpImage.SaveAsPng(destFileName);
                 }
-
                 // Cleanup Fpdf objects
                 fpdfview.FPDFBitmapDestroy(fpdfBitmap);
             }

@@ -9,6 +9,7 @@ using PurplePen.MapModel;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TestingUtils;
 using System.Linq;
+using System.Threading.Tasks;
 
 #if TEST
 
@@ -22,12 +23,12 @@ namespace PurplePen.Tests
         Controller controller;
         EventDB eventDB;
 
-        public void Setup(string filename)
+        public async Task Setup(string filename)
         {
             ui = TestUI.Create();
             controller = ui.controller;
             eventDB = controller.GetEventDB();
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile(filename), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile(filename), true);
             Assert.IsTrue(success);
         }
 
@@ -56,9 +57,9 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void PossiblePaths()
+        public async Task PossiblePaths()
         {
-            Setup(TestUtil.GetTestFile("relay\\relay.ppen"));
+            await Setup(TestUtil.GetTestFile("relay\\relay.ppen"));
 
             var relays = new RelayVariations(eventDB, CourseId(3), new RelaySettings(1, 6));
             Assert.AreEqual(2, relays.GetTotalPossiblePaths());
@@ -74,36 +75,36 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void GenerateAssignment1()
+        public async Task GenerateAssignment1()
         {
-            Setup(TestUtil.GetTestFile("relay\\relay.ppen"));
+            await Setup(TestUtil.GetTestFile("relay\\relay.ppen"));
 
             var teamAssignment = new RelayVariations(eventDB, CourseId(3), new RelaySettings(64, 6));
             ValidateRelayVariationsTest(teamAssignment, "relay\\twowayfork");
         }
 
         [TestMethod]
-        public void GenerateAssignment2()
+        public async Task GenerateAssignment2()
         {
-            Setup(TestUtil.GetTestFile("relay\\relay.ppen"));
+            await Setup(TestUtil.GetTestFile("relay\\relay.ppen"));
 
             var teamAssignment = new RelayVariations(eventDB, CourseId(5), new RelaySettings(64, 6));
             ValidateRelayVariationsTest(teamAssignment, "relay\\threeloop");
         }
 
         [TestMethod]
-        public void GenerateAssignment3()
+        public async Task GenerateAssignment3()
         {
-            Setup(TestUtil.GetTestFile("relay\\relay.ppen"));
+            await Setup(TestUtil.GetTestFile("relay\\relay.ppen"));
 
             var teamAssignment = new RelayVariations(eventDB, CourseId(4), new RelaySettings(64, 6));
             ValidateRelayVariationsTest(teamAssignment, "relay\\doublebranch");
         }
 
         [TestMethod]
-        public void GenerateAssignment4()
+        public async Task GenerateAssignment4()
         {
-            Setup(TestUtil.GetTestFile("relay\\relay.ppen"));
+            await Setup(TestUtil.GetTestFile("relay\\relay.ppen"));
 
             var teamAssignment = new RelayVariations(eventDB, CourseId(6), new RelaySettings(64, 6));
             ValidateRelayVariationsTest(teamAssignment, "relay\\loopwithbranches");
@@ -111,45 +112,45 @@ namespace PurplePen.Tests
         
         
         [TestMethod]
-        public void GenerateAssignment5()
+        public async Task GenerateAssignment5()
         {
-            Setup(TestUtil.GetTestFile("relay\\relay.ppen"));
+            await Setup(TestUtil.GetTestFile("relay\\relay.ppen"));
 
             var teamAssignment = new RelayVariations(eventDB, CourseId(7), new RelaySettings(64, 5));
             ValidateRelayVariationsTest(teamAssignment, "relay\\nestedbranches");
         }
 
         [TestMethod]
-        public void GenerateAssignment6()
+        public async Task GenerateAssignment6()
         {
-            Setup(TestUtil.GetTestFile("relay\\relay.ppen"));
+            await Setup(TestUtil.GetTestFile("relay\\relay.ppen"));
 
             var teamAssignment = new RelayVariations(eventDB, CourseId(1), new RelaySettings(64, 5));
             ValidateRelayVariationsTest(teamAssignment, "relay\\complexuneven");
         }
 
         [TestMethod]
-        public void GenerateAssignment7()
+        public async Task GenerateAssignment7()
         {
-            Setup(TestUtil.GetTestFile("relay\\harper.ppen"));
+            await Setup(TestUtil.GetTestFile("relay\\harper.ppen"));
 
             var teamAssignment = new RelayVariations(eventDB, CourseId(2), new RelaySettings(101, 10, 3));
             ValidateRelayVariationsTest(teamAssignment, "relay\\harper1");
         }
 
         [TestMethod]
-        public void GenerateAssignment8()
+        public async Task GenerateAssignment8()
         {
-            Setup(TestUtil.GetTestFile("relay\\harper.ppen"));
+            await Setup(TestUtil.GetTestFile("relay\\harper.ppen"));
 
             var teamAssignment = new RelayVariations(eventDB, CourseId(4), new RelaySettings(201, 10, 3));
             ValidateRelayVariationsTest(teamAssignment, "relay\\harper2");
         }
 
         [TestMethod]
-        public void FixedBranches1()
+        public async Task FixedBranches1()
         {
-            Setup(TestUtil.GetTestFile("relay\\relay.ppen"));
+            await Setup(TestUtil.GetTestFile("relay\\relay.ppen"));
 
             FixedBranchAssignments fixedBranchAssignments = new FixedBranchAssignments();
             fixedBranchAssignments.AddBranchAssignment('A', 3);
@@ -159,9 +160,9 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void FixedBranches2()
+        public async Task FixedBranches2()
         {
-            Setup(TestUtil.GetTestFile("relay\\relay.ppen"));
+            await Setup(TestUtil.GetTestFile("relay\\relay.ppen"));
 
             FixedBranchAssignments fixedBranchAssignments = new FixedBranchAssignments();
             fixedBranchAssignments.AddBranchAssignment('A', 3);
@@ -174,9 +175,9 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void FixedBranches3()
+        public async Task FixedBranches3()
         {
-            Setup(TestUtil.GetTestFile("relay\\relay.ppen"));
+            await Setup(TestUtil.GetTestFile("relay\\relay.ppen"));
 
             FixedBranchAssignments fixedBranchAssignments = new FixedBranchAssignments();
             fixedBranchAssignments.AddBranchAssignment('A', 3);
@@ -187,9 +188,9 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void FixedBranches4()
+        public async Task FixedBranches4()
         {
-            Setup(TestUtil.GetTestFile("relay\\relay.ppen"));
+            await Setup(TestUtil.GetTestFile("relay\\relay.ppen"));
 
             FixedBranchAssignments fixedBranchAssignments = new FixedBranchAssignments();
             fixedBranchAssignments.AddBranchAssignment('A', 3);
@@ -201,9 +202,9 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void FixedBranches5()
+        public async Task FixedBranches5()
         {
-            Setup(TestUtil.GetTestFile("relay\\relay.ppen"));
+            await Setup(TestUtil.GetTestFile("relay\\relay.ppen"));
 
             FixedBranchAssignments fixedBranchAssignments = new FixedBranchAssignments();
             fixedBranchAssignments.AddBranchAssignment('B', 0);
@@ -212,9 +213,9 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void FixedBranches6()
+        public async Task FixedBranches6()
         {
-            Setup(TestUtil.GetTestFile("relay\\relay.ppen"));
+            await Setup(TestUtil.GetTestFile("relay\\relay.ppen"));
 
             FixedBranchAssignments fixedBranchAssignments = new FixedBranchAssignments();
             fixedBranchAssignments.AddBranchAssignment('B', 3);
@@ -223,9 +224,9 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void FixedBranches7()
+        public async Task FixedBranches7()
         {
-            Setup(TestUtil.GetTestFile("relay\\relay.ppen"));
+            await Setup(TestUtil.GetTestFile("relay\\relay.ppen"));
 
             FixedBranchAssignments fixedBranchAssignments = new FixedBranchAssignments();
             fixedBranchAssignments.AddBranchAssignment('B', 6);
@@ -234,9 +235,9 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void FixedBranches8()
+        public async Task FixedBranches8()
         {
-            Setup(TestUtil.GetTestFile("relay\\relay.ppen"));
+            await Setup(TestUtil.GetTestFile("relay\\relay.ppen"));
 
             FixedBranchAssignments fixedBranchAssignments = new FixedBranchAssignments();
             fixedBranchAssignments.AddBranchAssignment('B', 6);
@@ -246,9 +247,9 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void FixedBranches9()
+        public async Task FixedBranches9()
         {
-            Setup(TestUtil.GetTestFile("relay\\gaffle.ppen"));
+            await Setup(TestUtil.GetTestFile("relay\\gaffle.ppen"));
 
             FixedBranchAssignments fixedBranchAssignments = new FixedBranchAssignments();
             fixedBranchAssignments.AddBranchAssignment('D', 0);
@@ -261,9 +262,9 @@ namespace PurplePen.Tests
 
 
         [TestMethod]
-        public void BranchWarnings1()
+        public async Task BranchWarnings1()
         {
-            Setup(TestUtil.GetTestFile("relay\\relay.ppen"));
+            await Setup(TestUtil.GetTestFile("relay\\relay.ppen"));
 
             var teamAssignment = new RelayVariations(eventDB, CourseId(3), new RelaySettings(64, 5));
             var warnings = teamAssignment.GetBranchWarnings().ToArray();
@@ -275,9 +276,9 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void BranchWarnings2()
+        public async Task BranchWarnings2()
         {
-            Setup(TestUtil.GetTestFile("relay\\relay.ppen"));
+            await Setup(TestUtil.GetTestFile("relay\\relay.ppen"));
 
             var teamAssignment = new RelayVariations(eventDB, CourseId(4), new RelaySettings(64, 5));
             var warnings = teamAssignment.GetBranchWarnings().ToArray();
@@ -293,9 +294,9 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void BranchWarnings3()
+        public async Task BranchWarnings3()
         {
-            Setup(TestUtil.GetTestFile("relay\\relay.ppen"));
+            await Setup(TestUtil.GetTestFile("relay\\relay.ppen"));
 
             var teamAssignment = new RelayVariations(eventDB, CourseId(7), new RelaySettings(64, 4));
             var warnings = teamAssignment.GetBranchWarnings().ToArray();
@@ -307,9 +308,9 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void BranchWarnings4()
+        public async Task BranchWarnings4()
         {
-            Setup(TestUtil.GetTestFile("relay\\relay.ppen"));
+            await Setup(TestUtil.GetTestFile("relay\\relay.ppen"));
 
             var teamAssignment = new RelayVariations(eventDB, CourseId(7), new RelaySettings(64, 5));
             var warnings = teamAssignment.GetBranchWarnings().ToArray();
@@ -321,9 +322,9 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void ValidateFixedBranches1()
+        public async Task ValidateFixedBranches1()
         {
-            Setup(TestUtil.GetTestFile("relay\\relay.ppen"));
+            await Setup(TestUtil.GetTestFile("relay\\relay.ppen"));
 
             // No Assignments.
             FixedBranchAssignments branchAssignments = new FixedBranchAssignments();
@@ -336,9 +337,9 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void ValidateFixedBranches2()
+        public async Task ValidateFixedBranches2()
         {
-            Setup(TestUtil.GetTestFile("relay\\relay.ppen"));
+            await Setup(TestUtil.GetTestFile("relay\\relay.ppen"));
 
             // No Assignments.
             FixedBranchAssignments branchAssignments = new FixedBranchAssignments();
@@ -356,9 +357,9 @@ namespace PurplePen.Tests
 
 
         [TestMethod]
-        public void ValidateFixedBranches3()
+        public async Task ValidateFixedBranches3()
         {
-            Setup(TestUtil.GetTestFile("relay\\relay.ppen"));
+            await Setup(TestUtil.GetTestFile("relay\\relay.ppen"));
 
             // No Assignments.
             FixedBranchAssignments branchAssignments = new FixedBranchAssignments();
@@ -381,9 +382,9 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void ValidateFixedBranches4()
+        public async Task ValidateFixedBranches4()
         {
-            Setup(TestUtil.GetTestFile("relay\\relay.ppen"));
+            await Setup(TestUtil.GetTestFile("relay\\relay.ppen"));
 
             // No Assignments.
             FixedBranchAssignments branchAssignments = new FixedBranchAssignments();
@@ -417,9 +418,9 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void ValidateFixedBranches5()
+        public async Task ValidateFixedBranches5()
         {
-            Setup(TestUtil.GetTestFile("relay\\gaffle.ppen"));
+            await Setup(TestUtil.GetTestFile("relay\\gaffle.ppen"));
 
             // No Assignments.
             FixedBranchAssignments branchAssignments = new FixedBranchAssignments();
@@ -432,9 +433,9 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void ValidateFixedBranches6()
+        public async Task ValidateFixedBranches6()
         {
-            Setup(TestUtil.GetTestFile("relay\\gaffle.ppen"));
+            await Setup(TestUtil.GetTestFile("relay\\gaffle.ppen"));
 
             FixedBranchAssignments branchAssignments = new FixedBranchAssignments();
             branchAssignments.AddBranchAssignment('D', 0);
@@ -450,9 +451,9 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void ValidateFixedBranches7()
+        public async Task ValidateFixedBranches7()
         {
-            Setup(TestUtil.GetTestFile("relay\\gaffle.ppen"));
+            await Setup(TestUtil.GetTestFile("relay\\gaffle.ppen"));
 
             FixedBranchAssignments branchAssignments = new FixedBranchAssignments();
             branchAssignments.AddBranchAssignment('D', 0);
@@ -480,9 +481,9 @@ namespace PurplePen.Tests
 
 
         [TestMethod]
-        public void ExportCsv()
+        public async Task ExportCsv()
         {
-            Setup(TestUtil.GetTestFile("relay\\relay.ppen"));
+            await Setup(TestUtil.GetTestFile("relay\\relay.ppen"));
             string tempOutputFile = TestUtil.GetTestFile("relay\\doublebranch_temp.csv");
             string baselineFile = TestUtil.GetTestFile("relay\\doublebranch_baseline.csv");
 
@@ -496,9 +497,9 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void ExportCsv2()
+        public async Task ExportCsv2()
         {
-            Setup(TestUtil.GetTestFile("relay\\relay.ppen"));
+            await Setup(TestUtil.GetTestFile("relay\\relay.ppen"));
             string tempOutputFile = TestUtil.GetTestFile("relay\\doublebranch_temp.csv");
             string baselineFile = TestUtil.GetTestFile("relay\\doublebranch_baseline2.csv");
 
@@ -512,11 +513,11 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void ExportXml()
+        public async Task ExportXml()
         {
             Dictionary<string, string> exceptions = ExportXmlVersion3.TestFileExceptionMap();
 
-            Setup(TestUtil.GetTestFile("relay\\relay.ppen"));
+            await Setup(TestUtil.GetTestFile("relay\\relay.ppen"));
             string tempOutputFile = TestUtil.GetTestFile("relay\\doublebranch_temp.xml");
             string baselineFile = TestUtil.GetTestFile("relay\\doublebranch_baseline.xml");
 
@@ -530,11 +531,11 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void ExportXml2()
+        public async Task ExportXml2()
         {
             Dictionary<string, string> exceptions = ExportXmlVersion3.TestFileExceptionMap();
 
-            Setup(TestUtil.GetTestFile("relay\\relay.ppen"));
+            await Setup(TestUtil.GetTestFile("relay\\relay.ppen"));
             string tempOutputFile = TestUtil.GetTestFile("relay\\doublebranch_temp.xml");
             string baselineFile = TestUtil.GetTestFile("relay\\doublebranch_baseline2.xml");
 

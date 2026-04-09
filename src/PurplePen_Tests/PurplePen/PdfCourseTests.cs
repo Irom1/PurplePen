@@ -9,6 +9,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using TestingUtils;
 
@@ -32,11 +33,11 @@ namespace PurplePen.Tests
         }
 
         // Create some courses, write them as PDF, and check against a PNG snapshot of that PDF.
-        void CreatePdfFiles(string file, CoursePdfSettings settings, CourseAppearance appearance, string[] expectedFiles, string[] expectedDumps)
+        async Task CreatePdfFiles(string file, CoursePdfSettings settings, CourseAppearance appearance, string[] expectedFiles, string[] expectedDumps)
         {
             EventDB eventDB = controller.GetEventDB();
 
-            bool success = controller.LoadInitialFile(file, true);
+            bool success = await controller.LoadInitialFile(file, true);
             Assert.IsTrue(success);
 
             controller.SetCourseAppearance(appearance);
@@ -91,7 +92,7 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void Files_OnePerCourse()
+        public async Task Files_OnePerCourse()
         {
             EventDB eventDB = controller.GetEventDB();
             SymbolDB symbolDB = ui.symbolDB;
@@ -105,7 +106,7 @@ namespace PurplePen.Tests
             settings.FileCreation = CoursePdfSettings.PdfFileCreation.FilePerCourse;
             settings.PrintMapExchangesOnOneMap = false;
 
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("controller\\mapexchange1.ppen"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\mapexchange1.ppen"), true);
             Assert.IsTrue(success);
 
             var coursePdf = new CoursePdf(eventDB, symbolDB, controller, controller.MapDisplay, settings, new CourseAppearance());
@@ -137,7 +138,7 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void Files_OnePerCoursePart()
+        public async Task Files_OnePerCoursePart()
         {
             EventDB eventDB = controller.GetEventDB();
             SymbolDB symbolDB = ui.symbolDB;
@@ -151,7 +152,7 @@ namespace PurplePen.Tests
             settings.FileCreation = CoursePdfSettings.PdfFileCreation.FilePerCoursePart;
             settings.PrintMapExchangesOnOneMap = false;
 
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("controller\\mapexchange1.ppen"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\mapexchange1.ppen"), true);
             Assert.IsTrue(success);
 
             var coursePdf = new CoursePdf(eventDB, symbolDB, controller, controller.MapDisplay, settings, new CourseAppearance());
@@ -187,7 +188,7 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void Files_SingleFile()
+        public async Task Files_SingleFile()
         {
             EventDB eventDB = controller.GetEventDB();
             SymbolDB symbolDB = ui.symbolDB;
@@ -201,7 +202,7 @@ namespace PurplePen.Tests
             settings.FileCreation = CoursePdfSettings.PdfFileCreation.SingleFile;
             settings.PrintMapExchangesOnOneMap = false;
 
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("controller\\mapexchange1.ppen"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\mapexchange1.ppen"), true);
             Assert.IsTrue(success);
 
             var coursePdf = new CoursePdf(eventDB, symbolDB, controller, controller.MapDisplay, settings, new CourseAppearance());
@@ -228,7 +229,7 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void Files_Relay_OnePerCoursePart()
+        public async Task Files_Relay_OnePerCoursePart()
         {
             EventDB eventDB = controller.GetEventDB();
             SymbolDB symbolDB = ui.symbolDB;
@@ -242,7 +243,7 @@ namespace PurplePen.Tests
             settings.FileCreation = CoursePdfSettings.PdfFileCreation.FilePerCoursePart;
             settings.PrintMapExchangesOnOneMap = false;
 
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("controller\\variations.ppen"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\variations.ppen"), true);
             Assert.IsTrue(success);
 
             var coursePdf = new CoursePdf(eventDB, symbolDB, controller, controller.MapDisplay, settings, new CourseAppearance());
@@ -265,7 +266,7 @@ namespace PurplePen.Tests
        }
 
         [TestMethod]
-        public void Files_Relay_OnePerCourse()
+        public async Task Files_Relay_OnePerCourse()
         {
             EventDB eventDB = controller.GetEventDB();
             SymbolDB symbolDB = ui.symbolDB;
@@ -279,7 +280,7 @@ namespace PurplePen.Tests
             settings.FileCreation = CoursePdfSettings.PdfFileCreation.FilePerCourse;
             settings.PrintMapExchangesOnOneMap = false;
 
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("controller\\variations.ppen"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\variations.ppen"), true);
             Assert.IsTrue(success);
 
             var coursePdf = new CoursePdf(eventDB, symbolDB, controller, controller.MapDisplay, settings, new CourseAppearance());
@@ -302,7 +303,7 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void Files_Relay_SingleFile()
+        public async Task Files_Relay_SingleFile()
         {
             EventDB eventDB = controller.GetEventDB();
             SymbolDB symbolDB = ui.symbolDB;
@@ -316,7 +317,7 @@ namespace PurplePen.Tests
             settings.FileCreation = CoursePdfSettings.PdfFileCreation.SingleFile;
             settings.PrintMapExchangesOnOneMap = false;
 
-            bool success = controller.LoadInitialFile(TestUtil.GetTestFile("controller\\variations.ppen"), true);
+            bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\variations.ppen"), true);
             Assert.IsTrue(success);
 
             var coursePdf = new CoursePdf(eventDB, symbolDB, controller, controller.MapDisplay, settings, new CourseAppearance());
@@ -337,7 +338,7 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void PdfCreation1()
+        public async Task PdfCreation1()
         {
             CoursePdfSettings settings = new CoursePdfSettings();
             settings.mapDirectory = settings.fileDirectory = false;
@@ -351,13 +352,13 @@ namespace PurplePen.Tests
             CourseAppearance appearance = new CourseAppearance();
             appearance.purpleColorBlend = PurpleColorBlend.None;
 
-            CreatePdfFiles(TestUtil.GetTestFile("courseprinting\\marymoor.ppen"), settings, appearance,
+            await CreatePdfFiles(TestUtil.GetTestFile("courseprinting\\marymoor.ppen"), settings, appearance,
                 new string[1] { TestUtil.GetTestFile("controller\\pdf_create1\\Marymoor WIOL 2.pdf") },
                 new string[1] { TestUtil.GetTestFile("controller\\pdf_create1\\test1_page%d_baseline.png") });
         }
 
         [TestMethod]
-        public void PdfCreation2()
+        public async Task PdfCreation2()
         {
             CoursePdfSettings settings = new CoursePdfSettings();
             settings.mapDirectory = settings.fileDirectory = false;
@@ -384,14 +385,14 @@ namespace PurplePen.Tests
 
             settings.CourseIds = new Id<Course>[] { CourseId(1), CourseId(2), CourseId(0) };
 
-            CreatePdfFiles(TestUtil.GetTestFile("courseprinting\\marymoor.ppen"), settings, appearance,
+            await CreatePdfFiles(TestUtil.GetTestFile("courseprinting\\marymoor.ppen"), settings, appearance,
                 new string[] { TestUtil.GetTestFile("controller\\pdf_create2\\Course 1.pdf"), TestUtil.GetTestFile("controller\\pdf_create2\\Course 2.pdf"), TestUtil.GetTestFile("controller\\pdf_create2\\All controls.pdf") },
                 new string[] { TestUtil.GetTestFile("controller\\pdf_create2\\test2_course1_page%d_baseline.png"), TestUtil.GetTestFile("controller\\pdf_create2\\test2_course2_page%d_baseline.png"), TestUtil.GetTestFile("controller\\pdf_create2\\test2_allcontrols_page%d_baseline.png") });
 
         }
 
         [TestMethod]
-        public void PdfCreation3()
+        public async Task PdfCreation3()
         {
             CoursePdfSettings settings = new CoursePdfSettings();
             settings.mapDirectory = settings.fileDirectory = false;
@@ -416,14 +417,14 @@ namespace PurplePen.Tests
 
             settings.CourseIds = new Id<Course>[] { CourseId(1), CourseId(2), CourseId(0) };
 
-            CreatePdfFiles(TestUtil.GetTestFile("courseprinting\\marymoor.ppen"), settings, appearance,
+            await CreatePdfFiles(TestUtil.GetTestFile("courseprinting\\marymoor.ppen"), settings, appearance,
                 new string[] { TestUtil.GetTestFile("controller\\pdf_create3\\Course 1.pdf"), TestUtil.GetTestFile("controller\\pdf_create3\\Course 2.pdf"), TestUtil.GetTestFile("controller\\pdf_create3\\All controls.pdf") },
                 new string[] { TestUtil.GetTestFile("controller\\pdf_create3\\test3_Course 1_page%d_baseline.png"), TestUtil.GetTestFile("controller\\pdf_create3\\test3_Course 2_page%d_baseline.png"), TestUtil.GetTestFile("controller\\pdf_create3\\test3_All controls_page%d_baseline.png") });
 
         }
 
         [TestMethod]
-        public void PdfCreation3NoBaseMap()
+        public async Task PdfCreation3NoBaseMap()
         {
             CoursePdfSettings settings = new CoursePdfSettings();
             settings.mapDirectory = settings.fileDirectory = false;
@@ -449,7 +450,7 @@ namespace PurplePen.Tests
 
             settings.CourseIds = new Id<Course>[] { CourseId(1), CourseId(2), CourseId(0) };
 
-            CreatePdfFiles(TestUtil.GetTestFile("courseprinting\\marymoor.ppen"), settings, appearance,
+            await CreatePdfFiles(TestUtil.GetTestFile("courseprinting\\marymoor.ppen"), settings, appearance,
                 new string[] { TestUtil.GetTestFile("controller\\pdf_create3_nobasemap\\Course 1.pdf"), TestUtil.GetTestFile("controller\\pdf_create3_nobasemap\\Course 2.pdf"), TestUtil.GetTestFile("controller\\pdf_create3_nobasemap\\All controls.pdf") },
                 new string[] { TestUtil.GetTestFile("controller\\pdf_create3_nobasemap\\test3_Course 1_page%d_baseline.png"), TestUtil.GetTestFile("controller\\pdf_create3_nobasemap\\test3_Course 2_page%d_baseline.png"), TestUtil.GetTestFile("controller\\pdf_create3_nobasemap\\test3_All controls_page%d_baseline.png") });
 
@@ -458,7 +459,7 @@ namespace PurplePen.Tests
 
 
         [TestMethod]
-        public void PdfCreation4()
+        public async Task PdfCreation4()
         {
             CoursePdfSettings settings = new CoursePdfSettings();
             settings.mapDirectory = settings.fileDirectory = false;
@@ -474,13 +475,13 @@ namespace PurplePen.Tests
 
             Directory.CreateDirectory(settings.outputDirectory);
 
-            CreatePdfFiles(TestUtil.GetTestFile("controller\\marymoor4.ppen"), settings, appearance,
+            await CreatePdfFiles(TestUtil.GetTestFile("controller\\marymoor4.ppen"), settings, appearance,
                 new string[1] { TestUtil.GetTestFile("controller\\pdf_create4\\Course 2.pdf") },
                 new string[1] { TestUtil.GetTestFile("controller\\pdf_create4\\Course 2_expected.png") });
         }
 
         [TestMethod]
-        public void PdfCreation6()
+        public async Task PdfCreation6()
         {
             CoursePdfSettings settings = new CoursePdfSettings();
             settings.mapDirectory = settings.fileDirectory = false;
@@ -492,13 +493,13 @@ namespace PurplePen.Tests
 
             Directory.CreateDirectory(settings.outputDirectory);
 
-            CreatePdfFiles(TestUtil.GetTestFile("courseprinting\\marymoor_graphics.ppen"), settings, new CourseAppearance(),
+            await CreatePdfFiles(TestUtil.GetTestFile("courseprinting\\marymoor_graphics.ppen"), settings, new CourseAppearance(),
                 new string[1] { TestUtil.GetTestFile("controller\\pdf_create6\\Course 2.pdf") },
                 new string[1] { TestUtil.GetTestFile("controller\\pdf_create6\\Course 2_expected.png") });
         }
 
         [TestMethod]
-        public void PdfCreation9()
+        public async Task PdfCreation9()
         {
             CoursePdfSettings settings = new CoursePdfSettings();
             settings.mapDirectory = settings.fileDirectory = false;
@@ -513,13 +514,13 @@ namespace PurplePen.Tests
 
             Directory.CreateDirectory(settings.outputDirectory);
 
-            CreatePdfFiles(TestUtil.GetTestFile("courseprinting\\McHugh 2021.ppen"), settings, appearance,
+            await CreatePdfFiles(TestUtil.GetTestFile("courseprinting\\McHugh 2021.ppen"), settings, appearance,
                 new string[1] { TestUtil.GetTestFile("controller\\pdf_create9\\Long.pdf") },
                 new string[1] { TestUtil.GetTestFile("controller\\pdf_create9\\Long_expected.png") });
         }
 
         [TestMethod]
-        public void PdfCreationBlendNone()
+        public async Task PdfCreationBlendNone()
         {
             CoursePdfSettings settings = new CoursePdfSettings();
             settings.mapDirectory = settings.fileDirectory = false;
@@ -536,13 +537,13 @@ namespace PurplePen.Tests
 
             Directory.CreateDirectory(settings.outputDirectory);
 
-            CreatePdfFiles(TestUtil.GetTestFile("courseprinting\\Lord Hill Feb 2024 - Final.ppen"), settings, appearance,
+            await CreatePdfFiles(TestUtil.GetTestFile("courseprinting\\Lord Hill Feb 2024 - Final.ppen"), settings, appearance,
                 new string[1] { TestUtil.GetTestFile("controller\\pdf_create_blend\\none\\Course 5.pdf") },
                 new string[1] { TestUtil.GetTestFile("controller\\pdf_create_blend\\none\\Course 5_expected.png") });
         }
 
         [TestMethod]
-        public void PdfCreationBlend()
+        public async Task PdfCreationBlend()
         {
             CoursePdfSettings settings = new CoursePdfSettings();
             settings.mapDirectory = settings.fileDirectory = false;
@@ -559,13 +560,13 @@ namespace PurplePen.Tests
 
             Directory.CreateDirectory(settings.outputDirectory);
 
-            CreatePdfFiles(TestUtil.GetTestFile("courseprinting\\Lord Hill Feb 2024 - Final.ppen"), settings, appearance,
+            await CreatePdfFiles(TestUtil.GetTestFile("courseprinting\\Lord Hill Feb 2024 - Final.ppen"), settings, appearance,
                 new string[1] { TestUtil.GetTestFile("controller\\pdf_create_blend\\blend\\Course 5.pdf") },
                 new string[1] { TestUtil.GetTestFile("controller\\pdf_create_blend\\blend\\Course 5_expected.png") });
         }
 
         [TestMethod]
-        public void PdfCreationLayer()
+        public async Task PdfCreationLayer()
         {
             CoursePdfSettings settings = new CoursePdfSettings();
             settings.mapDirectory = settings.fileDirectory = false;
@@ -583,13 +584,13 @@ namespace PurplePen.Tests
 
             Directory.CreateDirectory(settings.outputDirectory);
 
-            CreatePdfFiles(TestUtil.GetTestFile("courseprinting\\Lord Hill Feb 2024 - Final.ppen"), settings, appearance,
+            await CreatePdfFiles(TestUtil.GetTestFile("courseprinting\\Lord Hill Feb 2024 - Final.ppen"), settings, appearance,
                 new string[1] { TestUtil.GetTestFile("controller\\pdf_create_blend\\layer\\Course 5.pdf") },
                 new string[1] { TestUtil.GetTestFile("controller\\pdf_create_blend\\layer\\Course 5_expected.png") });
         }
 
         [TestMethod]
-        public void PdfCreationLayerSprint()
+        public async Task PdfCreationLayerSprint()
         {
             CoursePdfSettings settings = new CoursePdfSettings();
             settings.mapDirectory = settings.fileDirectory = false;
@@ -607,7 +608,7 @@ namespace PurplePen.Tests
 
             Directory.CreateDirectory(settings.outputDirectory);
 
-            CreatePdfFiles(TestUtil.GetTestFile("courseprinting\\Lord Hill Feb 2024 - Final.ppen"), settings, appearance,
+            await CreatePdfFiles(TestUtil.GetTestFile("courseprinting\\Lord Hill Feb 2024 - Final.ppen"), settings, appearance,
                 new string[1] { TestUtil.GetTestFile("controller\\pdf_create_blend\\layersprint\\Course 5.pdf") },
                 new string[1] { TestUtil.GetTestFile("controller\\pdf_create_blend\\layersprint\\Course 5_expected.png") });
         }
@@ -615,7 +616,7 @@ namespace PurplePen.Tests
 
 
         [TestMethod]
-        public void PdfCreationBitmapBaseMap()
+        public async Task PdfCreationBitmapBaseMap()
         {
             CoursePdfSettings settings = new CoursePdfSettings();
             settings.mapDirectory = settings.fileDirectory = false;
@@ -628,14 +629,14 @@ namespace PurplePen.Tests
             CourseAppearance appearance = new CourseAppearance();
             appearance.purpleColorBlend = PurpleColorBlend.Blend;
 
-            CreatePdfFiles(TestUtil.GetTestFile("courseprinting\\Lincoln Park.ppen"), settings, appearance,
+            await CreatePdfFiles(TestUtil.GetTestFile("courseprinting\\Lincoln Park.ppen"), settings, appearance,
                 new string[1] { TestUtil.GetTestFile("controller\\pdf_create5\\Short.pdf") },
                 new string[1] { TestUtil.GetTestFile("controller\\pdf_create5\\Short_expected.png") });
 
         }
 
         [TestMethod]
-        public void PdfCreationBitmapBaseMapRGB()
+        public async Task PdfCreationBitmapBaseMapRGB()
         {
             CoursePdfSettings settings = new CoursePdfSettings();
             settings.mapDirectory = settings.fileDirectory = false;
@@ -648,14 +649,14 @@ namespace PurplePen.Tests
             CourseAppearance appearance = new CourseAppearance();
             appearance.purpleColorBlend = PurpleColorBlend.Blend;
 
-            CreatePdfFiles(TestUtil.GetTestFile("courseprinting\\Lincoln Park.ppen"), settings, appearance,
+            await CreatePdfFiles(TestUtil.GetTestFile("courseprinting\\Lincoln Park.ppen"), settings, appearance,
                 new string[1] { TestUtil.GetTestFile("controller\\pdf_create8\\Short.pdf") },
                 new string[1] { TestUtil.GetTestFile("controller\\pdf_create8\\Short_expected.png") });
 
         }
 
         [TestMethod]
-        public void PdfCreationPdfBaseMap()
+        public async Task PdfCreationPdfBaseMap()
         {
             CoursePdfSettings settings = new CoursePdfSettings();
             settings.mapDirectory = settings.fileDirectory = false;
@@ -668,7 +669,7 @@ namespace PurplePen.Tests
             CourseAppearance appearance = new CourseAppearance();
             appearance.purpleColorBlend = PurpleColorBlend.Blend;
 
-            CreatePdfFiles(TestUtil.GetTestFile("pdfcourse\\Lincoln Park PDF.ppen"), settings, appearance,
+            await CreatePdfFiles(TestUtil.GetTestFile("pdfcourse\\Lincoln Park PDF.ppen"), settings, appearance,
                 new string[] { TestUtil.GetTestFile("pdfcourse\\pdf_create6\\Short.pdf"),
                                TestUtil.GetTestFile("pdfcourse\\pdf_create6\\SmallScale.pdf"),
                                TestUtil.GetTestFile("pdfcourse\\pdf_create6\\LargeScale.pdf"),
@@ -681,7 +682,7 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void PdfCreationPdfBaseMap2()
+        public async Task PdfCreationPdfBaseMap2()
         {
             CoursePdfSettings settings = new CoursePdfSettings();
             settings.mapDirectory = settings.fileDirectory = false;
@@ -694,7 +695,7 @@ namespace PurplePen.Tests
             CourseAppearance appearance = new CourseAppearance();
             appearance.purpleColorBlend = PurpleColorBlend.Blend;
 
-            CreatePdfFiles(TestUtil.GetTestFile("pdfcourse\\St Pauls Week 4.ppen"), settings, appearance,
+            await CreatePdfFiles(TestUtil.GetTestFile("pdfcourse\\St Pauls Week 4.ppen"), settings, appearance,
                 new string[] { TestUtil.GetTestFile("pdfcourse\\pdf_create9\\All Controls.pdf"),
                                TestUtil.GetTestFile("pdfcourse\\pdf_create9\\Short.pdf"),
                                TestUtil.GetTestFile("pdfcourse\\pdf_create9\\Medium.pdf"),
@@ -708,7 +709,7 @@ namespace PurplePen.Tests
 
 
         [TestMethod]
-        public void PdfCreationPdfBaseMapRGB()
+        public async Task PdfCreationPdfBaseMapRGB()
         {
             CoursePdfSettings settings = new CoursePdfSettings();
             settings.mapDirectory = settings.fileDirectory = false;
@@ -721,7 +722,7 @@ namespace PurplePen.Tests
             CourseAppearance appearance = new CourseAppearance();
             appearance.purpleColorBlend = PurpleColorBlend.Blend;
 
-            CreatePdfFiles(TestUtil.GetTestFile("pdfcourse\\Lincoln Park PDF RGB.ppen"), settings, appearance,
+            await CreatePdfFiles(TestUtil.GetTestFile("pdfcourse\\Lincoln Park PDF RGB.ppen"), settings, appearance,
                 new string[] { TestUtil.GetTestFile("pdfcourse\\pdf_create7\\Short.pdf"),
                                TestUtil.GetTestFile("pdfcourse\\pdf_create7\\SmallScale.pdf"),
                                TestUtil.GetTestFile("pdfcourse\\pdf_create7\\LargeScale.pdf"),
@@ -734,7 +735,7 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void PdfCreationTemplateBaseMap()
+        public async Task PdfCreationTemplateBaseMap()
         {
             CoursePdfSettings settings = new CoursePdfSettings();
             settings.mapDirectory = settings.fileDirectory = false;
@@ -744,7 +745,7 @@ namespace PurplePen.Tests
             settings.CropLargePrintArea = true;
             settings.FileCreation = CoursePdfSettings.PdfFileCreation.FilePerCourse;
 
-            CreatePdfFiles(TestUtil.GetTestFile("courseprinting\\Template.ppen"), settings, new CourseAppearance(),
+            await CreatePdfFiles(TestUtil.GetTestFile("courseprinting\\Template.ppen"), settings, new CourseAppearance(),
                 new string[1] { TestUtil.GetTestFile("pdfcourse\\pdf_create8\\Course 1.pdf") },
                 new string[1] { TestUtil.GetTestFile("pdfcourse\\pdf_create8\\Course 1.png") });
 
@@ -752,7 +753,7 @@ namespace PurplePen.Tests
 
 
         [TestMethod]
-        public void PdfCreationOverprint()
+        public async Task PdfCreationOverprint()
         {
             CoursePdfSettings settings = new CoursePdfSettings();
             settings.mapDirectory = settings.fileDirectory = false;
@@ -766,13 +767,13 @@ namespace PurplePen.Tests
             CourseAppearance appearance = new CourseAppearance();
             appearance.purpleColorBlend = PurpleColorBlend.Blend;
 
-            CreatePdfFiles(TestUtil.GetTestFile("courseprinting\\Overprint test.ppen"), settings, appearance,
+            await CreatePdfFiles(TestUtil.GetTestFile("courseprinting\\Overprint test.ppen"), settings, appearance,
                 new string[1] { TestUtil.GetTestFile("controller\\pdf_create_overprint\\Overprint test.pdf") },
                 new string[1] { TestUtil.GetTestFile("controller\\pdf_create_overprint\\Overprint test_expected.png") });
         }
 
         [TestMethod]
-        public void PdfPrintAreasAndPageSizes()
+        public async Task PdfPrintAreasAndPageSizes()
         {
             CoursePdfSettings settings = new CoursePdfSettings();
             settings.mapDirectory = settings.fileDirectory = false;
@@ -786,7 +787,7 @@ namespace PurplePen.Tests
             CourseAppearance appearance = new CourseAppearance();
             appearance.purpleColorBlend = PurpleColorBlend.Blend;
 
-            CreatePdfFiles(TestUtil.GetTestFile("courseprinting\\Lincoln Park PrintAreas 2.ppen"), settings, appearance,
+            await CreatePdfFiles(TestUtil.GetTestFile("courseprinting\\Lincoln Park PrintAreas 2.ppen"), settings, appearance,
                 new string[] { TestUtil.GetTestFile("controller\\pdf_area\\All controls.pdf"),
                                TestUtil.GetTestFile("controller\\pdf_area\\Short.pdf"),
                                TestUtil.GetTestFile("controller\\pdf_area\\Long.pdf"),
@@ -800,7 +801,7 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void ScalingTest()
+        public async Task ScalingTest()
         {
             CoursePdfSettings settings = new CoursePdfSettings();
             settings.mapDirectory = settings.fileDirectory = false;
@@ -814,7 +815,7 @@ namespace PurplePen.Tests
             CourseAppearance appearance = new CourseAppearance();
             appearance.purpleColorBlend = PurpleColorBlend.Blend;
 
-            CreatePdfFiles(TestUtil.GetTestFile("pdfcourse\\PDF rescale test.ppen"), settings, appearance,
+            await CreatePdfFiles(TestUtil.GetTestFile("pdfcourse\\PDF rescale test.ppen"), settings, appearance,
                 new string[] { TestUtil.GetTestFile("pdfcourse\\Scaled.pdf"),
                                TestUtil.GetTestFile("pdfcourse\\Unscaled.pdf")},
                 new string[] { TestUtil.GetTestFile("pdfcourse\\Scaled.png"),
@@ -822,7 +823,7 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void PrintAreaAndScaling1()
+        public async Task PrintAreaAndScaling1()
         {
             CoursePdfSettings settings = new CoursePdfSettings();
             settings.mapDirectory = settings.fileDirectory = false;
@@ -836,7 +837,7 @@ namespace PurplePen.Tests
             CourseAppearance appearance = new CourseAppearance();
             appearance.purpleColorBlend = PurpleColorBlend.Blend;
 
-            CreatePdfFiles(TestUtil.GetTestFile("pdfcourse\\UWLetter.ppen"), settings, appearance,
+            await CreatePdfFiles(TestUtil.GetTestFile("pdfcourse\\UWLetter.ppen"), settings, appearance,
                 new string[] { TestUtil.GetTestFile("pdfcourse\\printareascaling1\\Course A.pdf"),
                                TestUtil.GetTestFile("pdfcourse\\printareascaling1\\Course B.pdf"),
                                TestUtil.GetTestFile("pdfcourse\\printareascaling1\\Course C.pdf"),
@@ -852,7 +853,7 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void PrintAreaAndScaling2()
+        public async Task PrintAreaAndScaling2()
         {
             CoursePdfSettings settings = new CoursePdfSettings();
             settings.mapDirectory = settings.fileDirectory = false;
@@ -866,7 +867,7 @@ namespace PurplePen.Tests
             CourseAppearance appearance = new CourseAppearance();
             appearance.purpleColorBlend = PurpleColorBlend.Blend;
 
-            CreatePdfFiles(TestUtil.GetTestFile("pdfcourse\\Tengle.ppen"), settings, appearance,
+            await CreatePdfFiles(TestUtil.GetTestFile("pdfcourse\\Tengle.ppen"), settings, appearance,
                 new string[] { TestUtil.GetTestFile("pdfcourse\\printareascaling2\\Course 1.pdf"),
                                TestUtil.GetTestFile("pdfcourse\\printareascaling2\\Course 2.pdf"),
                 },
@@ -876,7 +877,7 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void PrintAreaAndScaling3()
+        public async Task PrintAreaAndScaling3()
         {
             // Test DontPrintBaseMap setting.
 
@@ -893,7 +894,7 @@ namespace PurplePen.Tests
             CourseAppearance appearance = new CourseAppearance();
             appearance.purpleColorBlend = PurpleColorBlend.Blend;
 
-            CreatePdfFiles(TestUtil.GetTestFile("pdfcourse\\UWLetter.ppen"), settings, appearance,
+            await CreatePdfFiles(TestUtil.GetTestFile("pdfcourse\\UWLetter.ppen"), settings, appearance,
                 new string[] { TestUtil.GetTestFile("pdfcourse\\printareascaling3\\Course A.pdf"),
                                TestUtil.GetTestFile("pdfcourse\\printareascaling3\\Course B.pdf"),
                                TestUtil.GetTestFile("pdfcourse\\printareascaling3\\Course C.pdf"),
@@ -911,7 +912,7 @@ namespace PurplePen.Tests
 
 
         [TestMethod]
-        public void PdfBadIStreamFallback()
+        public async Task PdfBadIStreamFallback()
         {
             CoursePdfSettings settings = new CoursePdfSettings();
             settings.mapDirectory = settings.fileDirectory = false;
@@ -925,7 +926,7 @@ namespace PurplePen.Tests
             CourseAppearance appearance = new CourseAppearance();
             appearance.purpleColorBlend = PurpleColorBlend.Blend;
 
-            CreatePdfFiles(TestUtil.GetTestFile("courseprinting\\Bad PDF Test.ppen"), settings, appearance,
+            await CreatePdfFiles(TestUtil.GetTestFile("courseprinting\\Bad PDF Test.ppen"), settings, appearance,
                 new string[] { TestUtil.GetTestFile("controller\\pdf_badistream\\Long.pdf") },
                 new string[] { TestUtil.GetTestFile("controller\\pdf_badistream\\Long_expected.png") });
         }

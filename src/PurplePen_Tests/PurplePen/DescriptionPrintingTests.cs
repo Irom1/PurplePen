@@ -43,6 +43,7 @@ using System.Drawing;
 using System.Drawing.Printing;
 using System.IO;
 using System.Text;
+using System.Threading.Tasks;
 using TestingUtils;
 
 namespace PurplePen.Tests
@@ -133,9 +134,9 @@ namespace PurplePen.Tests
 
 
         [TestMethod]
-        public void PrintDescriptions1()
+        public async Task PrintDescriptions1()
         {
-            controller.LoadInitialFile(TestUtil.GetTestFile("printdesc\\marymoor.ppen"), true);
+            await controller.LoadInitialFile(TestUtil.GetTestFile("printdesc\\marymoor.ppen"), true);
             DescriptionPrintSettings descPrintSettings = new DescriptionPrintSettings();
 
             descPrintSettings.CourseIds = new Id<Course>[] { CourseId(1), CourseId(2), CourseId(3) };
@@ -147,9 +148,9 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void PrintDescriptions2()
+        public async Task PrintDescriptions2()
         {
-            controller.LoadInitialFile(TestUtil.GetTestFile("printdesc\\marymoor.ppen"), true);
+            await controller.LoadInitialFile(TestUtil.GetTestFile("printdesc\\marymoor.ppen"), true);
 
             DescriptionPrintSettings descPrintSettings = new DescriptionPrintSettings();
             descPrintSettings.CourseIds = new Id<Course>[] { CourseId(0), CourseId(1), CourseId(2), CourseId(3) };
@@ -163,9 +164,9 @@ namespace PurplePen.Tests
 
         // Should be symbols and text for all controls.
         [TestMethod]
-        public void PrintDescriptions3()
+        public async Task PrintDescriptions3()
         {
-            controller.LoadInitialFile(TestUtil.GetTestFile("printdesc\\marymoor2.ppen"), true);
+            await controller.LoadInitialFile(TestUtil.GetTestFile("printdesc\\marymoor2.ppen"), true);
 
             DescriptionPrintSettings descPrintSettings = new DescriptionPrintSettings();
             descPrintSettings.CourseIds = new Id<Course>[] { CourseId(0) };
@@ -178,9 +179,9 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void PrintDescriptions_Relay1()
+        public async Task PrintDescriptions_Relay1()
         {
-            controller.LoadInitialFile(TestUtil.GetTestFile("controller\\variations.ppen"), true);
+            await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\variations.ppen"), true);
 
             DescriptionPrintSettings descPrintSettings = new DescriptionPrintSettings();
             descPrintSettings.CourseIds = new Id<Course>[] { CourseId(2), CourseId(0) };
@@ -192,9 +193,9 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void PrintDescriptions_Relay2()
+        public async Task PrintDescriptions_Relay2()
         {
-            controller.LoadInitialFile(TestUtil.GetTestFile("controller\\variations.ppen"), true);
+            await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\variations.ppen"), true);
 
             DescriptionPrintSettings descPrintSettings = new DescriptionPrintSettings();
             descPrintSettings.CountKind = CorePrintingCountKind.OnePage;
@@ -208,9 +209,9 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void PrintDescriptions_Relay3()
+        public async Task PrintDescriptions_Relay3()
         {
-            controller.LoadInitialFile(TestUtil.GetTestFile("controller\\variations.ppen"), true);
+            await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\variations.ppen"), true);
 
             DescriptionPrintSettings descPrintSettings = new DescriptionPrintSettings();
             descPrintSettings.VariationChoicesPerCourse[CourseId(2)] = new VariationChoices() {
@@ -227,9 +228,9 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void PrintDescriptionsPdf1()
+        public async Task PrintDescriptionsPdf1()
         {
-            controller.LoadInitialFile(TestUtil.GetTestFile("printdesc\\marymoor.ppen"), true);
+            await controller.LoadInitialFile(TestUtil.GetTestFile("printdesc\\marymoor.ppen"), true);
             DescriptionPrintSettings descPrintSettings = new DescriptionPrintSettings();
 
             descPrintSettings.CourseIds = new Id<Course>[] { CourseId(1), CourseId(2), CourseId(3) };
@@ -241,9 +242,9 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void PrintDescriptionsPdf2()
+        public async Task PrintDescriptionsPdf2()
         {
-            controller.LoadInitialFile(TestUtil.GetTestFile("printdesc\\marymoor.ppen"), true);
+            await controller.LoadInitialFile(TestUtil.GetTestFile("printdesc\\marymoor.ppen"), true);
 
             DescriptionPrintSettings descPrintSettings = new DescriptionPrintSettings();
             descPrintSettings.CourseIds = new Id<Course>[] { CourseId(0), CourseId(1), CourseId(2), CourseId(3) };
@@ -257,9 +258,9 @@ namespace PurplePen.Tests
 
         // Should be symbols and text for all controls.
         [TestMethod]
-        public void PrintDescriptionsPdf3()
+        public async Task PrintDescriptionsPdf3()
         {
-            controller.LoadInitialFile(TestUtil.GetTestFile("printdesc\\marymoor2.ppen"), true);
+            await controller.LoadInitialFile(TestUtil.GetTestFile("printdesc\\marymoor2.ppen"), true);
 
             DescriptionPrintSettings descPrintSettings = new DescriptionPrintSettings();
             descPrintSettings.CourseIds = new Id<Course>[] { CourseId(0) };
@@ -272,9 +273,9 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void PrintDescriptionsPdf_Relay1()
+        public async Task PrintDescriptionsPdf_Relay1()
         {
-            controller.LoadInitialFile(TestUtil.GetTestFile("controller\\variations.ppen"), true);
+            await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\variations.ppen"), true);
 
             DescriptionPrintSettings descPrintSettings = new DescriptionPrintSettings();
             descPrintSettings.CourseIds = new Id<Course>[] { CourseId(2), CourseId(0) };
@@ -286,9 +287,9 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void PrintDescriptionsPdf_Relay2()
+        public async Task PrintDescriptionsPdf_Relay2()
         {
-            controller.LoadInitialFile(TestUtil.GetTestFile("controller\\variations.ppen"), true);
+            await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\variations.ppen"), true);
 
             DescriptionPrintSettings descPrintSettings = new DescriptionPrintSettings();
             descPrintSettings.CountKind = CorePrintingCountKind.OnePage;
@@ -302,9 +303,9 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void PrintDescriptionsPdf_Relay3()
+        public async Task PrintDescriptionsPdf_Relay3()
         {
-            controller.LoadInitialFile(TestUtil.GetTestFile("controller\\variations.ppen"), true);
+            await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\variations.ppen"), true);
 
             DescriptionPrintSettings descPrintSettings = new DescriptionPrintSettings();
             descPrintSettings.VariationChoicesPerCourse[CourseId(2)] = new VariationChoices() {
@@ -323,9 +324,9 @@ namespace PurplePen.Tests
 
 
         [TestMethod]
-        public void PrintingException()
+        public async Task PrintingException()
         {
-            controller.LoadInitialFile(TestUtil.GetTestFile("printdesc\\marymoor.ppen"), true);
+            await controller.LoadInitialFile(TestUtil.GetTestFile("printdesc\\marymoor.ppen"), true);
 
             DescriptionPrintSettings descPrintSettings = new DescriptionPrintSettings();
             descPrintSettings.CourseIds = new Id<Course>[] { CourseId(1), CourseId(2), CourseId(3) };

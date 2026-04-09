@@ -42,6 +42,7 @@ using PurplePen.MapView;
 
 using TestingUtils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Threading.Tasks;
 
 namespace PurplePen.Tests
 {
@@ -52,7 +53,7 @@ namespace PurplePen.Tests
         Controller controller;
         EventDB eventDB;
 
-        public void Setup(string filename)
+        public async Task Setup(string filename)
         {
             ui = TestUI.Create();
             controller = ui.controller;
@@ -60,19 +61,19 @@ namespace PurplePen.Tests
 
             string fileName = TestUtil.GetTestFile(filename);
 
-            bool success = controller.LoadInitialFile(fileName, true);
+            bool success = await controller.LoadInitialFile(fileName, true);
             Assert.IsTrue(success);
         }
 
         [TestMethod]
         // Should be able to select a control with the mouse and have it highlight. 
         // The corresponding highlight should be highlighted in the description.
-        public void SelectControl()
+        public async Task SelectControl()
         {
             DragAction dragAction;
             CourseObj[] highlights;
 
-            Setup("modes\\marymoor.coursescribe");
+            await Setup("modes\\marymoor.coursescribe");
             
             // Select course 3.
             controller.SelectTab(3);       // Course 3.
@@ -124,12 +125,12 @@ namespace PurplePen.Tests
 
         [TestMethod]
         // Should be able to select a point special with the mouse and have it highlight. 
-        public void SelectPointSpecial()
+        public async Task SelectPointSpecial()
         {
             DragAction dragAction;
             CourseObj[] highlights;
 
-            Setup("modes\\marymoor.coursescribe");
+            await Setup("modes\\marymoor.coursescribe");
 
             // Select course 3.
             controller.SelectTab(3);       // Course 3.
@@ -171,12 +172,12 @@ namespace PurplePen.Tests
 
         [TestMethod]
         // Should be able to select text inside whiteout and have it highlight. 
-        public void SelectTextInWhiteout()
+        public async Task SelectTextInWhiteout()
         {
             DragAction dragAction;
             CourseObj[] highlights;
 
-            Setup("modes\\marymoor4.coursescribe");
+            await Setup("modes\\marymoor4.coursescribe");
 
             // Select course 3.
             controller.SelectTab(3);       // Course 3.
@@ -218,11 +219,11 @@ namespace PurplePen.Tests
         [TestMethod]
         // Should have the move cursor on when moving over a highlighted object.
         // Also, the status text should change appropriately.
-        public void MoveCursor()
+        public async Task MoveCursor()
         {
             MousePointerShape cursor;
 
-            Setup("modes\\marymoor.coursescribe");
+            await Setup("modes\\marymoor.coursescribe");
 
             // Select course 3.
             controller.SelectTab(3);       // Course 3.
@@ -265,12 +266,12 @@ namespace PurplePen.Tests
 
         [TestMethod]
         // Should show various tool tips.
-        public void Tooltips()
+        public async Task Tooltips()
         {
             string tipText, titleText;
             bool result;
 
-            Setup("modes\\marymoor.coursescribe");
+            await Setup("modes\\marymoor.coursescribe");
 
             // Select course 3.
             controller.SelectTab(3);       // Course 3.
@@ -314,9 +315,9 @@ namespace PurplePen.Tests
 
         [TestMethod]
         // Move a control with the mouse.
-        public void MoveControl()
+        public async Task MoveControl()
         {
-            Setup("modes\\marymoor.coursescribe");
+            await Setup("modes\\marymoor.coursescribe");
 
             // Select course 3.
             controller.SelectTab(3);       // Course 3.
@@ -383,9 +384,9 @@ namespace PurplePen.Tests
 
         // Move a control number with the mouse.
         [TestMethod]
-        public void MoveControlNumber()
+        public async Task MoveControlNumber()
         {
-            Setup("modes\\marymoor.coursescribe");
+            await Setup("modes\\marymoor.coursescribe");
 
             // Select course 3.
             controller.SelectTab(3);       // Course 3.
@@ -436,9 +437,9 @@ namespace PurplePen.Tests
 
         [TestMethod]
         // Move a special with the mouse.
-        public void MoveSpecial()
+        public async Task MoveSpecial()
         {
-            Setup("modes\\marymoor.coursescribe");
+            await Setup("modes\\marymoor.coursescribe");
 
             // Select course 3.
             controller.SelectTab(3);       // Course 3.
@@ -504,9 +505,9 @@ namespace PurplePen.Tests
 
         [TestMethod]
         // Move a special with the mouse.
-        public void MoveSpecialCorner()
+        public async Task MoveSpecialCorner()
         {
-            Setup("modes\\marymoor2.coursescribe");
+            await Setup("modes\\marymoor2.coursescribe");
 
             // Select course 3.
             controller.SelectTab(3);       // Course 3.
@@ -576,9 +577,9 @@ namespace PurplePen.Tests
 
         [TestMethod]
         // Size a description with the mouse.
-        public void SizeDescription()
+        public async Task SizeDescription()
         {
-            Setup("modes\\marymoor2.coursescribe");
+            await Setup("modes\\marymoor2.coursescribe");
 
             // Select course 3.
             controller.SelectTab(3);       // Course 3.
@@ -644,9 +645,9 @@ namespace PurplePen.Tests
 
         [TestMethod]
         // Size a description with the mouse.
-        public void SizeDescription2()
+        public async Task SizeDescription2()
         {
-            Setup("modes\\marymoor2.coursescribe");
+            await Setup("modes\\marymoor2.coursescribe");
 
             // Select course 3.
             controller.SelectTab(3);       // Course 3.
@@ -713,9 +714,9 @@ namespace PurplePen.Tests
 
         [TestMethod]
         // Move a leg bend with the mouse.
-        public void MoveLegBend()
+        public async Task MoveLegBend()
         {
-            Setup("modes\\speciallegs.ppen");
+            await Setup("modes\\speciallegs.ppen");
 
             // Select course 1.
             controller.SelectTab(1);       // Course 1.
@@ -778,9 +779,9 @@ namespace PurplePen.Tests
 
         [TestMethod]
         // Move a leg gap with the mouse.
-        public void MoveLegGap()
+        public async Task MoveLegGap()
         {
-            Setup("modes\\gappedlegs.coursescribe");
+            await Setup("modes\\gappedlegs.coursescribe");
 
             // Select course 1.
             controller.SelectTab(1);       // Course 1.
@@ -844,9 +845,9 @@ namespace PurplePen.Tests
 
         [TestMethod]
         // Move a leg gap with the mouse.
-        public void MoveLegGap2()
+        public async Task MoveLegGap2()
         {
-            Setup("modes\\gappedlegs2.coursescribe");
+            await Setup("modes\\gappedlegs2.coursescribe");
 
             // Select course 1.
             controller.SelectTab(1);       // Course 1.
@@ -908,9 +909,9 @@ namespace PurplePen.Tests
 
         [TestMethod]
         // Move a text special with the mouse.
-        public void MoveTextSpecial()
+        public async Task MoveTextSpecial()
         {
-            Setup("modes\\marymoor2.coursescribe");
+            await Setup("modes\\marymoor2.coursescribe");
 
             // Select course 3.
             controller.SelectTab(3);       // Course 3.
@@ -971,9 +972,9 @@ namespace PurplePen.Tests
 
         [TestMethod]
         // Size a text special with the mouse.
-        public void SizeTextSpecialHandle()
+        public async Task SizeTextSpecialHandle()
         {
-            Setup("modes\\marymoor2.coursescribe");
+            await Setup("modes\\marymoor2.coursescribe");
 
             // Select course 3.
             controller.SelectTab(3);       // Course 3.
@@ -1036,9 +1037,9 @@ namespace PurplePen.Tests
 
         [TestMethod]
         // Move a image special with the mouse.
-        public void MoveImageSpecial()
+        public async Task MoveImageSpecial()
         {
-            Setup("modes\\marymoor3.coursescribe");
+            await Setup("modes\\marymoor3.coursescribe");
 
             // Select course 3.
             controller.SelectTab(3);       // Course 3.
@@ -1094,9 +1095,9 @@ namespace PurplePen.Tests
 
         [TestMethod]
         // Size a text special with the mouse.
-        public void SizeImageSpecialHandle()
+        public async Task SizeImageSpecialHandle()
         {
-            Setup("modes\\marymoor3.coursescribe");
+            await Setup("modes\\marymoor3.coursescribe");
 
             // Select course 3.
             controller.SelectTab(3);       // Course 3.

@@ -42,6 +42,7 @@ using TestingUtils;
 using PurplePen.MapView;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Threading.Tasks;
 
 namespace PurplePen.Tests
 {
@@ -208,11 +209,11 @@ namespace PurplePen.Tests
         public MapType newMapType;
         public float newMapDpi, newMapScale;
 
-        public bool FindMissingMapFile(string missingMapFile)
+        public Task<bool> FindMissingMapFile(string missingMapFile)
         {
             Assert.AreEqual(expectedMissingMapFile, missingMapFile);
             controller.ChangeMapFile(newMapType, newMapFile, newMapScale, newMapDpi);
-            return true;
+            return Task.FromResult(true);
         }
 
         public void InitiateMapDragging(PointF initialPos, PointerButton buttonEnd)

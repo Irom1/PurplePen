@@ -42,6 +42,7 @@ using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Text;
+using System.Threading.Tasks;
 using TestingUtils;
 
 namespace PurplePen.Tests
@@ -232,7 +233,7 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void ExportRouteGadget()
+        public async Task ExportRouteGadget()
         {
             string ppenFileName = TestUtil.GetTestFile(@"routegadget\Sample Event.ppen");
             string xmlFileName = TestUtil.GetTestFile(@"routegadget\Sample Event.xml");
@@ -241,7 +242,7 @@ namespace PurplePen.Tests
             TestUI ui = TestUI.Create();
             Controller controller = ui.controller;
 
-            bool success = controller.LoadInitialFile(ppenFileName, true);
+            bool success = await controller.LoadInitialFile(ppenFileName, true);
             Assert.IsTrue(success);
 
             controller.MapDisplay.SetCourse(controller.GetCourseLayout());
@@ -259,7 +260,7 @@ namespace PurplePen.Tests
         }
 
         [TestMethod]
-        public void ExportRouteGadget2()
+        public async Task ExportRouteGadget2()
         {
             string ppenFileName = TestUtil.GetTestFile(@"routegadget\GRC.ppen");
             string xmlFileName = TestUtil.GetTestFile(@"routegadget\GRC.xml");
@@ -269,7 +270,7 @@ namespace PurplePen.Tests
             TestUI ui = TestUI.Create();
             Controller controller = ui.controller;
 
-            bool success = controller.LoadInitialFile(ppenFileName, true);
+            bool success = await controller.LoadInitialFile(ppenFileName, true);
             Assert.IsTrue(success);
 
             controller.MapDisplay.SetCourse(controller.GetCourseLayout());
