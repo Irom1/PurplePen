@@ -278,21 +278,23 @@ namespace PurplePen
         }
 
         // Show an warning message, with no choice.
-        public void WarningMessage(string message)
+        public Task WarningMessage(string message)
         {
             if (descriptionControl != null)
                 descriptionControl.CloseAnyPopup();
 
             MessageBox.Show(this, message, MiscText.AppTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+            return Task.CompletedTask;
         }
 
         // Show an informational message, with no choice.
-        public void InfoMessage(string message)
+        public Task InfoMessage(string message)
         {
             if (descriptionControl != null)
                 descriptionControl.CloseAnyPopup();
 
             MessageBox.Show(this, message, MiscText.AppTitle, MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+            return Task.CompletedTask;
         }
 
         // Show a ok-cancel message.

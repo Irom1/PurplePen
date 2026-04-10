@@ -152,17 +152,19 @@ namespace PurplePen.Tests
             output.WriteLine("ERROR: '{0}'", message);
             return Task.CompletedTask;
         }
-#pragma warning restore VSTHRD103
 
-        public void WarningMessage(string message)
+        public Task WarningMessage(string message)
         {
             output.WriteLine("WARNING: '{0}'", message);
+            return Task.CompletedTask;
         }
 
-        public void InfoMessage(string message)
+        public Task InfoMessage(string message)
         {
             output.WriteLine("INFO: '{0}'", message);
+            return Task.CompletedTask;
         }
+#pragma warning restore VSTHRD103
 
         public bool YesNoQuestion(string message, bool yesDefault)
         {

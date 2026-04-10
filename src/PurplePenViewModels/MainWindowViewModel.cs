@@ -82,14 +82,26 @@ namespace PurplePen.ViewModels
             Services.ServiceProvider.GetRequiredService<IPostMessage>().PostMessage(action);
         }
 
-        public void InfoMessage(string message)
+        public async Task InfoMessage(string message)
         {
-            throw new NotImplementedException();
+            MessageBoxDialogViewModel vm = new MessageBoxDialogViewModel {
+                Message = message,
+                Buttons = MessageBoxButtons.Ok,
+                DefaultButton = MessageBoxButton.Ok,
+                Icon = MessageBoxIcon.Information
+            };
+            await Services.DialogService.ShowDialogAsync(vm);
         }
 
-        public void WarningMessage(string message)
+        public async Task WarningMessage(string message)
         {
-            throw new NotImplementedException();
+            MessageBoxDialogViewModel vm = new MessageBoxDialogViewModel {
+                Message = message,
+                Buttons = MessageBoxButtons.Ok,
+                DefaultButton = MessageBoxButton.Ok,
+                Icon = MessageBoxIcon.Warning
+            };
+            await Services.DialogService.ShowDialogAsync(vm);
         }
 
         public async Task ErrorMessage(string message)

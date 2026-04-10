@@ -336,7 +336,7 @@ namespace PurplePen
 
                     try {
                         // Map file no longer exists.
-                        ui.InfoMessage(string.Format(MiscText.MapFileDeleted, MapFileName));
+                        await ui.InfoMessage(string.Format(MiscText.MapFileDeleted, MapFileName));
                         if (File.Exists(MapFileName))
                             mapDisplay.SetMapFile(MapType, MapFileName);
                         await NewMapFileLoadedWithMissingMapUI();
@@ -390,7 +390,7 @@ namespace PurplePen
                     inChangeMapFileCheck = true;
 
                     try {
-                        ui.InfoMessage(string.Format(MiscText.MapFileChanged, changedReferencedFile));
+                        await ui.InfoMessage(string.Format(MiscText.MapFileChanged, changedReferencedFile));
 
                         bool success = HandleExceptions(
                             delegate {
@@ -3596,7 +3596,7 @@ namespace PurplePen
                     valid = QueryEvent.IsPreferredControlCode(eventDB, newStringValue, out reason);
                     if (reason != null) {
                         if (valid)
-                            ui.WarningMessage(reason);   // valid, but not preferred. Warn the user but continue with the change.
+                            await ui.WarningMessage(reason);   // valid, but not preferred. Warn the user but continue with the change.
                         else
                             await ui.ErrorMessage(reason);
                     }
@@ -4480,8 +4480,8 @@ namespace PurplePen
 
         // Different kinds of message box like messages
         Task ErrorMessage(string message);
-        void WarningMessage(string message);
-        void InfoMessage(string message);
+        Task WarningMessage(string message);
+        Task InfoMessage(string message);
         bool OKCancelMessage(string message, bool okDefault);
         bool YesNoQuestion(string message, bool yesDefault);
         YesNoCancel YesNoCancelQuestion(string message, bool yesDefault);
