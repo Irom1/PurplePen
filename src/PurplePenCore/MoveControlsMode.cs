@@ -41,6 +41,7 @@ using System.Diagnostics;
 using static PurplePen.Controller;
 using PurplePen.Graphics2D;
 using System.Data;
+using System.Threading.Tasks;
 
 namespace PurplePen
 {
@@ -181,10 +182,10 @@ namespace PurplePen
             controller.InitiateMapDragging(locationStart, PointerButton.Left);
         }
 
-        public override void LeftButtonClick(Pane pane, PointF location, float pixelSize, ref bool displayUpdateNeeded)
+        public override async Task<bool> LeftButtonClick(Pane pane, PointF location, float pixelSize)
         {
             if (pane != Pane.Map)
-                return;
+                return false;
 
             // Did we click on a control/special?
             PointF highlightLocation;
@@ -192,6 +193,8 @@ namespace PurplePen
             if (courseObj != null) {
                 controlSelected(courseObj.controlId, courseObj.specialId, highlightLocation);
             }
+
+            return false;
         }
 
         // Create the highlight, and put it at the given location.
@@ -364,14 +367,15 @@ namespace PurplePen
             controller.InitiateMapDragging(locationStart, PointerButton.Left);
         }
 
-        public override void LeftButtonClick(Pane pane, PointF location, float pixelSize, ref bool displayUpdateNeeded)
+        public override async Task<bool> LeftButtonClick(Pane pane, PointF location, float pixelSize)
         {
             if (pane != Pane.Map)
-                return;
+                return false;
 
             PointF highlightLocation = new PointF(location.X + PIXELOFFSETX * pixelSize, location.Y + PIXELOFFSETY * pixelSize);
             highlightLocation = ConstrainLocation(highlightLocation);
             locationSelected(highlightLocation, true);
+            return false;
         }
 
         // Create the highlight, and put it at the given location.

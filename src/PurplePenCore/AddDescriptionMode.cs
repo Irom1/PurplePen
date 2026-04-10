@@ -38,6 +38,7 @@ using System.Drawing;
 
 using PurplePen.MapModel;
 using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace PurplePen
 {
@@ -125,7 +126,7 @@ namespace PurplePen
             displayUpdateNeeded = true;
         }
 
-        public override void LeftButtonEndDrag(Pane pane, PointF location, PointF locationStart, float pixelSize, ref bool displayUpdateNeeded)
+        public override async Task<bool> LeftButtonEndDrag(Pane pane, PointF location, PointF locationStart, float pixelSize)
         {
             Debug.Assert(pane == Pane.Map);
 
@@ -149,7 +150,7 @@ namespace PurplePen
 
 
             controller.DefaultCommandMode();
-            displayUpdateNeeded = true;
+            return true;
         }
     }
 

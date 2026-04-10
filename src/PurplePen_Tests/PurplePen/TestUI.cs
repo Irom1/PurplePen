@@ -98,6 +98,14 @@ namespace PurplePen.Tests
             // nothing to do.
         }
 
+        public void PostDelayedAction(Action action)
+        {
+            // This is typically used for error messages. We run it immediately, which is fine for testing.
+            // We don't actually test for error messages right now. We might need to change this implementation
+            // to somehow delay.
+            action();
+        }
+
         public void MouseMoved(float x, float y, float pixelSize)
         {
             this.mouseLocation = new PointF(x, y);
@@ -138,10 +146,13 @@ namespace PurplePen.Tests
             return returnOpenFileName;
         }
 
-        public void ErrorMessage(string message)
+#pragma warning disable VSTHRD103 // WriteLine synchronously blocks, await WriteLineAsync instead.
+        public Task ErrorMessage(string message)
         {
             output.WriteLine("ERROR: '{0}'", message);
+            return Task.CompletedTask;
         }
+#pragma warning restore VSTHRD103
 
         public void WarningMessage(string message)
         {

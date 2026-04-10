@@ -79,7 +79,7 @@ namespace PurplePen.Tests
             // Click on control to select it.
             DragAction dragAction = controller.LeftButtonDown(Pane.Map, new PointF(27F, 41F), 0.3F);
             Assert.AreEqual(DragAction.DelayedDrag, dragAction);
-            controller.LeftButtonClick(Pane.Map, new PointF(27F, 41F), 0.3F);
+            await controller.LeftButtonClick(Pane.Map, new PointF(27F, 41F), 0.3F);
 
             // Begin the add bend mode.
             controller.BeginAddGap();
@@ -101,7 +101,7 @@ namespace PurplePen.Tests
             // Click to add a gap.
             dragAction = controller.LeftButtonDown(Pane.Map, new PointF(26.1F, 31.5F), 0.3F);
             Assert.AreEqual(DragAction.DelayedDrag, dragAction);
-            controller.LeftButtonClick(Pane.Map, new PointF(26.1F, 31.5F), 0.3F);
+            await controller.LeftButtonClick(Pane.Map, new PointF(26.1F, 31.5F), 0.3F);
 
             // Check the status text
             Assert.AreEqual(StatusBarText.DefaultStatus, controller.StatusText);
@@ -136,7 +136,7 @@ namespace PurplePen.Tests
             // Click on control to select it.
             DragAction dragAction = controller.LeftButtonDown(Pane.Map, new PointF(27F, 41F), 0.3F);
             Assert.AreEqual(DragAction.DelayedDrag, dragAction);
-            controller.LeftButtonClick(Pane.Map, new PointF(27F, 41F), 0.3F);
+            await controller.LeftButtonClick(Pane.Map, new PointF(27F, 41F), 0.3F);
 
             // Begin the add bend mode.
             controller.BeginAddGap();
@@ -158,7 +158,7 @@ namespace PurplePen.Tests
             // Click to add a gap.
             dragAction = controller.LeftButtonDown(Pane.Map, new PointF(35.0F, 31.5F), 0.3F);
             Assert.AreEqual(DragAction.DelayedDrag, dragAction);
-            controller.LeftButtonEndDrag(Pane.Map, new PointF(12, -1), new PointF(35.0F, 31.5F), 0.3F);
+            await controller.LeftButtonEndDrag(Pane.Map, new PointF(12, -1), new PointF(35.0F, 31.5F), 0.3F);
 
             // Check the status text
             Assert.AreEqual(StatusBarText.DefaultStatus, controller.StatusText);
@@ -193,7 +193,7 @@ namespace PurplePen.Tests
             // Click on control 1 to select it.
             DragAction dragAction = controller.LeftButtonDown(Pane.Map, new PointF(38.6F, -21F), 0.3F);
             Assert.AreEqual(DragAction.DelayedDrag, dragAction);
-            controller.LeftButtonClick(Pane.Map, new PointF(38.6F, -21F), 0.3F);
+            await controller.LeftButtonClick(Pane.Map, new PointF(38.6F, -21F), 0.3F);
 
             // Begin the remove gap mode.
             controller.BeginRemoveGap();
@@ -250,7 +250,7 @@ namespace PurplePen.Tests
             // Click on leg to select it.
             DragAction dragAction = controller.LeftButtonDown(Pane.Map, new PointF(71, 0), 0.3F);
             Assert.AreEqual(DragAction.DelayedDrag, dragAction);
-            controller.LeftButtonClick(Pane.Map, new PointF(71, 0), 0.3F);
+            await controller.LeftButtonClick(Pane.Map, new PointF(71, 0), 0.3F);
 
             // Begin the remove gap mode.
             controller.BeginRemoveGap();
@@ -305,7 +305,7 @@ namespace PurplePen.Tests
             // Click on leg to select it.
             DragAction dragAction = controller.LeftButtonDown(Pane.Map, new PointF(20, -5), 0.3F);
             Assert.AreEqual(DragAction.DelayedDrag, dragAction);
-            controller.LeftButtonClick(Pane.Map, new PointF(20, -5), 0.3F);
+            await controller.LeftButtonClick(Pane.Map, new PointF(20, -5), 0.3F);
 
             // Begin the add gap mode.
             controller.BeginAddGap();
@@ -327,7 +327,7 @@ namespace PurplePen.Tests
             // Click and drag add a gap.
             dragAction = controller.LeftButtonDown(Pane.Map, new PointF(30, -11), 0.3F);
             Assert.AreEqual(DragAction.DelayedDrag, dragAction);
-            controller.LeftButtonEndDrag(Pane.Map, new PointF(12, -1), new PointF(30, -11), 0.3F);
+            await controller.LeftButtonEndDrag(Pane.Map, new PointF(12, -1), new PointF(30, -11), 0.3F);
 
             // Check the status text
             ui.MouseMoved(12, -1, 0.1F);
@@ -362,7 +362,7 @@ namespace PurplePen.Tests
             // Click on leg to select it.
             DragAction dragAction = controller.LeftButtonDown(Pane.Map, new PointF(71, 0), 0.3F);
             Assert.AreEqual(DragAction.DelayedDrag, dragAction);
-            controller.LeftButtonClick(Pane.Map, new PointF(71, 0), 0.3F);
+            await controller.LeftButtonClick(Pane.Map, new PointF(71, 0), 0.3F);
 
             // Begin the add gap mode.
             controller.BeginAddGap();
@@ -384,7 +384,7 @@ namespace PurplePen.Tests
             // Click and drag add a gap.
             dragAction = controller.LeftButtonDown(Pane.Map, new PointF(72, 10), 0.3F);
             Assert.AreEqual(DragAction.DelayedDrag, dragAction);
-            controller.LeftButtonEndDrag(Pane.Map, new PointF(50, -25), new PointF(72, 10), 0.3F);
+            await controller.LeftButtonEndDrag(Pane.Map, new PointF(50, -25), new PointF(72, 10), 0.3F);
 
             // Check the status text
             ui.MouseMoved(12, -1, 0.1F);
@@ -419,7 +419,7 @@ namespace PurplePen.Tests
             // Click on leg to select it.
             DragAction dragAction = controller.LeftButtonDown(Pane.Map, new PointF(20, -5), 0.3F);
             Assert.AreEqual(DragAction.DelayedDrag, dragAction);
-            controller.LeftButtonClick(Pane.Map, new PointF(20, -5), 0.3F);
+            await controller.LeftButtonClick(Pane.Map, new PointF(20, -5), 0.3F);
 
             // Begin the add gap mode.
             controller.BeginAddGap();
@@ -441,7 +441,7 @@ namespace PurplePen.Tests
             // Click to add a gap.
             dragAction = controller.LeftButtonDown(Pane.Map, new PointF(30, -11), 0.3F);
             Assert.AreEqual(DragAction.DelayedDrag, dragAction);
-            controller.LeftButtonClick(Pane.Map, new PointF(30, -11), 0.3F);
+            await controller.LeftButtonClick(Pane.Map, new PointF(30, -11), 0.3F);
 
             // Check the status text
             ui.MouseMoved(12, -1, 0.1F);

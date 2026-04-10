@@ -39,6 +39,7 @@ using System.Diagnostics;
 
 using PurplePen.MapModel;
 using PurplePen.Graphics2D;
+using System.Threading.Tasks;
 
 namespace PurplePen
 {
@@ -263,10 +264,10 @@ namespace PurplePen
             controller.InitiateMapDragging(locationStart, PointerButton.Left);
         }
 
-        public override void LeftButtonClick(Pane pane, PointF location, float pixelSize, ref bool displayUpdateNeeded)
+        public override async Task<bool> LeftButtonClick(Pane pane, PointF location, float pixelSize)
         {
             if (pane != Pane.Map)
-                return;
+                return false;
 
             // Create the new control!
 
@@ -355,6 +356,8 @@ namespace PurplePen
             undoMgr.EndCommand(1321);
 
             controller.DefaultCommandMode();
+
+            return false;
         }
 
         // Create the highlight, and put it at the given location.
@@ -574,10 +577,10 @@ namespace PurplePen
             controller.InitiateMapDragging(locationStart, PointerButton.Left);
         }
 
-        public override void LeftButtonClick(Pane pane, PointF location, float pixelSize, ref bool displayUpdateNeeded)
+        public override async Task<bool> LeftButtonClick(Pane pane, PointF location, float pixelSize)
         {
             if (pane != Pane.Map)
-                return;
+                return false;
 
             // Create the new special!
 
@@ -593,6 +596,8 @@ namespace PurplePen
             undoMgr.EndCommand(1322);
 
             controller.DefaultCommandMode();
+
+            return false;
         }
 
         // Create the highlight, and put it at the given location.
@@ -708,7 +713,7 @@ namespace PurplePen
             displayUpdateNeeded = true;
         }
 
-        public override void LeftButtonEndDrag(Pane pane, PointF location, PointF locationStart, float pixelSize, ref bool displayUpdateNeeded)
+        public override async Task<bool> LeftButtonEndDrag(Pane pane, PointF location, PointF locationStart, float pixelSize)
         {
             Debug.Assert(pane == Pane.Map);
 
@@ -720,25 +725,25 @@ namespace PurplePen
                 CreateObject();
 
                 controller.DefaultCommandMode();
-                displayUpdateNeeded = true;
+                return true;
             }
             else {
                 // Ended dragging. Current location the next location.
                 AddFixedPoint(location);
-                displayUpdateNeeded = true;
+                return true;
             }
         }
 
-        public override void LeftButtonClick(Pane pane, PointF location, float pixelSize, ref bool displayUpdateNeeded)
+        public override async Task<bool> LeftButtonClick(Pane pane, PointF location, float pixelSize)
         {
             if (pane != Pane.Map)
-                return;
+                return false;
 
             // Left button clicked. Ends creating the item and we're done.
             CreateObject();
 
             controller.DefaultCommandMode();
-            displayUpdateNeeded = true;
+            return true;
         }
 
         // Should there be a left button click here?

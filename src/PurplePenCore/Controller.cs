@@ -317,7 +317,7 @@ namespace PurplePen
             }
 
             // Tell the user the map is missing.
-            ui.ErrorMessage(string.Format(MiscText.MissingMapFile, Path.GetFileName(missingMapFile)));
+            await ui.ErrorMessage(string.Format(MiscText.MissingMapFile, Path.GetFileName(missingMapFile)));
 
             // Ask the UI to set a new map file.
             return await ui.FindMissingMapFile(missingMapFile);
@@ -3181,7 +3181,7 @@ namespace PurplePen
             return (result == QueryEvent.AddVariationResult.OK) ? CommandStatus.Enabled : CommandStatus.Disabled;
         }
 
-        public void AddVariation(bool loop, int numberOfForks)
+        public async Task AddVariation(bool loop, int numberOfForks)
         {
             SelectionInfo selection = selectionMgr.Selection;
             Id<Course> courseId = selection.ActiveCourseDesignator.CourseId;
@@ -3198,7 +3198,7 @@ namespace PurplePen
             if (totalVariations > maxTotalVariationsAllowed) {
                 // Adding this variation created too many total variations.
                 undoMgr.Undo();
-                ui.ErrorMessage(string.Format(MiscText.TooManyVariations, maxTotalVariationsAllowed));
+                await ui.ErrorMessage(string.Format(MiscText.TooManyVariations, maxTotalVariationsAllowed));
             }
             else {
                 // Select the first branch.
@@ -3482,7 +3482,7 @@ namespace PurplePen
         }
 
         // A change has been made to a box in the description.
-        public void DescriptionChange(DescriptionChangeKind kind, int line, int box, object newValue)
+        public async Task DescriptionChange(DescriptionChangeKind kind, int line, int box, object newValue)
         {
             string newStringValue = "";  // never null!
             if (newValue is string)
@@ -3503,7 +3503,7 @@ namespace PurplePen
                 else {
                     if (!float.TryParse(Util.RemoveMeterSuffix(newStringValue), out newClimb) || newClimb < 0 || newClimb >= 10000) {
                         // Invalid climb value.
-                        ui.ErrorMessage(string.Format(MiscText.BadClimb, newStringValue));
+                        await ui.ErrorMessage(string.Format(MiscText.BadClimb, newStringValue));
                         break;
                     }
                 }
@@ -3522,7 +3522,7 @@ namespace PurplePen
                 else {
                     if (!float.TryParse(Util.RemoveSuffix(newStringValue, "km"), out newLength) || newLength <= 0 || newLength >= 100) {
                         // Invalid length value.
-                        ui.ErrorMessage(string.Format(MiscText.BadLength, newStringValue));
+                        await ui.ErrorMessage(string.Format(MiscText.BadLength, newStringValue));
                         break;
                     }
                 }
@@ -3542,7 +3542,7 @@ namespace PurplePen
                 else {
                     if (!int.TryParse(newStringValue, out newScore) || newScore < 0 || newScore >= 1000) {
                         // Invalid score value.
-                        ui.ErrorMessage(string.Format(MiscText.BadScore, newStringValue));
+                        await ui.ErrorMessage(string.Format(MiscText.BadScore, newStringValue));
                         break;
                     }
                 }
@@ -3579,7 +3579,7 @@ namespace PurplePen
                 if (QueryEvent.IsCodeInUse(eventDB, newStringValue)) {
                     if (selectionMgr.Selection.ActiveCourseDesignator.IsAllControls) {
                         // In all controls. We can't change to a control that is in use.
-                        ui.ErrorMessage(string.Format(MiscText.CodeInUse, newStringValue));
+                        await ui.ErrorMessage(string.Format(MiscText.CodeInUse, newStringValue));
                     }
                     else {
                         // In a course, we can change a control to a new control by typing in the new code.
@@ -3598,7 +3598,7 @@ namespace PurplePen
                         if (valid)
                             ui.WarningMessage(reason);   // valid, but not preferred. Warn the user but continue with the change.
                         else
-                            ui.ErrorMessage(reason);
+                            await ui.ErrorMessage(reason);
                     }
 
                     if (valid) {
@@ -3946,7 +3946,7 @@ namespace PurplePen
 
         // Move a course control to a different place in the course, like from the topology view.
         // If duplicate is true, makes a duplicate of the control.
-        public bool RearrangeControl(Id<CourseControl> courseControlToMove, Id<CourseControl> courseControlDest1, Id<CourseControl> courseControlDest2,
+        public async Task<bool> RearrangeControl(Id<CourseControl> courseControlToMove, Id<CourseControl> courseControlDest1, Id<CourseControl> courseControlDest2,
                                     LegInsertionLoc legInsertionLoc)
         {
             Id<Course> courseId = selectionMgr.Selection.ActiveCourseDesignator.CourseId;
@@ -3957,7 +3957,7 @@ namespace PurplePen
             // Can't move a split control.
             if (eventDB.GetCourseControl(courseControlToMove).split) {
                 // Message user that you can't move control.
-                ui.ErrorMessage(MiscText.CantRearrangeSplitControl);
+                await ui.ErrorMessage(MiscText.CantRearrangeSplitControl);
                 return false;
             }
 
@@ -4191,20 +4191,16 @@ namespace PurplePen
                 ForceChangeUpdate();
         }
 
-        public void LeftButtonClick(Pane pane, PointF location, float pixelSize)
+        public async Task LeftButtonClick(Pane pane, PointF location, float pixelSize)
         {
-            bool displayUpdateNeeded = false;
-
-            currentMode.LeftButtonClick(pane, location, pixelSize, ref displayUpdateNeeded);
+            bool displayUpdateNeeded = await currentMode.LeftButtonClick(pane, location, pixelSize);
             if (displayUpdateNeeded)
                 ForceChangeUpdate();
         }
 
-        public void RightButtonClick(Pane pane, PointF location, float pixelSize)
+        public async Task RightButtonClick(Pane pane, PointF location, float pixelSize)
         {
-            bool displayUpdateNeeded = false;
-
-            currentMode.RightButtonClick(pane, location, pixelSize, ref displayUpdateNeeded);
+            bool displayUpdateNeeded = await currentMode.RightButtonClick(pane, location, pixelSize);
             if (displayUpdateNeeded)
                 ForceChangeUpdate();
         }
@@ -4227,20 +4223,16 @@ namespace PurplePen
                 ForceChangeUpdate();
         }
 
-        public void LeftButtonEndDrag(Pane pane, PointF location, PointF locationStart, float pixelSize)
+        public async Task LeftButtonEndDrag(Pane pane, PointF location, PointF locationStart, float pixelSize)
         {
-            bool displayUpdateNeeded = false;
-
-            currentMode.LeftButtonEndDrag(pane, location, locationStart, pixelSize, ref displayUpdateNeeded);
+            bool displayUpdateNeeded = await currentMode.LeftButtonEndDrag(pane, location, locationStart, pixelSize);
             if (displayUpdateNeeded)
                 ForceChangeUpdate();
         }
 
-        public void RightButtonEndDrag(Pane pane, PointF location, PointF locationStart, float pixelSize)
+        public async Task RightButtonEndDrag(Pane pane, PointF location, PointF locationStart, float pixelSize)
         {
-            bool displayUpdateNeeded = false;
-
-            currentMode.RightButtonEndDrag(pane, location, locationStart, pixelSize, ref displayUpdateNeeded);
+            bool displayUpdateNeeded = await currentMode.RightButtonEndDrag(pane, location, locationStart, pixelSize);
             if (displayUpdateNeeded)
                 ForceChangeUpdate();
         }
@@ -4324,6 +4316,15 @@ namespace PurplePen
         }
 #endif
 
+        // Show an error message delayed by posting to the message loop/dispatcher.
+        public void PostDelayedErrorMessage(string message)
+        {
+            ui.PostDelayedAction(() => {
+                // Nothing to do with the Task here.
+                _ = ui.ErrorMessage(message);  
+            });
+        }
+
         // Perform an operation. If an exception occurs, display an error message with the 
         // indicated message, followed by 2 newlines and the exception message.
         // Returns true if the operation had no exception.
@@ -4336,7 +4337,7 @@ namespace PurplePen
             }
             catch (Exception e) {
                 string errorMessage = string.Format(message, fillIns) + "\r\n\r\n" + e.Message;
-                ui.ErrorMessage(errorMessage);
+                PostDelayedErrorMessage(errorMessage);
                 return false;
             }
         }
@@ -4352,7 +4353,7 @@ namespace PurplePen
             }
             catch (Exception e) {
                 string errorMessage = e.Message;
-                ui.ErrorMessage(errorMessage);
+                PostDelayedErrorMessage(errorMessage);
                 return false;
             }
         }
@@ -4425,16 +4426,16 @@ namespace PurplePen
         void RightButtonUp(Pane pane, PointF location, float pixelSize, ref bool displayUpdateNeeded);
 
         // A mouse button was clicked if delayed dragging was enabled.
-        void LeftButtonClick(Pane pane, PointF location, float pixelSize, ref bool displayUpdateNeeded);
-        void RightButtonClick(Pane pane, PointF location, float pixelSize, ref bool displayUpdateNeeded);
+        Task<bool> LeftButtonClick(Pane pane, PointF location, float pixelSize);
+        Task<bool> RightButtonClick(Pane pane, PointF location, float pixelSize);
 
         // The mouse is being dragged
         void LeftButtonDrag(Pane pane, PointF location, PointF locationStart, float pixelSize, ref bool displayUpdateNeeded);
         void RightButtonDrag(Pane pane, PointF location, PointF locationStart, float pixelSize, ref bool displayUpdateNeeded);
 
         // The drag is ending (mouse released)
-        void LeftButtonEndDrag(Pane pane, PointF location, PointF locationStart, float pixelSize, ref bool displayUpdateNeeded);
-        void RightButtonEndDrag(Pane pane, PointF location, PointF locationStart, float pixelSize, ref bool displayUpdateNeeded);
+        Task<bool> LeftButtonEndDrag(Pane pane, PointF location, PointF locationStart, float pixelSize);
+        Task<bool> RightButtonEndDrag(Pane pane, PointF location, PointF locationStart, float pixelSize);
 
         // The drag was canceled (mouse taken away)
         void LeftButtonCancelDrag(Pane pane, ref bool displayUpdateNeeded);
@@ -4465,6 +4466,9 @@ namespace PurplePen
         // to check state.
         void QueueIdleEvent();
 
+        // Post an error to the message loop/dispatcher to execute later.
+        void PostDelayedAction(Action action);
+
         // Get the pointer location (return false if mouse not over the map)
         bool GetCurrentLocation(out PointF location, out float pixelSize);
 
@@ -4475,7 +4479,7 @@ namespace PurplePen
         int LogicalToDeviceUnits(int value);
 
         // Different kinds of message box like messages
-        void ErrorMessage(string message);
+        Task ErrorMessage(string message);
         void WarningMessage(string message);
         void InfoMessage(string message);
         bool OKCancelMessage(string message, bool okDefault);

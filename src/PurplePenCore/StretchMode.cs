@@ -38,6 +38,7 @@ using System.Drawing;
 
 using PurplePen.MapModel;
 using PurplePen.Graphics2D;
+using System.Threading.Tasks;
 
 namespace PurplePen
 {
@@ -100,15 +101,15 @@ namespace PurplePen
             displayUpdateNeeded = true;
         }
 
-        public override void LeftButtonEndDrag(Pane pane, PointF location, PointF locationStart, float pixelSize, ref bool displayUpdateNeeded)
+        public override async Task<bool> LeftButtonEndDrag(Pane pane, PointF location, PointF locationStart, float pixelSize)
         {
             if (pane != Pane.Map)
-                return;
+                return false;
 
             UpdateStretch(location);
             controller.Stretch(courseObj.stretch);
             controller.DefaultCommandMode();
-            displayUpdateNeeded = true;
+            return true;
         }
 
         // Change the stretch of the crossing point course object to the given distance from start drag.

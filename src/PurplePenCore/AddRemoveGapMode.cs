@@ -38,6 +38,7 @@ using System.Drawing;
 
 using PurplePen.MapModel;
 using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace PurplePen
 {
@@ -107,24 +108,25 @@ namespace PurplePen
             displayUpdateNeeded = true;
         }
 
-        public override void LeftButtonEndDrag(Pane pane, PointF location, PointF locationStart, float pixelSize, ref bool displayUpdateNeeded)
+        public override async Task<bool> LeftButtonEndDrag(Pane pane, PointF location, PointF locationStart, float pixelSize)
         {
             Debug.Assert(pane == Pane.Map);
 
             controller.AddControlGap(startDrag, location);
 
             controller.DefaultCommandMode();
-            displayUpdateNeeded = true;
+            return true;
         }
 
-        public override void LeftButtonClick(Pane pane, PointF location, float pixelSize, ref bool displayUpdateNeeded)
+        public override async Task<bool> LeftButtonClick(Pane pane, PointF location, float pixelSize)
         {
             if (pane != Pane.Map)
-                return;
+                return false;
 
             // Create the new gap
             controller.AddControlGap(location);
             controller.DefaultCommandMode();
+            return true;
         }
 
         public override void LeftButtonCancelDrag(Pane pane, ref bool displayUpdateNeeded)
@@ -296,25 +298,25 @@ namespace PurplePen
             displayUpdateNeeded = true;
         }
 
-        public override void LeftButtonEndDrag(Pane pane, PointF location, PointF locationStart, float pixelSize, ref bool displayUpdateNeeded)
+        public override async Task<bool> LeftButtonEndDrag(Pane pane, PointF location, PointF locationStart, float pixelSize)
         {
             Debug.Assert(pane == Pane.Map);
 
             controller.AddLegGap(startDrag, location);     // implicitly uses the current selected to determine which leg gets the gap.
 
             controller.DefaultCommandMode();
-            displayUpdateNeeded = true;
+            return true;
         }
 
-        public override void LeftButtonClick(Pane pane, PointF location, float pixelSize, ref bool displayUpdateNeeded)
+        public override async Task<bool> LeftButtonClick(Pane pane, PointF location, float pixelSize)
         {
             if (pane != Pane.Map)
-                return;
+                return false;
 
             controller.AddLegGap(location);     // implicitly uses the current selected to determine which leg gets the gap.
 
             controller.DefaultCommandMode();
-            displayUpdateNeeded = true;
+            return true;
         }
 
         public override void LeftButtonCancelDrag(Pane pane, ref bool displayUpdateNeeded)

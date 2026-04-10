@@ -187,6 +187,13 @@ namespace PurplePen
             }
         }
 
+        public void PostDelayedAction(Action action)
+        {
+            if (this.IsHandleCreated) {
+                this.BeginInvoke(action);
+            }
+        }
+
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public bool HidePrintArea
         {
@@ -257,7 +264,7 @@ namespace PurplePen
         }
 
         // Show an error message, with no choice.
-        public void ErrorMessage(string message)
+        public Task ErrorMessage(string message)
         {
             IWin32Window owner = this;
             if (!this.Visible)
@@ -267,6 +274,7 @@ namespace PurplePen
                 descriptionControl.CloseAnyPopup();
 
             MessageBox.Show(owner, message, MiscText.AppTitle, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+            return Task.CompletedTask;
         }
 
         // Show an warning message, with no choice.
@@ -1224,11 +1232,11 @@ namespace PurplePen
             controller.BeginAddControlMode(ControlPointKind.MapExchange, MapExchangeType.None);
         }
 
-        private void addVariationMenu_Click(object sender, EventArgs e)
+        private async void addVariationMenu_Click(object sender, EventArgs e)
         {
             string reason;
             if (controller.CanAddVariation(out reason) != CommandStatus.Enabled) {
-                ErrorMessage(reason);
+                await ErrorMessage(reason);
                 return;                
             }
 
@@ -1237,7 +1245,7 @@ namespace PurplePen
             DialogResult result = addForkDialog.ShowDialog(this);
 
             if (result == DialogResult.OK) {
-                controller.AddVariation(addForkDialog.Loop, addForkDialog.NumberOfBranches);
+                await controller.AddVariation(addForkDialog.Loop, addForkDialog.NumberOfBranches);
             }
 
             addForkDialog.Dispose();
@@ -1277,9 +1285,9 @@ namespace PurplePen
             controller.SelectTab(courseTabs.SelectedIndex);
         }
 
-        private void descriptionControl_Change(DescriptionControl sender, DescriptionChangeKind kind, int line, int box, object newValue)
+        private async void descriptionControl_Change(DescriptionControl sender, DescriptionChangeKind kind, int line, int box, object newValue)
         {
-            controller.DescriptionChange(kind, line, box, newValue);
+            await controller.DescriptionChange(kind, line, box, newValue);
         }
 
         private void descriptionControl_SelectedIndexChange(object sender, EventArgs e)

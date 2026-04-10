@@ -9,6 +9,7 @@ namespace PurplePen
 {
     using PurplePen.MapModel;
     using PurplePen.Graphics2D;
+    using System.Threading.Tasks;
 
     internal class TopologyDragControlMode: BaseMode
     {
@@ -105,7 +106,7 @@ namespace PurplePen
             displayUpdateNeeded = true;
         }
 
-        public override void LeftButtonEndDrag(Pane pane, PointF location, PointF locationStart, float pixelSize, ref bool displayUpdateNeeded)
+        public override async Task<bool> LeftButtonEndDrag(Pane pane, PointF location, PointF locationStart, float pixelSize)
         {
             Debug.Assert(pane == Pane.Topology);
 
@@ -115,12 +116,12 @@ namespace PurplePen
                 Id<CourseControl> courseControlDest1 = dropAt.courseControlId;
                 Id<CourseControl> courseControlDest2 = dropAt.courseControlId2;
 
-                controller.RearrangeControl(courseControlToMove, courseControlDest1, courseControlDest2, dropAt.InsertionLoc);
+                await controller.RearrangeControl(courseControlToMove, courseControlDest1, courseControlDest2, dropAt.InsertionLoc);
             }
 
             dropTargetHighlight = null;
-            displayUpdateNeeded = true;
             controller.DefaultCommandMode();
+            return true;
         }
 
         public override void LeftButtonCancelDrag(Pane pane, ref bool displayUpdateNeeded)

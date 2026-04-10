@@ -41,6 +41,7 @@ using PurplePen.MapModel;
 using PurplePen.Graphics2D;
 using System.Text;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace PurplePen
 {
@@ -100,11 +101,15 @@ namespace PurplePen
         public virtual void RightButtonUp(Pane pane, PointF location, float pixelSize, ref bool displayUpdateNeeded)
         { }
 
-        public virtual void LeftButtonClick(Pane pane, PointF location, float pixelSize, ref bool displayUpdateNeeded)
-        { }
+        public virtual async Task<bool> LeftButtonClick(Pane pane, PointF location, float pixelSize)
+        { 
+            return false;
+        }
 
-        public virtual void RightButtonClick(Pane pane, PointF location, float pixelSize, ref bool displayUpdateNeeded)
-        { }
+        public virtual async Task<bool> RightButtonClick(Pane pane, PointF location, float pixelSize)
+        {
+            return false;
+        }
 
         public virtual void LeftButtonDrag(Pane pane, PointF location, PointF locationStart, float pixelSize, ref bool displayUpdateNeeded)
         { }
@@ -112,11 +117,15 @@ namespace PurplePen
         public virtual void RightButtonDrag(Pane pane, PointF location, PointF locationStart, float pixelSize, ref bool displayUpdateNeeded)
         { }
 
-        public virtual void LeftButtonEndDrag(Pane pane, PointF location, PointF locationStart, float pixelSize, ref bool displayUpdateNeeded)
-        { }
+        public virtual async Task<bool> LeftButtonEndDrag(Pane pane, PointF location, PointF locationStart, float pixelSize)
+        {
+            return false;
+        }
 
-        public virtual void RightButtonEndDrag(Pane pane, PointF location, PointF locationStart, float pixelSize, ref bool displayUpdateNeeded)
-        { }
+        public virtual async Task<bool> RightButtonEndDrag(Pane pane, PointF location, PointF locationStart, float pixelSize)
+        {
+            return false;
+        }
 
         public virtual void LeftButtonCancelDrag(Pane pane, ref bool displayUpdateNeeded)
         { }
@@ -320,7 +329,7 @@ namespace PurplePen
             }
         }
 
-        public override void LeftButtonClick(Pane pane, PointF location, float pixelSize, ref bool displayUpdateNeeded)
+        public override async Task<bool> LeftButtonClick(Pane pane, PointF location, float pixelSize)
         {
             // Drop targets are the only think in the All Variations layer we can click on.
             // Also, don't click 
@@ -337,6 +346,8 @@ namespace PurplePen
                     controller.ClearSelection();
                 }
             }
+
+            return false;
         }
 
         public override void LeftButtonDrag(Pane pane, PointF location, PointF locationStart, float pixelSize, ref bool displayUpdateNeeded)
@@ -562,7 +573,7 @@ namespace PurplePen
             return courseObjectStart.specialId.IsNone && !((courseObjectStart is ControlNumberCourseObj) || (courseObjectStart is CodeCourseObj));
         }
 
-        public override void LeftButtonEndDrag(Pane pane, PointF location, PointF locationStart, float pixelSize, ref bool displayUpdateNeeded)
+        public override async Task<bool> LeftButtonEndDrag(Pane pane, PointF location, PointF locationStart, float pixelSize)
         {
             Debug.Assert(pane == Pane.Map);
 
@@ -591,6 +602,8 @@ namespace PurplePen
                 controller.MoveControlInCurrentCourse(controlId, newLocation);
             }
             controller.DefaultCommandMode();
+
+            return false;
         }
 
         public override void LeftButtonCancelDrag(Pane pane, ref bool displayUpdateNeeded)
@@ -671,7 +684,7 @@ namespace PurplePen
             displayUpdateNeeded = true;
         }
 
-        public override void LeftButtonEndDrag(Pane pane, PointF location, PointF locationStart, float pixelSize, ref bool displayUpdateNeeded)
+        public override async Task<bool> LeftButtonEndDrag(Pane pane, PointF location, PointF locationStart, float pixelSize)
         {
             Debug.Assert(pane == Pane.Map);
 
@@ -724,6 +737,7 @@ namespace PurplePen
             }
 
             controller.DefaultCommandMode();
+            return false;
         }
 
         public override void LeftButtonCancelDrag(Pane pane, ref bool displayUpdateNeeded)

@@ -77,6 +77,11 @@ namespace PurplePen.ViewModels
             Services.ServiceProvider.GetRequiredService<IApplicationIdleService>().QueueIdleEvent();
         }
 
+        public void PostDelayedAction(Action action)
+        {
+            Services.ServiceProvider.GetRequiredService<IPostMessage>().PostMessage(action);
+        }
+
         public void InfoMessage(string message)
         {
             throw new NotImplementedException();
@@ -87,9 +92,15 @@ namespace PurplePen.ViewModels
             throw new NotImplementedException();
         }
 
-        public void ErrorMessage(string message)
+        public async Task ErrorMessage(string message)
         {
-            throw new NotImplementedException();
+            MessageBoxDialogViewModel vm = new MessageBoxDialogViewModel {
+                Message = message,
+                Buttons = MessageBoxButtons.Ok,
+                DefaultButton = MessageBoxButton.Ok,
+                Icon = MessageBoxIcon.Error
+            };
+            await Services.DialogService.ShowDialogAsync(vm);
         }
 
         public bool OKCancelMessage(string message, bool okDefault)
@@ -381,11 +392,11 @@ namespace PurplePen.ViewModels
         public void MapViewerRightButtonUp(PointF location, float pixelSize)
         { controller?.RightButtonUp(Pane.Map, location, pixelSize); }
 
-        public void MapViewerLeftButtonClick(PointF location, float pixelSize)
-        { controller?.LeftButtonClick(Pane.Map, location, pixelSize); }
+        public async Task MapViewerLeftButtonClick(PointF location, float pixelSize)
+        { await controller?.LeftButtonClick(Pane.Map, location, pixelSize)!; }
 
-        public void MapViewerRightButtonClick(PointF location, float pixelSize)
-        { controller?.RightButtonClick(Pane.Map, location, pixelSize); }
+        public async Task MapViewerRightButtonClick(PointF location, float pixelSize)
+        { await controller?.RightButtonClick(Pane.Map, location, pixelSize)!; }
 
         public void MapViewerLeftButtonDrag(PointF location, PointF locationStart, float pixelSize)
         { controller?.LeftButtonDrag(Pane.Map, location, locationStart, pixelSize); }
@@ -393,11 +404,11 @@ namespace PurplePen.ViewModels
         public void MapViewerRightButtonDrag(PointF location, PointF locationStart, float pixelSize)
         { controller?.RightButtonDrag(Pane.Map, location, locationStart, pixelSize); }
 
-        public void MapViewerLeftButtonEndDrag(PointF location, PointF locationStart, float pixelSize)
-        { controller?.LeftButtonEndDrag(Pane.Map, location, locationStart, pixelSize); }
+        public async Task MapViewerLeftButtonEndDrag(PointF location, PointF locationStart, float pixelSize)
+        { await controller?.LeftButtonEndDrag(Pane.Map, location, locationStart, pixelSize)!; }
 
-        public void MapViewerRightButtonEndDrag(PointF location, PointF locationStart, float pixelSize)
-        { controller?.RightButtonEndDrag(Pane.Map, location, locationStart, pixelSize); }
+        public async Task MapViewerRightButtonEndDrag(PointF location, PointF locationStart, float pixelSize)
+        { await controller?.RightButtonEndDrag(Pane.Map, location, locationStart, pixelSize)!; }
         public void MapViewerLeftButtonCancelDrag()
         { controller?.LeftButtonCancelDrag(Pane.Map); }
 

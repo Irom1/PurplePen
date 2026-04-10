@@ -63,12 +63,12 @@ namespace PurplePen.ViewModels
         // Handles a description change from the popup menu. Forwards the change
         // to the Controller, which applies it to the EventDB with undo support.
         [RelayCommand]
-        private void DescriptionChange(DescriptionChangeCommandData data)
+        private async Task DescriptionChange(DescriptionChangeCommandData data)
         {
             if (controller == null)
                 return;
 
-            controller.DescriptionChange(data.DescriptionChangeKind, data.ChangedLine, data.ChangedBox, data.NewValue);
+            await controller.DescriptionChange(data.DescriptionChangeKind, data.ChangedLine, data.ChangedBox, data.NewValue);
         }
 
         // The user has clicked on the description viewer.

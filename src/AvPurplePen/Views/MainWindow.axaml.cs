@@ -34,7 +34,7 @@ namespace AvPurplePen.Views
 
 
         // Mouse activity in the main map viewer.
-        private void MapViewer_MouseActivity(object? sender, MapViewer.FancyMouseEventArgs e)
+        private async void MapViewer_MouseActivity(object? sender, MapViewer.FancyMouseEventArgs e)
         {
             MainWindowViewModel? vm = this.DataContext as MainWindowViewModel;
             if (vm == null)
@@ -78,16 +78,16 @@ namespace AvPurplePen.Views
 
             case MapViewer.FancyMouseAction.DragEnd:
                 if (isRightButton)
-                    vm.MapViewerRightButtonEndDrag(location, locationStart, pixelSize);
+                    await vm.MapViewerRightButtonEndDrag(location, locationStart, pixelSize);
                 else
-                    vm.MapViewerLeftButtonEndDrag(location, locationStart, pixelSize);
+                    await vm.MapViewerLeftButtonEndDrag(location, locationStart, pixelSize);
                 break;
 
             case MapViewer.FancyMouseAction.Click:
                 if (isRightButton)
-                    vm.MapViewerRightButtonClick(location, pixelSize);
+                    await vm.MapViewerRightButtonClick(location, pixelSize);
                 else
-                    vm.MapViewerLeftButtonClick(location, pixelSize);
+                    await vm.MapViewerLeftButtonClick(location, pixelSize);
                 break;
 
             case MapViewer.FancyMouseAction.DragCancel:

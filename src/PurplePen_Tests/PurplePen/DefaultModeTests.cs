@@ -82,7 +82,7 @@ namespace PurplePen.Tests
             // Click on control 5 (#47).
             dragAction = controller.LeftButtonDown(Pane.Map, new PointF(0.9F, 30.5F), 0.1F);
             Assert.AreEqual(DragAction.DelayedDrag, dragAction);
-            controller.LeftButtonClick(Pane.Map, new PointF(0.9F, 30.5F), 0.3F);
+            await controller.LeftButtonClick(Pane.Map, new PointF(0.9F, 30.5F), 0.3F);
 
             // Check correct description line highlighted.
             CheckHighlightedLines(controller, 7, 7);
@@ -101,7 +101,7 @@ namespace PurplePen.Tests
             // Click on number for control #54.
             dragAction = controller.LeftButtonDown(Pane.Map, new PointF(59.3F, 5.5F), 0.1F);
             Assert.AreEqual(DragAction.DelayedDrag, dragAction);
-            controller.LeftButtonClick(Pane.Map, new PointF(59.3F, 5.5F), 0.3F);
+            await controller.LeftButtonClick(Pane.Map, new PointF(59.3F, 5.5F), 0.3F);
 
             // Check correct description line highlighted.
             CheckHighlightedLines(controller, 22, 22);
@@ -119,7 +119,7 @@ namespace PurplePen.Tests
             // Click outside anything to de-select.
             dragAction = controller.LeftButtonDown(Pane.Map, new PointF(30, 20), 0.1F);
             Assert.AreEqual(DragAction.DelayedDrag, dragAction);
-            controller.LeftButtonClick(Pane.Map, new PointF(30, 20), 0.3F);
+            await controller.LeftButtonClick(Pane.Map, new PointF(30, 20), 0.3F);
             Assert.IsTrue(controller.GetSelectionMgr().Selection.SelectionKind == SelectionKind.None);
         }
 
@@ -139,7 +139,7 @@ namespace PurplePen.Tests
             // Click on first aid point
             dragAction = controller.LeftButtonDown(Pane.Map, new PointF(15.3F, -42F), 0.1F);
             Assert.AreEqual(DragAction.DelayedDrag, dragAction);
-            controller.LeftButtonClick(Pane.Map, new PointF(15.4F, -42F), 0.3F);
+            await controller.LeftButtonClick(Pane.Map, new PointF(15.4F, -42F), 0.3F);
 
             // Check no description line highlighted.
             CheckHighlightedLines(controller, -1, -1);
@@ -156,7 +156,7 @@ namespace PurplePen.Tests
             // Click on first aid point
             dragAction = controller.LeftButtonDown(Pane.Map, new PointF(13.3F, -41F), 0.1F);
             Assert.AreEqual(DragAction.DelayedDrag, dragAction);
-            controller.LeftButtonClick(Pane.Map, new PointF(13.3F, -41F), 0.3F);
+            await controller.LeftButtonClick(Pane.Map, new PointF(13.3F, -41F), 0.3F);
 
             // Check no description line highlighted.
             CheckHighlightedLines(controller, -1, -1);
@@ -186,7 +186,7 @@ namespace PurplePen.Tests
             // Click on first aid point
             dragAction = controller.LeftButtonDown(Pane.Map, new PointF(158.0F, -7.0F), 0.1F);
             Assert.AreEqual(DragAction.DelayedDrag, dragAction);
-            controller.LeftButtonClick(Pane.Map, new PointF(158.0F, -7.0F), 0.3F);
+            await controller.LeftButtonClick(Pane.Map, new PointF(158.0F, -7.0F), 0.3F);
 
             // Check no description line highlighted.
             CheckHighlightedLines(controller, -1, -1);
@@ -203,7 +203,7 @@ namespace PurplePen.Tests
             // Click on white-out
             dragAction = controller.LeftButtonDown(Pane.Map, new PointF(158.0F, -18.0F), 0.1F);
             Assert.AreEqual(DragAction.DelayedDrag, dragAction);
-            controller.LeftButtonClick(Pane.Map, new PointF(158.0F, -18.0F), 0.3F);
+            await controller.LeftButtonClick(Pane.Map, new PointF(158.0F, -18.0F), 0.3F);
 
             // Check no description line highlighted.
             CheckHighlightedLines(controller, -1, -1);
@@ -363,7 +363,7 @@ namespace PurplePen.Tests
             Assert.AreEqual(StatusBarText.DraggingObject, controller.StatusText);
 
             // Finish dragging the control
-            controller.LeftButtonEndDrag(Pane.Map, new PointF(21.9F, 34.5F), new PointF(0.9F, 30.5F), 0.1F);
+            await controller.LeftButtonEndDrag(Pane.Map, new PointF(21.9F, 34.5F), new PointF(0.9F, 30.5F), 0.1F);
             ui.MouseMoved(21.9F, 34.5F, 0.1F);
             // Check the status text
             Assert.AreEqual(StatusBarText.DragObject, controller.StatusText);
@@ -413,7 +413,7 @@ namespace PurplePen.Tests
             Assert.AreEqual(StatusBarText.DraggingObject, controller.StatusText);
 
             // Finish dragging the Number
-            controller.LeftButtonEndDrag(Pane.Map, new PointF(8.8F, 31.3F), new PointF(-1.5F, 38.8F), 0.1F);
+            await controller.LeftButtonEndDrag(Pane.Map, new PointF(8.8F, 31.3F), new PointF(-1.5F, 38.8F), 0.1F);
             ui.MouseMoved(8.8F, 31.3F, 0.1F);
             // Check the status text
             Assert.AreEqual(StatusBarText.DragObject, controller.StatusText);
@@ -448,7 +448,7 @@ namespace PurplePen.Tests
             // Click on first aid point to select it.
             DragAction dragAction = controller.LeftButtonDown(Pane.Map, new PointF(15.3F, -42F), 0.1F);
             Assert.AreEqual(DragAction.DelayedDrag, dragAction);
-            controller.LeftButtonClick(Pane.Map, new PointF(15.3F, -42F), 0.3F);
+            await controller.LeftButtonClick(Pane.Map, new PointF(15.3F, -42F), 0.3F);
 
             // Should have moving mouse cursor
             MousePointerShape cursor = controller.GetMouseCursor(Pane.Map, new PointF(15F, -41.5F), 0.1F);
@@ -484,7 +484,7 @@ namespace PurplePen.Tests
             Assert.AreEqual(StatusBarText.DraggingObject, controller.StatusText);
 
             // Finish dragging the first aid point
-            controller.LeftButtonEndDrag(Pane.Map, new PointF(21.9F, 34.5F), new PointF(15F, -41.5F), 0.1F);
+            await controller.LeftButtonEndDrag(Pane.Map, new PointF(21.9F, 34.5F), new PointF(15F, -41.5F), 0.1F);
             ui.MouseMoved(21.9F, 34.5F, 0.1F);
             // Check the status text
             Assert.AreEqual(StatusBarText.DragObject, controller.StatusText);
@@ -516,7 +516,7 @@ namespace PurplePen.Tests
             // Click on area to select it.
             DragAction dragAction = controller.LeftButtonDown(Pane.Map, new PointF(-0.3F, 0.2F), 0.1F);
             Assert.AreEqual(DragAction.DelayedDrag, dragAction);
-            controller.LeftButtonClick(Pane.Map, new PointF(-0.3F, 0.2F), 0.3F);
+            await controller.LeftButtonClick(Pane.Map, new PointF(-0.3F, 0.2F), 0.3F);
 
             // Should have moving mouse cursor
             MousePointerShape cursor = controller.GetMouseCursor(Pane.Map, new PointF(-0.3F, 0.2F), 0.1F);
@@ -553,7 +553,7 @@ namespace PurplePen.Tests
 
             
             // Finish dragging the corner point
-            controller.LeftButtonEndDrag(Pane.Map, new PointF(9.9F, 8.2F), new PointF(2.9F, 7.2F), 0.1F);
+            await controller.LeftButtonEndDrag(Pane.Map, new PointF(9.9F, 8.2F), new PointF(2.9F, 7.2F), 0.1F);
             ui.MouseMoved(9.9F, 8.2F, 0.1F);
             // Check the status text
             Assert.AreEqual(StatusBarText.DragCorner, controller.StatusText);
@@ -588,7 +588,7 @@ namespace PurplePen.Tests
             // Click on area to select it.
             DragAction dragAction = controller.LeftButtonDown(Pane.Map, new PointF(-24, 12), 0.1F);
             Assert.AreEqual(DragAction.DelayedDrag, dragAction);
-            controller.LeftButtonClick(Pane.Map, new PointF(-24, 12), 0.3F);
+            await controller.LeftButtonClick(Pane.Map, new PointF(-24, 12), 0.3F);
 
             // Should have moving mouse cursor
             MousePointerShape cursor = controller.GetMouseCursor(Pane.Map, new PointF(-24, 12), 0.1F);
@@ -624,7 +624,7 @@ namespace PurplePen.Tests
 
 
             // Finish dragging the size point
-            controller.LeftButtonEndDrag(Pane.Map, new PointF(10F, -20F), new PointF(-9.6F, 7.4F), 0.3F);
+            await controller.LeftButtonEndDrag(Pane.Map, new PointF(10F, -20F), new PointF(-9.6F, 7.4F), 0.3F);
             ui.MouseMoved(-1F, -20F, 0.3F);
             Assert.AreEqual(StatusBarText.DragObject, controller.StatusText);
 
@@ -656,7 +656,7 @@ namespace PurplePen.Tests
             // Click on area to select it.
             DragAction dragAction = controller.LeftButtonDown(Pane.Map, new PointF(-24, 12), 0.1F);
             Assert.AreEqual(DragAction.DelayedDrag, dragAction);
-            controller.LeftButtonClick(Pane.Map, new PointF(-24, 12), 0.3F);
+            await controller.LeftButtonClick(Pane.Map, new PointF(-24, 12), 0.3F);
 
             // Should have moving mouse cursor
             MousePointerShape cursor = controller.GetMouseCursor(Pane.Map, new PointF(-24, 12), 0.1F);
@@ -691,7 +691,7 @@ namespace PurplePen.Tests
             Assert.AreEqual(MousePointerShape.SizeNESW, cursor);
 
             // Finish dragging the size point
-            controller.LeftButtonEndDrag(Pane.Map, new PointF(-105F, -47F), new PointF(-9F, 50.0F), 0.3F);
+            await controller.LeftButtonEndDrag(Pane.Map, new PointF(-105F, -47F), new PointF(-9F, 50.0F), 0.3F);
             ui.MouseMoved(-105F, -48.4F, 0.3F);
             Assert.AreEqual(StatusBarText.SizeRectangle, controller.StatusText);
 
@@ -725,7 +725,7 @@ namespace PurplePen.Tests
             // Click on leg to select it.
             DragAction dragAction = controller.LeftButtonDown(Pane.Map, new PointF(18.4F, 30.1F), 0.3F);
             Assert.AreEqual(DragAction.DelayedDrag, dragAction);
-            controller.LeftButtonClick(Pane.Map, new PointF(18.4F, 30.1F), 0.3F);
+            await controller.LeftButtonClick(Pane.Map, new PointF(18.4F, 30.1F), 0.3F);
 
             // Over corner should have move corner cursor
             ui.MouseMoved(12.2F, 19.4F, 0.3F);
@@ -759,7 +759,7 @@ namespace PurplePen.Tests
             Assert.AreEqual(MousePointerShape.MoveHandle, cursor);
 
             // Finish dragging the corner point
-            controller.LeftButtonEndDrag(Pane.Map, new PointF(6.2F, 12.4F), new PointF(12.2F, 19.4F), 0.3F);
+            await controller.LeftButtonEndDrag(Pane.Map, new PointF(6.2F, 12.4F), new PointF(12.2F, 19.4F), 0.3F);
             ui.MouseMoved(6.2F, 12.4F, 0.3F);
             // Check the status text
             Assert.AreEqual(StatusBarText.DragCorner, controller.StatusText);
@@ -790,7 +790,7 @@ namespace PurplePen.Tests
             // Click on leg to select it.
             DragAction dragAction = controller.LeftButtonDown(Pane.Map, new PointF(71, 0), 0.3F);
             Assert.AreEqual(DragAction.DelayedDrag, dragAction);
-            controller.LeftButtonClick(Pane.Map, new PointF(71, 0), 0.3F);
+            await controller.LeftButtonClick(Pane.Map, new PointF(71, 0), 0.3F);
 
             // Over leg gap should have move corner cursor
             ui.MouseMoved(72.5F, 3.5F, 0.3F);
@@ -823,7 +823,7 @@ namespace PurplePen.Tests
             Assert.AreEqual(MousePointerShape.MoveHandle, cursor);
 
             // Finish dragging the corner point
-            controller.LeftButtonEndDrag(Pane.Map, new PointF(76F, -5F), new PointF(72.5F, 3.5F), 0.3F);
+            await controller.LeftButtonEndDrag(Pane.Map, new PointF(76F, -5F), new PointF(72.5F, 3.5F), 0.3F);
             ui.MouseMoved(76F, -5F, 0.3F);
             // Check the status text
             Assert.AreEqual(StatusBarText.DefaultStatus, controller.StatusText);
@@ -856,7 +856,7 @@ namespace PurplePen.Tests
             // Click on leg to select it.
             DragAction dragAction = controller.LeftButtonDown(Pane.Map, new PointF(64, 3.3F), 0.3F);
             Assert.AreEqual(DragAction.DelayedDrag, dragAction);
-            controller.LeftButtonClick(Pane.Map, new PointF(64, 3.3F), 0.3F);
+            await controller.LeftButtonClick(Pane.Map, new PointF(64, 3.3F), 0.3F);
 
             // Over leg gap should have move corner cursor
             ui.MouseMoved(67, 6.6F, 0.3F);
@@ -889,7 +889,7 @@ namespace PurplePen.Tests
             Assert.AreEqual(MousePointerShape.MoveHandle, cursor);
 
             // Finish dragging the corner point
-            controller.LeftButtonEndDrag(Pane.Map, new PointF(55, -8F), new PointF(67, 6.6F), 0.3F);
+            await controller.LeftButtonEndDrag(Pane.Map, new PointF(55, -8F), new PointF(67, 6.6F), 0.3F);
             ui.MouseMoved(55, -8F, 0.3F);
             // Check the status text
             Assert.AreEqual(StatusBarText.DefaultStatus, controller.StatusText);
@@ -920,7 +920,7 @@ namespace PurplePen.Tests
             // Click on text special
             var dragAction = controller.LeftButtonDown(Pane.Map, new PointF(62F, 36F), 0.1F);
             Assert.AreEqual(DragAction.DelayedDrag, dragAction);
-            controller.LeftButtonClick(Pane.Map, new PointF(62F, 36F), 0.3F);
+            await controller.LeftButtonClick(Pane.Map, new PointF(62F, 36F), 0.3F);
 
             // text special should be selected.
             CourseObj[] highlights = (CourseObj[]) controller.GetHighlights(Pane.Map);
@@ -947,7 +947,7 @@ namespace PurplePen.Tests
             Assert.AreEqual(StatusBarText.DraggingObject, controller.StatusText);
 
             // Finish dragging the special
-            controller.LeftButtonEndDrag(Pane.Map, new PointF(100F, 47.5F), new PointF(58F, 35.5F), 0.1F);
+            await controller.LeftButtonEndDrag(Pane.Map, new PointF(100F, 47.5F), new PointF(58F, 35.5F), 0.1F);
             ui.MouseMoved(100F, 47.5F, 0.1F);
             // Check the status text
             Assert.AreEqual(StatusBarText.DragObject, controller.StatusText);
@@ -983,7 +983,7 @@ namespace PurplePen.Tests
             // Click on text special
             var dragAction = controller.LeftButtonDown(Pane.Map, new PointF(62F, 36F), 0.1F);
             Assert.AreEqual(DragAction.DelayedDrag, dragAction);
-            controller.LeftButtonClick(Pane.Map, new PointF(62F, 36F), 0.3F);
+            await controller.LeftButtonClick(Pane.Map, new PointF(62F, 36F), 0.3F);
 
             // text special should be selected.
             CourseObj[] highlights = (CourseObj[]) controller.GetHighlights(Pane.Map);
@@ -1012,7 +1012,7 @@ namespace PurplePen.Tests
             Assert.AreEqual(StatusBarText.SizingRectangle, controller.StatusText);
 
             // Finish dragging the special
-            controller.LeftButtonEndDrag(Pane.Map, new PointF(66F, 22F), new PointF(57.5F, 34F), 0.1F);
+            await controller.LeftButtonEndDrag(Pane.Map, new PointF(66F, 22F), new PointF(57.5F, 34F), 0.1F);
             ui.MouseMoved(66F, 22F, 0.1F);
 
             // Check the highlights
@@ -1048,7 +1048,7 @@ namespace PurplePen.Tests
             // Click on image special
             var dragAction = controller.LeftButtonDown(Pane.Map, new PointF(62F, 36F), 0.1F);
             Assert.AreEqual(DragAction.DelayedDrag, dragAction);
-            controller.LeftButtonClick(Pane.Map, new PointF(62F, 36F), 0.3F);
+            await controller.LeftButtonClick(Pane.Map, new PointF(62F, 36F), 0.3F);
 
             // text special should be selected.
             CourseObj[] highlights = (CourseObj[])controller.GetHighlights(Pane.Map);
@@ -1073,7 +1073,7 @@ namespace PurplePen.Tests
             Assert.AreEqual(StatusBarText.DraggingObject, controller.StatusText);
 
             // Finish dragging the special
-            controller.LeftButtonEndDrag(Pane.Map, new PointF(100F, 47.5F), new PointF(58F, 35.5F), 0.1F);
+            await controller.LeftButtonEndDrag(Pane.Map, new PointF(100F, 47.5F), new PointF(58F, 35.5F), 0.1F);
             ui.MouseMoved(100F, 47.5F, 0.1F);
             // Check the status text
             Assert.AreEqual(StatusBarText.DragObject, controller.StatusText);
@@ -1106,7 +1106,7 @@ namespace PurplePen.Tests
             // Click on text special
             var dragAction = controller.LeftButtonDown(Pane.Map, new PointF(62F, 36F), 0.1F);
             Assert.AreEqual(DragAction.DelayedDrag, dragAction);
-            controller.LeftButtonClick(Pane.Map, new PointF(62F, 36F), 0.3F);
+            await controller.LeftButtonClick(Pane.Map, new PointF(62F, 36F), 0.3F);
 
             // text special should be selected.
             CourseObj[] highlights = (CourseObj[])controller.GetHighlights(Pane.Map);
@@ -1133,7 +1133,7 @@ namespace PurplePen.Tests
             Assert.AreEqual(StatusBarText.SizingRectangle, controller.StatusText);
 
             // Finish dragging the special
-            controller.LeftButtonEndDrag(Pane.Map, new PointF(66F, 22F), new PointF(57.5F, 34F), 0.1F);
+            await controller.LeftButtonEndDrag(Pane.Map, new PointF(66F, 22F), new PointF(57.5F, 34F), 0.1F);
             ui.MouseMoved(66F, 22F, 0.1F);
 
             // Check the highlights

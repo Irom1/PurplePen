@@ -39,6 +39,7 @@ using System.Drawing;
 using PurplePen.MapModel;
 using System.Diagnostics;
 using PurplePen.Graphics2D;
+using System.Threading.Tasks;
 
 namespace PurplePen
 {
@@ -135,10 +136,10 @@ namespace PurplePen
             displayUpdateNeeded = true;
         }
 
-        public override void LeftButtonClick(Pane pane, PointF location, float pixelSize, ref bool displayUpdateNeeded)
+        public override async Task<bool> LeftButtonClick(Pane pane, PointF location, float pixelSize)
         {
             if (pane != Pane.Map)
-                return;
+                return false;
 
             // If text is empty, use a non-empty text
             string measureText = string.IsNullOrEmpty(displayText) ? "000000" : displayText;
@@ -151,10 +152,10 @@ namespace PurplePen
             RectangleF boundingRect = new RectangleF(new PointF(location.X, location.Y - size.Height), size);
             boundingRect = currentObj.AdjustBoundingRect(boundingRect);
             CreateTextSpecial(boundingRect);
-            displayUpdateNeeded = true;
+            return true;
         }
 
-        public override void LeftButtonEndDrag(Pane pane, PointF location, PointF locationStart, float pixelSize, ref bool displayUpdateNeeded)
+        public override async Task<bool> LeftButtonEndDrag(Pane pane, PointF location, PointF locationStart, float pixelSize)
         {
             Debug.Assert(pane == Pane.Map);
 
@@ -163,12 +164,12 @@ namespace PurplePen
             RectangleF rect = currentObj.GetHighlightBounds();
             if (rect.Height < 1 || rect.Width < 1) {
                 // Too small. Use the click action.
-                LeftButtonClick(pane, location, pixelSize, ref displayUpdateNeeded);
+                return await LeftButtonClick(pane, location, pixelSize);
             }
             else {
                 rect = currentObj.AdjustBoundingRect(rect);
                 CreateTextSpecial(rect);
-                displayUpdateNeeded = true;
+                return true;
             }
         }
 
