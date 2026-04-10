@@ -91,9 +91,9 @@ namespace PurplePen
         }
 
         // Show an error message.
-        void ErrorMessage(string message)
+        async void ErrorMessage(string message)
         {
-            ((MainFrame) Owner).ErrorMessage(message);
+            await ((MainFrame) Owner).ErrorMessage(message);
         }
 
         // When entering a load, validate that it is an integer 0-999999, or blank.

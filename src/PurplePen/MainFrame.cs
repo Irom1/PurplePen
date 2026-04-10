@@ -341,7 +341,7 @@ namespace PurplePen
             return Task.FromResult(YesNoCancelFromDialogResult(result));
         }
 
-        public YesNoCancel MovingSharedControl(string controlCode, string otherCourses)
+        public async Task<YesNoCancel> MovingSharedControl(string controlCode, string otherCourses)
         {
             using (MoveControlChoiceDialog dialog = new MoveControlChoiceDialog(controlCode, otherCourses)) {
                 DialogResult result = dialog.ShowDialog();
@@ -1171,14 +1171,14 @@ namespace PurplePen
                 controller.Redo();
         }
 
-        private void deleteMenu_Click(object sender, EventArgs e)
+        private async void deleteMenu_Click(object sender, EventArgs e)
         {
-            controller.DeleteSelection();
+            await controller.DeleteSelection();
         }
 
-        private void deleteForkMenu_Click(object sender, EventArgs e)
+        private async void deleteForkMenu_Click(object sender, EventArgs e)
         {
-            controller.DeleteFork();
+            await controller.DeleteFork();
         }
 
 
@@ -1364,12 +1364,14 @@ namespace PurplePen
             }
         }
 
+#pragma warning disable VSTHRD002    // Everything in the WinForms version is actually synchronous, so this can't deadlock.
         private DragAction mapViewer_OnMouseEvent(object sender, MouseAction action, int buttonNumber, bool[] whichButtonsDown, PointF location, PointF locationStart)
         {
             if (action != MouseAction.Move)
                 toolTip.Hide(mapViewer);
 
-            return HandleMouseEvent(Pane.Map, mapViewer, action, buttonNumber, whichButtonsDown, location, locationStart);
+            Task<DragAction> task = HandleMouseEvent(Pane.Map, mapViewer, action, buttonNumber, whichButtonsDown, location, locationStart);
+            return task.Result;   // Everything in the WinForms version is actually synchronous, so this can't deadlock.
         }
 
         private DragAction mapViewerTopology_OnMouseEvent(object sender, MouseAction action, int buttonNumber, bool[] whichButtonsDown, PointF location, PointF locationStart)
@@ -1377,10 +1379,12 @@ namespace PurplePen
             if (action != MouseAction.Move)
                 toolTip.Hide(mapViewerTopology);
 
-            return HandleMouseEvent(Pane.Topology, mapViewerTopology, action, buttonNumber, whichButtonsDown, location, locationStart);
+            Task<DragAction> task = HandleMouseEvent(Pane.Topology, mapViewerTopology, action, buttonNumber, whichButtonsDown, location, locationStart);
+            return task.Result;   // Everything in the WinForms version is actually synchronous, so this can't deadlock.
         }
+#pragma warning restore VSTHRD002
 
-        private DragAction HandleMouseEvent(Pane pane, MapViewer activePaneMapViewer, MouseAction action, int buttonNumber, bool[] whichButtonsDown, PointF location, PointF locationStart)
+        private async Task<DragAction> HandleMouseEvent(Pane pane, MapViewer activePaneMapViewer, MouseAction action, int buttonNumber, bool[] whichButtonsDown, PointF location, PointF locationStart)
         {
             if (action == MouseAction.Down && buttonNumber == MapViewer.LeftMouseButton)
                 return controller.LeftButtonDown(pane, location, activePaneMapViewer.PixelSize);
@@ -1391,17 +1395,17 @@ namespace PurplePen
             else if (action == MouseAction.Up && buttonNumber == MapViewer.RightMouseButton)
                 controller.RightButtonUp(pane, location, activePaneMapViewer.PixelSize);
             else if (action == MouseAction.Click && buttonNumber == MapViewer.LeftMouseButton)
-                controller.LeftButtonClick(pane, location, activePaneMapViewer.PixelSize);
+                await controller.LeftButtonClick(pane, location, activePaneMapViewer.PixelSize);
             else if (action == MouseAction.Click && buttonNumber == MapViewer.RightMouseButton)
-                controller.RightButtonClick(pane, location, activePaneMapViewer.PixelSize);
+                await controller.RightButtonClick(pane, location, activePaneMapViewer.PixelSize);
             else if (action == MouseAction.Drag && buttonNumber == MapViewer.LeftMouseButton)
                 controller.LeftButtonDrag(pane, location, locationStart, activePaneMapViewer.PixelSize);
             else if (action == MouseAction.Drag && buttonNumber == MapViewer.RightMouseButton)
                 controller.RightButtonDrag(pane, location, locationStart, activePaneMapViewer.PixelSize);
             else if (action == MouseAction.DragEnd && buttonNumber == MapViewer.LeftMouseButton)
-                controller.LeftButtonEndDrag(pane, location, locationStart, activePaneMapViewer.PixelSize);
+                await controller.LeftButtonEndDrag(pane, location, locationStart, activePaneMapViewer.PixelSize);
             else if (action == MouseAction.DragEnd && buttonNumber == MapViewer.RightMouseButton)
-                controller.RightButtonEndDrag(pane, location, locationStart, activePaneMapViewer.PixelSize);
+                await controller.RightButtonEndDrag(pane, location, locationStart, activePaneMapViewer.PixelSize);
             else if (action == MouseAction.DragCancel && buttonNumber == MapViewer.LeftMouseButton)
                 controller.LeftButtonCancelDrag(pane);
             else if (action == MouseAction.DragCancel && buttonNumber == MapViewer.RightMouseButton)
@@ -1478,9 +1482,9 @@ namespace PurplePen
             }
         }
 
-        private void deleteCourseMenu_Click(object sender, EventArgs e)
+        private async void deleteCourseMenu_Click(object sender, EventArgs e)
         {
-            controller.DeleteCurrentCourse();
+            await controller.DeleteCurrentCourse();
         }
 
         private void addCourseMenu_Click(object sender, EventArgs e)
@@ -2018,14 +2022,14 @@ namespace PurplePen
         }
 
         // Show help of the given kind.
-        private void ShowHelp(HelpNavigator navigator, object parameter)
+        private async void ShowHelp(HelpNavigator navigator, object parameter)
         {
             if (helpFileUrl == null) {
                 string helpFileName = Util.GetFileInAppDirectory(HELP_FILE_NAME);
                 if (File.Exists(helpFileName))
                     helpFileUrl = new Uri(helpFileName);
                 else {
-                    ErrorMessage(string.Format(MiscText.HelpFileNotFound, helpFileName));
+                    await ErrorMessage(string.Format(MiscText.HelpFileNotFound, helpFileName));
                     return;
                 }
             }
@@ -2233,13 +2237,13 @@ namespace PurplePen
             dialog.Dispose();
         }
 
-        private void removeUnusedControlsMenu_Click(object sender, EventArgs e)
+        private async void removeUnusedControlsMenu_Click(object sender, EventArgs e)
         {
             List<KeyValuePair<Id<ControlPoint>,string>> unusedControls = controller.GetUnusedControls();
 
             if (unusedControls.Count == 0) {
                 // No controls to delete. Tell the user.
-                InfoMessage(MiscText.NoUnusedControls);
+                await InfoMessage(MiscText.NoUnusedControls);
             }
             else {
                 // Put up the dialog and do it.
@@ -2478,12 +2482,12 @@ namespace PurplePen
             createPdfDialog.Dispose();
         }
 
-        private void createGpxMenu_Click(object sender, EventArgs e)
+        private async void createGpxMenu_Click(object sender, EventArgs e)
         {
             // First check and give immediate message if we can't do coordinate mapping.
             string message;
             if (!controller.CanExportGpxOrKml(out message)) {
-                ErrorMessage(message);
+                await ErrorMessage(message);
                 return;
             }
 

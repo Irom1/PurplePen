@@ -599,7 +599,7 @@ namespace PurplePen
                 PointF originalLocation = ((PointCourseObj) courseObjectStart).location;
                 PointF newLocation = PointF.Add(originalLocation, new SizeF(deltaX,deltaY));
 
-                controller.MoveControlInCurrentCourse(controlId, newLocation);
+                await controller.MoveControlInCurrentCourse(controlId, newLocation);
             }
             controller.DefaultCommandMode();
 

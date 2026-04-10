@@ -87,9 +87,15 @@ namespace PurplePen
         }
 
         // Show an error message.
-        void ErrorMessage(string message)
+        async void ErrorMessage(string message)
         {
-            ((MainFrame) Owner).ErrorMessage(message);
+            await ((MainFrame) Owner).ErrorMessage(message);
+        }
+
+        // Show an warning message.
+        async void WarningMessage(string message)
+        {
+            await ((MainFrame)Owner).WarningMessage(message);
         }
 
         // Update the formatting so that changed codes are displayed in red.
@@ -112,7 +118,7 @@ namespace PurplePen
 
             if (!QueryEvent.IsLegalControlCode(newCode, out reason)) {
                 // The code isn't valid. Disallow.
-                ((MainFrame) Owner).ErrorMessage(reason);
+                ErrorMessage(reason);
                 e.Cancel = true;
             }
         }
@@ -126,7 +132,7 @@ namespace PurplePen
 
                 QueryEvent.IsPreferredControlCode(eventDB, newValue, out reason);
                 if (reason != null)
-                    ((MainFrame) Owner).WarningMessage(reason);
+                    WarningMessage(reason);
             }
         }
 

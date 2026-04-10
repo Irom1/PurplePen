@@ -209,10 +209,10 @@ namespace PurplePen.Tests
             return Task.FromResult(retVal);
         }
 
-        public YesNoCancel MovingSharedControl(string controlCode, string otherCourses)
+        public Task<YesNoCancel> MovingSharedControl(string controlCode, string otherCourses)
         {
             output.WriteLine("MOVING SHARED CONTROL QUESTION: '{0}' in '{1}'", controlCode, otherCourses);
-            return returnQuestion;
+            return Task.FromResult(returnQuestion);
         }
 #pragma warning restore VSTHRD103
 

@@ -3883,7 +3883,7 @@ namespace PurplePen
         }
 
         // Move a control.
-        public void MoveControlInCurrentCourse(Id<ControlPoint> controlId, PointF newLocation)
+        public async Task MoveControlInCurrentCourse(Id<ControlPoint> controlId, PointF newLocation)
         {
             CourseDesignator currentCourse = selectionMgr.Selection.ActiveCourseDesignator;
             if (!currentCourse.IsAllControls) {
@@ -3896,7 +3896,7 @@ namespace PurplePen
                 if (otherCourses != null) {
                     string courseList = QueryEvent.CourseList(eventDB, otherCourses);
                     string code = eventDB.GetControl(controlId).code;
-                    YesNoCancel result = ui.MovingSharedControl(code, courseList);
+                    YesNoCancel result = await ui.MovingSharedControl(code, courseList);
                     if (result == YesNoCancel.Cancel) {
                         // Cancel -- do nothing.
                         return;
@@ -4487,7 +4487,7 @@ namespace PurplePen
         Task<YesNoCancel> YesNoCancelQuestion(string message, bool yesDefault);
 
         // Yes = move control, No = create new control, Cancel = do nothing.
-        YesNoCancel MovingSharedControl(string controlCode, string otherCourses);
+        Task<YesNoCancel> MovingSharedControl(string controlCode, string otherCourses);
 
         // Find a missing map file.
         Task<bool> FindMissingMapFile(string missingMapFile);

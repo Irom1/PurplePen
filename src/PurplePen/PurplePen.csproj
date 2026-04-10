@@ -53,6 +53,12 @@
     <PackageReference Include="SharpZipLib" />
     <PackageReference Include="Newtonsoft.Json" />
     <PackageReference Include="System.Configuration.ConfigurationManager" />
+
+    <PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+
   </ItemGroup>
   <ItemGroup>
     <Compile Update="CoursePartBanner.cs">

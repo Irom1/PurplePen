@@ -155,7 +155,7 @@ namespace PurplePen.ViewModels
             throw new NotImplementedException();
         }
 
-        public YesNoCancel MovingSharedControl(string controlCode, string otherCourses)
+        public async Task<YesNoCancel> MovingSharedControl(string controlCode, string otherCourses)
         {
             throw new NotImplementedException();
         }

@@ -47,6 +47,12 @@ using System.Windows.Forms;
 using Newtonsoft.Json;
 using PurplePen.Livelox.ApiContracts;
 
+// I don't really understand this code, and it's not active right now, so I'm disabling warnings for it to avoid noise.
+// If we need to change this code in the future, we should understand it and then re-enable warnings to make sure new code is correct.
+#pragma warning disable VSTHRD110
+#pragma warning disable VSTHRD002
+#pragma warning disable VSTHRD105
+
 namespace PurplePen.Livelox
 {
     class LiveloxApiClient : IDisposable

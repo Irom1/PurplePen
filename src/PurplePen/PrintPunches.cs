@@ -200,7 +200,7 @@ namespace PurplePen
             if (courseSelector.SelectedCourses.Length > 0)
                 return true;
             else {
-                ((MainFrame) Owner).ErrorMessage(MiscText.NoCoursesSelected);
+                ErrorMessage(MiscText.NoCoursesSelected);
                 return false;
             }
         }
@@ -232,5 +232,12 @@ namespace PurplePen
 
             dialog.Dispose();
         }
+
+        // Show an error message.
+        async void ErrorMessage(string message)
+        {
+            await ((MainFrame)Owner).ErrorMessage(message);
+        }
+
     }
 }

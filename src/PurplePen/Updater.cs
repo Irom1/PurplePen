@@ -193,7 +193,7 @@ namespace PurplePen
             // controls can only be accessed from the thread that created them. BeginInvoke
             // queues the action onto the UI thread's message loop and returns immediately,
             // letting the download continue without blocking on the UI update.
-            Task.Run(async () => {
+            _ = Task.Run(async () => {
                 try {
                     using (HttpResponseMessage response = await client.GetAsync(downloadFrom, HttpCompletionOption.ResponseHeadersRead)) {
                         response.EnsureSuccessStatusCode();
@@ -418,6 +418,7 @@ namespace PurplePen
             // thread with no SynchronizationContext, so there is no deadlock risk.
             // We use GetAwaiter().GetResult() instead of .Result because .Result wraps
             // exceptions in AggregateException, which would bypass our HttpRequestException catch.
+#pragma warning disable VSTHRD002 
             string latestVersion = null;
             string latestPrerelease = null;
             try {
@@ -436,6 +437,7 @@ namespace PurplePen
                     latestPrerelease = null;
                 }
             }
+#pragma warning restore VSTHRD002
 
             if (latestVersion != null) {
                 // Get first line and second line.
@@ -483,7 +485,7 @@ namespace PurplePen
                 JsonEncode(CrashReporterDotNET.HelperMethods.GetWindowsVersion()));
             try {
                 StringContent content = new StringContent(status, Encoding.UTF8, "application/json");
-                client.PostAsync("http://monitor.purple-pen.org/api/Invocation", content);
+                _ = client.PostAsync("http://monitor.purple-pen.org/api/Invocation", content);
             }
             catch (HttpRequestException ex) {
                 // Ignore problems.
