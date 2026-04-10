@@ -164,9 +164,8 @@ namespace PurplePen.Tests
             output.WriteLine("INFO: '{0}'", message);
             return Task.CompletedTask;
         }
-#pragma warning restore VSTHRD103
 
-        public bool YesNoQuestion(string message, bool yesDefault)
+        public Task<bool> YesNoQuestion(string message, bool yesDefault)
         {
             output.WriteLine("YES/NO QUESTION: '{0}' (default {1})", message, yesDefault ? "yes" : "no");
             bool retVal;
@@ -178,10 +177,10 @@ namespace PurplePen.Tests
             else
                 retVal = false;
             output.WriteLine("  (returned {0})", retVal ? "yes" : "no");
-            return retVal;
+            return Task.FromResult(retVal);
         }
 
-        public bool OKCancelMessage(string message, bool okDefault)
+        public Task<bool> OKCancelMessage(string message, bool okDefault)
         {
             output.WriteLine("OK/CANCEL MESSAGE: '{0}' (default {1})", message, okDefault ? "ok" : "cancel");
             bool retVal;
@@ -193,10 +192,10 @@ namespace PurplePen.Tests
             else
                 retVal = false;
             output.WriteLine("  (returned {0})", retVal ? "ok" : "cancel");
-            return retVal;
+            return Task.FromResult(retVal);
         }
 
-        public YesNoCancel YesNoCancelQuestion(string message, bool yesDefault)
+        public Task<YesNoCancel> YesNoCancelQuestion(string message, bool yesDefault)
         {
             output.WriteLine("YES/NO/CANCEL QUESTION: '{0}' (default {1})", message, yesDefault ? "yes" : "no");
             YesNoCancel retVal;
@@ -207,7 +206,7 @@ namespace PurplePen.Tests
                 retVal = returnQuestion;
 
             output.WriteLine("  (returned {0})", retVal.ToString().ToLower());
-            return retVal;
+            return Task.FromResult(retVal);
         }
 
         public YesNoCancel MovingSharedControl(string controlCode, string otherCourses)
@@ -215,6 +214,7 @@ namespace PurplePen.Tests
             output.WriteLine("MOVING SHARED CONTROL QUESTION: '{0}' in '{1}'", controlCode, otherCourses);
             return returnQuestion;
         }
+#pragma warning restore VSTHRD103
 
 
         // Strings expected and returned from FindMissingMapFile.

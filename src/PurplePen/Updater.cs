@@ -159,7 +159,7 @@ namespace PurplePen
 #endif
 
 #if !MSSTORE
-        private static void AskToDownload(string versionNumber, string fileName)
+        private static async Task AskToDownload(string versionNumber, string fileName)
         {
             // Ask to see if user wants to update.
             string message = string.Format(MiscText.NewerVersionAvailable, Util.PrettyVersionString(versionNumber), Util.PrettyVersionString(VersionNumber.Current));
@@ -170,7 +170,7 @@ namespace PurplePen
 
             // If we have a controller, make sure we can exit.
             if (Controller != null) {
-                if (!Controller.TryCloseFile())
+                if (!await Controller.TryCloseFile())
                     return;
             }
 
@@ -309,7 +309,7 @@ namespace PurplePen
         }
 #endif
 
-        static void versionCheckWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        static async void versionCheckWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             // The version check has completed. The result is either null, or the version string of the new version.
             if (!e.Cancelled && e.Error == null && e.Result != null) {
@@ -350,10 +350,10 @@ namespace PurplePen
                 }
 #else
                 if (results.CurrentVersion != null && Util.CompareVersionStrings(VersionNumber.Current, results.CurrentVersion) < 0) {
-                    AskToDownload(results.CurrentVersion, results.CurrentFileName);
+                    await AskToDownload(results.CurrentVersion, results.CurrentFileName);
                 }
                 else if (results.PrereleaseVersion != null && Util.CompareVersionStrings(VersionNumber.Current, results.PrereleaseVersion) < 0 && Util.SameExceptRevision(VersionNumber.Current, results.PrereleaseVersion)) {
-                    AskToDownload(results.PrereleaseVersion, results.PrereleaseFileName);
+                    await AskToDownload(results.PrereleaseVersion, results.PrereleaseFileName);
                 }
 #endif
             }

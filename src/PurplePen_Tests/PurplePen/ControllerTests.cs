@@ -234,7 +234,7 @@ Invalid control point kind 'norfmal''
             info.blend = PurpleColorBlend.Blend;
             info.lowerPurpleLayer = null;
 
-            success = controller.TryCloseFile();
+            success = await controller.TryCloseFile();
             Assert.IsTrue(success);
             success = await controller.NewEvent(info);
             Assert.IsTrue(success);
@@ -369,7 +369,7 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
             bool success = await controller.LoadInitialFile(TestUtil.GetTestFile("controller\\sampleevent1.coursescribe"), true);
             Assert.IsTrue(success);
 
-            success = controller.TryCloseFile();
+            success = await controller.TryCloseFile();
             Assert.IsTrue(success);
             Assert.AreEqual("", ui.output.ToString());  // no messages to the user.
         }
@@ -384,7 +384,7 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
             MakeDirty();
 
             ui.returnQuestion = YesNoCancel.Yes;
-            success = controller.TryCloseFile();
+            success = await controller.TryCloseFile();
             Assert.IsTrue(success);
             Assert.IsTrue(File.Exists(TestUtil.GetTestFile("file_temp.coursescribe")));  // make sure it was saved.
             Assert.AreEqual(
@@ -404,7 +404,7 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
             MakeDirty();
 
             ui.returnQuestion = YesNoCancel.No;
-            success = controller.TryCloseFile();
+            success = await controller.TryCloseFile();
             Assert.IsTrue(success);
             Assert.IsFalse(File.Exists(TestUtil.GetTestFile("file_temp.coursescribe")));  // make sure it was NOT saved.
             Assert.AreEqual(
@@ -425,7 +425,7 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
             MakeDirty();
 
             ui.returnQuestion = YesNoCancel.Cancel;
-            success = controller.TryCloseFile();
+            success = await controller.TryCloseFile();
             Assert.IsFalse(success);
             Assert.IsFalse(File.Exists(TestUtil.GetTestFile("file_temp.coursescribe")));  // make sure it was NOT saved.
             Assert.AreEqual(
@@ -447,7 +447,7 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
             MakeDirty();
 
             ui.returnQuestion = YesNoCancel.No;
-            success = controller.TryCloseFile();
+            success = await controller.TryCloseFile();
             await controller.LoadNewFile(TestUtil.GetTestFile("marymoor.ppen"));
             Assert.IsTrue(success);
             Assert.IsFalse(File.Exists(TestUtil.GetTestFile("controller\\file_temp.coursescribe")));  // make sure it was NOT saved.
@@ -952,13 +952,13 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
             Assert.IsTrue(success);
 
             controller.GetSelectionMgr().SelectSpecial(SpecialId(1));
-            success = controller.DeleteSelection();
+            success = await controller.DeleteSelection();
             Assert.IsTrue(success);
             Assert.IsFalse(eventDB.IsSpecialPresent(SpecialId(1)));
 
             controller.SelectTab(3);
             controller.GetSelectionMgr().SelectSpecial(SpecialId(3));
-            success = controller.DeleteSelection();
+            success = await controller.DeleteSelection();
             Assert.IsTrue(success);
             Assert.IsFalse(eventDB.IsSpecialPresent(SpecialId(3)));
 
@@ -978,7 +978,7 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
             controller.SelectTab(1);
             controller.SelectDescriptionLine(7);
 
-            success = controller.DeleteSelection();
+            success = await controller.DeleteSelection();
             Assert.IsTrue(success);
 
             EventDB eventDB = controller.GetEventDB();
@@ -1003,7 +1003,7 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
             controller.SelectDescriptionLine(14);
 
             ui.returnQuestion = YesNoCancel.Yes;
-            success = controller.DeleteSelection();
+            success = await controller.DeleteSelection();
             Assert.IsTrue(success);
 
             EventDB eventDB = controller.GetEventDB();
@@ -1033,7 +1033,7 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
             controller.SelectDescriptionLine(14);
 
             ui.returnQuestion = YesNoCancel.No;
-            success = controller.DeleteSelection();
+            success = await controller.DeleteSelection();
             Assert.IsTrue(success);
 
             EventDB eventDB = controller.GetEventDB();
@@ -1063,7 +1063,7 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
             controller.SelectDescriptionLine(3);
 
             ui.returnQuestion = YesNoCancel.No;
-            success = controller.DeleteSelection();
+            success = await controller.DeleteSelection();
             Assert.IsTrue(success);
 
             EventDB eventDB = controller.GetEventDB();
@@ -1085,7 +1085,7 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
             controller.SelectDescriptionLine(18);
 
             ui.returnQuestion = YesNoCancel.Yes;
-            success = controller.DeleteSelection();
+            success = await controller.DeleteSelection();
             Assert.IsTrue(success);
 
             EventDB eventDB = controller.GetEventDB();
@@ -1119,7 +1119,7 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
             controller.SelectDescriptionLine(18);
 
             ui.returnQuestion = YesNoCancel.No;
-            success = controller.DeleteSelection();
+            success = await controller.DeleteSelection();
             Assert.IsFalse(success);
 
             EventDB eventDB = controller.GetEventDB();
@@ -1152,7 +1152,7 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
             controller.SelectDescriptionLine(2);
 
             ui.returnQuestion = YesNoCancel.Yes;
-            success = controller.DeleteSelection();
+            success = await controller.DeleteSelection();
             Assert.IsTrue(success);
 
             Assert.IsFalse(eventDB.IsCourseControlPresent(courseControlId));
@@ -1179,7 +1179,7 @@ Could not find a part of the path '" + info.eventFileName + "'.'\r\n";
             controller.SelectDescriptionLine(18);
 
             ui.returnQuestion = YesNoCancel.No;
-            success = controller.DeleteSelection();
+            success = await controller.DeleteSelection();
             Assert.IsTrue(success);
 
             EventDB eventDB = controller.GetEventDB();
@@ -1373,7 +1373,7 @@ Code:           layer:12  control:4  scale:1  text:GO  top-left:(38.29,-16.89)
             Assert.IsTrue(controller.CanDeleteCurrentCourse());
 
             ui.returnQuestion = YesNoCancel.No;
-            success = controller.DeleteCurrentCourse();
+            success = await controller.DeleteCurrentCourse();
             Assert.IsTrue(success);
 
             EventDB eventDB = controller.GetEventDB();
@@ -1412,7 +1412,7 @@ Code:           layer:12  control:4  scale:1  text:GO  top-left:(38.29,-16.89)
             Assert.IsTrue(controller.CanDeleteCurrentCourse());
 
             ui.returnQuestion = YesNoCancel.Yes;
-            success = controller.DeleteCurrentCourse();
+            success = await controller.DeleteCurrentCourse();
             Assert.IsTrue(success);
 
             EventDB eventDB = controller.GetEventDB();
@@ -2363,7 +2363,7 @@ Code:           layer:12  control:4  scale:1  text:GO  top-left:(38.29,-16.89)
             controller.SelectTab(4);    // All controls.
             controller.SelectDescriptionLine(12);
             Assert.IsTrue(controller.CanDeleteSelection());
-            controller.DeleteSelection();
+            await controller.DeleteSelection();
             Assert.AreEqual("Control 303 before", eventDB.GetControl(ControlId(18)).descTextBefore);
             Assert.AreEqual("Control 303 after", eventDB.GetControl(ControlId(18)).descTextAfter);
             Assert.AreEqual(null, eventDB.GetCourseControl(CourseControlId(208)).descTextBefore);
@@ -2371,7 +2371,7 @@ Code:           layer:12  control:4  scale:1  text:GO  top-left:(38.29,-16.89)
 
             controller.SelectDescriptionLine(14);
             Assert.IsTrue(controller.CanDeleteSelection());
-            controller.DeleteSelection();
+            await controller.DeleteSelection();
             Assert.AreEqual("Control 303 before", eventDB.GetControl(ControlId(18)).descTextBefore);
             Assert.AreEqual(null, eventDB.GetControl(ControlId(18)).descTextAfter);
             Assert.AreEqual(null, eventDB.GetCourseControl(CourseControlId(208)).descTextBefore);
@@ -2381,7 +2381,7 @@ Code:           layer:12  control:4  scale:1  text:GO  top-left:(38.29,-16.89)
             controller.SelectTab(0);    // All controls.
             controller.SelectDescriptionLine(5);
             Assert.IsTrue(controller.CanDeleteSelection());
-            controller.DeleteSelection();
+            await controller.DeleteSelection();
             Assert.AreEqual(null, eventDB.GetControl(ControlId(4)).descTextBefore);
         }
 

@@ -1235,14 +1235,14 @@ namespace PurplePen
         // Return true if closed and re-initialized.
         // Return false if user canceled or the save failed.
         // If true is returned, can exit or load a new file via LoadNewFile.
-        public bool TryCloseFile()
+        public async Task<bool> TryCloseFile()
         {
             bool success;
 
             CancelMode();
 
             if (IsDirty) {
-                YesNoCancel result = ui.YesNoCancelQuestion(string.Format(MiscText.SaveChanges, Path.GetFileName(FileName)), true);
+                YesNoCancel result = await ui.YesNoCancelQuestion(string.Format(MiscText.SaveChanges, Path.GetFileName(FileName)), true);
                 if (result == YesNoCancel.Yes) {
                     if (!Save())
                         result = YesNoCancel.Cancel;   // if the save fails, automatically cancel the exit.
@@ -1626,7 +1626,7 @@ namespace PurplePen
         }
 
         // Delete the currently selected object.
-        public bool DeleteSelection()
+        public async Task<bool> DeleteSelection()
         {
             CancelMode();
 
@@ -1635,11 +1635,11 @@ namespace PurplePen
             // We can delete any selected control.
             if (selection.SelectionKind == SelectionKind.Control) {
                 if (selection.SelectedCourseControl.IsNone) {
-                    return DeleteControlFromAllControls(selection);
+                    return await DeleteControlFromAllControls(selection);
                 }
                 else {
                     // Deleting one control from a course.
-                    return DeleteControlFromCourse(selection.ActiveCourseDesignator.CourseId, selection.SelectedCourseControl, CommandNameText.DeleteControl);
+                    return await DeleteControlFromCourse(selection.ActiveCourseDesignator.CourseId, selection.SelectedCourseControl, CommandNameText.DeleteControl);
                 }
             }
             else if (selection.SelectionKind == SelectionKind.Special) {
@@ -1693,7 +1693,7 @@ namespace PurplePen
             return Id<CourseControl>.None;
         }
 
-        private bool DeleteControlFromCourse(Id<Course> courseId, Id<CourseControl> courseControl, string commandNameText)
+        private async Task<bool> DeleteControlFromCourse(Id<Course> courseId, Id<CourseControl> courseControl, string commandNameText)
         {
             Debug.Assert(selectionMgr.Selection.ActiveCourseDesignator.IsNotAllControls);
             Id<CourseControl> previous = PreviousCourseControlInSelection();
@@ -1702,7 +1702,7 @@ namespace PurplePen
 
             ICollection<Id<ControlPoint>> removedControls = ChangeEvent.RemoveCourseControl(eventDB, courseId, courseControl);
 
-            AskUserAboutDeletingOrphanedControls(removedControls);
+            await AskUserAboutDeletingOrphanedControls(removedControls);
 
             undoMgr.EndCommand(177);
 
@@ -1713,7 +1713,7 @@ namespace PurplePen
             return true;
         }
 
-        private bool DeleteControlFromAllControls(SelectionInfo selection)
+        private async Task<bool> DeleteControlFromAllControls(SelectionInfo selection)
         {
             bool delete = true;   // actually delete the control?
 
@@ -1726,7 +1726,7 @@ namespace PurplePen
                 string controlName = "\"" + Util.ControlPointName(eventDB, selection.SelectedControl, NameStyle.Medium) + "\"";
                 string courseNames = QueryEvent.CourseList(eventDB, coursesUsingControl);
 
-                delete = ui.YesNoQuestion(string.Format(MiscText.DeleteControlFromAllControls, controlName, courseNames), false);
+                delete = await ui.YesNoQuestion(string.Format(MiscText.DeleteControlFromAllControls, controlName, courseNames), false);
             }
 
             if (delete) {
@@ -1748,7 +1748,7 @@ namespace PurplePen
         }
 
         // Delete the current course
-        public bool DeleteCurrentCourse()
+        public async Task<bool> DeleteCurrentCourse()
         {
             CourseDesignator courseDesignator = selectionMgr.Selection.ActiveCourseDesignator;
             if (courseDesignator.IsAllControls)
@@ -1766,14 +1766,14 @@ namespace PurplePen
             undoMgr.BeginCommand(712, CommandNameText.DeleteCourse);
             ChangeEvent.DeleteCourse(eventDB, courseDesignator.CourseId);
 
-            AskUserAboutDeletingOrphanedControls(usedControls);
+            await AskUserAboutDeletingOrphanedControls(usedControls);
 
             undoMgr.EndCommand(712);
 
             return true;
         }
 
-        private void AskUserAboutDeletingOrphanedControls(IEnumerable<Id<ControlPoint>> possibleOrphans)
+        private async Task AskUserAboutDeletingOrphanedControls(IEnumerable<Id<ControlPoint>> possibleOrphans)
         {
             // Determine if any of the controls are "orphaned".
             List<Id<ControlPoint>> orphanedControls = new List<Id<ControlPoint>>();
@@ -1789,7 +1789,7 @@ namespace PurplePen
 
             // If there are orphaned controls, ask the user when to remove them also.
             if (orphanedControls.Count > 0) {
-                bool delete = ui.YesNoQuestion(string.Format((orphanedControls.Count == 1) ? MiscText.DeleteControlFromControlsCollection : MiscText.DeleteMultipleControlsFromControlsCollection,
+                bool delete = await ui.YesNoQuestion(string.Format((orphanedControls.Count == 1) ? MiscText.DeleteControlFromControlsCollection : MiscText.DeleteMultipleControlsFromControlsCollection,
                         orphanedControlsText), false);
                 if (delete) {
                     foreach (Id<ControlPoint> controlId in orphanedControls)
@@ -3244,7 +3244,7 @@ namespace PurplePen
             return CommandStatus.Disabled;
         }
 
-        public void DeleteFork()
+        public async Task DeleteFork()
         {
 
             if (CanDeleteFork() != CommandStatus.Enabled)
@@ -3255,7 +3255,7 @@ namespace PurplePen
 
             Id<CourseControl> forkStart = QueryEvent.GetForkStart(eventDB, courseId, selection.SelectedCourseControl);
 
-            DeleteControlFromCourse(courseId, forkStart, CommandNameText.DeleteFork);
+            await DeleteControlFromCourse(courseId, forkStart, CommandNameText.DeleteFork);
         }
 
         // Can we set a text line for the selected object? If so, return default text and position, name of object, and whether to enable the "this course only" option.
@@ -4293,7 +4293,7 @@ namespace PurplePen
             ui.EndProgressDialog();
         }
 
-        public bool OkCancelMessage(string message, bool okDefault)
+        public Task<bool> OkCancelMessage(string message, bool okDefault)
         {
             return ui.OKCancelMessage(message, okDefault);
         }
@@ -4482,9 +4482,9 @@ namespace PurplePen
         Task ErrorMessage(string message);
         Task WarningMessage(string message);
         Task InfoMessage(string message);
-        bool OKCancelMessage(string message, bool okDefault);
-        bool YesNoQuestion(string message, bool yesDefault);
-        YesNoCancel YesNoCancelQuestion(string message, bool yesDefault);
+        Task<bool> OKCancelMessage(string message, bool okDefault);
+        Task<bool> YesNoQuestion(string message, bool yesDefault);
+        Task<YesNoCancel> YesNoCancelQuestion(string message, bool yesDefault);
 
         // Yes = move control, No = create new control, Cancel = do nothing.
         YesNoCancel MovingSharedControl(string controlCode, string otherCourses);

@@ -115,17 +115,17 @@ namespace PurplePen.ViewModels
             await Services.DialogService.ShowDialogAsync(vm);
         }
 
-        public bool OKCancelMessage(string message, bool okDefault)
+        public async Task<bool> OKCancelMessage(string message, bool okDefault)
         {
             throw new NotImplementedException();
         }
 
-        public YesNoCancel YesNoCancelQuestion(string message, bool yesDefault)
+        public async Task<YesNoCancel> YesNoCancelQuestion(string message, bool yesDefault)
         {
             throw new NotImplementedException();
         }
 
-        public bool YesNoQuestion(string message, bool yesDefault)
+        public async Task<bool> YesNoQuestion(string message, bool yesDefault)
         {
             throw new NotImplementedException();
         }

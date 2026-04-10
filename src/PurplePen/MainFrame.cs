@@ -298,23 +298,23 @@ namespace PurplePen
         }
 
         // Show a ok-cancel message.
-        public bool OKCancelMessage(string message, bool okDefault)
+        public Task<bool> OKCancelMessage(string message, bool okDefault)
         {
             if (descriptionControl != null)
                 descriptionControl.CloseAnyPopup();
 
             DialogResult result = MessageBox.Show(this, message, MiscText.AppTitle, MessageBoxButtons.OKCancel, MessageBoxIcon.Information, okDefault ? MessageBoxDefaultButton.Button1 : MessageBoxDefaultButton.Button2);
-            return result == DialogResult.OK;
+            return Task.FromResult(result == DialogResult.OK);
         }
 
         // Ask a yes-no question.
-        public bool YesNoQuestion(string message, bool yesDefault)
+        public Task<bool> YesNoQuestion(string message, bool yesDefault)
         {
             if (descriptionControl != null)
                 descriptionControl.CloseAnyPopup();
 
             DialogResult result = MessageBox.Show(this, message, MiscText.AppTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question, yesDefault ? MessageBoxDefaultButton.Button1 : MessageBoxDefaultButton.Button2);
-            return result == DialogResult.Yes;
+            return Task.FromResult(result == DialogResult.Yes);
         }
 
         private YesNoCancel YesNoCancelFromDialogResult(DialogResult dialogResult)
@@ -332,13 +332,13 @@ namespace PurplePen
         }
 
         // Ask a yes-no-cancel question.
-        public YesNoCancel YesNoCancelQuestion(string message, bool yesDefault)
+        public Task<YesNoCancel> YesNoCancelQuestion(string message, bool yesDefault)
         {
             if (descriptionControl != null)
                 descriptionControl.CloseAnyPopup();
 
             DialogResult result = MessageBox.Show(this, message, MiscText.AppTitle, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, yesDefault ? MessageBoxDefaultButton.Button1 : MessageBoxDefaultButton.Button2);
-            return YesNoCancelFromDialogResult(result);
+            return Task.FromResult(YesNoCancelFromDialogResult(result));
         }
 
         public YesNoCancel MovingSharedControl(string controlCode, string otherCourses)
@@ -1061,11 +1061,11 @@ namespace PurplePen
             Close();
         }
 
-        private void MainFrame_FormClosing(object sender, FormClosingEventArgs e)
+        private async void MainFrame_FormClosing(object sender, FormClosingEventArgs e)
         {
             // Either File/Exit or the close button clicked. See if we can exit.
 
-            bool exit = controller.TryCloseFile();
+            bool exit = await controller.TryCloseFile();
             if (!exit)
                 e.Cancel = true;
         }
@@ -1074,7 +1074,7 @@ namespace PurplePen
         private async void openMenu_Click(object sender, EventArgs e)
         {
             // Try to close the current file. If that succeeds, then ask for a new file and try to open it.
-            bool closeSuccess = controller.TryCloseFile();
+            bool closeSuccess = await controller.TryCloseFile();
             if (closeSuccess) {
                 string newFilename = GetOpenFileName();
                 if (newFilename != null) {
@@ -1098,7 +1098,7 @@ namespace PurplePen
         private async void newEventMenu_Click(object sender, EventArgs e)
         {
             // Try to close the current file. If that succeeds, then ask for a new file and try to open it.
-            bool closeSuccess = controller.TryCloseFile();
+            bool closeSuccess = await controller.TryCloseFile();
             if (closeSuccess) {
                 NewEventWizard wizard = new NewEventWizard();
                 DialogResult result = wizard.ShowDialog();
@@ -2634,7 +2634,7 @@ namespace PurplePen
         }
 
 
-        private void createOcadFilesMenu_Click(object sender, EventArgs e)
+        private async void createOcadFilesMenu_Click(object sender, EventArgs e)
         {
             bool success = false;
 
@@ -2695,7 +2695,7 @@ namespace PurplePen
                 // Give any other warning messages.
                 List<string> warnings = controller.OcadFilesWarnings(createOcadFilesDialog.OcadCreationSettings);
                 foreach (string warning in warnings) {
-                    WarningMessage(warning);
+                    await WarningMessage(warning);
                 }
 
                 // Save settings persisted between invocations of this dialog.
@@ -2704,7 +2704,7 @@ namespace PurplePen
 
                 // PP keeps bitmaps in memory and locks them. Tell the user to close PP.
                 if (mapDisplay.MapType == MapType.Bitmap)
-                    InfoMessage(MiscText.ClosePPBeforeLoadingOCAD);
+                    await InfoMessage(MiscText.ClosePPBeforeLoadingOCAD);
 
                 break;
             }
@@ -2716,21 +2716,21 @@ namespace PurplePen
             // Check if they need to be installed, ask the user, and if they say yes, install the fonts.
             if (success) {
                 if (controller.ShouldInstallRobotoFonts()) {
-                    if (YesNoQuestion(MiscText.AskInstallRobotoFonts, true)) {
+                    if (await YesNoQuestion(MiscText.AskInstallRobotoFonts, true)) {
                         bool installSucceeded = controller.InstallRobotoFonts();
                         if (!installSucceeded)
-                            ErrorMessage(MiscText.RobotoFontsInstallFailed);
+                            await ErrorMessage(MiscText.RobotoFontsInstallFailed);
                     }
                 }
             }
         }
 
-        private void createKmlFilesMenu_Click(object sender, EventArgs e)
+        private async void createKmlFilesMenu_Click(object sender, EventArgs e)
         {
             // First check and give immediate message if we can't do coordinate mapping.
             string message;
             if (!controller.CanExportGpxOrKml(out message)) {
-                ErrorMessage(message);
+                await ErrorMessage(message);
                 return;
             }
 
@@ -3161,7 +3161,7 @@ namespace PurplePen
 
 
 
-        private void programLanguageMenu_Click(object sender, EventArgs e)
+        private async void programLanguageMenu_Click(object sender, EventArgs e)
         {
             SetUILanguage dialog = new SetUILanguage();
 
@@ -3182,7 +3182,7 @@ namespace PurplePen
 
                 if (controller.GetDescriptionLanguage() != dialog.Culture.Name && controller.HasDescriptionLanguage(dialog.Culture.Name)) {
                     // The current description language does not match the new program language. Offer to change it to match.
-                    if (YesNoQuestion(string.Format(MiscText.ChangeDescriptionLanguage,
+                    if (await YesNoQuestion(string.Format(MiscText.ChangeDescriptionLanguage,
                                                                         CultureInfo.GetCultureInfo(controller.GetDescriptionLanguage()).NativeName,
                                                                         CultureInfo.GetCultureInfo(dialog.Culture.Name).NativeName),
                                                  true)) 
