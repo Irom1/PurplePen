@@ -45,6 +45,12 @@ namespace AvUtil
                 name: nameof(ViewportChanged),
                 routingStrategy: RoutingStrategies.Direct);
 
+        // The zoom factor.
+        public static readonly DirectProperty<PanAndZoom, float> ZoomFactorProperty =
+        AvaloniaProperty.RegisterDirect<PanAndZoom, float>(
+            nameof(ZoomFactor),
+            getter: o => o.ZoomFactor,
+            setter: (o, value) => o.ZoomFactor = value);
 
         public PanAndZoom()
         {
@@ -108,7 +114,7 @@ namespace AvUtil
                     value = maxZoom;
 
                 if (zoom != value) {
-                    zoom = value;
+                    SetAndRaise(ZoomFactorProperty, ref zoom, value);
                     ViewportHasChanged();
                 }
             }

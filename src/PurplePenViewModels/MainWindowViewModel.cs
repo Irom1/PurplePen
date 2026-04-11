@@ -58,6 +58,9 @@ namespace PurplePen.ViewModels
         [ObservableProperty]
         private TextPart[] selectedObjectDescription = new TextPart[0];
 
+        [ObservableProperty]
+        private float mapZoomFactor;
+
         [ObservableProperty, NotifyPropertyChangedFor(nameof(StatusBarLocationDisplay))]
         private PointF? mouseLocationInMap;
 

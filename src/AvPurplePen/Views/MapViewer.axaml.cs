@@ -30,6 +30,13 @@ public partial class MapViewer : UserControl
     public static readonly DirectProperty<MapViewer, PointF?> MouseLocationProperty = 
             AvaloniaProperty.RegisterDirect<MapViewer, PointF?>(nameof(MouseLocation), map => map.MouseLocation);
 
+    // The zoom factor.
+    public static readonly DirectProperty<MapViewer, float> ZoomFactorProperty =
+    AvaloniaProperty.RegisterDirect<MapViewer, float>(
+        nameof(ZoomFactor),
+        getter: o => o.ZoomFactor,
+        setter: (o, value) => o.ZoomFactor = value);
+
     public static readonly RoutedEvent<FancyMouseEventArgs> FancyMouseActivityEvent =
         RoutedEvent.Register<MapViewer, FancyMouseEventArgs>(
             name: nameof(FancyMouseActivity),
@@ -96,6 +103,13 @@ public partial class MapViewer : UserControl
         }
     }
 
+    // Expose the inner PanAndZoom control's ZoomFactor as a property of MapViewer, so it can be data-bound.
+    // Note that we also subscribe to PropertyChanged on the PanAndZoom control to raise change notifications
+    // for this property when the zoom factor changes.
+    public float ZoomFactor {
+        get => panAndZoom.ZoomFactor;
+        set => panAndZoom.ZoomFactor = value;
+    }
 
     PointF? _mouseLocation;  // Backing field for MouseLocation property. Only change via property setting to ensure change notifications.
 
@@ -148,6 +162,14 @@ public partial class MapViewer : UserControl
         else if (change.Property == MapHighlightsProperty) {
             IMapViewerHighlight[]? newMapHighlights = change.GetNewValue<IMapViewerHighlight[]?>();
             HighlightsChanged(newMapHighlights);
+        }
+    }
+
+    private void panAndZoom_PropertyChanged(object? sender, AvaloniaPropertyChangedEventArgs e)
+    {
+        // If the pan and zoom control's ZoomFactor changes, so does ours.
+        if (e.Property == PanAndZoom.ZoomFactorProperty) {
+            RaisePropertyChanged(ZoomFactorProperty, (float)e.OldValue!, (float)e.NewValue!);
         }
     }
 

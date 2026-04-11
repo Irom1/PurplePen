@@ -692,7 +692,7 @@
 
             <!-- Zoom percentage label -->
             <TextBlock x:Name="zoomAmountLabel" Grid.Column="2"
-                       Text="{resx:Localize MainFrame_zoomAmountLabel_Text}"
+                       Text="{Binding MapZoomFactor, StringFormat='{}{0:P0}'}"
                        VerticalAlignment="Center" Margin="4,0"/>
 
             <!-- Zoom slider (replaces WinForms ToolStripTrackBar) -->
@@ -841,6 +841,7 @@
                     MapHighlights="{Binding MapHighlights}"
                     FancyMouseActivity="MapViewer_MouseActivity"
                     MouseLocation="{Binding MouseLocationInMap, Mode=OneWayToSource}"
+                    ZoomFactor="{Binding MapZoomFactor, Mode=TwoWay}"
                 />
 
                 <!-- Vertical scroll bar for map viewer -->
