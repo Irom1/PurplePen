@@ -38,7 +38,9 @@
       "Bash(grep -r \"ImageSharp\\\\|SixLabors\" /d/Repos/Main/PurplePen/src --include=*.cs --include=*.csproj)",
       "WebFetch(domain:docs.irihi.tech)",
       "WebFetch(domain:raw.githubusercontent.com)",
-      "WebFetch(domain:api.github.com)"
+      "WebFetch(domain:api.github.com)",
+      "Bash(msbuild PPen.slnx /p:Configuration=Release /v:minimal)",
+      "Bash(\"/c/Program Files/Microsoft Visual Studio/2022/Professional/MSBuild/Current/Bin/MSBuild.exe\" PPen.slnx /p:Configuration=Release /v:minimal)"
     ]
   }
 }
