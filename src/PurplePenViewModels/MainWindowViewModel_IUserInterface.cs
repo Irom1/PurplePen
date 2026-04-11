@@ -111,7 +111,12 @@ namespace PurplePen.ViewModels
 
         public bool GetCurrentLocation(out PointF location, out float pixelSize)
         {
-            throw new NotImplementedException();
+#if PORTING
+            // dummy implementation.
+            location = new PointF();
+            pixelSize = 0.1F;
+            return true;
+#endif
         }
 
         public void InitiateMapDragging(PointF initialPos, PointerButton buttonEnd)

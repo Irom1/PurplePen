@@ -59,6 +59,9 @@ namespace PurplePen.ViewModels
         [ObservableProperty]
         private TextPart[] selectedObjectDescription = new TextPart[0];
 
+        [ObservableProperty]
+        string statusBarText = "";
+
         #region State change notifications.
 
         /// <summary>
@@ -88,9 +91,7 @@ namespace PurplePen.ViewModels
                 return;   // happens in design mode, for example.
 
             UpdateMenusToolbarButtons();   // This needs updating even if other things haven't changed.
-#if !PORTING
             UpdateStatusText();
-#endif
 
             if (controller.HasStateChanged(ref changeNum)) {
                 UpdateWindowTitle();
@@ -119,6 +120,14 @@ namespace PurplePen.ViewModels
             }
 #endif
         }
+
+        // Update the status text.
+        void UpdateStatusText()
+        {
+            if (controller == null) { return; }
+            this.StatusBarText = controller.StatusText;
+        }
+
 
         // Update the window title with the current file name.
         private void UpdateWindowTitle()

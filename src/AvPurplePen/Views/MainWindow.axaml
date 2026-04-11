@@ -680,12 +680,13 @@
         <!-- Status bar at the bottom with status text, zoom controls, and coordinate display. -->
         <Grid x:Name="statusBar" DockPanel.Dock="Bottom" Height="26"
               ColumnDefinitions="*,Auto,Auto,Auto,Auto"
-              Background="{DynamicResource SemiColorTertiaryLight}">
+              Background="#F0F2F4">
 
             <!-- Status message (Spring = fills available space) -->
             <TextBlock x:Name="statusLabel" Grid.Column="0"
                        VerticalAlignment="Center" Margin="4,0"
-                       TextTrimming="CharacterEllipsis"/>
+                       TextTrimming="WordEllipsis"
+                       Text="{Binding StatusBarText}"/>
 
             <Separator Grid.Column="1" Width="1" Margin="2,2"/>
 
