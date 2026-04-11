@@ -58,7 +58,7 @@ namespace PurplePen.ViewModels
         [ObservableProperty]
         private TextPart[] selectedObjectDescription = new TextPart[0];
 
-        [ObservableProperty]
+        [ObservableProperty, NotifyPropertyChangedFor(nameof(ZoomSliderValue))]
         private float mapZoomFactor;
 
         [ObservableProperty, NotifyPropertyChangedFor(nameof(StatusBarLocationDisplay))]
@@ -66,6 +66,26 @@ namespace PurplePen.ViewModels
 
         [ObservableProperty]
         string statusBarText = "";
+
+        // The slider view of the zoom, which is a log-based based of the true zoom, clamped to 0-100.
+        private const float zoomSliderMin = 0.25F; //25%
+        private const float zoomSliderMax = 10.0F; //1000%
+        public float ZoomSliderValue {
+            get {
+                float zoomTrackValue = (float) ((Math.Log10(MapZoomFactor) - Math.Log10(zoomSliderMin)) * (100 / (Math.Log10(zoomSliderMax) - Math.Log10(zoomSliderMin))));
+                if (zoomTrackValue < 0)
+                    zoomTrackValue = 0;
+                else if (zoomTrackValue > 100)
+                    zoomTrackValue = 100;
+                return zoomTrackValue;
+            }
+            set {
+                float newZoomFactor = (float) Math.Pow(10.0, ((value / 100) * (Math.Log10(zoomSliderMax) - Math.Log10(zoomSliderMin))) + Math.Log10(zoomSliderMin));
+                if (newZoomFactor == 0 || Math.Abs(MapZoomFactor / newZoomFactor - 1.0) > 0.0001F) {
+                    MapZoomFactor = newZoomFactor;
+                }
+            }
+        }
 
         // What to display in the status bar for the location of the mouse in the map. 
         public string StatusBarLocationDisplay {
