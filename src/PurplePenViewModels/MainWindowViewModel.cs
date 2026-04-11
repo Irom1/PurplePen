@@ -34,7 +34,6 @@ namespace PurplePen.ViewModels
         long changeNum = 0;         // When this changes, state information needs to be updated in the UI.
         bool updatingTabs = false;  // Guard to prevent re-entrant controller calls during UpdateTabs.
 
-
         [ObservableProperty]
         private IMapDisplay? mapDisplay;
 
@@ -59,8 +58,23 @@ namespace PurplePen.ViewModels
         [ObservableProperty]
         private TextPart[] selectedObjectDescription = new TextPart[0];
 
+        [ObservableProperty, NotifyPropertyChangedFor(nameof(StatusBarLocationDisplay))]
+        private PointF? mouseLocationInMap;
+
         [ObservableProperty]
         string statusBarText = "";
+
+        // What to display in the status bar for the location of the mouse in the map. 
+        public string StatusBarLocationDisplay {
+            get {
+                if (MouseLocationInMap.HasValue) {
+                    return string.Format(" X:{0,-6:##0.0} Y:{1,-6:##0.0}", MouseLocationInMap.Value.X, MouseLocationInMap.Value.Y);
+                }
+                else {
+                    return "";
+                }
+            }
+        }
 
         #region State change notifications.
 

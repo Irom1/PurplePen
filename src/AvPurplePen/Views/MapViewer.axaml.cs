@@ -8,6 +8,9 @@ using AvPurplePen.Views;
 using AvUtil;
 using PurplePen;
 using System;
+using System.Diagnostics;
+using System.Drawing;
+using Point = Avalonia.Point;
 using static AvUtil.PanAndZoom;
 
 namespace AvPurplePen;
@@ -22,6 +25,10 @@ public partial class MapViewer : UserControl
     // Has the map highlights that this map viewer should display.
     public static readonly StyledProperty<IMapViewerHighlight[]?> MapHighlightsProperty =
             AvaloniaProperty.Register<MainWindow, IMapViewerHighlight[]?>(nameof(MapHighlights));
+
+    // The location of the mouse in world coordinates, or null if the mouse is not currently in the viewport.
+    public static readonly DirectProperty<MapViewer, PointF?> MouseLocationProperty = 
+            AvaloniaProperty.RegisterDirect<MapViewer, PointF?>(nameof(MouseLocation), map => map.MouseLocation);
 
     public static readonly RoutedEvent<FancyMouseEventArgs> FancyMouseActivityEvent =
         RoutedEvent.Register<MapViewer, FancyMouseEventArgs>(
@@ -82,11 +89,27 @@ public partial class MapViewer : UserControl
         remove => RemoveHandler(FancyMouseActivityEvent, value);
     }
 
+    // Size of a pixel in world units.
     public float PixelSize {
         get {
             return panAndZoom.PixelToWorldDistance(1);
         }
     }
+
+
+    PointF? _mouseLocation;  // Backing field for MouseLocation property. Only change via property setting to ensure change notifications.
+
+    // Location of the mouse in world coordinates, updated on mouse move. 
+    // Null if the mouse is not currently in the viewport (e.g. has left the control).
+    public PointF? MouseLocation {
+        get { 
+            return _mouseLocation; 
+        }
+        private set { 
+            SetAndRaise(MouseLocationProperty, ref _mouseLocation, value);
+        }
+    }
+
 
 
     private void MapDisplayChanged(IMapDisplay? newMapDisplay)
@@ -218,6 +241,12 @@ public partial class MapViewer : UserControl
             case BasicMouseAction.Up:
                 HandleMouseUp(e);
                 break;
+            case BasicMouseAction.Enter:
+                HandleMouseEnter(e);
+                break;
+            case BasicMouseAction.Leave:
+                HandleMouseLeave(e);
+                break;
             }
         }
     }
@@ -272,6 +301,7 @@ public partial class MapViewer : UserControl
     private void HandleMouseMove(BasicMouseEventArgs e)
     {
         lastMouseWorldLocation = e.WorldLocation;
+        MouseLocation = Conv.ToPointF(e.WorldLocation);
 
         RaiseFancyMouseEvent(e.Button, FancyMouseAction.Move, e.WorldLocation);
         ResetHoverTimer(e.WorldLocation);
@@ -340,6 +370,19 @@ public partial class MapViewer : UserControl
         else if (wasDown) {
             RaiseFancyMouseEvent(e.Button, FancyMouseAction.Up, e.WorldLocation, downPosition);
         }
+    }
+
+    private void HandleMouseLeave(BasicMouseEventArgs e)
+    {
+        MouseLocation = null;
+
+        // If the mouse leaves the control, cancel any hover.
+        DisableHoverTimer();
+    }
+
+    private void HandleMouseEnter(BasicMouseEventArgs e)
+    {
+        MouseLocation = Conv.ToPointF(e.WorldLocation);
     }
 
     // Cancels any drags currently in progress and raises DragCancel for each.

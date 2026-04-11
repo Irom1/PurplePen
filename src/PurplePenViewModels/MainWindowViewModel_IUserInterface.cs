@@ -112,10 +112,17 @@ namespace PurplePen.ViewModels
         public bool GetCurrentLocation(out PointF location, out float pixelSize)
         {
 #if PORTING
-            // dummy implementation.
-            location = new PointF();
-            pixelSize = 0.1F;
-            return true;
+            // TODO: get correct pixelSize.
+            if (MouseLocationInMap.HasValue) {
+                location = MouseLocationInMap.Value;
+                pixelSize = 0.1F;
+                return true;
+            }
+            else {
+                location = new PointF();
+                pixelSize = 0.1F;
+                return false;
+            }
 #endif
         }
 

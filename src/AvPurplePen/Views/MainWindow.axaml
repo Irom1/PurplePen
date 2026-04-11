@@ -704,7 +704,7 @@
             <Border Grid.Column="4" BorderBrush="Gray" BorderThickness="1" Margin="2,2,6,2"
                     CornerRadius="2" Padding="4,0">
                 <TextBlock x:Name="locationDisplay"
-                           Text="{resx:Localize MainFrame_locationDisplay_Text}"
+                           Text="{Binding StatusBarLocationDisplay}"
                            VerticalAlignment="Center" MinWidth="120"/>
             </Border>
         </Grid>
@@ -840,7 +840,7 @@
                     MapDisplay="{Binding MapDisplay}"
                     MapHighlights="{Binding MapHighlights}"
                     FancyMouseActivity="MapViewer_MouseActivity"
-
+                    MouseLocation="{Binding MouseLocationInMap, Mode=OneWayToSource}"
                 />
 
                 <!-- Vertical scroll bar for map viewer -->

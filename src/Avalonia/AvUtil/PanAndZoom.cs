@@ -39,6 +39,13 @@ namespace AvUtil
                 name: nameof(BasicMouseActivity),
                 routingStrategy: RoutingStrategies.Direct);
 
+        // This event reports when the viewport changes -- zooming, resizing, etc. 
+        public static readonly RoutedEvent<ViewportChangedEventArgs> ViewportChangedEvent =
+            RoutedEvent.Register<PanAndZoom, ViewportChangedEventArgs>(
+                name: nameof(ViewportChanged),
+                routingStrategy: RoutingStrategies.Direct);
+
+
         public PanAndZoom()
         {
             pixelPerMm = 96 / 25.4F;  // 96 pixels is the standard DPI, which is what is used everywhere in Avalonia.
@@ -62,19 +69,32 @@ namespace AvUtil
                     if (drawing != null)
                         drawing.DrawingChanged += Drawing_NewDrawingAvailable;
 
-                    ViewportChanged();
+                    ViewportHasChanged();
                 }
             }
         }
 
+        // Get or set the world coordinates of the centerpoint of the view.
+        // Setting this causes the view to pan.
         public Point CenterPoint {
             get { return centerPoint; }
             set {
                 if (centerPoint != value) {
                     //centerPoint = ConstrainCenterPoint(value, viewport.Size, GetScrollBounds());
                     centerPoint = value;
-                    ViewportChanged();
+                    ViewportHasChanged();
                 }
+            }
+        }
+
+        // Get the viewable rectangle in world coordinates.
+        public Rect Viewport {             
+            get { return viewport; }
+        }
+
+        public float PixelSize {
+            get {
+                return PixelToWorldDistance(1.0F);
             }
         }
 
@@ -89,7 +109,7 @@ namespace AvUtil
 
                 if (zoom != value) {
                     zoom = value;
-                    ViewportChanged();
+                    ViewportHasChanged();
                 }
             }
         }
@@ -98,6 +118,12 @@ namespace AvUtil
             add => AddHandler(BasicMouseActivityEvent, value);
             remove => RemoveHandler(BasicMouseActivityEvent, value);
         }
+
+        public event EventHandler<ViewportChangedEventArgs> ViewportChanged {
+            add => AddHandler(ViewportChangedEvent, value);
+            remove => RemoveHandler(ViewportChangedEvent, value);
+        }
+
 
         int renderNumber = 0;
 
@@ -140,7 +166,7 @@ namespace AvUtil
         protected override void OnSizeChanged(SizeChangedEventArgs e)
         {
             base.OnSizeChanged(e);
-            ViewportChanged();
+            ViewportHasChanged();
         }
 
         protected override void OnPointerPressed(PointerPressedEventArgs e)
@@ -153,7 +179,7 @@ namespace AvUtil
 
             Point worldPos = PixelToWorld(pointer.Position);
 
-            Debug.WriteLine("Pointer Pressed " + props.PointerUpdateKind + $" logpixel({pointer.Position.X},{pointer.Position.Y}) world({worldPos.X},{worldPos.Y})");
+            //Debug.WriteLine("Pointer Pressed " + props.PointerUpdateKind + $" logpixel({pointer.Position.X},{pointer.Position.Y}) world({worldPos.X},{worldPos.Y})");
 
             BasicMouseEventArgs eventArgs = new BasicMouseEventArgs(BasicMouseActivityEvent, this, mouseButton, BasicMouseAction.Down, pointer.Position, worldPos, e.Timestamp);
             RaiseEvent(eventArgs);
@@ -169,7 +195,7 @@ namespace AvUtil
 
             Point worldPos = PixelToWorld(pointer.Position);
 
-            Debug.WriteLine("Pointer Released " + props.PointerUpdateKind + $" logpixel({pointer.Position.X},{pointer.Position.Y}) world({worldPos.X},{worldPos.Y})");
+            //Debug.WriteLine("Pointer Released " + props.PointerUpdateKind + $" logpixel({pointer.Position.X},{pointer.Position.Y}) world({worldPos.X},{worldPos.Y})");
 
             if (panningInProgress && mouseButton == endPanningButton) {
                 EndPanning(pointer.Position);
@@ -178,6 +204,25 @@ namespace AvUtil
                 BasicMouseEventArgs eventArgs = new BasicMouseEventArgs(BasicMouseActivityEvent, this, mouseButton, BasicMouseAction.Up, pointer.Position, worldPos, e.Timestamp);
                 RaiseEvent(eventArgs);
             }
+        }
+
+        protected override void OnPointerEntered(PointerEventArgs e)
+        {
+            base.OnPointerEntered(e);
+
+            PointerPoint pointer = e.GetCurrentPoint(this);
+            Point worldPos = PixelToWorld(pointer.Position);
+            BasicMouseEventArgs eventArgs = new BasicMouseEventArgs(BasicMouseActivityEvent, this, MouseButton.None, BasicMouseAction.Enter, pointer.Position, worldPos, e.Timestamp);
+            RaiseEvent(eventArgs);
+        }
+
+        protected override void OnPointerExited(PointerEventArgs e)
+        {
+            base.OnPointerExited(e);
+
+            PointerPoint pointer = e.GetCurrentPoint(this);
+            BasicMouseEventArgs eventArgs = new BasicMouseEventArgs(BasicMouseActivityEvent, this, MouseButton.None, BasicMouseAction.Leave, new Point(), new Point(), e.Timestamp);
+            RaiseEvent(eventArgs);
         }
 
         protected override void OnPointerMoved(PointerEventArgs e)
@@ -355,10 +400,12 @@ namespace AvUtil
             lastPanScrollPoint = pt;
         }
 
-        void ViewportChanged()
+        void ViewportHasChanged()
         {
             CalculateWorldTransform();
             this.InvalidateVisual();
+
+            ViewportChangedEventArgs eventArgs = new ViewportChangedEventArgs(ViewportChangedEvent, this, Viewport, ZoomFactor, PixelSize);
         }
 
         // Always be hittable, even if we don't draw anything. This is needed to get
@@ -377,6 +424,8 @@ namespace AvUtil
             Down,      // mouse button pressed down
             Move,      // mouse was moved
             Up,        // mouse button released
+            Enter,     // mouse entered the control
+            Leave      // mouse left the control
         }
 
         // The information sent with a mouse event. 
@@ -398,6 +447,22 @@ namespace AvUtil
             public Point LogicalPixelLocation;      // location in logical pixels in the control
             public Point WorldLocation;             // location in world coordinates in the control.
             public ulong TimeStamp;                 // When the event occured, in milliseconds
+        }
+
+        // Information sent with a ViewportChanged event.
+        public class ViewportChangedEventArgs : RoutedEventArgs
+        {
+            public ViewportChangedEventArgs(RoutedEvent? routedEvent, object? source, Rect viewport, float zoomFactor, double pixelSize)
+                : base(routedEvent, source)
+            {
+                this.Viewport = viewport;
+                this.ZoomFactor = zoomFactor;
+                this.PixelSize = pixelSize;
+            }
+
+            public Rect Viewport;     // The new viewport in world coordinates.
+            public float ZoomFactor;  // The new zoom factor.
+            public double PixelSize;  // The size of a physical pixel in world coordinates.
         }
     }
 }
