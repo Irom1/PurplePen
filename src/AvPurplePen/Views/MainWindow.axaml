@@ -23,6 +23,7 @@
         xmlns:vm="using:PurplePen.ViewModels"
         xmlns:resx="using:AvPurplePen"
         xmlns:views="using:AvPurplePen"
+        xmlns:avutil="using:AvUtil"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="958" d:DesignHeight="600"
@@ -262,8 +263,13 @@
                 </MenuItem>
                 <MenuItem x:Name="deleteForkMenu" Header="{resx:Localize MainFrame_deleteForkMenu_Text}"/>
                 <Separator/>
-                <MenuItem x:Name="addBendMenu" Header="{resx:Localize MainFrame_addBendMenu_Text}" InputGesture="Ctrl+B">
-                    <MenuItem.Icon><Image Source="/Assets/Toolbar/addBend.png" Width="16" Height="16"/></MenuItem.Icon>
+                <MenuItem x:Name="addBendMenu" Header="{resx:Localize MainFrame_addBendMenu_Text}" 
+                          InputGesture="Ctrl+B" Command="{Binding AddBendCommand}">
+                    <MenuItem.Icon><Image Width="16" Height="16"
+                       Source="{Binding IsEffectivelyEnabled,
+                                RelativeSource={RelativeSource Self},
+                                Converter={x:Static avutil:DisabledImageConverter.Instance},
+                                ConverterParameter=/Assets/Toolbar/addBend.png}"/></MenuItem.Icon>
                 </MenuItem>
                 <MenuItem x:Name="removeBendMenu" Header="{resx:Localize MainFrame_removeBendMenu_Text}" InputGesture="Ctrl+Shift+B"/>
                 <MenuItem x:Name="addGapMenu" Header="{resx:Localize MainFrame_addGapMenu_Text}" InputGesture="Ctrl+G">
@@ -564,8 +570,13 @@
             <!-- Add Bend (image only) -->
             <Button x:Name="addBendToolStripButton"
                     ToolTip.Tip="{resx:Localize MainFrame_addBendToolStripButton_ToolTipText}"
-                    Padding="2,2">
-                <Image Source="/Assets/Toolbar/addBend.png" Width="16" Height="16"/>
+                    Padding="2,2"
+                    Command="{Binding AddBendCommand}">
+                <Image Width="16" Height="16"
+                       Source="{Binding IsEffectivelyEnabled,
+                                RelativeSource={RelativeSource Self},
+                                Converter={x:Static avutil:DisabledImageConverter.Instance},
+                                ConverterParameter=/Assets/Toolbar/addBend.png}"/>
             </Button>
 
             <!-- Add Gap (image only) -->

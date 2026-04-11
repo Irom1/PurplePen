@@ -191,8 +191,8 @@ namespace PurplePen.ViewModels
             if (controller == null)
                 return;   // happens in design mode, for example.
 
-#if !PORTING
             UpdateMenusToolbarButtons();   // This needs updating even if other things haven't changed.
+#if !PORTING
             UpdateStatusText();
 #endif
 
@@ -222,6 +222,13 @@ namespace PurplePen.ViewModels
                 controller.CheckForChangedMapFile();
             }
 #endif
+        }
+
+        // Update the state of menu items and toolbar buttons, which are
+        // typically observable properties.
+        private void UpdateMenusToolbarButtons()
+        {
+            CanAddBend = (controller?.CanAddBend() == CommandStatus.Enabled);
         }
 
         // Update the window title with the current file name.
@@ -430,6 +437,20 @@ namespace PurplePen.ViewModels
         #endregion
 
         #region Commands for menu items and toolbar buttons.
+        /// <summary>
+        /// Executes the Item/Add Bend command.
+        /// </summary>
+        [RelayCommand(CanExecute = nameof(CanAddBend))]
+        private void AddBend()
+        {
+            if (controller == null) return;
+
+            controller.BeginAddBend();
+        }
+
+        [ObservableProperty, NotifyCanExecuteChangedFor(nameof(AddBendCommand))]
+        private bool canAddBend;
+
 
         /// <summary>
         /// Shows the Open File dialog filtered to Purple Pen files (.ppen),
