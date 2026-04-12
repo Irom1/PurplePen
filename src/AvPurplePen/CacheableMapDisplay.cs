@@ -48,6 +48,7 @@ namespace AvPurplePen
         // the drawing needs to be redrawn.
         private void MapDisplay_Changed()
         {
+            bounds = mapDisplay.Bounds;
             DrawingChanged?.Invoke(this, EventArgs.Empty);
         }
     }

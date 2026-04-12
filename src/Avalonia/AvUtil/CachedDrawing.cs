@@ -1,4 +1,6 @@
-﻿using Avalonia;
+﻿#define SHOWDEBUGOUTPUT
+
+using Avalonia;
 using Avalonia.Media;
 using Avalonia.Media.Imaging;
 using Avalonia.Threading;
@@ -11,6 +13,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+
 
 namespace AvUtil
 {
@@ -120,7 +123,10 @@ namespace AvUtil
                     drawingContext.FillRectangle(Brushes.White, rectToDraw);    
                 }
 
-                fullRender?.Draw(drawingContext, rectToDraw);
+                if (enclosingRender == null || !enclosingRender.rect.Contains(rectToDraw)) {
+                    // Only draw the full if the enclosing doesn't enclose.
+                    fullRender?.Draw(drawingContext, rectToDraw);
+                }
                 enclosingRender?.Draw(drawingContext, rectToDraw);
                 detailedRender?.Draw(drawingContext, rectToDraw);
             }
@@ -163,10 +169,16 @@ namespace AvUtil
             CancelInProgressRenders(currentRenders);
 
             // Start a new detailed render for the exactly bounds and resolution requested.
+            InProgressRender? newRender = null;
             if (pixelSize.Width > 0 && pixelSize.Height > 0) {
-                currentRenders.Add(new InProgressRender(underlyingDrawing, drawingVersion, renderVersion, rectToDraw, pixelSize, NotifyNewDrawingAvailable));
+                newRender = new InProgressRender(type, underlyingDrawing, drawingVersion, renderVersion, rectToDraw, pixelSize, NotifyNewDrawingAvailable);
+                currentRenders.Add(newRender);
             }
             ++renderVersion;
+
+            if (newRender != null) {
+                DebugPrint("Beginning render: " + newRender.ToString());
+            }
         }
 
         private void NotifyNewDrawingAvailable()
@@ -254,6 +266,7 @@ namespace AvUtil
 
         private class InProgressRender: IDisposable
         {
+            public readonly string type;                           // type for debugging purposes
             public readonly int drawingVersion;                    // version of the drawing used to draw.
             public readonly int renderVersion;                     // increments every render.
             public readonly Rect rect;                             // Rectangle being drawn.
@@ -261,8 +274,9 @@ namespace AvUtil
             public readonly Task<WriteableBitmapTracker> task;     // Task that will return the bitmap when done.
             public readonly CancellationTokenSource cancelSource;  // Source for canceling the task.
 
-            public InProgressRender(IThreadsafeSkiaDrawing drawing, int drawingVersion, int renderVersion, Rect rectToDraw, PixelSize pixelSize, Action? onCompleted)
+            public InProgressRender(string type, IThreadsafeSkiaDrawing drawing, int drawingVersion, int renderVersion, Rect rectToDraw, PixelSize pixelSize, Action? onCompleted)
             {
+                this.type = type;
                 this.drawingVersion = drawingVersion;
                 this.renderVersion = renderVersion;
                 this.rect = rectToDraw;
@@ -319,7 +333,7 @@ namespace AvUtil
 
             public override string ToString()
             {
-                return $"Ver:{renderVersion} Rect:{rect} Size:{pixelSize} Status:{task.Status}";
+                return $"Type:{type} Ver:{renderVersion} Rect:({rect.Left:0.##},{rect.Top:0.##})-({rect.Right:0.##},{rect.Bottom:0.##}) Size:{pixelSize} Status:{task.Status}";
             }
 
             public void SaveAsPng(string filePath)
