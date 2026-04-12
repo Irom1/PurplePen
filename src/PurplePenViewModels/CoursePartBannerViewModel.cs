@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Diagnostics.Contracts;
 using System.Text;
 
@@ -10,9 +11,13 @@ namespace PurplePen.ViewModels
 {
     public partial class CoursePartBannerViewModel: ViewModelBase
     {
+        // Should the banner be shown at all?
+        [ObservableProperty]
+        bool bannerVisible;
+
         // Should the variations dropdown be shown?
         [ObservableProperty]
-        int enabledVariations;
+        bool enableVariations;
 
         // Should the parts dropdown be shown?
         [ObservableProperty]
@@ -23,14 +28,14 @@ namespace PurplePen.ViewModels
         bool enableProperties;
 
         // The list of variations to show in the dropdown. 
-        public ObservableCollection<object> AvailableVariations { get; } = new ObservableCollection<object>();
+        public ObservableRangeCollection<object> AvailableVariations { get; } = new ObservableRangeCollection<object>();
 
         // Currently selected variation in the dropdown.
         [ObservableProperty]
         object? currentVariation;
 
         // Text strings in the parts dropdown.
-        public ObservableCollection<string> AvailableParts { get; } = new ObservableCollection<string>();
+        public ObservableRangeCollection<string> AvailableParts { get; } = new ObservableRangeCollection<string>();
 
         // Selected index in the parts drop-down.
         [ObservableProperty, NotifyPropertyChangedFor(nameof(SelectedPart))]
@@ -39,12 +44,27 @@ namespace PurplePen.ViewModels
         // Return selected part, or -1 for all parts. Note that the dropdown is 0-based,
         // with All Parts being index 0, so we subtract 1 to get the part number.
         public int SelectedPart {
-            get { return SelectedPartIndex - 1; }
+            get { return (SelectedPartIndex < 0) ? -1 : SelectedPartIndex - 1; }
             set { SelectedPartIndex = value + 1; }
         }
 
         [ObservableProperty]
         private int numberOfParts = 1;
+
+        public Controller? controller = null;
+
+        public Controller? Controller {
+            get {
+                return controller;
+            }
+
+            set {
+                if (value != null) {
+                    Debug.Assert(controller == null, "Controller cannot be set more than once");
+                    controller = value;
+                }
+            }
+        }
 
         public CoursePartBannerViewModel()
         {
@@ -53,17 +73,74 @@ namespace PurplePen.ViewModels
 
         partial void OnNumberOfPartsChanged(int oldValue, int newValue)
         {
-            AvailableParts.Clear();
-            AvailableParts.Add(MiscText.AllParts);
+            List<string> partsList = new List<string>();
+
+            partsList.Clear();
+            partsList.Add(MiscText.AllParts);
 
             for (int i = 1; i <= NumberOfParts; ++i)
-                AvailableParts.Add(string.Format(MiscText.PartXOfY, i, NumberOfParts));
+                partsList.Add(string.Format(MiscText.PartXOfY, i, NumberOfParts));
+
+            AvailableParts.ReplaceAll(partsList);
+            SelectedPart = -1;
+        }
+
+        partial void OnSelectedPartIndexChanged(int oldValue, int newValue)
+        {
+            if (controller == null) { return; }
+
+            controller.SelectPart(SelectedPart);
+            EnableProperties = (controller.NumberOfParts > 1 && controller.CurrentPart >= 0);
+        }
+
+        partial void OnBannerVisibleChanged(bool oldValue, bool newValue)
+        {
+#if !PORTING
+            // TODO: When the banner visibility changes, we should scroll the map view so it appears 
+            // in the same place. See MainFrame.SetBannerVisibility() for details.
+#endif
         }
 
         [RelayCommand]
         public void PropertiesButtonClicked()
         {
+#if PORTING
             // TODO. The properties button was clicked.
+#endif
+        }
+
+        // Update the UI from the controller.
+        public void UpdatePartBanner()
+        {
+            if (controller == null) { return; }
+
+            if (controller.NumberOfParts <= 1 && !controller.HasVariations) {
+                BannerVisible = false;
+            }
+            else {
+                if (controller.HasVariations) {
+                    AvailableVariations.ReplaceAll(controller.GetVariations());
+                    CurrentVariation = controller.CurrentVariation;
+                    EnableVariations = true;
+                }
+                else {
+                    AvailableVariations.Clear();
+                    EnableVariations = false;
+                }
+
+                if (controller.NumberOfParts >= 2) {
+                    NumberOfParts = controller.NumberOfParts;
+                    SelectedPart = controller.CurrentPart;
+                    EnableParts = true;
+                    EnableProperties = (controller.CurrentPart >= 0);
+                }
+                else {
+                    EnableParts = false;
+                    EnableProperties = false;
+                }
+
+                BannerVisible = true;
+            }
         }
     }
 }

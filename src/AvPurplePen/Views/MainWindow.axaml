@@ -814,18 +814,9 @@
             <Grid Grid.Column="2" RowDefinitions="Auto,*,Auto" ColumnDefinitions="*,Auto">
 
                 <!-- Course part banner (top of map area) — shows course parts, variations, properties -->
-                <!-- TODO: Implement CoursePartBanner as a custom Avalonia control.
-                     WinForms type: PurplePen.CoursePartBanner
-                     Properties: NumberOfParts, SelectedPart, EnableParts, EnableVariations,
-                     EnableProperties, AvailableVariations, CurrentVariation.
-                     Events: SelectedVariationChanged, SelectedPartChanged, PropertiesClicked. -->
-                <Border x:Name="coursePartBanner" Grid.Row="0" Grid.ColumnSpan="2"
-                        Background="{DynamicResource SemiColorFill1}"
-                        Height="24">
-                    <TextBlock Text="[coursePartBanner placeholder]"
-                               HorizontalAlignment="Center" VerticalAlignment="Center"
-                               Foreground="Gray" FontStyle="Italic" FontSize="11"/>
-                </Border>
+                <resx:CoursePartBanner x:Name="coursePartBanner" 
+                                       Grid.Row="0" Grid.ColumnSpan="2"
+                                       DataContext="{Binding CoursePartBannerViewModel}"/>
 
                 <!-- MapViewer
                      WinForms type: PurplePen.MapView.MapViewer

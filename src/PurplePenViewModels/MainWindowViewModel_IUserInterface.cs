@@ -17,6 +17,7 @@ namespace PurplePen.ViewModels
 
             DescriptionViewerViewModel.SymbolDB = symbolDB;
             DescriptionViewerViewModel.Controller = controller;
+            CoursePartBannerViewModel.Controller = controller;
         }
 
         public Size Size => throw new NotImplementedException();

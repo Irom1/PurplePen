@@ -43,6 +43,9 @@ namespace PurplePen.ViewModels
         [ObservableProperty]
         private DescriptionViewerViewModel descriptionViewerViewModel = new DescriptionViewerViewModel();
 
+        [ObservableProperty]
+        private CoursePartBannerViewModel coursePartBannerViewModel = new CoursePartBannerViewModel();
+
         /// <summary>
         /// The names of the course tabs displayed in the tab strip.
         /// </summary>
@@ -139,10 +142,10 @@ namespace PurplePen.ViewModels
                 UpdateSelection();
                 UpdateSelectionPanel();
                 UpdateHighlight();
+                CoursePartBannerViewModel.UpdatePartBanner();
 #if !PORTING
                 UpdateTopology();
                 UpdatePrintArea();
-                UpdatePartBanner();
                 UpdateTopologyHighlight();
                 UpdateCustomSymbolText();
                 CheckForMissingFonts();

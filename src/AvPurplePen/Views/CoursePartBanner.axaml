@@ -1,0 +1,94 @@
+<!--
+    CoursePartBanner.axaml
+    Banner at the top of the map area for selecting course parts, variations, and accessing properties.
+    Migrated from WinForms PurplePen/CoursePartBanner.cs.
+-->
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:PurplePen.ViewModels"
+             xmlns:resx="using:AvPurplePen"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             d:DesignWidth="800" d:DesignHeight="45"
+             x:Class="AvPurplePen.CoursePartBanner"
+             x:DataType="vm:CoursePartBannerViewModel"
+             IsVisible="{Binding BannerVisible}">
+
+    <Design.DataContext>
+        <vm:CoursePartBannerViewModel/>
+    </Design.DataContext>
+
+    <UserControl.Styles>
+	    <Style Selector="Button /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="BorderBrush" Value="{DynamicResource SemiGrey4}"/>
+        </Style>
+        <Style Selector="Button:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="BorderBrush" Value="{DynamicResource SemiGrey5}"/>
+        </Style>
+        <Style Selector="Button:pressed /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="BorderBrush" Value="{DynamicResource SemiGrey5}"/>
+        </Style>
+	
+    </UserControl.Styles>
+
+    <!-- Single-row grid matching the WinForms TableLayoutPanel:
+         Col 0: Variations label (Auto)
+         Col 1: Variations combo (Auto)
+         Col 2: Course part label (Auto)
+         Col 3: Part combo (Auto)
+         Col 4: Properties button (takes remaining space, content left-aligned) -->
+    <Border Background="#E0E0E0"
+            BorderBrush="{DynamicResource DarkGreyBorder}"
+            BorderThickness="0,0,0,1">
+        <Grid ColumnDefinitions="Auto,Auto,Auto,Auto,Auto"
+              Margin="3,2,3,2">
+
+            <!-- Variations label -->
+            <TextBlock Grid.Column="0"
+                       x:Name="variationsLabel"
+                       Text="{resx:Localize CoursePartBanner_variationsLabel_Text}"
+                       VerticalAlignment="Center"
+                       Margin="0,0,3,0"
+                       IsVisible="{Binding EnableVariations}"/>
+
+            <!-- Variations combo box -->
+            <ComboBox Grid.Column="1"
+                      x:Name="variationsComboBox"
+                      ItemsSource="{Binding AvailableVariations}"
+                      SelectedItem="{Binding CurrentVariation, Mode=TwoWay}"
+                      MinWidth="200"
+                      VerticalAlignment="Center"
+                      Margin="0,0,8,0"
+                      IsVisible="{Binding EnableVariations}"/>
+
+            <!-- Course part label -->
+            <TextBlock Grid.Column="2"
+                       x:Name="coursePartLabel"
+                       Text="{resx:Localize CoursePartBanner_coursePartLabel_Text}"
+                       VerticalAlignment="Center"
+                       Margin="3,0,3,0"
+                       IsVisible="{Binding EnableParts}"/>
+
+            <!-- Part combo box -->
+            <ComboBox Grid.Column="3"
+                      x:Name="partComboBox"
+                      ItemsSource="{Binding AvailableParts}"
+                      SelectedIndex="{Binding SelectedPartIndex, Mode=TwoWay}"
+                      MinWidth="154"
+                      VerticalAlignment="Center"
+                      Margin="0,0,8,0"
+                      IsVisible="{Binding EnableParts}"/>
+
+            <!-- Properties button -->
+            <Button Grid.Column="4"
+                    Classes="Small"
+                    x:Name="buttonProperties"
+                    Content="{resx:Localize CoursePartBanner_buttonProperties_Text}"
+                    Command="{Binding PropertiesButtonClickedCommand}"
+                    VerticalAlignment="Center"
+                    Margin="18,0,0,0"
+                    IsVisible="{Binding EnableProperties}"/>
+        </Grid>
+    </Border>
+</UserControl>
