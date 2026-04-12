@@ -494,7 +494,7 @@
                              Width="8" Height="8" VerticalAlignment="Center"/>
                 </StackPanel>
                 <Button.Flyout>
-                    <MenuFlyout>
+                    <MenuFlyout  Placement="BottomEdgeAlignedLeft">
                         <MenuItem x:Name="mapFlipMenuItem" Header="{resx:Localize MainFrame_mapFlipMenuItem_Text}"
                                   Command="{Binding AddMapFlipControlCommand}">
                             <MenuItem.Icon>
@@ -537,7 +537,7 @@
                              Width="8" Height="8" VerticalAlignment="Center"/>
                 </StackPanel>
                 <Button.Flyout>
-                    <MenuFlyout>
+                    <MenuFlyout  Placement="BottomEdgeAlignedLeft">
                         <MenuItem x:Name="mapIssuePointToolStripMenuItem" Header="{resx:Localize MainFrame_mapIssuePointToolStripMenuItem_Text}"
                                   Command="{Binding AddMapIssueCommand}">
                             <MenuItem.Icon>
@@ -688,11 +688,11 @@
                        TextTrimming="WordEllipsis"
                        Text="{Binding StatusBarText}"/>
 
-            <Separator Grid.Column="1" Width="1" Margin="2,2"/>
+            <Separator Grid.Column="1" Height="20" Width="1" Margin="2,2"/>
 
             <!-- Zoom percentage label -->
             <TextBlock x:Name="zoomAmountLabel" Grid.Column="2"
-                       Text="{Binding MapZoomFactor, StringFormat='{}{0:P0}'}"
+                       Text="{Binding MapZoomFactor, StringFormat='Zoom: {0:P0}'}"
                        VerticalAlignment="Center" Margin="4,0"/>
 
             <!-- Zoom slider (replaces WinForms ToolStripTrackBar) -->
@@ -718,7 +718,7 @@
             <!-- === LEFT PANEL (splitDescription equivalent) === -->
             <!-- Vertical split: top (description/topology) | bottom (selection panel).
                  Replaces WinForms splitDescription. Bottom panel is fixed height. -->
-            <Grid Grid.Column="0" RowDefinitions="*,Auto,150" >
+            <Grid Grid.Column="0" RowDefinitions="*,Auto,200" >
 
                 <!-- Description/Topology area with radio button toggle -->
                 <Grid x:Name="leftColumnPanel" Grid.Row="0" Background="White" ClipToBounds="True"
