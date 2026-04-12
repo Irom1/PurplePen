@@ -258,7 +258,7 @@ namespace PurplePen
                     case MapType.OCAD:
                     if (map != null) {
                         using (map.Read())
-                            return map.Bounds;
+                            return map.GetBoundsIncludingTemplates();
                     }
                     else
                         return new RectangleF();
