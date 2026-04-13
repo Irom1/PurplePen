@@ -18,7 +18,45 @@ namespace PurplePen.ViewModels
         {
             if (controller == null) { return; }
 
+            // Update enabled status.
             CanAddBend = (controller.CanAddBend() == CommandStatus.Enabled);
+
+            // Update checked status of Zoom.
+            Zoom50Checked = UpdateZoomChecked(0.5F);
+            Zoom100Checked = UpdateZoomChecked(1.0F);
+            Zoom150Checked = UpdateZoomChecked(1.5F);
+            Zoom200Checked = UpdateZoomChecked(2.0F);
+            Zoom300Checked = UpdateZoomChecked(3.0F);
+            Zoom500Checked = UpdateZoomChecked(5.0F);
+            Zoom1000Checked = UpdateZoomChecked(10.0F);
+
+            // Update checked status of Intensity.
+            IntensityVeryLowChecked = UpdateIntensityChecked(0.2F);
+            IntensityLowChecked = UpdateIntensityChecked(0.4F);
+            IntensityMediumChecked = UpdateIntensityChecked(0.6F);
+            IntensityHighChecked = UpdateIntensityChecked(0.8F);
+            IntensityFullChecked = UpdateIntensityChecked(1.0F);
+
+            // Update checked status of Quality.
+            HighQualityMapDisplay = MapDisplay?.AntiAlias ?? true;
+
+            // Update checked status of Show All Controls.
+            ViewAllControlsChecked = controller.ShowAllControls;
+
+        }
+
+        // Determine if the give zoom label (e.g. "100%") should be checked based on the current zoom factor.
+        bool UpdateZoomChecked(float zoomLabel)
+        {
+            return Math.Abs(MapZoomFactor/zoomLabel - 1.0F) < 0.05F;
+        }
+
+        // Determine if the give zoom label (e.g. "100%") should be checked based on the current zoom factor.
+        bool UpdateIntensityChecked(float intensityLabel)
+        {
+            if (MapDisplay == null) { return false; }
+
+            return Math.Abs(MapDisplay.MapIntensity / intensityLabel - 1.0F) < 0.01F;
         }
 
         #region File commands
@@ -217,10 +255,18 @@ namespace PurplePen.ViewModels
         [RelayCommand]
         private void SetZoom(double zoomFactor)
         {
-#if !PORTING
-            mapViewer.ZoomFactor = (float)zoomFactor;
-#endif
+            MapZoomFactor = (float)zoomFactor;
         }
+
+        // Bindable properties to indicate if a zoom level menu item should be checked.
+        [ObservableProperty] private bool zoom50Checked;
+        [ObservableProperty] private bool zoom100Checked;
+        [ObservableProperty] private bool zoom150Checked;
+        [ObservableProperty] private bool zoom200Checked;
+        [ObservableProperty] private bool zoom300Checked;
+        [ObservableProperty] private bool zoom500Checked;
+        [ObservableProperty] private bool zoom1000Checked;
+
 
         /// <summary>
         /// Sets the map intensity. Called from intensity menu items via CommandParameter.
@@ -228,12 +274,19 @@ namespace PurplePen.ViewModels
         [RelayCommand]
         private void SetMapIntensity(double intensity)
         {
-#if !PORTING
-            mapDisplay.MapIntensity = (float)intensity;
-            UserSettings.Current.MapIntensity = mapDisplay.MapIntensity;
+            if (MapDisplay == null) { return; }
+
+            MapDisplay.MapIntensity = (float)intensity;
+            UserSettings.Current.MapIntensity = MapDisplay.MapIntensity;
             UserSettings.Current.Save();
-#endif
         }
+
+        [ObservableProperty] private bool intensityVeryLowChecked;
+        [ObservableProperty] private bool intensityLowChecked;
+        [ObservableProperty] private bool intensityMediumChecked;
+        [ObservableProperty] private bool intensityHighChecked;
+        [ObservableProperty] private bool intensityFullChecked;
+
 
         /// <summary>
         /// Toggles display of popup information.
@@ -267,9 +320,7 @@ namespace PurplePen.ViewModels
         [RelayCommand]
         private void SetHighQuality()
         {
-#if !PORTING
             SetQuality(true);
-#endif
         }
 
         /// <summary>
@@ -278,10 +329,21 @@ namespace PurplePen.ViewModels
         [RelayCommand]
         private void SetNormalQuality()
         {
-#if !PORTING
             SetQuality(false);
-#endif
         }
+
+        private void SetQuality(bool highQuality)
+        {
+            if (MapDisplay == null) { return; }
+
+            MapDisplay.AntiAlias = highQuality;
+            UserSettings.Current.MapHighQuality = highQuality;
+            UserSettings.Current.Save();
+        }
+
+
+        [ObservableProperty]
+        bool highQualityMapDisplay;
 
         /// <summary>
         /// Toggles the "show all controls" view mode.
@@ -289,12 +351,15 @@ namespace PurplePen.ViewModels
         [RelayCommand]
         private void ToggleAllControls()
         {
-#if !PORTING
+            if (controller == null) { return; }
+
             controller.ShowAllControls = !controller.ShowAllControls;
             UserSettings.Current.ViewAllControls = controller.ShowAllControls;
             UserSettings.Current.Save();
-#endif
         }
+
+        [ObservableProperty]
+        bool viewAllControlsChecked;
 
         /// <summary>
         /// Shows the View Additional Courses dialog.

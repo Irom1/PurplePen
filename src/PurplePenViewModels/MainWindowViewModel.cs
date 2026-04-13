@@ -35,7 +35,7 @@ namespace PurplePen.ViewModels
         bool updatingTabs = false;  // Guard to prevent re-entrant controller calls during UpdateTabs.
 
         [ObservableProperty]
-        private IMapDisplay? mapDisplay;
+        private MapDisplay? mapDisplay;
 
         [ObservableProperty]
         private IMapViewerHighlight[]? mapHighlights;

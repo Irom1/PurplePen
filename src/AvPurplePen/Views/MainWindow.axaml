@@ -38,6 +38,7 @@
 
     <Window.KeyBindings>
         <KeyBinding Gesture="Ctrl+O" Command="{Binding FileOpenPurplePenFileCommand}"/>
+        <KeyBinding Gesture="F4" Command="{Binding ToggleAllControlsCommand}"/>
     </Window.KeyBindings>
 
     <DockPanel LastChildFill="True">
@@ -108,41 +109,65 @@
                 <MenuItem x:Name="entireMapMenu" Header="{resx:Localize MainFrame_entireMapMenu_Text}" InputGesture="F3" Command="{Binding ViewEntireMapCommand}"/>
                 <MenuItem x:Name="zoomMenu" Header="{resx:Localize MainFrame_zoomMenu_Text}">
                     <MenuItem x:Name="zoom50Menu" Header="{resx:Localize MainFrame_zoom50Menu_Text}" Command="{Binding SetZoomCommand}"
-                              CommandParameter="{Binding Source=0.5, Converter={x:Static avutil:StringToDoubleConverter.Instance}}"/>
+                              CommandParameter="{Binding Source=0.5, Converter={x:Static avutil:StringToDoubleConverter.Instance}}"
+                              ToggleType="CheckBox" IsChecked="{Binding Zoom50Checked}"/>
                     <MenuItem x:Name="zoom100Menu" Header="{resx:Localize MainFrame_zoom100Menu_Text}" Command="{Binding SetZoomCommand}"
-                              CommandParameter="{Binding Source=1, Converter={x:Static avutil:StringToDoubleConverter.Instance}}"/>
+                              CommandParameter="{Binding Source=1, Converter={x:Static avutil:StringToDoubleConverter.Instance}}"
+                              ToggleType="CheckBox" IsChecked="{Binding Zoom100Checked}"/>
                     <MenuItem x:Name="zoom150Menu" Header="{resx:Localize MainFrame_zoom150Menu_Text}" Command="{Binding SetZoomCommand}"
-                              CommandParameter="{Binding Source=1.5, Converter={x:Static avutil:StringToDoubleConverter.Instance}}"/>
+                              CommandParameter="{Binding Source=1.5, Converter={x:Static avutil:StringToDoubleConverter.Instance}}"
+                              ToggleType="CheckBox" IsChecked="{Binding Zoom150Checked}"/>
                     <MenuItem x:Name="zoom200Menu" Header="{resx:Localize MainFrame_zoom200Menu_Text}" Command="{Binding SetZoomCommand}"
-                              CommandParameter="{Binding Source=2, Converter={x:Static avutil:StringToDoubleConverter.Instance}}"/>
+                              CommandParameter="{Binding Source=2, Converter={x:Static avutil:StringToDoubleConverter.Instance}}"
+                              ToggleType="CheckBox" IsChecked="{Binding Zoom200Checked}"/>
                     <MenuItem x:Name="zoom300Menu" Header="{resx:Localize MainFrame_zoom300Menu_Text}" Command="{Binding SetZoomCommand}"
-                              CommandParameter="{Binding Source=3, Converter={x:Static avutil:StringToDoubleConverter.Instance}}"/>
+                              CommandParameter="{Binding Source=3, Converter={x:Static avutil:StringToDoubleConverter.Instance}}"
+                              ToggleType="CheckBox" IsChecked="{Binding Zoom300Checked}"/>
                     <MenuItem x:Name="zoom500Menu" Header="{resx:Localize MainFrame_zoom500Menu_Text}" Command="{Binding SetZoomCommand}"
-                              CommandParameter="{Binding Source=5, Converter={x:Static avutil:StringToDoubleConverter.Instance}}"/>
+                              CommandParameter="{Binding Source=5, Converter={x:Static avutil:StringToDoubleConverter.Instance}}"
+                              ToggleType="CheckBox" IsChecked="{Binding Zoom500Checked}"/>
                     <MenuItem x:Name="zoom1000Menu" Header="{resx:Localize MainFrame_zoom1000Menu_Text}" Command="{Binding SetZoomCommand}"
-                              CommandParameter="{Binding Source=10, Converter={x:Static avutil:StringToDoubleConverter.Instance}}"/>
+                              CommandParameter="{Binding Source=10, Converter={x:Static avutil:StringToDoubleConverter.Instance}}"
+                              ToggleType="CheckBox" IsChecked="{Binding Zoom1000Checked}"/>
                 </MenuItem>
+
                 <Separator/>
+
                 <MenuItem x:Name="mapIntensityMenu" Header="{resx:Localize MainFrame_mapIntensityMenu_Text}">
                     <MenuItem x:Name="veryLowIntensityMenu" Header="{resx:Localize MainFrame_veryLowIntensityMenu_Text}" Command="{Binding SetMapIntensityCommand}"
-                              CommandParameter="{Binding Source=0.2, Converter={x:Static avutil:StringToDoubleConverter.Instance}}"/>
+                              CommandParameter="{Binding Source=0.2, Converter={x:Static avutil:StringToDoubleConverter.Instance}}"
+                              ToggleType="CheckBox" IsChecked="{Binding IntensityVeryLowChecked}"/>
                     <MenuItem x:Name="lowIntensityMenu" Header="{resx:Localize MainFrame_lowIntensityMenu_Text}" Command="{Binding SetMapIntensityCommand}"
-                              CommandParameter="{Binding Source=0.4, Converter={x:Static avutil:StringToDoubleConverter.Instance}}"/>
+                              CommandParameter="{Binding Source=0.4, Converter={x:Static avutil:StringToDoubleConverter.Instance}}"
+                              ToggleType="CheckBox" IsChecked="{Binding IntensityLowChecked}"/>
                     <MenuItem x:Name="mediumIntensityMenu" Header="{resx:Localize MainFrame_mediumIntensityMenu_Text}" Command="{Binding SetMapIntensityCommand}"
-                              CommandParameter="{Binding Source=0.6, Converter={x:Static avutil:StringToDoubleConverter.Instance}}"/>
+                              CommandParameter="{Binding Source=0.6, Converter={x:Static avutil:StringToDoubleConverter.Instance}}"
+                              ToggleType="CheckBox" IsChecked="{Binding IntensityMediumChecked}"/>
                     <MenuItem x:Name="highIntensityMenu" Header="{resx:Localize MainFrame_highIntensityMenu_Text}" Command="{Binding SetMapIntensityCommand}"
-                              CommandParameter="{Binding Source=0.8, Converter={x:Static avutil:StringToDoubleConverter.Instance}}"/>
+                              CommandParameter="{Binding Source=0.8, Converter={x:Static avutil:StringToDoubleConverter.Instance}}"
+                              ToggleType="CheckBox" IsChecked="{Binding IntensityHighChecked}"/>
                     <MenuItem x:Name="fullIntensityMenu" Header="{resx:Localize MainFrame_fullIntensityMenu_Text}" Command="{Binding SetMapIntensityCommand}"
-                              CommandParameter="{Binding Source=1, Converter={x:Static avutil:StringToDoubleConverter.Instance}}"/>
+                              CommandParameter="{Binding Source=1, Converter={x:Static avutil:StringToDoubleConverter.Instance}}"
+                              ToggleType="CheckBox" IsChecked="{Binding IntensityFullChecked}"/>
                 </MenuItem>
+
                 <MenuItem x:Name="mapQualityMenu" Header="{resx:Localize MainFrame_mapQualityMenu_Text}">
-                    <MenuItem x:Name="normalQualityMenu" Header="{resx:Localize MainFrame_normalQualityMenu_Text}" Command="{Binding SetNormalQualityCommand}"/>
-                    <MenuItem x:Name="highQualityMenu" Header="{resx:Localize MainFrame_highQualityMenu_Text}" Command="{Binding SetHighQualityCommand}"/>
+                    <MenuItem x:Name="normalQualityMenu" Header="{resx:Localize MainFrame_normalQualityMenu_Text}" 
+                              Command="{Binding SetNormalQualityCommand}"
+                              ToggleType="CheckBox" IsChecked="{Binding !HighQualityMapDisplay}"/>
+                    <MenuItem x:Name="highQualityMenu" Header="{resx:Localize MainFrame_highQualityMenu_Text}" 
+                              Command="{Binding SetHighQualityCommand}"
+                              ToggleType="CheckBox" IsChecked="{Binding HighQualityMapDisplay}"/>
                 </MenuItem>
+
                 <MenuItem x:Name="showPrintAreaMenu" Header="{resx:Localize MainFrame_showPrintAreaMenu_Text}" Command="{Binding ToggleShowPrintAreaCommand}"/>
                 <MenuItem x:Name="showPopupsMenu" Header="{resx:Localize MainFrame_showPopupsMenu_Text}" Command="{Binding ToggleShowPopupsCommand}"/>
+
                 <Separator/>
-                <MenuItem x:Name="allControlsMenu" Header="{resx:Localize MainFrame_allControlsMenu_Text}" InputGesture="F4" Command="{Binding ToggleAllControlsCommand}"/>
+
+                <MenuItem x:Name="allControlsMenu" Header="{resx:Localize MainFrame_allControlsMenu_Text}" InputGesture="F4" 
+                          Command="{Binding ToggleAllControlsCommand}"
+                          ToggleType="CheckBox" IsChecked="{Binding ViewAllControlsChecked}"/>
                 <MenuItem x:Name="otherCoursesMenu" Header="{resx:Localize MainFrame_otherCoursesMenu_Text}" InputGesture="F5" Command="{Binding ShowOtherCoursesCommand}"/>
                 <MenuItem x:Name="clearOtherCoursesMenu" Header="{resx:Localize MainFrame_clearOtherCoursesMenu_Text}" InputGesture="Shift+F5" Command="{Binding ClearOtherCoursesCommand}"/>
             </MenuItem>
