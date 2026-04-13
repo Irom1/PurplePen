@@ -93,6 +93,13 @@ namespace PurplePen.ViewModels
             EnableProperties = (controller.NumberOfParts > 1 && controller.CurrentPart >= 0);
         }
 
+        partial void OnCurrentVariationChanged(object? oldValue, object? newValue)
+        {
+            if (controller == null) { return; }
+
+            controller.CurrentVariation = CurrentVariation;
+        }
+
         partial void OnBannerVisibleChanged(bool oldValue, bool newValue)
         {
 #if !PORTING
