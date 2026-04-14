@@ -4,6 +4,7 @@
 // direct window interaction (like showing modal dialogs), which
 // don't fit cleanly into the ViewModel layer.
 
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Interactivity;
@@ -23,6 +24,15 @@ namespace AvPurplePen.Views
     /// </summary>
     public partial class MainWindow : Window
     {
+        private MousePointerShape _mousePointerShape = new MousePointerShape(PredefinedMousePointerShape.Arrow);
+
+        // Has the MousePointerShape that should be used in the map viewer.
+        public static readonly DirectProperty<MainWindow, MousePointerShape> MapMousePointerShapeProperty =
+                AvaloniaProperty.RegisterDirect<MainWindow, MousePointerShape>(
+                    nameof(MapMousePointerShape),
+                    getter: o => o.MapMousePointerShape,
+                    setter: (o, value) => o.MapMousePointerShape = value);
+
         /// <summary>
         /// Initializes the main window and its components.
         /// </summary>
@@ -32,6 +42,13 @@ namespace AvPurplePen.Views
             ApplicationIdleService.ApplicationIdle += ApplicationIdle;
         }
 
+        public MousePointerShape MapMousePointerShape {
+            get => _mousePointerShape;
+            set {
+                _mousePointerShape = value;
+                mapViewer.Cursor = Cursors.CursorFromMousePointerShape(value);
+            }
+        }
 
         // Mouse activity in the main map viewer.
         private async void MapViewer_MouseActivity(object? sender, MapViewer.FancyMouseEventArgs e)
@@ -40,8 +57,8 @@ namespace AvPurplePen.Views
             if (vm == null)
                 return;
 
-            // Only left and right buttons have meaning.
-            if (e.Button != MouseButton.Left && e.Button != MouseButton.Right)
+            // Only left and right buttons have meaning (except for move)
+            if (e.Button != MouseButton.Left && e.Button != MouseButton.Right && e.FancyAction != MapViewer.FancyMouseAction.Move)
                 return;
 
             bool isRightButton = (e.Button == MouseButton.Right);
@@ -51,15 +68,18 @@ namespace AvPurplePen.Views
             DragAction dragAction = DragAction.None;
             
             switch (e.FancyAction) {
+            case MapViewer.FancyMouseAction.Move:
+#if PORTING
+                // Do we need to deal with leave here to report outside the viewport?
+#endif
+                vm.MapViewerMouseMove(location, pixelSize);
+                break;
+
             case MapViewer.FancyMouseAction.Down:
                 if (isRightButton)
                     dragAction = vm.MapViewerRightButtonDown(location, pixelSize);
                 else
                     dragAction = vm.MapViewerLeftButtonDown(location, pixelSize);
-                break;
-
-            case MapViewer.FancyMouseAction.Move:
-                // nothing to do on pure mouse move; status bar is updated by idle.
                 break;
 
             case MapViewer.FancyMouseAction.Drag:

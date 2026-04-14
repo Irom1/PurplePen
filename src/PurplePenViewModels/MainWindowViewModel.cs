@@ -70,6 +70,9 @@ namespace PurplePen.ViewModels
         [ObservableProperty]
         string statusBarText = "";
 
+        [ObservableProperty]
+        MousePointerShape mapMousePointerShape = new MousePointerShape(PredefinedMousePointerShape.Arrow);
+
         // The slider view of the zoom, which is a log-based based of the true zoom, clamped to 0-100.
         private const float zoomSliderMin = 0.25F; //25%
         private const float zoomSliderMax = 10.0F; //1000%
@@ -320,6 +323,18 @@ namespace PurplePen.ViewModels
 
 
         #region Mouse events
+
+        public void MapViewerMouseMove(PointF? location, float pixelSize)
+        {
+            if (location.HasValue && controller != null) {
+                // Inside the viewpoint
+                controller.MouseMoved(Pane.Map, location.Value, pixelSize);
+                MapMousePointerShape = controller.GetMouseCursor(Pane.Map, location.Value, pixelSize);
+            }
+#if PORTING
+            // TODO: Deal with tool tips.
+#endif
+        }
 
         public DragAction MapViewerLeftButtonDown(PointF location, float pixelSize)
         { return controller?.LeftButtonDown(Pane.Map, location, pixelSize) ?? DragAction.None; }

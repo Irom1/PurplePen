@@ -74,5 +74,6 @@ namespace PurplePen
         // not defined by the operating system. 
         MoveHandle,
         DeleteHandle,
+        HandDrag
     }
 }

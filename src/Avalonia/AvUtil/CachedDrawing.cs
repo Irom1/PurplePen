@@ -1,4 +1,4 @@
-﻿#define SHOWDEBUGOUTPUT
+﻿//#define SHOWDEBUGOUTPUT
 
 using Avalonia;
 using Avalonia.Media;
