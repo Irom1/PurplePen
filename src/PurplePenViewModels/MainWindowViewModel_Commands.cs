@@ -409,9 +409,9 @@ namespace PurplePen.ViewModels
         [RelayCommand]
         private void AddStart()
         {
-#if !PORTING
+            if (controller == null) { return; }
+
             controller.BeginAddControlMode(ControlPointKind.Start, MapExchangeType.None);
-#endif
         }
 
         /// <summary>
@@ -420,9 +420,9 @@ namespace PurplePen.ViewModels
         [RelayCommand]
         private void AddFinish()
         {
-#if !PORTING
+            if (controller == null) { return; }
+
             controller.BeginAddControlMode(ControlPointKind.Finish, MapExchangeType.None);
-#endif
         }
 
         /// <summary>
@@ -431,9 +431,9 @@ namespace PurplePen.ViewModels
         [RelayCommand]
         private void AddMapExchangeControl()
         {
-#if !PORTING
+            if (controller == null) { return; }
+
             controller.BeginAddControlMode(ControlPointKind.Normal, MapExchangeType.Exchange);
-#endif
         }
 
         /// <summary>
@@ -442,9 +442,9 @@ namespace PurplePen.ViewModels
         [RelayCommand]
         private void AddMapFlipControl()
         {
-#if !PORTING
+            if (controller == null) { return; }
+
             controller.BeginAddControlMode(ControlPointKind.Normal, MapExchangeType.MapFlip);
-#endif
         }
 
         /// <summary>
@@ -453,9 +453,9 @@ namespace PurplePen.ViewModels
         [RelayCommand]
         private void AddMapExchangeSeparate()
         {
-#if !PORTING
+            if (controller == null) { return; }
+
             controller.BeginAddControlMode(ControlPointKind.MapExchange, MapExchangeType.None);
-#endif
         }
 
         /// <summary>
@@ -464,9 +464,9 @@ namespace PurplePen.ViewModels
         [RelayCommand]
         private void AddDescriptions()
         {
-#if !PORTING
+            if (controller == null) { return; }
+
             controller.BeginAddDescriptionMode();
-#endif
         }
 
         /// <summary>
@@ -550,9 +550,9 @@ namespace PurplePen.ViewModels
         [RelayCommand]
         private void AddMandatoryCrossing()
         {
-#if !PORTING
+            if (controller == null) { return; }
+
             controller.BeginAddControlMode(ControlPointKind.CrossingPoint, MapExchangeType.None);
-#endif
         }
 
         /// <summary>
@@ -561,9 +561,9 @@ namespace PurplePen.ViewModels
         [RelayCommand]
         private void AddOutOfBounds()
         {
-#if !PORTING
+            if (controller == null) { return; }
+
             controller.BeginAddLineOrAreaSpecialMode(SpecialKind.OOB, true);
-#endif
         }
 
         /// <summary>
@@ -572,9 +572,9 @@ namespace PurplePen.ViewModels
         [RelayCommand]
         private void AddDangerous()
         {
-#if !PORTING
+            if (controller == null) { return; }
+
             controller.BeginAddLineOrAreaSpecialMode(SpecialKind.Dangerous, true);
-#endif
         }
 
         /// <summary>
@@ -583,9 +583,9 @@ namespace PurplePen.ViewModels
         [RelayCommand]
         private void AddConstruction()
         {
-#if !PORTING
+            if (controller == null) { return; }
+
             controller.BeginAddLineOrAreaSpecialMode(SpecialKind.Construction, true);
-#endif
         }
 
         /// <summary>
@@ -594,9 +594,9 @@ namespace PurplePen.ViewModels
         [RelayCommand]
         private void AddBoundary()
         {
-#if !PORTING
+            if (controller == null) { return; }
+
             controller.BeginAddLineOrAreaSpecialMode(SpecialKind.Boundary, false);
-#endif
         }
 
         /// <summary>
@@ -605,9 +605,9 @@ namespace PurplePen.ViewModels
         [RelayCommand]
         private void AddOptCrossing()
         {
-#if !PORTING
+            if (controller == null) { return; }
+
             controller.BeginAddPointSpecialMode(SpecialKind.OptCrossing);
-#endif
         }
 
         /// <summary>
@@ -616,9 +616,9 @@ namespace PurplePen.ViewModels
         [RelayCommand]
         private void AddWater()
         {
-#if !PORTING
+            if (controller == null) { return; }
+
             controller.BeginAddPointSpecialMode(SpecialKind.Water);
-#endif
         }
 
         /// <summary>
@@ -627,9 +627,9 @@ namespace PurplePen.ViewModels
         [RelayCommand]
         private void AddFirstAid()
         {
-#if !PORTING
+            if (controller == null) { return; }
+
             controller.BeginAddPointSpecialMode(SpecialKind.FirstAid);
-#endif
         }
 
         /// <summary>
@@ -638,9 +638,9 @@ namespace PurplePen.ViewModels
         [RelayCommand]
         private void AddForbidden()
         {
-#if !PORTING
+            if (controller == null) { return; }
+
             controller.BeginAddPointSpecialMode(SpecialKind.Forbidden);
-#endif
         }
 
         /// <summary>
@@ -649,9 +649,9 @@ namespace PurplePen.ViewModels
         [RelayCommand]
         private void AddRegMark()
         {
-#if !PORTING
+            if (controller == null) { return; }
+
             controller.BeginAddPointSpecialMode(SpecialKind.RegMark);
-#endif
         }
 
         /// <summary>
@@ -660,9 +660,9 @@ namespace PurplePen.ViewModels
         [RelayCommand]
         private void AddWhiteOut()
         {
-#if !PORTING
+            if (controller == null) { return; }
+
             controller.BeginAddLineOrAreaSpecialMode(SpecialKind.WhiteOut, true);
-#endif
         }
 
         /// <summary>
@@ -869,9 +869,9 @@ namespace PurplePen.ViewModels
         [RelayCommand]
         private void RemoveBend()
         {
-#if !PORTING
+            if (controller == null) { return; }
+
             controller.BeginRemoveBend();
-#endif
         }
 
         /// <summary>
@@ -880,9 +880,9 @@ namespace PurplePen.ViewModels
         [RelayCommand]
         private void AddGap()
         {
-#if !PORTING
+            if (controller == null) { return; }
+
             controller.BeginAddGap();
-#endif
         }
 
         /// <summary>
@@ -891,9 +891,9 @@ namespace PurplePen.ViewModels
         [RelayCommand]
         private void RemoveGap()
         {
-#if !PORTING
+            if (controller == null) { return; }
+
             controller.BeginRemoveGap();
-#endif
         }
 
         /// <summary>
@@ -902,9 +902,9 @@ namespace PurplePen.ViewModels
         [RelayCommand]
         private void Rotate()
         {
-#if !PORTING
+            if (controller == null) { return; }
+
             controller.BeginRotate();
-#endif
         }
 
         /// <summary>
@@ -913,9 +913,9 @@ namespace PurplePen.ViewModels
         [RelayCommand]
         private void Stretch()
         {
-#if !PORTING
+            if (controller == null) { return; }
+
             controller.BeginStretch();
-#endif
         }
 
         /// <summary>
@@ -1034,9 +1034,9 @@ namespace PurplePen.ViewModels
         [RelayCommand]
         private void SetNoFlagging()
         {
-#if !PORTING
+            if (controller == null) { return; }
+
             controller.SetLegFlagging(FlaggingKind.None);
-#endif
         }
 
         /// <summary>
@@ -1045,9 +1045,9 @@ namespace PurplePen.ViewModels
         [RelayCommand]
         private void SetEntireFlagging()
         {
-#if !PORTING
+            if (controller == null) { return; }
+
             controller.SetLegFlagging(FlaggingKind.All);
-#endif
         }
 
         /// <summary>
@@ -1056,9 +1056,9 @@ namespace PurplePen.ViewModels
         [RelayCommand]
         private void SetBeginFlagging()
         {
-#if !PORTING
+            if (controller == null) { return; }
+
             controller.SetLegFlagging(FlaggingKind.Begin);
-#endif
         }
 
         /// <summary>
@@ -1067,9 +1067,9 @@ namespace PurplePen.ViewModels
         [RelayCommand]
         private void SetEndFlagging()
         {
-#if !PORTING
+            if (controller == null) { return; }
+
             controller.SetLegFlagging(FlaggingKind.End);
-#endif
         }
 
         #endregion // Leg flagging commands
@@ -1522,9 +1522,9 @@ namespace PurplePen.ViewModels
         [RelayCommand]
         private void SetDescriptionStd2004()
         {
-#if !PORTING
+            if (controller == null) { return; }
+
             controller.ChangeDescriptionStandard("2004");
-#endif
         }
 
         /// <summary>
@@ -1533,9 +1533,9 @@ namespace PurplePen.ViewModels
         [RelayCommand]
         private void SetDescriptionStd2018()
         {
-#if !PORTING
+            if (controller == null) { return; }
+
             controller.ChangeDescriptionStandard("2018");
-#endif
         }
 
         /// <summary>
@@ -1544,9 +1544,9 @@ namespace PurplePen.ViewModels
         [RelayCommand]
         private void SetMapStd2000()
         {
-#if !PORTING
+            if (controller == null) { return; }
+
             controller.ChangeMapStandard("2000");
-#endif
         }
 
         /// <summary>
@@ -1555,9 +1555,9 @@ namespace PurplePen.ViewModels
         [RelayCommand]
         private void SetMapStd2017()
         {
-#if !PORTING
+            if (controller == null) { return; }
+
             controller.ChangeMapStandard("2017");
-#endif
         }
 
         /// <summary>
@@ -1566,9 +1566,9 @@ namespace PurplePen.ViewModels
         [RelayCommand]
         private void SetMapStdSpr2019()
         {
-#if !PORTING
+            if (controller == null) { return; }
+
             controller.ChangeMapStandard("Spr2019");
-#endif
         }
 
         #endregion // IOF Standards commands
