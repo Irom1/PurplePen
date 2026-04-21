@@ -3,7 +3,8 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
-    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <!-- app.manifest is a Windows-only artifact; skip it on other platforms to avoid build errors. -->
+    <ApplicationManifest Condition="$([MSBuild]::IsOSPlatform('Windows'))">app.manifest</ApplicationManifest>
     <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -87,25 +88,50 @@
        pipeline does not try to resolve PdfConverter's output files (which
        fails when PublishReadyToRun adds a RID-specific output path). -->
   <PropertyGroup>
-    <PdfConverterOutputDir>..\PdfConverter\bin\$(Configuration)\net10.0\</PdfConverterOutputDir>
+    <!-- Framework-dependent (no-RID) build output — used during a regular Build. -->
+    <PdfConverterBuildDir>..\PdfConverter\bin\$(Configuration)\net10.0\</PdfConverterBuildDir>
+    <!-- RID-specific publish output — used when AvPurplePen is published with a RuntimeIdentifier. -->
+    <PdfConverterPublishDir>..\PdfConverter\bin\$(Configuration)\net10.0\$(RuntimeIdentifier)\publish\</PdfConverterPublishDir>
   </PropertyGroup>
 
-  <Target Name="BuildPdfConverter" BeforeTargets="Build;Publish">
+  <!-- Build PdfConverter (framework-dependent) before every Build. -->
+  <Target Name="BuildPdfConverter" BeforeTargets="Build">
     <MSBuild Projects="..\PdfConverter\PdfConverter.csproj" Targets="Build" Properties="Configuration=$(Configuration);TargetFramework=net10.0;RuntimeIdentifier=;SelfContained=;PublishDir=;PublishReadyToRun=" />
   </Target>
 
-  <!-- Copy PdfConverter output to AvPurplePen output directory after build. -->
+  <!-- Publish PdfConverter before Publish.
+       When a RuntimeIdentifier is set (e.g. osx-arm64) we publish PdfConverter with the
+       same RID so that the correct platform-specific native libraries (PDFiumCore) are
+       included.  For framework-dependent (no-RID) publishes we fall back to the regular
+       Build output already produced by BuildPdfConverter. -->
+  <Target Name="PublishPdfConverter" BeforeTargets="Publish">
+    <MSBuild Projects="..\PdfConverter\PdfConverter.csproj" Targets="Publish"
+             Condition="'$(RuntimeIdentifier)' != ''"
+             Properties="Configuration=$(Configuration);TargetFramework=net10.0;RuntimeIdentifier=$(RuntimeIdentifier);SelfContained=$(SelfContained);PublishDir=$(PdfConverterPublishDir)" />
+    <!-- For FDD publish (no RID) ensure we have an up-to-date build. -->
+    <MSBuild Projects="..\PdfConverter\PdfConverter.csproj" Targets="Build"
+             Condition="'$(RuntimeIdentifier)' == ''"
+             Properties="Configuration=$(Configuration);TargetFramework=net10.0;RuntimeIdentifier=;SelfContained=;PublishDir=;PublishReadyToRun=" />
+  </Target>
+
+  <!-- Copy PdfConverter output to AvPurplePen output directory after Build. -->
   <Target Name="CopyPdfConverterToBuildOutput" AfterTargets="Build" DependsOnTargets="BuildPdfConverter">
     <ItemGroup>
-      <PdfConverterBuildFiles Include="$(PdfConverterOutputDir)**\*.*" />
+      <!-- Use **/* (not **\*.*) so the extension-less Linux/macOS executable is included. -->
+      <PdfConverterBuildFiles Include="$(PdfConverterBuildDir)**/*" />
     </ItemGroup>
     <Copy SourceFiles="@(PdfConverterBuildFiles)" DestinationFiles="@(PdfConverterBuildFiles->'$(OutputPath)%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
   </Target>
 
-  <!-- Copy PdfConverter output to publish directory after publish. -->
-  <Target Name="CopyPdfConverterToPublishOutput" AfterTargets="Publish" DependsOnTargets="BuildPdfConverter">
+  <!-- Copy PdfConverter output to publish directory after Publish. -->
+  <Target Name="CopyPdfConverterToPublishOutput" AfterTargets="Publish" DependsOnTargets="PublishPdfConverter">
+    <PropertyGroup>
+      <!-- When publishing with a RID, copy from the RID-specific publish output; otherwise use the build output. -->
+      <_PdfConverterSourceDir Condition="'$(RuntimeIdentifier)' != ''">$(PdfConverterPublishDir)</_PdfConverterSourceDir>
+      <_PdfConverterSourceDir Condition="'$(RuntimeIdentifier)' == ''">$(PdfConverterBuildDir)</_PdfConverterSourceDir>
+    </PropertyGroup>
     <ItemGroup>
-      <PdfConverterPublishFiles Include="$(PdfConverterOutputDir)**\*.*" />
+      <PdfConverterPublishFiles Include="$(_PdfConverterSourceDir)**/*" />
     </ItemGroup>
     <Copy SourceFiles="@(PdfConverterPublishFiles)" DestinationFiles="@(PdfConverterPublishFiles->'$(PublishDir)%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
   </Target>

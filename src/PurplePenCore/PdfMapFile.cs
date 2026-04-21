@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
-using Microsoft.Win32;
 using System.Diagnostics;
 
 namespace PurplePen
@@ -169,11 +168,16 @@ namespace PurplePen
                 ConversionCompleted(this, EventArgs.Empty);
         }
 
+        // Returns the full path to the PdfConverter executable bundled with the application,
+        // or null if the file does not exist. The executable name is platform-specific:
+        // "PdfConverter.exe" on Windows and "PdfConverter" on macOS/Linux.
         internal string FindPdfConverterExe()
         {
             Uri uri = new Uri(typeof(PdfMapFile).Assembly.Location);
             string applicationDirectory = Path.GetDirectoryName(uri.LocalPath);
-            return Path.Combine(applicationDirectory, "PdfConverter.exe");
+            string executableName = OperatingSystem.IsWindows() ? "PdfConverter.exe" : "PdfConverter";
+            string converterPath = Path.Combine(applicationDirectory, executableName);
+            return File.Exists(converterPath) ? converterPath : null;
         }
 
         internal string GetCacheFileName(string path)
