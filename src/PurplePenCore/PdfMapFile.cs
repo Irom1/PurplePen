@@ -175,6 +175,8 @@ namespace PurplePen
         {
             Uri uri = new Uri(typeof(PdfMapFile).Assembly.Location);
             string applicationDirectory = Path.GetDirectoryName(uri.LocalPath);
+            if (applicationDirectory == null)
+                return null;
             string executableName = OperatingSystem.IsWindows() ? "PdfConverter.exe" : "PdfConverter";
             string converterPath = Path.Combine(applicationDirectory, executableName);
             return File.Exists(converterPath) ? converterPath : null;

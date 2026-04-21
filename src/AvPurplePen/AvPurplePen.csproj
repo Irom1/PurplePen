@@ -128,7 +128,8 @@
     <PropertyGroup>
       <!-- When publishing with a RID, copy from the RID-specific publish output; otherwise use the build output. -->
       <_PdfConverterSourceDir Condition="'$(RuntimeIdentifier)' != ''">$(PdfConverterPublishDir)</_PdfConverterSourceDir>
-      <_PdfConverterSourceDir Condition="'$(RuntimeIdentifier)' == ''">$(PdfConverterBuildDir)</_PdfConverterSourceDir>
+      <!-- Fall back to the framework-dependent build output for FDD publishes or when RuntimeIdentifier is unset/whitespace. -->
+      <_PdfConverterSourceDir Condition="'$(_PdfConverterSourceDir)' == ''">$(PdfConverterBuildDir)</_PdfConverterSourceDir>
     </PropertyGroup>
     <ItemGroup>
       <PdfConverterPublishFiles Include="$(_PdfConverterSourceDir)**/*" />
