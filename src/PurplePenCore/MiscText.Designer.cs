@@ -1271,7 +1271,7 @@ namespace PurplePen {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to PdfConverter.exe not found.
+        ///   Looks up a localized string similar to PdfConverter not found.
         /// </summary>
         public static string PdfConverterNotFound {
             get {
