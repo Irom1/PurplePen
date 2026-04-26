@@ -1,0 +1,29 @@
+<!--
+    NewEventPrintScalePage.axaml
+    Wizard page 4: Default print scale for All Controls.
+-->
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:PurplePen.ViewModels"
+             xmlns:resx="using:AvPurplePen"
+             x:Class="AvPurplePen.Views.NewEventPrintScalePage"
+             x:DataType="vm:NewEventPrintScalePageViewModel">
+
+    <StackPanel Margin="20" Spacing="12" VerticalAlignment="Center">
+
+        <TextBlock Text="{resx:Localize NewEventPrintScale_Prompt}"
+                   TextWrapping="Wrap"/>
+
+        <DockPanel>
+            <TextBlock DockPanel.Dock="Left"
+                       Text="1 : "
+                       VerticalAlignment="Center"
+                       Margin="0,0,4,0"/>
+            <ComboBox IsEditable="True"
+                      ItemsSource="{Binding AvailablePrintScales}"
+                      Text="{Binding PrintScaleText, Mode=TwoWay}"
+                      HorizontalAlignment="Stretch"/>
+        </DockPanel>
+
+    </StackPanel>
+</UserControl>

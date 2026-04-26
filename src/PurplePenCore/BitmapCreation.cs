@@ -189,9 +189,8 @@ namespace PurplePen
         }
     }
 
-#if !PORTING
     // All the information needed to create bitmaps.
-    class BitmapCreationSettings
+    public class BitmapCreationSettings
     {
         public Id<Course>[] CourseIds;          // Courses to print, None is all controls.
         public bool AllCourses = true;          // If true, overrides CourseIds except for all controls.
@@ -218,5 +217,4 @@ namespace PurplePen
             return n;
         }
     }
-#endif
 }

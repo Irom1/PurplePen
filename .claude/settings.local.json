@@ -40,7 +40,19 @@
       "WebFetch(domain:raw.githubusercontent.com)",
       "WebFetch(domain:api.github.com)",
       "Bash(msbuild PPen.slnx /p:Configuration=Release /v:minimal)",
-      "Bash(\"/c/Program Files/Microsoft Visual Studio/2022/Professional/MSBuild/Current/Bin/MSBuild.exe\" PPen.slnx /p:Configuration=Release /v:minimal)"
+      "Bash(\"/c/Program Files/Microsoft Visual Studio/2022/Professional/MSBuild/Current/Bin/MSBuild.exe\" PPen.slnx /p:Configuration=Release /v:minimal)",
+      "Bash(grep -E \"\\\\.\\(slnx|sln\\)$\")",
+      "Bash(grep \"\\\\.cs$\")",
+      "Bash(awk -F: '{print $1}')",
+      "Bash(xargs basename *)",
+      "Bash(xargs git *)",
+      "Read(//usr/local/share/dotnet/**)",
+      "Read(//Users/mcneal/.dotnet/**)",
+      "Read(//usr/**)",
+      "Bash(git -C /Users/mcneal/Desktop/PurplePenMac status --short)",
+      "Bash(awk *)",
+      "Bash(export PATH=\"$PATH:/usr/local/share/dotnet:/usr/share/dotnet:$HOME/.dotnet\")",
+      "Bash(git submodule *)"
     ]
   }
 }

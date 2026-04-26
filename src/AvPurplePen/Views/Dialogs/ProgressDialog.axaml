@@ -1,0 +1,51 @@
+<!--
+    ProgressDialog.axaml
+    Non-modal progress window shown during long-running operations (PDF export,
+    bitmap creation, etc.). Shown by ShowProgressDialog / closed by EndProgressDialog
+    on IUserInterface. Driven by ProgressDialogViewModel.
+-->
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:PurplePen.ViewModels"
+        xmlns:resx="using:AvPurplePen"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        x:Class="AvPurplePen.Views.ProgressDialog"
+        x:DataType="vm:ProgressDialogViewModel"
+        Title="{resx:Localize ProgressDialog_Title}"
+        Icon="/Assets/transparent.ico"
+        Width="380"
+        SizeToContent="Height"
+        CanResize="False"
+        CanMinimize="False"
+        CanMaximize="False"
+        WindowStartupLocation="CenterOwner"
+        ShowInTaskbar="False">
+
+    <Design.DataContext>
+        <vm:ProgressDialogViewModel/>
+    </Design.DataContext>
+
+    <StackPanel Margin="20" Spacing="12">
+
+        <TextBlock Text="{Binding StatusText}"
+                   TextWrapping="Wrap"
+                   MinHeight="36"
+                   VerticalAlignment="Center"/>
+
+        <ProgressBar IsIndeterminate="{Binding IsIndeterminate}"
+                     Value="{Binding FractionDone}"
+                     Minimum="0"
+                     Maximum="1"
+                     Height="18"/>
+
+        <Button Content="{resx:Localize CancelButton}"
+                Width="85"
+                HorizontalAlignment="Right"
+                HorizontalContentAlignment="Center"
+                IsEnabled="{Binding CanCancel}"
+                Command="{Binding CancelCommand}"/>
+
+    </StackPanel>
+</Window>

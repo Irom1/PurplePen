@@ -28,6 +28,7 @@ namespace AvPurplePen
         private static readonly Assembly ViewAssembly = typeof(DialogService).Assembly;
 
         private readonly Window ownerWindow;
+        private Window? progressWindow;
 
         /// <summary>
         /// Creates a new DialogService that shows dialogs owned by the given window.
@@ -51,22 +52,7 @@ namespace AvPurplePen
                 return await ShowFileOpenSingleAsync(fileOpenVm);
             }
 
-            // Resolve the View type from the ViewModel type using the same convention as ViewLocator.
-            string viewModelName = typeof(TViewModel).FullName!;
-            string viewName = viewModelName
-                .Replace("PurplePen.ViewModels", "AvPurplePen.Views", StringComparison.Ordinal)
-                .Replace("ViewModel", "", StringComparison.Ordinal);
-
-            Type? viewType = ViewAssembly.GetType(viewName);
-            if (viewType == null) {
-                throw new InvalidOperationException($"Could not find View type '{viewName}' for ViewModel '{viewModelName}'.");
-            }
-
-            if (Activator.CreateInstance(viewType) is not Window dialog) {
-                throw new InvalidOperationException($"View type '{viewName}' is not a Window.");
-            }
-
-            dialog.DataContext = viewModel;
+            Window dialog = ResolveWindow(viewModel);
             bool? result = await dialog.ShowDialog<bool?>(ownerWindow);
             return result == true;
         }
@@ -105,6 +91,54 @@ namespace AvPurplePen
 
             viewModel.SelectedFile = null;
             return false;
+        }
+
+        /// <inheritdoc/>
+        public void ShowProgressWindow<TViewModel>(TViewModel viewModel) where TViewModel : class
+        {
+            Window window = ResolveWindow(viewModel);
+            progressWindow = window;
+            window.Show(ownerWindow);
+        }
+
+        /// <inheritdoc/>
+        public void CloseProgressWindow()
+        {
+            progressWindow?.Close();
+            progressWindow = null;
+        }
+
+        /// <inheritdoc/>
+        public async Task<string?> ShowFolderPickerAsync(string? initialDirectory = null)
+        {
+            Avalonia.Platform.Storage.FolderPickerOpenOptions options = new() { AllowMultiple = false };
+            if (initialDirectory != null) {
+                options.SuggestedStartLocation =
+                    await ownerWindow.StorageProvider.TryGetFolderFromPathAsync(initialDirectory);
+            }
+
+            IReadOnlyList<Avalonia.Platform.Storage.IStorageFolder> folders =
+                await ownerWindow.StorageProvider.OpenFolderPickerAsync(options);
+            return folders.Count > 0 ? folders[0].Path.LocalPath : null;
+        }
+
+        // Resolves a Window from a ViewModel using the naming convention FooViewModel → FooView.
+        private static Window ResolveWindow<TViewModel>(TViewModel viewModel) where TViewModel : class
+        {
+            string viewModelName = typeof(TViewModel).FullName!;
+            string viewName = viewModelName
+                .Replace("PurplePen.ViewModels", "AvPurplePen.Views", StringComparison.Ordinal)
+                .Replace("ViewModel", "", StringComparison.Ordinal);
+
+            Type? viewType = ViewAssembly.GetType(viewName);
+            if (viewType == null)
+                throw new InvalidOperationException($"Could not find View type '{viewName}' for ViewModel '{viewModelName}'.");
+
+            if (Activator.CreateInstance(viewType) is not Window window)
+                throw new InvalidOperationException($"View type '{viewName}' is not a Window.");
+
+            window.DataContext = viewModel;
+            return window;
         }
 
         /// <summary>

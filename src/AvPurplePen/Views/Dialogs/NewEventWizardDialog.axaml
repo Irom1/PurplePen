@@ -1,0 +1,130 @@
+<!--
+    NewEventWizardDialog.axaml
+    Multi-page wizard for creating a new orienteering event.
+    The ContentControl swaps pages via DataTemplates keyed on each page ViewModel type.
+    Migrated from WinForms PurplePen/NewEventWizard.cs.
+-->
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:PurplePen.ViewModels"
+        xmlns:resx="using:AvPurplePen"
+        xmlns:local="using:AvPurplePen.Views"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        x:Class="AvPurplePen.Views.NewEventWizardDialog"
+        x:DataType="vm:NewEventWizardDialogViewModel"
+        Title="{resx:Localize NewEventWizard_Text}"
+        Icon="/Assets/transparent.ico"
+        Width="560" Height="480"
+        MinWidth="480" MinHeight="400"
+        CanResize="True"
+        CanMinimize="False"
+        CanMaximize="False"
+        WindowStartupLocation="CenterOwner"
+        ShowInTaskbar="False">
+
+    <Design.DataContext>
+        <vm:NewEventWizardDialogViewModel/>
+    </Design.DataContext>
+
+    <DockPanel>
+
+        <!-- Header: step title -->
+        <Border DockPanel.Dock="Top"
+                Background="#3A6BC9"
+                Padding="16,10">
+            <TextBlock Text="{Binding PageTitle}"
+                       FontSize="15"
+                       FontWeight="SemiBold"
+                       Foreground="White"/>
+        </Border>
+
+        <!-- Footer: Back / Next / Cancel -->
+        <Border DockPanel.Dock="Bottom"
+                BorderThickness="0,1,0,0"
+                BorderBrush="#E0E0E0"
+                Padding="12,8">
+            <Grid ColumnDefinitions="*,Auto,Auto,Auto">
+                <Button x:Name="cancelButton"
+                        Grid.Column="1"
+                        Content="{resx:Localize CancelButton}"
+                        Width="85"
+                        HorizontalContentAlignment="Center"
+                        Margin="0,0,8,0"
+                        IsCancel="True"
+                        Click="CancelButton_Click"/>
+                <Button x:Name="backButton"
+                        Grid.Column="2"
+                        Content="{resx:Localize NewEventWizard_BackButton}"
+                        Width="85"
+                        HorizontalContentAlignment="Center"
+                        Margin="0,0,8,0"
+                        IsEnabled="{Binding CanGoBack}"
+                        Click="BackButton_Click"/>
+                <Button x:Name="nextButton"
+                        Grid.Column="3"
+                        Content="{Binding NextButtonText}"
+                        Width="95"
+                        HorizontalContentAlignment="Center"
+                        IsEnabled="{Binding CanGoNext}"
+                        IsDefault="True"
+                        Click="NextButton_Click"/>
+            </Grid>
+        </Border>
+
+        <!-- Page content area -->
+        <ContentControl Margin="0"
+                        Content="{Binding CurrentPage}">
+            <ContentControl.DataTemplates>
+
+                <!-- Page 1: Title -->
+                <DataTemplate DataType="vm:NewEventTitlePageViewModel">
+                    <local:NewEventTitlePage/>
+                </DataTemplate>
+
+                <!-- Page 2: Map File -->
+                <DataTemplate DataType="vm:NewEventMapFilePageViewModel">
+                    <local:NewEventMapFilePage/>
+                </DataTemplate>
+
+                <!-- Page 3: Bitmap Scale (conditional) -->
+                <DataTemplate DataType="vm:NewEventBitmapScalePageViewModel">
+                    <local:NewEventBitmapScalePage/>
+                </DataTemplate>
+
+                <!-- Page 4: Print Scale -->
+                <DataTemplate DataType="vm:NewEventPrintScalePageViewModel">
+                    <local:NewEventPrintScalePage/>
+                </DataTemplate>
+
+                <!-- Page 5: Paper Size -->
+                <DataTemplate DataType="vm:NewEventPaperSizePageViewModel">
+                    <local:NewEventPaperSizePage/>
+                </DataTemplate>
+
+                <!-- Page 6: Directory -->
+                <DataTemplate DataType="vm:NewEventDirectoryPageViewModel">
+                    <local:NewEventDirectoryPage/>
+                </DataTemplate>
+
+                <!-- Page 7: Standards -->
+                <DataTemplate DataType="vm:NewEventStandardsPageViewModel">
+                    <local:NewEventStandardsPage/>
+                </DataTemplate>
+
+                <!-- Page 8: Numbering -->
+                <DataTemplate DataType="vm:NewEventNumberingPageViewModel">
+                    <local:NewEventNumberingPage/>
+                </DataTemplate>
+
+                <!-- Page 9: Final -->
+                <DataTemplate DataType="vm:NewEventFinalPageViewModel">
+                    <local:NewEventFinalPage/>
+                </DataTemplate>
+
+            </ContentControl.DataTemplates>
+        </ContentControl>
+
+    </DockPanel>
+</Window>

@@ -1,0 +1,129 @@
+<!--
+    CreateOcadFilesDialog.axaml
+    Dialog for File / Create OCAD Files command.
+    Migrated from WinForms PurplePen/CreateOcadFiles.cs.
+-->
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:PurplePen.ViewModels"
+        xmlns:resx="using:AvPurplePen"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        x:Class="AvPurplePen.Views.CreateOcadFilesDialog"
+        x:DataType="vm:CreateOcadFilesDialogViewModel"
+        Title="{resx:Localize CreateOcadFiles_Text}"
+        Icon="/Assets/transparent.ico"
+        Width="480" Height="480"
+        MinWidth="380" MinHeight="400"
+        CanResize="True"
+        CanMinimize="False"
+        CanMaximize="False"
+        WindowStartupLocation="CenterOwner"
+        ShowInTaskbar="False">
+
+    <Design.DataContext>
+        <vm:CreateOcadFilesDialogViewModel/>
+    </Design.DataContext>
+
+    <DockPanel>
+
+        <!-- Footer buttons -->
+        <Border DockPanel.Dock="Bottom"
+                BorderThickness="0,1,0,0"
+                BorderBrush="#E0E0E0"
+                Padding="12,8">
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        Spacing="8">
+                <Button x:Name="cancelButton"
+                        Content="{resx:Localize CreateOcadFiles_cancelButton_Text}"
+                        Width="85"
+                        HorizontalContentAlignment="Center"
+                        IsCancel="True"
+                        Click="CancelButton_Click"/>
+                <Button x:Name="createButton"
+                        Content="{resx:Localize CreateOcadFiles_createButton_Text}"
+                        Width="85"
+                        HorizontalContentAlignment="Center"
+                        IsDefault="True"
+                        Click="CreateButton_Click"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Content -->
+        <ScrollViewer>
+            <StackPanel Margin="16,12,16,8" Spacing="10">
+
+                <!-- Courses group -->
+                <HeaderedContentControl Header="{resx:Localize CreateOcadFiles_coursesGroupBox_Text}">
+                    <StackPanel Spacing="4">
+                        <CheckBox Content="All Courses"
+                                  IsChecked="{Binding AllCoursesSelected, Mode=TwoWay}"/>
+                        <ListBox ItemsSource="{Binding Courses}"
+                                 Height="110"
+                                 SelectionMode="Multiple">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate DataType="vm:CourseSelectionItem">
+                                    <CheckBox Content="{Binding Name}"
+                                              IsChecked="{Binding IsSelected, Mode=TwoWay}"/>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </StackPanel>
+                </HeaderedContentControl>
+
+                <!-- Output group -->
+                <HeaderedContentControl Header="{resx:Localize CreateOcadFiles_outputGroupBox_Text}">
+                    <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto">
+
+                        <TextBlock Grid.Row="0" Grid.Column="0"
+                                   Text="{resx:Localize CreateOcadFiles_fileFormatLabel_Text}"
+                                   VerticalAlignment="Center"
+                                   Margin="0,0,8,4"/>
+                        <ComboBox Grid.Row="0" Grid.Column="1"
+                                  ItemsSource="{Binding FormatNames}"
+                                  SelectedIndex="{Binding SelectedFormatIndex, Mode=TwoWay}"
+                                  HorizontalAlignment="Stretch"
+                                  Margin="0,0,0,4"/>
+
+                        <TextBlock Grid.Row="1" Grid.Column="0"
+                                   Text="{resx:Localize CreateOcadFiles_fileNamePrefixLabel_Text}"
+                                   VerticalAlignment="Center"
+                                   Margin="0,0,8,0"/>
+                        <TextBox Grid.Row="1" Grid.Column="1"
+                                 Text="{Binding FilePrefix, Mode=TwoWay}"
+                                 HorizontalAlignment="Stretch"/>
+
+                    </Grid>
+                </HeaderedContentControl>
+
+                <!-- Folder group -->
+                <HeaderedContentControl Header="{resx:Localize CreateOcadFiles_folderGroupBox_Text}">
+                    <StackPanel Spacing="4">
+                        <RadioButton Content="{resx:Localize CreateOcadFiles_coursesDirectory_Text}"
+                                     IsChecked="{Binding UseFileDirectory, Mode=TwoWay}"/>
+                        <RadioButton Content="{resx:Localize CreateOcadFiles_mapDirectory_Text}"
+                                     IsChecked="{Binding UseMapDirectory, Mode=TwoWay}"/>
+                        <RadioButton Content="{resx:Localize CreateOcadFiles_otherDirectory_Text}"
+                                     IsChecked="{Binding UseOtherDirectory, Mode=TwoWay}"/>
+
+                        <Grid ColumnDefinitions="*,Auto"
+                              IsVisible="{Binding IsOtherDirectoryVisible}">
+                            <TextBox Grid.Column="0"
+                                     Text="{Binding OtherDirectory, Mode=TwoWay}"
+                                     IsReadOnly="True"
+                                     Margin="0,0,8,0"/>
+                            <Button Grid.Column="1"
+                                    x:Name="browseFolderButton"
+                                    Content="{resx:Localize CreateOcadFiles_selectOtherDirectoryButton_Text}"
+                                    Click="BrowseFolderButton_Click"/>
+                        </Grid>
+                    </StackPanel>
+                </HeaderedContentControl>
+
+            </StackPanel>
+        </ScrollViewer>
+
+    </DockPanel>
+</Window>

@@ -1,0 +1,178 @@
+<!--
+    CreateImageFilesDialog.axaml
+    Dialog for File / Create Image Files command.
+    Migrated from WinForms PurplePen/CreateImageFiles.cs.
+-->
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:PurplePen.ViewModels"
+        xmlns:resx="using:AvPurplePen"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        x:Class="AvPurplePen.Views.CreateImageFilesDialog"
+        x:DataType="vm:CreateImageFilesDialogViewModel"
+        Title="{resx:Localize CreateImageFiles_Text}"
+        Icon="/Assets/transparent.ico"
+        Width="480" Height="540"
+        MinWidth="380" MinHeight="440"
+        CanResize="True"
+        CanMinimize="False"
+        CanMaximize="False"
+        WindowStartupLocation="CenterOwner"
+        ShowInTaskbar="False">
+
+    <Design.DataContext>
+        <vm:CreateImageFilesDialogViewModel/>
+    </Design.DataContext>
+
+    <DockPanel>
+
+        <!-- Footer buttons -->
+        <Border DockPanel.Dock="Bottom"
+                BorderThickness="0,1,0,0"
+                BorderBrush="#E0E0E0"
+                Padding="12,8">
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        Spacing="8">
+                <Button x:Name="cancelButton"
+                        Content="{resx:Localize CreateImageFiles_cancelButton_Text}"
+                        Width="85"
+                        HorizontalContentAlignment="Center"
+                        IsCancel="True"
+                        Click="CancelButton_Click"/>
+                <Button x:Name="createButton"
+                        Content="{resx:Localize CreateImageFiles_createButton_Text}"
+                        Width="85"
+                        HorizontalContentAlignment="Center"
+                        IsDefault="True"
+                        Click="CreateButton_Click"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Content -->
+        <ScrollViewer>
+            <StackPanel Margin="16,12,16,8" Spacing="10">
+
+                <!-- Courses group -->
+                <HeaderedContentControl Header="{resx:Localize CreateImageFiles_coursesGroupBox_Text}">
+                    <StackPanel Spacing="4">
+                        <CheckBox Content="All Courses"
+                                  IsChecked="{Binding AllCoursesSelected, Mode=TwoWay}"/>
+                        <ListBox ItemsSource="{Binding Courses}"
+                                 Height="110"
+                                 SelectionMode="Multiple">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate DataType="vm:CourseSelectionItem">
+                                    <CheckBox Content="{Binding Name}"
+                                              IsChecked="{Binding IsSelected, Mode=TwoWay}"/>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </StackPanel>
+                </HeaderedContentControl>
+
+                <!-- Output group: format, DPI, color model, world file, base map, filename prefix -->
+                <HeaderedContentControl Header="{resx:Localize CreateImageFiles_outputGroupBox_Text}">
+                    <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto">
+
+                        <TextBlock Grid.Row="0" Grid.Column="0"
+                                   Text="{resx:Localize CreateImageFiles_fileFormatLabel_Text}"
+                                   VerticalAlignment="Center"
+                                   Margin="0,0,8,4"/>
+                        <ComboBox Grid.Row="0" Grid.Column="1"
+                                  SelectedIndex="{Binding BitmapKindIndex, Mode=TwoWay}"
+                                  HorizontalAlignment="Stretch"
+                                  Margin="0,0,0,4">
+                            <ComboBoxItem Content="{resx:Localize CreateImageFiles_fileFormatCombo_Items}"/>
+                            <ComboBoxItem Content="{resx:Localize CreateImageFiles_fileFormatCombo_Items1}"/>
+                            <ComboBoxItem Content="{resx:Localize CreateImageFiles_fileFormatCombo_Items2}"/>
+                        </ComboBox>
+
+                        <TextBlock Grid.Row="1" Grid.Column="0"
+                                   Text="{resx:Localize CreateImageFiles_dpiLabel_Text}"
+                                   VerticalAlignment="Center"
+                                   Margin="0,0,8,4"/>
+                        <TextBox Grid.Row="1" Grid.Column="1"
+                                 Text="{Binding DpiText, Mode=TwoWay}"
+                                 HorizontalAlignment="Stretch"
+                                 Margin="0,0,0,4"/>
+
+                        <TextBlock Grid.Row="2" Grid.Column="0"
+                                   Text="{resx:Localize CreateImageFiles_labelColorModel_Text}"
+                                   VerticalAlignment="Center"
+                                   Margin="0,0,8,4"/>
+                        <ComboBox Grid.Row="2" Grid.Column="1"
+                                  SelectedIndex="{Binding ColorModelIndex, Mode=TwoWay}"
+                                  HorizontalAlignment="Stretch"
+                                  Margin="0,0,0,4">
+                            <ComboBoxItem Content="{resx:Localize CreateImageFiles_comboBoxColorModel_Items}"/>
+                            <ComboBoxItem Content="{resx:Localize CreateImageFiles_comboBoxColorModel_Items1}"/>
+                        </ComboBox>
+
+                        <TextBlock Grid.Row="3" Grid.Column="0"
+                                   Text="{resx:Localize CreateImageFiles_label1_Text}"
+                                   VerticalAlignment="Center"
+                                   Margin="0,0,8,4"/>
+                        <ComboBox Grid.Row="3" Grid.Column="1"
+                                  SelectedIndex="{Binding WorldFileIndex, Mode=TwoWay}"
+                                  IsEnabled="{Binding WorldFileEnabled}"
+                                  HorizontalAlignment="Stretch"
+                                  Margin="0,0,0,4">
+                            <ComboBoxItem Content="{resx:Localize CreateImageFiles_comboBoxWorldFile_Items}"/>
+                            <ComboBoxItem Content="{resx:Localize CreateImageFiles_comboBoxWorldFile_Items1}"/>
+                        </ComboBox>
+
+                        <TextBlock Grid.Row="4" Grid.Column="0"
+                                   Text="{resx:Localize CreateImageFiles_labelPrintBaseMap_Text}"
+                                   VerticalAlignment="Center"
+                                   Margin="0,0,8,4"/>
+                        <ComboBox Grid.Row="4" Grid.Column="1"
+                                  SelectedIndex="{Binding PrintBaseMapIndex, Mode=TwoWay}"
+                                  HorizontalAlignment="Stretch"
+                                  Margin="0,0,0,4">
+                            <ComboBoxItem Content="{resx:Localize CreateImageFiles_comboBoxPrintBaseMap_Items}"/>
+                            <ComboBoxItem Content="{resx:Localize CreateImageFiles_comboBoxPrintBaseMap_Items1}"/>
+                        </ComboBox>
+
+                        <TextBlock Grid.Row="5" Grid.Column="0"
+                                   Text="{resx:Localize CreateImageFiles_fileNamePrefixLabel_Text}"
+                                   VerticalAlignment="Center"
+                                   Margin="0,0,8,0"/>
+                        <TextBox Grid.Row="5" Grid.Column="1"
+                                 Text="{Binding FilePrefix, Mode=TwoWay}"
+                                 HorizontalAlignment="Stretch"/>
+
+                    </Grid>
+                </HeaderedContentControl>
+
+                <!-- Folder group -->
+                <HeaderedContentControl Header="{resx:Localize CreateImageFiles_folderGroupBox_Text}">
+                    <StackPanel Spacing="4">
+                        <RadioButton Content="{resx:Localize CreateImageFiles_coursesDirectory_Text}"
+                                     IsChecked="{Binding UseFileDirectory, Mode=TwoWay}"/>
+                        <RadioButton Content="{resx:Localize CreateImageFiles_mapDirectory_Text}"
+                                     IsChecked="{Binding UseMapDirectory, Mode=TwoWay}"/>
+                        <RadioButton Content="{resx:Localize CreateImageFiles_otherDirectory_Text}"
+                                     IsChecked="{Binding UseOtherDirectory, Mode=TwoWay}"/>
+
+                        <Grid ColumnDefinitions="*,Auto"
+                              IsVisible="{Binding IsOtherDirectoryVisible}">
+                            <TextBox Grid.Column="0"
+                                     Text="{Binding OtherDirectory, Mode=TwoWay}"
+                                     IsReadOnly="True"
+                                     Margin="0,0,8,0"/>
+                            <Button Grid.Column="1"
+                                    x:Name="browseFolderButton"
+                                    Content="{resx:Localize CreateImageFiles_selectOtherDirectoryButton_Text}"
+                                    Click="BrowseFolderButton_Click"/>
+                        </Grid>
+                    </StackPanel>
+                </HeaderedContentControl>
+
+            </StackPanel>
+        </ScrollViewer>
+
+    </DockPanel>
+</Window>

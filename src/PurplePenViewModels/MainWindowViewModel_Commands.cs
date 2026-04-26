@@ -6,12 +6,19 @@ using CommunityToolkit.Mvvm.Input;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Text;
+using PurplePen.MapModel;
 
 namespace PurplePen.ViewModels
 {
     public partial class MainWindowViewModel
     {
+        // Persisted across invocations of each export dialog.
+        private CoursePdfSettings? coursePdfSettings;
+        private OcadCreationSettings? ocadCreationSettingsPrevious;
+        private BitmapCreationSettings? bitmapCreationSettingsPrevious;
+
         // Update the state of menu items and toolbar buttons, which are
         // typically observable properties.
         private void UpdateMenusToolbarButtons()
@@ -67,24 +74,25 @@ namespace PurplePen.ViewModels
         [RelayCommand]
         private async Task NewEvent()
         {
-#if !PORTING
-            // Try to close the current file. If that succeeds, then ask for a new file and try to open it.
             bool closeSuccess = await controller.TryCloseFile();
-            if (closeSuccess) {
-                NewEventWizard wizard = new NewEventWizard();
-                DialogResult result = wizard.ShowDialog();
-                if (result == DialogResult.OK) {
-                    bool success = await controller.NewEvent(wizard.CreateEventInfo);
-                    if (!success) {
-                        // This is bad news. The old file is gone, and we don't have a new file. Go back to initial screen is the best solution,
-                        // I guess.
-                        Application.Idle -= new EventHandler(Application_Idle);
-                        this.Dispose();
-                        new InitialScreen().Show();
-                    }
+            if (!closeSuccess)
+                return;
+
+            NewEventWizardDialogViewModel wizardVm = new NewEventWizardDialogViewModel();
+            bool result = await Services.DialogService.ShowDialogAsync(wizardVm);
+            if (result) {
+                bool success = await controller.NewEvent(wizardVm.CreateEventInfo);
+                if (!success) {
+                    // Old file is gone and new file failed — show error, the controller
+                    // will have reset to an empty state.
+                    await Services.DialogService.ShowDialogAsync(new MessageBoxDialogViewModel {
+                        Message = MiscText.NewEventFailed,
+                        Icon = MessageBoxIcon.Error,
+                        Buttons = MessageBoxButtons.Ok,
+                        DefaultButton = MessageBoxButton.Ok
+                    });
                 }
             }
-#endif
         }
 
         /// <summary>
@@ -1084,13 +1092,24 @@ namespace PurplePen.ViewModels
         {
             if (controller == null) return;
 
-#if PORTING
-            // TODO: Initialize ViewModel from current event data (map scale, etc.)
-            // and process the result to actually add the course.
-#endif
             AddCourseDialogViewModel vm = new AddCourseDialogViewModel();
-            bool result = await Services.DialogService.ShowDialogAsync(vm);
-            Debug.WriteLine("Dialog returned: " + result);
+            vm.InitializePrintScales(controller.MapScale);
+
+            if (!await Services.DialogService.ShowDialogAsync(vm))
+                return;
+
+            controller.NewCourse(
+                vm.CourseKind,
+                vm.CourseName,
+                vm.ControlLabelKind,
+                vm.ScoreColumn,
+                vm.SecondaryTitlePipeDelimited ?? "",
+                vm.PrintScale,
+                vm.Climb,
+                vm.Length,
+                vm.DescKind,
+                vm.FirstControlOrdinal,
+                vm.HideFromReports);
         }
 
         /// <summary>
@@ -1783,60 +1802,28 @@ namespace PurplePen.ViewModels
         /// Executes the File/Create Course PDF command.
         /// </summary>
         [RelayCommand]
-        private void CreateCoursePdf()
+        private async Task CreateCoursePdf()
         {
-#if !PORTING
-            if (! CheckForNonRenderableObjects(false, true))
-                return;
-
             bool isPdfMap = controller.MapType == MapType.PDF;
 
-            CoursePdfSettings settings;
-            if (coursePdfSettings != null)
-                settings = coursePdfSettings.Clone();
-            else {
-                // Default settings: creating in file directory
-                settings = new CoursePdfSettings();
-
-                settings.fileDirectory = true;
-                settings.mapDirectory = false;
-                settings.outputDirectory = Path.GetDirectoryName(controller.FileName);
-            }
-
-            if (isPdfMap) {
-                // If the map file is a PDF, then created PDF must use that paper size, zero margins, and crop courses to that size.
+            CoursePdfSettings settings = coursePdfSettings?.Clone() ?? new CoursePdfSettings {
+                fileDirectory = true,
+                mapDirectory = false,
+                outputDirectory = Path.GetDirectoryName(controller.FileName),
+            };
+            if (isPdfMap)
                 settings.CropLargePrintArea = true;
-                RectangleF bounds = controller.MapDisplay.MapBounds;
-            }
 
-            // Initialize dialog
-            CreatePdfCourses createPdfDialog = new CreatePdfCourses(controller.GetEventDB(), controller.AnyMultipart());
-            createPdfDialog.controller = controller;
-            createPdfDialog.PdfSettings = settings;
-            if (isPdfMap) {
-                createPdfDialog.EnableChangeCropping = false;
-            }
+            CreateCoursePdfDialogViewModel vm = new CreateCoursePdfDialogViewModel(controller, settings, enableCropToggle: !isPdfMap);
+            if (!await Services.DialogService.ShowDialogAsync(vm))
+                return;
 
-            // show the dialog, on success, print.
-            while (createPdfDialog.ShowDialog(this) == DialogResult.OK) {
-                List<string> overwritingFiles = controller.OverwritingPdfFiles(createPdfDialog.PdfSettings);
-                if (overwritingFiles.Count > 0) {
-                    OverwritingOcadFilesDialog overwriteDialog = new OverwritingOcadFilesDialog();
-                    overwriteDialog.Filenames = overwritingFiles;
-                    if (overwriteDialog.ShowDialog(this) == DialogResult.Cancel)
-                        continue;
-                }
+            CoursePdfSettings final = vm.GetSettings();
+            if (!await ConfirmOverwriteAsync(controller.OverwritingPdfFiles(final)))
+                return;
 
-                // Save the settings for the next invocation of the dialog.
-                coursePdfSettings = createPdfDialog.PdfSettings;
-                controller.CreateCoursePdfs(coursePdfSettings);
-
-                break;
-            }
-
-            // And the dialog is done.
-            createPdfDialog.Dispose();
-#endif
+            coursePdfSettings = final;
+            controller.CreateCoursePdfs(coursePdfSettings);
         }
 
         /// <summary>
@@ -1845,79 +1832,61 @@ namespace PurplePen.ViewModels
         [RelayCommand]
         private async Task CreateOcadFiles()
         {
-#if !PORTING
-            bool success = false;
-
-            MapFileFormatKind restrictToKind;  // restrict to outputting this kind of map.
-            if (mapDisplay.MapType == MapType.OCAD) {
-                restrictToKind = mapDisplay.MapVersion.kind;
-            }
-            else {
-                restrictToKind = MapFileFormatKind.None;
-            }
+            MapFileFormatKind restrictToKind = controller.MapDisplay.MapType == MapType.OCAD
+                ? controller.MapDisplay.MapVersion.kind
+                : MapFileFormatKind.None;
 
             OcadCreationSettings settings;
-            if (ocadCreationSettingsPrevious != null)
-            {
+            if (ocadCreationSettingsPrevious != null) {
                 settings = ocadCreationSettingsPrevious.Clone();
-                if (restrictToKind != MapFileFormatKind.None & restrictToKind != ocadCreationSettingsPrevious.fileFormat.kind) {
-                    settings.fileFormat = mapDisplay.MapVersion;
-                }
+                // If map type changed, reset to the current map format.
+                if (restrictToKind != MapFileFormatKind.None && restrictToKind != ocadCreationSettingsPrevious.fileFormat.kind)
+                    settings.fileFormat = controller.MapDisplay.MapVersion;
             }
             else {
-                // Default settings: creating in file directory, use format of the current map file.
-                settings = new OcadCreationSettings();
-
-                settings.fileDirectory = true;
-                settings.mapDirectory = false;
-                settings.outputDirectory = Path.GetDirectoryName(controller.FileName);
-                if (mapDisplay.MapType == MapType.OCAD) {
-                    settings.fileFormat = mapDisplay.MapVersion;
-                }
-                else {
-                    settings.fileFormat = new MapFileFormat(MapFileFormatKind.OCAD, 8);
-                }
+                settings = new OcadCreationSettings {
+                    fileDirectory = true,
+                    mapDirectory = false,
+                    outputDirectory = Path.GetDirectoryName(controller.FileName),
+                    fileFormat = controller.MapDisplay.MapType == MapType.OCAD
+                        ? controller.MapDisplay.MapVersion
+                        : new MapFileFormat(MapFileFormatKind.OCAD, 8),
+                };
             }
 
-            // Get the correct purple color to use.
-            FindPurple.GetPurpleColor(mapDisplay, controller.GetCourseAppearance(), out settings.colorOcadId, out settings.cyan, out settings.magenta, out settings.yellow, out settings.black, out settings.purpleOverprint);
+            // Capture the purple color from the current map before showing the dialog.
+            FindPurple.GetPurpleColor(controller.MapDisplay, controller.GetCourseAppearance(),
+                out settings.colorOcadId, out settings.cyan, out settings.magenta,
+                out settings.yellow, out settings.black, out settings.purpleOverprint);
 
-            // Initialize the dialog.
-            CreateOcadFiles createOcadFilesDialog = new CreateOcadFiles(controller.GetEventDB(), restrictToKind, controller.CreateOcadFilesText(false));
-            createOcadFilesDialog.OcadCreationSettings = settings;
+            CreateOcadFilesDialogViewModel vm = new CreateOcadFilesDialogViewModel(controller, settings, restrictToKind);
+            if (!await Services.DialogService.ShowDialogAsync(vm))
+                return;
 
-            // show the dialog; on success, create the files.
-            while (createOcadFilesDialog.ShowDialog(this) == DialogResult.OK) {
-                // Warn about files that will be overwritten.
-                List<string> overwritingFiles = controller.OverwritingOcadFiles(createOcadFilesDialog.OcadCreationSettings);
-                if (overwritingFiles.Count > 0) {
-                    OverwritingOcadFilesDialog overwriteDialog = new OverwritingOcadFilesDialog();
-                    overwriteDialog.Filenames = overwritingFiles;
-                    if (overwriteDialog.ShowDialog(this) == DialogResult.Cancel)
-                        continue;
-                }
+            OcadCreationSettings final = vm.GetSettings();
+            // Restore purple color fields (not edited in dialog).
+            final.colorOcadId = settings.colorOcadId;
+            final.cyan = settings.cyan;
+            final.magenta = settings.magenta;
+            final.yellow = settings.yellow;
+            final.black = settings.black;
+            final.purpleOverprint = settings.purpleOverprint;
 
-                // Give any other warning messages.
-                List<string> warnings = controller.OcadFilesWarnings(createOcadFilesDialog.OcadCreationSettings);
-                foreach (string warning in warnings) {
-                    await WarningMessage(warning);
-                }
+            if (!await ConfirmOverwriteAsync(controller.OverwritingOcadFiles(final)))
+                return;
 
-                // Save settings persisted between invocations of this dialog.
-                ocadCreationSettingsPrevious = createOcadFilesDialog.OcadCreationSettings;
-                success = controller.CreateOcadFiles(createOcadFilesDialog.OcadCreationSettings);
+            List<string> warnings = controller.OcadFilesWarnings(final);
+            foreach (string warning in warnings)
+                await WarningMessage(warning);
 
-                // PP keeps bitmaps in memory and locks them. Tell the user to close PP.
-                if (mapDisplay.MapType == MapType.Bitmap)
-                    await InfoMessage(MiscText.ClosePPBeforeLoadingOCAD);
+            ocadCreationSettingsPrevious = final;
+            bool success = controller.CreateOcadFiles(ocadCreationSettingsPrevious);
 
-                break;
-            }
+            if (controller.MapDisplay.MapType == MapType.Bitmap)
+                await InfoMessage(MiscText.ClosePPBeforeLoadingOCAD);
 
-            // And the dialog is done.
-            createOcadFilesDialog.Dispose();
-
-            // The Windows Store version doesn't install Roboto fonts into the system. So we may need to tell the user to install them.
+#if !PORTING
+            // The Windows Store version doesn't install Roboto fonts into the system.
             if (success) {
                 if (controller.ShouldInstallRobotoFonts()) {
                     if (await YesNoQuestion(MiscText.AskInstallRobotoFonts, true)) {
@@ -1934,54 +1903,31 @@ namespace PurplePen.ViewModels
         /// Executes the File/Create Image Files command.
         /// </summary>
         [RelayCommand]
-        private void CreateImageFiles()
+        private async Task CreateImageFiles()
         {
-#if !PORTING
-            BitmapCreationSettings settings;
-            if (bitmapCreationSettingsPrevious != null) {
-                settings = bitmapCreationSettingsPrevious.Clone();
-            }
-            else {
-                // Default settings: creating in file directory, use format of the current map file.
-                settings = new BitmapCreationSettings();
+            bool worldFileEnabled = controller.BitmapFilesCanCreateWorldFile();
 
-                settings.fileDirectory = true;
-                settings.mapDirectory = false;
-                settings.outputDirectory = Path.GetDirectoryName(controller.FileName);
-                settings.Dpi = 200;
-                settings.ColorModel = ColorModel.CMYK;
-                settings.ExportedBitmapKind = BitmapCreationSettings.BitmapKind.Png;
-            }
-
-            // Initialize the dialog.
-            CreateImageFiles createImageFilesDialog = new CreateImageFiles(controller.GetEventDB());
-            if (!controller.BitmapFilesCanCreateWorldFile()) {
-                createImageFilesDialog.WorldFileEnabled = false;
+            BitmapCreationSettings settings = bitmapCreationSettingsPrevious?.Clone() ?? new BitmapCreationSettings {
+                fileDirectory = true,
+                mapDirectory = false,
+                outputDirectory = Path.GetDirectoryName(controller.FileName),
+                Dpi = 200,
+                ColorModel = ColorModel.CMYK,
+                ExportedBitmapKind = BitmapCreationSettings.BitmapKind.Png,
+            };
+            if (!worldFileEnabled)
                 settings.WorldFile = false;
-            }
-            createImageFilesDialog.BitmapCreationSettings = settings;
 
-            // show the dialog; on success, create the files.
-            while (createImageFilesDialog.ShowDialog(this) == DialogResult.OK) {
-                // Warn about files that will be overwritten.
-                List<string> overwritingFiles = controller.OverwritingBitmapFiles(createImageFilesDialog.BitmapCreationSettings);
-                if (overwritingFiles.Count > 0) {
-                    OverwritingOcadFilesDialog overwriteDialog = new OverwritingOcadFilesDialog();
-                    overwriteDialog.Filenames = overwritingFiles;
-                    if (overwriteDialog.ShowDialog(this) == DialogResult.Cancel)
-                        continue;
-                }
+            CreateImageFilesDialogViewModel vm = new CreateImageFilesDialogViewModel(controller, settings, worldFileEnabled);
+            if (!await Services.DialogService.ShowDialogAsync(vm))
+                return;
 
-                // Save settings persisted between invocations of this dialog.
-                bitmapCreationSettingsPrevious = createImageFilesDialog.BitmapCreationSettings;
-                controller.CreateBitmapFiles(createImageFilesDialog.BitmapCreationSettings);
+            BitmapCreationSettings final = vm.GetSettings();
+            if (!await ConfirmOverwriteAsync(controller.OverwritingBitmapFiles(final)))
+                return;
 
-                break;
-            }
-
-            // And the dialog is done.
-            createImageFilesDialog.Dispose();
-#endif
+            bitmapCreationSettingsPrevious = final;
+            controller.CreateBitmapFiles(bitmapCreationSettingsPrevious);
         }
 
         /// <summary>
@@ -2668,6 +2614,22 @@ namespace PurplePen.ViewModels
         }
 
         #endregion // Debug commands
+
+        // Shows a MessageBox listing overwriting files; returns true if the user confirms.
+        private async Task<bool> ConfirmOverwriteAsync(List<string> files)
+        {
+            if (files.Count == 0)
+                return true;
+            string fileList = string.Join("\n", files);
+            MessageBoxDialogViewModel vm = new MessageBoxDialogViewModel {
+                Message = string.Format(MiscText.OverwriteFilesPrompt, fileList),
+                Buttons = MessageBoxButtons.OkCancel,
+                DefaultButton = MessageBoxButton.Ok,
+                Icon = MessageBoxIcon.Warning,
+            };
+            await Services.DialogService.ShowDialogAsync(vm);
+            return vm.ChosenButton == MessageBoxButton.Ok;
+        }
 
     }
 }

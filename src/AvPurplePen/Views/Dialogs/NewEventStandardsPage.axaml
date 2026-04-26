@@ -1,0 +1,39 @@
+<!--
+    NewEventStandardsPage.axaml
+    Wizard page 7: IOF map and description standards.
+-->
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:PurplePen.ViewModels"
+             xmlns:resx="using:AvPurplePen"
+             x:Class="AvPurplePen.Views.NewEventStandardsPage"
+             x:DataType="vm:NewEventStandardsPageViewModel">
+
+    <StackPanel Margin="20" Spacing="16" VerticalAlignment="Center">
+
+        <!-- Map standard -->
+        <HeaderedContentControl Header="{resx:Localize NewEventStandards_MapStandardLabel}"
+                                Padding="8">
+            <StackPanel Spacing="6">
+                <RadioButton Content="{resx:Localize NewEventStandards_Map2000}"
+                             IsChecked="{Binding MapStandard2000}"/>
+                <RadioButton Content="{resx:Localize NewEventStandards_Map2017}"
+                             IsChecked="{Binding MapStandard2017}"/>
+                <RadioButton Content="{resx:Localize NewEventStandards_MapSpr2019}"
+                             IsChecked="{Binding MapStandardSpr2019}"/>
+            </StackPanel>
+        </HeaderedContentControl>
+
+        <!-- Description standard -->
+        <HeaderedContentControl Header="{resx:Localize NewEventStandards_DescStandardLabel}"
+                                Padding="8">
+            <StackPanel Spacing="6">
+                <RadioButton Content="{resx:Localize NewEventStandards_Desc2004}"
+                             IsChecked="{Binding DescStandard2004}"/>
+                <RadioButton Content="{resx:Localize NewEventStandards_Desc2018}"
+                             IsChecked="{Binding DescStandard2018}"/>
+            </StackPanel>
+        </HeaderedContentControl>
+
+    </StackPanel>
+</UserControl>

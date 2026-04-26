@@ -1,0 +1,43 @@
+<!--
+    NewEventBitmapScalePage.axaml
+    Wizard page 3 (conditional): DPI and map scale for bitmap/PDF maps.
+-->
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:PurplePen.ViewModels"
+             xmlns:resx="using:AvPurplePen"
+             x:Class="AvPurplePen.Views.NewEventBitmapScalePage"
+             x:DataType="vm:NewEventBitmapScalePageViewModel">
+
+    <Grid Margin="20" RowDefinitions="Auto,Auto,Auto,Auto" ColumnDefinitions="Auto,*"
+          VerticalAlignment="Center">
+
+        <TextBlock Grid.Row="0" Grid.ColumnSpan="2"
+                   Text="{resx:Localize NewEventBitmapScale_Prompt}"
+                   TextWrapping="Wrap"
+                   Margin="0,0,0,16"/>
+
+        <!-- DPI row (hidden for PDF) -->
+        <TextBlock Grid.Row="1" Grid.Column="0"
+                   Text="{resx:Localize NewEventBitmapScale_DpiLabel}"
+                   VerticalAlignment="Center"
+                   Margin="0,0,12,8"
+                   IsVisible="{Binding !IsPdf}"/>
+        <TextBox Grid.Row="1" Grid.Column="1"
+                 Text="{Binding DpiText, Mode=TwoWay}"
+                 Margin="0,0,0,8"
+                 IsVisible="{Binding !IsPdf}"/>
+
+        <TextBlock Grid.Row="2" Grid.Column="0"
+                   Text="{resx:Localize NewEventBitmapScale_ScaleLabel}"
+                   VerticalAlignment="Center"
+                   Margin="0,0,12,8"/>
+        <DockPanel Grid.Row="2" Grid.Column="1" Margin="0,0,0,8">
+            <TextBlock DockPanel.Dock="Left"
+                       Text="1 : "
+                       VerticalAlignment="Center"/>
+            <TextBox Text="{Binding ScaleText, Mode=TwoWay}"/>
+        </DockPanel>
+
+    </Grid>
+</UserControl>
