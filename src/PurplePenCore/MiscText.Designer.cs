@@ -1206,7 +1206,31 @@ namespace PurplePen {
                 return ResourceManager.GetString("OpenFileDialog_PurplePenFilter", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string for the map file open dialog filter.
+        /// </summary>
+        public static string OpenFileDialog_MapFilter {
+            get {
+                return ResourceManager.GetString("OpenFileDialog_MapFilter", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string shown when creating a new event file fails.
+        /// </summary>
+        public static string NewEventFailed {
+            get {
+                return ResourceManager.GetString("NewEventFailed", resourceCulture);
+            }
+        }
+
+        public static string OverwriteFilesPrompt {
+            get {
+                return ResourceManager.GetString("OverwriteFilesPrompt", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Open &quot;{0}&quot;.
         /// </summary>

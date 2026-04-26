@@ -1,0 +1,37 @@
+<!--
+    NewEventNumberingPage.axaml
+    Wizard page 8: Control code numbering.
+-->
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:PurplePen.ViewModels"
+             xmlns:resx="using:AvPurplePen"
+             x:Class="AvPurplePen.Views.NewEventNumberingPage"
+             x:DataType="vm:NewEventNumberingPageViewModel">
+
+    <Grid Margin="20" RowDefinitions="Auto,Auto,Auto" ColumnDefinitions="Auto,*"
+          VerticalAlignment="Center">
+
+        <TextBlock Grid.Row="0" Grid.ColumnSpan="2"
+                   Text="{resx:Localize NewEventNumbering_Prompt}"
+                   TextWrapping="Wrap"
+                   Margin="0,0,0,16"/>
+
+        <TextBlock Grid.Row="1" Grid.Column="0"
+                   Text="{resx:Localize NewEventNumbering_FirstCodeLabel}"
+                   VerticalAlignment="Center"
+                   Margin="0,0,12,8"/>
+        <NumericUpDown Grid.Row="1" Grid.Column="1"
+                       Value="{Binding FirstCode}"
+                       Minimum="1"
+                       Maximum="999"
+                       FormatString="0"
+                       HorizontalAlignment="Stretch"
+                       Margin="0,0,0,8"/>
+
+        <CheckBox Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
+                  Content="{resx:Localize NewEventNumbering_DisallowInvertible}"
+                  IsChecked="{Binding DisallowInvertibleCodes}"/>
+
+    </Grid>
+</UserControl>

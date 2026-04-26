@@ -1,0 +1,38 @@
+<!--
+    NewEventDirectoryPage.axaml
+    Wizard page 6: Location to save the .ppen event file.
+-->
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:PurplePen.ViewModels"
+             xmlns:resx="using:AvPurplePen"
+             x:Class="AvPurplePen.Views.NewEventDirectoryPage"
+             x:DataType="vm:NewEventDirectoryPageViewModel">
+
+    <StackPanel Margin="20" Spacing="10" VerticalAlignment="Center">
+
+        <TextBlock Text="{resx:Localize NewEventDirectory_Prompt}"
+                   TextWrapping="Wrap"
+                   Margin="0,0,0,6"/>
+
+        <RadioButton Content="{resx:Localize NewEventDirectory_UseMapDirectory}"
+                     IsChecked="{Binding UseMapDirectory}"/>
+
+        <RadioButton Content="{resx:Localize NewEventDirectory_UseOtherDirectory}"
+                     IsChecked="{Binding IsOtherDirectory}"/>
+
+        <Grid ColumnDefinitions="*,Auto"
+              IsVisible="{Binding IsOtherDirectory}">
+            <TextBox Grid.Column="0"
+                     Text="{Binding OtherDirectory, Mode=TwoWay}"
+                     IsReadOnly="True"
+                     Margin="0,0,8,0"/>
+            <Button Grid.Column="1"
+                    x:Name="browseButton"
+                    Content="{resx:Localize NewEventDirectory_BrowseButton}"
+                    Width="90"
+                    Click="BrowseButton_Click"/>
+        </Grid>
+
+    </StackPanel>
+</UserControl>

@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ProgressDialog_Title" xml:space="preserve">
+    <value>Please Wait...</value>
+  </data>
   <data name="IncrementButton" xml:space="preserve">
     <value>Increment</value>
   </data>
@@ -778,9 +781,6 @@
     <value>Change All Controls Properties</value>
   </data>
   <data name="CommandNameText_NewEvent" xml:space="preserve">
-    <value>Create New Event</value>
-  </data>
-  <data name="NewEventWizard_Text" xml:space="preserve">
     <value>Create New Event</value>
   </data>
   <data name="CommandNameText_SetLegFlagging" xml:space="preserve">
@@ -3714,5 +3714,142 @@ For printing competition maps, it is suggested that courses be exported to OCAD 
   </data>
   <data name="ViewAdditionalCourses_Text" xml:space="preserve">
     <value>View Additional Courses</value>
+  </data>
+
+  <!-- New Event Wizard -->
+  <data name="NewEventWizard_Text" xml:space="preserve">
+    <value>New Event Wizard</value>
+  </data>
+  <data name="NewEventWizard_BackButton" xml:space="preserve">
+    <value>&lt; Back</value>
+  </data>
+
+  <!-- Page 1: Title -->
+  <data name="NewEventTitle_Title" xml:space="preserve">
+    <value>Event Title</value>
+  </data>
+  <data name="NewEventTitle_Prompt" xml:space="preserve">
+    <value>Enter a title for the new event:</value>
+  </data>
+  <data name="NewEventTitle_Watermark" xml:space="preserve">
+    <value>Event name</value>
+  </data>
+
+  <!-- Page 2: Map File -->
+  <data name="NewEventMapFile_Title" xml:space="preserve">
+    <value>Map File</value>
+  </data>
+  <data name="NewEventMapFile_Prompt" xml:space="preserve">
+    <value>Select the map file for this event (OCAD, OpenOrienteering, PDF, or bitmap):</value>
+  </data>
+  <data name="NewEventMapFile_Watermark" xml:space="preserve">
+    <value>Map file path</value>
+  </data>
+  <data name="NewEventMapFile_BrowseButton" xml:space="preserve">
+    <value>Browse...</value>
+  </data>
+
+  <!-- Page 3: Bitmap Scale -->
+  <data name="NewEventBitmapScale_Title" xml:space="preserve">
+    <value>Map Scale</value>
+  </data>
+  <data name="NewEventBitmapScale_Prompt" xml:space="preserve">
+    <value>Enter the resolution and map scale for this map image:</value>
+  </data>
+  <data name="NewEventBitmapScale_DpiLabel" xml:space="preserve">
+    <value>Resolution (DPI):</value>
+  </data>
+  <data name="NewEventBitmapScale_ScaleLabel" xml:space="preserve">
+    <value>Map scale:</value>
+  </data>
+
+  <!-- Page 4: Print Scale -->
+  <data name="NewEventPrintScale_Title" xml:space="preserve">
+    <value>Print Scale</value>
+  </data>
+  <data name="NewEventPrintScale_Prompt" xml:space="preserve">
+    <value>Select the default print scale for All Controls (1:...):</value>
+  </data>
+
+  <!-- Page 5: Paper Size -->
+  <data name="NewEventPaperSize_Title" xml:space="preserve">
+    <value>Paper Size</value>
+  </data>
+  <data name="NewEventPaperSize_Prompt" xml:space="preserve">
+    <value>Select the default paper size for printing courses:</value>
+  </data>
+  <data name="NewEventPaperSize_SizeLabel" xml:space="preserve">
+    <value>Paper size:</value>
+  </data>
+  <data name="NewEventPaperSize_MarginLabel" xml:space="preserve">
+    <value>Margin (1/100 inch):</value>
+  </data>
+  <data name="NewEventPaperSize_LandscapeLabel" xml:space="preserve">
+    <value>Landscape orientation</value>
+  </data>
+
+  <!-- Page 6: Directory -->
+  <data name="NewEventDirectory_Title" xml:space="preserve">
+    <value>Event File Location</value>
+  </data>
+  <data name="NewEventDirectory_Prompt" xml:space="preserve">
+    <value>Choose where to save the event file:</value>
+  </data>
+  <data name="NewEventDirectory_UseMapDirectory" xml:space="preserve">
+    <value>Save in the same folder as the map file</value>
+  </data>
+  <data name="NewEventDirectory_UseOtherDirectory" xml:space="preserve">
+    <value>Save in a different folder:</value>
+  </data>
+  <data name="NewEventDirectory_BrowseButton" xml:space="preserve">
+    <value>Browse...</value>
+  </data>
+
+  <!-- Page 7: Standards -->
+  <data name="NewEventStandards_Title" xml:space="preserve">
+    <value>Orienteering Standards</value>
+  </data>
+  <data name="NewEventStandards_MapStandardLabel" xml:space="preserve">
+    <value>Map standard</value>
+  </data>
+  <data name="NewEventStandards_Map2000" xml:space="preserve">
+    <value>ISOM 2000</value>
+  </data>
+  <data name="NewEventStandards_Map2017" xml:space="preserve">
+    <value>ISOM 2017-2</value>
+  </data>
+  <data name="NewEventStandards_MapSpr2019" xml:space="preserve">
+    <value>ISSprOM 2019-2 (sprint maps)</value>
+  </data>
+  <data name="NewEventStandards_DescStandardLabel" xml:space="preserve">
+    <value>Description standard</value>
+  </data>
+  <data name="NewEventStandards_Desc2004" xml:space="preserve">
+    <value>IOF 2004</value>
+  </data>
+  <data name="NewEventStandards_Desc2018" xml:space="preserve">
+    <value>IOF 2018</value>
+  </data>
+
+  <!-- Page 8: Numbering -->
+  <data name="NewEventNumbering_Title" xml:space="preserve">
+    <value>Control Numbering</value>
+  </data>
+  <data name="NewEventNumbering_Prompt" xml:space="preserve">
+    <value>Configure how control codes are assigned:</value>
+  </data>
+  <data name="NewEventNumbering_FirstCodeLabel" xml:space="preserve">
+    <value>First control code:</value>
+  </data>
+  <data name="NewEventNumbering_DisallowInvertible" xml:space="preserve">
+    <value>Disallow codes that look the same when rotated 180°</value>
+  </data>
+
+  <!-- Page 9: Final -->
+  <data name="NewEventFinal_Title" xml:space="preserve">
+    <value>Create Event</value>
+  </data>
+  <data name="NewEventFinal_Prompt" xml:space="preserve">
+    <value>Click Finish to create the event file at:</value>
   </data>
 </root>

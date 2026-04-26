@@ -26,5 +26,24 @@ namespace PurplePen
         /// <param name="viewModel">The ViewModel instance, pre-configured by the caller.</param>
         /// <returns>True if the dialog was accepted (OK), false if cancelled.</returns>
         Task<bool> ShowDialogAsync<TViewModel>(TViewModel viewModel) where TViewModel : class;
+
+        /// <summary>
+        /// Shows a non-modal progress window. Call <see cref="CloseProgressWindow"/> when the
+        /// operation completes. The View is resolved from the ViewModel type using the same
+        /// naming convention as <see cref="ShowDialogAsync{TViewModel}"/>.
+        /// </summary>
+        void ShowProgressWindow<TViewModel>(TViewModel viewModel) where TViewModel : class;
+
+        /// <summary>
+        /// Closes the progress window previously shown by <see cref="ShowProgressWindow{TViewModel}"/>.
+        /// </summary>
+        void CloseProgressWindow();
+
+        /// <summary>
+        /// Shows the platform folder-picker dialog.
+        /// </summary>
+        /// <param name="initialDirectory">Optional starting directory path.</param>
+        /// <returns>The selected folder path, or null if the user cancelled.</returns>
+        Task<string?> ShowFolderPickerAsync(string? initialDirectory = null);
     }
 }

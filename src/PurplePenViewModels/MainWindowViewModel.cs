@@ -195,13 +195,11 @@ namespace PurplePen.ViewModels
 
             if (controller.MapDisplay.MapType != controller.MapType || controller.MapDisplay.FileName != controller.MapFileName || (controller.MapType == MapType.Bitmap && controller.MapDisplay.Dpi != controller.MapDpi)) {
                 // A new map file has been loaded, or the DPI has changed.
+                ocadCreationSettingsPrevious = null;
+                bitmapCreationSettingsPrevious = null;
 #if !PORTING
                 mapViewer.ZoomFactor = 1.0F;   // used if the map bounds are empty, then this zoom factor is preserved.
                 ShowRectangle(mapDisplay.MapBounds);
-
-                // Reset the OCAD file creating settings dialog to default settings.
-                ocadCreationSettingsPrevious = null;
-                bitmapCreationSettingsPrevious = null;
 #endif
             }
 

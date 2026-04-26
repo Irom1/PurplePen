@@ -1,0 +1,52 @@
+<!--
+    NewEventMapFilePage.axaml
+    Wizard page 2: Map file selection and validation.
+    The Browse button is handled by the wizard dialog code-behind.
+-->
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:PurplePen.ViewModels"
+             xmlns:resx="using:AvPurplePen"
+             x:Class="AvPurplePen.Views.NewEventMapFilePage"
+             x:DataType="vm:NewEventMapFilePageViewModel">
+
+    <StackPanel Margin="20" Spacing="12" VerticalAlignment="Center">
+
+        <TextBlock Text="{resx:Localize NewEventMapFile_Prompt}"
+                   TextWrapping="Wrap"/>
+
+        <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto">
+            <TextBox Grid.Column="0"
+                     Text="{Binding MapFileName}"
+                     IsReadOnly="True"
+                     Margin="0,0,8,0"
+                     Watermark="{resx:Localize NewEventMapFile_Watermark}"/>
+            <Button Grid.Column="1"
+                    x:Name="browseButton"
+                    Content="{resx:Localize NewEventMapFile_BrowseButton}"
+                    Width="90"
+                    Click="BrowseButton_Click"/>
+        </Grid>
+
+        <!-- Info panel: valid file selected -->
+        <Border Background="#D4EDDA"
+                CornerRadius="4"
+                Padding="8,6"
+                IsVisible="{Binding HasInfo}">
+            <TextBlock Text="{Binding InfoMessage}"
+                       TextWrapping="Wrap"
+                       FontStyle="Italic"/>
+        </Border>
+
+        <!-- Error panel: invalid file -->
+        <Border Background="#F8D7DA"
+                CornerRadius="4"
+                Padding="8,6"
+                IsVisible="{Binding HasError}">
+            <TextBlock Text="{Binding ErrorMessage}"
+                       TextWrapping="Wrap"
+                       Foreground="#721C24"/>
+        </Border>
+
+    </StackPanel>
+</UserControl>

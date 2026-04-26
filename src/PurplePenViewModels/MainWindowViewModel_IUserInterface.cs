@@ -10,6 +10,7 @@ namespace PurplePen.ViewModels
 {
     public partial class MainWindowViewModel: IUserInterface
     {
+        private ProgressDialogViewModel? progressDialogViewModel;
         public void Initialize(Controller controller, SymbolDB symbolDB)
         {
             this.controller = controller;
@@ -118,18 +119,27 @@ namespace PurplePen.ViewModels
 
         public void ShowProgressDialog(bool knownDuration, Action onCancelPressed)
         {
-            // Progress dialog UI is not ported yet. Keep running without cancellation UI.
+            progressDialogViewModel = new ProgressDialogViewModel {
+                IsIndeterminate = !knownDuration
+            };
+            progressDialogViewModel.SetCancelAction(onCancelPressed);
+            Services.DialogService.ShowProgressWindow(progressDialogViewModel);
         }
 
         public bool UpdateProgressDialog(string info, double fractionDone)
         {
-            // No progress dialog is shown, so operation should continue.
-            return false;
+            if (progressDialogViewModel != null) {
+                progressDialogViewModel.StatusText = info;
+                progressDialogViewModel.FractionDone = fractionDone;
+                progressDialogViewModel.IsIndeterminate = false;
+            }
+            return false;  // false = continue operation
         }
 
         public void EndProgressDialog()
         {
-            // Progress dialog UI is not ported yet.
+            Services.DialogService.CloseProgressWindow();
+            progressDialogViewModel = null;
         }
 
         public string GetOpenFileName()

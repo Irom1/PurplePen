@@ -1,0 +1,22 @@
+<!--
+    NewEventTitlePage.axaml
+    Wizard page 1: Event title entry.
+-->
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:PurplePen.ViewModels"
+             xmlns:resx="using:AvPurplePen"
+             x:Class="AvPurplePen.Views.NewEventTitlePage"
+             x:DataType="vm:NewEventTitlePageViewModel">
+
+    <StackPanel Margin="20" Spacing="12" VerticalAlignment="Center">
+
+        <TextBlock Text="{resx:Localize NewEventTitle_Prompt}"
+                   TextWrapping="Wrap"/>
+
+        <TextBox x:Name="titleTextBox"
+                 Text="{Binding EventTitle, Mode=TwoWay}"
+                 Watermark="{resx:Localize NewEventTitle_Watermark}"/>
+
+    </StackPanel>
+</UserControl>

@@ -652,4 +652,17 @@ After pressing OK, try to find a copy of the map file on your computer.</value>
   <data name="OpenFileDialog_PurplePenFilter" xml:space="preserve">
     <value>Purple Pen files|*.ppen|All files|*.*</value>
   </data>
+  <data name="NewEventFailed" xml:space="preserve">
+    <value>Could not create the new event file. The previous event has been closed.</value>
+  </data>
+  <data name="OpenFileDialog_MapFilter" xml:space="preserve">
+    <value>Map files|*.ocd;*.omap;*.pdf;*.jpg;*.jpeg;*.png;*.gif;*.tif;*.tiff;*.bmp|OCAD files|*.ocd|OpenOrienteering files|*.omap|PDF files|*.pdf|Bitmap files|*.jpg;*.jpeg;*.png;*.gif;*.tif;*.tiff;*.bmp|All files|*.*</value>
+  </data>
+  <data name="OverwriteFilesPrompt" xml:space="preserve">
+    <value>The following files already exist and will be overwritten:
+
+{0}
+
+Do you want to replace them?</value>
+  </data>
 </root>

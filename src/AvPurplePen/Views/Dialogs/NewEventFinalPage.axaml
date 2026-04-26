@@ -1,0 +1,32 @@
+<!--
+    NewEventFinalPage.axaml
+    Wizard page 9: Summary confirmation before creating the event file.
+-->
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:PurplePen.ViewModels"
+             xmlns:resx="using:AvPurplePen"
+             x:Class="AvPurplePen.Views.NewEventFinalPage"
+             x:DataType="vm:NewEventFinalPageViewModel">
+
+    <StackPanel Margin="20" Spacing="12" VerticalAlignment="Center">
+
+        <TextBlock Text="{resx:Localize NewEventFinal_Prompt}"
+                   TextWrapping="Wrap"/>
+
+        <TextBox Text="{Binding EventFilePath}"
+                 IsReadOnly="True"
+                 TextWrapping="Wrap"/>
+
+        <!-- Error panel (shown only when pre-creation check fails) -->
+        <Border Background="#F8D7DA"
+                CornerRadius="4"
+                Padding="8,6"
+                IsVisible="{Binding HasError}">
+            <TextBlock Text="{Binding ErrorMessage}"
+                       TextWrapping="Wrap"
+                       Foreground="#721C24"/>
+        </Border>
+
+    </StackPanel>
+</UserControl>
