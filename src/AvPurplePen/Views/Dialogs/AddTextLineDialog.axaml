@@ -1,0 +1,89 @@
+<!--
+    AddTextLineDialog.axaml
+    Dialog for Add / Text Line. Lets the user enter text for a course description line.
+    Migrated from WinForms PurplePen/AddTextLine.cs.
+-->
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:PurplePen.ViewModels"
+        xmlns:resx="using:AvPurplePen"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        d:DesignWidth="460" d:DesignHeight="300"
+        x:Class="AvPurplePen.Views.AddTextLineDialog"
+        x:DataType="vm:AddTextLineDialogViewModel"
+        Title="{resx:Localize AddTextLine_Text}"
+        Icon="/Assets/transparent.ico"
+        Width="460" Height="300"
+        CanResize="True"
+        CanMinimize="False"
+        CanMaximize="False"
+        WindowStartupLocation="CenterOwner"
+        ShowInTaskbar="False">
+
+    <Design.DataContext>
+        <vm:AddTextLineDialogViewModel/>
+    </Design.DataContext>
+
+    <DockPanel>
+
+        <!-- Footer buttons -->
+        <Border DockPanel.Dock="Bottom"
+                BorderThickness="0,1,0,0"
+                BorderBrush="#E0E0E0"
+                Padding="12,8">
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        Spacing="8">
+                <Button Content="{resx:Localize CancelButton}"
+                        Width="85"
+                        HorizontalContentAlignment="Center"
+                        IsCancel="True"
+                        Click="CancelButton_Click"/>
+                <Button Content="{resx:Localize OKButton}"
+                        Width="85"
+                        HorizontalContentAlignment="Center"
+                        IsDefault="True"
+                        Click="OkButton_Click"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Options row: position + courses -->
+        <Grid DockPanel.Dock="Bottom"
+              ColumnDefinitions="Auto,*,Auto,*"
+              Margin="16,0,16,8">
+            <TextBlock Grid.Column="0"
+                       Text="{resx:Localize AddTextLine_positionLabel_Text}"
+                       VerticalAlignment="Center"
+                       Margin="0,0,6,0"/>
+            <ComboBox Grid.Column="1"
+                      ItemsSource="{Binding PositionItems}"
+                      SelectedIndex="{Binding PositionIndex, Mode=TwoWay}"
+                      HorizontalAlignment="Stretch"
+                      Margin="0,0,12,0"/>
+            <TextBlock Grid.Column="2"
+                       Text="{resx:Localize AddTextLine_coursesLabel_Text}"
+                       VerticalAlignment="Center"
+                       Margin="0,0,6,0"/>
+            <ComboBox Grid.Column="3"
+                      ItemsSource="{Binding CoursesItems}"
+                      SelectedIndex="{Binding CoursesIndex, Mode=TwoWay}"
+                      IsEnabled="{Binding CoursesEnabled}"
+                      HorizontalAlignment="Stretch"/>
+        </Grid>
+
+        <!-- Main content: instruction label + multiline textbox -->
+        <StackPanel Margin="16,12,16,8" Spacing="6">
+            <TextBlock Text="{resx:Localize AddTextLine_textLineLabel_Text}"
+                       TextWrapping="Wrap"/>
+            <TextBox x:Name="textBoxText"
+                     Text="{Binding TextLineText, Mode=TwoWay}"
+                     AcceptsReturn="True"
+                     TextWrapping="Wrap"
+                     Height="120"
+                     ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+        </StackPanel>
+
+    </DockPanel>
+</Window>

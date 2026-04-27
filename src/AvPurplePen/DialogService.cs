@@ -122,6 +122,36 @@ namespace AvPurplePen
             return folders.Count > 0 ? folders[0].Path.LocalPath : null;
         }
 
+        /// <inheritdoc/>
+        public async Task<string?> ShowSaveFilePickerAsync(string currentFileName)
+        {
+            return await ShowSaveFilePickerAsync(currentFileName, null);
+        }
+
+        /// <inheritdoc/>
+        public async Task<string?> ShowSaveFilePickerAsync(string currentFileName, string? filterString)
+        {
+            IReadOnlyList<FilePickerFileType> fileTypes;
+            if (!string.IsNullOrEmpty(filterString))
+                fileTypes = ParseFileFilters(filterString);
+            else
+                fileTypes = new[] { new FilePickerFileType("Purple Pen files") { Patterns = new[] { "*.ppen" } } };
+
+            FilePickerSaveOptions options = new FilePickerSaveOptions {
+                Title = "Save File",
+                SuggestedFileName = System.IO.Path.GetFileName(currentFileName),
+                FileTypeChoices = fileTypes,
+            };
+            if (!string.IsNullOrEmpty(currentFileName)) {
+                string? dir = System.IO.Path.GetDirectoryName(currentFileName);
+                if (!string.IsNullOrEmpty(dir))
+                    options.SuggestedStartLocation =
+                        await ownerWindow.StorageProvider.TryGetFolderFromPathAsync(dir);
+            }
+            IStorageFile? file = await ownerWindow.StorageProvider.SaveFilePickerAsync(options);
+            return file?.Path.LocalPath;
+        }
+
         // Resolves a Window from a ViewModel using the naming convention FooViewModel → FooView.
         private static Window ResolveWindow<TViewModel>(TViewModel viewModel) where TViewModel : class
         {

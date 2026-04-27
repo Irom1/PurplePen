@@ -1231,6 +1231,22 @@ namespace PurplePen {
             }
         }
 
+        public static string AddTextLine_Above {
+            get { return ResourceManager.GetString("AddTextLine_Above", resourceCulture); }
+        }
+
+        public static string AddTextLine_Below {
+            get { return ResourceManager.GetString("AddTextLine_Below", resourceCulture); }
+        }
+
+        public static string AddTextLine_ThisCourse {
+            get { return ResourceManager.GetString("AddTextLine_ThisCourse", resourceCulture); }
+        }
+
+        public static string AddTextLine_AllCourses {
+            get { return ResourceManager.GetString("AddTextLine_AllCourses", resourceCulture); }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Open &quot;{0}&quot;.
         /// </summary>
@@ -1311,6 +1327,16 @@ namespace PurplePen {
                 return ResourceManager.GetString("PdfFilter", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to IOF XML 3.0|*.xml|IOF XML 2.0|*.xml.
+        /// </summary>
+        public static string XmlFilter { get { return ResourceManager.GetString("XmlFilter", resourceCulture); } }
+
+        /// <summary>
+        ///   Looks up a localized string similar to GPX File|*.gpx.
+        /// </summary>
+        public static string GpxFilter { get { return ResourceManager.GetString("GpxFilter", resourceCulture); } }
         
         /// <summary>
         ///   Looks up a localized string similar to Map size from PDF.
@@ -1644,5 +1670,7 @@ namespace PurplePen {
                 return ResourceManager.GetString("Zoom", resourceCulture);
             }
         }
+        public static string OpenImageDialog_Filter { get { return ResourceManager.GetString("OpenImageDialog_Filter", resourceCulture); } }
+        public static string ViewAdditionalCourses_Instructions { get { return ResourceManager.GetString("ViewAdditionalCourses_Instructions", resourceCulture); } }
     }
 }

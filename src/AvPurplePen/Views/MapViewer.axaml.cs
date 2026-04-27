@@ -407,6 +407,25 @@ public partial class MapViewer : UserControl
         MouseLocation = Conv.ToPointF(e.WorldLocation);
     }
 
+    /// <summary>
+    /// Zooms and pans so that the given world-coordinate rectangle fills the view.
+    /// A 10 % margin is added so the edges aren't clipped.
+    /// Does nothing if the control has not yet been laid out (size is zero).
+    /// </summary>
+    public void ShowRectangle(System.Drawing.RectangleF bounds)
+    {
+        if (bounds.IsEmpty || panAndZoom.Bounds.Width <= 0 || panAndZoom.Bounds.Height <= 0)
+            return;
+
+        const float pixelPerMm = 96.0f / 25.4f;
+        float zoomX = (float)(panAndZoom.Bounds.Width  / (pixelPerMm * bounds.Width)  * 0.9);
+        float zoomY = (float)(panAndZoom.Bounds.Height / (pixelPerMm * bounds.Height) * 0.9);
+        panAndZoom.ZoomFactor  = Math.Min(zoomX, zoomY);
+        panAndZoom.CenterPoint = new Point(
+            bounds.X + bounds.Width  / 2.0,
+            bounds.Y + bounds.Height / 2.0);
+    }
+
     // Cancels any drags currently in progress and raises DragCancel for each.
     public void CancelAllDrags()
     {

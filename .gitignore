@@ -42,6 +42,7 @@ src/SetupIS/SetupIS
 
 **/.vs
 src/.claude/
+.claude/settings.local.json
 Thumbs.db
 *.opendb
 *.db

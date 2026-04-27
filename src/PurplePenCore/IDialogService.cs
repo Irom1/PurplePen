@@ -45,5 +45,20 @@ namespace PurplePen
         /// <param name="initialDirectory">Optional starting directory path.</param>
         /// <returns>The selected folder path, or null if the user cancelled.</returns>
         Task<string?> ShowFolderPickerAsync(string? initialDirectory = null);
+
+        /// <summary>
+        /// Shows the platform Save File dialog for Purple Pen files.
+        /// </summary>
+        /// <param name="currentFileName">Current file path; used to seed the initial directory and filename.</param>
+        /// <returns>The chosen file path, or null if the user cancelled.</returns>
+        Task<string?> ShowSaveFilePickerAsync(string currentFileName);
+
+        /// <summary>
+        /// Shows the platform Save File dialog with a custom file-type filter.
+        /// </summary>
+        /// <param name="currentFileName">Current file path; used to seed the initial directory and filename.</param>
+        /// <param name="filterString">Windows-style pipe-delimited filter, e.g. "PDF File|*.pdf". Pass null to use the default .ppen filter.</param>
+        /// <returns>The chosen file path, or null if the user cancelled.</returns>
+        Task<string?> ShowSaveFilePickerAsync(string currentFileName, string? filterString);
     }
 }
