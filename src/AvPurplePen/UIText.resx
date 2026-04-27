@@ -3556,6 +3556,24 @@ For printing competition maps, it is suggested that courses be exported to OCAD 
   <data name="SetPrintAreaDialog_checkBoxFixSizeToPaper_Text" xml:space="preserve">
     <value>Fix Print Area Size to Paper Size</value>
   </data>
+  <data name="PaperSizeControl_sizeLabel_Text" xml:space="preserve">
+    <value>Size:</value>
+  </data>
+  <data name="PaperSizeControl_widthLabel_Text" xml:space="preserve">
+    <value>Width:</value>
+  </data>
+  <data name="PaperSizeControl_heightLabel_Text" xml:space="preserve">
+    <value>Height:</value>
+  </data>
+  <data name="PaperSizeControl_marginLabel_Text" xml:space="preserve">
+    <value>Margin (all sides):</value>
+  </data>
+  <data name="PaperSizeControl_portraitLabel_Text" xml:space="preserve">
+    <value>Portrait</value>
+  </data>
+  <data name="PaperSizeControl_landscapeLabel_Text" xml:space="preserve">
+    <value>Landscape</value>
+  </data>
   <data name="SetUILanguage_introLabel_Text" xml:space="preserve">
     <value>Select the language that you would like to use for the user interface of Purple Pen (menus, windows, etc.)</value>
   </data>
