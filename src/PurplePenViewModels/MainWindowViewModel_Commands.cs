@@ -1370,36 +1370,28 @@ namespace PurplePen.ViewModels
         /// Executes the Event/Customize Course Appearance command.
         /// </summary>
         [RelayCommand]
-        private void CustomizeCourseAppearance()
+        private async Task CustomizeCourseAppearance()
         {
-#if !PORTING
-            // Initialize the dialog
-            CourseAppearanceDialog dialog = new CourseAppearanceDialog();
-
-            // Get the correct default purple color to use.
+            // Get the default purple color from the map (pass null appearance to get map default).
             float c, m, y, k;
             bool purpleOverprint;
             short ocadId;
-            FindPurple.GetPurpleColor(mapDisplay, null, out ocadId, out c, out m, out y, out k, out purpleOverprint);
-            dialog.SetDefaultPurple(c, m, y, k);
-            dialog.UsesOcadMap = (mapDisplay.MapType == MapType.OCAD);
-            dialog.SetMapLayers(controller.GetUnderlyingMapColors());
+            FindPurple.GetPurpleColor(MapDisplay, null, out ocadId, out c, out m, out y, out k, out purpleOverprint);
 
-            // Set the course appearance into the dialog
+            bool usesOcadMap = MapDisplay?.MapType == MapType.OCAD;
+
             CourseAppearance appearance = controller.GetCourseAppearance();
-            if (dialog.UsesOcadMap && appearance.purpleColorBlend != PurpleColorBlend.UpperLowerPurple) {
-                // Set the default lower purple layer anyway, so that it is chosen by default when the user changes the blend.
+            if (usesOcadMap && appearance.purpleColorBlend != PurpleColorBlend.UpperLowerPurple) {
+                // Pre-select the default lower purple layer so it is ready when the user switches to Layer mode.
                 appearance.mapLayerForLowerPurple = controller.GetDefaultLowerPurpleLayer();
             }
-            dialog.CourseAppearance = appearance;
 
-            // Show the dialog.
-            if (dialog.ShowDialog(this) == DialogResult.OK) {
-                controller.SetCourseAppearance(dialog.CourseAppearance);
+            CourseAppearanceDialogViewModel vm = new CourseAppearanceDialogViewModel();
+            vm.Initialize(appearance, usesOcadMap, controller.GetUnderlyingMapColors(), c, m, y, k);
+
+            if (await Services.DialogService.ShowDialogAsync(vm)) {
+                controller.SetCourseAppearance(vm.GetCourseAppearance());
             }
-
-            dialog.Dispose();
-#endif
         }
 
         #endregion // Event/tools commands
