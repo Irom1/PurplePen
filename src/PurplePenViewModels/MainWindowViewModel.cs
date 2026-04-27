@@ -29,6 +29,15 @@ namespace PurplePen.ViewModels
     /// </summary>
     public partial class MainWindowViewModel : ViewModelBase
     {
+        /// <summary>Raised by the Exit command so the View can close the window.</summary>
+        public event System.EventHandler? CloseRequested;
+
+        /// <summary>
+        /// Set by the View so the ViewModel can request that the map viewer
+        /// scroll and zoom to show a given world-coordinate rectangle.
+        /// </summary>
+        public Action<System.Drawing.RectangleF>? ShowRectangleCallback { get; set; }
+
         Controller? controller = null;
         SymbolDB symbolDB = null!;
         long changeNum = 0;         // When this changes, state information needs to be updated in the UI.

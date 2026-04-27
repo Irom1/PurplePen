@@ -1,0 +1,98 @@
+<!--
+    MapIssueChoiceDialog.axaml
+    Dialog for Add / Map Issue. The user clicks one of three choice buttons.
+    Migrated from WinForms PurplePen/MapIssueChoiceDialog.cs.
+-->
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:PurplePen.ViewModels"
+        xmlns:resx="using:AvPurplePen"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        d:DesignWidth="460" d:DesignHeight="400"
+        x:Class="AvPurplePen.Views.MapIssueChoiceDialog"
+        x:DataType="vm:MapIssueChoiceDialogViewModel"
+        Title="{resx:Localize MapIssueChoiceDialog_Text}"
+        Icon="/Assets/transparent.ico"
+        Width="460" Height="400"
+        CanResize="False"
+        CanMinimize="False"
+        CanMaximize="False"
+        WindowStartupLocation="CenterOwner"
+        ShowInTaskbar="False">
+
+    <Design.DataContext>
+        <vm:MapIssueChoiceDialogViewModel/>
+    </Design.DataContext>
+
+    <DockPanel>
+
+        <!-- Cancel at the bottom -->
+        <Border DockPanel.Dock="Bottom"
+                BorderThickness="0,1,0,0"
+                BorderBrush="#E0E0E0"
+                Padding="12,8">
+            <Button Content="{resx:Localize CancelButton}"
+                    Width="85"
+                    HorizontalAlignment="Right"
+                    HorizontalContentAlignment="Center"
+                    IsCancel="True"
+                    Click="CancelButton_Click"/>
+        </Border>
+
+        <!-- Choice buttons -->
+        <StackPanel Margin="16,12,16,8" Spacing="10">
+
+            <TextBlock Text="{resx:Localize MapIssueChoiceDialog_labelExplanation_Text}"
+                       TextWrapping="Wrap"
+                       Margin="0,0,0,6"/>
+
+            <!-- Beginning -->
+            <Button x:Name="startButton"
+                    HorizontalAlignment="Stretch"
+                    HorizontalContentAlignment="Left"
+                    Padding="12,8"
+                    Click="StartButton_Click">
+                <StackPanel Spacing="3">
+                    <TextBlock Text="{resx:Localize MapIssueChoiceDialog_startButton_Title}"
+                               FontWeight="Bold"/>
+                    <TextBlock Text="{resx:Localize MapIssueChoiceDialog_startButton_Detail}"
+                               TextWrapping="Wrap"
+                               FontSize="11"/>
+                </StackPanel>
+            </Button>
+
+            <!-- Middle -->
+            <Button x:Name="middleButton"
+                    HorizontalAlignment="Stretch"
+                    HorizontalContentAlignment="Left"
+                    Padding="12,8"
+                    Click="MiddleButton_Click">
+                <StackPanel Spacing="3">
+                    <TextBlock Text="{resx:Localize MapIssueChoiceDialog_middleButton_Title}"
+                               FontWeight="Bold"/>
+                    <TextBlock Text="{resx:Localize MapIssueChoiceDialog_middleButton_Detail}"
+                               TextWrapping="Wrap"
+                               FontSize="11"/>
+                </StackPanel>
+            </Button>
+
+            <!-- Start Triangle -->
+            <Button x:Name="startTriangleButton"
+                    HorizontalAlignment="Stretch"
+                    HorizontalContentAlignment="Left"
+                    Padding="12,8"
+                    Click="StartTriangleButton_Click">
+                <StackPanel Spacing="3">
+                    <TextBlock Text="{resx:Localize MapIssueChoiceDialog_startTriangleButton_Title}"
+                               FontWeight="Bold"/>
+                    <TextBlock Text="{resx:Localize MapIssueChoiceDialog_startTriangleButton_Detail}"
+                               TextWrapping="Wrap"
+                               FontSize="11"/>
+                </StackPanel>
+            </Button>
+
+        </StackPanel>
+    </DockPanel>
+</Window>

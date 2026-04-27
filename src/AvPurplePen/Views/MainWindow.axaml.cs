@@ -25,6 +25,7 @@ namespace AvPurplePen.Views
     public partial class MainWindow : Window
     {
         private MousePointerShape _mousePointerShape = new MousePointerShape(PredefinedMousePointerShape.Arrow);
+        private bool _closingConfirmed = false;
 
         // Has the MousePointerShape that should be used in the map viewer.
         public static readonly DirectProperty<MainWindow, MousePointerShape> MapMousePointerShapeProperty =
@@ -40,6 +41,30 @@ namespace AvPurplePen.Views
         {
             InitializeComponent();
             ApplicationIdleService.ApplicationIdle += ApplicationIdle;
+            Closing += MainWindow_Closing;
+            DataContextChanged += MainWindow_DataContextChanged;
+        }
+
+        private void MainWindow_DataContextChanged(object? sender, System.EventArgs e)
+        {
+            if (DataContext is MainWindowViewModel vm) {
+                vm.CloseRequested += (_, _) => Close();
+                vm.ShowRectangleCallback = bounds => mapViewer.ShowRectangle(bounds);
+            }
+        }
+
+        // Intercepts window close (both ✕ button and File→Exit).
+        // Avalonia's Closing event is synchronous, so we cancel immediately,
+        // do the async "save changes?" check, then re-close if approved.
+        private async void MainWindow_Closing(object? sender, WindowClosingEventArgs e)
+        {
+            if (_closingConfirmed) return;
+            e.Cancel = true;
+
+            if (DataContext is MainWindowViewModel vm && await vm.TryCloseAsync()) {
+                _closingConfirmed = true;
+                Close();
+            }
         }
 
         public MousePointerShape MapMousePointerShape {

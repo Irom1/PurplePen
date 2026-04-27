@@ -249,6 +249,293 @@ namespace PurplePen.ViewModels
         }
     }
 
+    // ---------------------------------------------------------------
+    // IOF XML / GPX / KML / RouteGadget / Description PDF / Punchcard PDF
+    // ---------------------------------------------------------------
+
+    /// <summary>Settings for File/Export XML — chooses IOF XML 2.0 or 3.0.</summary>
+    public partial class CreateXmlDialogViewModel : ViewModelBase
+    {
+        /// <summary>0 = IOF XML 2.0, 1 = IOF XML 3.0 (default).</summary>
+        [ObservableProperty] private int xmlVersionIndex = 1;
+
+        /// <summary>The actual IOF XML version number (2 or 3).</summary>
+        public int XmlVersion => XmlVersionIndex == 0 ? 2 : 3;
+    }
+
+    /// <summary>Settings for File/Export GPX — course checklist and waypoint code prefix.</summary>
+    public partial class CreateGpxDialogViewModel : ViewModelBase
+    {
+        /// <summary>All courses in the event; the user checks the ones to export.</summary>
+        public ObservableCollection<CourseCheckItem> Courses { get; } = new();
+
+        /// <summary>Prefix added to each control code in the GPX waypoint names.</summary>
+        [ObservableProperty] private string codePrefix = "";
+
+        /// <summary>Populates <see cref="Courses"/> from the event, all checked by default.</summary>
+        public void Initialize(EventDB eventDB)
+        {
+            Courses.Clear();
+            foreach (Id<Course> id in eventDB.AllCourseIds)
+                Courses.Add(new CourseCheckItem(new CourseDesignator(id), eventDB.GetCourse(id).name, true));
+        }
+
+        /// <summary>Builds a <see cref="GpxCreationSettings"/> from the current UI state.</summary>
+        public GpxCreationSettings GetSettings()
+        {
+            bool allChecked = Courses.All(c => c.IsChecked);
+            return new GpxCreationSettings {
+                AllCourses = allChecked,
+                CourseIds = allChecked
+                    ? System.Array.Empty<Id<Course>>()
+                    : Courses.Where(c => c.IsChecked).Select(c => c.CourseId).ToArray(),
+                CodePrefix = CodePrefix,
+            };
+        }
+    }
+
+    /// <summary>Settings for File/Create KML Files — courses, output directory, prefix, and file mode.</summary>
+    public partial class CreateKmlFilesDialogViewModel : ViewModelBase
+    {
+        /// <summary>All courses in the event; the user checks the ones to export.</summary>
+        public ObservableCollection<CourseCheckItem> Courses { get; } = new();
+
+        /// <summary>True when using the directory that contains the event file.</summary>
+        [ObservableProperty] private bool fileDirectory = true;
+
+        /// <summary>Custom output directory path (used when <see cref="FileDirectory"/> is false).</summary>
+        [ObservableProperty] private string outputDirectory = "";
+
+        /// <summary>Optional prefix prepended to each output file name.</summary>
+        [ObservableProperty] private string filePrefix = "";
+
+        /// <summary>True = all courses in a single KML file; false = one file per course.</summary>
+        [ObservableProperty] private bool singleFile = false;
+
+        /// <summary>Populates the view model from an <see cref="ExportKmlSettings"/> object.</summary>
+        public void Initialize(EventDB eventDB, ExportKmlSettings settings)
+        {
+            Courses.Clear();
+            foreach (Id<Course> id in eventDB.AllCourseIds) {
+                bool isChecked = settings.AllCourses
+                    || (settings.CourseIds != null && settings.CourseIds.Any(c => c == id));
+                Courses.Add(new CourseCheckItem(new CourseDesignator(id), eventDB.GetCourse(id).name, isChecked));
+            }
+            FileDirectory = settings.fileDirectory;
+            OutputDirectory = settings.outputDirectory ?? "";
+            FilePrefix = settings.filePrefix ?? "";
+            SingleFile = settings.FileCreation == ExportKmlSettings.KmlFileCreation.SingleFile;
+        }
+
+        /// <summary>Builds an <see cref="ExportKmlSettings"/> from the current UI state.</summary>
+        public ExportKmlSettings GetSettings()
+        {
+            bool allChecked = Courses.All(c => c.IsChecked);
+            return new ExportKmlSettings {
+                AllCourses = allChecked,
+                CourseIds = allChecked
+                    ? System.Array.Empty<Id<Course>>()
+                    : Courses.Where(c => c.IsChecked).Select(c => c.CourseId).ToArray(),
+                fileDirectory = FileDirectory,
+                mapDirectory = false,
+                outputDirectory = OutputDirectory,
+                filePrefix = FilePrefix,
+                FileCreation = SingleFile
+                    ? ExportKmlSettings.KmlFileCreation.SingleFile
+                    : ExportKmlSettings.KmlFileCreation.FilePerCourse,
+            };
+        }
+    }
+
+    /// <summary>Settings for File/Create Route Gadget Files — output directory, base name, and XML version.</summary>
+    public partial class CreateRouteGadgetFilesDialogViewModel : ViewModelBase
+    {
+        /// <summary>True when using the directory that contains the event file.</summary>
+        [ObservableProperty] private bool fileDirectory = true;
+
+        /// <summary>Custom output directory path (used when <see cref="FileDirectory"/> is false).</summary>
+        [ObservableProperty] private string outputDirectory = "";
+
+        /// <summary>Base file name for the generated .xml and .gif files (without extension).</summary>
+        [ObservableProperty] private string fileBaseName = "";
+
+        /// <summary>0 = IOF XML 2.0, 1 = IOF XML 3.0 (default).</summary>
+        [ObservableProperty] private int xmlVersionIndex = 1;
+
+        /// <summary>Populates the view model from a <see cref="RouteGadgetCreationSettings"/> object.</summary>
+        public void Initialize(RouteGadgetCreationSettings settings)
+        {
+            FileDirectory = settings.fileDirectory;
+            OutputDirectory = settings.outputDirectory ?? "";
+            FileBaseName = settings.fileBaseName ?? "";
+            XmlVersionIndex = settings.xmlVersion == 2 ? 0 : 1;
+        }
+
+        /// <summary>Builds a <see cref="RouteGadgetCreationSettings"/> from the current UI state.</summary>
+        public RouteGadgetCreationSettings GetSettings()
+        {
+            return new RouteGadgetCreationSettings {
+                fileDirectory = FileDirectory,
+                mapDirectory = false,
+                outputDirectory = OutputDirectory,
+                fileBaseName = FileBaseName,
+                xmlVersion = XmlVersionIndex == 0 ? 2 : 3,
+            };
+        }
+    }
+
+    /// <summary>Settings for File/Create Description PDF — courses, count kind, box size, desc kind, paper size.</summary>
+    public partial class CreateDescriptionPdfDialogViewModel : ViewModelBase
+    {
+        // A4=827x1169, A3=1169x1654, Letter=850x1100 (hundredths-of-an-inch).
+        private static readonly (string Name, float W, float H)[] s_descPaperSizes = {
+            ("A4", 827, 1169), ("A3", 1169, 1654), ("Letter", 850, 1100),
+        };
+
+        /// <summary>All courses in the event; the user checks the ones to export.</summary>
+        public ObservableCollection<CourseCheckItem> Courses { get; } = new();
+
+        /// <summary>0 = OneDescription, 1 = OnePage, 2 = DescriptionCount.</summary>
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(CountOpacity))]
+        [NotifyPropertyChangedFor(nameof(CountEnabled))]
+        private int countKindIndex = 0;
+
+        /// <summary>Number of copies (active only when <see cref="CountKindIndex"/> == 2).</summary>
+        [ObservableProperty] private int count = 1;
+
+        /// <summary>Height of each description box in millimetres.</summary>
+        [ObservableProperty] private decimal boxSize = 6m;
+
+        /// <summary>0 = UseCourseDefault, 1 = Symbols, 2 = Text, 3 = SymbolsAndText.</summary>
+        [ObservableProperty] private int descKindIndex = 0;
+
+        /// <summary>0 = A4, 1 = A3, 2 = Letter.</summary>
+        [ObservableProperty] private int paperSizeIndex = 0;
+
+        /// <summary>Opacity of the count NumericUpDown (1.0 when active, 0.0 when inactive).</summary>
+        public double CountOpacity => CountKindIndex == 2 ? 1.0 : 0.0;
+
+        /// <summary>Whether the count NumericUpDown accepts input.</summary>
+        public bool CountEnabled => CountKindIndex == 2;
+
+        /// <summary>Populates the view model from a <see cref="DescriptionPrintSettings"/> object.</summary>
+        public void Initialize(EventDB eventDB, DescriptionPrintSettings settings)
+        {
+            Courses.Clear();
+            foreach (Id<Course> id in eventDB.AllCourseIds) {
+                bool isChecked = settings.AllCourses
+                    || (settings.CourseIds != null && settings.CourseIds.Any(c => c == id));
+                Courses.Add(new CourseCheckItem(new CourseDesignator(id), eventDB.GetCourse(id).name, isChecked));
+            }
+            CountKindIndex = settings.CountKind switch {
+                CorePrintingCountKind.OnePage => 1,
+                CorePrintingCountKind.DescriptionCount => 2,
+                _ => 0,
+            };
+            Count = settings.Count;
+            BoxSize = (decimal)settings.BoxSize;
+            DescKindIndex = settings.UseCourseDefault ? 0 : settings.DescKind switch {
+                DescriptionKind.Text => 2,
+                DescriptionKind.SymbolsAndText => 3,
+                _ => 1,
+            };
+            PaperSizeIndex = 0; // default A4
+        }
+
+        /// <summary>Builds a <see cref="DescriptionPrintSettings"/> from the current UI state.</summary>
+        public DescriptionPrintSettings GetSettings()
+        {
+            bool allChecked = Courses.All(c => c.IsChecked);
+            bool useCourseDefault = DescKindIndex == 0;
+            DescriptionKind descKind = DescKindIndex switch {
+                2 => DescriptionKind.Text,
+                3 => DescriptionKind.SymbolsAndText,
+                _ => DescriptionKind.Symbols,
+            };
+            return new DescriptionPrintSettings {
+                AllCourses = allChecked,
+                CourseIds = allChecked
+                    ? System.Array.Empty<Id<Course>>()
+                    : Courses.Where(c => c.IsChecked).Select(c => c.CourseId).ToArray(),
+                CountKind = CountKindIndex switch {
+                    1 => CorePrintingCountKind.OnePage,
+                    2 => CorePrintingCountKind.DescriptionCount,
+                    _ => CorePrintingCountKind.OneDescription,
+                },
+                Count = Count,
+                BoxSize = (float)BoxSize,
+                UseCourseDefault = useCourseDefault,
+                DescKind = descKind,
+            };
+        }
+
+        /// <summary>Returns the paper size and 0.5" margins for use when creating the PDF.</summary>
+        public PrintingPaperSizeWithMargins GetPaperSizeWithMargins()
+        {
+            int idx = System.Math.Clamp(PaperSizeIndex, 0, s_descPaperSizes.Length - 1);
+            PrintingPaperSize ps = new PrintingPaperSize(s_descPaperSizes[idx].Name, s_descPaperSizes[idx].W, s_descPaperSizes[idx].H);
+            return new PrintingPaperSizeWithMargins(ps, new PrintingMarginSize(50));
+        }
+    }
+
+    /// <summary>Settings for File/Create Punchcard PDF — courses, count, box size, paper size.</summary>
+    public partial class CreatePunchcardPdfDialogViewModel : ViewModelBase
+    {
+        // A4=827x1169, A3=1169x1654, Letter=850x1100 (hundredths-of-an-inch).
+        private static readonly (string Name, float W, float H)[] s_punchPaperSizes = {
+            ("A4", 827, 1169), ("A3", 1169, 1654), ("Letter", 850, 1100),
+        };
+
+        /// <summary>All courses in the event; the user checks the ones to export.</summary>
+        public ObservableCollection<CourseCheckItem> Courses { get; } = new();
+
+        /// <summary>Number of copies of each punchcard to include in the PDF.</summary>
+        [ObservableProperty] private int count = 1;
+
+        /// <summary>Height of each punch box in millimetres.</summary>
+        [ObservableProperty] private decimal boxSize = 18m;
+
+        /// <summary>0 = A4, 1 = A3, 2 = Letter.</summary>
+        [ObservableProperty] private int paperSizeIndex = 0;
+
+        /// <summary>Populates the view model from a <see cref="CorePunchPrintSettings"/> object.</summary>
+        public void Initialize(EventDB eventDB, CorePunchPrintSettings settings)
+        {
+            Courses.Clear();
+            foreach (Id<Course> id in eventDB.AllCourseIds) {
+                bool isChecked = settings.AllCourses
+                    || (settings.CourseIds != null && settings.CourseIds.Any(c => c == id));
+                Courses.Add(new CourseCheckItem(new CourseDesignator(id), eventDB.GetCourse(id).name, isChecked));
+            }
+            Count = settings.Count;
+            BoxSize = (decimal)settings.BoxSize;
+            PaperSizeIndex = 0; // default A4
+        }
+
+        /// <summary>Builds a <see cref="CorePunchPrintSettings"/> from the current UI state.</summary>
+        public CorePunchPrintSettings GetSettings()
+        {
+            bool allChecked = Courses.All(c => c.IsChecked);
+            return new CorePunchPrintSettings {
+                AllCourses = allChecked,
+                CourseIds = allChecked
+                    ? System.Array.Empty<Id<Course>>()
+                    : Courses.Where(c => c.IsChecked).Select(c => c.CourseId).ToArray(),
+                Count = Count,
+                BoxSize = (float)BoxSize,
+            };
+        }
+
+        /// <summary>Returns the paper size and 0.5" margins for use when creating the PDF.</summary>
+        public PrintingPaperSizeWithMargins GetPaperSizeWithMargins()
+        {
+            int idx = System.Math.Clamp(PaperSizeIndex, 0, s_punchPaperSizes.Length - 1);
+            PrintingPaperSize ps = new PrintingPaperSize(s_punchPaperSizes[idx].Name, s_punchPaperSizes[idx].W, s_punchPaperSizes[idx].H);
+            return new PrintingPaperSizeWithMargins(ps, new PrintingMarginSize(50));
+        }
+    }
+
     // ViewModel for File / Create Image Files.
     public partial class CreateImageFilesDialogViewModel : ExportDialogViewModelBase
     {

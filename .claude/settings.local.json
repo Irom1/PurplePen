@@ -52,7 +52,15 @@
       "Bash(git -C /Users/mcneal/Desktop/PurplePenMac status --short)",
       "Bash(awk *)",
       "Bash(export PATH=\"$PATH:/usr/local/share/dotnet:/usr/share/dotnet:$HOME/.dotnet\")",
-      "Bash(git submodule *)"
+      "Bash(git submodule *)",
+      "Bash(grep -n 'labelExplanation\\\\|startButton\\\\|middleButton\\\\|startTriangleButton\\\\|$this\\\\b' /Users/mcneal/Desktop/PurplePenMac/src/PurplePen/MapIssueChoiceDialog.resx)",
+      "Bash(grep 'TitleText\\\\|DetailText\\\\|labelExplanation\\\\|$this.Text' /Users/mcneal/Desktop/PurplePenMac/src/PurplePen/MapIssueChoiceDialog.Designer.cs)",
+      "Bash(grep -v \"^$\")",
+      "Bash(grep -v \"^--$\")",
+      "Bash(sed -n '44,55p' /Users/mcneal/Desktop/PurplePenMac/src/PurplePenCore/CoreRectanglePrinting.cs)",
+      "Bash(sed -n '997,1010p' /Users/mcneal/Desktop/PurplePenMac/src/PurplePenCore/EventDB.cs)",
+      "Bash(dotnet run *)",
+      "Bash(git add *)"
     ]
   }
 }

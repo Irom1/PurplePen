@@ -6,8 +6,10 @@ using CommunityToolkit.Mvvm.Input;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Text;
+using PurplePen;
 using PurplePen.MapModel;
 
 namespace PurplePen.ViewModels
@@ -126,34 +128,39 @@ namespace PurplePen.ViewModels
         [RelayCommand]
         private void Save()
         {
-#if !PORTING
+            if (controller == null) return;
             controller.Save();
-#endif
         }
 
         /// <summary>
         /// Executes the File/Save As command. Shows a Save File dialog.
         /// </summary>
         [RelayCommand]
-        private void SaveAs()
+        private async Task SaveAs()
         {
-#if !PORTING
-            string newFileName = GetSaveFileName(controller.FileName);
-            if (newFileName != null) {
+            if (controller == null) return;
+            string? newFileName = await Services.DialogService.ShowSaveFilePickerAsync(controller.FileName);
+            if (newFileName != null)
                 controller.SaveAs(newFileName);
-            }
-#endif
         }
 
         /// <summary>
-        /// Executes the File/Exit command. Closes the application.
+        /// Executes the File/Exit command. Requests window closure (triggers the Closing handler).
         /// </summary>
         [RelayCommand]
         private void Exit()
         {
-#if !PORTING
-            Close();
-#endif
+            CloseRequested?.Invoke(this, System.EventArgs.Empty);
+        }
+
+        /// <summary>
+        /// Called by the window Closing handler to check for unsaved changes.
+        /// Returns true if it is safe to close (no changes, or user confirmed save/discard).
+        /// </summary>
+        public async Task<bool> TryCloseAsync()
+        {
+            if (controller == null) return true;
+            return await controller.TryCloseFile();
         }
 
         #endregion // File commands
@@ -166,15 +173,11 @@ namespace PurplePen.ViewModels
         [RelayCommand]
         private void Cancel()
         {
-#if !PORTING
-            // Clear selection and cancel current mode use the same menu item.
-            if (controller.CanCancelMode()) {
+            if (controller == null) return;
+            if (controller.CanCancelMode())
                 controller.CancelMode();
-            }
-            else {
+            else
                 controller.ClearSelection();
-            }
-#endif
         }
 
         /// <summary>
@@ -183,12 +186,9 @@ namespace PurplePen.ViewModels
         [RelayCommand]
         private void Undo()
         {
-#if !PORTING
+            if (controller == null) return;
             UndoStatus status = controller.GetUndoStatus();
-
-            if (status.CanUndo)
-                controller.Undo();
-#endif
+            if (status.CanUndo) controller.Undo();
         }
 
         /// <summary>
@@ -197,12 +197,9 @@ namespace PurplePen.ViewModels
         [RelayCommand]
         private void Redo()
         {
-#if !PORTING
+            if (controller == null) return;
             UndoStatus status = controller.GetUndoStatus();
-
-            if (status.CanRedo)
-                controller.Redo();
-#endif
+            if (status.CanRedo) controller.Redo();
         }
 
         /// <summary>
@@ -211,9 +208,8 @@ namespace PurplePen.ViewModels
         [RelayCommand]
         private async Task DeleteSelection()
         {
-#if !PORTING
+            if (controller == null) return;
             await controller.DeleteSelection();
-#endif
         }
 
         /// <summary>
@@ -222,9 +218,8 @@ namespace PurplePen.ViewModels
         [RelayCommand]
         private async Task DeleteFork()
         {
-#if !PORTING
+            if (controller == null) return;
             await controller.DeleteFork();
-#endif
         }
 
         #endregion // Edit commands
@@ -237,11 +232,9 @@ namespace PurplePen.ViewModels
         [RelayCommand]
         private void ViewEntireCourse()
         {
-#if !PORTING
-            // Show the entire course.
+            if (controller == null) return;
             RectangleF courseBounds = controller.GetCourseBounds();
-            ShowRectangle(courseBounds);
-#endif
+            ShowRectangleCallback?.Invoke(courseBounds);
         }
 
         /// <summary>
@@ -250,11 +243,9 @@ namespace PurplePen.ViewModels
         [RelayCommand]
         private void ViewEntireMap()
         {
-#if !PORTING
-            // Show the entire map.
-            RectangleF mapBounds = mapDisplay.MapBounds;
-            ShowRectangle(mapBounds);
-#endif
+            if (controller == null || MapDisplay == null) return;
+            RectangleF mapBounds = MapDisplay.MapBounds;
+            ShowRectangleCallback?.Invoke(mapBounds);
         }
 
         /// <summary>
@@ -302,11 +293,8 @@ namespace PurplePen.ViewModels
         [RelayCommand]
         private void ToggleShowPopups()
         {
-#if !PORTING
-            showToolTips = !showToolTips;
-            UserSettings.Current.ShowPopupInfo = showToolTips;
+            UserSettings.Current.ShowPopupInfo = !UserSettings.Current.ShowPopupInfo;
             UserSettings.Current.Save();
-#endif
         }
 
         /// <summary>
@@ -315,11 +303,10 @@ namespace PurplePen.ViewModels
         [RelayCommand]
         private void ToggleShowPrintArea()
         {
-#if !PORTING
+            if (controller == null) return;
             UserSettings.Current.ShowPrintArea = !UserSettings.Current.ShowPrintArea;
             UserSettings.Current.Save();
             controller.ForceChangeUpdate(true);
-#endif
         }
 
         /// <summary>
@@ -373,16 +360,18 @@ namespace PurplePen.ViewModels
         /// Shows the View Additional Courses dialog.
         /// </summary>
         [RelayCommand]
-        private void ShowOtherCourses()
+        private async Task ShowOtherCourses()
         {
-#if !PORTING
-            ViewAdditionalCourses dialog = new ViewAdditionalCourses(controller.CurrentTabName, controller.CurrentCourseId);
-            dialog.EventDB = controller.GetEventDB();
-            dialog.DisplayedCourses = controller.ExtraCourseDisplay;
-            if (dialog.ShowDialog() == DialogResult.OK) {
-                controller.ExtraCourseDisplay = dialog.DisplayedCourses;
-            }
-#endif
+            if (controller == null) return;
+
+            ViewAdditionalCoursesDialogViewModel vm = new ViewAdditionalCoursesDialogViewModel();
+            vm.Initialize(controller.GetEventDB(), controller.CurrentTabName,
+                          controller.CurrentCourseId, controller.ExtraCourseDisplay);
+
+            if (!await Services.DialogService.ShowDialogAsync(vm))
+                return;
+
+            controller.ExtraCourseDisplay = vm.GetSelectedCourseIds();
         }
 
         /// <summary>
@@ -391,9 +380,8 @@ namespace PurplePen.ViewModels
         [RelayCommand]
         private void ClearOtherCourses()
         {
-#if !PORTING
+            if (controller == null) return;
             controller.ClearExtraCourseDisplay();
-#endif
         }
 
         #endregion // View commands
@@ -483,54 +471,45 @@ namespace PurplePen.ViewModels
         [RelayCommand]
         private async Task AddVariation()
         {
-#if !PORTING
+            if (controller == null) return;
+
             string reason;
             if (controller.CanAddVariation(out reason) != CommandStatus.Enabled) {
                 await ErrorMessage(reason);
                 return;
             }
 
-            AddForkDialog addForkDialog = new AddForkDialog();
+            AddForkDialogViewModel vm = new AddForkDialogViewModel();
+            if (!await Services.DialogService.ShowDialogAsync(vm))
+                return;
 
-            DialogResult result = addForkDialog.ShowDialog(this);
-
-            if (result == DialogResult.OK) {
-                await controller.AddVariation(addForkDialog.Loop, addForkDialog.NumberOfBranches);
-            }
-
-            addForkDialog.Dispose();
-#endif
+            await controller.AddVariation(vm.Loop, vm.NumberOfBranches);
         }
 
         /// <summary>
         /// Executes the Add/Text Line command. Shows the Add Text Line dialog.
         /// </summary>
         [RelayCommand]
-        private void AddTextLine()
+        private async Task AddTextLine()
         {
-#if !PORTING
+            if (controller == null) return;
+
             string defaultText;
             DescriptionLine.TextLineKind defaultLineKind;
-            bool enableThisCourse;
             string objectName;
+            bool enableThisCourse;
 
-            if (controller.CanAddTextLine(out defaultText, out defaultLineKind, out objectName, out enableThisCourse)) {
-                // Initialize dialog.
-                AddTextLine dialog = new AddTextLine(objectName, enableThisCourse);
-                dialog.TextLine = defaultText;
-                dialog.TextLineKind = defaultLineKind;
+            if (!controller.CanAddTextLine(out defaultText, out defaultLineKind, out objectName, out enableThisCourse))
+                return;
 
-                // Show the dialog.
-                DialogResult result = dialog.ShowDialog(this);
+            AddTextLineDialogViewModel vm = new AddTextLineDialogViewModel(objectName, enableThisCourse);
+            vm.SetTextLine(defaultText);
+            vm.TextLineKind = defaultLineKind;
 
-                // Apply changes.
-                if (result == DialogResult.OK) {
-                    controller.AddTextLine(dialog.TextLine, dialog.TextLineKind);
-                }
+            if (!await Services.DialogService.ShowDialogAsync(vm))
+                return;
 
-                dialog.Dispose();
-            }
-#endif
+            controller.AddTextLine(vm.GetTextLine(), vm.TextLineKind);
         }
 
         #endregion // Add control commands
@@ -541,15 +520,15 @@ namespace PurplePen.ViewModels
         /// Executes the Add/Map Issue command. Shows the Map Issue Choice dialog.
         /// </summary>
         [RelayCommand]
-        private void AddMapIssue()
+        private async Task AddMapIssue()
         {
-#if !PORTING
-            MapIssueChoiceDialog dialog = new MapIssueChoiceDialog();
-            if (dialog.ShowDialog(this) == DialogResult.OK) {
-                controller.BeginAddMapIssuePointMode(dialog.MapIssueKind);
-            }
-            dialog.Dispose();
-#endif
+            if (controller == null) return;
+
+            MapIssueChoiceDialogViewModel vm = new MapIssueChoiceDialogViewModel();
+            if (!await Services.DialogService.ShowDialogAsync(vm))
+                return;
+
+            controller.BeginAddMapIssuePointMode(vm.SelectedKind);
         }
 
         /// <summary>
@@ -715,142 +694,111 @@ namespace PurplePen.ViewModels
         /// Executes the Add/Image command. Shows an Open File dialog for image selection.
         /// </summary>
         [RelayCommand]
-        private void AddImage()
+        private async Task AddImage()
         {
-#if !PORTING
-            openImageDialog.FileName = null;
-            DialogResult result = openImageDialog.ShowDialog();
+            if (controller == null) return;
 
-            if (result == DialogResult.OK) {
-                string fileName = openImageDialog.FileName;
-                controller.BeginAddImageSpecialMode(fileName);
-            }
-#endif
+            FileOpenSingleViewModel fileOpenVM = new FileOpenSingleViewModel {
+                FileFilters = MiscText.OpenImageDialog_Filter,
+            };
+            if (!await Services.DialogService.ShowDialogAsync(fileOpenVM))
+                return;
+            if (fileOpenVM.SelectedFile != null)
+                controller.BeginAddImageSpecialMode(fileOpenVM.SelectedFile);
         }
 
         /// <summary>
         /// Executes the Add/Line command. Shows the Line Properties dialog.
         /// </summary>
         [RelayCommand]
-        private void AddLine()
+        private async Task AddLine()
         {
-#if !PORTING
-            // Set the course appearance into the dialog
-            CourseAppearance appearance = controller.GetCourseAppearance();
+            if (controller == null) return;
 
-            // Get the correct default purple color to use.
-            float c, m, y, k;
-            bool purpleOverprint;
-            short ocadId;
-            FindPurple.GetPurpleColor(mapDisplay, appearance, out ocadId, out c, out m, out y, out k, out purpleOverprint);
+            controller.GetLineSpecialProperties(SpecialKind.Line, false,
+                out SpecialColor color, out LineKind lineKind,
+                out float lineWidth, out float gapSize, out float dashSize, out float _);
 
-            LinePropertiesDialog linePropertiesDialog = new LinePropertiesDialog(MiscText.AddLineTitle, MiscText.AddLineExplanation, "EditAddLine.htm", CmykColor.FromCmyk(c, m, y, k), appearance);
+            LinePropertiesDialogViewModel vm = new LinePropertiesDialogViewModel {
+                Title = MiscText.AddLineTitle,
+                Explanation = MiscText.AddLineExplanation,
+                ShowRadius = false,
+                ShowLineKind = true,
+                Color = color,
+                LineKind = lineKind,
+                LineWidth = (decimal)lineWidth,
+                GapSize = (decimal)gapSize,
+                DashSize = (decimal)dashSize,
+            };
 
-            // Get the defaults for a new line.
-            SpecialColor color;
-            LineKind lineKind;
-            float lineWidth, gapSize, dashSize, cornerRadius;
-            controller.GetLineSpecialProperties(SpecialKind.Line, false, out color, out lineKind, out lineWidth, out gapSize, out dashSize, out cornerRadius);
-            linePropertiesDialog.ShowRadius = false;
-            linePropertiesDialog.ShowLineKind = true;
-            linePropertiesDialog.Color = color;
-            linePropertiesDialog.LineKind = lineKind;
-            linePropertiesDialog.LineWidth = lineWidth;
-            linePropertiesDialog.GapSize = gapSize;
-            linePropertiesDialog.DashSize = dashSize;
+            if (!await Services.DialogService.ShowDialogAsync(vm))
+                return;
 
-            DialogResult result = linePropertiesDialog.ShowDialog();
-
-            if (result == DialogResult.OK) {
-                controller.BeginAddLineSpecialMode(linePropertiesDialog.Color, linePropertiesDialog.LineKind, linePropertiesDialog.LineWidth, linePropertiesDialog.GapSize, linePropertiesDialog.DashSize);
-            }
-
-            linePropertiesDialog.Dispose();
-#endif
+            controller.BeginAddLineSpecialMode(vm.Color, vm.LineKind,
+                (float)vm.LineWidth, (float)vm.GapSize, (float)vm.DashSize);
         }
 
         /// <summary>
         /// Executes the Add/Rectangle command. Shows the Line Properties dialog.
         /// </summary>
         [RelayCommand]
-        private void AddRectangle()
+        private async Task AddRectangle()
         {
-#if !PORTING
-            // Set the course appearance into the dialog
-            CourseAppearance appearance = controller.GetCourseAppearance();
+            if (controller == null) return;
 
-            // Get the correct default purple color to use.
-            float c, m, y, k;
-            bool purpleOverprint;
-            short ocadId;
-            FindPurple.GetPurpleColor(mapDisplay, appearance, out ocadId, out c, out m, out y, out k, out purpleOverprint);
+            controller.GetLineSpecialProperties(SpecialKind.Rectangle, false,
+                out SpecialColor color, out LineKind _, out float lineWidth,
+                out float gapSize, out float dashSize, out float cornerRadius);
 
-            LinePropertiesDialog linePropertiesDialog = new LinePropertiesDialog(MiscText.AddRectangleTitle, MiscText.AddRectangleExplanation, "EditAddRectangle.htm", CmykColor.FromCmyk(c, m, y, k), appearance);
+            LinePropertiesDialogViewModel vm = new LinePropertiesDialogViewModel {
+                Title = MiscText.AddRectangleTitle,
+                Explanation = MiscText.AddRectangleExplanation,
+                ShowRadius = true,
+                ShowLineKind = false,
+                Color = color,
+                LineKind = LineKind.Single,
+                LineWidth = (decimal)lineWidth,
+                GapSize = (decimal)gapSize,
+                DashSize = (decimal)dashSize,
+                CornerRadius = (decimal)cornerRadius,
+            };
 
-            // Get the defaults for a new line.
-            SpecialColor color;
-            LineKind lineKind;
-            float lineWidth, gapSize, dashSize, cornerRadius;
-            controller.GetLineSpecialProperties(SpecialKind.Rectangle, false, out color, out lineKind, out lineWidth, out gapSize, out dashSize, out cornerRadius);
-            linePropertiesDialog.ShowRadius = true;
-            linePropertiesDialog.ShowLineKind = false;
-            linePropertiesDialog.Color = color;
-            linePropertiesDialog.LineKind = LineKind.Single;
-            linePropertiesDialog.LineWidth = lineWidth;
-            linePropertiesDialog.GapSize = gapSize;
-            linePropertiesDialog.DashSize = dashSize;
-            linePropertiesDialog.CornerRadius = cornerRadius;
+            if (!await Services.DialogService.ShowDialogAsync(vm))
+                return;
 
-            DialogResult result = linePropertiesDialog.ShowDialog();
-
-            if (result == DialogResult.OK) {
-                controller.BeginAddRectangleSpecialMode(false, linePropertiesDialog.Color, linePropertiesDialog.LineKind, linePropertiesDialog.LineWidth, linePropertiesDialog.GapSize, linePropertiesDialog.DashSize, linePropertiesDialog.CornerRadius);
-            }
-
-            linePropertiesDialog.Dispose();
-#endif
+            controller.BeginAddRectangleSpecialMode(false, vm.Color, vm.LineKind,
+                (float)vm.LineWidth, (float)vm.GapSize, (float)vm.DashSize, (float)vm.CornerRadius);
         }
 
         /// <summary>
         /// Executes the Add/Ellipse command. Shows the Line Properties dialog.
         /// </summary>
         [RelayCommand]
-        private void AddEllipse()
+        private async Task AddEllipse()
         {
-#if !PORTING
-            // Set the course appearance into the dialog
-            CourseAppearance appearance = controller.GetCourseAppearance();
+            if (controller == null) return;
 
-            // Get the correct default purple color to use.
-            float c, m, y, k;
-            bool purpleOverprint;
-            short ocadId;
-            FindPurple.GetPurpleColor(mapDisplay, appearance, out ocadId, out c, out m, out y, out k, out purpleOverprint);
+            controller.GetLineSpecialProperties(SpecialKind.Ellipse, false,
+                out SpecialColor color, out LineKind lineKind,
+                out float lineWidth, out float gapSize, out float dashSize, out float _);
 
-            LinePropertiesDialog linePropertiesDialog = new LinePropertiesDialog(MiscText.AddEllipseTitle, MiscText.AddEllipseExplanation, "EditAddEllipse.htm", CmykColor.FromCmyk(c, m, y, k), appearance);
+            LinePropertiesDialogViewModel vm = new LinePropertiesDialogViewModel {
+                Title = MiscText.AddEllipseTitle,
+                Explanation = MiscText.AddEllipseExplanation,
+                ShowRadius = false,
+                ShowLineKind = true,
+                Color = color,
+                LineKind = LineKind.Single,
+                LineWidth = (decimal)lineWidth,
+                GapSize = (decimal)gapSize,
+                DashSize = (decimal)dashSize,
+            };
 
-            // Get the defaults for a new line.
-            SpecialColor color;
-            LineKind lineKind;
-            float lineWidth, gapSize, dashSize, cornerRadius;
-            controller.GetLineSpecialProperties(SpecialKind.Ellipse, false, out color, out lineKind, out lineWidth, out gapSize, out dashSize, out cornerRadius);
-            linePropertiesDialog.ShowRadius = false;
-            linePropertiesDialog.ShowLineKind = true;
-            linePropertiesDialog.Color = color;
-            linePropertiesDialog.LineKind = LineKind.Single;
-            linePropertiesDialog.LineWidth = lineWidth;
-            linePropertiesDialog.GapSize = gapSize;
-            linePropertiesDialog.DashSize = dashSize;
-            linePropertiesDialog.CornerRadius = cornerRadius;
+            if (!await Services.DialogService.ShowDialogAsync(vm))
+                return;
 
-            DialogResult result = linePropertiesDialog.ShowDialog();
-
-            if (result == DialogResult.OK) {
-                controller.BeginAddRectangleSpecialMode(true, linePropertiesDialog.Color, linePropertiesDialog.LineKind, linePropertiesDialog.LineWidth, linePropertiesDialog.GapSize, linePropertiesDialog.DashSize, 0);
-            }
-
-            linePropertiesDialog.Dispose();
-#endif
+            controller.BeginAddRectangleSpecialMode(true, vm.Color, vm.LineKind,
+                (float)vm.LineWidth, (float)vm.GapSize, (float)vm.DashSize, 0);
         }
 
         #endregion // Add special item commands
@@ -969,67 +917,53 @@ namespace PurplePen.ViewModels
         /// Executes the Item/Change Line Appearance command. Shows the Line Properties dialog.
         /// </summary>
         [RelayCommand]
-        private void ChangeLineAppearance()
+        private async Task ChangeLineAppearance()
         {
-#if !PORTING
-            if (controller.CanChangeLineAppearance() == CommandStatus.Enabled) {
-                CourseAppearance appearance = controller.GetCourseAppearance();
+            if (controller == null) return;
+            if (controller.CanChangeLineAppearance() != CommandStatus.Enabled) return;
 
-                short colorOcadId;
-                float c, m, y, k;
-                bool purpleOverprint;
-                FindPurple.GetPurpleColor(mapDisplay, appearance, out colorOcadId, out c, out m, out y, out k, out purpleOverprint);
+            controller.GetChangableLineProperties(out bool showRadius, out SpecialColor color,
+                out LineKind lineKind, out float lineWidth, out float gapSize,
+                out float dashSize, out float cornerRadius);
 
-                LinePropertiesDialog linePropertiesDialog = new LinePropertiesDialog(MiscText.ChangeLineAppearanceTitle, MiscText.ChangeLineAppearanceExplanation, "ItemChangeLineAppearance.htm", CmykColor.FromCmyk(c, m, y, k), appearance);
+            LinePropertiesDialogViewModel vm = new LinePropertiesDialogViewModel {
+                Title = MiscText.ChangeLineAppearanceTitle,
+                Explanation = MiscText.ChangeLineAppearanceExplanation,
+                ShowRadius = showRadius,
+                ShowLineKind = !showRadius,
+                Color = color,
+                LineKind = lineKind,
+                LineWidth = (decimal)lineWidth,
+                GapSize = (decimal)gapSize,
+                DashSize = (decimal)dashSize,
+                CornerRadius = (decimal)cornerRadius,
+            };
 
-                // Get the defaults for a new line.
-                SpecialColor color;
-                LineKind lineKind;
-                bool showRadius;
-                float lineWidth, gapSize, dashSize, cornerRadius;
-                controller.GetChangableLineProperties(out showRadius, out color, out lineKind, out lineWidth, out gapSize, out dashSize, out cornerRadius);
-                linePropertiesDialog.ShowRadius = showRadius;
-                linePropertiesDialog.ShowLineKind = !showRadius;
-                linePropertiesDialog.Color = color;
-                linePropertiesDialog.LineKind = lineKind;
-                linePropertiesDialog.LineWidth = lineWidth;
-                linePropertiesDialog.GapSize = gapSize;
-                linePropertiesDialog.DashSize = dashSize;
-                linePropertiesDialog.CornerRadius = cornerRadius;
+            if (!await Services.DialogService.ShowDialogAsync(vm))
+                return;
 
-                DialogResult result = linePropertiesDialog.ShowDialog();
-
-                if (result == DialogResult.OK) {
-                    controller.ChangeLineAppearance(linePropertiesDialog.Color, linePropertiesDialog.LineKind, linePropertiesDialog.LineWidth, linePropertiesDialog.GapSize, linePropertiesDialog.DashSize, linePropertiesDialog.CornerRadius);
-                }
-
-                linePropertiesDialog.Dispose();
-            }
-#endif
+            controller.ChangeLineAppearance(vm.Color, vm.LineKind,
+                (float)vm.LineWidth, (float)vm.GapSize, (float)vm.DashSize, (float)vm.CornerRadius);
         }
 
         /// <summary>
         /// Executes the Item/Change Displayed Courses command.
         /// </summary>
         [RelayCommand]
-        private void ChangeDisplayedCourses()
+        private async Task ChangeDisplayedCourses()
         {
-#if !PORTING
-            CourseDesignator[] displayedCourses;
-            bool showAllControls;
+            if (controller == null) return;
+            if (controller.CanChangeDisplayedCourses(out CourseDesignator[] displayedCourses,
+                                                     out bool showAllControls) != CommandStatus.Enabled)
+                return;
 
-            if (controller.CanChangeDisplayedCourses(out displayedCourses, out showAllControls) == CommandStatus.Enabled) {
-                ChangeSpecialCourses changeCoursesDialog = new ChangeSpecialCourses();
-                changeCoursesDialog.EventDB = controller.GetEventDB();
-                changeCoursesDialog.ShowAllControls = showAllControls;
-                changeCoursesDialog.DisplayedCourses = displayedCourses;
+            ChangeDisplayedCoursesDialogViewModel vm = new ChangeDisplayedCoursesDialogViewModel();
+            vm.Initialize(controller.GetEventDB(), showAllControls, displayedCourses);
 
-                DialogResult result = changeCoursesDialog.ShowDialog(this);
-                if (result == DialogResult.OK) {
-                    controller.ChangeDisplayedCourses(changeCoursesDialog.DisplayedCourses);
-                }
-            }
-#endif
+            if (!await Services.DialogService.ShowDialogAsync(vm))
+                return;
+
+            controller.ChangeDisplayedCourses(vm.GetSelectedDesignators());
         }
 
         #endregion // Item modification commands
@@ -1128,166 +1062,128 @@ namespace PurplePen.ViewModels
         /// pre-populated with current course properties.
         /// </summary>
         [RelayCommand]
-        private void DuplicateCourse()
+        private async Task DuplicateCourse()
         {
-#if !PORTING
-            if (controller.CanDuplicateCurrentCourse()) {
-                // Initialize the dialog
-                AddCourse addCourseDialog = new AddCourse();
-                InitializeCoursePropertiesDialogWithCurrentValues(addCourseDialog);
-                addCourseDialog.SetTitle(MiscText.DuplicateCourseTitle);
-                addCourseDialog.HelpTopic = "CourseDuplicate.htm";
-                addCourseDialog.CourseName = "";
-                addCourseDialog.CanChangeCourseKind = false;
+            if (controller == null || !controller.CanDuplicateCurrentCourse()) return;
 
-                // Display the dialog
-                DialogResult result = addCourseDialog.ShowDialog();
+            controller.GetCurrentCourseProperties(
+                out CourseKind courseKind, out string _, out ControlLabelKind labelKind,
+                out int scoreColumn, out string secondaryTitle, out float printScale,
+                out float climb, out float? length, out DescriptionKind descKind,
+                out int firstControlOrdinal, out bool hideFromReports);
 
-                // If the dialog completed successfully, then add the course.
-                if (result == DialogResult.OK) {
-                    controller.DuplicateCurrentCourse(addCourseDialog.CourseName, addCourseDialog.ControlLabelKind, addCourseDialog.ScoreColumn, addCourseDialog.SecondaryTitle,
-                                                      addCourseDialog.PrintScale, addCourseDialog.Climb, addCourseDialog.Length, addCourseDialog.DescKind, addCourseDialog.FirstControlOrdinal, addCourseDialog.HideFromReports);
-                }
+            AddCourseDialogViewModel vm = new AddCourseDialogViewModel();
+            vm.InitializePrintScales(controller.MapScale);
+            vm.CourseKind = courseKind;
+            vm.CourseName = "";
+            vm.SecondaryTitlePipeDelimited = secondaryTitle;
+            vm.PrintScale = printScale;
+            vm.Climb = climb;
+            vm.Length = length;
+            vm.DescKind = descKind;
+            vm.FirstControlOrdinal = firstControlOrdinal;
+            vm.ControlLabelKind = labelKind;
+            vm.ScoreColumn = scoreColumn;
+            vm.HideFromReports = hideFromReports;
+            vm.CanChangeCourseKind = false;
 
-            }
-#endif
+            if (!await Services.DialogService.ShowDialogAsync(vm)) return;
+
+            controller.DuplicateCurrentCourse(
+                vm.CourseName, vm.ControlLabelKind, vm.ScoreColumn,
+                vm.SecondaryTitlePipeDelimited ?? "", vm.PrintScale, vm.Climb, vm.Length,
+                vm.DescKind, vm.FirstControlOrdinal, vm.HideFromReports);
         }
 
         /// <summary>
         /// Executes the Course/Properties command. Shows the course properties dialog.
         /// </summary>
         [RelayCommand]
-        private void ShowCourseProperties()
+        private async Task ShowCourseProperties()
         {
-#if !PORTING
+            if (controller == null) return;
+
             if (controller.CanChangeCourseProperties()) {
-                // Initialize the dialog
-                AddCourse addCourseDialog = new AddCourse();
-                InitializeCoursePropertiesDialogWithCurrentValues(addCourseDialog);
-                addCourseDialog.SetTitle(MiscText.CoursePropertiesTitle);
-                addCourseDialog.HelpTopic = "CourseProperties.htm";
+                controller.GetCurrentCourseProperties(
+                    out CourseKind courseKind, out string courseName, out ControlLabelKind labelKind,
+                    out int scoreColumn, out string secondaryTitle, out float printScale,
+                    out float climb, out float? length, out DescriptionKind descKind,
+                    out int firstControlOrdinal, out bool hideFromReports);
 
-                // Display the dialog
-                DialogResult result = addCourseDialog.ShowDialog();
+                AddCourseDialogViewModel vm = new AddCourseDialogViewModel();
+                vm.InitializePrintScales(controller.MapScale);
+                vm.CourseKind = courseKind;
+                vm.CourseName = courseName;
+                vm.SecondaryTitlePipeDelimited = secondaryTitle;
+                vm.PrintScale = printScale;
+                vm.Climb = climb;
+                vm.Length = length;
+                vm.DescKind = descKind;
+                vm.FirstControlOrdinal = firstControlOrdinal;
+                vm.ControlLabelKind = labelKind;
+                vm.ScoreColumn = scoreColumn;
+                vm.HideFromReports = hideFromReports;
 
-                // If the dialog completed successfully, then change the course.
-                if (result == DialogResult.OK) {
-                    controller.ChangeCurrentCourseProperties(addCourseDialog.CourseKind, addCourseDialog.CourseName, addCourseDialog.ControlLabelKind, addCourseDialog.ScoreColumn, addCourseDialog.SecondaryTitle,
-                        addCourseDialog.PrintScale, addCourseDialog.Climb, addCourseDialog.Length, addCourseDialog.DescKind, addCourseDialog.FirstControlOrdinal, addCourseDialog.HideFromReports);
-                }
+                if (!await Services.DialogService.ShowDialogAsync(vm)) return;
+
+                controller.ChangeCurrentCourseProperties(
+                    vm.CourseKind, vm.CourseName, vm.ControlLabelKind, vm.ScoreColumn,
+                    vm.SecondaryTitlePipeDelimited ?? "", vm.PrintScale, vm.Climb, vm.Length,
+                    vm.DescKind, vm.FirstControlOrdinal, vm.HideFromReports);
             }
             else {
-                // Change properties of all controls.
-                float printScale;
-                DescriptionKind descKind;
-                controller.GetAllControlsProperties(out printScale, out descKind);
-
-                // Initialize the dialog
-                AllControlsProperties allControlsDialog = new AllControlsProperties();
-                allControlsDialog.InitializePrintScales(controller.MapScale);
-                allControlsDialog.PrintScale = printScale;
-                allControlsDialog.DescKind = descKind;
-
-                // Display the dialog
-                DialogResult result = allControlsDialog.ShowDialog();
-
-                // If the dialog completed successfully, then change the course.
-                if (result == DialogResult.OK) {
-                    controller.ChangeAllControlsProperties(allControlsDialog.PrintScale, allControlsDialog.DescKind);
-                }
+                controller.GetAllControlsProperties(out float printScale, out DescriptionKind descKind);
+                AllControlsPropertiesDialogViewModel vm =
+                    new AllControlsPropertiesDialogViewModel(controller.MapScale, printScale, descKind);
+                if (!await Services.DialogService.ShowDialogAsync(vm)) return;
+                controller.ChangeAllControlsProperties(vm.PrintScale, vm.DescKind);
             }
-#endif
         }
 
         /// <summary>
         /// Executes the Course/Course Load command. Shows the Course Load dialog.
         /// </summary>
         [RelayCommand]
-        private void ShowCourseLoad()
+        private async Task ShowCourseLoad()
         {
-#if !PORTING
-            // Initialize the dialog with the current load values.
-            CourseLoad courseLoadDialog = new CourseLoad();
-            courseLoadDialog.SetCourseLoads(controller.GetAllCourseLoads());
-
-            // Show the dialog.
-            DialogResult result = courseLoadDialog.ShowDialog(this);
-
-            // Apply the changes.
-            if (result == DialogResult.OK) {
-                controller.SetAllCourseLoads(courseLoadDialog.GetCourseLoads());
-            }
-
-            courseLoadDialog.Dispose();
-#endif
+            if (controller == null) return;
+            CourseLoadDialogViewModel vm = new CourseLoadDialogViewModel(controller);
+            if (!await Services.DialogService.ShowDialogAsync(vm)) return;
+            controller.SetAllCourseLoads(vm.GetCourseLoads());
         }
 
         /// <summary>
         /// Executes the Course/Course Order command. Shows the Change Course Order dialog.
         /// </summary>
         [RelayCommand]
-        private void ShowCourseOrder()
+        private async Task ShowCourseOrder()
         {
-#if !PORTING
-            // Initialize dialog.
-            ChangeCourseOrder courseOrderDialog = new ChangeCourseOrder(controller.GetAllCourseOrders());
-
-            // Show the dialog.
-            DialogResult result = courseOrderDialog.ShowDialog(this);
-
-            // Apply the changes.
-            if (result == DialogResult.OK) {
-                controller.SetAllCourseOrders(courseOrderDialog.GetCourseOrders());
-            }
-
-            courseOrderDialog.Dispose();
-#endif
+            if (controller == null) return;
+            CourseOrderDialogViewModel vm = new CourseOrderDialogViewModel(controller);
+            if (!await Services.DialogService.ShowDialogAsync(vm)) return;
+            controller.SetAllCourseOrders(vm.GetCourseOrders());
         }
 
         /// <summary>
         /// Executes the Course/Course Variation Report command.
         /// </summary>
         [RelayCommand]
-        private void ShowCourseVariationReport()
+        private async Task ShowCourseVariationReport()
         {
-#if !PORTING
-            RelaySettings relaySettings = controller.GetRelayParameters();
+            if (controller == null) return;
+
+            RelaySettings? relaySettings = controller.GetRelayParameters();
+            if (relaySettings == null) return;
             bool hideVariationsOnMap = controller.GetHideVariationsOnMap();
-            TeamVariationsForm reportForm = new TeamVariationsForm();
-            reportForm.FirstTeamNumber = relaySettings.firstTeamNumber;
-            reportForm.NumberOfTeams = relaySettings.relayTeams;
-            reportForm.NumberOfLegs = relaySettings.relayLegs;
-            reportForm.FixedBranchAssignments = relaySettings.relayBranchAssignments;
-            reportForm.HideVariationsOnMap = hideVariationsOnMap;
-            reportForm.DefaultExportFileName = controller.GetDefaultVariationExportFileName();
 
-            SetVariationReportBody(reportForm);
+            TeamVariationsDialogViewModel vm = new TeamVariationsDialogViewModel(relaySettings, hideVariationsOnMap);
+            vm.DefaultExportFileName = controller.GetDefaultVariationExportFileName();
+            vm.Controller = controller;
 
-            reportForm.CalculateVariationsPressed += (reportSender, reportEventArgs) => {
-                SetVariationReportBody(reportForm);
-            };
+            await Services.DialogService.ShowDialogAsync(vm);
 
-            reportForm.AssignLegsPressed += (reportSender, reportEventArgs) => {
-                ShowAssignLegs(reportForm);
-            };
-
-            reportForm.ExportFilePressed += (reportSender, reportEventArgs) => {
-                ExportVariationReport(reportForm, reportEventArgs.FileType, reportEventArgs.FileName);
-            };
-
-            reportForm.ShowDialog(this);
-
-            if (relaySettings.firstTeamNumber != reportForm.FirstTeamNumber ||
-                relaySettings.relayTeams != reportForm.NumberOfTeams ||
-                relaySettings.relayLegs != reportForm.NumberOfLegs ||
-                hideVariationsOnMap != reportForm.HideVariationsOnMap ||
-                !object.Equals(relaySettings.relayBranchAssignments, reportForm.FixedBranchAssignments))
-            {
-                controller.SetRelayParameters(reportForm.RelaySettings, reportForm.HideVariationsOnMap);
-            }
-
-            reportForm.Dispose();
-#endif
+            // Always save parameters (the dialog has no Cancel — only Close).
+            controller.SetRelayParameters(vm.RelaySettings, vm.HideVariationsOnMap);
         }
 
         #endregion // Course commands
@@ -1298,83 +1194,61 @@ namespace PurplePen.ViewModels
         /// Executes the Event/Change Map File command. Shows the Change Map File dialog.
         /// </summary>
         [RelayCommand]
-        private void ChangeMapFile()
+        private async Task ChangeMapFile()
         {
-#if !PORTING
-            // Initialize dialog.
-            ChangeMapFile dialog = new ChangeMapFile();
-            dialog.MapFile = controller.MapFileName;
+            if (controller == null) return;
+
+            ChangeMapFileDialogViewModel vm = new ChangeMapFileDialogViewModel();
+            // Setting MapFile triggers ValidateMapFile and pre-populates scale/dpi.
+            vm.MapFile = controller.MapFileName ?? "";
+            // Allow the user to override scale/dpi when the map already has values.
             if (controller.MapType == MapType.Bitmap) {
-                dialog.MapScale = controller.MapScale;   // Note: these must be set AFTER the MapFile property
-                dialog.Dpi = controller.MapDpi;
+                vm.MapScaleText = controller.MapScale.ToString();
+                vm.DpiText = controller.MapDpi.ToString();
             }
             else if (controller.MapType == MapType.PDF) {
-                dialog.MapScale = controller.MapScale;
+                vm.MapScaleText = controller.MapScale.ToString();
             }
 
-            // Show the dialog.
-            DialogResult result = dialog.ShowDialog(this);
+            if (!await Services.DialogService.ShowDialogAsync(vm))
+                return;
 
-            // Apply new map file.
-            if (result == DialogResult.OK) {
-                controller.ChangeMapFile(dialog.MapType, dialog.MapFile, dialog.MapScale, dialog.Dpi);
-            }
-#endif
+            controller.ChangeMapFile(vm.MapType, vm.MapFile, vm.MapScale, vm.Dpi);
         }
 
         /// <summary>
         /// Executes the Event/Change Codes command. Shows the Change All Codes dialog.
         /// </summary>
         [RelayCommand]
-        private void ChangeCodes()
+        private async Task ChangeCodes()
         {
-#if !PORTING
-            // Initialize the dialog with the current codes.
-            ChangeAllCodes changeCodesDialog = new ChangeAllCodes();
-            changeCodesDialog.SetEventDB(controller.GetEventDB());
-            changeCodesDialog.Codes = controller.GetAllControlCodes();
+            if (controller == null) return;
 
-            // Show the dialog to allow people to change the codes.
-            DialogResult result = changeCodesDialog.ShowDialog(this);
+            ChangeAllCodesDialogViewModel vm = new ChangeAllCodesDialogViewModel();
+            vm.SetEventDB(controller.GetEventDB());
+            vm.SetCodes(controller.GetAllControlCodes());
 
-            // Apply the changes.
-            if (result == DialogResult.OK) {
-                controller.SetAllControlCodes(changeCodesDialog.Codes);
-            }
+            if (!await Services.DialogService.ShowDialogAsync(vm))
+                return;
 
-            changeCodesDialog.Dispose();
-#endif
+            controller.SetAllControlCodes(vm.GetCodes());
         }
 
         /// <summary>
         /// Executes the Event/Auto Numbering command. Shows the Auto Numbering dialog.
         /// </summary>
         [RelayCommand]
-        private void AutoNumbering()
+        private async Task AutoNumbering()
         {
-#if !PORTING
-            // Get initial values.
-            int firstCode;
-            bool disallowInvertibleCodes;
+            if (controller == null) return;
 
-            controller.GetAutoNumbering(out firstCode, out disallowInvertibleCodes);
+            controller.GetAutoNumbering(out int firstCode, out bool disallowInvertibleCodes);
 
-            // Initialize dialog.
-            AutoNumbering autoNumberingDialog = new AutoNumbering();
-            autoNumberingDialog.FirstCode = firstCode;
-            autoNumberingDialog.DisallowInvertibleCodes = disallowInvertibleCodes;
-            autoNumberingDialog.RenumberExisting = false;
+            AutoNumberingDialogViewModel vm = new AutoNumberingDialogViewModel(firstCode, disallowInvertibleCodes);
+            if (!await Services.DialogService.ShowDialogAsync(vm))
+                return;
 
-            // Show the dialog.
-            DialogResult result = autoNumberingDialog.ShowDialog(this);
-
-            // Apply the changes.
-            if (result == DialogResult.OK) {
-                controller.AutoNumbering(autoNumberingDialog.FirstCode, autoNumberingDialog.DisallowInvertibleCodes, autoNumberingDialog.RenumberExisting);
-            }
-
-            autoNumberingDialog.Dispose();
-#endif
+            controller.AutoNumbering(vm.FirstCode, vm.DisallowInvertibleCodes, vm.RenumberExisting);
         }
 
         /// <summary>
@@ -1383,25 +1257,22 @@ namespace PurplePen.ViewModels
         [RelayCommand]
         private async Task RemoveUnusedControls()
         {
-#if !PORTING
-            List<KeyValuePair<Id<ControlPoint>,string>> unusedControls = controller.GetUnusedControls();
+            if (controller == null) return;
+
+            List<KeyValuePair<Id<ControlPoint>, string>> unusedControls = controller.GetUnusedControls();
 
             if (unusedControls.Count == 0) {
-                // No controls to delete. Tell the user.
                 await InfoMessage(MiscText.NoUnusedControls);
+                return;
             }
-            else {
-                // Put up the dialog and do it.
-                UnusedControls dialog = new UnusedControls();
-                dialog.SetControlsToDelete(controller.GetUnusedControls());
 
-                if (dialog.ShowDialog() == DialogResult.OK) {
-                    controller.RemoveControls(dialog.GetControlsToDelete());
-                }
+            UnusedControlsDialogViewModel vm = new UnusedControlsDialogViewModel();
+            vm.SetControlsToDelete(unusedControls);
 
-                dialog.Dispose();
-            }
-#endif
+            if (!await Services.DialogService.ShowDialogAsync(vm))
+                return;
+
+            controller.RemoveControls(vm.GetControlsToDelete());
         }
 
         /// <summary>
@@ -2143,88 +2014,66 @@ namespace PurplePen.ViewModels
         #region Report commands
 
         /// <summary>
-        /// Shows the Course Summary report.
+        /// Shows the Course Summary report in the default browser.
         /// </summary>
         [RelayCommand]
         private void ShowCourseSummary()
         {
-#if !PORTING
+            if (controller == null) return;
             Reports reportGenerator = new Reports();
-
-            string testReport = reportGenerator.CreateCourseSummaryReport(controller.GetEventDB());
-
-            ReportForm reportForm = new ReportForm(WindowsUtil.RemoveHotkeyPrefix(courseSummaryMenu.Text), "", testReport, "ReportsCourseSummary.htm");
-            reportForm.ShowDialog(this);
-            reportForm.Dispose();
-#endif
+            OpenHtmlReport(reportGenerator.CreateCourseSummaryReport(controller.GetEventDB()));
         }
 
         /// <summary>
-        /// Shows the Control Cross-Reference report.
+        /// Shows the Control Cross-Reference report in the default browser.
         /// </summary>
         [RelayCommand]
         private void ShowControlCrossref()
         {
-#if !PORTING
+            if (controller == null) return;
             Reports reportGenerator = new Reports();
-
-            string testReport = reportGenerator.CreateCrossReferenceReport(controller.GetEventDB());
-
-            ReportForm reportForm = new ReportForm(WindowsUtil.RemoveHotkeyPrefix(controlCrossrefMenu.Text), "", testReport, "ReportsControlCrossReference.htm");
-            reportForm.ShowDialog(this);
-            reportForm.Dispose();
-#endif
+            OpenHtmlReport(reportGenerator.CreateCrossReferenceReport(controller.GetEventDB()));
         }
 
         /// <summary>
-        /// Shows the Control and Leg Load report.
+        /// Shows the Control and Leg Load report in the default browser.
         /// </summary>
         [RelayCommand]
         private void ShowControlAndLegLoad()
         {
-#if !PORTING
+            if (controller == null) return;
             Reports reportGenerator = new Reports();
-
-            string testReport = reportGenerator.CreateLoadReport(controller.GetEventDB());
-
-            ReportForm reportForm = new ReportForm(WindowsUtil.RemoveHotkeyPrefix(controlAndLegLoadMenu.Text), "", testReport, "ReportsControlAndLegLoad.htm");
-            reportForm.ShowDialog(this);
-            reportForm.Dispose();
-#endif
+            OpenHtmlReport(reportGenerator.CreateLoadReport(controller.GetEventDB()));
         }
 
         /// <summary>
-        /// Shows the Leg Lengths report.
+        /// Shows the Leg Lengths report in the default browser.
         /// </summary>
         [RelayCommand]
         private void ShowLegLengths()
         {
-#if !PORTING
+            if (controller == null) return;
             Reports reportGenerator = new Reports();
-
-            string testReport = reportGenerator.CreateLegLengthReport(controller.GetEventDB());
-
-            ReportForm reportForm = new ReportForm(WindowsUtil.RemoveHotkeyPrefix(legLengthsMenu.Text), "", testReport, "ReportsLegLengths.htm");
-            reportForm.ShowDialog(this);
-            reportForm.Dispose();
-#endif
+            OpenHtmlReport(reportGenerator.CreateLegLengthReport(controller.GetEventDB()));
         }
 
         /// <summary>
-        /// Shows the Event Audit report.
+        /// Shows the Event Audit report in the default browser.
         /// </summary>
         [RelayCommand]
         private void ShowEventAudit()
         {
-#if !PORTING
+            if (controller == null) return;
             Reports reportGenerator = new Reports();
+            OpenHtmlReport(reportGenerator.CreateEventAuditReport(controller.GetEventDB()));
+        }
 
-            string testReport = reportGenerator.CreateEventAuditReport(controller.GetEventDB());
-
-            ReportForm reportForm = new ReportForm(WindowsUtil.RemoveHotkeyPrefix(eventAuditMenu.Text), "", testReport, "ReportsEventAudit.htm");
-            reportForm.ShowDialog(this);
-            reportForm.Dispose();
-#endif
+        // Writes HTML to a temp file and opens it in the default browser.
+        private static void OpenHtmlReport(string html)
+        {
+            string tempFile = Path.Combine(Path.GetTempPath(), $"pp_report_{Guid.NewGuid():N}.html");
+            File.WriteAllText(tempFile, html, Encoding.UTF8);
+            OpenUrl(tempFile);
         }
 
         #endregion // Report commands
@@ -2248,9 +2097,7 @@ namespace PurplePen.ViewModels
         [RelayCommand]
         private void HelpTranslated()
         {
-#if !PORTING
-            WindowsUtil.GoToWebPage(MiscText.TranslatedHelpWebSite);
-#endif
+            OpenUrl(MiscText.TranslatedHelpWebSite);
         }
 
         /// <summary>
@@ -2259,9 +2106,7 @@ namespace PurplePen.ViewModels
         [RelayCommand]
         private void OpenMainWebSite()
         {
-#if !PORTING
-            WindowsUtil.GoToWebPage("http://purple-pen.org");
-#endif
+            OpenUrl("http://purple-pen.org");
         }
 
         /// <summary>
@@ -2270,9 +2115,7 @@ namespace PurplePen.ViewModels
         [RelayCommand]
         private void OpenSupportWebSite()
         {
-#if !PORTING
-            WindowsUtil.GoToWebPage("http://purple-pen.org#support");
-#endif
+            OpenUrl("http://purple-pen.org#support");
         }
 
         /// <summary>
@@ -2281,9 +2124,13 @@ namespace PurplePen.ViewModels
         [RelayCommand]
         private void OpenDonateWebSite()
         {
-#if !PORTING
-            WindowsUtil.GoToWebPage("http://purple-pen.org#donate");
-#endif
+            OpenUrl("http://purple-pen.org#donate");
+        }
+
+        // Opens a URL in the default browser using the OS shell.
+        private static void OpenUrl(string url)
+        {
+            Process.Start(new ProcessStartInfo(url) { UseShellExecute = true });
         }
 
         /// <summary>

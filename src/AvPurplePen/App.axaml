@@ -75,6 +75,7 @@
 
     <Application.Styles>
         <semi:SemiTheme Locale="en-US" />
+        <StyleInclude Source="avares://Avalonia.Controls.DataGrid/Themes/Fluent.xaml"/>
 
         <!-- Use embedded Source Sans 3 as the default font for all controls -->
         <Style Selector=":is(TemplatedControl)">
