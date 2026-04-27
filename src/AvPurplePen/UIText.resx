@@ -3951,4 +3951,30 @@ For printing competition maps, it is suggested that courses be exported to OCAD 
   <data name="CourseAppearanceDialog_checkBoxOverprint_Text" xml:space="preserve">
     <value>Use overprint effect for colors marked "overprint"</value>
   </data>
+  <!-- PunchcardLayoutDialog -->
+  <data name="PunchcardLayoutDialog_Text" xml:space="preserve">
+    <value>Punch Card Layout</value>
+  </data>
+  <data name="PunchcardLayoutDialog_boxOrderGroupBox_Text" xml:space="preserve">
+    <value>Box Order</value>
+  </data>
+  <data name="PunchcardLayoutDialog_sizeGroupBox_Text" xml:space="preserve">
+    <value>Size</value>
+  </data>
+  <data name="PunchcardLayoutDialog_columnsLabel_Text" xml:space="preserve">
+    <value>Columns:</value>
+  </data>
+  <data name="PunchcardLayoutDialog_rowsLabel_Text" xml:space="preserve">
+    <value>Rows:</value>
+  </data>
+  <!-- PunchPatternDialog -->
+  <data name="PunchPatternDialog_Text" xml:space="preserve">
+    <value>Punch Patterns</value>
+  </data>
+  <data name="PunchPatternDialog_punchPatternsLabel_Text" xml:space="preserve">
+    <value>Click on a control code in the left-side list, and design the punch pattern in the right side. Red codes indicate controls that have no punch pattern defined.</value>
+  </data>
+  <data name="PunchPatternDialog_formatButton_Text" xml:space="preserve">
+    <value>Punch Card Layout...</value>
+  </data>
 </root>

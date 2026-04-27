@@ -1309,30 +1309,20 @@ namespace PurplePen.ViewModels
         /// Executes the Event/Punch Patterns command. Shows the Punch Pattern dialog.
         /// </summary>
         [RelayCommand]
-        private void PunchPatterns()
+        private async Task PunchPatterns()
         {
-#if !PORTING
-            // Get all the punch patterns and the punch card layout.
             Dictionary<string, PunchPattern> allPatterns = controller.GetAllPunchPatterns();
             PunchcardFormat punchcardFormat = controller.GetPunchcardFormat();
 
-            // Initialize the dialog.
-            PunchPatternDialog dialog = new PunchPatternDialog();
-            dialog.AllPunchPatterns = allPatterns;
-            dialog.PunchcardFormat = punchcardFormat;
+            PunchPatternDialogViewModel vm = new PunchPatternDialogViewModel();
+            vm.Initialize(allPatterns, punchcardFormat);
 
-            // Show the dialog.
-            DialogResult result = dialog.ShowDialog(this);
-
-            // Apply the changes.
-            if (result == DialogResult.OK) {
-                if (!dialog.PunchcardFormat.Equals(punchcardFormat))
-                    controller.SetPunchcardFormat(dialog.PunchcardFormat);
-                controller.SetAllPunchPatterns(dialog.AllPunchPatterns);
+            if (await Services.DialogService.ShowDialogAsync(vm)) {
+                PunchcardFormat newFormat = vm.GetPunchcardFormat();
+                if (!newFormat.Equals(punchcardFormat))
+                    controller.SetPunchcardFormat(newFormat);
+                controller.SetAllPunchPatterns(vm.GetAllPunchPatterns());
             }
-
-            dialog.Dispose();
-#endif
         }
 
         /// <summary>
