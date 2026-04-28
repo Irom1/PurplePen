@@ -10773,5 +10773,77 @@ namespace AvPurplePen {
                 return ResourceManager.GetString("ViewAdditionalCourses_Text", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Moving Shared Control.
+        /// </summary>
+        public static string MoveControlChoiceDialog_Text {
+            get {
+                return ResourceManager.GetString("MoveControlChoiceDialog_Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Control &quot;{0}&quot; is present in the following other courses. If you move it, those courses will be changed also.
+        /// </summary>
+        public static string MoveControlChoiceDialog_labelExplanation_Text {
+            get {
+                return ResourceManager.GetString("MoveControlChoiceDialog_labelExplanation_Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Move Control In All Courses.
+        /// </summary>
+        public static string MoveControlChoiceDialog_moveButton_TitleText {
+            get {
+                return ResourceManager.GetString("MoveControlChoiceDialog_moveButton_TitleText", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to This course and the above listed courses will all change.
+        /// </summary>
+        public static string MoveControlChoiceDialog_moveButton_DetailText {
+            get {
+                return ResourceManager.GetString("MoveControlChoiceDialog_moveButton_DetailText", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Create New Control In This Course.
+        /// </summary>
+        public static string MoveControlChoiceDialog_duplicateButton_TitleText {
+            get {
+                return ResourceManager.GetString("MoveControlChoiceDialog_duplicateButton_TitleText", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Other courses will not change, and control &quot;{0}&quot; will be replaced with a new control at the new location in this course.
+        /// </summary>
+        public static string MoveControlChoiceDialog_duplicateButton_DetailText {
+            get {
+                return ResourceManager.GetString("MoveControlChoiceDialog_duplicateButton_DetailText", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Do Nothing.
+        /// </summary>
+        public static string MoveControlChoiceDialog_cancelButton_TitleText {
+            get {
+                return ResourceManager.GetString("MoveControlChoiceDialog_cancelButton_TitleText", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Do not move this control.
+        /// </summary>
+        public static string MoveControlChoiceDialog_cancelButton_DetailText {
+            get {
+                return ResourceManager.GetString("MoveControlChoiceDialog_cancelButton_DetailText", resourceCulture);
+            }
+        }
     }
 }

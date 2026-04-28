@@ -113,8 +113,12 @@ namespace PurplePen.ViewModels
 
         public async Task<YesNoCancel> MovingSharedControl(string controlCode, string otherCourses)
         {
-            string message = string.Format("Control {0} is used in other courses: {1}\n\nYes = move shared control\nNo = create a new control\nCancel = do nothing.", controlCode, otherCourses);
-            return await YesNoCancelQuestion(message, true);
+            MoveControlChoiceDialogViewModel vm = new MoveControlChoiceDialogViewModel {
+                ControlCode = controlCode,
+                OtherCourses = otherCourses
+            };
+            await Services.DialogService.ShowDialogAsync(vm);
+            return vm.ChosenResult;
         }
 
         public void ShowProgressDialog(bool knownDuration, Action onCancelPressed)
