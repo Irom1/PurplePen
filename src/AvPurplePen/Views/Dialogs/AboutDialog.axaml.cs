@@ -49,14 +49,11 @@ namespace AvPurplePen.Views
         private void CreditsButton_Click(object? sender, RoutedEventArgs e)
         {
             string creditsPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Help", "Credits.htm");
-            if (File.Exists(creditsPath))
+            Process.Start(new ProcessStartInfo
             {
-                Process.Start(new ProcessStartInfo
-                {
-                    FileName = creditsPath,
-                    UseShellExecute = true
-                });
-            }
+                FileName = creditsPath,
+                UseShellExecute = true
+            });
         }
 
         /// <summary>
