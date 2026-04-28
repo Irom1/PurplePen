@@ -7,9 +7,7 @@
 // Migrated from WinForms PurplePen/AboutForm.cs.
 
 using System;
-using System.Diagnostics;
 using System.Drawing;
-using System.IO;
 using System.Runtime.InteropServices;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
@@ -37,26 +35,23 @@ namespace AvPurplePen.Views
         /// <summary>
         /// Opens the license dialog.
         /// </summary>
-        private async void LicenseButton_Click(object? sender, RoutedEventArgs e)
+        private void LicenseButton_Click(object? sender, RoutedEventArgs e)
         {
-            LicenseDialog dialog = new LicenseDialog();
-            await dialog.ShowDialog(this);
+#if PORTING
+            // TODO: Create Avalonia LicenseDialog and show it here.
+            // Original: new LicenseForm().ShowDialog();
+#endif
         }
 
         /// <summary>
-        /// Opens Credits.htm from the Help folder in the default browser.
+        /// Opens the Credits help topic.
         /// </summary>
         private void CreditsButton_Click(object? sender, RoutedEventArgs e)
         {
-            string creditsPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Help", "Credits.htm");
-            if (File.Exists(creditsPath))
-            {
-                Process.Start(new ProcessStartInfo
-                {
-                    FileName = creditsPath,
-                    UseShellExecute = true
-                });
-            }
+#if PORTING
+            // TODO: Wire up help system for Avalonia.
+            // Original: WindowsUtil.ShowHelpTopic(this, "Credits.htm");
+#endif
         }
 
         /// <summary>
