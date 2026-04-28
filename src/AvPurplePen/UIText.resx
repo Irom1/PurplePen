@@ -3545,7 +3545,7 @@ For printing competition maps, it is suggested that courses be exported to OCAD 
     <value>Done</value>
   </data>
   <data name="SetPrintAreaDialog_setPrintAreaLabel_Text" xml:space="preserve">
-    <value>Set the desired printing area by dragging with the mouse.</value>
+    <value>Adjust the paper size and margins to set the print area. When not using automatic mode, the print area is set based on the paper size and margins above.</value>
   </data>
   <data name="SetPrintAreaDialog_groupBoxPaperSize_Text" xml:space="preserve">
     <value>Paper Size</value>
@@ -3555,6 +3555,24 @@ For printing competition maps, it is suggested that courses be exported to OCAD 
   </data>
   <data name="SetPrintAreaDialog_checkBoxFixSizeToPaper_Text" xml:space="preserve">
     <value>Fix Print Area Size to Paper Size</value>
+  </data>
+  <data name="PaperSizeControl_sizeLabel_Text" xml:space="preserve">
+    <value>Size:</value>
+  </data>
+  <data name="PaperSizeControl_widthLabel_Text" xml:space="preserve">
+    <value>Width:</value>
+  </data>
+  <data name="PaperSizeControl_heightLabel_Text" xml:space="preserve">
+    <value>Height:</value>
+  </data>
+  <data name="PaperSizeControl_marginLabel_Text" xml:space="preserve">
+    <value>Margin (all sides):</value>
+  </data>
+  <data name="PaperSizeControl_portraitLabel_Text" xml:space="preserve">
+    <value>Portrait</value>
+  </data>
+  <data name="PaperSizeControl_landscapeLabel_Text" xml:space="preserve">
+    <value>Landscape</value>
   </data>
   <data name="SetUILanguage_introLabel_Text" xml:space="preserve">
     <value>Select the language that you would like to use for the user interface of Purple Pen (menus, windows, etc.)</value>
@@ -3852,4 +3870,31 @@ For printing competition maps, it is suggested that courses be exported to OCAD 
   <data name="NewEventFinal_Prompt" xml:space="preserve">
     <value>Click Finish to create the event file at:</value>
   </data>
+
+  <!-- MoveControlChoiceDialog -->
+  <data name="MoveControlChoiceDialog_Text" xml:space="preserve">
+    <value>Moving Shared Control</value>
+  </data>
+  <data name="MoveControlChoiceDialog_labelExplanation_Text" xml:space="preserve">
+    <value>Control "{0}" is present in the following other courses. If you move it, those courses will be changed also.</value>
+  </data>
+  <data name="MoveControlChoiceDialog_moveButton_TitleText" xml:space="preserve">
+    <value>Move Control In All Courses</value>
+  </data>
+  <data name="MoveControlChoiceDialog_moveButton_DetailText" xml:space="preserve">
+    <value>This course and the above listed courses will all change.</value>
+  </data>
+  <data name="MoveControlChoiceDialog_duplicateButton_TitleText" xml:space="preserve">
+    <value>Create New Control In This Course</value>
+  </data>
+  <data name="MoveControlChoiceDialog_duplicateButton_DetailText" xml:space="preserve">
+    <value>Other courses will not change, and control "{0}" will be replaced with a new control at the new location in this course.</value>
+  </data>
+  <data name="MoveControlChoiceDialog_cancelButton_TitleText" xml:space="preserve">
+    <value>Do Nothing</value>
+  </data>
+  <data name="MoveControlChoiceDialog_cancelButton_DetailText" xml:space="preserve">
+    <value>Do not move this control.</value>
+  </data>
+
 </root>

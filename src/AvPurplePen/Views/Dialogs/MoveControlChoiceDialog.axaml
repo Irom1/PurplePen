@@ -1,0 +1,100 @@
+<!--
+    MoveControlChoiceDialog.axaml
+
+    Shown when the user drags a shared control — lets them choose whether to
+    move the control in all courses, create a new control in this course only,
+    or cancel the operation.
+
+    Migrated from WinForms PurplePen/MoveControlChoiceDialog.cs.
+-->
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:PurplePen.ViewModels"
+        xmlns:resx="using:AvPurplePen"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        d:DesignWidth="430" d:DesignHeight="420"
+        x:Class="AvPurplePen.Views.MoveControlChoiceDialog"
+        Classes="dialog"
+        x:DataType="vm:MoveControlChoiceDialogViewModel"
+        Title="{resx:Localize MoveControlChoiceDialog_Text}"
+        Icon="/Assets/transparent.ico"
+        Width="430"
+        SizeToContent="Height"
+        CanResize="False"
+        CanMinimize="False"
+        CanMaximize="False"
+        WindowStartupLocation="CenterOwner"
+        ShowInTaskbar="False">
+
+    <Design.DataContext>
+        <vm:MoveControlChoiceDialogViewModel/>
+    </Design.DataContext>
+
+    <StackPanel Margin="12" Spacing="8">
+
+        <!-- Explanation: "Control X is present in the following other courses..." -->
+        <TextBlock TextWrapping="Wrap">
+            <TextBlock.Text>
+                <Binding Path="ControlCode"
+                         StringFormat="{x:Static resx:UIText.MoveControlChoiceDialog_labelExplanation_Text}"/>
+            </TextBlock.Text>
+        </TextBlock>
+
+        <!-- List of other courses (indented) -->
+        <TextBlock x:Name="labelOtherCourses"
+                   Text="{Binding OtherCourses}"
+                   TextWrapping="Wrap"
+                   Margin="18,0,0,0"/>
+
+        <!-- Move in all courses -->
+        <Button x:Name="moveButton"
+                HorizontalAlignment="Stretch"
+                HorizontalContentAlignment="Stretch"
+                MinHeight="80"
+                Click="MoveButton_Click">
+            <StackPanel Spacing="4" Margin="4">
+                <TextBlock Text="{resx:Localize MoveControlChoiceDialog_moveButton_TitleText}"
+                           FontWeight="Bold"/>
+                <TextBlock Text="{resx:Localize MoveControlChoiceDialog_moveButton_DetailText}"
+                           TextWrapping="Wrap"/>
+            </StackPanel>
+        </Button>
+
+        <!-- Create new control in this course only -->
+        <Button x:Name="duplicateButton"
+                HorizontalAlignment="Stretch"
+                HorizontalContentAlignment="Stretch"
+                MinHeight="80"
+                Click="DuplicateButton_Click">
+            <StackPanel Spacing="4" Margin="4">
+                <TextBlock Text="{resx:Localize MoveControlChoiceDialog_duplicateButton_TitleText}"
+                           FontWeight="Bold"/>
+                <TextBlock TextWrapping="Wrap">
+                    <TextBlock.Text>
+                        <Binding Path="ControlCode"
+                                 StringFormat="{x:Static resx:UIText.MoveControlChoiceDialog_duplicateButton_DetailText}"/>
+                    </TextBlock.Text>
+                </TextBlock>
+            </StackPanel>
+        </Button>
+
+        <!-- Do nothing / cancel -->
+        <Button x:Name="cancelButton"
+                HorizontalAlignment="Stretch"
+                HorizontalContentAlignment="Stretch"
+                MinHeight="80"
+                IsCancel="True"
+                Click="CancelButton_Click">
+            <StackPanel Spacing="4" Margin="4">
+                <TextBlock Text="{resx:Localize MoveControlChoiceDialog_cancelButton_TitleText}"
+                           FontWeight="Bold"/>
+                <TextBlock Text="{resx:Localize MoveControlChoiceDialog_cancelButton_DetailText}"
+                           TextWrapping="Wrap"/>
+            </StackPanel>
+        </Button>
+
+    </StackPanel>
+
+</Window>

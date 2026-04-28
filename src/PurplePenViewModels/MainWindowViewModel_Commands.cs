@@ -1598,33 +1598,39 @@ namespace PurplePen.ViewModels
         /// Sets the print area for this part only.
         /// </summary>
         [RelayCommand]
-        private void SetPrintAreaThisPart()
+        private async Task SetPrintAreaThisPart()
         {
-#if !PORTING
-            SetPrintArea(PrintAreaKind.OnePart);
-#endif
+            await SetPrintAreaAsync(PrintAreaKind.OnePart);
         }
 
         /// <summary>
         /// Sets the print area for this course only.
         /// </summary>
         [RelayCommand]
-        private void SetPrintAreaThisCourse()
+        private async Task SetPrintAreaThisCourse()
         {
-#if !PORTING
-            SetPrintArea(PrintAreaKind.OneCourse);
-#endif
+            await SetPrintAreaAsync(PrintAreaKind.OneCourse);
         }
 
         /// <summary>
         /// Sets the print area for all courses.
         /// </summary>
         [RelayCommand]
-        private void SetPrintAreaAllCourses()
+        private async Task SetPrintAreaAllCourses()
         {
-#if !PORTING
-            SetPrintArea(PrintAreaKind.AllCourses);
-#endif
+            await SetPrintAreaAsync(PrintAreaKind.AllCourses);
+        }
+
+        /// <summary>
+        /// Shows the Set Print Area dialog for the given scope and commits any changes.
+        /// </summary>
+        /// <param name="printAreaKind">Which scope of print area to edit.</param>
+        private async Task SetPrintAreaAsync(PrintAreaKind printAreaKind)
+        {
+            if (controller == null) return;
+            SetPrintAreaDialogViewModel vm = new SetPrintAreaDialogViewModel(controller, printAreaKind);
+            await Services.DialogService.ShowDialogAsync(vm);
+            // OnOk / OnCancel on the ViewModel handle the controller interaction.
         }
 
         #endregion // Print area commands
