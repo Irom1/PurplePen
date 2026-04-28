@@ -1,0 +1,165 @@
+<!--
+    SetPrintAreaDialog.axaml
+
+    Dialog for setting the print area rectangle for a course or all courses.
+    Lets the user choose a paper size, margin, and orientation, and toggle
+    whether the print area is set automatically or fixed to the paper size.
+
+    Migrated from WinForms PurplePen/SetPrintAreaDialog.cs and PaperSizeControl.cs.
+-->
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:PurplePen.ViewModels"
+        xmlns:resx="using:AvPurplePen"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        x:Class="AvPurplePen.Views.SetPrintAreaDialog"
+        Classes="dialog"
+        x:DataType="vm:SetPrintAreaDialogViewModel"
+        Title="{resx:Localize SetPrintAreaDialog_Text}"
+        Icon="/Assets/transparent.ico"
+        d:DesignWidth="340" d:DesignHeight="360"
+        Width="340"
+        SizeToContent="Height"
+        CanResize="False"
+        CanMinimize="False"
+        CanMaximize="False"
+        WindowStartupLocation="CenterOwner"
+        ShowInTaskbar="False">
+
+    <Design.DataContext>
+        <vm:SetPrintAreaDialogViewModel/>
+    </Design.DataContext>
+
+    <DockPanel Margin="12">
+
+        <!-- OK / Cancel buttons at the bottom -->
+        <StackPanel DockPanel.Dock="Bottom"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    Spacing="8"
+                    Margin="0,12,0,0">
+            <Button x:Name="cancelButton"
+                    Content="{resx:Localize SetPrintAreaDialog_cancelButton_Text}"
+                    Width="85"
+                    HorizontalContentAlignment="Center"
+                    IsCancel="True"
+                    Click="CancelButton_Click"/>
+            <Button x:Name="okButton"
+                    Content="{resx:Localize SetPrintAreaDialog_okButton_Text}"
+                    Width="85"
+                    HorizontalContentAlignment="Center"
+                    IsDefault="True"
+                    Click="OkButton_Click"/>
+        </StackPanel>
+
+        <!-- Main content -->
+        <StackPanel Spacing="8">
+
+            <!-- Paper Size group -->
+            <HeaderedContentControl Header="{resx:Localize SetPrintAreaDialog_groupBoxPaperSize_Text}"
+                                    Padding="8">
+                <StackPanel Spacing="6">
+
+                    <!-- Size combo row -->
+                    <Grid ColumnDefinitions="Auto,*">
+                        <TextBlock Grid.Column="0"
+                                   Text="{resx:Localize PaperSizeControl_sizeLabel_Text}"
+                                   VerticalAlignment="Center"
+                                   Margin="0,0,8,0"/>
+                        <ComboBox x:Name="paperSizeCombo"
+                                  Grid.Column="1"
+                                  ItemsSource="{Binding PaperSizeNames}"
+                                  SelectedIndex="{Binding SelectedPaperSizeIndex, Mode=TwoWay}"
+                                  HorizontalAlignment="Stretch"/>
+                    </Grid>
+
+                    <!-- Width / Height row -->
+                    <Grid ColumnDefinitions="Auto,80,Auto,Auto,80,Auto">
+                        <TextBlock Grid.Column="0"
+                                   Text="{resx:Localize PaperSizeControl_widthLabel_Text}"
+                                   VerticalAlignment="Center"
+                                   Margin="0,0,4,0"/>
+                        <NumericUpDown x:Name="upDownWidth"
+                                       Grid.Column="1"
+                                       Value="{Binding PageWidthValue, Mode=TwoWay}"
+                                       Minimum="0"
+                                       Maximum="{Binding MaxDimension}"
+                                       FormatString="{Binding FormatString}"
+                                       Increment="{Binding Increment}"
+                                       IsEnabled="{Binding IsUserDefinedSize}"/>
+                        <TextBlock Grid.Column="2"
+                                   Text="{Binding UnitLabel}"
+                                   VerticalAlignment="Center"
+                                   Margin="4,0,12,0"/>
+                        <TextBlock Grid.Column="3"
+                                   Text="{resx:Localize PaperSizeControl_heightLabel_Text}"
+                                   VerticalAlignment="Center"
+                                   Margin="0,0,4,0"/>
+                        <NumericUpDown x:Name="upDownHeight"
+                                       Grid.Column="4"
+                                       Value="{Binding PageHeightValue, Mode=TwoWay}"
+                                       Minimum="0"
+                                       Maximum="{Binding MaxDimension}"
+                                       FormatString="{Binding FormatString}"
+                                       Increment="{Binding Increment}"
+                                       IsEnabled="{Binding IsUserDefinedSize}"/>
+                        <TextBlock Grid.Column="5"
+                                   Text="{Binding UnitLabel}"
+                                   VerticalAlignment="Center"
+                                   Margin="4,0,0,0"/>
+                    </Grid>
+
+                    <!-- Margin row -->
+                    <Grid ColumnDefinitions="Auto,80,Auto">
+                        <TextBlock Grid.Column="0"
+                                   Text="{resx:Localize PaperSizeControl_marginLabel_Text}"
+                                   VerticalAlignment="Center"
+                                   Margin="0,0,4,0"/>
+                        <NumericUpDown x:Name="upDownMargin"
+                                       Grid.Column="1"
+                                       Value="{Binding PageMarginsValue, Mode=TwoWay}"
+                                       Minimum="0"
+                                       Maximum="{Binding MaxDimension}"
+                                       FormatString="{Binding FormatString}"
+                                       Increment="{Binding Increment}"/>
+                        <TextBlock Grid.Column="2"
+                                   Text="{Binding UnitLabel}"
+                                   VerticalAlignment="Center"
+                                   Margin="4,0,0,0"/>
+                    </Grid>
+
+                    <!-- Portrait / Landscape row -->
+                    <StackPanel Orientation="Horizontal" Spacing="16">
+                        <RadioButton x:Name="portraitRadio"
+                                     Content="{resx:Localize PaperSizeControl_portraitLabel_Text}"
+                                     IsChecked="{Binding IsPortrait, Mode=TwoWay}"/>
+                        <RadioButton x:Name="landscapeRadio"
+                                     Content="{resx:Localize PaperSizeControl_landscapeLabel_Text}"
+                                     IsChecked="{Binding Landscape, Mode=TwoWay}"/>
+                    </StackPanel>
+
+                </StackPanel>
+            </HeaderedContentControl>
+
+            <!-- Automatic checkbox -->
+            <CheckBox x:Name="checkBoxAutomatic"
+                      Content="{resx:Localize SetPrintAreaDialog_checkBoxAutomatic_Text}"
+                      IsChecked="{Binding AutoPrintArea, Mode=TwoWay}"/>
+
+            <!-- Fix size to paper checkbox -->
+            <CheckBox x:Name="checkBoxFixSizeToPaper"
+                      Content="{resx:Localize SetPrintAreaDialog_checkBoxFixSizeToPaper_Text}"
+                      IsChecked="{Binding RestrictToPageSize, Mode=TwoWay}"/>
+
+            <!-- Instruction label -->
+            <TextBlock Text="{resx:Localize SetPrintAreaDialog_setPrintAreaLabel_Text}"
+                       TextWrapping="Wrap"
+                       Margin="0,4,0,0"/>
+
+        </StackPanel>
+
+    </DockPanel>
+
+</Window>
